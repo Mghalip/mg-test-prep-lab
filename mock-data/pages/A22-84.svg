@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Times New Roman"><tspan y="-51.77" x="293.04 297.5994">82</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-729.65" x="85.08 95.99685 103.796848 110.03669 115.43669 120.11534 123.95519 131.0349 142.20001 149.27971">Question18</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-705.41006" x="246.95902 254.75902 262.559 268.44 276.24 284.03999 289.92 297.72 305.52 311.40003 319.2 326.87974 332.75904 340.55903">12,12,18,24,29</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-681.05007" x="85.08003 98.159748 105.23944 111.47929 118.80003 122.75944 131.64003 135.59943 142.55883 152.28003 163.08003 169.31989 176.39958 180.35898 186.59883 197.04004 203.99944 212.15904 216.11844 223.07784 232.80005 239.75945 245.9993 249.9587 259.55906 265.0786 271.31846 278.64006 284.1596 291.119 298.19868 308.27839 315.23777">Whatisthemedianofthedatasetshown?</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-536.21" x="85.08005 95.996898 103.79689 110.036739 115.43674 120.11539 123.95524 131.03495 142.20005 149.27974">Question19</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-511.97004" x="85.08004 89.75869 102.00004 106.67869 110.51854 117.598239 124.55764 133.68004 137.63944 142.31809 146.15793 152.39778 159.35718 166.43688 170.27672">Inrighttriangle</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-511.97004" x="181.80005 190.3196 198.83914">ABC</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-511.97004" x="208.19644 216.95905 223.1989 230.2786 237.23799 241.07784 247.31769">,angles</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-511.97004" x="258.00007">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-511.97004" x="271.80006 278.0399 285.11958">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-511.97004" x="297.24006">B</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-511.97004" x="311.15907 317.3989 322.07756 333.48008 339.7199 345.95976 352.91914 356.87855 363.11839 371.88008 377.39964 381.23948 388.19886">areacute,side</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-511.97004" x="399.60008 408.11964">AC</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-511.97004" x="422.88008 429.95976 436.07929 446.75907 458.28007 462.23948 468.359 475.4387 482.39808 486.35749 498.60008 505.55946">hasalengthof</tspan><tspan y="-484.01005" x="85.08005 92.159748 99.11915 102.59884 109.55824 116.88005 123.119899 130.0793">21.7,and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-484.13005" x="144.35906 149.87862 157.67862 168.84006 181.92006">𝑡𝑎𝑛𝐵=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-492.29106" x="196.32006">1</tspan><tspan y="-477.05006" x="196.32006">8</tspan></text>
+<path transform="matrix(1,0,0,1,196.32,353.88)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H5.52"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-484.13" x="204.12">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-484.01" x="210.959 224.159 231.2387 237.47855 245.04001 248.9994 258.24003 262.19944 269.1588 279.24003 283.19944 289.31898 296.39866 303.35804 307.19789 318.00004 325.0797 333.60005 339.00007 342.95948 349.91886">Whatisthelengthofside</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-484.01" x="360.00004 368.5196">BC</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-484.01" x="377.8769 385.20005 389.8787 396.83808 403.91777 410.87715 417.83653 424.07637 434.88005 438.83946 449.64006 453.59947 460.55885 470.52006 477.59974 483.83958 489.9591 494.63777 500.8776 506.27763">,roundedtothenearest</tspan><tspan y="-455.691" x="85.08005 89.03945 95.159008 102.2387 106.07855 113.15825">tenth?</tspan><tspan y="-431.57" x="85.08005 89.7587 99.838397 108.000049 114.95945 122.03915 128.99855 132.47824">(A)470.9</tspan><tspan y="-407.45" x="85.08005 89.7587 99.116 107.15905 114.23875 121.19815 128.15755 131.63724">(B)173.6</tspan><tspan y="-383.21003" x="85.08005 89.7587 99.116 107.15905 114.23875 117.71844">(C)4.7</tspan><tspan y="-359.09104" x="85.08005 89.7587 99.838397 108.000049 114.95945 118.43914">(D)2.7</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-286.73103" x="85.08005 95.996898 103.79689 110.036739 115.43674 120.11539 123.95524 131.03495 142.20005 149.27974">Question20</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-262.61003" x="85.08004 100.20004 104.87869 111.11854 117.35838 121.198238 127.43808 134.39748 141.47718 148.43657 152.39597 158.51552 169.08005 176.15975 182.2793 189.359 196.31839 202.55825 213.00005 219.95944 226.1993 237.48004 243.7199 256.55906 262.7989 267.47755 273.71739 285.72007 292.79975 303.24006 310.31974 313.79945 320.75883 327.8385 340.55906 346.0786 353.038 360.11769 366.2372 370.91587 383.04005 386.99946 393.95884 400.19868 407.15806 413.3979 418.7979 427.32005 442.44004 448.67988 455.75956 462.71894 475.55903 482.6387 493.08003 497.03944 503.9988">Arectangularbannerhasanareaof2,500squareinches.Acopyofthe</tspan><tspan y="-238.37001" x="85.08002 92.15971 98.27927 105.35896 112.31837 118.55821 128.52002 132.47942 143.28002 154.08002 160.31987 167.39957 179.04001 182.9994 195.35901 205.4387 212.5184 216.35825 222.5981 235.08002 239.03942 245.99881 257.64 261.59944 267.71897 274.79866 281.75804 285.59788 297.959 304.19886 311.27854 323.64 333.71974 337.67915 344.63853 348.59794 360.959 368.0387 378.12004 382.07945 389.03883 400.55903 407.6387 412.31736 416.1572 423.11659 427.076 434.03538 440.2752 449.64 456.5994 462.83924 469.9189 476.8783 483.11814 493.08003 499.31986 503.9985">bannerismadeinwhichthelengthandwidthoftheoriginalbannerare</tspan><tspan y="-214.25002" x="85.08002 91.31986 97.55971 103.79955 114.12002 118.07942 125.038829 131.27867 135.95732 142.19718 148.31673 153.83629 160.07614 170.52002 177.59972 188.04003 194.99942 202.07912 213.71897 220.44004 233.64003 240.71973 246.95958 254.28003 258.23945 267.12004 271.07945 278.03883 287.64 293.87986 298.5585 304.79835 314.52003 321.5997 329.64 333.59944 340.5588 350.28004 356.51988 363.47926 370.55894 376.67848 383.52003 387.47944 397.919 403.43858 410.39796 417.47764 423.59718 428.27583 438 441.9594 448.9188 455.15864 462.118 468.35786 473.8774">eachincreasedby40%.Whatistheareaofthecopy,insquareinches?</tspan><tspan y="-190.13101" x="85.07999 89.75864 99.83833 107.999988 114.95939 118.43908 125.518779 132.47818">(A)2.540</tspan><tspan y="-166.01001" x="85.07999 89.75864 99.11594 107.15899 114.238689 117.718379 124.67778 131.75748">(B)2,580</tspan><tspan y="-141.77" x="85.07999 89.75864 99.11594 107.15899 114.238689 117.718379 124.67778 131.75748">(C)3,500</tspan><tspan y="-117.65" x="85.07999 89.75864 99.83833 107.999988 114.95939 118.43908 125.518779 132.47818">(D)4,900</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+</g>
+</g>
+</g>
+</svg>

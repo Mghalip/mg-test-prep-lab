@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Times New Roman"><tspan y="-51.77" x="293.04 297.5994">72</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12">Question8</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-720.05" x="262.08 272.52 280.31999">&#x2212;3𝑥</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-725.20999" x="287.75898">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-720.05" x="296.87998 310.43998 318.23997 329.63996 340.07997 353.63996 361.43995">&#x2212;2𝑥=&#x2212;16</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-683.691" x="89.99994 103.19994 110.27964 116.519489 123.839939 127.79934 136.67993 140.63933 147.59873 157.19994 164.27964 171.23903 176.75859 180.59844 184.43828 188.39768 195.35707 205.07994 210.5995 217.5589 221.39875 228.47844 232.31829 236.27768 243.23708 253.67995 257.63938 268.07997 272.03938 278.99876 288.71998 295.79966 299.6395 306.59889 312.8387 323.27998 329.5198 336.5995 343.55888 349.7987 353.63856 357.59797 364.55735 371.51673">Whatisthepositivesolutiontothegivenequation?</tspan><tspan y="-659.57" x="89.999958 94.678607 104.7583 112.91995">(A)3</tspan><tspan y="-635.45" x="89.999958 94.678607 104.035907 112.19995">(B)6</tspan><tspan y="-611.21" x="89.999958 94.678607 104.035907 112.19995">(C)2</tspan><tspan y="-587.091" x="89.999958 94.678607 104.7583 112.91995 119.99965 123.8395">(D)3/2</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+</g>
+</g>
+</g>
+</svg>

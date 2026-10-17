@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Times New Roman"><tspan y="-51.77" x="293.04 297.5994">87</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12">Question1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="206.64 213.7197 220.6791 227.64 234.7197 241.6791 248.64 255.7197 262.67909 269.64 276.7197 283.67909 290.64 297.7197 304.67909 311.64 318.7197 325.67909 332.64 339.7197 346.67909 353.64 360.7197 367.67909 374.64 381.7197">45,46,47,50,51,53,57,61,67</tspan><tspan y="-696.65" x="90.00003 103.200038 110.27973 116.51958 123.84003 127.79943 136.68003 140.63942 147.59882 157.20003 168.00003 174.23989 181.31958 185.27898 191.51883 201.95903 209.03873 217.08003 221.03943 227.99883 237.72003 244.79973 250.91928 254.87868 264.48005 269.9996 276.95899 284.03868 294.11839 301.07777">Whatisthemedianofthedatashown?</tspan><tspan y="-660.41006" x="90.00003 100.07973 103.55942 110.639118">A.45</tspan><tspan y="-624.291" x="90.00003 99.35733 102.83702 109.91672">B.50</tspan><tspan y="-588.17007" x="90.00003 99.35733 102.83702 109.91672">C.51</tspan><tspan y="-552.05007" x="90.00003 100.07973 103.55942 110.639118">D.53</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-419.21003" x="90.00003 100.91688 108.71687 114.95672 120.35672 125.03537 128.99477 135.95417 147.12003">Question2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-395.09104" x="268.80006 279.24006 287.1596 294.2393 304.55906 312.4786 319.5583">y+30=80</tspan><tspan y="-358.97004" x="90.000049 103.20005 110.27975 116.51959 123.84004 130.79944 137.03929 140.99869 147.95809 157.55905 164.63875 172.80005 183.24005 187.19945 196.08005 200.03945 206.99884 216.72005 222.23961 229.199 233.03885 240.11855 243.95839 247.91779 254.87718 265.32005 269.27946 279.72004 283.67945 290.63883 300.24003 307.3197 311.15956 318.23924 324.35877 334.92 341.15986 348.23954 355.1989 361.43876 365.2786 369.238 376.1974 383.15678">Whatvalueofyisthesolutiontothegivenequation?</tspan><tspan y="-322.85005" x="90.000019 100.07971 103.5594 110.6391">A.40</tspan><tspan y="-286.61006" x="90.000019 99.357318 102.837009 109.9167">B.50</tspan><tspan y="-250.49105" x="90.000019 99.357318 102.837009 109.9167">C.60</tspan><tspan y="-214.37004" x="90.000019 100.07971 103.5594 110.6391">D.70</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+</g>
+</g>
+</g>
+</svg>

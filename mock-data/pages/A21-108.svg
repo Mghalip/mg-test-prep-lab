@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Times New Roman"><tspan y="-51.77" x="290.759 295.3184 299.87779">106</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question12</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="89.99999 98.51955 105.59924 117.35899 122.03764 129.11734 136.07674 142.31659 146.15644 150.11583 157.07523">Thefunction</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-732.64999" x="173.159 180.84 186.72 194.159">𝑓(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="207.84 211.7994 222.84 229.7994 236.03925 240.7179 244.67729 251.63669 257.87654 270.47999 276.71983 287.75898 294.83866 307.43998 318.23997 325.31965 329.9983 341.87998 345.8394 352.79878 359.0386 371.63999 384.24 388.1994 392.03926 402.83924 409.07908 420.24 432.12 439.19969 446.15907 456.95906 464.03874 470.27857">isdefinedas17morethan3timesanumber</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-732.52999" x="480.6">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="486.84 495.95899 500.63764">.If</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-708.05" x="89.99997 101.63997 119.158969 126.839969 132.71997 140.15897">𝑦=𝑓(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.05" x="149.99997 153.95937 163.07997 170.15967 174.83832 180.95787 188.03757 194.99697 201.23682 212.03998 215.99938 226.67998 230.63938 237.59877">isgraphedinthe</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-708.05" x="247.55898 253.79883">xy</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.05" x="259.91999 264.59864 271.6783 275.51817 281.758 288.71739 294.9572 302.159 312.2387 319.3184 325.55824 333.24 337.1994 346.31999 350.2794 357.23878 367.19999 374.27967 380.5195 385.91954 393.59999 397.43983 404.5195 408.35935 414.59919 419.27784 426.2372 430.91587 437.1557 440.99555 447.23539 451.07524 455.03465 461.99403 472.8 479.75938 488.159 492.1184 499.0778">-plane,whatisthebestinterpretationofthe</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-683.81" x="89.99997">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-683.81" x="96.23997 100.91862 104.75847 111.838169 115.67802 121.91786 126.59651 132.83637 138.95592 146.03562 149.87546">-intercept?</tspan><tspan y="-655.85" x="89.99997 100.079669 110.99997 124.199977 131.27968 137.51953">A.When</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-655.85" x="151.43997 158.99997 164.87998 172.31998 185.15898 202.55898">𝑓(𝑥)=0</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-655.85" x="210.35898 217.31998 221.27938 228.23877 237.95899 245.03868 251.99808 262.79808 269.87776 276.11759 284.159 288.1184">,thenumberis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-655.85" x="297">&#x2212;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-664.00997" x="310.559 316.07856">17</tspan><tspan y="-648.8909" x="313.44">3</tspan></text>
+<path transform="matrix(1,0,0,1,310.68,182.04)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-655.85" x="321.6">.</tspan><tspan y="-627.29098" x="90 99.3573 111 124.200008 131.27971 137.51956 147.84 151.7994 158.75879 168.48 175.5597 182.51909 193.31909 200.39879 206.63864 214.8 218.63985">B.Whenthenumberis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-627.41" x="227.64 235.44 241.32 249 254.759 262.2 275.04 289.1994 297.11897">0,𝑓(𝑥)=17</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-627.29098" x="304.92">.</tspan><tspan y="-602.80996" x="90.000019 99.357318 111.000019 118.80001 125.87971 134.64002 140.87987 147.11972 153.35958 164.64002 168.59941 175.5588 181.79866 186.47731 192.59687 198.83672 204.35628 214.80002 221.75942 230.64002 241.92002 245.87941 257.04 260.99943 267.9588 278.52003 285.5997 291.71925 295.67866 302.63804 313.08003 320.1597 329.04 332.99943 339.9588 350.40003 357.4797 364.4391 375.23908 382.31877 388.5586 392.75859">C.Foreachincreaseof1inthevalueofthenumber,</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-602.92996" x="403.91905 411.60005 417.35905 424.80006">𝑓(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-602.80996" x="435.72007 439.67948 446.63887 452.8787 457.55735 463.67689 469.91673 475.43629 481.55583 491.28007 498.35975">increasesby</tspan><tspan y="-578.56997" x="90.00006 97.07976">3.</tspan><tspan y="-554.20999" x="90.00006 100.07976 111.00006 119.519618 126.59931 137.15906 144.23876 150.4786 154.31845 161.27785 171.95906 179.03876">D.Thevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-554.33096" x="191.52007 199.20008 205.08008 212.52008">𝑓(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-554.20999" x="223.68009 227.63948 234.59888 240.83873 245.51738 251.75724 257.87678 263.39634 269.63618 279.48008 286.55976 297.8401 309.3591 314.03776 321.11744 330.1201 336.35993 342.59977 348.8396 360.24009 364.1995 371.15888 377.3987 382.07737 388.1969 394.43675 399.9563 410.52009 417.59977 426.60008 438.00007 441.95948 453.35908 457.31849 464.27787 474.95909 482.03877 488.2786 492.11845 499.07783">increasesby1foreachincreaseof3inthevalue</tspan><tspan y="-529.97" x="90.00006 97.07976 105.12006 109.07947 116.03887 125.75906 132.83876 139.79816 150.59816 157.67786 163.91771 167.8771">ofthenumber.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-409.24998" x="90.00006 100.91691 108.7169 114.95675 120.35675 125.0354 128.9948 135.9542 147.12006 154.20006">Question13</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-386.80998" x="268.32008">2</tspan><tspan y="-366.89097" x="269.04008">𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,268.32,461.76)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H7.8"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-376.25" x="279.24">&#x2212;</tspan><tspan y="-386.81" x="293.03999">7</tspan><tspan y="-366.891" x="292.8">𝑑</tspan></text>
+<path transform="matrix(1,0,0,1,292.8,461.76)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H8.16"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-376.25" x="304.8 318.95939">=5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-345.531" x="89.999988 98.51954 105.599239 115.319988 122.39968 126.23953 133.19893 139.43878 149.87999 156.11985 163.19954 170.15894 176.39879 180.23863 184.19803 191.15743 201.59999 206.27864 212.5185 216.47789 222.59745 226.55684 232.79669 241.79999 245.63983 252.71953 262.44 269.39939 275.63923 280.31788 284.27729 290.39683 297.4765 301.31636 307.55619">Thegivenequationrelatesthevariables</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-345.531" x="316.44">c</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-345.531" x="326.159 332.39884 339.47853">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-345.531" x="349.91999">d</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-345.531" x="356.99998 363.95899 374.0387 381.11839 387.35823 392.03688">,where</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-345.531" x="401.75898">c</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-345.531" x="411.47999 417.71983 424.7995">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-345.531" x="435.24">d</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-345.531" x="445.8 452.03984 456.71849 466.44 473.39939 478.07804 484.31788 490.5577 494.39756 500.6374">aregreater</tspan><tspan y="-321.41" x="90 93.959407 100.91881 107.15865 117.6 124.679698 131.4 144.47969 151.55939 155.51879 161.75864 172.2 178.43985 185.39925 192.47895 198.5985 202.55789 206.39774 213.35713 223.8 230.03986 237.11956 241.67894 246.35759 252.59745 258.83729 262.67713 266.63655 277.08003 283.31986 290.39955 297.35893 302.03758 308.2774 313.67744 319.07746 325.3173">than1.Whichequationcorrectlyexpresses</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-321.41" x="334.2">d</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-321.41" x="344.759 348.7184 359.159 363.1184 369.35826 373.91764 384.71763 393.72 400.79969">intermsof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-321.41" x="408.84">c</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-321.41" x="415.08">?</tspan><tspan y="-295.37" x="89.99997 100.079669">A.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-295.491" x="110.99997 122.99997">𝑑=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-303.65" x="153.47997">𝑐</tspan><tspan y="-288.41" x="137.39997 146.99997 152.51998 159.95897 165.47997">72&#x2212;5𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,144.6,550.634)" d="M0 0C0 1.138 .183 2.075 .55 2.813 .916 3.551 1.475 4.045 2.227 4.296L2.109 4.671C1.156 4.421 .424 3.882-.086 3.055-.595 2.228-.85 1.226-.85 .049-.85-1.125-.594-2.127-.083-2.957 .428-3.788 1.159-4.328 2.109-4.579L2.241-4.203C1.48-3.952 .916-3.464 .55-2.738 .183-2.011 0-1.099 0 0" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,1,172.55,550.634)" d="M0 0C0-1.099-.183-2.011-.547-2.738-.912-3.464-1.476-3.952-2.241-4.203L-2.11-4.579C-1.159-4.328-.428-3.788 .083-2.957 .594-2.127 .85-1.125 .85 .049 .85 1.226 .595 2.228 .086 3.055-.424 3.882-1.156 4.421-2.11 4.671L-2.227 4.296C-1.475 4.045-.916 3.551-.55 2.813-.183 2.075 0 1.138 0 0" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,1,137.4,542.52)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H36.84"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-261.65" x="90 99.3573">B.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-261.65" x="111 123">𝑑=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-269.81" x="143.88 149.40001">7𝑐</tspan><tspan y="-254.691" x="137.40001 142.8 150.35901 155.88">2&#x2212;5𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,137.4,576.24)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H23.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-228.77" x="90 99.3573">C.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-228.891" x="111 123">𝑑=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-237.05" x="137.4 147 152.52 159.959 165.48">72&#x2212;5𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,144.6,602.034)" d="M0 0C0 1.138 .183 2.075 .55 2.813 .916 3.551 1.475 4.045 2.227 4.296L2.109 4.671C1.156 4.421 .424 3.882-.086 3.055-.595 2.228-.85 1.226-.85 .049-.85-1.125-.594-2.127-.083-2.957 .428-3.788 1.159-4.328 2.109-4.579L2.241-4.203C1.48-3.952 .916-3.464 .55-2.738 .183-2.011 0-1.099 0 0" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,1,172.55,602.034)" d="M0 0C0-1.099-.183-2.011-.547-2.738-.912-3.464-1.476-3.952-2.241-4.203L-2.11-4.579C-1.159-4.328-.428-3.788 .083-2.957 .594-2.127 .85-1.125 .85 .049 .85 1.226 .595 2.228 .086 3.055-.424 3.882-1.156 4.421-2.11 4.671L-2.227 4.296C-1.475 4.045-.916 3.551-.55 2.813-.183 2.075 0 1.138 0 0" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-221.81" x="153.48">𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,137.4,609.12)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H36.84"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-196.37" x="90 100.0797">D.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-196.491" x="111 123">𝑑=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-204.65" x="137.4 142.79999 150.359 155.87999">2&#x2212;5𝑐</tspan><tspan y="-189.40999" x="143.87999 149.4">7𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,137.4,641.52)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H23.04"/>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+</g>
+</g>
+</g>
+</svg>
