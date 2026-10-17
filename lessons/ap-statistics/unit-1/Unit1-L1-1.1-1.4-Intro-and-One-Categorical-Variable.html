@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 1 · Lesson 1 — Introducing Statistics &amp; One Categorical Variable</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:17px;margin:4px 0}
+.slider-row label{width:110px;font-weight:700}
+.slider-row input[type=range]{flex:1}
+.slider-row .v{width:60px;font-family:var(--mono);text-align:right}
+table.tw td.colhl,table.tw th.colhl{background:var(--gold)!important;color:var(--navy);font-weight:800}
+table.tw td.colhl2,table.tw th.colhl2{background:var(--pink-2)!important;font-weight:800}
+table.tw td.bad{background:#FCE4E4!important;color:#C0392B;font-weight:800;outline:2px solid #E9A3A3}
+.cin{width:64px;font-family:var(--mono);font-size:18px;text-align:center;border:2px solid var(--line);border-radius:8px;padding:4px}
+.lbin{width:120px;font-size:15px;border:2px solid var(--line);border-radius:8px;padding:4px 6px}
+.big{font-family:var(--mono);font-size:24px}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 1 第一课：CED 1.1–1.4，对应旧课本 TPS 第 1 章引言 + 1.1 的“一个分类变量”部分（双向表部分在 Unit 2 Lesson 1）。v2 格式：例题与解答分页、模拟器高亮、难度星级。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 1 · Lesson 1</div><h1>Introducing Statistics &amp; One Categorical Variable</h1><div class="zhT">统计入门、变量与一个分类变量</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 1.1 What Can We Learn from Data? · 1.2 Variables · 1.3 Tables · 1.4 Graphs for One Categorical Variable</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 1.0 + 1.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 1 全貌。" data-title="Unit 1 roadmap">
+<div class="tag">Unit 1 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 1 <span class="zh">单元路线图</span></h2>
+<p class="sub">Exploring One-Variable Data and Collecting Data · 20–30% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson now"><span class="n">1</span>1.1–1.4 Introducing Statistics &amp; One Categorical Variable<span class="old">TPS 1.0 + 1.1</span></div><div class="lesson"><span class="n">2</span>1.5 + 1.6 Graphs for One Quantitative Variable<span class="old">TPS 1.2</span></div><div class="lesson"><span class="n">3</span>1.7 Summary Statistics<span class="old">TPS 1.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">4</span>1.8 + 1.9 Boxplots, Comparing &amp; z-Scores<span class="old">TPS 1.3 + 2.1</span></div><div class="lesson"><span class="n">5</span>1.10–1.12 Data Collection, Sampling &amp; Bias<span class="old">TPS 4.1</span></div><div class="lesson"><span class="n">6</span>1.13 Experimental Design<span class="old">TPS 4.2 + 4.3</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Unit 1 = <strong>exploring one variable</strong> (Lessons 1–4) + <strong>collecting data</strong> (Lessons 5–6). Today: what statistics is, the language of data, and one categorical variable. <span class="zh">今天：统计是什么、数据的语言、一个分类变量。</span></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 1 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">1.1.A · Skill 2.A</div><h3>Identify a study <span class="stars">★<span class="off">★★★</span></span></h3><p>Identify the components of a statistical study: population, sample, N, n, data.</p><p class="zh muted small" style="margin-top:6px">识别统计研究的组成部分</p></div><div class="card"><div class="k">1.1.B · Skill 1.A</div><h3>Investigative question <span class="stars">★★<span class="off">★★</span></span></h3><p>Determine a valid investigative question.</p><p class="zh muted small" style="margin-top:6px">确定合适的研究问题</p></div><div class="card"><div class="k">1.2.A · Skill 2.A</div><h3>Units &amp; variables <span class="stars">★★<span class="off">★★</span></span></h3><p>Identify observational units, variables, parameters, and statistics.</p><p class="zh muted small" style="margin-top:6px">识别观测单位、变量、参数、统计量</p></div><div class="card"><div class="k">1.2.B–C · Skill 2.A</div><h3>Types of variables <span class="stars">★<span class="off">★★★</span></span></h3><p>Categorical vs. quantitative; discrete vs. continuous.</p><p class="zh muted small" style="margin-top:6px">变量类型</p></div><div class="card"><div class="k">1.3 · Skills 3.A, 4.A</div><h3>Tables <span class="stars">★<span class="off">★★★</span></span></h3><p>Construct and describe frequency and relative frequency tables.</p><p class="zh muted small" style="margin-top:6px">频数表与相对频数表</p></div><div class="card"><div class="k">1.4 · Skills 3.A, 4.A, 4.B</div><h3>Graphs <span class="stars">★★<span class="off">★★</span></span></h3><p>Make bar charts and pie charts; justify claims; compare data sets; spot misleading graphs.</p><p class="zh muted small" style="margin-top:6px">条形图、饼图，论证与比较</p></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 1 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:60px">4'</div>Warm-up: who talks more?</div><div class="it"><div class="bar n" style="width:150px">10' · 1.1</div>Statistics · population &amp; sample · investigative question</div><div class="it"><div class="bar n" style="width:150px">10' · 1.2</div>Observational units · variables · parameter vs. statistic · variable types</div><div class="it"><div class="bar n" style="width:110px">6' · 1.3</div>Frequency &amp; relative frequency tables</div><div class="it"><div class="bar n" style="width:130px">10' · 1.4</div>Bar charts · pie charts · misleading graphs · comparing</div><div class="it"><div class="bar" style="width:60px">5'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:120px">Bonus</div>Variable sorter · scale trick · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 1.1.A → 1.1.B → 1.2.A → 1.2.B → 1.2.C → 1.3.A → 1.3.B → 1.4.A → 1.4.B → 1.4.C</p><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 1 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simJoy" href="#"><span class="ic">🎮</span><span>Can you smell Parkinson’s disease?<small>能闻出帕金森病吗？ · guessers vs. Joy</small></span></a><a data-goto="simBP" href="#"><span class="ic">🎮</span><span>Bar chart ↔ pie chart builder<small>条形图与饼图生成器 · your data → two graphs</small></span></a><a data-goto="simScale" href="#"><span class="ic">🎮</span><span>Watch those scales!<small>注意坐标轴！ · truncated axis</small></span></a><a data-goto="simVar" href="#"><span class="ic">🎮</span><span>Variable generator<small>变量类型随机练习（Bonus） · infinite practice</small></span></a></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="TPS 第 1 章引言：Where the data come from matters. 研究结果：女性约 16,215 词/天，男性约 15,669 词/天（Mehl et al., 2007, Science）。" data-title="📝 Warm-up: Who talks more — women or men?">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Who talks more — women or men? <span class="zh">热身：谁说话更多？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A popular book claimed that women speak about 20,000 words per day while men speak only about 7,000. <span class="zh">一本畅销书声称女性每天说约 2 万个词，男性只有约 7 千个。</span></p><div class="q"><b class="n">Q1</b>Does this match your personal experience? Is personal experience good evidence?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Personal experience = a few memorable incidents. Data describe the overall picture more reliably. <span class="zh">数据比个人经验更可靠。</span></div></div><div class="q"><b class="n">Q2</b>What data would you collect to check the claim?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Record how many words many people actually speak — and choose the people carefully.</div></div><div class="q"><b class="n">Q3</b>Researchers had 396 college students wear a small recorder for several days. Predict the result!</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Result: women ≈ 16,215 words/day, men ≈ 15,669 words/day — almost the same! There was also <b>huge variation</b> from person to person.</div></div></div><div class="keyidea">🔑 Popular claim vs. data from 396 college students.</div><div class="takeaway">💡 <b>Where the data come from matters.</b> And <b>variation is everywhere</b>.</div></div></div><div class="col vis"><div class="qv"><svg id="wuPic" viewbox="0 0 560 260" width="100%"></svg><div class="cap">The claim: 20,000 vs. 7,000 words per day</div></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="TPS 第 1 章引言：Statistics is the science of learning from data. 例：911、100、0 本身没有意义，有了语境才是数据。" data-title="Statistics">
+<div class="tag">Intro <b>· Key Idea</b><span class="ek">TPS Ch. 1 Intro</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Statistics <span class="zh">统计学</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">Statistics is the science and art of collecting, analyzing, and drawing conclusions from data. Data are numbers (or other information) with a context.</div><div class="cn"><b>统计学</b>是收集、分析数据并从数据中得出结论的科学与艺术。数据是<b>有背景（语境）</b>的数字或信息。</div></div><div class="row" style="margin-top:6px"><div class="col card"><div class="k">Just a number</div><p class="big">911</p><p class="small muted">Meaningless without context</p></div><div class="col card"><div class="k">Data (with context)</div><p>911 = the number of calories in a fast-food meal · the emergency phone number in the US · a car model</p><p class="zh muted small">有了语境，数字才有意义</p></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.1" data-sec="1" data-title="§ 1.1 Introducing Statistics: What Can We Learn from Data?">
+<div class="tag">Topic</div><div class="num">1.1</div><h1>Introducing Statistics: What Can We Learn from Data?</h1><div class="zhT">统计入门：我们能从数据中学到什么？</div><div class="eks"><span>1.1.A.1–2 Statistical study</span><span>1.1.A.3 Datum · data set</span><span>1.1.A.4–5 Population N · sample n</span>1.1.A.6 In context<span>1.1.B Investigative question</span></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.1.A.1–5。" data-title="Statistical Study, Population &amp;amp; Sample">
+<div class="tag">1.1 <b>· Key Concepts</b><span class="ek">EK 1.1.A.1–5</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Statistical Study, Population &amp; Sample <span class="zh">统计研究、总体与样本</span></h2><div class="concept"><div class="term">Statistical study<span class="zh">统计研究</span></div><div class="en">A <strong>statistical study</strong> collects data from a <strong>sample</strong> to answer an investigative question about a larger <strong>population</strong>. Studies are needed when the population is too large or it is too difficult to collect data from everyone.</div><div class="cn"><b>统计研究</b>：从<b>样本</b>收集数据，回答关于更大<b>总体</b>的研究问题。当总体太大或很难从每个个体收集数据时，就需要统计研究。</div></div><div class="concept pink"><div class="term">Population · sample<span class="zh">总体 · 样本</span></div><div class="en">The <strong>population</strong> is all items or individuals of interest; its size is N. A <strong>sample</strong> is a subset of the population from which data are obtained; its size is n.</div><div class="cn"><b>总体</b>：所有感兴趣的个体，大小记作 N。<b>样本</b>：总体中实际收集数据的子集，大小记作 n。</div></div><div class="note small" style="margin-top:4px">A <b>datum</b> (singular of data) is one piece of information about an item or individual; a collection of data is a data set. Relating each result to the real-world situation = answering “in context”. <span class="zh">datum 是单个数据；data set 是数据集；“in context” = 结合实际情境作答。</span></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: How much do students sleep?">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.1.A.1–6</span></div>
+<h2>How much do students sleep? <span class="zh">学生睡多久？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A principal wants to know how many hours the 1,200 students at her school sleep on school nights. She asks 80 randomly chosen students. One student, Li Wei, reports <b>6.5 hours</b>.</p><div class="q"><b class="n">a</b>Identify the population and N.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Population: all 1,200 students at the school → N = 1200.</div></div><div class="q"><b class="n">b</b>Identify the sample and n.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Sample: the 80 randomly chosen students → n = 80.</div></div><div class="q"><b class="n">c</b>What is “6.5 hours” called?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A <b>datum</b> — one piece of information about one individual. All 80 answers form the data set.</div></div><div class="q"><b class="n">d</b>Why not just ask all 1,200 students?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Asking everyone takes a lot of time and effort; a well-chosen sample can give a good estimate. <span class="zh">问所有人太费时费力。</span></div></div></div><div class="keyidea">🔑 1,200 students · 80 surveyed · Li Wei: 6.5 hours.</div><div class="takeaway">💡 Population (N) → sample (n) → data → conclusion about the population.</div></div></div><div class="col vis"><svg id="slSol" viewbox="0 0 560 280" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="TPS 第 1 章开场活动。Joy 判断对 11/12；纯猜测得到 ≥11 的概率约 13/4096 ≈ 0.003。这是整门课的核心思想：如果“纯属偶然”很难发生，就有证据。" data-title="🎮 Simulator: Can you smell Parkinson’s disease?" id="simJoy">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Can you smell Parkinson’s disease?</span><span class="zh">能闻出帕金森病吗？</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS Ch. 1 Activity</span>
+<div class="row"><div class="col" style="flex:.8">
+<p class="small">Joy Milne claimed she could <b>smell</b> Parkinson’s disease. In a test she smelled 12 T-shirts (6 worn by people with Parkinson’s, 6 without) and classified 11 correctly. <span class="zh">Joy 闻了 12 件 T 恤，判断对了 11 件。</span></p>
+<p class="small" style="margin-top:6px"><b>Is she just a lucky guesser?</b> Simulate people who simply <b>guess</b> (50-50) on each shirt:</p>
+<div class="btns"><button class="b" data-jg="1">1 guesser</button><button class="b" data-jg="100">+100</button><button class="b" data-jg="1000">+1000</button><button class="b" id="jgReset">Reset</button></div>
+<p class="small" id="jgLast" style="font-family:var(--mono);min-height:26px"></p><div class="note small" id="jgMsg">Click to start.</div></div>
+<div class="col frame"><svg id="jgSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Lucky guesser?">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS Ch. 1 · preview of inference</span></div>
+<h2>Lucky guesser? <span class="zh">只是运气好吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Joy classified 11 of 12 shirts correctly.</p><div class="q"><b class="n">a</b>If she were just guessing, about how many would you expect her to get right?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">About 6 of 12 (half).</div></div><div class="q"><b class="n">b</b>Use the simulation: how often does a guesser get <b>11 or more</b> right?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">In thousands of simulated guessers, 11 or more right happens only about 0.3% of the time (13 out of 4096).</div></div><div class="q"><b class="n">c</b>What do you conclude? Could you ever be 100% sure?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Very unlikely by chance alone → <b>convincing evidence</b> Joy can smell Parkinson’s. But we can never be 100% sure — this is how statistics reasons! <span class="zh">“纯属偶然”极不可能 → 有力证据，但永远不是 100% 确定。</span></div></div></div><div class="keyidea">🔑 12 shirts, each guess right with probability 0.5.</div><div class="takeaway">💡 The big idea of AP Statistics: <b>could this happen just by chance?</b></div></div></div><div class="col vis"><svg id="jgSol" viewbox="0 0 560 290" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.1.B。Unit 1 Lesson 5（1.10）会再深入。" data-title="Investigative Question">
+<div class="tag">1.1 · Concept<span class="ek">EK 1.1.B.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Investigative Question <span class="zh">研究问题</span></h2><div class="concept pink"><div class="term">Requirements<span class="zh">要求</span></div><div class="en">An <strong>investigative question</strong> for a study should have a defined purpose and should <strong>not be changed</strong> based on the data analysis or results. It should be posed so that the required data <strong>can be collected and analyzed</strong>.</div><div class="cn"><b>研究问题</b>要有明确目的，<b>不能</b>根据数据分析结果再修改；并且要能实际收集和分析所需数据。</div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Good investigative question?">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.1.B</span></div>
+<h2>Good investigative question? <span class="zh">这是好的研究问题吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>“Are students happy?”</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Too vague — “happy” isn’t defined and the population isn’t clear. ✗</div></div><div class="q"><b class="n">b</b>“What is the average number of hours students at our school sleep on school nights?”</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Clear variable, clear population, data can be collected. ✓</div></div><div class="q"><b class="n">c</b>A researcher planned to compare test scores, saw the data, then changed the question to whichever comparison looked biggest.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Changing the question after seeing the results is not allowed. ✗</div></div><div class="q"><b class="n">d</b>“How many fish are in the Pacific Ocean today?” (one student, one week)</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The needed data cannot realistically be collected. ✗</div></div></div><div class="keyidea">🔑 Defined purpose · not changed after seeing data · data can be collected.</div></div></div><div class="col vis"><svg id="iqSol" viewbox="0 0 560 260" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.2" data-sec="1" data-title="§ 1.2 Variables">
+<div class="tag">Topic</div><div class="num">1.2</div><h1>Variables</h1><div class="zhT">变量</div><div class="eks"><span>1.2.A Observational units</span><span>1.2.A Variables</span><span>1.2.A Parameter vs. statistic</span><span>1.2.B Categorical vs. quantitative</span>1.2.C Discrete vs. continuous</div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.2.A.1–3。" data-title="Observational Units &amp;amp; Variables">
+<div class="tag">1.2 <b>· Key Concepts</b><span class="ek">EK 1.2.A.1–3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Observational Units &amp; Variables <span class="zh">观测单位与变量</span></h2><div class="concept"><div class="term">Observational unit<span class="zh">观测单位</span></div><div class="en">An <strong>observational unit</strong> is an item or individual from which a datum is collected. (Older name: <em>individual</em>.)</div><div class="cn"><b>观测单位</b>：从中收集数据的个体或物品（旧称 individual）。</div></div><div class="concept pink"><div class="term">Variable<span class="zh">变量</span></div><div class="en">A <strong>variable</strong> is a characteristic that may change from one observational unit to another. Data on numerical and categorical variables — including photographs, sounds, videos, and text — can convey meaningful information.</div><div class="cn"><b>变量</b>：在不同观测单位之间可能变化的特征。数值、类别，甚至照片、声音、视频、文字都可以是有意义的数据。</div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.2.A.4–5。Unit 2 Lesson 8 会再用。" data-title="Parameter vs. Statistic">
+<div class="tag">1.2 <b>· Key Concepts</b><span class="ek">EK 1.2.A.4–5</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Parameter vs. Statistic <span class="zh">参数与统计量</span></h2><div class="concept"><div class="term">Parameter<span class="zh">参数</span></div><div class="en">A <strong>parameter</strong> is a numerical summary of the variable of interest for a <strong>population</strong>.</div><div class="cn"><b>参数</b>：描述<b>总体</b>中某变量的数值概括。</div></div><div class="concept pink"><div class="term">Statistic<span class="zh">统计量</span></div><div class="en">A statistic is a numerical summary for a <strong>sample</strong>. It is often <strong>not equal</strong> to the unknown parameter, but it can be the basis for making inferences about the parameter.</div><div class="cn"><b>统计量</b>：描述<b>样本</b>的数值概括。它通常不等于未知的参数，但可以作为推断参数的依据。</div></div><div class="note small" style="margin-top:4px">🔑 Parameter ↔ Population · Statistic ↔ Sample</div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.2.B–C。注意：邮编、球衣号码虽然是数字，但是分类变量。" data-title="Types of Variables">
+<div class="tag">1.2 <b>· Key Concepts</b><span class="ek">EK 1.2.B–C</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Types of Variables <span class="zh">变量的类型</span></h2><div class="concept pink"><div class="term">Categorical vs. quantitative<span class="zh">分类变量 vs 定量变量</span></div><div class="en">A <strong>categorical</strong> (qualitative) variable takes values that are category names or group labels. A <strong>quantitative</strong> (numerical) variable takes numerical values for a measured or counted quantity and generally has units.</div><div class="cn"><b>分类变量</b>：取值是类别名称或组别标签。<b>定量变量</b>：取值是测量或计数得到的数，通常有单位。</div></div><div class="concept"><div class="term">Discrete vs. continuous<span class="zh">离散 vs 连续</span></div><div class="en">A discrete quantitative variable takes a <strong>countable</strong> number of values. A continuous quantitative variable can take <strong>any value in an interval</strong> — measurable but not countable.</div><div class="cn"><b>离散型</b>定量变量：取值可数。<b>连续型</b>：可以取某区间内的任意值，可测量但不可数。</div></div><div class="note warn small" style="margin-top:4px">⚠️ Numbers aren’t always quantitative: zip codes, jersey numbers, phone numbers are <b>categorical</b> — averaging them makes no sense. <span class="zh">能否求平均是好方法判断。</span></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Census at School">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.2.A–C</span></div>
+<h2>Census at School <span class="zh">加拿大 Census at School 数据</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>What are the observational units?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The 10 students (each row = one observational unit).</div></div><div class="q"><b class="n">b</b>Which variables are categorical? Which are quantitative?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Categorical: province, gender, handedness, preferred communication (gold). Quantitative: # languages, height, wrist circumference (pink).</div></div><div class="q"><b class="n">c</b>Is “# languages” discrete or continuous? “Height”?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"># languages: discrete (counted). Height: continuous (measured).</div></div><div class="q"><b class="n">d</b>Does any value look suspicious?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A wrist circumference of <b>65 mm</b> is impossible for a teen — probably a recording error. Always look at your data! <span class="zh">先看数据，检查异常值。</span></div></div></div><div class="keyidea">🔑 10 randomly selected Canadian students.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="cs1" style="font-size:12px"><thead><tr><th data-c="0" style="padding:4px 5px">Province</th><th data-c="1" style="padding:4px 5px">Gender</th><th data-c="2" style="padding:4px 5px"># lang.</th><th data-c="3" style="padding:4px 5px">Hand</th><th data-c="4" style="padding:4px 5px">Height (cm)</th><th data-c="5" style="padding:4px 5px">Wrist (mm)</th><th data-c="6" style="padding:4px 5px">Preferred comm.</th></tr></thead><tbody><tr><td data-c="0" data-r="0" style="padding:2px 5px">Sask.</td><td data-c="1" data-r="0" style="padding:2px 5px">Male</td><td data-c="2" data-r="0" style="padding:2px 5px">1</td><td data-c="3" data-r="0" style="padding:2px 5px">Right</td><td data-c="4" data-r="0" style="padding:2px 5px">175.0</td><td data-c="5" data-r="0" style="padding:2px 5px">180</td><td data-c="6" data-r="0" style="padding:2px 5px">In person</td></tr><tr><td data-c="0" data-r="1" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="1" style="padding:2px 5px">Female</td><td data-c="2" data-r="1" style="padding:2px 5px">1</td><td data-c="3" data-r="1" style="padding:2px 5px">Right</td><td data-c="4" data-r="1" style="padding:2px 5px">162.5</td><td data-c="5" data-r="1" style="padding:2px 5px">160</td><td data-c="6" data-r="1" style="padding:2px 5px">In person</td></tr><tr><td data-c="0" data-r="2" style="padding:2px 5px">Alberta</td><td data-c="1" data-r="2" style="padding:2px 5px">Male</td><td data-c="2" data-r="2" style="padding:2px 5px">1</td><td data-c="3" data-r="2" style="padding:2px 5px">Right</td><td data-c="4" data-r="2" style="padding:2px 5px">178.0</td><td data-c="5" data-r="2" style="padding:2px 5px">174</td><td data-c="6" data-r="2" style="padding:2px 5px">Facebook</td></tr><tr><td data-c="0" data-r="3" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="3" style="padding:2px 5px">Male</td><td data-c="2" data-r="3" style="padding:2px 5px">2</td><td data-c="3" data-r="3" style="padding:2px 5px">Right</td><td data-c="4" data-r="3" style="padding:2px 5px">169.0</td><td data-c="5" data-r="3" style="padding:2px 5px">160</td><td data-c="6" data-r="3" style="padding:2px 5px">Cell phone</td></tr><tr><td data-c="0" data-r="4" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="4" style="padding:2px 5px">Female</td><td data-c="2" data-r="4" style="padding:2px 5px">2</td><td data-c="3" data-r="4" style="padding:2px 5px">Right</td><td data-c="4" data-r="4" style="padding:2px 5px">166.0</td><td data-c="5" data-r="4" style="padding:2px 5px">65</td><td data-c="6" data-r="4" style="padding:2px 5px">In person</td></tr><tr><td data-c="0" data-r="5" style="padding:2px 5px">Nunavut</td><td data-c="1" data-r="5" style="padding:2px 5px">Male</td><td data-c="2" data-r="5" style="padding:2px 5px">1</td><td data-c="3" data-r="5" style="padding:2px 5px">Right</td><td data-c="4" data-r="5" style="padding:2px 5px">168.5</td><td data-c="5" data-r="5" style="padding:2px 5px">160</td><td data-c="6" data-r="5" style="padding:2px 5px">Text messaging</td></tr><tr><td data-c="0" data-r="6" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="6" style="padding:2px 5px">Female</td><td data-c="2" data-r="6" style="padding:2px 5px">1</td><td data-c="3" data-r="6" style="padding:2px 5px">Right</td><td data-c="4" data-r="6" style="padding:2px 5px">166.0</td><td data-c="5" data-r="6" style="padding:2px 5px">165</td><td data-c="6" data-r="6" style="padding:2px 5px">Cell phone</td></tr><tr><td data-c="0" data-r="7" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="7" style="padding:2px 5px">Male</td><td data-c="2" data-r="7" style="padding:2px 5px">4</td><td data-c="3" data-r="7" style="padding:2px 5px">Left</td><td data-c="4" data-r="7" style="padding:2px 5px">157.5</td><td data-c="5" data-r="7" style="padding:2px 5px">147</td><td data-c="6" data-r="7" style="padding:2px 5px">Text messaging</td></tr><tr><td data-c="0" data-r="8" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="8" style="padding:2px 5px">Female</td><td data-c="2" data-r="8" style="padding:2px 5px">2</td><td data-c="3" data-r="8" style="padding:2px 5px">Right</td><td data-c="4" data-r="8" style="padding:2px 5px">150.5</td><td data-c="5" data-r="8" style="padding:2px 5px">187</td><td data-c="6" data-r="8" style="padding:2px 5px">Text messaging</td></tr><tr><td data-c="0" data-r="9" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="9" style="padding:2px 5px">Female</td><td data-c="2" data-r="9" style="padding:2px 5px">1</td><td data-c="3" data-r="9" style="padding:2px 5px">Right</td><td data-c="4" data-r="9" style="padding:2px 5px">171.0</td><td data-c="5" data-r="9" style="padding:2px 5px">180</td><td data-c="6" data-r="9" style="padding:2px 5px">Text messaging</td></tr></tbody></table></div><div class="sv"><table class="tw" id="cs1s" style="font-size:12px"><thead><tr><th data-c="0" style="padding:4px 5px">Province</th><th data-c="1" style="padding:4px 5px">Gender</th><th data-c="2" style="padding:4px 5px"># lang.</th><th data-c="3" style="padding:4px 5px">Hand</th><th data-c="4" style="padding:4px 5px">Height (cm)</th><th data-c="5" style="padding:4px 5px">Wrist (mm)</th><th data-c="6" style="padding:4px 5px">Preferred comm.</th></tr></thead><tbody><tr><td data-c="0" data-r="0" style="padding:2px 5px">Sask.</td><td data-c="1" data-r="0" style="padding:2px 5px">Male</td><td data-c="2" data-r="0" style="padding:2px 5px">1</td><td data-c="3" data-r="0" style="padding:2px 5px">Right</td><td data-c="4" data-r="0" style="padding:2px 5px">175.0</td><td data-c="5" data-r="0" style="padding:2px 5px">180</td><td data-c="6" data-r="0" style="padding:2px 5px">In person</td></tr><tr><td data-c="0" data-r="1" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="1" style="padding:2px 5px">Female</td><td data-c="2" data-r="1" style="padding:2px 5px">1</td><td data-c="3" data-r="1" style="padding:2px 5px">Right</td><td data-c="4" data-r="1" style="padding:2px 5px">162.5</td><td data-c="5" data-r="1" style="padding:2px 5px">160</td><td data-c="6" data-r="1" style="padding:2px 5px">In person</td></tr><tr><td data-c="0" data-r="2" style="padding:2px 5px">Alberta</td><td data-c="1" data-r="2" style="padding:2px 5px">Male</td><td data-c="2" data-r="2" style="padding:2px 5px">1</td><td data-c="3" data-r="2" style="padding:2px 5px">Right</td><td data-c="4" data-r="2" style="padding:2px 5px">178.0</td><td data-c="5" data-r="2" style="padding:2px 5px">174</td><td data-c="6" data-r="2" style="padding:2px 5px">Facebook</td></tr><tr><td data-c="0" data-r="3" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="3" style="padding:2px 5px">Male</td><td data-c="2" data-r="3" style="padding:2px 5px">2</td><td data-c="3" data-r="3" style="padding:2px 5px">Right</td><td data-c="4" data-r="3" style="padding:2px 5px">169.0</td><td data-c="5" data-r="3" style="padding:2px 5px">160</td><td data-c="6" data-r="3" style="padding:2px 5px">Cell phone</td></tr><tr><td data-c="0" data-r="4" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="4" style="padding:2px 5px">Female</td><td data-c="2" data-r="4" style="padding:2px 5px">2</td><td data-c="3" data-r="4" style="padding:2px 5px">Right</td><td data-c="4" data-r="4" style="padding:2px 5px">166.0</td><td data-c="5" data-r="4" style="padding:2px 5px">65</td><td data-c="6" data-r="4" style="padding:2px 5px">In person</td></tr><tr><td data-c="0" data-r="5" style="padding:2px 5px">Nunavut</td><td data-c="1" data-r="5" style="padding:2px 5px">Male</td><td data-c="2" data-r="5" style="padding:2px 5px">1</td><td data-c="3" data-r="5" style="padding:2px 5px">Right</td><td data-c="4" data-r="5" style="padding:2px 5px">168.5</td><td data-c="5" data-r="5" style="padding:2px 5px">160</td><td data-c="6" data-r="5" style="padding:2px 5px">Text messaging</td></tr><tr><td data-c="0" data-r="6" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="6" style="padding:2px 5px">Female</td><td data-c="2" data-r="6" style="padding:2px 5px">1</td><td data-c="3" data-r="6" style="padding:2px 5px">Right</td><td data-c="4" data-r="6" style="padding:2px 5px">166.0</td><td data-c="5" data-r="6" style="padding:2px 5px">165</td><td data-c="6" data-r="6" style="padding:2px 5px">Cell phone</td></tr><tr><td data-c="0" data-r="7" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="7" style="padding:2px 5px">Male</td><td data-c="2" data-r="7" style="padding:2px 5px">4</td><td data-c="3" data-r="7" style="padding:2px 5px">Left</td><td data-c="4" data-r="7" style="padding:2px 5px">157.5</td><td data-c="5" data-r="7" style="padding:2px 5px">147</td><td data-c="6" data-r="7" style="padding:2px 5px">Text messaging</td></tr><tr><td data-c="0" data-r="8" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="8" style="padding:2px 5px">Female</td><td data-c="2" data-r="8" style="padding:2px 5px">2</td><td data-c="3" data-r="8" style="padding:2px 5px">Right</td><td data-c="4" data-r="8" style="padding:2px 5px">150.5</td><td data-c="5" data-r="8" style="padding:2px 5px">187</td><td data-c="6" data-r="8" style="padding:2px 5px">Text messaging</td></tr><tr><td data-c="0" data-r="9" style="padding:2px 5px">Ontario</td><td data-c="1" data-r="9" style="padding:2px 5px">Female</td><td data-c="2" data-r="9" style="padding:2px 5px">1</td><td data-c="3" data-r="9" style="padding:2px 5px">Right</td><td data-c="4" data-r="9" style="padding:2px 5px">171.0</td><td data-c="5" data-r="9" style="padding:2px 5px">180</td><td data-c="6" data-r="9" style="padding:2px 5px">Text messaging</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 1 · Lesson 1 · Data: Census at School (TPS 1.1)</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="逐条判断。" data-title="Variable sorter 变量分类">
+<div class="tag">1.2 <b>· Quick Sort</b><span class="ek">EK 1.2.B–C</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span><h2>Categorical, discrete, or continuous? <span class="zh">分类、离散还是连续？</span></h2><p class="small muted">Click your answer — the reason appears. <span class="score" id="vsScore"></span></p><div class="claims" id="vsCards" style="margin-top:6px"></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Parameter or statistic?">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.2.A.4–5</span></div>
+<h2>Parameter or statistic? <span class="zh">参数还是统计量？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>The mean height of the 10 Census at School students above is 166.4 cm.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">From a <b>sample</b> of 10 → statistic.</div></div><div class="q"><b class="n">b</b>According to school records, 52% of all 1,200 students at a school are female.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Describes <b>all</b> 1,200 students → <b>parameter</b>.</div></div><div class="q"><b class="n">c</b>In a poll of 1,000 randomly selected adults, 43% said they exercise daily.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">From a sample of 1,000 → statistic (estimates the unknown parameter for all adults).</div></div><div class="q"><b class="n">d</b>Why would the answer in (c) probably change in another poll?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A different random sample gives different people → a different statistic (<b>sampling variability</b>, Unit 2).</div></div></div><div class="keyidea">🔑 Population → parameter · sample → statistic.</div></div></div><div class="col vis"><svg id="psSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.3" data-sec="1" data-title="§ 1.3 Tabular Representation of One Categorical Variable">
+<div class="tag">Topic</div><div class="num">1.3</div><h1>Tabular Representation of One Categorical Variable</h1><div class="zhT">一个分类变量的表格表示</div><div class="eks"><span>1.3.A.1 Frequency table</span><span>1.3.A.2 Relative frequency table</span><span>1.3.B.1 Same information</span><span>1.3.B.2 Justify claims</span></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.3.A。" data-title="Frequency &amp;amp; Relative Frequency Tables">
+<div class="tag">1.3 <b>· Key Concepts</b><span class="ek">EK 1.3.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Frequency &amp; Relative Frequency Tables <span class="zh">频数表与相对频数表</span></h2><div class="concept"><div class="term">Frequency table<span class="zh">频数表</span></div><div class="en">A <strong>frequency table</strong> shows the <strong>number</strong> (count) of observational units in each category of a categorical variable.</div><div class="cn"><b>频数表</b>：列出分类变量每个类别中观测单位的<b>个数</b>。</div></div><div class="concept pink"><div class="term">Relative frequency table<span class="zh">相对频数表</span></div><div class="en">A <strong>relative frequency table</strong> shows the proportion of observational units in each category. Relative frequency = count ÷ total.</div><div class="cn"><b>相对频数表</b>：列出每个类别所占的<b>比例</b>。相对频数 = 频数 ÷ 总数。</div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Preferred communication">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.3.A</span></div>
+<h2>Preferred communication <span class="zh">偏好的沟通方式</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Use the <b>Preferred communication</b> column of the Census at School data (10 students).</p><div class="q"><b class="n">a</b>Make a frequency table.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Count: Cell phone 2 · Facebook 1 · In person 3 · Text messaging 4 (total 10).</div></div><div class="q"><b class="n">b</b>Make a relative frequency table (proportions and percents).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Divide each count by 10: 2/10 = 0.20 = 20% · 1/10 = 10% · 3/10 = 30% · 4/10 = 40%.</div></div><div class="q"><b class="n">c</b>What do the relative frequencies add up to?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.20 + 0.10 + 0.30 + 0.40 = 1 (100%).</div></div></div><div class="keyidea">🔑 Preferred communication of 10 students.</div></div></div><div class="col vis"><div class="qv"><table class="tw" style="font-size:16px"><thead><tr><th>Student</th><th>Preferred communication</th></tr></thead><tbody><tr><td>1</td><td>In person</td></tr><tr><td>2</td><td>In person</td></tr><tr><td>3</td><td>Facebook</td></tr><tr><td>4</td><td>Cell phone</td></tr><tr><td>5</td><td>In person</td></tr><tr><td>6</td><td>Text messaging</td></tr><tr><td>7</td><td>Cell phone</td></tr><tr><td>8</td><td>Text messaging</td></tr><tr><td>9</td><td>Text messaging</td></tr><tr><td>10</td><td>Text messaging</td></tr></tbody></table></div><div class="sv"><table class="tw" id="ftT" style="font-size:18px"></table><svg id="ftSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 1 · Data: TPS 1.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.3.B。“Most” 意思是超过 50%。" data-title="Describing Tables &amp;amp; Justifying Claims">
+<div class="tag">1.3 · Concept<span class="ek">EK 1.3.B.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Describing Tables &amp; Justifying Claims <span class="zh">描述表格、论证结论</span></h2><div class="concept pink"><div class="term">Key idea<span class="zh">核心</span></div><div class="en"><strong>Percentages, relative frequencies, and ratios</strong> all provide the same information as proportions. Counts and relative frequencies reveal information that can be used to <strong>justify claims</strong> about the variable in context.</div><div class="cn">百分比、相对频数、比率与比例提供的是相同的信息。频数和相对频数可以用来<b>结合语境论证</b>关于变量的结论。</div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Is the claim supported?">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.3.B.2 · Skill 4.B</span></div>
+<h2>Is the claim supported? <span class="zh">结论有依据吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Preferred communication of 10 students: Cell phone 2, Facebook 1, In person 3, Text messaging 4.</p><div class="q"><b class="n">a</b>“Most students prefer text messaging.”</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported — 40% is not more than half. “Most” means over 50%.</div></div><div class="q"><b class="n">b</b>“Text messaging is the <b>most popular</b> method.”</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported — 40% is the largest relative frequency.</div></div><div class="q"><b class="n">c</b>“Twice as many students prefer in person as cell phone.”</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported — 3 vs. 2 is 1.5 times, not 2 times.</div></div><div class="q"><b class="n">d</b>“The ratio of texting to Facebook is 4 : 1.”</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported — 4 : 1 (40% : 10%).</div></div></div><div class="keyidea">🔑 Justify each claim with counts or relative frequencies.</div></div></div><div class="col vis"><svg id="clSol" viewbox="0 0 560 280" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.4" data-sec="1" data-title="§ 1.4 Graphical Representations for One Categorical Variable">
+<div class="tag">Topic</div><div class="num">1.4</div><h1>Graphical Representations for One Categorical Variable</h1><div class="zhT">一个分类变量的图形表示</div><div class="eks"><span>1.4.A.1 Bar chart</span><span>1.4.A.2 Pie chart</span><span>1.4.B Justify a claim</span><span>1.4.C Compare data sets</span><span>TPS: misleading graphs</span></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.4.A。" data-title="Bar Charts &amp;amp; Pie Charts">
+<div class="tag">1.4 <b>· Key Concepts</b><span class="ek">EK 1.4.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Bar Charts &amp; Pie Charts <span class="zh">条形图与饼图</span></h2><div class="concept"><div class="term">Bar chart<span class="zh">条形图</span></div><div class="en">A <strong>bar chart</strong> (bar graph) displays frequencies or relative frequencies for the categories of one categorical variable. Each bar is a category; its <strong>height</strong> (or length) is the frequency or relative frequency.</div><div class="cn"><b>条形图</b>：每根柱子代表一个类别，柱子的<b>高度</b>表示频数或相对频数。</div></div><div class="concept pink"><div class="term">Pie chart<span class="zh">饼图</span></div><div class="en">A <strong>pie chart</strong> shows each category as a slice; the area of each slice, as a fraction of the whole, is the relative frequency. All slices together = 1 (100%).</div><div class="cn"><b>饼图</b>：每个扇形代表一个类别，扇形<b>面积</b>占整体的比例 = 相对频数，所有扇形加起来 = 100%。</div></div><div class="row"><div class="col"><svg id="bpStatic1" style="max-height:170px;width:100%;height:auto" viewbox="0 0 560 230" width="100%"></svg></div><div class="col"><svg id="bpStatic2" style="max-height:170px;width:100%;height:auto" viewbox="0 0 560 230" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="学生自己输入数据，看条形图和饼图同时变化。" data-title="🎮 Simulator: Bar chart ↔ pie chart builder" id="simBP">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Bar chart ↔ pie chart builder</span><span class="zh">条形图与饼图生成器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.4.A</span>
+<div class="row"><div class="col" style="flex:.75"><p class="small">Edit the categories and counts. <span class="zh">修改类别和频数。</span></p><div id="bpIn"></div>
+<div class="btns"><button class="b on" data-bm="count">Counts</button><button class="b" data-bm="pct">Percents</button><button class="b" id="bpSort">Sort bars</button><button class="b" id="bpEx">Example: favorite season</button></div><div class="note small" id="bpMsg"></div></div>
+<div class="col frame"><div class="row" style="gap:6px"><div class="col"><svg id="bpBar" viewbox="0 0 340 300" width="100%"></svg></div><div class="col"><svg id="bpPie" viewbox="0 0 300 260" width="100%"></svg></div></div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 9: Pie chart or not?">
+<div class="exhead"><span class="badge ex">📝 Example 9 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.4.A.2</span></div>
+<h2>Pie chart or not? <span class="zh">能用饼图吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>Favorite season of 200 students: Spring 38, Summer 74, Fall 52, Winter 36.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Each student picks one season → parts of one whole (200 students) → a pie chart works ✓.</div></div><div class="q"><b class="n">b</b>Percent of students who <b>own</b> each device: phone 95%, laptop 70%, tablet 40%, smartwatch 25%.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Students can own several devices; the percents add to 230% → not parts of a whole → no pie chart ✗.</div></div><div class="q"><b class="n">c</b>Which graph works for both data sets?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A <b>bar chart</b> works for both.</div></div></div><div class="keyidea">🔑 A pie chart needs categories that are parts of ONE whole.</div></div></div><div class="col vis"><svg id="pnSol" viewbox="0 0 560 280" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="旧课件 Graphs: Good and Bad。" data-title="Graphs: good and bad 好图与坏图">
+<div class="tag">1.4 <b>· Misleading Graphs</b><span class="ek">TPS 1.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>Graphs: good and bad <span class="zh">好图与坏图</span></h2>
+<p>Bar graphs are a bit dull. It is tempting to replace the bars with pictures or add 3-D effects to make them “more interesting.” Don’t do it! <span class="zh">不要用图片或 3D 效果代替柱子！</span></p>
+<div class="row" style="margin-top:12px"><div class="col concept" style="margin:0"><div class="term">⚠️ Caution 1 · Beware the pictograph<span class="zh">当心象形图</span></div><div class="en" style="font-size:18px">If a picture is made taller and wider, its area grows much faster than the count.</div><div class="cn" style="font-size:16px">图片同时变高变宽 → 面积被夸大。</div></div>
+<div class="col concept pink" style="margin:0"><div class="term">⚠️ Caution 2 · Watch those scales<span class="zh">注意坐标轴</span></div><div class="en" style="font-size:18px">A vertical axis that doesn’t start at 0 exaggerates differences between bars.</div><div class="cn" style="font-size:16px">纵轴不从 0 开始 → 差异被夸大。</div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="纵轴从 85 开始，B 的柱子看起来是 A 的 5 倍。" data-title="🎮 Simulator: Watch those scales!" id="simScale">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Watch those scales!</span><span class="zh">注意坐标轴！</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS 1.1</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Two brands’ customer satisfaction: A = 86%, <b>B = 90%</b>. Drag where the vertical axis starts. <span class="zh">拖动纵轴起点。</span></p>
+<div class="slider-row"><label>Axis starts at</label><input id="scY" max="85" min="0" type="range" value="0"/><span class="v" id="scYv"></span></div><div class="note" id="scMsg" style="font-size:18px"></div></div>
+<div class="col frame"><svg id="scSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 10: The giant phone">
+<div class="exhead"><span class="badge ex">📝 Example 10 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 1.1</span></div>
+<h2>The giant phone <span class="zh">巨大的手机（象形图）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A company surveyed new phone buyers about the brand of their previous phone: <b>Brand X 20%</b>, <b>Brand Y 60%</b>. Its ad shows a phone picture for each brand; Brand Y’s picture is <b>3 times as tall</b> as Brand X’s.</p><div class="q"><b class="n">a</b>If the picture is scaled in both directions, how many times as large is its area?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">3 times as tall and 3 times as wide → area is 3 × 3 = <b>9 times</b> as large.</div></div><div class="q"><b class="n">b</b>What impression does the ad give? How should the data be shown?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Readers see the area, so Brand Y looks 9 times as popular instead of 3 times. Use a plain <b>bar chart</b> starting at 0. <span class="zh">读者看到的是面积，用普通条形图即可。</span></div></div></div><div class="keyidea">🔑 60% is 3 times 20%.</div></div></div><div class="col vis"><div class="qv"><svg id="phPic" viewbox="0 0 560 260" width="100%"></svg></div><div class="sv"><svg id="phSol" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 1 · Context adapted from TPS 1.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.4.B–C。" data-title="Comparing Data Sets &amp;amp; Justifying Claims">
+<div class="tag">1.4 · Concept<span class="ek">EK 1.4.B–C</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Comparing Data Sets &amp; Justifying Claims <span class="zh">比较数据集与论证</span></h2><div class="concept pink"><div class="term">Key idea<span class="zh">核心</span></div><div class="en">Graphs of a categorical variable reveal information that can be used to <strong>justify claims</strong> in context. Frequency and relative frequency tables, bar charts, and pie charts can be used to <strong>compare two or more data sets</strong> on the same categorical variable — use <strong>relative frequencies</strong> when the data sets have different sizes.</div><div class="cn">分类变量的图可以用来结合语境论证结论。比较两个或多个数据集时，若样本大小不同，要用<b>相对频数</b>。</div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 11: Two schools, one lunch menu">
+<div class="exhead"><span class="badge ex">📝 Example 11 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.4.B–C · Skill 4.B</span></div>
+<h2>Two schools, one lunch menu <span class="zh">两所学校的午餐</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Students at two schools chose their favorite lunch.</p><table class="tw" style="font-size:18px;margin:8px 0"><thead><tr><th></th><th>Noodles</th><th>Rice</th><th>Sandwich</th><th>Salad</th><th>Total</th></tr></thead><tbody><tr><th class="rh">School A</th><td>20</td><td>15</td><td>10</td><td>5</td><td class="tot">50</td></tr><tr><th class="rh">School B</th><td>60</td><td>80</td><td>40</td><td>20</td><td class="tot">200</td></tr></tbody></table><div class="q"><b class="n">a</b>A reporter says: “Noodles are more popular at School B, since 60 &gt; 20.” Do you agree?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Disagree. School B is 4 times as large. Noodles: A = 20/50 = 40%, B = 60/200 = 30% → noodles are actually <b>more</b> popular at School A.</div></div><div class="q"><b class="n">b</b>Make a graph that compares the two schools fairly.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Side-by-side bars of percents (→): Rice is the favorite at B (40%), noodles at A (40%).</div></div></div><div class="keyidea">🔑 Different sample sizes (50 vs. 200) → compare relative frequencies.</div><div class="takeaway">💡 Different group sizes → compare percents, not counts.</div></div></div><div class="col vis"><svg id="lnSol" viewbox="0 0 560 290" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Which variable is categorical?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.2.B</span></div>
+<h2>Which variable is categorical?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A survey records the following for each student. Which variable is <b>categorical</b>?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Weight in kilograms</li><li>(B) Home zip code</li><li>(C) Number of pets</li><li>(D) Time spent on homework last night</li><li>(E) Height in centimeters</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Zip codes are <b>labels</b> for places; averaging them makes no sense → <b>(B)</b>.</p><p style="margin:3px 0">(A), (D), (E) are continuous quantitative; (C) is discrete quantitative.</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 13: Population and sample">
+<div class="exhead"><span class="badge ex">📝 AP Practice 13 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.1.A · 1.2.A</span></div>
+<h2>Population and sample</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">To estimate the percent of the 3,000 residents of a town who support a new park, a city worker surveys 150 randomly selected residents; 96 support it. Which statement is correct?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) The population is the 150 residents surveyed.</li><li>(B) N = 150 and n = 3,000.</li><li>(C) 96/150 = 64% is a parameter.</li><li>(D) 64% is a statistic used to estimate the percent of all 3,000 residents who support the park.</li><li>(E) The sample is all residents who support the park.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Population = all 3,000 residents (N = 3000); sample = 150 surveyed (n = 150).</p><p style="margin:3px 0">64% comes from the sample → a statistic, used to estimate the unknown parameter → (D).</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq2" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 14: Reading a bar chart">
+<div class="exhead"><span class="badge ex">📝 AP Practice 14 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.4.B</span></div>
+<h2>Reading a bar chart</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">The bar chart shows the favorite subject of 80 students. Which statement is supported?<svg id="mq3q" style="width:420px;display:block;margin:4px 0" viewbox="0 0 560 200"></svg></div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) Most students chose Math.</li><li>(B) Exactly half of the students chose Science or English.</li><li>(C) Math was chosen by twice as many students as Art.</li><li>(D) A pie chart could not be used for these data.</li><li>(E) Science was chosen by 25 students.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Math 30 is twice Art 15 → (C) ✓.</p><p style="margin:3px 0">(A) 30/80 = 37.5% is not “most” · (B) 35/80 ≠ 1/2 · (D) one choice per student → a pie chart works · (E) Science = 20.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq3" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus。" data-title="🎮 Simulator: Variable generator" id="simVar">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Variable generator</span><span class="zh">变量类型随机练习（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.2.B–C</span>
+<div class="row" style="margin-top:6px"><div class="col"><p id="vgQ" style="font-size:24px;min-height:90px"></p><div class="btns"><button class="b" data-vg="0">Categorical</button><button class="b" data-vg="1">Quantitative · discrete</button><button class="b" data-vg="2">Quantitative · continuous</button></div>
+<div id="vgFb" style="margin-top:10px;min-height:70px"></div><div class="btns"><button class="b" id="vgNew">Next ↻</button></div><p class="score" id="vgScore"></p></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 15: Misleading axis">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 15 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS 1.1</span></div>
+<h2>Misleading axis</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">Bar heights for Brand A and Brand B are 86% and 90%, but the vertical axis starts at 84%. Brand B’s bar looks about 3 times as tall as Brand A’s. What is the main problem?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) The bars should be pictures.</li><li>(B) The axis does not start at 0, which exaggerates the difference.</li><li>(C) Percents should never be shown in a bar chart.</li><li>(D) The bars should be ordered alphabetically.</li><li>(E) There is no problem.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Bar heights above 84: 2 vs. 6 → looks 3 times as big, but 90 is only about 1.05 times 86 → <b>(B)</b>.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq4" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Statistics · data</th><td class="zh" style="text-align:left">统计学 · 数据</td><td style="text-align:left">Science of learning from data; data = numbers with context</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Population (N) · sample (n)</th><td class="zh" style="text-align:left">总体 · 样本</td><td style="text-align:left">All of interest · the subset we collect data from</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Observational unit · variable</th><td class="zh" style="text-align:left">观测单位 · 变量</td><td style="text-align:left">Who/what we collect data on · a characteristic that varies</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Parameter · statistic</th><td class="zh" style="text-align:left">参数 · 统计量</td><td style="text-align:left">Population summary · sample summary</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Categorical · quantitative</th><td class="zh" style="text-align:left">分类 · 定量</td><td style="text-align:left">Labels · numbers with units</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Discrete · continuous</th><td class="zh" style="text-align:left">离散 · 连续</td><td style="text-align:left">Countable · any value in an interval</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Frequency · relative frequency table</th><td class="zh" style="text-align:left">频数表 · 相对频数表</td><td style="text-align:left">Counts · proportions (sum = 1)</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Bar chart · pie chart</th><td class="zh" style="text-align:left">条形图 · 饼图</td><td style="text-align:left">Height · area of a slice (parts of one whole)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">1.1–1.4</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A teacher asks a random sample of 40 of the school’s 900 students how they get to school: Walk 12, Bus 18, Car 6, Bike 4.</p><div class="q"><b class="n">1</b>Identify the population, N, the sample, and n.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Population: all 900 students (N = 900) · Sample: the 40 surveyed (n = 40).</div></div><div class="q"><b class="n">2</b>Is “how they get to school” categorical or quantitative?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Categorical</b> — the values are labels.</div></div><div class="q"><b class="n">3</b>Make a relative frequency table. Is “most students take the bus” supported?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Walk 30% · Bus 45% · Car 15% · Bike 10%. Bus is the <b>most common</b> (45%), but not “most” (not over 50%).</div></div></div><div class="keyidea">🔑 n = 40 of N = 900 students.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 260" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：1.5 + 1.6（TPS 1.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 2</div><h1>Graphs for One Quantitative Variable</h1><div class="zhT">定量数据的图形 · Topics 1.5 + 1.6</div><p class="muted" style="margin-top:26px;font-size:22px">Dotplots, stem-and-leaf plots, histograms — and how to describe shape, center, variability, and unusual features (SOCS).</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+
+/* ===== Unit 1 · Lesson 1 ===== */
+const PINKD='#C8577B';
+function lab(svg,x,y,t,c,a,fs){el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':800,fill:c||ROSE},svg,t);}
+/* generic bar chart for counts/percents: vbars exists (labels, vals, cols, o) */
+
+/* warm-up */
+vbars($('wuPic'),['Women\n(claim)','Men\n(claim)'],[20000,7000],[PINKD,NAVY],{max:22000,fmt:v=>v.toLocaleString(),title:'Words per day — popular claim'});
+(function(){function draw(k){const L=['Women\n(claim)','Men\n(claim)','Women\n(data)','Men\n(data)'];const V=[20000,7000,k>=3?16215:null,k>=3?15669:null];
+  vbars($('wuSol'),L,V,[BLUSH,'#C9CEDF',PINKD,NAVY],{max:22000,fmt:v=>v.toLocaleString(),title:k>=3?'Claim vs. data from 396 students':'Words per day'});}draw(0);onStep('wuSol',draw);})();
+
+/* sleep population/sample */
+(function(){const r=srand(4);const pick=new Set();while(pick.size<80)pick.add(Math.floor(r()*1200));
+  function draw(k){const s=$('slSol');clear(s);const cols=60;for(let i=0;i<1200;i++){const x=12+(i%cols)*9,y=14+Math.floor(i/cols)*11;const inS=pick.has(i);
+    el('circle',{cx:x,cy:y,r:3.3,fill:k>=2&&inS?ROSE:(k>=1?'#8A93B8':'#C9CEDF')},s);}
+    if(k>=1)lab(s,280,250,'Population: N = 1200 students',NAVY);if(k>=2)lab(s,280,272,'Sample (pink): n = 80',ROSE);}draw(0);onStep('slSol',draw);})();
+
+/* Joy sim */
+let jg=Array(13).fill(0),jgN=0;
+function jgDraw(svg,arr,N,showJoy){const ps=arr.map(c=>N?c/N:0);const ym=Math.max(.3,Math.max(...ps)*1.15);bars(svg,[...Array(13).keys()],ps,{ymax:ym,ystep:ym>.6?.2:.05,labels:false,hl:x=>x>=11,xlab:'Number correct out of 12 (pink = 11 or more)',ylab:N?'Proportion of guessers':'Proportion'});
+  if(showJoy){const L=60,R=540,w=(R-L)/13,x=L+11*w+w/2;el('path',{d:`M ${x} 40 L ${x} 250`,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'5 4'},svg);lab(svg,x-8,36,'Joy: 11',ROSE,'end');}}
+document.querySelectorAll('[data-jg]').forEach(b=>b.onclick=()=>{let last;for(let i=0;i<+b.dataset.jg;i++){let c=0;const g=[];for(let j=0;j<12;j++){const ok=Math.random()<.5;g.push(ok?'✓':'✗');if(ok)c++;}jg[c]++;jgN++;last=[c,g];}
+  $('jgLast').textContent=`Last guesser: ${last[1].join(' ')} → ${last[0]} correct`;const big=jg[11]+jg[12];
+  $('jgMsg').innerHTML=`${jgN} guessers · 11 or more correct: <b>${big}</b> (${(big/jgN*100).toFixed(2)}%)`;jgDraw($('jgSvg'),jg,jgN,true);});
+$('jgReset').onclick=()=>{jg=Array(13).fill(0);jgN=0;$('jgLast').textContent='';$('jgMsg').textContent='Click to start.';jgDraw($('jgSvg'),jg,0,true);};jgDraw($('jgSvg'),jg,0,true);
+(function(){const r=srand(17);const a=Array(13).fill(0);for(let i=0;i<4096;i++){let c=0;for(let j=0;j<12;j++)if(r()<.5)c++;a[c]++;}
+  function draw(k){jgDraw($('jgSol'),a,4096,k>=2);if(k===1){const L=60,R=540,w=(R-L)/13;lab($('jgSol'),L+6*w+w/2,36,'center ≈ 6',NAVY);}if(k>=2)lab($('jgSol'),300,60,`11+ correct: ${a[11]+a[12]} of 4096 ≈ ${((a[11]+a[12])/40.96).toFixed(1)}%`,ROSE);}draw(0);onStep('jgSol',draw);})();
+
+/* investigative question visual */
+(function(){const Q=['“Are students happy?”','Average sleep on school nights','Question changed after seeing data','Fish in the Pacific today'];const OK=[0,1,0,0];
+  function draw(k){const s=$('iqSol');clear(s);Q.forEach((q,i)=>{const y=30+i*56;el('rect',{x:10,y,width:540,height:44,rx:10,fill:i<k?(OK[i]?'#E3F4EC':'#FCE4E4'):'#F3EFF2'},s);
+    el('text',{x:24,y:y+28,'font-size':16,fill:INK},s,q);if(i<k)lab(s,530,y+29,OK[i]?'✓ good':'✗ not valid',OK[i]?'#2E8B6E':'#C0392B','end');});}draw(0);onStep('iqSol',draw);})();
+
+/* census table column highlights */
+function colHL(tid,gold,pink,bad){const t=$(tid);t.querySelectorAll('td,th').forEach(c=>{c.classList.remove('colhl','colhl2','bad');const j=+c.dataset.c;if(gold.includes(j))c.classList.add('colhl');if(pink.includes(j))c.classList.add('colhl2');});
+  if(bad)t.querySelectorAll(`td[data-r="${bad[0]}"][data-c="${bad[1]}"]`).forEach(c=>c.classList.add('bad'));}
+onStep('cs1s',k=>{if(k===1){$('cs1s').querySelectorAll('tbody tr').forEach(r=>r.style.outline='2px solid #E2B64F');colHL('cs1s',[],[]);}
+  else{$('cs1s').querySelectorAll('tbody tr').forEach(r=>r.style.outline='');if(k===2)colHL('cs1s',[0,1,3,6],[2,4,5]);if(k===3)colHL('cs1s',[2],[4]);if(k>=4)colHL('cs1s',[],[],[4,5]);}});
+
+
+cardSet('vsCards','vsScore',[
+ ['Your phone number',0,'Categorical — a label; averaging phone numbers makes no sense.'],['Number of siblings',1,'Discrete — counted: 0, 1, 2, …'],
+ ['Time to run 100 m',2,'Continuous — measured; any value in an interval.'],['Blood type',0,'Categorical — A, B, AB, O.'],
+ ['Number of goals in a game',1,'Discrete — counted.'],['Weight of a backpack',2,'Continuous — measured.'],['Jersey number of a player',0,'Categorical — a label, even though it is a number.']],['Categorical','Discrete','Continuous']);
+document.querySelectorAll('#vsCards button').forEach(b=>{b.style.fontSize='12px';b.style.padding='4px 7px';});
+
+/* parameter/statistic visual */
+(function(){const T=[['Mean height of 10 students','statistic'],['52% of all 1,200 students','parameter'],['43% of 1,000 adults polled','statistic']];
+  function draw(k){const s=$('psSol');clear(s);T.forEach(([t,a],i)=>{const y=20+i*60;el('rect',{x:10,y,width:540,height:46,rx:10,fill:i<k?(a==='parameter'?'#F4C3D0':'#DDE3F3'):'#F3EFF2'},s);el('text',{x:24,y:y+29,'font-size':16,fill:INK},s,t);
+    if(i<k)lab(s,530,y+30,a==='parameter'?'PARAMETER (population)':'STATISTIC (sample)',a==='parameter'?PINKD:NAVY,'end',14);});
+    if(k>=4)lab(s,280,225,'another sample → another statistic',MUTED,'middle',14);}draw(0);onStep('psSol',draw);})();
+
+/* frequency table solution */
+const PC=['Cell phone','Facebook','In person','Text messaging'],PCN=[2,1,3,4];
+(function(){function draw(k){let h='<thead><tr><th>Preferred method</th><th>Frequency</th><th>Relative frequency</th></tr></thead><tbody>'+PC.map((c,i)=>`<tr><th class="rh">${c}</th><td>${k>=1?PCN[i]:''}</td><td>${k>=2?`${PCN[i]}/10 = ${(PCN[i]/10).toFixed(2)} = ${PCN[i]*10}%`:''}</td></tr>`).join('')+`<tr class="totrow"><th class="rh">Total</th><td>${k>=1?10:''}</td><td>${k>=3?'1.00 = 100%':''}</td></tr></tbody>`;$('ftT').innerHTML=h;
+  if(k>=2)vbars($('ftSol'),['Cell\nphone','Facebook','In\nperson','Text\nmessaging'],PCN.map(v=>v/10),[NAVY,NAVY,NAVY,PINKD],{max:.5,fmt:v=>Math.round(v*100)+'%',title:'Relative frequency',bot:44});else clear($('ftSol'));}draw(0);onStep('ftT',draw);})();
+/* claims */
+(function(){function draw(k){vbars($('clSol'),['Cell\nphone','Facebook','In\nperson','Text\nmessaging'],[.2,.1,.3,.4],k===2?[ '#C9CEDF','#C9CEDF','#C9CEDF',PINKD]:k===3?['#E2B64F','#C9CEDF','#E2B64F','#C9CEDF']:k===4?['#C9CEDF','#E2B64F','#C9CEDF','#E2B64F']:[NAVY,NAVY,NAVY,NAVY],{max:.6,fmt:v=>Math.round(v*100)+'%',ref:k===1?.5:undefined,reflab:k===1?'50% = “most”':'',bot:44});}draw(0);onStep('clSol',draw);})();
+
+/* static bar/pie */
+vbars($('bpStatic1'),['Cell\nphone','Facebook','In\nperson','Text\nmessaging'],[20,10,30,40],[PAL[0],PAL[1],PAL[2],PAL[3]],{max:50,fmt:v=>v+'%',bot:44,title:'Bar chart (percent)'});
+pie($('bpStatic2'),PC.map(x=>x.split(' ')[0]),PCN,PAL,{txt:PALTXT,r:100});
+
+/* bar-pie builder */
+let BP=[['Cell phone',2],['Facebook',1],['In person',3],['Text',4]],bpMode='count';
+function bpBuild(){$('bpIn').innerHTML=BP.map((r,i)=>`<div style="display:flex;gap:8px;margin:4px 0"><input class="lbin" data-bl="${i}" value="${r[0]}"><input class="cin" data-bc="${i}" value="${r[1]}"></div>`).join('');
+  document.querySelectorAll('[data-bl]').forEach(x=>x.oninput=()=>{BP[+x.dataset.bl][0]=x.value;bpDraw();});document.querySelectorAll('[data-bc]').forEach(x=>x.oninput=()=>{BP[+x.dataset.bc][1]=Math.max(0,parseFloat(x.value)||0);bpDraw();});}
+function bpDraw(){const tot=BP.reduce((a,r)=>a+r[1],0);const v=BP.map(r=>bpMode==='pct'&&tot?r[1]/tot*100:r[1]);const mx=Math.max(1,...v)*1.2;
+  vbars($('bpBar'),BP.map(r=>r[0]),v,PAL,{max:mx,fmt:x=>bpMode==='pct'?x.toFixed(0)+'%':x,bot:30,fs:13});pie($('bpPie'),BP.map(r=>r[0]),BP.map(r=>r[1]),PAL,{txt:PALTXT,r:115,fs:12});
+  $('bpMsg').innerHTML=`Total = <b>${tot}</b>. `+BP.map(r=>`${r[0]}: ${tot?(r[1]/tot*100).toFixed(0):0}%`).join(' · ');}
+document.querySelectorAll('[data-bm]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-bm]').forEach(x=>x.classList.remove('on'));b.classList.add('on');bpMode=b.dataset.bm;bpDraw();});
+$('bpSort').onclick=()=>{BP.sort((a,b)=>b[1]-a[1]);bpBuild();bpDraw();};$('bpEx').onclick=()=>{BP=[['Spring',38],['Summer',74],['Fall',52],['Winter',36]];bpBuild();bpDraw();};bpBuild();bpDraw();
+
+/* pie or not */
+(function(){function draw(k){const s=$('pnSol');if(k===0){clear(s);lab(s,280,140,'(graphs appear step by step)',MUTED);return;}
+  if(k===1){pie(s,['Spring','Summer','Fall','Winter'],[38,74,52,36],PAL,{txt:PALTXT,r:115});lab(s,280,282,'one choice each → slices add to 100% ✓','#2E8B6E','middle',14);return;}
+  vbars(s,['Phone','Laptop','Tablet','Smartwatch'],[95,70,40,25],[NAVY,NAVY,NAVY,NAVY],{max:110,fmt:v=>v+'%',ref:k===2?100:undefined,reflab:'100%',title:k===2?'Sum = 230% → not parts of one whole ✗':'A bar chart works ✓'});}draw(0);onStep('pnSol',draw);})();
+
+/* scale sim */
+function scDraw(svg,y0,a,b,showTxt){clear(svg);const L=80,R=520,T=30,B=250,H=B-T;const top=100;const Y=v=>B-(v-y0)/(top-y0)*H;
+  const stp=top-y0>40?10:top-y0>20?5:2;for(let t=Math.ceil(y0/stp)*stp;t<=top;t+=stp){el('line',{x1:L,x2:R,y1:Y(t),y2:Y(t),stroke:GRID},svg);el('text',{x:L-8,y:Y(t)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,t+'%');}
+  [[a,'Brand A',NAVY],[b,'Brand B',PINKD]].forEach(([v,n,c],i)=>{const x=L+60+i*200;el('rect',{x,y:Y(v),width:120,height:B-Y(v),fill:c,rx:4},svg);lab(svg,x+60,Y(v)-8,v+'%',INK);el('text',{x:x+60,y:B+20,'text-anchor':'middle','font-size':14,fill:INK},svg,n);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(y0>0)el('text',{x:L-8,y:B+20,'text-anchor':'end','font-size':12,'font-weight':700,fill:'#C0392B'},svg,'starts at '+y0+'%!');
+  return (b-y0)/(a-y0);}
+function sc(){const y0=+$('scY').value;$('scYv').textContent=y0+'%';const r=scDraw($('scSvg'),y0,86,90);$('scMsg').innerHTML=`Bar B looks <b>${r.toFixed(1)}×</b> as tall as bar A.<br>Real ratio: 90 ÷ 86 = <b>1.05×</b>`+(y0>40?'<br><span style="color:#C0392B">Misleading!</span>':'');}
+$('scY').oninput=sc;sc();
+(function(){function draw(k){scDraw($('mq4'),84,86,90);if(k>=1)lab($('mq4'),300,24,'looks 3×, really 1.05×','#C0392B');}draw(0);onStep('mq4',draw);})();
+
+/* phone pictograph */
+function phone(svg,x,y,h,c){const w=h*0.5;el('rect',{x,y:y-h,width:w,height:h,rx:w*0.15,fill:c},svg);el('rect',{x:x+w*0.1,y:y-h+h*0.08,width:w*0.8,height:h*0.78,rx:w*0.05,fill:'#fff',opacity:.85},svg);el('circle',{cx:x+w/2,cy:y-h*0.06,r:Math.max(1.5,w*0.06),fill:'#fff'},svg);}
+(function(){const s=$('phPic');phone(s,90,230,70,'#8A93B8');phone(s,250,230,210,PINKD);el('text',{x:107,y:252,'text-anchor':'middle','font-size':14,fill:INK},s,'X: 20%');el('text',{x:302,y:252,'text-anchor':'middle','font-size':14,fill:INK},s,'Y: 60%');})();
+(function(){function draw(k){const s=$('phSol');clear(s);phone(s,40,230,70,'#8A93B8');phone(s,150,230,210,PINKD);
+  if(k>=1){el('rect',{x:40,y:160,width:35,height:70,fill:'none',stroke:INK,'stroke-dasharray':'4 3'},s);for(let i=0;i<3;i++)for(let j=0;j<3;j++)el('rect',{x:150+i*35,y:20+j*70,width:35,height:70,fill:'none',stroke:INK,'stroke-dasharray':'4 3'},s);lab(s,190,15,'9 boxes of area',INK,'middle',13);}
+  if(k>=2)vbars2(s);}function vbars2(s){const L=320,B=230;[[20,'X','#8A93B8'],[60,'Y',PINKD]].forEach(([v,n,c],i)=>{const h=v*3;el('rect',{x:L+i*100,y:B-h,width:70,height:h,fill:c,rx:4},s);lab(s,L+i*100+35,B-h-6,v+'%',INK,'middle',14);el('text',{x:L+i*100+35,y:B+18,'text-anchor':'middle','font-size':13,fill:INK},s,'Brand '+n);});lab(s,420,20,'honest bar chart','#2E8B6E','middle',13);}
+  draw(0);onStep('phSol',draw);})();
+
+/* lunch compare */
+(function(){const C=['Noodles','Rice','Sandwich','Salad'],A=[20,15,10,5],B=[60,80,40,20];
+  function draw(k){const s=$('lnSol');clear(s);const L=60,R=540,T=30,Bt=240,mx=k>=1?.5:90;const w=(R-L)/4;const Y=v=>Bt-v/mx*(Bt-T);
+    [0,1,2,3,4,5].forEach(i=>{const v=k>=1?i*.1:i*20;if(v>mx)return;el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},s);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},s,k>=1?Math.round(v*100)+'%':v);});
+    C.forEach((c,i)=>{[[A[i]/(k>=1?50:1),NAVY],[B[i]/(k>=1?200:1),PINKD]].forEach(([v,col],j)=>{const x=L+i*w+8+j*(w/2-8);el('rect',{x,y:Y(v),width:w/2-12,height:Bt-Y(v),fill:col,rx:3},s);el('text',{x:x+(w/2-12)/2,y:Y(v)-5,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},s,k>=1?Math.round(v*100)+'%':v);});
+      el('text',{x:L+i*w+w/2,y:Bt+18,'text-anchor':'middle','font-size':13,fill:INK},s,c);});
+    el('line',{x1:L,x2:R,y1:Bt,y2:Bt,stroke:INK},s);svgLeg(s,['School A (n = 50)','School B (n = 200)'],[NAVY,PINKD],L,275);lab(s,300,18,k>=1?'Relative frequencies — a fair comparison':'Counts — unfair (different sizes)',k>=1?'#2E8B6E':'#C0392B','middle',14);}
+  draw(0);onStep('lnSol',draw);})();
+
+/* MCQ visuals */
+(function(){function draw(k){const s=$('mq2');clear(s);for(let i=0;i<300;i++){const x=14+(i%30)*18,y=16+Math.floor(i/30)*17;el('circle',{cx:x,cy:y,r:5,fill:k>=1&&i%20===0?ROSE:'#C9CEDF'},s);}
+  if(k>=1){lab(s,280,200,'each dot ≈ 10 residents · pink ≈ the 150 surveyed',NAVY,'middle',13);}if(k>=2)lab(s,280,222,'64% = statistic → estimates the parameter',ROSE,'middle',14);}draw(0);onStep('mq2',draw);})();
+(function(){function draw(k){vbars($('mq3'),['Math','Science','English','Art'],[30,20,15,15],k>=1?['#E2B64F',NAVY,NAVY,'#E2B64F']:[NAVY,NAVY,NAVY,NAVY],{max:40,fmt:v=>v,title:'Favorite subject (80 students)'});}draw(0);onStep('mq3',draw);})();
+document.querySelectorAll('.slide').forEach(s=>{});
+vbars($('mq3q'),['Math','Science','English','Art'],[30,20,15,15],[NAVY,NAVY,NAVY,NAVY],{max:40,fmt:v=>v,title:'Favorite subject (80 students)',bot:30});
+/* exit */
+(function(){function draw(k){const s=$('exSol');if(k<3){clear(s);lab(s,280,120,k>=1?'Population N = 900 · sample n = 40':'',NAVY);if(k>=2)lab(s,280,150,'Categorical: Walk / Bus / Car / Bike',INK,'middle',14);return;}
+  vbars(s,['Walk','Bus','Car','Bike'],[30,45,15,10],[NAVY,PINKD,NAVY,NAVY],{max:60,fmt:v=>v+'%',ref:50,reflab:'50% = “most”'});}draw(0);onStep('exSol',draw);})();
+
+/* variable generator */
+const VG=[['Eye color',0],['Number of text messages sent today',1],['Height of a sunflower',2],['Favorite pizza topping',0],['Number of cars in a parking lot',1],['Temperature at noon',2],['Student ID number',0],['Time to finish a test',2],['Number of correct answers on a quiz',1],['Type of phone (iPhone / Android / other)',0],['Weight of an apple',2],['Number of people in a household',1],['Country of birth',0],['Distance from home to school',2],['Shoe size (as sold in stores: 7, 7.5, 8, …)',1],['Area code of a phone number',0]];
+let vgI=-1,vgR=0,vgN=0,vgDone=false;
+function vgNew(){let i;do{i=rint(0,VG.length-1);}while(i===vgI);vgI=i;vgDone=false;$('vgQ').innerHTML=`Variable: <b>${VG[i][0]}</b>`;$('vgFb').innerHTML='';}
+document.querySelectorAll('[data-vg]').forEach(b=>b.onclick=()=>{if(vgDone)return;vgDone=true;const ok=+b.dataset.vg===VG[vgI][1];vgN++;if(ok)vgR++;const nm=['categorical','discrete quantitative','continuous quantitative'][VG[vgI][1]];
+  $('vgFb').innerHTML=ok?`<div class="ans">✓ Correct — ${nm}.</div>`:`<div class="note warn small">✗ It is <b>${nm}</b>.</div>`;$('vgScore').textContent=`Score: ${vgR} / ${vgN}`;});
+$('vgNew').onclick=vgNew;vgNew();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

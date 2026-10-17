@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 1 · Lesson 3 — Summary Statistics</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:17px;margin:4px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:20px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+textarea.din{width:100%;height:64px;font-family:var(--mono);font-size:16px;border:2px solid var(--line);border-radius:10px;padding:8px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}.chips > span{font-family:var(--mono);font-size:17px;min-width:44px;text-align:center;padding:5px 6px;border-radius:8px;background:#fff;border:1.5px solid var(--line);transition:.25s}
+.chips > span.q1{background:#E8EAF3}.chips > span.q2{background:var(--pink-3)}.chips > span.q3{background:#FBEFD2}.chips > span.q4{background:#E3F2EC}
+.chips > span.mid{background:var(--rose);color:#fff;border-color:var(--rose);font-weight:800}.chips > span.gold{background:var(--gold);color:var(--navy);font-weight:800}.chips > span.dim{color:#C8CBD8}
+.formula{font-family:var(--serif,Georgia);font-size:26px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+table.st td,table.st th{padding:5px 10px!important;font-size:16px}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px}.statgrid div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 8px;font-size:14px}.statgrid b{display:block;font-family:var(--mono);font-size:18px;color:var(--navy)}
+.statgrid div.res{border-color:#7CC4AA;background:#F1FAF6}.statgrid div.non{border-color:#E9A3A3;background:#FFF5F6}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 1 第三课：Topic 1.7 全部内容，对应 TPS 1.3 前半（箱线图放在下一课 1.8）。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 1 · Lesson 3</div><h1>Summary Statistics for One Quantitative Variable</h1><div class="zhT">一个定量变量的数值概括</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 1.7 · Center · Position · Variability · Units · Outliers · Resistance</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 1.3</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 1 全貌。" data-title="Unit 1 roadmap">
+<div class="tag">Unit 1 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 1 <span class="zh">单元路线图</span></h2>
+<p class="sub">Exploring One-Variable Data and Collecting Data · 20–30% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>1.1–1.4 Introducing Statistics &amp; One Categorical Variable<span class="old">TPS 1.0 + 1.1</span></div><div class="lesson"><span class="n">2</span>1.5 + 1.6 Graphs for One Quantitative Variable<span class="old">TPS 1.2</span></div><div class="lesson now"><span class="n">3</span>1.7 Summary Statistics<span class="old">TPS 1.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">4</span>1.8 + 1.9 Boxplots, Comparing &amp; z-Scores<span class="old">TPS 1.3 + 2.1</span></div><div class="lesson"><span class="n">5</span>1.10–1.12 Data Collection, Sampling &amp; Bias<span class="old">TPS 4.1</span></div><div class="lesson"><span class="n">6</span>1.13 Experimental Design<span class="old">TPS 4.2 + 4.3</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 2: describe a distribution with a <strong>graph</strong> (SOCS). Today: describe it with <strong>numbers</strong> — center, position, variability, outliers. <span class="zh">从图形描述到数值描述。</span></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 3 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">1.7.A · Skill 3.B</div><h3>Center &amp; position <span class="stars">★<span class="off">★★★</span></span></h3><p>Calculate the mean, median, min, max, quartiles, and percentiles.</p><p class="zh muted small" style="margin-top:6px">计算均值、中位数、四分位数、百分位数</p></div><div class="card"><div class="k">1.7.B · Skill 3.B</div><h3>Variability <span class="stars">★★<span class="off">★★</span></span></h3><p>Calculate the range, IQR, standard deviation, and variance.</p><p class="zh muted small" style="margin-top:6px">计算极差、四分位距、标准差、方差</p></div><div class="card"><div class="k">1.7.C · Skill 3.B</div><h3>Change units <span class="stars">★★★<span class="off">★</span></span></h3><p>Find summary statistics after a change of units.</p><p class="zh muted small" style="margin-top:6px">单位变换后的统计量</p></div><div class="card"><div class="k">1.7.D · Skill 3.B</div><h3>Outliers <span class="stars">★★<span class="off">★★</span></span></h3><p>Identify outliers with the 1.5 × IQR rule and the 2-SD rule.</p><p class="zh muted small" style="margin-top:6px">用 1.5×IQR 与 2 倍标准差判断离群值</p></div><div class="card"><div class="k">1.7.E · Skill 4.A</div><h3>Compare <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare two or more samples using summary statistics.</p><p class="zh muted small" style="margin-top:6px">用统计量比较样本</p></div><div class="card"><div class="k">1.7.F · Skill 4.B</div><h3>Justify <span class="stars">★★★<span class="off">★</span></span></h3><p>Choose resistant or nonresistant statistics and justify the choice.</p><p class="zh muted small" style="margin-top:6px">选择稳健或非稳健统计量并说明理由</p></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 3 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">3'</div>Warm-up: what happens to the “average” when a billionaire walks in?</div><div class="it"><div class="bar n" style="width:140px">10' · 1.7.A</div>Mean · median · resistance · quartiles · percentiles</div><div class="it"><div class="bar n" style="width:150px">12' · 1.7.B</div>Range · IQR · standard deviation (by hand!) · variance</div><div class="it"><div class="bar n" style="width:90px">6' · 1.7.C</div>Changing units: add a constant, multiply by a constant</div><div class="it"><div class="bar n" style="width:90px">7' · 1.7.D</div>Outliers: 1.5 × IQR rule and 2-SD rule</div><div class="it"><div class="bar n" style="width:90px">5' · 1.7.E–F</div>Compare samples · choose the right statistic</div><div class="it"><div class="bar" style="width:40px">2'</div>Exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Which SD is bigger? · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 1.7.A.1 → 1.7.A.2 → 1.7.A.3 → 1.7.F.1 → 1.7.A.4–6 → 1.7.B.1–4 → 1.7.C.1 → 1.7.D.1 → 1.7.E.1 → 1.7.F.2</p><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 3 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simMM" href="#"><span class="ic">🎮</span><span>Mean vs. median: move the outlier!<small>移动离群值：均值与中位数 · drag an outlier; resistant vs. nonresistant</small></span></a><a data-goto="simSD" href="#"><span class="ic">🎮</span><span>Build a standard deviation<small>搭建标准差 · see deviations, squares, s</small></span></a><a data-goto="simUnits" href="#"><span class="ic">🎮</span><span>Change the units<small>单位变换器 · add / multiply and compare statistics</small></span></a><a data-goto="simCalc" href="#"><span class="ic">🎮</span><span>1-Var Stats calculator &amp; outlier finder<small>单变量统计计算器 · any data → all statistics + fences</small></span></a><a data-goto="simGuess" href="#"><span class="ic">🎮</span><span>Which has the bigger SD?<small>哪组标准差更大？（Bonus） · eyeball the spread</small></span></a></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: A billionaire walks into a café">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>A billionaire walks into a café <span class="zh">亿万富翁走进咖啡馆</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Ten people are in a café. Their yearly incomes (in thousands of dollars):</p><div class="datarow" style="margin:8px 0">38 42 45 48 50 52 55 58 60 62</div><p>Then a billionaire with a yearly income of $100,000 thousand ($100 million) walks in. <span class="zh">一位年收入 1 亿美元的富豪走进来。</span></p><div class="q"><b class="n">Q1</b>What is the “average” income before he walks in?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Before: mean = 510 ÷ 10 = 51; middle value (median) = (50 + 52) ÷ 2 = 51. They agree.</div></div><div class="q"><b class="n">Q2</b>After he walks in, is the “average” income about $9 million? Is that “typical”?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. After: mean = 100,510 ÷ 11 ≈ 9,137 (about $9.1 million!) — but the middle value is the 6th of 11 = 52.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. The mean was pulled toward the extreme value; the median barely moved. Which one describes a “typical” person? <b>The median.</b></div></div></div><div class="keyidea">🔑 Incomes (thousands of $), before and after.</div><div class="takeaway">💡 Two ways to measure center behave very differently with an outlier — today we learn why.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 200" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.7" data-sec="1" data-title="§ 1.7 Summary Statistics for a Quantitative Variable">
+<div class="tag">Topic</div><div class="num">1.7</div><h1>Summary Statistics for a Quantitative Variable</h1><div class="zhT">定量变量的概括统计量</div><div class="eks">1.7.A Center &amp; position<span>1.7.B Variability</span><span>1.7.C Change of units</span><span>1.7.D Outliers</span><span>1.7.E–F Compare &amp; justify</span></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.A.1–2；可用计算器 1-Var Stats。" data-title="Measuring Center: the Mean">
+<div class="tag">1.7.A <b>· Key Concept</b><span class="ek">EK 1.7.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Measuring Center: the Mean <span class="zh">均值</span></h2><div class="concept pink"><div class="term">Mean<span class="zh">均值</span></div><div class="en">The <strong>mean</strong> is the sum of all the values divided by the number of values. For a sample, the mean is denoted x̄ (“x-bar”): <span class="mono">x̄ = (1/n) Σ xᵢ</span>, where xᵢ is the i-th data value and n is the number of data values.</div><div class="cn"><b>均值</b>：所有数据之和除以数据个数。样本均值记作 x̄（读作 x-bar）。</div></div><div class="concept"><div class="term">x̄ vs. μ<span class="zh">统计量 vs. 参数</span></div><div class="en">x̄ is the mean of a <strong>sample</strong> (a statistic). μ (“mu”) is the mean of a <strong>population</strong> (a parameter).</div><div class="cn">x̄ 是<b>样本</b>的均值（统计量）；μ 是<b>总体</b>的均值（参数）。</div></div><div class="formula" data-math-tex="\bar{x}=\frac{x_1+x_2+\cdots+x_n}{n}=\frac{\sum_{i=1}^{n}x_i}{n}">\bar{x}=\frac{x_1+x_2+\cdots+x_n}{n}=\frac{\sum_{i=1}^{n}x_i}{n}</div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Mean number of goals">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.A.2</span></div>
+<h2>Mean number of goals <span class="zh">平均进球数</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Goals scored in 20 games by the 2016 U.S. women’s soccer team:</p><div class="datarow" style="margin:8px 0">5 5 1 10 5 2 1 1 2 3 3 2 1 4 2 1 2 1 9 3</div><div class="q"><b class="n">a</b>Find the mean number of goals.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Sum: 5 + 5 + 1 + 10 + ⋯ + 9 + 3 = 63 goals.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. x̄ = 63 ÷ 20 = <b>3.15 goals</b>.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. The mean is the <b>balance point</b> of the dotplot (▲).</div></div><div class="q"><b class="n">b</b>Is this x̄ or μ? Explain.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">It is x̄: these 20 games are a sample of all games the team plays.</div></div></div><div class="keyidea">🔑 n = 20 games.</div></div></div><div class="col vis"><div class="qv"><svg id="gQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="gMean" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.A.3。" data-title="Measuring Center: the Median">
+<div class="tag">1.7.A <b>· Key Concept</b><span class="ek">EK 1.7.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Measuring Center: the Median <span class="zh">中位数</span></h2><div class="concept pink"><div class="term">Median<span class="zh">中位数</span></div><div class="en">The <strong>median</strong> is the middle value when the data are ordered from smallest to largest. If n is odd, the median is the middle value (position (n + 1)/2). If n is even, the median is the mean of the two middle values.</div><div class="cn"><b>中位数</b>：把数据从小到大排序后位于中间的值。n 为奇数取正中间的值（第 (n+1)/2 个）；n 为偶数取中间两个值的平均。</div></div><div class="note small" style="margin-top:6px">⚠️ Always sort first! <span class="zh">一定要先排序！</span> Odd n = 7: 2 3 5 6 8 9 12 → median 6. Even n = 6: 2 3 5 8 9 12 → median (5 + 8)/2 = 6.5.</div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Find the median">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.A.3</span></div>
+<h2>Find the median <span class="zh">求中位数</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>a. Highway fuel economy (mpg) for 25 Toyota 4Runners tested by the EPA:</p><div class="datarow" style="margin:6px 0;font-size:17px">22.4 22.4 22.3 23.3 22.3 22.3 22.5 22.4 22.1 21.5 22.0 22.2 22.7 22.8 22.4 22.6 22.9 22.5 22.1 22.4 22.2 22.9 22.6 21.9 22.4</div><p>b. Goals scored in 20 games:</p><div class="datarow" style="margin:6px 0;font-size:17px">5 5 1 10 5 2 1 1 2 3 3 2 1 4 2 1 2 1 9 3</div><div class="q">Find the median of each data set.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. a. n = 25 (odd) → the median is the (25 + 1)/2 = <b>13th</b> value.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Sorted mpg: the 13th value is <b>22.4 mpg</b>.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. b. n = 20 (even) → average the <b>10th and 11th</b> values.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. Sorted goals: 10th = 2, 11th = 2 → median = <b>2 goals</b>.</div></div></div><div class="keyidea">🔑 Sort first, then find the middle.</div></div></div><div class="col vis"><div id="medSol"></div></div></div><div class="foot"><span>Unit 1 · Lesson 3 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.F.1；形状与均值/中位数的关系在 1.8 再系统讲。" data-title="Resistant Measures">
+<div class="tag">1.7.F <b>· Key Concept</b><span class="ek">EK 1.7.F.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Resistant Measures <span class="zh">稳健统计量</span></h2><div class="concept pink"><div class="term">Resistant<span class="zh">稳健的</span></div><div class="en">A statistic is resistant (robust) if outliers do not greatly (if at all) affect its value. The <strong>median</strong> is resistant; the <strong>mean</strong> is not resistant (nonresistant).</div><div class="cn">如果离群值几乎不影响一个统计量的值，就说它是<b>稳健的</b>。<b>中位数</b>是稳健的，<b>均值不是</b>。</div></div><div class="concept"><div class="term">Mean vs. median<span class="zh">均值与中位数</span></div><div class="en">Roughly symmetric, no outliers → mean ≈ median. Strongly <strong>skewed</strong> → the mean is pulled toward the long tail: skewed right → mean &gt; median; skewed left → mean &lt; median.</div><div class="cn">近似对称且无离群值时均值≈中位数；偏态分布中均值被拉向长尾：右偏均值 &gt; 中位数，左偏均值 &lt; 中位数。</div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Remove the big games">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.F.1</span></div>
+<h2>Remove the big games <span class="zh">去掉两场大胜</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Two games look like possible outliers: the team scored 9 and 10 goals.</p><div class="q"><b class="n">a</b>Find the mean and median <b>without</b> these two games.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Mean = 44 ÷ 18 ≈ <b>2.44 goals</b> (was 3.15).</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Median = average of 9th and 10th of 18 sorted values = (2 + 2)/2 = <b>2 goals</b> (unchanged).</div></div><div class="q"><b class="n">b</b>Which measure changed more? Why?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The <b>mean</b> changed a lot; the <b>median</b> didn’t → the median is resistant, the mean is not.</div></div><p class="small muted">With all 20 games: x̄ = 3.15, median = 2.</p></div><div class="keyidea">🔑 18 games remain; their sum is 63 − 9 − 10 = 44.</div></div></div><div class="col vis"><div class="qv"><svg id="rQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="rSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="拖到 100：均值、标准差、极差都变了，中位数与 IQR 几乎不变。" data-title="🎮 Simulator: Mean vs. median: move the outlier!" id="simMM">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Mean vs. median: move the outlier!</span><span class="zh">移动离群值：均值与中位数</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.F.1</span>
+<div class="row"><div class="col" style="flex:.75"><p class="small">Ten values stay fixed. Drag the slider to move the pink value. Watch which statistics move. <span class="zh">拖动粉色数据点，看哪些统计量跟着变。</span></p>
+<div class="slider-row"><label>Pink value</label><input id="mmS" max="100" min="0" type="range" value="18"/><span class="v" id="mmV"></span></div>
+<div class="statgrid" id="mmG"></div><div class="note small" id="mmMsg" style="margin-top:8px"></div><p class="small muted">Green = resistant 稳健 · Red = nonresistant 非稳健</p></div>
+<div class="col frame"><svg id="mmSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.A.4–6。n 为奇数时，求 Q₁/Q₃ 不含中位数本身（TI-84 的方法）。" data-title="Measures of Position: Quartiles &amp;amp; Percentiles">
+<div class="tag">1.7.A <b>· Key Concepts</b><span class="ek">EK 1.7.A.4–6</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Measures of Position: Quartiles &amp; Percentiles <span class="zh">四分位数与百分位数</span></h2><div class="concept"><div class="term">Min · max<span class="zh">最小值 · 最大值</span></div><div class="en">In an ordered data set, the smallest value is the <strong>minimum</strong> and the largest value is the <strong>maximum</strong>.</div><div class="cn">排序后最小的值是<b>最小值</b>，最大的值是<b>最大值</b>。</div></div><div class="concept pink"><div class="term">Quartiles<span class="zh">四分位数</span></div><div class="en"><strong>Q₁</strong> is the median of the <strong>lower half</strong> of the ordered data (≈ 25% of values ≤ Q₁). <strong>Q₃</strong> is the median of the <strong>upper half</strong> (≈ 75% ≤ Q₃). Q₁ and Q₃ bound the <strong>middle 50%</strong>. (n odd: leave the median out of both halves.)</div><div class="cn"><b>Q₁</b> 是下半部分数据的中位数（约 25% 的数据 ≤ Q₁）；<b>Q₃</b> 是上半部分的中位数（约 75% ≤ Q₃）；Q₂ 就是中位数。Q₁ 与 Q₃ 之间是<b>中间 50%</b>。</div></div><div class="concept pink"><div class="term">Percentile<span class="zh">百分位数</span></div><div class="en">The <strong>p-th percentile</strong> is the value with p% of the data <strong>less than or equal to</strong> it. Q₁ and Q₃ are the 25th and 75th percentiles.</div><div class="cn"><b>第 p 百分位数</b>：有 p% 的数据小于或等于它的值。Q₁、Q₃ 分别是第 25、75 百分位数。</div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Travel times to work">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.A.5</span></div>
+<h2>Travel times to work <span class="zh">纽约人的通勤时间</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Travel times to work (minutes) for 20 randomly selected New Yorkers:</p><div class="datarow" style="margin:8px 0">10 30 5 25 40 20 10 15 30 20 15 20 85 15 65 15 60 60 40 45</div><div class="q"><b class="n">a</b>Find the min, Q₁, median, Q₃, and max.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Sort: 5 10 10 15 15 15 15 20 20 20 | 25 30 30 40 40 45 60 60 65 85. Min = 5, max = 85.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Median = (20 + 25)/2 = 22.5 minutes (between the 10th and 11th values).</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Q₁ = median of the lower 10 = (15 + 15)/2 = 15; Q₃ = median of the upper 10 = (40 + 45)/2 = 42.5.</div></div><div class="q"><b class="n">b</b>About what percent of travel times are between Q₁ and Q₃?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">About 50% of the travel times are between 15 and 42.5 minutes.</div></div></div><div class="keyidea">🔑 n = 20 → each half has 10 values.</div></div></div><div class="col vis"><div class="qv"><svg id="trQ" viewbox="0 0 1100 150" width="100%"></svg></div><div class="sv"><div id="trSol"></div></div></div></div><div class="foot"><span>Unit 1 · Lesson 3 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Percentiles">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.A.6</span></div>
+<h2>Percentiles <span class="zh">百分位数</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Use the sorted travel times:</p><div class="datarow" style="margin:6px 0;font-size:18px">5 10 10 15 15 15 15 20 20 20 25 30 30 40 40 45 60 60 65 85</div><div class="q"><b class="n">a</b>Maria’s travel time is 30 minutes. What is her percentile?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Values ≤ 30: 13 of 20 → 13/20 = 65% → Maria is at the <b>65th percentile</b>.</div></div><div class="q"><b class="n">b</b>Which travel time is the 90th percentile?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">90% of 20 = 18 values must be ≤ it → the 18th value = <b>60 minutes</b>.</div></div><div class="q"><b class="n">c</b>Q₃ = 42.5 minutes. Show that it is the 75th percentile, and interpret it.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Values ≤ 42.5: 15 of 20 = 75%. About 75% of these New Yorkers travel <b>42.5 minutes or less</b> to work.</div></div></div><div class="keyidea">🔑 p-th percentile: p% of values ≤ it.</div></div></div><div class="col vis"><div id="pcSol"></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.B.1–3。" data-title="Measuring Variability: Range &amp;amp; IQR">
+<div class="tag">1.7.B <b>· Key Concepts</b><span class="ek">EK 1.7.B.1–3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Measuring Variability: Range &amp; IQR <span class="zh">变异度量：极差与四分位距</span></h2><div class="concept"><div class="term">Range<span class="zh">极差</span></div><div class="en">The <strong>range</strong> is the difference between the maximum and minimum: <strong>range = max − min</strong>. It is a single number (not an interval!).</div><div class="cn"><b>极差</b> = 最大值 − 最小值。它是<b>一个数</b>，不是区间。</div></div><div class="concept pink"><div class="term">IQR<span class="zh">四分位距</span></div><div class="en">The <strong>interquartile range</strong> is the difference between the third and first quartiles: <strong>IQR = Q₃ − Q₁</strong>. It is the range of the <strong>middle half</strong> of the data.</div><div class="cn"><b>四分位距</b> IQR = Q₃ − Q₁，即<b>中间一半</b>数据的极差。</div></div><div class="note small" style="margin-top:6px">Three common measures of variability (spread): <b>range</b>, <b>IQR</b>, standard deviation. <span class="zh">三种常用的变异度量。</span> ⚠️ Range = 80 minutes, not “5 to 85”.</div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Range and IQR of travel times">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.B.2–3</span></div>
+<h2>Range and IQR of travel times <span class="zh">通勤时间的极差与四分位距</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>From Example 5: min = 5, Q₁ = 15, median = 22.5, Q₃ = 42.5, max = 85 (minutes).</p><div class="q"><b class="n">a</b>Find the range and the IQR.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Range = 85 − 5 = <b>80 minutes</b>.  IQR = 42.5 − 15 = <b>27.5 minutes</b>.</div></div><div class="q"><b class="n">b</b>Interpret the IQR in context.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The middle half of travel times for these New Yorkers spans <b>27.5 minutes</b>.</div></div><div class="q"><b class="n">c</b>If the 85-minute commute were really 185 minutes, which measure changes?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Range → 185 − 5 = 180 (changes a lot); IQR stays 27.5 → <b>IQR is resistant</b>, range is not.</div></div></div><div class="keyidea">🔑 Range uses the extremes; IQR uses the quartiles.</div></div></div><div class="col vis"><div class="qv"><svg id="riQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="riSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.B.4。步骤：求均值 → 偏差 → 平方 → 求和除以 n−1 → 开方。" data-title="Standard Deviation &amp;amp; Variance">
+<div class="tag">1.7.B <b>· Key Concept</b><span class="ek">EK 1.7.B.4</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Standard Deviation &amp; Variance <span class="zh">标准差与方差</span></h2><div class="concept pink"><div class="term">Standard deviation<span class="zh">标准差</span></div><div class="en">The standard deviation measures a <strong>typical distance</strong> of the data values from their mean. Sample SD: <span class="mono">s = √( Σ(xᵢ − x̄)² / (n − 1) )</span>.</div><div class="cn"><b>标准差</b>衡量数据与均值之间的<b>典型距离</b>。样本标准差 s 的公式如上。</div></div><div class="concept"><div class="term">Variance<span class="zh">方差</span></div><div class="en">The square of the sample standard deviation, s², is called the <strong>sample variance</strong>. (Its units are squared.)</div><div class="cn">样本标准差的平方 s² 叫做<b>样本方差</b>（单位是平方单位）。</div></div><div class="formula" data-math-tex="s=\sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}" style="font-size:22px">s=\sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}</div><div class="small formula-caption"><span class="small muted" style="font-family:var(--sans)">  ① mean → ② deviations → ③ square → ④ add, ÷ (n − 1) = variance → ⑤ √</span></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: How many close friends?">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.B.4</span></div>
+<h2>How many close friends? <span class="zh">有几个好朋友？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Eleven high school students were asked how many “close” friends they have:</p><div class="datarow" style="margin:8px 0">1 2 2 2 3 3 3 3 4 4 6</div><div class="q"><b class="n">a</b>Calculate the standard deviation <b>by hand</b> (use the 5 steps).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. ① x̄ = 33 ÷ 11 = 3 friends.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. ② Deviations xᵢ − 3: −2, −1, −1, −1, 0, 0, 0, 0, 1, 1, 3 (they always add to 0!).</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. ③ Squares: 4, 1, 1, 1, 0, 0, 0, 0, 1, 1, 9 → sum = 18.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. ④ Variance s² = 18 ÷ (11 − 1) = 1.8 “squared friends”.  ⑤ s = √1.8 ≈ 1.34 friends.</div></div><div class="q"><b class="n">b</b>Interpret it in context.</div><div class="answ" data-i="4"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The number of close friends these students have typically varies by about 1.34 friends from the mean of 3.</div></div></div><div class="keyidea">🔑 n = 11, mean first.</div></div></div><div class="col vis"><div class="qv"><svg id="frQ" viewbox="0 0 560 200" width="100%"></svg></div><div class="sv"><div id="frSol"></div></div></div></div><div class="foot"><span>Unit 1 · Lesson 3 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="TPS 1.3 Properties of SD。" data-title="Properties of the standard deviation 标准差的性质">
+<div class="tag">1.7.B · Concept<span class="ek">EK 1.7.B.4 · 1.7.F.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>Properties of the standard deviation <span class="zh">标准差的性质</span></h2>
+<div class="cards" style="grid-template-columns:1fr 1fr;margin-top:12px"><div class="card"><div class="k">1</div><h3>s ≥ 0</h3><p>s = 0 only when all values are the <b>same</b> (no variability). Larger s → more variability.</p><p class="zh muted small">s = 0 当且仅当所有数据都相同。</p></div><div class="card"><div class="k">2</div><h3>Same units as the data</h3><p>s is in the original units (friends, minutes); the variance s² is in squared units.</p><p class="zh muted small">标准差与数据同单位，方差是平方单位。</p></div><div class="card"><div class="k">3</div><h3>Spread about the mean</h3><p>Use s with the mean, when the mean is a good measure of center.</p><p class="zh muted small">标准差衡量的是围绕均值的离散程度。</p></div><div class="card"><div class="k">4</div><h3>Not resistant</h3><p>A few extreme values can make s much larger (squared deviations!).</p><p class="zh muted small">标准差不是稳健的。</p></div></div>
+<div class="note small" style="margin-top:10px">Why divide by n − 1? The deviations add to 0, so only n − 1 of them are “free”; dividing by n − 1 makes s² a better estimate of the population variance σ². <span class="zh">除以 n−1：偏差和为 0，只有 n−1 个自由度。</span></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="三个挑战：s=0（全部相等）、最大（一半 0 一半 10）、s≈2。" data-title="🎮 Simulator: Build a standard deviation" id="simSD">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Build a standard deviation</span><span class="zh">搭建标准差</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.B.4</span>
+<div class="row"><div class="col" style="flex:.8"><p class="small">Move the six values. Each pink bar is a deviation from the mean. <span class="zh">移动 6 个数据，粉色线段 = 与均值的偏差。</span></p>
+<div id="sdSl"></div><div class="btns"><button class="b" data-ch="0">Challenge: s = 0</button><button class="b" data-ch="1">Make s as large as possible</button><button class="b" data-ch="2">Hit s ≈ 2</button></div><div class="small" id="sdFb" style="min-height:40px"></div></div>
+<div class="col"><div class="frame"><svg id="sdSvg" viewbox="0 0 560 260" width="100%"></svg></div><div class="small" id="sdTab" style="margin-top:6px"></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.C.1（TPS 2.1 Transforming Data）。形状不变。" data-title="Changing Units of Measurement">
+<div class="tag">1.7.C <b>· Key Concepts</b><span class="ek">EK 1.7.C.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Changing Units of Measurement <span class="zh">改变测量单位</span></h2><div class="concept pink"><div class="term">Add a constant a<span class="zh">加上常数 a</span></div><div class="en">Adding a to every value: measures of center and position (mean, median, quartiles, min, max) increase by a; measures of <strong>variability</strong> (range, IQR, SD) <strong>do not change</strong>.</div><div class="cn">每个数据都加 a：中心与位置度量（均值、中位数、四分位数、最值）<b>都加 a</b>；变异度量（极差、IQR、标准差）<b>不变</b>。</div></div><div class="concept pink"><div class="term">Multiply by b (b &gt; 0)<span class="zh">乘以常数 b</span></div><div class="en">Multiplying every value by b: measures of center, position, and variability are all <strong>multiplied by b</strong> (the variance by b²).</div><div class="cn">每个数据都乘以 b：中心、位置<b>和</b>变异度量都<b>乘以 b</b>（方差乘以 b²）。</div></div><div class="note small" style="margin-top:4px">Changing units changes the statistics, but the <b>shape</b> of the distribution does not change. Example: inches → centimeters (× 2.54); °C → °F (× 1.8, then + 32). <span class="zh">分布形状不变。</span></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 9: Celsius to Fahrenheit">
+<div class="exhead"><span class="badge ex">📝 Example 9 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.C.1</span></div>
+<h2>Celsius to Fahrenheit <span class="zh">摄氏度换算成华氏度</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The daily high temperatures in Shanghai for 30 days in April had these summary statistics (°C):</p><table class="tw st" id="tcQ" style="margin:8px 0"><thead><tr><th></th><th>Mean</th><th>Median</th><th>Min</th><th>SD</th><th>IQR</th><th>Range</th></tr></thead><tbody><tr><th class="rh">°C</th><td>20</td><td>19</td><td>11</td><td>4</td><td>5</td><td>16</td></tr></tbody></table><p>Convert to °F using F = 1.8C + 32. Find each statistic in °F.</p><div style="margin-top:8px"><div class="answ solo" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Center/position (× 1.8, + 32): mean = 1.8(20) + 32 = 68°F; median = 1.8(19) + 32 = 66.2°F; min = 1.8(11) + 32 = 51.8°F.</div></div><div class="answ solo" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Variability</b> (× 1.8 only): SD = 1.8(4) = 7.2°F; IQR = 1.8(5) = 9°F; range = 1.8(16) = 28.8°F.</div></div><div class="answ solo" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Adding 32 shifts every value, so distances between values (spread) stay the same.</div></div></div></div><div class="keyidea">🔑 Step 1: × 1.8 (affects everything). Step 2: + 32 (center &amp; position only).</div></div></div><div class="col vis"><table class="tw st" id="tcS"><thead><tr><th></th><th>Mean</th><th>Median</th><th>Min</th><th>SD</th><th>IQR</th><th>Range</th></tr></thead><tbody><tr><th class="rh">°C</th><td>20</td><td>19</td><td>11</td><td>4</td><td>5</td><td>16</td></tr><tr><th class="rh">× 1.8</th><td data-k="1-0">36</td><td data-k="1-1">34.2</td><td data-k="1-2">19.8</td><td data-k="1-3">7.2</td><td data-k="1-4">9</td><td data-k="1-5">28.8</td></tr><tr><th class="rh">+ 32 → °F</th><td data-k="2-0">68</td><td data-k="2-1">66.2</td><td data-k="2-2">51.8</td><td data-k="2-3">7.2</td><td data-k="2-4">9</td><td data-k="2-5">28.8</td></tr></tbody></table><svg id="tcSvg" viewbox="0 0 560 150" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="b 改变所有统计量（变异也乘 b）；a 只改变中心与位置。" data-title="🎮 Simulator: Change the units" id="simUnits">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Change the units</span><span class="zh">单位变换器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.C.1</span>
+<div class="row"><div class="col" style="flex:.75"><p class="small">Heights of 12 students (inches). New value = <b>b × (old)</b> + a. <span class="zh">新数据 = b × 原数据 + a。</span></p>
+<div class="slider-row"><label>Multiply b</label><input id="unB" max="3" min="0.5" step="0.01" type="range" value="1"/><span class="v" id="unBV"></span></div><div class="slider-row"><label>Add a</label><input id="unA" max="60" min="-60" step="1" type="range" value="0"/><span class="v" id="unAV"></span></div>
+<div class="btns"><button class="b" data-un="1,0">Reset</button><button class="b" data-un="2.54,0">inches → cm</button><button class="b" data-un="1,-60">subtract 60</button><button class="b" data-un="0.0833,0">inches → feet</button></div><div id="unTab"></div></div>
+<div class="col frame"><svg id="unSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.D.1.i–ii。两种方法可能给出不同结论。为什么找离群值：可能是错误数据、可能是特别的事件、会影响均值/标准差/极差。" data-title="Identifying Outliers">
+<div class="tag">1.7.D <b>· Key Concepts</b><span class="ek">EK 1.7.D.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Identifying Outliers <span class="zh">判断离群值</span></h2><div class="concept pink"><div class="term">1.5 × IQR rule<span class="zh">1.5 倍 IQR 法则</span></div><div class="en">An outlier is a value more than <strong>1.5 × IQR above Q₃</strong> or more than <strong>1.5 × IQR below Q₁</strong>: <span class="mono">x &gt; Q₃ + 1.5·IQR</span> or <span class="mono">x &lt; Q₁ − 1.5·IQR</span>.</div><div class="cn">离群值：大于 Q₃ + 1.5×IQR 或小于 Q₁ − 1.5×IQR 的值。</div></div><div class="concept pink"><div class="term">2-SD rule<span class="zh">2 倍标准差法则</span></div><div class="en">An outlier is a value more than 2 standard deviations above or below the mean: <span class="mono">x &gt; x̄ + 2s</span> or <span class="mono">x &lt; x̄ − 2s</span>.</div><div class="cn">离群值：大于 x̄ + 2s 或小于 x̄ − 2s 的值。</div></div><div class="note small" style="margin-top:6px">Why look for outliers? They might be errors, they can show a <b>remarkable occurrence</b>, and they can heavily <b>influence</b> the mean, range, and SD. <span class="zh">可能是错误数据、特殊事件，并且会影响非稳健统计量。</span></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 10: Any outlying 4Runners?">
+<div class="exhead"><span class="badge ex">📝 Example 10 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.D.1.i</span></div>
+<h2>Any outlying 4Runners? <span class="zh">有离群的车吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>For the 25 Toyota 4Runners: Q₁ = 22.2 mpg, Q₃ = 22.6 mpg. Sorted data:</p><div class="datarow" style="margin:6px 0;font-size:17px">21.5 21.9 22.0 22.1 22.1 22.2 22.2 22.3 22.3 22.3 22.4 22.4 22.4 22.4 22.4 22.4 22.5 22.5 22.6 22.6 22.7 22.8 22.9 22.9 23.3</div><div class="q">Use the 1.5 × IQR rule to identify any outliers.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. IQR = 22.6 − 22.2 = 0.4 mpg; 1.5 × IQR = 0.6.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Low fence: 22.2 − 0.6 = 21.6. High fence: 22.6 + 0.6 = 23.2.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. 21.5 &lt; 21.6 and 23.3 &gt; 23.2 → the cars with <b>21.5 mpg</b> and <b>23.3 mpg</b> are outliers.</div></div></div><div class="keyidea">🔑 Q₁ = 22.2, Q₃ = 22.6.</div></div></div><div class="col vis"><svg id="mpgSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 11: Two rules, two answers?">
+<div class="exhead"><span class="badge ex">📝 Example 11 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.D.1</span></div>
+<h2>Two rules, two answers? <span class="zh">两种法则，结论一样吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Goals in 20 games (sorted):</p><div class="datarow" style="margin:6px 0">1 1 1 1 1 1 2 2 2 2 2 3 3 3 4 5 5 5 9 10</div><p>x̄ = 3.15, s ≈ 2.58.</p><div class="q"><b class="n">a</b>Use the 1.5 × IQR rule.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Q₁ = (1 + 1)/2 = 1, Q₃ = (4 + 5)/2 = 4.5, IQR = 3.5. Fences: 1 − 5.25 = −4.25 and 4.5 + 5.25 = 9.75 → only 10 is an outlier.</div></div><div class="q"><b class="n">b</b>Use the 2-SD rule.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">2-SD: 3.15 ± 2(2.58) → (−2.01, 8.31) → 9 and 10 are outliers.</div></div><div class="q"><b class="n">c</b>Do the rules agree about the 9-goal game?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No! The 9-goal game is an outlier by the 2-SD rule but not by the 1.5 × IQR rule. Always say which rule you used.</div></div></div><div class="keyidea">🔑 Find the quartiles first (10 values in each half).</div><div class="takeaway">💡 Different rules can give different results — state your rule and show the fences.</div></div></div><div class="col vis"><div class="qv"><svg id="twQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="twSol" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="可以输入学生自己的数据，切换两种离群值法则。" data-title="🎮 Simulator: 1-Var Stats calculator &amp;amp; outlier finder" id="simCalc">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">1-Var Stats calculator &amp; outlier finder</span><span class="zh">单变量统计计算器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.A–D</span>
+<div class="row"><div class="col" style="flex:.85"><p class="small">Type or paste any data (like a TI-84 “1-Var Stats”). <span class="zh">输入任意数据。</span></p><textarea class="din" id="csIn">10 30 5 25 40 20 10 15 30 20 15 20 85 15 65 15 60 60 40 45</textarea>
+<div class="btns"><button class="b" id="csGo">Calculate</button><button class="b on" data-rule="iqr">1.5 × IQR rule</button><button class="b" data-rule="sd">2-SD rule</button></div><div class="btns" style="margin-top:0"><button class="b" data-ds="goals">Goals</button><button class="b" data-ds="mpg">4Runner mpg</button><button class="b" data-ds="fr">Close friends</button></div><div class="statgrid" id="csG"></div></div>
+<div class="col frame"><svg id="csSvg" viewbox="0 0 560 300" width="100%"></svg><div class="small" id="csMsg" style="margin-top:4px"></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.7.E.1、1.7.F.1–2。" data-title="Compare &amp;amp; Choose Summary Statistics">
+<div class="tag">1.7.E–F <b>· Key Concepts</b><span class="ek">EK 1.7.E.1 · 1.7.F.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Compare &amp; Choose Summary Statistics <span class="zh">比较与选择统计量</span></h2><div class="concept"><div class="term">Compare<span class="zh">比较</span></div><div class="en">Summary statistics can be used to compare features of two or more independent samples, including center, <strong>variability</strong>, <strong>shape</strong>, and <strong>outliers</strong>.</div><div class="cn">可以用概括统计量比较两个或多个独立样本的中心、变异、形状与离群值。</div></div><div class="concept pink"><div class="term">Choose<span class="zh">选择</span></div><div class="en">Resistant: median, IQR. Nonresistant: mean, SD, range. Skewed or outliers → report the <strong>median and IQR</strong>. Roughly symmetric, no outliers → the <strong>mean and SD</strong> work well.</div><div class="cn"><b>稳健</b>：中位数、IQR。<b>非稳健</b>：均值、标准差、极差。偏态或有离群值 → 用中位数和 IQR；近似对称且无离群值 → 用均值和标准差。</div></div><table class="tw" style="margin-top:6px;font-size:16px;width:100%"><thead><tr><th></th><th>Center</th><th>Variability</th><th>Use when…</th></tr></thead><tbody><tr><th class="rh">Resistant 稳健</th><td>median</td><td>IQR</td><td>skewed / outliers 偏态或有离群值</td></tr><tr><th class="rh">Nonresistant 非稳健</th><td>mean</td><td>SD, range</td><td>roughly symmetric, no outliers 近似对称</td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 12: Two classes, one test">
+<div class="exhead"><span class="badge ex">📝 Example 12 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.E.1 · Skill 4.A</span></div>
+<h2>Two classes, one test <span class="zh">两个班的考试成绩</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Summary statistics for the scores on the same test in two classes:</p><table class="tw st" id="ccQ" style="margin:8px 0"><thead><tr><th>Class</th><th>n</th><th>Mean</th><th>SD</th><th>Min</th><th>Q₁</th><th>Median</th><th>Q₃</th><th>Max</th></tr></thead><tbody><tr><th class="rh">Period 1</th><td>25</td><td>78.2</td><td>6.1</td><td>64</td><td>74</td><td>79</td><td>83</td><td>92</td></tr><tr><th class="rh">Period 2</th><td>28</td><td>76.0</td><td>12.4</td><td>31</td><td>72</td><td>80</td><td>85</td><td>98</td></tr></tbody></table><div class="q"><b class="n">a</b>Are there any outliers? Use the 1.5 × IQR rule.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. P1: IQR = 9, fences 74 − 13.5 = 60.5 and 83 + 13.5 = 96.5 → min 64, max 92 inside → <b>no outliers</b>.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. P2: IQR = 13, fences 72 − 19.5 = 52.5 and 85 + 19.5 = 104.5 → the score of 31 is an outlier.</div></div><div class="q"><b class="n">b</b>Compare the distributions (center, variability, shape, outliers).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Center: the medians are similar (80 vs. 79), but P2’s mean is lower — pulled down by the low outlier.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Variability:</b> P2’s scores vary more (IQR 13 vs. 9; range 67 vs. 28). <b>Shape:</b> P2 mean &lt; median → likely skewed left; P1 is roughly symmetric (mean ≈ median).</div></div></div><div class="keyidea">🔑 Fences first, then compare.</div><div class="takeaway">💡 Because of the outlier, compare with the <b>median and IQR</b> — resistant!</div></div></div><div class="col vis"><svg id="ccSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 13: The realtor’s “average”">
+<div class="exhead"><span class="badge ex">📝 Example 13 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.7.F.2 · Skill 4.B</span></div>
+<h2>The realtor’s “average” <span class="zh">房产经纪人的“平均价”</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A realtor advertises: “The <b>average</b> home price in Maple Hills is $612,000!” Summary statistics for the 15 homes sold this year:</p><table class="tw st" style="margin:8px 0"><thead><tr><th>Mean</th><th>SD</th><th>Min</th><th>Q₁</th><th>Median</th><th>Q₃</th><th>Max</th></tr></thead><tbody><tr><td>$612k</td><td>$380k</td><td>$298k</td><td>$360k</td><td>$435k</td><td>$520k</td><td>$1,950k</td></tr></tbody></table><div class="q"><b class="n">a</b>Is the most expensive home an outlier?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">IQR = 520 − 360 = 160; high fence = 520 + 1.5(160) = $760k; $1,950k &gt; $760k → yes, an outlier.</div></div><div class="q"><b class="n">b</b>Is $612,000 a good description of a “typical” home price? Which statistic should a buyer look at? Justify.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. The mean ($612k) is much greater than the median ($435k) → the distribution is <b>skewed right</b> with a high outlier; the mean is pulled up.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. A buyer should look at the <b>median, $435,000</b> — it is resistant; more than half of the homes cost less than the advertised “average”.</div></div></div><div class="keyidea">🔑 Mean $612k vs. median $435k.</div></div></div><div class="col vis"><svg id="reSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 14: Mean or median?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 14 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.F.1</span></div>
+<h2>Mean or median?</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">The distribution of household incomes in a large city is strongly skewed to the right. Which statement is most likely true?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) The mean is less than the median.</li><li>(B) The mean is greater than the median.</li><li>(C) The mean equals the median.</li><li>(D) The IQR is greater than the range.</li><li>(E) The standard deviation equals 0.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">The long right tail (very high incomes) pulls the <b>mean</b> up; the median is resistant.</p><p style="margin:3px 0">So the mean is greater than the median → <b>(B)</b>. (The IQR can never exceed the range.)</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq1" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 15: Which is resistant?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 15 · AP 选择题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.F.1</span></div>
+<h2>Which is resistant?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which of the following summary statistics is resistant to outliers?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) Mean</li><li>(B) Standard deviation</li><li>(C) Range</li><li>(D) Interquartile range</li><li>(E) Variance</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Mean, SD, variance, and range all use every value (or the extremes) → nonresistant.</p><p style="margin:3px 0">IQR = Q₃ − Q₁ uses only the middle half → (D).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 16: Transforming scores">
+<div class="exhead"><span class="badge ex">📝 AP Practice 16 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.C.1</span></div>
+<h2>Transforming scores</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Test scores have mean 70 and standard deviation 8. The teacher changes each score x to 2x + 5. What are the new mean and standard deviation?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) Mean 70, SD 8</li><li>(B) Mean 145, SD 21</li><li>(C) Mean 145, SD 16</li><li>(D) Mean 140, SD 16</li><li>(E) Mean 75, SD 13</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Mean: 2(70) + 5 = 145.</p><p style="margin:3px 0">SD: multiplied by 2, adding 5 does not change spread → 2(8) = 16 → (C).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 17: Interpret the SD">
+<div class="exhead"><span class="badge ex">📝 AP Practice 17 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.B.4</span></div>
+<h2>Interpret the SD</h2><div class="scrollcol"><div class="problem" style="font-size:19px">For the 11 students, the standard deviation of the number of close friends is 1.34. Which is the best interpretation?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Most students have 1.34 close friends.</li><li>(B) The number of close friends typically varies by about 1.34 from the mean of 3.</li><li>(C) About 1.34% of students have no close friends.</li><li>(D) The middle 50% of students have between 1.34 and 3 close friends.</li><li>(E) The number of close friends ranges from 3 − 1.34 to 3 + 1.34.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">The SD measures a <b>typical distance</b> of the values from the mean, in context → <b>(B)</b>.</p><p style="margin:3px 0">(D) describes the IQR idea; (E) is wrong — values range from 1 to 6.</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus 游戏：看点离均值的距离，而不是看极差。" data-title="🎮 Simulator: Which has the bigger SD?" id="simGuess">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Which has the bigger SD?</span><span class="zh">哪组标准差更大？（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.B.4</span>
+<div class="row"><div class="col frame" style="flex:1.4"><svg id="gsA" viewbox="0 0 560 150" width="100%"></svg><svg id="gsB" viewbox="0 0 560 150" width="100%"></svg></div><div class="col" style="flex:.6"><p class="small">Two random data sets. Which one has the <b>larger standard deviation</b>? <span class="zh">哪组数据的标准差更大？</span></p>
+<div class="btns"><button class="b" data-gs="0">Set A</button><button class="b" data-gs="1">Set B</button></div><div id="gsFb" style="min-height:70px"></div><div class="btns"><button class="b" id="gsNew">Next ↻</button></div><p class="score" id="gsScore"></p></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 18: 2-SD outlier rule">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 18 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.D.1.ii</span></div>
+<h2>2-SD outlier rule</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">A data set has mean 50 and standard deviation 6. Using the 2-SD rule, which of these values would be an outlier?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) 39</li><li>(B) 45</li><li>(C) 37</li><li>(D) 61</li><li>(E) 56</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Fences: 50 − 12 = 38 and 50 + 12 = 62.</p><p style="margin:3px 0">Only 37 &lt; 38 → (C). (39 and 61 are inside.)</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq5" viewbox="0 0 560 200" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Mean x̄ (μ for a population)</th><td class="zh" style="text-align:left">均值</td><td style="text-align:left">Sum ÷ n · balance point · not resistant</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Median</th><td class="zh" style="text-align:left">中位数</td><td style="text-align:left">Middle of the sorted data · resistant</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Quartiles Q₁, Q₃ · percentile</th><td class="zh" style="text-align:left">四分位数 · 百分位数</td><td style="text-align:left">Q₁ = 25th, Q₃ = 75th percentile</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Range · IQR</th><td class="zh" style="text-align:left">极差 · 四分位距</td><td style="text-align:left">max − min · Q₃ − Q₁ (resistant)</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Standard deviation s · variance s²</th><td class="zh" style="text-align:left">标准差 · 方差</td><td style="text-align:left">Typical distance from the mean; ÷ (n − 1)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Change of units</th><td class="zh" style="text-align:left">单位变换</td><td style="text-align:left">+ a: center shifts, spread same · × b: all × b</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Outlier rules</th><td class="zh" style="text-align:left">离群值法则</td><td style="text-align:left">Q₁ − 1.5·IQR, Q₃ + 1.5·IQR · x̄ ± 2s</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Resistant (robust)</th><td class="zh" style="text-align:left">稳健的</td><td style="text-align:left">Median &amp; IQR; skewed → use them</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">1.7</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Number of text messages 9 students sent in one hour:</p><div class="datarow" style="margin:8px 0">4 7 8 8 9 10 12 15 30</div><div class="q"><b class="n">1</b>Find the mean, median, Q₁, Q₃, and IQR.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Mean = 103 ÷ 9 ≈ 11.4; median = 9; Q₁ = (7 + 8)/2 = 7.5; Q₃ = (12 + 15)/2 = 13.5; IQR = 6.</div></div><div class="q"><b class="n">2</b>Is 30 an outlier (1.5 × IQR rule)?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">High fence = 13.5 + 1.5(6) = 22.5 → <b>30 is an outlier</b>.</div></div><div class="q"><b class="n">3</b>Which measure of center should you report? Why?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Report the <b>median (9 texts)</b> — it is resistant to the outlier; the mean is pulled up to 11.4.</div></div></div><div class="keyidea">🔑 n = 9 (odd) → median is the 5th value; leave it out of the halves.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 230" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 3</span><span class="pg"></span></div>
+</section>
+<section class="slide extension" data-notes="用4个数总和固定的例子，不把“自由度”解释成样本丢掉了一个数据。 | Algebra explanation: identities shown on this slide. " data-title="Extension: Why n − 1?"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">3 min · beyond required derivation</div><h2>Why n − 1?<span class="zh">自由度：一个约束</span></h2><div class="bridge-body"><p>Four observations have mean 10, so their total must be 40. Choose the first three values: 7, 9, 12. The last value is forced to be 12.</p><div class="algebra" data-math-tex="7+9+12+?=40\quad\Longrightarrow\quad ?=12">7+9+12+?=40\quad\Longrightarrow\quad ?=12</div><p>The deviations are −3, −1, 2, 2. Their sum is zero. Once three deviations are chosen, the fourth is determined.</p><div class="algebra" data-math-tex="\sum_{i=1}^{n}(x_i-\bar{x})=0\quad\Longrightarrow\quad \mathrm{df}=n-1">\sum_{i=1}^{n}(x_i-\bar{x})=0\quad\Longrightarrow\quad \mathrm{df}=n-1</div><p class="bridge-cn">自由度可以先理解为：满足约束后，还能自由变化的独立信息数量。这里用样本估计了一个均值，剩下 n−1 个自由度。</p><div style="background:#ddf1ea;padding:12px;font-size:18px;border-radius:8px"><label>First three values: <input aria-label="First value" class="df-input" style="width:65px;font-size:18px" type="number" value="7"/> <input aria-label="Second value" class="df-input" style="width:65px;font-size:18px" type="number" value="9"/> <input aria-label="Third value" class="df-input" style="width:65px;font-size:18px" type="number" value="12"/></label><br/><output aria-live="polite" id="df-output"></output></div></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide cover" data-notes="下节课：1.8 + 1.9（TPS 1.3 + 2.1）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 4</div><h1>Boxplots, Comparing Distributions &amp; z-Scores</h1><div class="zhT">箱线图、比较分布与 z 分数 · Topics 1.8–1.9</div><p class="muted" style="margin-top:26px;font-size:22px">Five-number summary, boxplots with outliers, mean vs. median by shape, comparing groups, and measuring position with z-scores.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 1 · Lesson 3 ===== */
+const PINKD='#C8577B',GOLD='#E2B64F',GREY='#D9D3DA';
+function lab(svg,x,y,t,c,a,fs){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':800,fill:c||ROSE},svg,t);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const quart=a=>{const s=srt(a),n=s.length,h=Math.floor(n/2);if(n<2)return[s[0],s[0],s[0]];return [median(s.slice(0,h)),median(s),median(s.slice(n%2?h+1:h))];};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+v.toFixed(d)).toString();
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+function chips(id,vals,cls,extra){const b=$(id);if(!b)return;b.innerHTML=(extra&&extra.top||'')+'<div class="chips">'+vals.map((v,i)=>`<span class="${cls?cls(i,v):''}">${v}</span>`).join('')+'</div>'+(extra&&extra.bot||'');}
+function niceStep(span){const raw=span/8;const p=Math.pow(10,Math.floor(Math.log10(raw)));const m=raw/p;return (m<1.5?1:m<3?2:m<7?5:10)*p;}
+
+const GOALS=nums('5 5 1 10 5 2 1 1 2 3 3 2 1 4 2 1 2 1 9 3');
+const MPG=nums('22.4 22.4 22.3 23.3 22.3 22.3 22.5 22.4 22.1 21.5 22.0 22.2 22.7 22.8 22.4 22.6 22.9 22.5 22.1 22.4 22.2 22.9 22.6 21.9 22.4');
+const TRAVEL=nums('10 30 5 25 40 20 10 15 30 20 15 20 85 15 65 15 60 60 40 45');
+const FR=nums('1 2 2 2 3 3 3 3 4 4 6');
+const INC=nums('38 42 45 48 50 52 55 58 60 62');
+
+/* warm-up */
+dotplotV($('wuQ'),INC,{lo:30,hi:70,step:5,r:8,xlab:'Yearly income (thousands of $)',B:150});
+(function(){function draw(k){const s=$('wuSol');const X=dotplotV(s,INC,{lo:30,hi:70,step:5,r:8,xlab:'Yearly income (thousands of $)',B:200,R:500});
+  if(k>=1&&k<2){vline(s,X(51),70,200,ROSE,'mean = median = 51');}
+  if(k>=2){vline(s,X(52),70,200,NAVY,'median = 52','',  'end',66);
+    el('path',{d:`M ${X(62)+20} 120 L 545 120`,stroke:ROSE,'stroke-width':3,'marker-end':''},s);el('polygon',{points:'545,112 558,120 545,128',fill:ROSE},s);
+    lab(s,520,105,'billionaire: 100,000 →',ROSE,'end',13);lab(s,520,40,'mean ≈ 9,137 → way off the chart!',ROSE,'end',14);}
+  }draw(0);onStep('wuSol',draw);})();
+
+/* mean */
+dotplotV($('gQ'),GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:175});
+(function(){function draw(k){const s=$('gMean');const X=dotplotV(s,GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:200});
+  if(k>=2){vline(s,X(3.15),40,200,ROSE,'x̄ = 3.15');}
+  if(k>=3){el('polygon',{points:`${X(3.15)},201 ${X(3.15)-12},222 ${X(3.15)+12},222`,fill:ROSE},s);lab(s,X(3.15)+18,60,'balance point',ROSE,'start',13);}
+  if(k>=1&&k<2)lab(s,280,40,'sum = 63 goals',NAVY);}draw(0);onStep('gMean',draw);})();
+
+/* median chips */
+(function(){const M=srt(MPG),G=srt(GOALS);function draw(k){const b=$('medSol');let h='';
+  if(k>=1)h+='<p class="small" style="font-weight:700;margin:0">a. Sorted mpg (n = 25)</p><div class="chips">'+M.map((v,i)=>`<span class="${i===12?'mid':''}" style="min-width:40px;font-size:15px">${v.toFixed(1)}</span>`).join('')+'</div>'+(k>=2?'<p class="small" style="margin:2px 0 8px">13th value → median = <b style="color:var(--rose)">22.4 mpg</b></p>':'');
+  if(k>=3)h+='<p class="small" style="font-weight:700;margin:0">b. Sorted goals (n = 20)</p><div class="chips">'+G.map((v,i)=>`<span class="${i===9||i===10?'mid':''}" style="min-width:32px">${v}</span>`).join('')+'</div>'+(k>=4?'<p class="small" style="margin:2px 0">(2 + 2) ÷ 2 → median = <b style="color:var(--rose)">2 goals</b></p>':'');
+  b.innerHTML=h||'<p class="small muted">Sorted lists appear here →</p>';}draw(0);onStep('medSol',draw);})();
+
+/* resistance */
+dotplotV($('rQ'),GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:175,hl:v=>v>=9?ROSE:null});
+(function(){function draw(k){const s=$('rSol');const X=dotplotV(s,GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:205,hl:v=>v>=9?(k>=1?GREY:ROSE):null});
+  if(k===0){vline(s,X(3.15),60,205,ROSE,'mean 3.15','', 'start',56);vline(s,X(2),90,205,NAVY,'median 2','','end',86);}
+  if(k>=1){vline(s,X(3.15),60,205,'#E7B3C3','old mean 3.15',true,'start',56);vline(s,X(2.444),40,205,ROSE,'new mean 2.44','','start',36);}
+  if(k>=2)vline(s,X(2),90,205,NAVY,'median 2 (same!)','','end',86);
+  if(k>=1){el('line',{x1:X(8.6),x2:X(10.4),y1:150,y2:200,stroke:ROSE,'stroke-width':3},s);el('line',{x1:X(8.6),x2:X(10.4),y1:200,y2:150,stroke:ROSE,'stroke-width':3},s);}}
+  draw(0);onStep('rSol',draw);})();
+
+/* sim: mean vs median */
+const MMB=[12,14,15,16,17,18,18,20,21,23];let mmBase=null;
+function mmStats(a){const [q1,m,q3]=quart(a);return{mean:mean(a),med:m,sd:sdev(a),iqr:q3-q1,range:Math.max(...a)-Math.min(...a),q1,q3,max:Math.max(...a)};}
+function mmDraw(){const p=+$('mmS').value;$('mmV').textContent=p;const a=[...MMB,p];const st=mmStats(a);if(!mmBase)mmBase=mmStats([...MMB,18]);
+  const s=$('mmSvg');const X=dotplotV(s,a,{lo:0,hi:100,step:10,r:5,dy:11,xlab:'Value',B:240,sort:false,hl:v=>null});
+  /* repaint pink dot */const cs=s.querySelectorAll('circle');cs[cs.length-1].setAttribute('fill',ROSE);
+  vline(s,X(st.med),60,240,NAVY,'median','','end',56);vline(s,X(st.mean),90,240,ROSE,'mean','','start',86);
+  const it=[['Mean',st.mean,'mean',0],['Median',st.med,'med',1],['SD',st.sd,'sd',0],['IQR',st.iqr,'iqr',1],['Range',st.range,'range',0],['Q₁',st.q1,'q1',1],['Q₃',st.q3,'q3',1],['Max',st.max,'max',0]];
+  $('mmG').innerHTML=it.map(([n,v,key,r])=>{const d=v-mmBase[key];return `<div class="${r?'res':'non'}">${n}<b>${fx(v,2)}</b><span class="muted" style="font-size:12px">${Math.abs(d)<0.005?'no change':(d>0?'+':'')+fx(d,2)}</span></div>`;}).join('');
+  const out=p>st.q3+1.5*st.iqr||p<st.q1-1.5*st.iqr;$('mmMsg').innerHTML=out?`The pink value is an <b>outlier</b>. The mean moved by <b>${fx(st.mean-mmBase.mean,2)}</b>, the median by only <b>${fx(st.med-mmBase.med,2)}</b>.`:'The pink value is not an outlier — try dragging it far to the right (or to 0).';}
+$('mmS').oninput=mmDraw;mmDraw();
+
+/* quartiles chips */
+(function(){const S=srt(TRAVEL);function draw(k){const qc=i=>i<5?'q1':i<10?'q2':i<15?'q3':'q4';
+  const cls=(i)=>{if(k===0)return'';if(k===1)return'';if(k===2)return(i===9||i===10)?'mid':'';if(k>=3)return((i===4||i===5||i===14||i===15)?'gold':'')+' '+qc(i)+((i===9||i===10)?' mid':'');return'';};
+  const vals=k===0?TRAVEL:S;const fns=['Min <b>5</b>',k>=3?'Q₁ <b>15</b>':'Q₁ ?',k>=2?'Median <b>22.5</b>':'Median ?',k>=3?'Q₃ <b>42.5</b>':'Q₃ ?','Max <b>85</b>'];
+  chips('trSol',vals,cls,{top:`<p class="small" style="font-weight:700;margin:0">${k===0?'Raw data (not sorted)':'Sorted travel times (minutes)'}</p>`,bot:(k>=1?`<div class="statgrid" style="grid-template-columns:repeat(5,1fr)">${fns.map(f=>`<div style="text-align:center">${f}</div>`).join('')}</div>`:'')+(k>=4?'<div class="note small" style="margin-top:8px">The <span style="background:var(--pink-3);padding:0 4px">pink</span> and <span style="background:#FBEFD2;padding:0 4px">yellow</span> groups (10 of 20 values) lie between Q₁ and Q₃ → the <b>middle 50%</b>.</div>':'')+(k>=3?'<p class="small muted" style="margin-top:4px">Gold = values averaged for Q₁ and Q₃ · pink = median pair · colors = four quarters</p>':'')});}
+  draw(0);onStep('trSol',draw);})();
+/* percentile chips */
+(function(){const S=srt(TRAVEL);function draw(k){const cls=i=>{if(k===1)return S[i]<=30?(i===12?'mid':'gold'):'dim';if(k===2)return i<18?(i===17?'mid':'gold'):'dim';if(k>=3)return S[i]<=42.5?'gold':'dim';return'';};
+  const msg=['','Values ≤ 30: 13 of 20 = <b>65%</b> → 65th percentile.','18 values must be ≤ it → the <b>18th value = 60</b>.','Values ≤ 42.5: 15 of 20 = <b>75%</b> → Q₃ is the 75th percentile.'][Math.min(k,3)];
+  chips('pcSol',S,cls,{top:'<p class="small" style="font-weight:700;margin:0">Sorted travel times (minutes)</p>',bot:k?`<div class="note small" style="margin-top:8px">${msg}</div>`:''});}draw(0);onStep('pcSol',draw);})();
+
+/* range & IQR */
+dotplotV($('trQ'),TRAVEL,{lo:0,hi:90,step:10,r:6,dy:12,xlab:'Travel time (minutes)',B:125,L:200,R:900});
+dotplotV($('riQ'),TRAVEL,{lo:0,hi:90,step:10,r:7,dy:15,xlab:'Travel time (minutes)',B:175});
+function bracket(svg,x1,x2,y,col,txt){el('path',{d:`M ${x1} ${y+8} L ${x1} ${y} L ${x2} ${y} L ${x2} ${y+8}`,stroke:col,'stroke-width':2.5,fill:'none'},svg);lab(svg,(x1+x2)/2,y-6,txt,col,'middle',13);}
+(function(){function draw(k){const s=$('riSol');const X=dotplotV(s,TRAVEL,{lo:0,hi:90,step:10,r:7,dy:15,xlab:'Travel time (minutes)',B:205,hl:v=>k>=1&&(v===5||v===85)?GOLD:null});
+  if(k>=1){bracket(s,X(5),X(85),40,'#B07B0C','range = 85 − 5 = 80');el('rect',{x:X(15),y:72,width:X(42.5)-X(15),height:133,fill:ROSE,opacity:.12},s);bracket(s,X(15),X(42.5),80,ROSE,'IQR = 27.5');}
+  if(k>=3)lab(s,X(85),120,'→ 185? range = 180, IQR still 27.5',NAVY,'end',13);}draw(0);onStep('riSol',draw);})();
+
+/* SD of friends */
+function devPlot(svg,vals,o){clear(svg);const vb=svg.viewBox.baseVal;const L=30,R=vb.width-20,B=o.B;const X=v=>L+(v-o.lo)/(o.hi-o.lo)*(R-L);const m=mean(vals);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);for(let t=o.lo;t<=o.hi;t++){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,t);}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const S=srt(vals),dy=o.dy||14;S.forEach((v,i)=>{const y=B-10-i*dy;if(o.dev){el('line',{x1:X(m),x2:X(v),y1:y,y2:y,stroke:ROSE,'stroke-width':4,opacity:.8},svg);}el('circle',{cx:X(v),cy:y,r:5.5,fill:NAVY},svg);});
+  if(o.mean)vline(svg,X(m),B-10-S.length*dy-4,B,ROSE,'x̄ = '+fx(m,2),true);return X;}
+dotplotV($('frQ'),FR,{lo:0,hi:7,step:1,r:8,xlab:'Number of close friends',B:160});
+(function(){const m=3;function draw(k){const dev=FR.map(v=>v-m),sq=dev.map(d=>d*d);const row=(name,a,sum,show)=>`<tr><th class="rh" style="white-space:nowrap">${name}</th>${a.map(v=>`<td>${show?v:''}</td>`).join('')}<td class="tot">${show&&sum!==null?sum:''}</td></tr>`;
+  let h=`<table class="tw st" style="font-size:15px"><thead><tr><th></th>${FR.map((_,i)=>`<th style="padding:4px 6px!important">${i+1}</th>`).join('')}<th>Σ</th></tr></thead><tbody>${row('xᵢ',FR,33,true)}${row('xᵢ − x̄',dev,0,k>=2)}${row('(xᵢ − x̄)²',sq,18,k>=3)}</tbody></table>`;
+  h+=`<svg id="frSvg" viewBox="0 0 560 230" width="100%"></svg>`;if(k>=4)h+='<div class="note small" style="text-align:center">s² = 18 ÷ 10 = 1.8 &nbsp;→&nbsp; <b style="color:var(--rose)">s = √1.8 ≈ 1.34 friends</b></div>';
+  $('frSol').innerHTML=h;devPlot($('frSvg'),FR,{lo:0,hi:7,B:190,dy:14,dev:k>=2,mean:k>=1,xlab:'Number of close friends (pink = deviation from x̄)'});}draw(0);onStep('frSol',draw);})();
+
+/* sim: SD builder */
+let sdV=[2,4,5,5,6,8],sdCh=-1;
+(function(){let h='';sdV.forEach((v,i)=>h+=`<div class="slider-row" style="margin:1px 0"><label style="width:70px">x${'₁₂₃₄₅₆'[i]}</label><input type="range" min="0" max="10" step="0.5" value="${v}" data-sd="${i}"><span class="v" id="sdv${i}"></span></div>`);$('sdSl').innerHTML=h;})();
+function sdDraw(){const s=$('sdSvg');clear(s);const L=30,R=540,X=v=>L+v/10*(R-L),B=230,m=mean(sdV),sd=sdev(sdV);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);for(let t=0;t<=10;t++){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},s);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},s,t);}
+  sdV.forEach((v,i)=>{const y=40+i*30;el('line',{x1:X(m),x2:X(v),y1:y,y2:y,stroke:ROSE,'stroke-width':6,opacity:.75},s);el('circle',{cx:X(v),cy:y,r:8,fill:NAVY},s);el('text',{x:L-6,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},s,'x'+(i+1));});
+  vline(s,X(m),24,B,ROSE,'x̄ = '+fx(m,2),true);
+  sdV.forEach((v,i)=>$('sdv'+i).textContent=v);
+  const sq=sdV.map(v=>(v-m)**2),ss=sq.reduce((a,b)=>a+b,0);
+  $('sdTab').innerHTML=`<table class="tw st" style="width:100%;font-size:14px"><tbody><tr><th class="rh">deviation</th>${sdV.map(v=>`<td>${fx(v-m,2)}</td>`).join('')}</tr><tr><th class="rh">squared</th>${sq.map(q=>`<td>${fx(q,2)}</td>`).join('')}</tr></tbody></table><p style="margin:4px 0;font-size:17px">Σ = ${fx(ss,2)} → s² = ${fx(ss,2)} ÷ 5 = ${fx(ss/5,2)} → <b style="color:var(--rose);font-size:20px">s = ${fx(sd,2)}</b></p>`;
+  const ok=[sd<0.005,sd>5.4,Math.abs(sd-2)<0.06];const msgs=['All six values must be <b>equal</b> → every deviation is 0.','Push values as far from the mean as possible: three at 0 and three at 10 → s ≈ 5.48.','s ≈ 2: a typical distance of about 2 from the mean.'];
+  if(sdCh>=0)$('sdFb').innerHTML=ok[sdCh]?`<div class="ans">✓ Done! ${msgs[sdCh]}</div>`:`<span class="muted">Goal: ${['s = 0','s as large as possible (> 5.4)','s between 1.94 and 2.06'][sdCh]} · now s = ${fx(sd,2)}</span>`;}
+document.querySelectorAll('[data-sd]').forEach(r=>r.oninput=()=>{sdV[+r.dataset.sd]=+r.value;sdDraw();});
+document.querySelectorAll('[data-ch]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-ch]').forEach(x=>x.classList.remove('on'));b.classList.add('on');sdCh=+b.dataset.ch;sdDraw();});sdDraw();
+
+/* units: C to F */
+(function(){function draw(k){hlT('tcS',k===1?['2-0','2-1','2-2']:k===2?[]:k>=3?['2-0','2-1','2-2']:[],k===2||k>=3?['1-3','1-4','1-5','2-3','2-4','2-5']:[]);
+  const s=$('tcSvg');clear(s);const L=30,R=540,C=v=>L+(v-10)/(30-10)*(R-L);el('line',{x1:L,x2:R,y1:50,y2:50,stroke:INK,'stroke-width':1.5},s);el('line',{x1:L,x2:R,y1:100,y2:100,stroke:INK,'stroke-width':1.5},s);
+  for(let c=10;c<=30;c+=2){el('line',{x1:C(c),x2:C(c),y1:44,y2:50,stroke:INK},s);el('text',{x:C(c),y:38,'text-anchor':'middle','font-size':11,fill:INK},s,c);const f=1.8*c+32;el('line',{x1:C(c),x2:C(c),y1:100,y2:106,stroke:INK},s);el('text',{x:C(c),y:120,'text-anchor':'middle','font-size':11,fill:INK},s,fx(f,1));}
+  lab(s,L,18,'°C','#1E2A4A','start',13);lab(s,L,142,'°F','#1E2A4A','start',13);
+  if(k>=1){el('line',{x1:C(20),x2:C(20),y1:50,y2:100,stroke:ROSE,'stroke-width':3},s);lab(s,C(20)+6,80,'mean 20°C ↔ 68°F',ROSE,'start',13);}
+  if(k>=2){el('rect',{x:C(16),y:56,width:C(20)-C(16),height:12,fill:GOLD,opacity:.8},s);el('rect',{x:C(16),y:82,width:C(20)-C(16),height:12,fill:GOLD,opacity:.8},s);lab(s,C(16)-6,80,'1 SD: 4°C = 7.2°F','#B07B0C','end',13);}}
+  draw(0);onStep('tcS',draw);})();
+
+/* sim: units */
+const HT=[60,62,63,64,64,65,66,66,67,68,70,73];
+function unSet(b,a){$('unB').value=b;$('unA').value=a;unDraw();}
+function unDraw(){const b=+$('unB').value,a=+$('unA').value;$('unBV').textContent=fx(b,4);$('unAV').textContent=a;const N=HT.map(v=>b*v+a);
+  const s=$('unSvg');clear(s);const lo0=Math.min(...HT,...N),hi0=Math.max(...HT,...N);const st=niceStep(hi0-lo0||10);const lo=Math.floor(lo0/st)*st,hi=Math.ceil(hi0/st)*st+(hi0===lo0?st:0);const L=30,R=540,X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  [[HT,110,'Original (inches)',NAVY],[N,250,'New = b·x + a',ROSE]].forEach(([d,B,t,c])=>{el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);for(let v=lo;v<=hi+1e-9;v+=st){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+5,stroke:INK},s);el('text',{x:X(v),y:B+18,'text-anchor':'middle','font-size':11,fill:INK},s,fx(v,2));}
+    const cnt={};d.forEach(v=>{const k=fx(v,3);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(v),cy:B-7-(cnt[k]-1)*12,r:5.5,fill:c},s);});lab(s,L,B-62,t,c,'start',13);vline(s,X(mean(d)),B-50,B,GOLD,'',false);});
+  const f=d=>{const q=quart(d);return[mean(d),q[1],q[0],q[2],sdev(d),q[2]-q[0],Math.max(...d)-Math.min(...d)];};const o=f(HT),n=f(N);const names=['Mean','Median','Q₁','Q₃','SD','IQR','Range'];
+  $('unTab').innerHTML=`<table class="tw st" style="width:100%;font-size:14px;margin-top:6px"><thead><tr><th>Statistic</th><th>Original</th><th>New</th><th>Rule</th></tr></thead><tbody>${names.map((nm,i)=>`<tr><th class="rh">${nm}</th><td>${fx(o[i],2)}</td><td style="font-weight:800;color:${i<4?'var(--navy)':'var(--rose)'}">${fx(n[i],2)}</td><td class="small">${i<4?'× b + a':'× b only'}</td></tr>`).join('')}</tbody></table>`;}
+['unB','unA'].forEach(i=>$(i).oninput=unDraw);document.querySelectorAll('[data-un]').forEach(b=>b.onclick=()=>{const [bb,aa]=b.dataset.un.split(',').map(Number);unSet(bb,aa);});unDraw();
+
+/* outliers: mpg */
+(function(){function draw(k){const s=$('mpgSol');const X=dotplotV(s,MPG,{lo:21.4,hi:23.4,step:0.2,r:6,dy:13,xlab:'Highway fuel economy (mpg)',B:205,hl:v=>k>=3&&(v<21.6||v>23.2)?ROSE:null});
+  if(k>=1){el('rect',{x:X(22.2),y:60,width:X(22.6)-X(22.2),height:145,fill:NAVY,opacity:.08},s);bracket(s,X(22.2),X(22.6),50,NAVY,'IQR = 0.4');}
+  if(k>=2){vline(s,X(21.6),60,205,ROSE,'21.6',true);vline(s,X(23.2),60,205,ROSE,'23.2',true);}
+  if(k>=3){lab(s,X(21.5),150,'outlier',ROSE,'middle',12);lab(s,X(23.3),150,'outlier',ROSE,'middle',12);}}draw(0);onStep('mpgSol',draw);})();
+/* two rules */
+dotplotV($('twQ'),GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:175});
+(function(){function draw(k){const s=$('twSol');const X=dotplotV(s,GOALS,{lo:0,hi:11,step:1,r:8,xlab:'Goals scored',B:210,hl:v=>(k===1&&v===10)||(k>=2&&v>=9)?(v===10?ROSE:GOLD):null});
+  if(k>=1)vline(s,X(9.75),50,210,ROSE,'Q₃ + 1.5·IQR = 9.75',true,'end',46);
+  if(k>=2)vline(s,X(8.31),80,210,'#B07B0C','x̄ + 2s = 8.31',true,'end',76);
+  if(k>=1)lab(s,30,30,'(low fences are below 0)',MUTED,'start',12);}draw(0);onStep('twSol',draw);})();
+
+/* sim: calculator */
+const DS={goals:'5 5 1 10 5 2 1 1 2 3 3 2 1 4 2 1 2 1 9 3',mpg:'22.4 22.4 22.3 23.3 22.3 22.3 22.5 22.4 22.1 21.5 22.0 22.2 22.7 22.8 22.4 22.6 22.9 22.5 22.1 22.4 22.2 22.9 22.6 21.9 22.4',fr:'1 2 2 2 3 3 3 3 4 4 6'};
+let csRule='iqr';
+function csDraw(){const a=nums($('csIn').value);const s=$('csSvg');if(a.length<2){clear(s);$('csG').innerHTML='';$('csMsg').textContent='Enter at least 2 numbers.';return;}
+  const [q1,md,q3]=quart(a),m=mean(a),sd=sdev(a),iqr=q3-q1,lf=csRule==='iqr'?q1-1.5*iqr:m-2*sd,hf=csRule==='iqr'?q3+1.5*iqr:m+2*sd,mn=Math.min(...a),mx=Math.max(...a);
+  const span=mx-mn||1,st=niceStep(span),lo=Math.floor(mn/st)*st,hi=Math.ceil(mx/st)*st+(mx===mn?st:0);const out=a.filter(v=>v<lf||v>hf);
+  const X=dotplotV(s,a,{lo,hi,step:st,r:6,dy:12,B:250,xlab:'Value',hl:v=>(v<lf||v>hf)?ROSE:null});
+  el('rect',{x:X(q1),y:30,width:Math.max(1,X(q3)-X(q1)),height:220,fill:NAVY,opacity:.07},s);
+  vline(s,X(md),40,250,NAVY,'median','','end',36);vline(s,X(m),60,250,'#B07B0C','mean','','start',56);
+  [lf,hf].forEach(f=>{if(f>=lo&&f<=hi)vline(s,X(f),90,250,ROSE,'fence',true);});
+  const g=[['n',a.length],['x̄',m],['s',sd],['Min',mn],['Q₁',q1],['Median',md],['Q₃',q3],['Max',mx],['Range',mx-mn],['IQR',iqr],['Low fence',lf],['High fence',hf]];
+  $('csG').innerHTML=g.map(([n,v])=>`<div>${n}<b>${fx(v,3)}</b></div>`).join('');
+  $('csMsg').innerHTML=`Rule: <b>${csRule==='iqr'?'1.5 × IQR':'2-SD'}</b> → ${out.length?`outlier(s): <b style="color:var(--rose)">${srt(out).join(', ')}</b>`:'no outliers'}. Shaded band = Q₁ to Q₃.`;}
+$('csGo').onclick=csDraw;$('csIn').oninput=csDraw;document.querySelectorAll('[data-rule]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-rule]').forEach(x=>x.classList.remove('on'));b.classList.add('on');csRule=b.dataset.rule;csDraw();});
+document.querySelectorAll('[data-ds]').forEach(b=>b.onclick=()=>{$('csIn').value=DS[b.dataset.ds];csDraw();});csDraw();
+
+/* compare classes */
+function strip(svg,X,y,f,col,name,mn){const [mi,q1,md,q3,mx]=f;el('line',{x1:X(mi),x2:X(mx),y1:y,y2:y,stroke:col,'stroke-width':2},svg);el('rect',{x:X(q1),y:y-14,width:X(q3)-X(q1),height:28,fill:'#fff',stroke:col,'stroke-width':2.5},svg);el('line',{x1:X(md),x2:X(md),y1:y-14,y2:y+14,stroke:col,'stroke-width':3},svg);
+  [mi,mx].forEach(v=>el('line',{x1:X(v),x2:X(v),y1:y-7,y2:y+7,stroke:col,'stroke-width':2},svg));if(mn!==undefined)el('polygon',{points:`${X(mn)},${y+16} ${X(mn)-7},${y+28} ${X(mn)+7},${y+28}`,fill:GOLD},svg);lab(svg,8,y+5,name,col,'start',13);}
+(function(){function draw(k){const s=$('ccSol');clear(s);const L=110,R=540,X=v=>L+(v-30)/70*(R-L),B=210;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);for(let v=30;v<=100;v+=10){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+5,stroke:INK},s);el('text',{x:X(v),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},s,v);}
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},s,'Test score');
+  strip(s,X,80,[64,74,79,83,92],NAVY,'Period 1',78.2);strip(s,X,160,[31,72,80,85,98],ROSE,'Period 2',76.0);
+  if(k>=1){vline(s,X(60.5),45,110,NAVY,'60.5',true);vline(s,X(96.5),45,110,NAVY,'96.5',true);}
+  if(k>=2){vline(s,X(52.5),125,195,ROSE,'52.5',true,'middle',122);el('circle',{cx:X(31),cy:160,r:9,fill:'none',stroke:ROSE,'stroke-width':3},s);lab(s,X(31)+14,195,'outlier 31',ROSE,'start',12);}
+  if(k>=3){[[79,80],[80,160]].forEach(([v,y])=>el('circle',{cx:X(v),cy:y,r:5,fill:GOLD},s));}
+  lab(s,L,24,'min · Q₁ · median · Q₃ · max   (▲ = mean)   — boxplots next lesson!',MUTED,'start',12);}draw(0);onStep('ccSol',draw);})();
+
+/* realtor */
+(function(){function draw(k){const s=$('reSol');clear(s);const L=40,R=540,X=v=>L+v/2000*(R-L),B=200;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);for(let v=0;v<=2000;v+=250){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+5,stroke:INK},s);el('text',{x:X(v),y:B+19,'text-anchor':'middle','font-size':11,fill:INK},s,v);}
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},s,'Home price (thousands of $)');
+  strip(s,X,130,[298,360,435,520,1950],NAVY,'',612);
+  if(k>=1){vline(s,X(760),60,190,ROSE,'fence 760',true);el('circle',{cx:X(1950),cy:130,r:10,fill:'none',stroke:ROSE,'stroke-width':3},s);lab(s,X(1950),105,'outlier',ROSE,'middle',12);}
+  if(k>=2){lab(s,X(612),178,'mean 612',GOLD==='#E2B64F'?'#B07B0C':GOLD,'start',13);lab(s,X(435),88,'median 435',NAVY,'middle',13);}
+  }draw(0);onStep('reSol',draw);})();
+
+/* MCQ visuals */
+(function(){const r=srand(7);const d=[];for(let i=0;i<300;i++){d.push(Math.min(295,15+(-Math.log(1-r()))*45));}
+  function draw(k){const s=$('mq1');histBins(s,d,{start:0,w:20,nb:15,ltick:3,ymax:100,ystep:20,xlab:'Household income (thousands of $)',ylab:'Count'});const L=50,R=545,X=v=>L+v/300*(R-L);
+    if(k>=1){vline(s,X(median(d)),30,188,NAVY,'median','','end',30);vline(s,X(mean(d)),30,188,ROSE,'mean','','start',30);}}draw(0);onStep('mq1',draw);})();
+(function(){function draw(k){const s=$('mq5');clear(s);const L=30,R=540,X=v=>L+(v-30)/40*(R-L),B=140;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);for(let v=30;v<=70;v+=2){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+5,stroke:INK},s);if(v%4===2)el('text',{x:X(v),y:B+19,'text-anchor':'middle','font-size':11,fill:INK},s,v);}
+  el('rect',{x:X(38),y:60,width:X(62)-X(38),height:80,fill:NAVY,opacity:.08},s);if(k>=1){vline(s,X(38),50,B,ROSE,'38',true);vline(s,X(62),50,B,ROSE,'62',true);}vline(s,X(50),70,B,NAVY,'x̄ = 50');
+  [[39,'A'],[45,'B'],[37,'C'],[61,'D'],[56,'E']].forEach(([v,t])=>{const out=k>=2&&v===37;el('circle',{cx:X(v),cy:118,r:9,fill:out?ROSE:'#fff',stroke:out?ROSE:NAVY,'stroke-width':2},s);el('text',{x:X(v),y:122,'text-anchor':'middle','font-size':11,'font-weight':800,fill:out?'#fff':NAVY},s,t);});}draw(0);onStep('mq5',draw);})();
+
+/* bonus game: bigger SD */
+let gsAns=0,gsR=0,gsN=0,gsDone=false;
+function gsGen(r){const t=r();const a=[];if(t<0.3){/* tight cluster + outlier: big range, small-ish SD */const c=4+r()*12;for(let i=0;i<14;i++)a.push(c+(r()-.5)*3);a.push(r()<.5?0.5:19.5);}else{const c=6+r()*8,sd=1+r()*4.5;for(let i=0;i<15;i++){const u=r(),v=r();a.push(c+sd*Math.sqrt(-2*Math.log(u||1e-9))*Math.cos(2*Math.PI*v));}}return a.map(v=>Math.max(0,Math.min(20,Math.round(v*2)/2)));}
+function gsNew(){let A,B;do{A=gsGen(Math.random);B=gsGen(Math.random);}while(Math.abs(sdev(A)-sdev(B))/Math.max(sdev(A),sdev(B))<0.2);gsAns=sdev(A)>sdev(B)?0:1;gsDone=false;
+  dotplotV($('gsA'),A,{lo:0,hi:20,step:2,r:5,dy:10,B:115,col:NAVY});dotplotV($('gsB'),B,{lo:0,hi:20,step:2,r:5,dy:10,B:115,col:PINKD});lab($('gsA'),20,24,'Set A',NAVY,'start',14);lab($('gsB'),20,24,'Set B',PINKD,'start',14);
+  window._gs=[sdev(A),sdev(B)];$('gsFb').innerHTML='';}
+document.querySelectorAll('[data-gs]').forEach(b=>b.onclick=()=>{if(gsDone)return;gsDone=true;gsN++;const ok=+b.dataset.gs===gsAns;if(ok)gsR++;const [a,c]=window._gs;
+  $('gsFb').innerHTML=(ok?'<div class="ans">✓ Correct!':'<div class="note warn small">✗ Not this time.')+` s<sub>A</sub> = ${fx(a,2)}, s<sub>B</sub> = ${fx(c,2)}</div>`;$('gsScore').textContent=`Score: ${gsR} / ${gsN}`;});
+$('gsNew').onclick=gsNew;gsNew();
+
+/* exit ticket */
+(function(){const T=[4,7,8,8,9,10,12,15,30];function draw(k){const s=$('exSol');const X=dotplotV(s,T,{lo:0,hi:32,step:2,r:7,xlab:'Text messages in one hour',B:185,hl:v=>k>=2&&v===30?ROSE:null});
+  if(k>=1){el('rect',{x:X(7.5),y:60,width:X(13.5)-X(7.5),height:125,fill:NAVY,opacity:.08},s);vline(s,X(9),60,185,NAVY,'median 9','','end',56);vline(s,X(11.44),90,185,'#B07B0C','mean 11.4','','start',86);}
+  if(k>=2)vline(s,X(22.5),40,185,ROSE,'fence 22.5',true);}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script>(()=>{let a=[...document.querySelectorAll('.df-input')],o=document.getElementById('df-output');function update(){let v=a.map(x=>Number(x.value)),last=40-v.reduce((s,x)=>s+x,0);o.textContent=`Fourth value = ${+last.toFixed(3)} · mean = 10 · sum of deviations = 0`; }a.forEach(x=>x.addEventListener('input',update));update();})();</script><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

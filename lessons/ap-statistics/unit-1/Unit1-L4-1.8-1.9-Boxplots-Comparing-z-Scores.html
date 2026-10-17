@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 1 · Lesson 4 — Boxplots, Comparing Distributions &amp; z-Scores</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:17px;margin:4px 0}.slider-row label{width:130px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:20px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+textarea.din{width:100%;height:60px;font-family:var(--mono);font-size:16px;border:2px solid var(--line);border-radius:10px;padding:8px}
+.formula{font-family:var(--serif,Georgia);font-size:26px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+table.st td,table.st th{padding:5px 10px!important;font-size:16px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:15px}.zbox b{font-family:var(--mono);font-size:22px;display:block}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 1 第四课：1.8 + 1.9，对应 TPS 1.3 后半（箱线图）+ 2.1（z 分数、百分位）。单位变换已在上节课 1.7.C 讲过。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 1 · Lesson 4</div><h1>Boxplots, Comparing Distributions &amp; z-Scores</h1><div class="zhT">箱线图、比较分布与 z 分数</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 1.8 Graphical Representations of Summary Statistics · Topic 1.9 Comparing Distributions</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 1.3 + 2.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 1 全貌。" data-title="Unit 1 roadmap">
+<div class="tag">Unit 1 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 1 <span class="zh">单元路线图</span></h2>
+<p class="sub">Exploring One-Variable Data and Collecting Data · 20–30% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>1.1–1.4 Introducing Statistics &amp; One Categorical Variable<span class="old">TPS 1.0 + 1.1</span></div><div class="lesson"><span class="n">2</span>1.5 + 1.6 Graphs for One Quantitative Variable<span class="old">TPS 1.2</span></div><div class="lesson"><span class="n">3</span>1.7 Summary Statistics<span class="old">TPS 1.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson now"><span class="n">4</span>1.8 + 1.9 Boxplots, Comparing &amp; z-Scores<span class="old">TPS 1.3 + 2.1</span></div><div class="lesson"><span class="n">5</span>1.10–1.12 Data Collection, Sampling &amp; Bias<span class="old">TPS 4.1</span></div><div class="lesson"><span class="n">6</span>1.13 Experimental Design<span class="old">TPS 4.2 + 4.3</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 3: summary statistics — center, spread, outliers. Today: <strong>draw</strong> them (boxplots), <strong>compare</strong> groups, and measure <strong>relative position</strong> with z-scores. <span class="zh">把统计量画出来、比较、用 z 分数衡量相对位置。</span></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 4 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">1.8.A · Skill 3.A</div><h3>Boxplots <span class="stars">★<span class="off">★★★</span></span></h3><p>Construct a boxplot from the five-number summary, marking outliers.</p><p class="zh muted small" style="margin-top:6px">用五数概括画箱线图并标出离群值</p></div><div class="card"><div class="k">1.8.B · Skill 4.A</div><h3>Mean vs. median <span class="stars">★★<span class="off">★★</span></span></h3><p>Describe shape using the relationship between the mean and the median.</p><p class="zh muted small" style="margin-top:6px">用均值与中位数的关系描述形状</p></div><div class="card"><div class="k">1.9.A–B · Skill 4.A</div><h3>Compare <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare two or more distributions using graphs and summary statistics.</p><p class="zh muted small" style="margin-top:6px">用图形和统计量比较分布</p></div><div class="card"><div class="k">1.9.C · Skill 4.B</div><h3>Justify <span class="stars">★★★<span class="off">★</span></span></h3><p>Justify a claim using multiple graphical representations.</p><p class="zh muted small" style="margin-top:6px">用多个图形论证结论</p></div><div class="card"><div class="k">1.9.D · Skill 3.B</div><h3>z-scores <span class="stars">★★<span class="off">★★</span></span></h3><p>Calculate and interpret a z-score.</p><p class="zh muted small" style="margin-top:6px">计算并解释 z 分数</p></div><div class="card"><div class="k">1.9.E · Skill 4.C</div><h3>Relative position <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare z-scores as measures of relative position.</p><p class="zh muted small" style="margin-top:6px">用 z 分数比较相对位置</p></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 4 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">3'</div>Warm-up: five numbers that tell the story</div><div class="it"><div class="bar n" style="width:150px">12' · 1.8.A</div>Five-number summary → boxplot (with outliers) · what boxplots hide</div><div class="it"><div class="bar n" style="width:80px">5' · 1.8.B</div>Mean vs. median → shape</div><div class="it"><div class="bar n" style="width:130px">10' · 1.9.A–C</div>Compare distributions · justify a claim</div><div class="it"><div class="bar n" style="width:130px">10' · 1.9.D–E</div>z-scores: Jenny’s two tests</div><div class="it"><div class="bar" style="width:60px">3'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Cumulative relative frequency graph · transformation review</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 1.8.A.1 → 1.8.A.2 → 1.8.B.1 → 1.9.A.1 → 1.9.B.1 → 1.9.C.1 → 1.9.D.1–2 → 1.9.E.1</p><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 4 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simBox" href="#"><span class="ic">🎮</span><span>Dotplot ↔ boxplot<small>点图与箱线图对照 · see what a boxplot hides</small></span></a><a data-goto="simSkew" href="#"><span class="ic">🎮</span><span>Skew it! Mean vs. median<small>拖动偏度：均值与中位数 · shape ↔ mean vs. median</small></span></a><a data-goto="simCmp" href="#"><span class="ic">🎮</span><span>Compare two groups<small>比较两组 · auto-written comparison</small></span></a><a data-goto="simZ" href="#"><span class="ic">🎮</span><span>z-score face-off<small>z 分数对决 · compare relative position</small></span></a></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Five numbers that tell the story">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Five numbers that tell the story <span class="zh">五个数讲一个故事</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Recall the travel times to work (minutes) for 20 New Yorkers (Lesson 3):</p><div class="datarow" style="margin:8px 0">5 10 10 15 15 15 15 20 20 20 25 30 30 40 40 45 60 60 65 85</div><div class="q"><b class="n">Q1</b>What are the min, Q₁, median, Q₃, and max?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Min = 5, Q₁ = 15, median = 22.5, Q₃ = 42.5, max = 85.</div></div><div class="q"><b class="n">Q2</b>Is any value an outlier by the 1.5 × IQR rule?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">IQR = 27.5; high fence = 42.5 + 41.25 = 83.75 → <b>85 is an outlier</b>.</div></div><div class="q"><b class="n">Q3</b>What percent of the data lies between each pair of these five numbers?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">About 25% in each of the four sections → today we draw this as a <b>boxplot</b>!</div></div></div><div class="keyidea">🔑 Sorted travel times, n = 20.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 190" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.8" data-sec="1" data-title="§ 1.8 Graphical Representations of Summary Statistics">
+<div class="tag">Topic</div><div class="num">1.8</div><h1>Graphical Representations of Summary Statistics</h1><div class="zhT">概括统计量的图形表示</div><div class="eks"><span>1.8.A.1 Five-number summary</span><span>1.8.A.2 Boxplot (outliers marked)</span><span>1.8.B.1 Mean vs. median &amp; shape</span></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.8.A.1–2。注意：这种标出离群值的箱线图也叫 modified boxplot。" data-title="Five-Number Summary &amp;amp; Boxplot">
+<div class="tag">1.8.A <b>· Key Concepts</b><span class="ek">EK 1.8.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Five-Number Summary &amp; Boxplot <span class="zh">五数概括与箱线图</span></h2><div class="concept"><div class="term">Five-number summary<span class="zh">五数概括</span></div><div class="en">The <strong>five-number summary</strong> is the minimum, Q₁, median, Q₃, and maximum.</div><div class="cn"><b>五数概括</b>：最小值、Q₁、中位数、Q₃、最大值。</div></div><div class="concept pink"><div class="term">Boxplot<span class="zh">箱线图</span></div><div class="en">A <strong>boxplot</strong> is a graph of the five-number summary. The box shows the middle 50% of the data, with a line at the median and ends at the quartiles. <strong>Whiskers</strong> (each about 25% of the data) extend from Q₁ to the minimum and from Q₃ to the maximum. If there are outliers, the whiskers extend to the most extreme values that are not outliers, and outliers are marked with an asterisk (✱) or other symbol.</div><div class="cn"><b>箱线图</b>是五数概括的图形。<b>箱子</b>表示中间 50% 的数据，中间一条线是中位数，两端是四分位数。<b>须</b>（各约 25% 的数据）从 Q₁ 延伸到最小值、从 Q₃ 延伸到最大值。若有离群值，须只延伸到最极端的<b>非离群值</b>，离群值用 ✱ 等符号单独标出。</div></div><svg id="bxStatic" viewbox="0 0 1100 150" width="100%"></svg><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="TPS 1.3 How to Make a Boxplot + CAUTION。" data-title="How to make a boxplot 如何画箱线图">
+<div class="tag">1.8.A · Steps<span class="ek">EK 1.8.A.2 · TPS 1.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>How to make a boxplot <span class="zh">如何画箱线图</span></h2>
+<div class="row" style="margin-top:8px"><div class="col"><div class="cards" style="grid-template-columns:1fr;gap:6px">
+<div class="card" style="padding:8px 14px"><b>① Five-number summary</b> · min, Q₁, median, Q₃, max <span class="zh muted small">求五数概括</span></div>
+<div class="card" style="padding:8px 14px"><b>② Outliers</b> · use the 1.5 × IQR rule <span class="zh muted small">用 1.5×IQR 判断离群值</span></div>
+<div class="card" style="padding:8px 14px">③ Axis · draw, label (variable + units), and scale <span class="zh muted small">画数轴、标名称、标刻度</span></div>
+<div class="card" style="padding:8px 14px"><b>④ Box</b> · from Q₁ to Q₃, line at the median <span class="zh muted small">Q₁ 到 Q₃ 画箱，中位数画线</span></div>
+<div class="card" style="padding:8px 14px"><b>⑤ Whiskers</b> · to the most extreme values that are not outliers <span class="zh muted small">须延伸到最远的非离群值</span></div>
+<div class="card" style="padding:8px 14px"><b>⑥ Outliers</b> · mark each separately with ✱ <span class="zh muted small">离群值单独标出</span></div></div></div>
+<div class="col"><div class="note warn small">⚠️ <b>Common mistake:</b> drawing the whisker all the way to an outlier. The whisker stops at the largest (or smallest) value that is not an outlier. <span class="zh">常见错误：须画到离群值。</span></div>
+<div class="note small" style="margin-top:10px">⚠️ Boxplots do not show individual values, so they hide <b>gaps, clusters, and peaks</b>. A longer section does not mean more data — each section holds about 25%. <span class="zh">箱线图看不到间隙、簇和峰；更长的部分并不代表更多数据。</span></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Boxplot of travel times">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.8.A.2</span></div>
+<h2>Boxplot of travel times <span class="zh">画通勤时间的箱线图</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Five-number summary of the 20 travel times: 5, 15, 22.5, 42.5, 85 (minutes).<br/>Sorted data: <span class="mono">5 10 10 15 15 15 15 20 20 20 25 30 30 40 40 45 60 60 65 85</span></p><div class="q"><b class="n">a</b>Identify any outliers.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Fences: 15 − 41.25 = −26.25 and 42.5 + 41.25 = 83.75 → <b>85 is an outlier</b>.</div></div><div class="q"><b class="n">b</b>Make a boxplot. Where does the right whisker end?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Draw and scale the axis “Travel time (minutes)”; draw the box from 15 to 42.5 with a line at 22.5.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Left whisker to the min, 5. Right whisker to 65 — the largest value that is not an outlier.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Mark 85 with ✱.</div></div></div><div class="keyidea">🔑 IQR = 42.5 − 15 = 27.5.</div></div></div><div class="col vis"><svg id="trSol" viewbox="0 0 560 240" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4 · Data: TPS 1.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes='"Two clusters" 预设：箱线图看不出双峰；"Gap" 看不出间隙。' data-title="🎮 Simulator: Dotplot ↔ boxplot" id="simBox">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Dotplot ↔ boxplot</span><span class="zh">点图与箱线图对照</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.8.A.2</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Any data → dotplot and boxplot on the same scale. What can you see in the dotplot that the boxplot <b>hides</b>? <span class="zh">箱线图隐藏了什么？</span></p><textarea class="din" id="bbIn">5 10 10 15 15 15 15 20 20 20 25 30 30 40 40 45 60 60 65 85</textarea>
+<div class="btns"><button class="b" id="bbGo">Draw</button><button class="b" data-bb="tr">Travel</button><button class="b" data-bb="bi">Two clusters</button><button class="b" data-bb="gap">Gap</button><button class="b" data-bb="rnd">Random ↻</button></div><div class="btns" style="margin-top:0"><button class="b on" id="bbMod">Mark outliers ✱</button></div><div class="note small" id="bbMsg"></div></div>
+<div class="col frame"><svg id="bbSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Reading a boxplot">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.8.A.2</span></div>
+<h2>Reading a boxplot <span class="zh">读箱线图</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The boxplot shows the number of pairs of shoes owned by 20 female students (Lesson 2).</p><div class="q"><b class="n">a</b>Find the median, IQR, and range.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Median = 26 pairs; IQR = 43.5 − 20.5 = 23 pairs; range = 57 − 13 = 44 pairs.</div></div><div class="q"><b class="n">b</b>About what percent of the students own more than 43.5 pairs?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">43.5 is Q₃ → about 25% own more than 43.5 pairs.</div></div><div class="q"><b class="n">c</b>True or false: “More students own between 26 and 43.5 pairs than between 20.5 and 26 pairs, because that part of the box is longer.”</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>False.</b> Each section holds about 25% (here 5 students each). The longer part means the values are more spread out, not more numerous.</div></div></div><div class="keyidea">🔑 Five-number summary: 13, 20.5, 26, 43.5, 57.</div></div></div><div class="col vis"><div class="qv"><svg id="shQ" viewbox="0 0 560 200" width="100%"></svg></div><div class="sv"><svg id="shSol" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.8.B.1。均值被长尾“拉过去”。" data-title="Mean, Median, and Shape">
+<div class="tag">1.8.B <b>· Key Concept</b><span class="ek">EK 1.8.B.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Mean, Median, and Shape <span class="zh">均值、中位数与形状</span></h2><div class="concept pink"><div class="term">Key idea<span class="zh">核心</span></div><div class="en">If a distribution is relatively <strong>symmetric</strong>, the mean and median are relatively close. If it is <strong>skewed right</strong>, the mean is usually <strong>larger</strong> than the median. If it is <strong>skewed left</strong>, the mean is usually <strong>smaller</strong> than the median.</div><div class="cn">分布近似<b>对称</b>：均值与中位数接近。<b>右偏</b>：均值通常<b>大于</b>中位数。<b>左偏</b>：均值通常<b>小于</b>中位数。</div></div><div class="row" style="margin-top:4px"><div class="col frame" style="padding:4px"><svg id="mm0" viewbox="0 0 360 210" width="100%"></svg></div><div class="col frame" style="padding:4px"><svg id="mm1" viewbox="0 0 360 210" width="100%"></svg></div><div class="col frame" style="padding:4px"><svg id="mm2" viewbox="0 0 360 210" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: What shape?">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.8.B.1</span></div>
+<h2>What shape? <span class="zh">是什么形状？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>For each data set, predict the shape from the mean and median.</p><div class="q"><b class="n">a</b>Salaries of NBA players: mean $9.7 million, median $4.3 million.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Mean ≫ median → probably <b>skewed right</b> (a few huge salaries).</div></div><div class="q"><b class="n">b</b>Scores on an easy quiz: mean 71, median 78.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Mean &lt; median → probably <b>skewed left</b> (a few very low scores).</div></div><div class="q"><b class="n">c</b>Heights of adult women: mean 162.3 cm, median 162.1 cm.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Mean ≈ median → roughly <b>symmetric</b>.</div></div></div><div class="keyidea">🔑 Mean is pulled toward the long tail.</div><div class="takeaway">💡 “Usually” — this is a clue, not a proof. Always look at a graph if you can!</div></div></div><div class="col vis"><svg id="shpSol" viewbox="0 0 560 290" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="左拖：左偏，均值 &lt; 中位数；右拖：右偏，均值 &gt; 中位数。" data-title="🎮 Simulator: Skew it! Mean vs. median" id="simSkew">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Skew it! Mean vs. median</span><span class="zh">拖动偏度：均值与中位数</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.8.B.1</span>
+<div class="row"><div class="col" style="flex:.6"><p class="small">Drag to change the shape of the distribution (200 values). Watch the <b style="color:var(--rose)">mean</b>, the <b>median</b>, and the boxplot. <span class="zh">改变形状，观察均值、中位数与箱线图。</span></p>
+<div class="slider-row"><label>Skew</label><input id="skS" max="10" min="-10" type="range" value="0"/><span class="v" id="skV"></span></div><div class="zbox"><div>Mean<b id="skM" style="color:var(--rose)"></b></div><div>Median<b id="skMd"></b></div></div><div class="note small" id="skMsg" style="margin-top:8px"></div></div>
+<div class="col frame"><svg id="skSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.9" data-sec="1" data-title="§ 1.9 Comparing Distributions of a Quantitative Variable">
+<div class="tag">Topic</div><div class="num">1.9</div><h1>Comparing Distributions of a Quantitative Variable</h1><div class="zhT">比较定量变量的分布</div><div class="eks"><span>1.9.A Compare graphs</span><span>1.9.B Compare summary statistics</span><span>1.9.C Justify a claim</span>1.9.D z-scores<span>1.9.E Compare relative position</span></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.9.A–C。" data-title="Comparing Distributions">
+<div class="tag">1.9.A–C <b>· Key Concepts</b><span class="ek">EK 1.9.A.1 · 1.9.B.1 · 1.9.C.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Comparing Distributions <span class="zh">比较分布</span></h2><div class="concept pink"><div class="term">Which graph?<span class="zh">用什么图</span></div><div class="en"><strong>Histograms, back-to-back stemplots, and dotplots</strong> can compare center, variability, shape, outliers, clusters, or gaps. <strong>Boxplots</strong> can compare center, variability, outliers, and skewness (or symmetry). Comparisons can include any numerical summaries (mean, SD, …).</div><div class="cn"><b>直方图、背靠背茎叶图、点图</b>可比较中心、变异、形状、离群值、簇和间隙；<b>箱线图</b>可比较中心、变异、离群值和偏态（或对称）。比较中可以使用任何数值概括（均值、标准差等）。</div></div><div class="concept"><div class="term">How to compare<span class="zh">怎么比较</span></div><div class="en">Address SOCS for each feature, use <strong>comparative language</strong> (“greater than”, “less than”, “about the same as”), give <strong>numbers</strong>, and write in context.</div><div class="cn">对每个特征（SOCS）都要用<b>比较性语言</b>，给出<b>数字</b>，并结合<b>语境</b>。</div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Hybrid vs. gas cars">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.9.A–B · Skill 4.A</span></div>
+<h2>Hybrid vs. gas cars <span class="zh">混动车 vs 燃油车</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>City gas mileage (mpg) for 15 hybrid cars and 20 gas cars. <span class="muted small">(Constructed data.)</span></p><table class="tw st" style="margin:6px 0"><thead><tr><th></th><th>n</th><th>Mean</th><th>SD</th><th>Min</th><th>Q₁</th><th>Med</th><th>Q₃</th><th>Max</th></tr></thead><tbody><tr><th class="rh">Hybrid</th><td>15</td><td>50.5</td><td>7.7</td><td>40</td><td>46</td><td>49</td><td>54</td><td>73</td></tr><tr><th class="rh">Gas</th><td>20</td><td>24.7</td><td>4.5</td><td>17</td><td>21.5</td><td>24</td><td>27.5</td><td>35</td></tr></tbody></table><div class="q">Compare the distributions of city gas mileage for the two types of cars.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Shape:</b> hybrid mileage is roughly symmetric apart from one high value; gas mileage is slightly skewed right (mean 24.7 &gt; median 24).</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Outliers:</b> the hybrid with <b>73 mpg</b> is an outlier (&gt; 66); gas cars have no outliers.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Center: hybrids typically get much <b>higher</b> mileage (median 49 mpg) than gas cars (median 24 mpg).</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Variability:</b> hybrid mileage varies <b>more</b> (IQR 8 vs. 6 mpg; range 33 vs. 18 mpg).</div></div></div><div class="keyidea">🔑 Hybrid fences: 46 − 12 = 34, 54 + 12 = 66. Gas fences: 12.5, 36.5.</div><div class="takeaway">💡 Every sentence compares the two groups, with numbers and context.</div></div></div><div class="col vis"><div class="qv"><svg id="hyQ" viewbox="0 0 560 230" width="100%"></svg></div><div class="sv"><svg id="hySol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="试试：中心相同但变异不同；加一个离群值看均值与中位数。" data-title="🎮 Simulator: Compare two groups" id="simCmp">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Compare two groups</span><span class="zh">比较两组</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.9.A–B</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Group A is fixed. Change group B, then read the automatic comparison. <span class="zh">调整 B 组，阅读自动生成的比较语句。</span></p>
+<div class="slider-row"><label>B: shift center</label><input id="cpC" max="30" min="-30" type="range" value="12"/><span class="v" id="cpCV"></span></div><div class="slider-row"><label>B: spread ×</label><input id="cpS" max="220" min="40" type="range" value="100"/><span class="v" id="cpSV"></span></div><div class="btns"><button class="b" id="cpO">Add outlier to B</button></div>
+<div class="note small" id="cpTxt"></div></div><div class="col frame"><svg id="cpSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Sleep and reaction time">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.9.C.1 · Skill 4.B</span></div>
+<h2>Sleep and reaction time <span class="zh">睡眠与反应时间</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Reaction times (milliseconds) of 24 students: 12 who slept <b>less than 6 hours</b> and 12 who slept <b>at least 8 hours</b>.</p><div class="q"><b class="n">a</b>Claim 1: “Every student who slept at least 8 hours was faster than every student who slept less than 6 hours.” Supported?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Claim 1: not supported. The slowest 8-hour sleeper (330 ms) was slower than the fastest short sleeper (262 ms) — the distributions <b>overlap</b>.</div></div><div class="q"><b class="n">b</b>Claim 2: “About 75% of the students who slept at least 8 hours were faster than the median of the short-sleep group.” Supported?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Short-sleep median ≈ 303 ms. Q₃ for the 8-hour group is about 280 ms &lt; 303.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. So at least 75% of the 8-hour sleepers were faster than 303 ms → Claim 2 is supported (in fact 11 of 12).</div></div></div><div class="keyidea">🔑 Faster = smaller reaction time.</div></div></div><div class="col vis"><div class="qv"><svg id="slQ" viewbox="0 0 560 260" width="100%"></svg></div><div class="sv"><svg id="slSol" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.9.D.1–2。" data-title="Standardized Scores (z-Scores)">
+<div class="tag">1.9.D <b>· Key Concept</b><span class="ek">EK 1.9.D.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Standardized Scores (z-Scores) <span class="zh">标准分数（z 分数）</span></h2><div class="concept pink"><div class="term">z-score<span class="zh">z 分数</span></div><div class="en">A standardized score (z-score) measures how many standard deviations a data value falls above or below the mean. Positive z → above the mean; negative z → below the mean.</div><div class="cn"><b>标准分数</b>（z 分数）表示一个数据比均值高（或低）多少个<b>标准差</b>。z 为正→高于均值；z 为负→低于均值。</div></div><div class="concept"><div class="term">Unknown μ, σ<span class="zh">未知参数时</span></div><div class="en">When the population mean and standard deviation are unknown, the sample mean x̄ and standard deviation s may be used.</div><div class="cn">总体均值和标准差未知时，可以用样本均值 x̄ 与样本标准差 s。</div></div><div class="formula" data-math-tex="z=\frac{x-\mu}{\sigma}\qquad\text{or}\qquad z=\frac{x-\bar{x}}{s}">z=\frac{x-\mu}{\sigma}\qquad\text{or}\qquad z=\frac{x-\bar{x}}{s}</div><div class="small formula-caption">  or  </div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Jenny’s statistics test">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.9.D.2</span></div>
+<h2>Jenny’s statistics test <span class="zh">Jenny 的统计考试</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Here are the scores of all 25 students in Mr. Pryor’s statistics class on their first test. Jenny scored 86.</p><div class="datarow" style="margin:6px 0;font-size:18px">79 81 80 77 73 83 74 93 78 80 75 67 73 77 83 86 90 79 85 83 89 84 82 77 72</div><p>The class mean is 80 and the standard deviation is 6.07.</p><div class="q"><b class="n">a</b>Find and interpret Jenny’s z-score.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. z = (86 − 80) ÷ 6.07 ≈ 0.99.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Jenny’s score is about 1 standard deviation above the mean score of the class.</div></div><div class="q"><b class="n">b</b>What is Jenny’s percentile?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">22 of the 25 scores are ≤ 86 → 22/25 = 88% → Jenny is at the <b>88th percentile</b>.</div></div></div><div class="keyidea">🔑 x = 86, μ = 80, σ = 6.07 (the whole class is the population).</div></div></div><div class="col vis"><div class="qv"><svg id="jQ" viewbox="0 0 560 190" width="100%"></svg></div><div class="sv"><svg id="jSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4 · Data: TPS 2.1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Stats or chemistry?">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.9.E.1 · Skill 4.C</span></div>
+<h2>Stats or chemistry? <span class="zh">统计还是化学考得更好？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The next day, Jenny earned 82 on Mr. Goldstone’s chemistry test. At first she was disappointed. Then Mr. Goldstone said the distribution of scores was fairly symmetric with a mean of 76 and a standard deviation of 4.</p><div class="q">On which test did Jenny perform better <b>relative to her class</b>? Justify your answer.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Statistics: z = (86 − 80) ÷ 6.07 ≈ 0.99.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Chemistry: z = (82 − 76) ÷ 4 = 1.5.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. 1.5 &gt; 0.99 → Jenny did <b>better relative to the class</b> on the <b>chemistry</b> test: 1.5 SDs above the mean vs. about 1 SD above.</div></div></div><div class="keyidea">🔑 Compare z-scores — relative position.</div><div class="takeaway">💡 A raw score of 82 can be “better” than 86 — z-scores put different scales on the same footing.</div></div></div><div class="col vis"><div class="qv"><svg id="jcQ" viewbox="0 0 560 265" width="100%"></svg></div><div class="sv"><svg id="jcSol" viewbox="0 0 560 280" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4 · TPS 2.1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 9: Working backward">
+<div class="exhead"><span class="badge ex">📝 Example 9 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.9.D.2</span></div>
+<h2>Working backward <span class="zh">反推原始分数</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>On a test with mean 72 and standard deviation 8:</p><div class="q"><b class="n">a</b>Marco’s z-score is −1.5. What was his score?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">x = 72 + (−1.5)(8) = 72 − 12 = 60.</div></div><div class="q"><b class="n">b</b>Lin scored 92. What is her z-score? Is her score unusual by the 2-SD rule?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. z = (92 − 72) ÷ 8 = 2.5.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. |z| = 2.5 &gt; 2 → Lin’s score is more than 2 SDs above the mean → an <b>outlier</b> by the 2-SD rule.</div></div></div><div class="keyidea">🔑 x = μ + z·σ.</div><div class="takeaway">💡 The 2-SD outlier rule from Lesson 3 is the same as |z| &gt; 2.</div></div></div><div class="col vis"><svg id="wbSol" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="三组预设；可拖动数值、均值、标准差。" data-title="🎮 Simulator: z-score face-off" id="simZ">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">z-score face-off</span><span class="zh">z 分数对决</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.9.D–E</span>
+<div class="row"><div class="col" style="flex:.85"><div class="btns"><button class="b" data-zp="0">Jenny: stats vs. chem</button><button class="b" data-zp="1">SAT vs. ACT</button><button class="b" data-zp="2">Height: men vs. women</button></div>
+<div id="zSl"></div><div class="zbox"><div>z_{A}<b id="zA"></b></div><div>z_{B}<b id="zB"></b></div></div><div class="note small" id="zMsg" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="zSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 10: What does a boxplot show?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 10 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.8.A.2</span></div>
+<h2>What does a boxplot show?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which of the following can not be determined from a boxplot of a data set?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) The median</li><li>(B) The interquartile range</li><li>(C) The mean</li><li>(D) Whether there are outliers (1.5 × IQR rule)</li><li>(E) The range</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Median, IQR, range, and outliers all come from the five-number summary.</p><p style="margin:3px 0">The <b>mean</b> uses every value → cannot be found from a boxplot → (C).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 11: Parallel boxplots">
+<div class="exhead"><span class="badge ex">📝 AP Practice 11 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.9.A.1</span></div>
+<h2>Parallel boxplots</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">The boxplots summarize quiz scores in two classes. Which statement must be true?<svg id="mq2q" style="width:480px;display:block;margin:2px 0" viewbox="0 0 560 150"></svg></div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Class A has the higher median.</li><li>(B) Class A has the larger IQR.</li><li>(C) Class B has the larger range.</li><li>(D) More students in B than in A scored above 72.</li><li>(E) Class A has a high outlier.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Medians 70 vs. 72 → (A) false. IQR: A = 16, B = 10 → <b>(B) true</b>.</p><p style="margin:3px 0">Range 45 vs. 33 → (C) false. Boxplots don’t show counts → (D) can’t tell. A’s fence = 78 + 24 = 102 → (E) false.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq2" viewbox="0 0 560 220" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Interpret a z-score">
+<div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.9.D.2</span></div>
+<h2>Interpret a z-score</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Ahmed’s z-score for his height among students in his school is −1.2. Which is the best interpretation?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Ahmed is 1.2 inches shorter than the mean height.</li><li>(B) Ahmed’s height is 1.2 standard deviations below the mean height.</li><li>(C) Ahmed is shorter than 12% of the students.</li><li>(D) Ahmed’s height is 1.2 standard deviations above the mean height.</li><li>(E) Ahmed’s height is unusual (an outlier).</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Negative z → <b>below</b> the mean; 1.2 is measured in standard deviations, not inches → <b>(B)</b>.</p><p style="margin:3px 0">|−1.2| &lt; 2 → not an outlier by the 2-SD rule.</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 13: Cumulative relative frequency graph">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 Example 13 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 2.1 · EK 1.7.A.6</span></div>
+<h2>Cumulative relative frequency graph <span class="zh">累积相对频率图（Bonus）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Ages of the first 44 U.S. presidents when inaugurated:</p><table class="tw st" style="margin:6px 0;font-size:15px"><thead><tr><th>Age</th><th>40–44</th><th>45–49</th><th>50–54</th><th>55–59</th><th>60–64</th><th>65–69</th></tr></thead><tbody><tr><th class="rh">Frequency</th><td>2</td><td>7</td><td>13</td><td>12</td><td>7</td><td>3</td></tr><tr><th class="rh">Cumulative %</th><td>4.5</td><td>20.5</td><td>50.0</td><td>77.3</td><td>93.2</td><td>100</td></tr></tbody></table><div class="q"><b class="n">a</b>Barack Obama was 47 when inaugurated. Use the graph to estimate his percentile. Was he unusually young?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. From 47 go up to the graph, then left: about 11% → about the 11th percentile.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Only about 11% of presidents were his age or younger → fairly young, but not extremely unusual.</div></div><div class="q"><b class="n">b</b>Estimate and interpret the 65th percentile.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">From 65% go across, then down: about 58 years. About 65% of presidents were 58 or younger when inaugurated.</div></div></div><div class="keyidea">🔑 Read up from the age, or across from the percent.</div></div></div><div class="col vis"><div class="qv"><svg id="ogQ" viewbox="0 0 560 260" width="100%"></svg></div><div class="sv"><svg id="ogSol" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 4 · TPS 2.1 (not on the 2026 CED — enrichment)</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 14: Transformation review">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 14 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.7.C.1 · TPS 2.1</span></div>
+<h2>Transformation review</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Australian students guessed the width of their classroom (meters): mean 16.02, SD 7.14. The teacher defines error = guess − 13, then converts the errors to feet (× 3.28). What are the mean and SD of the errors in feet?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) Mean 9.91 ft, SD 7.14 ft</li><li>(B) Mean 52.55 ft, SD 23.42 ft</li><li>(C) Mean 9.91 ft, SD 23.42 ft</li><li>(D) Mean 3.02 ft, SD 23.42 ft</li><li>(E) Mean 9.91 ft, SD 10.40 ft</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Mean: (16.02 − 13) × 3.28 = 3.02 × 3.28 ≈ 9.91 ft.</p><p style="margin:3px 0">SD: subtracting doesn’t change spread; × 3.28 → 7.14 × 3.28 ≈ 23.42 ft → (C).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 4 · Data: TPS 2.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Five-number summary</th><td class="zh" style="text-align:left">五数概括</td><td style="text-align:left">min, Q₁, median, Q₃, max</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Boxplot · whisker</th><td class="zh" style="text-align:left">箱线图 · 须</td><td style="text-align:left">Box = middle 50%; whiskers to most extreme non-outliers</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Outlier (✱) on a boxplot</th><td class="zh" style="text-align:left">箱线图上的离群值</td><td style="text-align:left">Marked separately with a symbol</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Mean vs. median</th><td class="zh" style="text-align:left">均值 vs 中位数</td><td style="text-align:left">Mean &gt; median → usually skewed right</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Comparative language</th><td class="zh" style="text-align:left">比较性语言</td><td style="text-align:left">“greater than / less than / about the same as” + context</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Standardized score (z-score)</th><td class="zh" style="text-align:left">标准分数</td><td style="text-align:left">z = (x − μ)/σ · SDs above/below the mean</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Relative position</th><td class="zh" style="text-align:left">相对位置</td><td style="text-align:left">Compare z-scores across different distributions</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Percentile</th><td class="zh" style="text-align:left">百分位数</td><td style="text-align:left">% of values ≤ the value</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">1.8–1.9</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Hours of exercise last week for 11 students:</p><div class="datarow" style="margin:6px 0">0 2 3 4 5 6 7 8 9 10 22</div><div class="q"><b class="n">1</b>Find the five-number summary, check for outliers, and sketch a boxplot.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Five-number summary: 0, 3, 6, 9, 22. IQR = 6; high fence = 9 + 9 = 18 → <b>22 is an outlier</b>; the right whisker ends at 10.</div></div><div class="q"><b class="n">2</b>Ana scored 680 on the SAT Math (mean 520, SD 115). Ben scored 28 on the ACT Math (mean 20.7, SD 5.5). Who did better relative to other test-takers?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">z_{Ana} = (680 − 520)/115 ≈ 1.39; z_{Ben} = (28 − 20.7)/5.5 ≈ 1.33 → Ana did slightly better relative to other test-takers.</div></div></div><div class="keyidea">🔑 n = 11 → median is the 6th value; leave it out of the halves.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 230" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：1.10–1.12（TPS 4.1）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 5</div><h1>Collecting Data: Studies, Sampling &amp; Bias</h1><div class="zhT">数据收集：研究、抽样与偏差 · Topics 1.10–1.12</div><p class="muted" style="margin-top:26px;font-size:22px">Investigative questions, observational studies vs. experiments, SRS, stratified, cluster, systematic samples, and sources of bias.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 1 · Lesson 4 ===== */
+const PINKD='#C8577B',GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA';
+function lab(svg,x,y,t,c,a,fs){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':800,fill:c||ROSE},svg,t);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const quart=a=>{const s=srt(a),n=s.length,h=Math.floor(n/2);if(n<2)return[s[0],s[0],s[0]];return [median(s.slice(0,h)),median(s),median(s.slice(n%2?h+1:h))];};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+v.toFixed(d)).toString();
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+function niceStep(span){const raw=span/8;const p=Math.pow(10,Math.floor(Math.log10(raw)));const m=raw/p;return (m<1.5?1:m<3?2:m<7?5:10)*p;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function five(a){const s=srt(a);const [q1,m,q3]=quart(s);const iqr=q3-q1,lf=q1-1.5*iqr,hf=q3+1.5*iqr;const inn=s.filter(v=>v>=lf&&v<=hf);
+  return{min:s[0],q1,med:m,q3,max:s[s.length-1],lw:inn[0],hw:inn[inn.length-1],out:s.filter(v=>v<lf||v>hf),iqr,lf,hf,mean:mean(s)};}
+/* draw boxplot; f from five() or {q1,med,q3,lw,hw,out}; o.upto: 1 box,2 median,3 whiskers,4 outliers */
+function bxp(svg,X,y,f,o){o=o||{};const h=o.h||34,c=o.col||NAVY,up=o.upto??9;
+  if(up>=1)el('rect',{x:X(f.q1),y:y-h/2,width:Math.max(1,X(f.q3)-X(f.q1)),height:h,fill:o.fill||'#fff',stroke:c,'stroke-width':2.5,rx:2},svg);
+  if(up>=2)el('line',{x1:X(f.med),x2:X(f.med),y1:y-h/2,y2:y+h/2,stroke:o.medcol||c,'stroke-width':3.5},svg);
+  if(up>=3){[[f.lw,f.q1],[f.q3,f.hw]].forEach(([a,b])=>{el('line',{x1:X(a),x2:X(b),y1:y,y2:y,stroke:c,'stroke-width':2},svg);});[f.lw,f.hw].forEach(v=>el('line',{x1:X(v),x2:X(v),y1:y-h/4,y2:y+h/4,stroke:c,'stroke-width':2},svg));}
+  if(up>=4)(f.out||[]).forEach(v=>el('text',{x:X(v),y:y+8,'text-anchor':'middle','font-size':24,'font-weight':800,fill:o.outcol||ROSE},svg,'✱'));
+  if(o.mean!==undefined)el('text',{x:X(o.mean),y:y+6,'text-anchor':'middle','font-size':18,'font-weight':800,fill:GOLDD},svg,'+');
+  if(o.name)lab(svg,o.nx??8,y+5,o.name,c,'start',13);}
+
+const TRAVEL=nums('5 10 10 15 15 15 15 20 20 20 25 30 30 40 40 45 60 60 65 85');
+const SHOES=nums('50 26 26 31 57 19 24 22 23 38 13 50 13 34 23 30 49 13 15 51');
+
+/* warm-up */
+dotplotV($('wuQ'),TRAVEL,{lo:0,hi:90,step:10,r:6,dy:12,xlab:'Travel time (minutes)',B:140});
+(function(){function draw(k){const s=$('wuSol');const X=dotplotV(s,TRAVEL,{lo:0,hi:90,step:10,r:6,dy:12,xlab:'Travel time (minutes)',B:205,hl:v=>k>=2&&v===85?ROSE:null});
+  if(k>=1)[[5,'min'],[15,'Q₁'],[22.5,'med'],[42.5,'Q₃'],[85,'max']].forEach(([v,t],i)=>vline(s,X(v),55+(i%2)*18,205,i===2?ROSE:NAVY,t+' '+v,true,'middle',50+(i%2)*18));
+  if(k>=3){const ys=34;[[5,15],[15,22.5],[22.5,42.5],[42.5,85]].forEach(([a,b])=>{lab(s,(X(a)+X(b))/2,ys,'25%',GOLDD,'middle',13);});}}draw(0);onStep('wuSol',draw);})();
+
+/* static annotated boxplot */
+(function(){const s=$('bxStatic');const f=five(TRAVEL);const X=axis(s,60,1040,115,0,90,10,'',12);bxp(s,X,62,f);
+  [[f.lw,'Min (non-outlier) 5'],[f.q1,'Q₁ = 15'],[f.med,'Median 22.5'],[f.q3,'Q₃ = 42.5'],[f.hw,'whisker end 65']].forEach(([v,t],i)=>lab(s,X(v),i%2?100:28,t,i===2?ROSE:NAVY,'middle',13));lab(s,X(85),28,'outlier ✱ 85',ROSE,'middle',13);
+  lab(s,(X(f.q1)+X(f.q3))/2,88,'middle 50%',GOLDD,'middle',12);})();
+
+/* travel boxplot build */
+(function(){function draw(k){const s=$('trSol');clear(s);const f=five(TRAVEL);if(k===0){lab(s,280,120,'Steps build the boxplot →',MUTED,'middle',14);return;}
+  const X=axis(s,30,540,190,0,90,10,k>=2?'Travel time (minutes)':'',12);
+  if(k>=1){vline(s,X(83.75),40,190,ROSE,'fence 83.75',true,'end',36);}
+  if(k>=2)bxp(s,X,120,f,{upto:k>=4?4:(k>=3?3:2)});
+  if(k>=3)lab(s,X(65),80,'whisker → 65',NAVY,'middle',13);if(k>=4)lab(s,X(85),155,'✱ outlier',ROSE,'middle',13);}draw(0);onStep('trSol',draw);})();
+
+/* sim: dotplot <-> boxplot */
+const BB={tr:'5 10 10 15 15 15 15 20 20 20 25 30 30 40 40 45 60 60 65 85',bi:'10 11 12 12 13 13 14 15 15 16 34 35 35 36 37 37 38 39 40 41',gap:'20 21 22 22 23 23 24 24 25 25 26 26 27 45 46 47 48 49'};
+let bbMod=true;
+function bbDraw(){const a=nums($('bbIn').value);const s=$('bbSvg');clear(s);if(a.length<4){$('bbMsg').textContent='Enter at least 4 numbers.';return;}
+  const f=five(a);const mn=f.min,mx=f.max,st=niceStep(mx-mn||1),lo=Math.floor(mn/st)*st,hi=Math.ceil(mx/st)*st+(mx===mn?st:0);
+  const X=dotplotV(s,a,{lo,hi,step:st,r:6,dy:11,B:180,xlab:'',hl:v=>bbMod&&(v<f.lf||v>f.hf)?ROSE:null});
+  const g=bbMod?f:{...f,lw:f.min,hw:f.max,out:[]};bxp(s,X,255,g);axis(s,30,540,290,lo,hi,st,'',12);
+  lab(s,30,24,'Dotplot',NAVY,'start',13);lab(s,30,222,'Boxplot',NAVY,'start',13);
+  $('bbMsg').innerHTML=`Five-number summary: <b>${[f.min,f.q1,f.med,f.q3,f.max].map(v=>fx(v,2)).join(', ')}</b>. ${f.out.length?'Outliers: <b style="color:var(--rose)">'+f.out.join(', ')+'</b>.':'No outliers.'} Each section ≈ 25% of the data.`;}
+$('bbGo').onclick=bbDraw;$('bbIn').oninput=bbDraw;$('bbMod').onclick=()=>{bbMod=!bbMod;$('bbMod').classList.toggle('on',bbMod);bbDraw();};
+document.querySelectorAll('[data-bb]').forEach(b=>b.onclick=()=>{const k=b.dataset.bb;if(k==='rnd'){const r=Math.random;const n=15+Math.floor(r()*10);const a=[];for(let i=0;i<n;i++)a.push(Math.round(20+Math.pow(r(),1.8)*60));if(r()<.5)a.push(Math.round(95+r()*20));$('bbIn').value=a.join(' ');}else $('bbIn').value=BB[k];bbDraw();});bbDraw();
+
+/* shoes boxplot */
+(function(){const f=five(SHOES);const q=$('shQ');const X=axis(q,30,540,150,10,60,5,'Pairs of shoes (20 female students)',12);bxp(q,X,90,f);
+  function draw(k){const s=$('shSol');clear(s);const X=axis(s,30,540,215,10,60,5,'Pairs of shoes',12);bxp(s,X,150,f);
+    if(k>=1){[[f.min,'13'],[f.q1,'20.5'],[f.med,'26'],[f.q3,'43.5'],[f.max,'57']].forEach(([v,t])=>lab(s,X(v),k>=3?182:120,t,NAVY,'middle',13));}
+    if(k>=2){el('rect',{x:X(43.5),y:126,width:X(57)-X(43.5),height:6,fill:ROSE,opacity:.6},s);lab(s,(X(43.5)+X(57))/2,124,'≈ 25%',ROSE,'middle',13);}
+    if(k>=3){const d=srt(SHOES);const cnt={};d.forEach((v,i)=>{const sec=i<5?0:i<10?1:i<15?2:3;cnt[v]=(cnt[v]||0)+1;el('circle',{cx:X(v),cy:92-(cnt[v]-1)*11,r:5,fill:[NAVY,ROSE,GOLD,'#8A93B8'][sec]},s);});
+      [[13,20.5],[20.5,26],[26,43.5],[43.5,57]].forEach(([a,b],i)=>lab(s,(X(a)+X(b))/2,i%2?28:46,'5 students',[NAVY,ROSE,GOLDD,'#5A6390'][i],'middle',12));}}
+  draw(0);onStep('shSol',draw);})();
+
+/* mean-median shape thumbnails */
+function skData(a,n,seed){const r=srand(seed);const d=[];for(let i=0;i<n;i++){const u=r(),v=r();const z=Math.sqrt(-2*Math.log(u||1e-9))*Math.cos(2*Math.PI*v);const x=Math.abs(a)<1e-6?z:(Math.exp(a*z)-1)/a;d.push(Math.max(0.2,Math.min(99.8,50-a*40+7*x)));}return d;}
+function skPlot(s,d,o){o=o||{};const c=histBins(s,d,{start:0,w:5,nb:20,ltick:4,col:o.col||'#8A93B8',B:o.B,T:o.T,L:o.L??20,R:o.R,xlab:o.xlab});const vb=s.viewBox.baseVal;const L=o.L??20,R=o.R??vb.width-15,B=o.B??vb.height-42;const X=v=>L+v/100*(R-L);
+  const m=mean(d),md=median(d);vline(s,X(md),(o.T??20)+12,B,NAVY,o.lab===false?'':'median','',m>md?'end':'start',(o.T??20)+10);vline(s,X(m),(o.T??20)+30,B,ROSE,o.lab===false?'':'mean','',m>md?'start':'end',(o.T??20)+28);return{X,m,md};}
+[[-.6,'Skewed left: mean < median'],[0,'Symmetric: mean ≈ median'],[.6,'Skewed right: mean > median']].forEach(([a,t],i)=>{const s=$('mm'+i);skPlot(s,skData(a,300,40+i),{B:170});lab(s,180,205,t,INK,'middle',14);});
+(function(){function draw(k){const s=$('shpSol');clear(s);const rows=[[.6,'a. Skewed right'],[-.6,'b. Skewed left'],[0,'c. Symmetric']];
+  rows.forEach(([a,t],i)=>{if(k<i+1)return;const g=el('svg',{x:0,y:i*95,width:560,height:95,viewBox:'0 0 560 95'},s);const d=skData(a,300,60+i);skPlot(g,d,{B:78,T:5,L:200,R:550,lab:false});lab(g,5,50,t,i===0?ROSE:i===1?NAVY:GOLDD,'start',15);});
+  if(k===0)lab(s,280,130,'Shapes appear step by step →',MUTED,'middle',14);}draw(0);onStep('shpSol',draw);})();
+
+/* sim: skew */
+const SKZ=(function(){const r=srand(99);const z=[];for(let i=0;i<200;i++){const u=r(),v=r();z.push(Math.sqrt(-2*Math.log(u||1e-9))*Math.cos(2*Math.PI*v));}return z;})();
+function skDraw(){const a=+$('skS').value/10;$('skV').textContent=a.toFixed(1);const d=SKZ.map(z=>{const x=Math.abs(a)<1e-6?z:(Math.exp(a*z)-1)/a;return Math.max(0.2,Math.min(99.8,50-a*40+7*x));});
+  const s=$('skSvg');const {X,m,md}=skPlot(s,d,{B:220,xlab:'',ylab:''});bxp(s,X,275,five(d),{h:30});
+  $('skM').textContent=fx(m,1);$('skMd').textContent=fx(md,1);const diff=m-md;
+  $('skMsg').innerHTML=Math.abs(diff)<0.8?'Roughly <b>symmetric</b> → mean ≈ median.':diff>0?`<b>Skewed right</b> → the long right tail pulls the mean <b>above</b> the median (by ${fx(diff,1)}). Notice the longer right whisker.`:`<b>Skewed left</b> → the long left tail pulls the mean <b>below</b> the median (by ${fx(-diff,1)}). Notice the longer left whisker.`;}
+$('skS').oninput=skDraw;skDraw();
+
+/* hybrid vs gas */
+const HY=[40,43,44,46,47,48,48,49,50,51,52,54,55,57,73],GA=[17,19,20,21,21,22,22,23,23,24,24,25,25,26,27,28,29,30,32,35];
+(function(){const q=$('hyQ');const X=axis(q,70,545,185,10,80,10,'City gas mileage (mpg)',12);bxp(q,X,60,five(HY),{name:'Hybrid',col:ROSE});bxp(q,X,130,five(GA),{name:'Gas',col:NAVY});
+  function draw(k){const s=$('hySol');clear(s);const X=axis(s,70,545,200,10,80,10,'City gas mileage (mpg)',12);const fh=five(HY),fg=five(GA);
+    dotplotV;bxp(s,X,70,fh,{name:'Hybrid',col:ROSE,mean:k>=1?mean(HY):undefined});bxp(s,X,150,fg,{name:'Gas',col:NAVY,mean:k>=1?mean(GA):undefined});
+    if(k>=2){vline(s,X(66),35,105,ROSE,'fence 66',true,'end',33);}
+    if(k>=3){el('line',{x1:X(24),x2:X(49),y1:112,y2:112,stroke:GOLDD,'stroke-width':2,'marker-end':''},s);lab(s,(X(24)+X(49))/2,108,'medians: 24 vs. 49',GOLDD,'middle',13);}
+    if(k>=4){lab(s,X(50),35,'IQR 8',ROSE,'middle',12);lab(s,X(24.5),185,'IQR 6',NAVY,'middle',12);}
+    if(k>=1)lab(s,545,20,'+ = mean',GOLDD,'end',12);}draw(0);onStep('hySol',draw);})();
+
+/* sim: compare */
+const CPA=(function(){const r=srand(5);const a=[];for(let i=0;i<30;i++){const u=r(),v=r();a.push(50+10*Math.sqrt(-2*Math.log(u||1e-9))*Math.cos(2*Math.PI*v));}return a.map(v=>Math.round(v));})();
+const CPB0=(function(){const r=srand(17);const a=[];for(let i=0;i<30;i++){const u=r(),v=r();a.push(10*Math.sqrt(-2*Math.log(u||1e-9))*Math.cos(2*Math.PI*v));}return a;})();
+let cpOut=false;
+function cpDraw(){const c=+$('cpC').value,sp=+$('cpS').value/100;$('cpCV').textContent=(c>0?'+':'')+c;$('cpSV').textContent=sp.toFixed(2);
+  let B=CPB0.map(z=>Math.round(50+c+sp*z));if(cpOut)B=[...B,Math.round(50+c+sp*10*4.5)];const s=$('cpSvg');clear(s);
+  const all=[...CPA,...B];const lo=Math.floor(Math.min(...all,0)/10)*10,hi=Math.ceil(Math.max(...all,100)/10)*10;const X=axis(s,60,545,276,lo,hi,hi-lo>120?20:10,'Value',12);
+  const fa=five(CPA),fb=five(B);
+  dotplotV;const dots=(d,y,col)=>{const cnt={};d.forEach(v=>{cnt[v]=(cnt[v]||0)+1;el('circle',{cx:X(v),cy:y-(cnt[v]-1)*6,r:3,fill:col,opacity:.75},s);});};
+  dots(CPA,95,NAVY);dots(B,215,ROSE);bxp(s,X,120,fa,{name:'A',col:NAVY,h:26,nx:20});bxp(s,X,240,fb,{name:'B',col:ROSE,h:26,nx:20});
+  const cmp=(x,y,big,small,same)=>Math.abs(x-y)<Math.max(1.5,0.08*Math.max(Math.abs(x),Math.abs(y)))?same:(x>y?big:small);
+  const shape=f=>{const d=(f.mean-f.med);return Math.abs(d)<1?'roughly symmetric':d>0?'skewed right':'skewed left';};
+  $('cpTxt').innerHTML=`<b>Center:</b> values in B tend to be ${cmp(fb.med,fa.med,'<b>greater than</b>','<b>less than</b>','<b>about the same as</b>')} values in A (median ${fx(fb.med,1)} vs. ${fx(fa.med,1)}).<br><b>Variability:</b> B varies ${cmp(fb.iqr,fa.iqr,'<b>more</b> than','<b>less</b> than','<b>about the same</b> as')} A (IQR ${fx(fb.iqr,1)} vs. ${fx(fa.iqr,1)}).<br><b>Outliers:</b> A ${fa.out.length?'has '+fa.out.join(', '):'has none'}; B ${fb.out.length?'has '+fb.out.join(', '):'has none'}.<br><b>Shape:</b> A looks ${shape(fa)}; B looks ${shape(fb)}.`;}
+['cpC','cpS'].forEach(i=>$(i).oninput=cpDraw);$('cpO').onclick=()=>{cpOut=!cpOut;$('cpO').classList.toggle('on',cpOut);$('cpO').textContent=cpOut?'Remove outlier':'Add outlier to B';cpDraw();};cpDraw();
+
+/* sleep & reaction */
+const SL=[262,275,281,290,295,301,305,310,318,326,340,365],SM=[228,240,246,251,255,262,268,270,277,283,296,330];
+(function(){function base(s,B){const X=axis(s,110,545,B,220,380,20,'Reaction time (ms)',12);return X;}
+  const q=$('slQ');const X=base(q,215);dotplotV;const dots=(s,X,d,y,col)=>d.forEach(v=>el('circle',{cx:X(v),cy:y,r:6,fill:col,opacity:.85},s));
+  dots(q,X,SL,40,NAVY);bxp(q,X,80,five(SL),{name:'< 6 hours',col:NAVY,h:26});dots(q,X,SM,125,ROSE);bxp(q,X,165,five(SM),{name:'≥ 8 hours',col:ROSE,h:26});
+  function draw(k){const s=$('slSol');clear(s);const X=base(s,225);dots(s,X,SL,40,NAVY);bxp(s,X,80,five(SL),{name:'< 6 hours',col:NAVY,h:26});dots(s,X,SM,125,ROSE);bxp(s,X,165,five(SM),{name:'≥ 8 hours',col:ROSE,h:26});
+    if(k>=1){el('rect',{x:X(262),y:20,width:X(330)-X(262),height:165,fill:GOLD,opacity:.18},s);lab(s,(X(262)+X(330))/2,200,'overlap 262–330 ms',GOLDD,'middle',13);}
+    if(k>=2){vline(s,X(303),20,190,NAVY,'303',true);vline(s,X(280),105,190,ROSE,'Q₃ 280',true,'end',103);}
+    if(k>=3)SM.forEach(v=>{if(v<303)el('circle',{cx:X(v),cy:125,r:8,fill:'none',stroke:GOLDD,'stroke-width':2},s);});}draw(0);onStep('slSol',draw);})();
+
+/* z-score visuals */
+const JEN=nums('79 81 80 77 73 83 74 93 78 80 75 67 73 77 83 86 90 79 85 83 89 84 82 77 72');
+dotplotV($('jQ'),JEN,{lo:64,hi:96,step:4,r:6,dy:12,xlab:'Statistics test score',B:140,hl:v=>v===86?ROSE:null});
+function sdAxis(s,X,y,m,sd,col,n){for(let k=-n;k<=n;k++){const x=X(m+k*sd);el('line',{x1:x,x2:x,y1:y-6,y2:y+6,stroke:col,'stroke-width':k===0?3:1.5},s);el('text',{x,y:y+20,'text-anchor':'middle','font-size':11,fill:col},s,(k>0?'+':'')+k+(k?'σ':' (μ)'));}}
+(function(){function draw(k){const s=$('jSol');const X=dotplotV(s,JEN,{lo:64,hi:96,step:4,r:6,dy:12,xlab:'Statistics test score',B:140,hl:v=>v===86?ROSE:(k>=3&&v<=86?'#8A93B8':null)});
+  if(k>=1){vline(s,X(80),40,140,NAVY,'μ = 80','', 'end',38);el('path',{d:`M ${X(80)} 200 L ${X(86)} 200`,stroke:ROSE,'stroke-width':4},s);el('polygon',{points:`${X(86)},193 ${X(86)+10},200 ${X(86)},207`,fill:ROSE},s);sdAxis(s,X,200,80,6.07,MUTED,2);}
+  if(k>=2)lab(s,X(86)+14,195,'z ≈ 0.99',ROSE,'start',14);
+  if(k>=3)lab(s,X(70),40,'22 of 25 scores ≤ 86 → 88th pct.',NAVY,'middle',13);}draw(0);onStep('jSol',draw);})();
+function curve(s,X,y0,h,m,sd,col,fill){let d=`M ${X(m-3.5*sd)} ${y0}`;for(let t=-3.5;t<=3.5001;t+=0.1){const x=X(m+t*sd),y=y0-h*Math.exp(-t*t/2);d+=` L ${x} ${y}`;}el('path',{d:d+` L ${X(m+3.5*sd)} ${y0}`,fill:fill||'none',stroke:col,'stroke-width':2.5,opacity:1},s);}
+(function(){function panel(s,y0,m,sd,x,col,name,z){const X=v=>40+(v-(m-3.5*sd))/(7*sd)*480;curve(s,X,y0,62,m,sd,col,col===ROSE?'rgba(200,87,123,.12)':'rgba(30,42,74,.08)');el('line',{x1:40,x2:520,y1:y0,y2:y0,stroke:INK},s);sdAxis(s,X,y0,m,sd,MUTED,3);
+  el('line',{x1:X(x),x2:X(x),y1:y0-72,y2:y0,stroke:col,'stroke-width':3},s);lab(s,X(x)+6,y0-60,`${name}: ${x}${z!==undefined?'  (z = '+z+')':''}`,col,'start',13);}
+  const q=$('jcQ');clear(q);panel(q,95,80,6.07,86,NAVY,'Stats');panel(q,225,76,4,82,ROSE,'Chem');
+  function draw(k){const s=$('jcSol');clear(s);panel(s,95,80,6.07,86,NAVY,'Stats',k>=1?'0.99':undefined);panel(s,225,76,4,82,ROSE,'Chem',k>=2?'1.5':undefined);if(k>=3)lab(s,540,268,'1.5 SDs > 0.99 SDs → chemistry!',GOLDD,'end',14);}draw(0);onStep('jcSol',draw);})();
+(function(){function draw(k){const s=$('wbSol');clear(s);const X=v=>30+(v-36)/(108-36)*510;curve(s,X,150,100,72,8,NAVY,'rgba(30,42,74,.06)');el('line',{x1:30,x2:540,y1:150,y2:150,stroke:INK},s);
+  for(let v=40;v<=104;v+=8){el('text',{x:X(v),y:168,'text-anchor':'middle','font-size':11,fill:INK},s,v);}sdAxis(s,X,190,72,8,MUTED,4);
+  if(k>=1){vline(s,X(60),40,150,ROSE,'Marco 60 (z = −1.5)','', 'end',38);}if(k>=2)vline(s,X(92),40,150,GOLDD,'Lin 92 (z = 2.5)','','start',38);
+  if(k>=3){el('rect',{x:X(88),y:60,width:X(108)-X(88),height:90,fill:GOLD,opacity:.2},s);el('rect',{x:X(36),y:60,width:X(56)-X(36),height:90,fill:GOLD,opacity:.2},s);lab(s,X(98),80,'|z| > 2',GOLDD,'middle',12);}}draw(0);onStep('wbSol',draw);})();
+
+/* sim: z face-off */
+const ZP=[{n:['Stats test','Chem test'],v:[[86,80,6.07,60,100,0.5],[82,76,4,60,100,0.5]],u:''},{n:['SAT Math (Ana)','ACT Math (Ben)'],v:[[680,520,115,200,800,5],[28,20.7,5.5,1,36,0.1]],u:''},{n:['Man 190 cm','Woman 178 cm'],v:[[190,176,7,150,210,0.5],[178,163,6.5,140,200,0.5]],u:' cm'}];
+let zp=0;
+function zBuild(){const P=ZP[zp];let h='';P.v.forEach((r,j)=>{const [x,m,sd,lo,hi,st]=r;h+=`<p class="small" style="margin:4px 0 0;font-weight:800;color:${j?'var(--rose)':'var(--navy)'}">${'AB'[j]}: ${P.n[j]}</p>`+[['value',x],['mean μ',m],['SD σ',sd]].map(([nm,v],i)=>`<div class="slider-row" style="margin:0"><label style="width:80px;font-size:14px">${nm}</label><input type="range" min="${i===2?st*2:lo}" max="${i===2?(hi-lo)/3:hi}" step="${st}" value="${v}" data-z="${j}-${i}"><span class="v" id="zv${j}${i}"></span></div>`).join('');});$('zSl').innerHTML=h;
+  document.querySelectorAll('[data-z]').forEach(r=>r.oninput=zDraw);zDraw();}
+function zDraw(){const P=ZP[zp];const g=(j,i)=>+document.querySelector(`[data-z="${j}-${i}"]`).value;const s=$('zSvg');clear(s);const zs=[];
+  for(let j=0;j<2;j++){const x=g(j,0),m=g(j,1),sd=g(j,2);[0,1,2].forEach(i=>$('zv'+j+i).textContent=fx(g(j,i),2));const z=(x-m)/sd;zs.push(z);const y0=j?290:140,col=j?ROSE:NAVY;const X=v=>30+(v-(m-4*sd))/(8*sd)*510;
+    curve(s,X,y0,90,m,sd,col,j?'rgba(200,87,123,.12)':'rgba(30,42,74,.08)');el('line',{x1:30,x2:540,y1:y0,y2:y0,stroke:INK},s);sdAxis(s,X,y0,m,sd,MUTED,3);const xc=Math.max(30,Math.min(540,X(x)));el('line',{x1:xc,x2:xc,y1:y0-100,y2:y0,stroke:col,'stroke-width':3},s);
+    lab(s,xc+(xc>380?-6:6),y0-104,`${P.n[j]}: ${fx(x,2)} → z = ${fx(z,2)}`,col,xc>380?'end':'start',13);}
+  $('zA').textContent=fx(zs[0],2);$('zB').textContent=fx(zs[1],2);const d=zs[0]-zs[1];
+  $('zMsg').innerHTML=Math.abs(d)<0.05?'About the <b>same</b> relative position.':`<b>${d>0?'A':'B'}</b> is more impressive relative to its own distribution (z = ${fx(Math.max(...zs),2)} vs. ${fx(Math.min(...zs),2)}).`;}
+document.querySelectorAll('[data-zp]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-zp]').forEach(x=>x.classList.remove('on'));b.classList.add('on');zp=+b.dataset.zp;zBuild();});document.querySelector('[data-zp="0"]').classList.add('on');zBuild();
+
+/* MCQ parallel boxplots */
+function mqBox(s,k){clear(s);const vb=s.viewBox.baseVal;const B=vb.height-40;const X=axis(s,80,545,B,40,100,10,'Quiz score',12);const fa={q1:62,med:70,q3:78,lw:50,hw:95,out:[]},fb={q1:66,med:72,q3:76,lw:55,hw:88,out:[]};
+  bxp(s,X,B-85,fa,{name:'Class A',col:NAVY,h:28});bxp(s,X,B-35,fb,{name:'Class B',col:ROSE,h:28});
+  if(k>=1){lab(s,(X(62)+X(78))/2,B-104,'IQR 16',NAVY,'middle',12);lab(s,(X(66)+X(76))/2,B-54,'IQR 10',ROSE,'middle',12);}if(k>=2)vline(s,X(78),B-120,B,MUTED,'',true);}
+mqBox($('mq2q'),0);(function(){function draw(k){mqBox($('mq2'),k);}draw(0);onStep('mq2',draw);})();
+
+/* ogive */
+const OG=[[40,0],[45,4.5],[50,20.5],[55,50],[60,77.3],[65,93.2],[70,100]];
+function ogive(s,k){clear(s);const L=60,R=540,T=20,B=215;const X=v=>L+(v-40)/30*(R-L),Y=p=>B-p/100*(B-T);
+  for(let p=0;p<=100;p+=20){el('line',{x1:L,x2:R,y1:Y(p),y2:Y(p),stroke:GRID},s);el('text',{x:L-6,y:Y(p)+4,'text-anchor':'end','font-size':11,fill:MUTED},s,p+'%');}
+  for(let v=40;v<=70;v+=5){el('text',{x:X(v),y:B+16,'text-anchor':'middle','font-size':11,fill:INK},s,v);}el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);
+  el('text',{x:(L+R)/2,y:B+34,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},s,'Age at inauguration');el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},s,'Cumulative relative frequency');
+  el('polyline',{points:OG.map(([a,p])=>`${X(a)},${Y(p)}`).join(' '),fill:'none',stroke:NAVY,'stroke-width':2.5},s);OG.forEach(([a,p])=>el('circle',{cx:X(a),cy:Y(p),r:4,fill:NAVY},s));
+  if(k>=1){const p=10.9;el('path',{d:`M ${X(47)} ${B} L ${X(47)} ${Y(p)} L ${L} ${Y(p)}`,stroke:ROSE,'stroke-width':2.5,'stroke-dasharray':'6 4',fill:'none'},s);lab(s,L+8,Y(p)-8,'47 → ≈ 11%',ROSE,'start',13);}
+  if(k>=3){const a=55+5*(15/27.3);el('path',{d:`M ${L} ${Y(65)} L ${X(a)} ${Y(65)} L ${X(a)} ${B}`,stroke:GOLDD,'stroke-width':2.5,'stroke-dasharray':'6 4',fill:'none'},s);lab(s,X(a)+6,Y(65)+18,'65% → ≈ 58 years',GOLDD,'start',13);}}
+ogive($('ogQ'),0);(function(){function draw(k){ogive($('ogSol'),k);}draw(0);onStep('ogSol',draw);})();
+
+/* exit ticket */
+(function(){const E=[0,2,3,4,5,6,7,8,9,10,22];function draw(k){const s=$('exSol');clear(s);if(k===0){lab(s,280,110,'Boxplot appears here →',MUTED,'middle',14);return;}const X=axis(s,30,540,180,0,24,2,'Hours of exercise last week',12);const f=five(E);
+  bxp(s,X,110,f);vline(s,X(18),50,180,ROSE,'fence 18',true);lab(s,X(10),75,'whisker → 10',NAVY,'middle',12);
+  if(k>=2){lab(s,280,24,'Ana z ≈ 1.39 > Ben z ≈ 1.33 → Ana',GOLDD,'middle',14);}}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

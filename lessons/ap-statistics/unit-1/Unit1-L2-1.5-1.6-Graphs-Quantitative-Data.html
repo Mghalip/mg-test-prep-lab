@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 1 · Lesson 2 — Graphs for One Quantitative Variable</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><style>#stSol{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px!important}#stSol .stem{font-size:17px}#stSol .stem td{font-size:17px;padding:3px}#stSol>div:nth-child(3){grid-column:1/-1}#stSol .note{max-width:none!important;font-size:17px}</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:17px;margin:4px 0}.slider-row label{width:110px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:60px;font-family:var(--mono);text-align:right}
+table.stem{font-family:var(--mono);font-size:22px;border-collapse:collapse}table.stem td{padding:2px 10px}table.stem td.st{text-align:right;border-right:3px solid var(--navy);font-weight:800;color:var(--navy)}table.stem td.lf{letter-spacing:.12em;min-width:150px;white-space:nowrap}
+table.stem td.lfL{text-align:right;letter-spacing:.12em;min-width:150px;color:#C8577B;white-space:nowrap}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:20px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+textarea.din{width:100%;height:70px;font-family:var(--mono);font-size:17px;border:2px solid var(--line);border-radius:10px;padding:8px}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 1 第二课：1.5 + 1.6，对应 TPS 1.2。v2 格式。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 1 · Lesson 2</div><h1>Graphs for One Quantitative Variable</h1><div class="zhT">定量数据的图形与分布描述</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 1.5 Graphical Representations · Topic 1.6 Descriptions of Distributions</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 1.2</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 1 全貌。" data-title="Unit 1 roadmap">
+<div class="tag">Unit 1 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 1 <span class="zh">单元路线图</span></h2>
+<p class="sub">Exploring One-Variable Data and Collecting Data · 20–30% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>1.1–1.4 Introducing Statistics &amp; One Categorical Variable<span class="old">TPS 1.0 + 1.1</span></div><div class="lesson now"><span class="n">2</span>1.5 + 1.6 Graphs for One Quantitative Variable<span class="old">TPS 1.2</span></div><div class="lesson"><span class="n">3</span>1.7 Summary Statistics<span class="old">TPS 1.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">4</span>1.8 + 1.9 Boxplots, Comparing &amp; z-Scores<span class="old">TPS 1.3 + 2.1</span></div><div class="lesson"><span class="n">5</span>1.10–1.12 Data Collection, Sampling &amp; Bias<span class="old">TPS 4.1</span></div><div class="lesson"><span class="n">6</span>1.13 Experimental Design<span class="old">TPS 4.2 + 4.3</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 1: one <strong>categorical</strong> variable (bar &amp; pie charts). Today: one <strong>quantitative</strong> variable — dotplots, stemplots, histograms, and how to describe a distribution. <span class="zh">从分类变量到定量变量。</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 2 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(2,1fr);margin-top:12px"><div class="card"><div class="k">1.5.A · Skill 3.A</div><h3>Construct <span class="stars">★<span class="off">★★★</span></span></h3><p>Make dotplots, stem-and-leaf plots, and histograms.</p><p class="zh muted small" style="margin-top:6px">画点图、茎叶图、直方图</p></div><div class="card"><div class="k">1.6.A · Skill 4.A</div><h3>Describe <span class="stars">★★<span class="off">★★</span></span></h3><p>Describe shape, center, variability, and unusual features (outliers, gaps, clusters) in context.</p><p class="zh muted small" style="margin-top:6px">描述形状、中心、变异与异常特征</p></div><div class="card"><div class="k">1.6.B · Skill 4.B</div><h3>Justify <span class="stars">★★★<span class="off">★</span></span></h3><p>Justify a claim using a graph of a quantitative variable.</p><p class="zh muted small" style="margin-top:6px">用图形论证结论</p></div><div class="card" style="background:var(--pink-3)"><div class="k">From TPS 1.2</div><h3>Compare <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare distributions with explicit comparative language.</p><p class="zh muted small" style="margin-top:6px">用比较性语言比较分布</p></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 2 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:60px">3'</div>Warm-up: how many pairs of shoes?</div><div class="it"><div class="bar n" style="width:190px">20' · 1.5</div>Dotplots → stemplots (split, back-to-back) → histograms (bin width)</div><div class="it"><div class="bar n" style="width:170px">14' · 1.6</div>Shape · center · variability · outliers, gaps, clusters (in context!)</div><div class="it"><div class="bar" style="width:90px">6'</div>Compare distributions + AP-style MCQ</div><div class="it"><div class="bar" style="width:50px">2'</div>Exit ticket</div><div class="it"><div class="bar g" style="width:120px">Bonus</div>One data set, three graphs · shape game</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 1.5.A.1 → 1.5.A.4 → 1.5.A.3 → 1.5.A.2 → 1.6.A.1 → 1.6.A.2 → 1.6.A.3 → 1.6.A.4–6 → 1.6.B.1</p><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 2 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simBins" href="#"><span class="ic">🎮</span><span>Histogram bin-width explorer<small>组距探索器 · drag the bin width</small></span></a><a data-goto="simShape" href="#"><span class="ic">🎮</span><span>Name that shape!<small>形状判断游戏 · infinite shape practice</small></span></a><a data-goto="simThree" href="#"><span class="ic">🎮</span><span>One data set, three graphs<small>一组数据，三种图（Bonus） · dotplot · stemplot · histogram</small></span></a></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: How many pairs of shoes?">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>How many pairs of shoes? <span class="zh">热身：你有几双鞋？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>20 female AP Statistics students answered: “How many pairs of shoes do you have?” <span class="zh">20 名女生回答了“你有几双鞋？”</span></p><div class="datarow" style="margin:8px 0">50 26 26 31 57 19 24 22 23 38 13 50 13 34 23 30 49 13 15 51</div><div class="q"><b class="n">Q1</b>Is this variable categorical or quantitative?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Quantitative</b> (discrete) — a counted number.</div></div><div class="q"><b class="n">Q2</b>Can you see the pattern from the list? What would help?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A list is hard to read → a <b>graph</b> shows the pattern (dotplot →).</div></div><div class="q"><b class="n">Q3</b>Guess: what is a “typical” number of pairs?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Most values are between 13 and 38; a typical value is in the mid-20s (median = 26).</div></div></div><div class="keyidea">🔑 Pairs of shoes, 20 female students.</div><div class="takeaway">💡 Graphs reveal the <b>shape</b> of a distribution that a list hides.</div></div></div><div class="col vis"><svg id="wuSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.5" data-sec="1" data-title="§ 1.5 Graphical Representations for One Quantitative Variable">
+<div class="tag">Topic</div><div class="num">1.5</div><h1>Graphical Representations for One Quantitative Variable</h1><div class="zhT">一个定量变量的图形表示</div><div class="eks"><span>1.5.A.1 Show the distribution</span><span>1.5.A.4 Dotplot</span><span>1.5.A.3 Stem-and-leaf plot</span><span>1.5.A.2 Histogram</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.5.A.1、1.5.A.4。" data-title="Graphs for a Quantitative Variable">
+<div class="tag">1.5 <b>· Key Concepts</b><span class="ek">EK 1.5.A.1 · 1.5.A.4</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Graphs for a Quantitative Variable <span class="zh">定量变量的图形</span></h2><div class="concept"><div class="term">Key idea<span class="zh">核心</span></div><div class="en">Histograms, stem-and-leaf plots, and dotplots show the distribution of a quantitative variable: the frequency or relative frequency of values (or intervals of values), keeping the <strong>natural order</strong> from smallest to largest.</div><div class="cn">直方图、茎叶图、点图展示定量变量的<b>分布</b>：各数值（或区间）的频数或相对频数，并保持从小到大的<b>自然顺序</b>。</div></div><div class="concept pink"><div class="term">Dotplot<span class="zh">点图</span></div><div class="en">A <strong>dotplot</strong> represents each value by a dot above (or beside) its location on a number line; nearly identical values are stacked.</div><div class="cn"><b>点图</b>：每个数据画一个点，放在数轴对应位置的上方；相同（或几乎相同）的值<b>叠起来</b>。</div></div><div class="note small" style="margin-top:4px"><b>How to make a dotplot:</b> ① Draw a number line and label it with the variable. ② Scale it from the minimum to the maximum. ③ Mark a dot above each value (stack repeats). <span class="zh">画数轴并标名称 → 标刻度 → 每个数据画一个点。</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Goals scored by the U.S. women’s soccer team">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.5.A.4</span></div>
+<h2>Goals scored by the U.S. women’s soccer team <span class="zh">美国女足进球数</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Goals scored in 20 games played by the 2016 U.S. women’s soccer team:</p><div class="datarow" style="margin:8px 0">3 5 1 2 10 1 5 2 1 9 1 2 3 1 4 5 2 1 3 2</div><div class="q"><b class="n">a</b>Make a dotplot.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Draw a number line labeled “Goals scored”, scaled from 0 to 10.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Mark a dot for each game; stack repeated values (dotplot →).</div></div><div class="q"><b class="n">b</b>How many games did the team score 5 or more goals?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">5 or more goals: 3 + 1 + 1 = 5 games (pink).</div></div></div><div class="keyidea">🔑 20 games, 2016 U.S. women’s soccer team.</div></div></div><div class="col vis"><svg id="gSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.5.A.3 + TPS 1.2 制作步骤。" data-title="Stem-and-Leaf Plot (Stemplot)">
+<div class="tag">1.5 <b>· Key Concept</b><span class="ek">EK 1.5.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Stem-and-Leaf Plot (Stemplot) <span class="zh">茎叶图</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>stem-and-leaf plot</strong> splits each value into a <strong>stem</strong> (all but the final digit) and a <strong>leaf</strong> (the final digit). Stems and leaves are ordered from smallest to largest. Always include a key.</div><div class="cn"><b>茎叶图</b>：把每个数分成<b>茎</b>（除最后一位以外的数字）和<b>叶</b>（最后一位）。茎和叶都从小到大排列，一定要写<b>图例（key）</b>。</div></div><div class="note small" style="margin-top:4px"><b>How to make a stemplot:</b> ① Separate each value into stem + leaf. ② Write stems in a column (smallest on top), draw a vertical line. ③ Write each leaf beside its stem. ④ Arrange leaves in increasing order. ⑤ Add a key. <span class="zh">分茎叶 → 写茎 → 写叶 → 叶排序 → 加 key。</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Shoes stemplot">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.5.A.3</span></div>
+<h2>Shoes stemplot <span class="zh">鞋子茎叶图</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Make a stemplot of the 20 female students’ responses:</p><div class="datarow" style="margin:8px 0">50 26 26 31 57 19 24 22 23 38 13 50 13 34 23 30 49 13 15 51</div><div class="q"><b class="n">a</b>What are the stems?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Stems: 1, 2, 3, 4, 5 (tens digits).</div></div><div class="q"><b class="n">b</b>Add the leaves, then put them in order.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Add leaves in the order they appear, then order them (→).</div></div><div class="q"><b class="n">c</b>Write a key.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Key: 4 | 9 represents a female student who reported having 49 pairs of shoes.</div></div></div><div class="keyidea">🔑 Stems = tens digit, leaves = ones digit.</div></div></div><div class="col vis" style=""><div id="stSol" style="display:flex;gap:30px;justify-content:center;padding:10px"></div></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="TPS 1.2；CED 1.9.A 也提到。" data-title="Splitting Stems &amp;amp; Back-to-Back Stemplots">
+<div class="tag">1.5 · Concept<span class="ek">TPS 1.2 · EK 1.9.A</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Splitting Stems &amp; Back-to-Back Stemplots <span class="zh">分茎与背靠背茎叶图</span></h2><div class="concept"><div class="term">Split stems<span class="zh">分茎</span></div><div class="en">When values are bunched up, <strong>split stems</strong>: each stem appears twice — leaves 0–4 on the first line, 5–9 on the second.</div><div class="cn">数据挤在一起时可以<b>分茎</b>：每个茎写两行，第一行放叶 0–4，第二行放叶 5–9。</div></div><div class="concept pink"><div class="term">Back-to-back stemplot<span class="zh">背靠背茎叶图</span></div><div class="en">Two distributions of the same variable can be compared with a <strong>back-to-back stemplot</strong> using common stems; leaves for one group go to the left.</div><div class="cn">比较两组同一变量时，用公共的茎，一组的叶写在左边、一组写在右边。</div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Shoes: males vs. females">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 1.2</span></div>
+<h2>Shoes: males vs. females <span class="zh">男生和女生的鞋子</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Males (20 students):</p><div class="datarow" style="margin:8px 0">14 7 6 5 12 38 8 7 10 10 10 11 4 5 22 7 5 10 35 7</div><div class="q"><b class="n">a</b>Make a back-to-back stemplot with <b>split stems</b> (females on the right, males on the left).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Each stem appears twice; males’ leaves go to the left, in increasing order <b>away</b> from the stem (→).</div></div><div class="q"><b class="n">b</b>Who tends to have more pairs of shoes?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Females tend to have <b>more</b> pairs of shoes (center around 26 vs. around 8), and their numbers vary more.</div></div></div><div class="keyidea">🔑 Split stems: 0 | 0–4, 0 | 5–9, 1 | 0–4, …</div></div></div><div class="col vis"><div id="bbSol" style="display:flex;justify-content:center;padding:6px"></div></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.5.A.2。" data-title="Histogram">
+<div class="tag">1.5 <b>· Key Concept</b><span class="ek">EK 1.5.A.2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Histogram <span class="zh">直方图</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>histogram</strong> places values into ordered intervals (bins) on the horizontal axis. Each bar is a bin; its height is the frequency or relative frequency of observations in that bin. Bars <strong>touch</strong> (no gaps between bins). Changing the <strong>bin width</strong> can change the appearance. (Bars can also be horizontal.)</div><div class="cn"><b>直方图</b>：把数据分到有序的区间（<b>组</b>）中；每根柱子代表一个组，高度是频数或相对频数。柱子之间<b>没有间隙</b>。改变<b>组距</b>会改变图形的样子。</div></div><div class="note small" style="margin-top:4px"><b>How to make a histogram:</b> ① Choose equal-width intervals that span the data. ② Make a frequency (or relative frequency) table. ③ Draw and label the axes. ④ Scale the axes. ⑤ Draw bars. <span class="zh">选等宽区间 → 频数表 → 画坐标轴并标注 → 标刻度 → 画柱。</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Foreign-born residents">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.5.A.2</span></div>
+<h2>Foreign-born residents <span class="zh">外国出生居民比例</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The percent of residents in each of the 50 U.S. states who were born outside the U.S.:</p><table class="tw" style="font-size:18px;margin:8px 0"><thead><tr><th>Percent</th><th>0 to &lt;5</th><th>5 to &lt;10</th><th>10 to &lt;15</th><th>15 to &lt;20</th><th>20 to &lt;25</th><th>25 to &lt;30</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Number of states</th><td>20</td><td>13</td><td>9</td><td>5</td><td>2</td><td>1</td><td class="tot">50</td></tr></tbody></table><div class="q"><b class="n">a</b>Make a histogram.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Horizontal axis: percent of foreign-born residents (0, 5, …, 30); vertical axis: number of states; bars touch (→).</div></div><div class="q"><b class="n">b</b>How many states have fewer than 10% foreign-born residents?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">20 + 13 = 33 states (pink).</div></div><div class="q"><b class="n">c</b>Describe the shape.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Skewed to the right</b> — a long tail toward larger percents, single peak at 0 to &lt;5%.</div></div></div><div class="keyidea">🔑 Bins of width 5 from 0 to 30.</div></div></div><div class="col vis"><svg id="fbSol" viewbox="0 0 560 290" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="组距太大看不出双峰，太小太乱。" data-title="🎮 Simulator: Histogram bin-width explorer" id="simBins">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Histogram bin-width explorer</span><span class="zh">组距探索器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.5.A.2</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Same data, different bin widths! Data: eruption durations (minutes) of a geyser, 120 eruptions <span class="muted">(simulated)</span>. <span class="zh">同一组数据，改变组距。</span></p>
+<div class="slider-row"><label>Bin width</label><input id="bwS" max="12" min="1" type="range" value="4"/><span class="v" id="bwV"></span></div><div class="slider-row"><label>First bin starts</label><input id="bsS" max="9" min="0" type="range" value="0"/><span class="v" id="bsV"></span></div>
+<div class="btns"><button class="b on" data-hm="count">Counts</button><button class="b" data-hm="rel">Percents</button></div><div class="note small" id="bwMsg"></div></div>
+<div class="col frame"><svg id="bwSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="旧课件 CAUTION。" data-title="Histograms: cautions 直方图注意事项">
+<div class="tag">1.5 <b>· AP Exam Tips</b><span class="ek">TPS 1.2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span><h2>Histograms: cautions <span class="zh">直方图注意事项</span></h2>
+<div class="cards" style="grid-template-columns:1fr 1fr 1fr;margin-top:12px"><div class="card"><div class="k">⚠️ 1</div><h3>Histogram ≠ bar graph</h3><p>Histograms: <b>quantitative</b> data, ordered bins, bars touch. Bar graphs: <b>categorical</b> data, bars separated, order can change.</p><p class="zh muted small">直方图用于定量数据，柱子相连。</p></div><div class="card"><div class="k">⚠️ 2</div><h3>Use percents to compare</h3><p>Use relative frequencies when comparing distributions with <b>different numbers</b> of observations.</p><p class="zh muted small">样本大小不同时用百分比。</p></div><div class="card"><div class="k">⚠️ 3</div><h3>Nice ≠ meaningful</h3><p>Just because a graph looks nice doesn’t make it a meaningful display of data.</p><p class="zh muted small">好看不等于有意义。</p></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.6" data-sec="1" data-title="§ 1.6 Descriptions for One Quantitative Variable Distribution">
+<div class="tag">Topic</div><div class="num">1.6</div><h1>Descriptions for One Quantitative Variable Distribution</h1><div class="zhT">描述一个定量变量的分布</div><div class="eks">1.6.A.1 SOCS in context<span>1.6.A.2 Symmetric · skewed</span><span>1.6.A.3 Unimodal · bimodal · uniform</span><span>1.6.A.4–6 Outliers · gaps · clusters</span><span>1.6.B Justify a claim</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.6.A.1。记忆：SOCS（Shape, Outliers/unusual, Center, Spread）。" data-title="Describing a Distribution">
+<div class="tag">1.6 <b>· Key Concept</b><span class="ek">EK 1.6.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Describing a Distribution <span class="zh">描述分布</span></h2><div class="concept pink"><div class="term">Key idea<span class="zh">核心</span></div><div class="en">A description of the distribution of one quantitative variable includes <strong>shape</strong>, center, and <strong>variability</strong> (spread), as well as any <strong>unusual features</strong> such as outliers, gaps, or clusters — all in context.</div><div class="cn">描述一个定量变量的分布要包括<b>形状</b>、<b>中心</b>、<b>变异（离散程度）</b>以及<b>异常特征</b>（离群值、间隙、簇），并且都要<b>结合语境</b>。</div></div><div class="note" style="margin-top:6px">🔑 Remember SOCS: Shape · Outliers (unusual features) · Center · Spread (variability). AP® tip: use the <b>variable name</b> in context, not just the units. <span class="zh">要用变量名称，不只是单位。</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.6.A.2–3。CAUTION：偏的方向是长尾方向，不是数据集中的方向。" data-title="Shape">
+<div class="tag">1.6 <b>· Key Concepts</b><span class="ek">EK 1.6.A.2–3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Shape <span class="zh">形状</span></h2><div class="concept pink"><div class="term">Symmetric · skewed<span class="zh">对称 · 偏态</span></div><div class="en"><strong>Skewed right</strong> (positively skewed): the right tail (toward larger values) is longer. <strong>Skewed left</strong> (negatively skewed): the left tail is longer. <strong>Approximately symmetric</strong>: the left half is about a mirror image of the right half.</div><div class="cn"><b>右偏</b>（正偏）：右侧尾巴（较大值方向）更长。<b>左偏</b>（负偏）：左侧尾巴更长。<b>近似对称</b>：左右大致镜像。</div></div><div class="concept"><div class="term">Peaks<span class="zh">峰</span></div><div class="en"><strong>Unimodal</strong>: one main peak. <strong>Bimodal</strong>: two prominent peaks. <strong>Approximately uniform</strong>: all frequencies about the same, no prominent peaks.</div><div class="cn"><b>单峰</b>：一个主峰。<b>双峰</b>：两个明显的峰。<b>近似均匀</b>：各频数差不多，没有明显的峰。</div></div><div class="row" style="margin-top:2px"><div class="col"><svg id="shp0" viewbox="0 0 260 150" width="100%"></svg></div><div class="col"><svg id="shp1" viewbox="0 0 260 150" width="100%"></svg></div><div class="col"><svg id="shp2" viewbox="0 0 260 150" width="100%"></svg></div><div class="col"><svg id="shp3" viewbox="0 0 260 150" width="100%"></svg></div><div class="col"><svg id="shp4" viewbox="0 0 260 150" width="100%"></svg></div></div><div class="note warn small">⚠️ The direction of skewness is toward the <b>long tail</b>, not where most observations are. <span class="zh">偏的方向 = 长尾方向。</span></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.6.A.4–6。正式的离群值判断法（1.5×IQR、2σ）在下一课 1.7。" data-title="Unusual Features">
+<div class="tag">1.6 <b>· Key Concepts</b><span class="ek">EK 1.6.A.4–6</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Unusual Features <span class="zh">异常特征</span></h2><div class="concept pink"><div class="term">Outlier · gap · cluster<span class="zh">离群值 · 间隙 · 簇</span></div><div class="en"><strong>Outliers</strong> are values that are unusually small or large relative to the rest of the data. A <strong>gap</strong> is a region between two values with no observed data. <strong>Clusters</strong> are concentrations of values, usually separated by gaps.</div><div class="cn"><b>离群值</b>：与其他数据相比异常小或异常大的值。<b>间隙</b>：两个值之间没有数据的区域。<b>簇</b>：数据集中的区域，通常被间隙隔开。</div></div><svg id="ufStatic" viewbox="0 0 560 200" width="100%"></svg><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="随机生成五种形状。" data-title="🎮 Simulator: Name that shape!" id="simShape">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Name that shape!</span><span class="zh">形状判断游戏</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.6.A.2–3</span>
+<div class="row"><div class="col frame"><svg id="sgSvg" viewbox="0 0 560 280" width="100%"></svg></div><div class="col" style="flex:.7"><p class="small">A random distribution appears. What is its shape? <span class="zh">看图判断形状。</span></p>
+<div class="btns" style="flex-direction:column;align-items:flex-start"><button class="b" data-sg="0">Roughly symmetric</button><button class="b" data-sg="1">Skewed right</button><button class="b" data-sg="2">Skewed left</button><button class="b" data-sg="3">Bimodal</button><button class="b" data-sg="4">Approximately uniform</button></div>
+<div id="sgFb" style="margin-top:8px;min-height:50px"></div><div class="btns"><button class="b" id="sgNew">Next ↻</button></div><p class="score" id="sgScore"></p></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Describe the distribution">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.6.A · Skill 4.A</span></div>
+<h2>Describe the distribution <span class="zh">描述进球数的分布</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Describe the distribution of goals scored in 20 games by the 2016 U.S. women’s soccer team.</p><div class="q">Use SOCS and include context.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Shape:</b> the distribution of goals scored is <b>skewed to the right</b>, with a single peak at 1 goal. There is a <b>gap</b> between 5 and 9 goals.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Outliers:</b> the games when the team scored 9 and 10 goals appear to be outliers.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Center: the median is 2 goals scored.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Variability:</b> the number of goals scored varies from 1 to 10 goals.</div></div></div><div class="keyidea">🔑 Goals scored in 20 games.</div><div class="takeaway">💡 Did we include context? YES — “goals scored”, “games”, not just numbers.</div></div></div><div class="col vis"><div class="qv"><svg id="gEx" viewbox="0 0 560 240" width="100%"></svg></div><div class="sv"><svg id="gDesc" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Household size: U.K. vs. South Africa">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 1.2 · EK 1.9.A</span></div>
+<h2>Household size: U.K. vs. South Africa <span class="zh">家庭人数：英国 vs 南非</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Census At School’s “Random Data Selector” chose 50 students from each country. Compare the distributions of household size. <span class="muted small">(dotplots recreated from TPS)</span></p><div style="margin-top:8px"><div class="answ solo" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Shape:</b> U.K. is roughly symmetric with a single peak at 4 people; South Africa is skewed to the right with a single peak at 4 people and a clear gap between 15 and 26.</div></div><div class="answ solo" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Outliers:</b> none in the U.K.; South Africa seems to have two outliers — the households with 15 and 26 people.</div></div><div class="answ solo" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Center: household sizes for the South African students tend to be <b>larger</b> (median 6) than for the U.K. students (median 4).</div></div><div class="answ solo" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Variability:</b> South African household sizes vary <b>more</b> (3 to 26) than U.K. sizes (2 to 6).</div></div></div></div><div class="keyidea">🔑 Compare SOCS — explicitly!</div><div class="takeaway">💡 ✓ Context ✓ Comparative language — listing values is not enough!</div></div></div><div class="col vis"><div class="qv"><svg id="hhEx" viewbox="0 0 560 300" width="100%"></svg></div><div class="sv"><svg id="hhSol" viewbox="0 0 560 300" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 2 · Data: TPS 1.2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.6.B。" data-title="Justify a Claim with a Graph">
+<div class="tag">1.6 · Concept<span class="ek">EK 1.6.B.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Justify a Claim with a Graph <span class="zh">用图形论证结论</span></h2><div class="concept pink"><div class="term">Key idea<span class="zh">核心</span></div><div class="en">Graphical representations of a quantitative variable may reveal information that can be used to <strong>justify claims</strong> about the variable in context — cite specific features (counts, center, spread, outliers).</div><div class="cn">定量变量的图形可以用来结合语境论证结论——要引用具体的特征（个数、中心、变异、离群值）。</div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Is the claim supported?">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.6.B · Skill 4.B</span></div>
+<h2>Is the claim supported? <span class="zh">结论有依据吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Use the dotplot of goals scored (20 games).</p><div class="q"><b class="n">a</b>“The team usually scored at least 2 goals.”</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported — 14 of 20 games (70%) had 2 or more goals (pink).</div></div><div class="q"><b class="n">b</b>“The team never scored between 6 and 8 goals.”</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported for these 20 games — there is a <b>gap</b> from 6 to 8 goals.</div></div><div class="q"><b class="n">c</b>“A typical game had about 5 goals.”</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported — the center (median) is 2 goals; 5 or more happened in only 5 of 20 games.</div></div></div><div class="keyidea">🔑 Cite specific features of the graph.</div></div></div><div class="col vis"><div class="qv"><svg id="gJ" viewbox="0 0 560 240" width="100%"></svg></div><div class="sv"><svg id="gJs" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Which way is it skewed?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.6.A.2</span></div>
+<h2>Which way is it skewed?</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">Most students in a class finished a quiz in 8 to 12 minutes, but a few took 20, 25, and 30 minutes. The distribution of finishing times is most likely</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) skewed to the left</li><li>(B) skewed to the right</li><li>(C) roughly symmetric</li><li>(D) uniform</li><li>(E) bimodal</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">The long tail is toward <b>larger</b> values (20, 25, 30) → <b>skewed right</b> → <b>(B)</b>.</p><p style="margin:3px 0">Remember: skew points to the long tail, not where most data are.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq1" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 10: Reading a histogram">
+<div class="exhead"><span class="badge ex">📝 AP Practice 10 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.5.A.2</span></div>
+<h2>Reading a histogram</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">Use the histogram of the percent of foreign-born residents in the 50 states. How many states have <b>at least 15%</b> foreign-born residents?<svg id="mq2q" style="width:330px;display:block;margin:2px 0" viewbox="0 0 560 200"></svg></div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) 3</li><li>(B) 5</li><li>(C) 8</li><li>(D) 17</li><li>(E) 42</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">At least 15% → bins 15 to &lt;20, 20 to &lt;25, 25 to &lt;30.</p><p style="margin:3px 0">5 + 2 + 1 = 8 states → (C).</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq2" viewbox="0 0 560 260" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 11: Which graph?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 11 · AP 选择题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.5.A.1</span></div>
+<h2>Which graph?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which graph is not appropriate for displaying the distribution of the heights of 30 students?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) Dotplot</li><li>(B) Stem-and-leaf plot</li><li>(C) Histogram</li><li>(D) Pie chart</li><li>(E) Histogram with relative frequencies</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Dotplots, stemplots, and histograms keep the <b>number order</b> of a quantitative variable.</p><p style="margin:3px 0">A pie chart is for <b>categorical</b> data → (D).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus：CED 示例活动 Gallery Walk。" data-title="🎮 Simulator: One data set, three graphs" id="simThree">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">One data set, three graphs</span><span class="zh">一组数据，三种图（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.5.A · CED Activity 1</span>
+<div class="row"><div class="col" style="flex:.6"><p class="small">Type or paste numbers (e.g., minutes to get to school). <span class="zh">输入数据，例如上学用时。</span></p><textarea class="din" id="tgIn">12 15 8 20 25 10 18 30 5 15 22 12 14 9 35 16 11 13 20 45</textarea>
+<div class="btns"><button class="b" id="tgGo">Draw</button><button class="b" id="tgEx1">Example: shoes</button></div><p class="small muted">CED Sample Activity “Gallery Walk”: what does each graph show most easily?</p></div>
+<div class="col"><div class="frame"><svg id="tgDot" viewbox="0 0 560 170" width="100%"></svg></div><div class="row" style="gap:6px;margin-top:6px"><div class="frame" id="tgStem" style="flex:.55;overflow:hidden"></div><div class="frame" style="flex:1"><svg id="tgHist" viewbox="0 0 420 190" width="100%"></svg></div></div></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Reading a stemplot">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.5.A.3</span></div>
+<h2>Reading a stemplot</h2><div class="scrollcol"><div class="problem" style="font-size:19px">The stemplot shows the ages of 15 teachers at a school. Key: 3 | 4 = 34 years. What is the age of the oldest teacher, and how many teachers are in their 40s?<div style="margin:2px 0"><table class="stem" style="font-size:15px;line-height:1.1"><tr><td class="st">2</td><td class="lf">4 6 8 9</td></tr><tr><td class="st">3</td><td class="lf">0 1 3 5 5 7</td></tr><tr><td class="st">4</td><td class="lf">2 6 8</td></tr><tr><td class="st">5</td><td class="lf">1</td></tr><tr><td class="st">6</td><td class="lf">3</td></tr></table></div></div><ul class="opts" data-correct="0" data-quiet="1"><li>(A) 63 years; 3 teachers</li><li>(B) 6 years; 3 teachers</li><li>(C) 63 years; 4 teachers</li><li>(D) 51 years; 3 teachers</li><li>(E) 63 years; 2 teachers</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Largest: stem 6, leaf 3 → 63 years.</p><p style="margin:3px 0">40s: stem 4 → 42, 46, 48 → 3 teachers → (A).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Distribution</th><td class="zh" style="text-align:left">分布</td><td style="text-align:left">What values a variable takes and how often</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Dotplot</th><td class="zh" style="text-align:left">点图</td><td style="text-align:left">A dot for each value, stacked</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Stem-and-leaf plot (key!)</th><td class="zh" style="text-align:left">茎叶图</td><td style="text-align:left">Stem = all but last digit · leaf = last digit</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Histogram · bin width</th><td class="zh" style="text-align:left">直方图 · 组距</td><td style="text-align:left">Ordered bins, bars touch; bin width changes the look</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Skewed right · left · symmetric</th><td class="zh" style="text-align:left">右偏 · 左偏 · 对称</td><td style="text-align:left">Skew = direction of the long tail</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Unimodal · bimodal · uniform</th><td class="zh" style="text-align:left">单峰 · 双峰 · 均匀</td><td style="text-align:left">Number of peaks</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Outlier · gap · cluster</th><td class="zh" style="text-align:left">离群值 · 间隙 · 簇</td><td style="text-align:left">Unusual features</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">SOCS</th><td class="zh" style="text-align:left">形状·异常·中心·变异</td><td style="text-align:left">Shape, Outliers, Center, Spread — in context</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">1.5–1.6</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Number of hours 15 students slept last night:</p><div class="datarow" style="margin:8px 0">7 8 6 7 7 9 5 8 7 6 8 7 3 8 7</div><div class="q"><b class="n">1</b>Make a dotplot.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Dotplot from 3 to 9 hours (→).</div></div><div class="q"><b class="n">2</b>Describe the distribution (SOCS, in context).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Shape: roughly symmetric (slightly skewed left), single peak at 7 hours. Outlier: the student who slept 3 hours. Center: median 7 hours. Variability: hours of sleep vary from 3 to 9 hours.</div></div></div><div class="keyidea">🔑 Hours of sleep, 15 students.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 240" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：1.7（TPS 1.3）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 3</div><h1>Summary Statistics</h1><div class="zhT">数值概括 · Topic 1.7</div><p class="muted" style="margin-top:26px;font-size:22px">Mean, median, quartiles, percentiles, range, IQR, standard deviation, outlier rules — and which statistic to choose.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+
+/* ===== Unit 1 · Lesson 2 ===== */
+const PINKD='#C8577B';
+function lab(svg,x,y,t,c,a,fs){el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':800,fill:c||ROSE},svg,t);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const SF=nums('50 26 26 31 57 19 24 22 23 38 13 50 13 34 23 30 49 13 15 51'),SM=nums('14 7 6 5 12 38 8 7 10 10 10 11 4 5 22 7 5 10 35 7');
+const GOALS=nums('3 5 1 2 10 1 5 2 1 9 1 2 3 1 4 5 2 1 3 2');
+const median=a=>{const s=[...a].sort((x,y)=>x-y),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+
+/* warm-up */
+(function(){function draw(k){const s=$('wuSol');if(k<2){clear(s);lab(s,280,120,k===1?'Quantitative: a counted number of pairs':'',NAVY);return;}
+  dotplotV(s,SF,{lo:10,hi:60,step:5,r:6,xlab:'Pairs of shoes (20 female students)',B:200});if(k>=3){const X=v=>30+(v-10)/50*(510);el('line',{x1:X(26),x2:X(26),y1:40,y2:200,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'5 4'},s);lab(s,X(26)+6,40,'median 26',ROSE,'start',13);}}draw(0);onStep('wuSol',draw);})();
+
+/* goals dotplot */
+(function(){function draw(k){const s=$('gSol');if(k===0){clear(s);return;}const X=dotplotV(s,k>=2?GOALS:[],{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:200,hl:k>=3?(v=>v>=5?ROSE:null):null});if(k>=3)lab(s,420,40,'5 or more: 5 games',ROSE);}draw(0);onStep('gSol',draw);})();
+
+/* stemplot step */
+(function(){const unordered={1:[9,3,3,3,5],2:[6,6,4,2,3,3],3:[1,8,4,0],4:[9],5:[0,7,0,1]};
+  function tbl(rows,ttl){return `<div><p class="small" style="font-weight:700;margin-bottom:4px">${ttl}</p><table class="stem">${rows.map(([s,l])=>`<tr><td class="st">${s}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')}</table></div>`;}
+  function draw(k){const b=$('stSol');let h='';const st=[1,2,3,4,5];if(k>=1)h+=tbl(st.map(s=>[s,k>=2?unordered[s]:[]]),k>=2?'Add leaves':'Stems');if(k>=2)h+=tbl(st.map(s=>[s,[...unordered[s]].sort((a,b)=>a-b)]),'Order leaves');
+    if(k>=3)h+='<div style="align-self:flex-end"><p class="note small" style="max-width:200px">Key: <b>4 | 9</b> = 49 pairs of shoes</p></div>';b.innerHTML=h||'<p class="small muted">Steps build the stemplot →</p>';}draw(0);onStep('stSol',draw);})();
+/* back to back */
+(function(){function rows(a){const r=[];for(let s=0;s<=5;s++){r.push(a.filter(v=>Math.floor(v/10)===s&&v%10<5).map(v=>v%10).sort((x,y)=>x-y));r.push(a.filter(v=>Math.floor(v/10)===s&&v%10>=5).map(v=>v%10).sort((x,y)=>x-y));}return r;}
+  function draw(k){const F=rows(SF),M=rows(SM);let h='<table class="stem" style="font-size:19px"><tr><td class="lfL" style="font-size:14px;font-weight:800">Males</td><td></td><td style="font-size:14px;font-weight:800;color:var(--navy)">Females</td></tr>';
+    for(let i=0;i<12;i++){h+=`<tr><td class="lfL">${k>=1?[...M[i]].reverse().join(' '):''}</td><td class="st" style="border-left:3px solid var(--navy)">${Math.floor(i/2)}</td><td class="lf">${F[i].join(' ')}</td></tr>`;}
+    h+='</table><p class="small muted" style="margin-top:4px">Key: 4 | 9 = 49 pairs · split stems (0–4, 5–9)</p>';$('bbSol').innerHTML=h;}draw(0);onStep('bbSol',draw);})();
+
+/* foreign-born histogram */
+const FB=[20,13,9,5,2,1];const FBV=[];FB.forEach((c,i)=>{for(let j=0;j<c;j++)FBV.push(i*5+2.5);});
+(function(){function draw(k){const s=$('fbSol');if(k===0){clear(s);return;}histBins(s,FBV,{start:0,w:5,nb:6,ymax:24,ystep:4,labels:true,hl:k>=2?(a=>a<10):null,xlab:'Percent of foreign-born residents',ylab:'Number of states'});
+  if(k>=3){el('path',{d:'M 150 70 Q 330 120 520 220',stroke:ROSE,'stroke-width':3,fill:'none'},s);lab(s,400,80,'long right tail → skewed right',ROSE,'middle',14);}}draw(0);onStep('fbSol',draw);})();
+(function(){const q=$('mq2q');if(q)histBins(q,FBV,{start:0,w:5,nb:6,ymax:24,ystep:4,labels:true,xlab:'Percent of foreign-born residents',B:180});})();
+(function(){function draw(k){histBins($('mq2'),FBV,{start:0,w:5,nb:6,ymax:24,ystep:4,labels:true,hl:k>=1?(a=>a>=15):null,xlab:'Percent of foreign-born residents',ylab:'Number of states'});if(k>=2)lab($('mq2'),420,60,'5 + 2 + 1 = 8',ROSE);}draw(0);onStep('mq2',draw);})();
+
+/* bin width sim */
+const GEY=(function(){const r=srand(21);const a=[];for(let i=0;i<120;i++){const u1=r(),u2=r();const z=Math.sqrt(-2*Math.log(u1||1e-9))*Math.cos(2*Math.PI*u2);a.push(+(i<45?2.0+0.3*z:4.4+0.4*z).toFixed(1));}return a.map(v=>Math.max(1.5,Math.min(5.5,v)));})();
+let hm='count';
+function bw(){const w=+$('bwS').value/10,st=1+(+$('bsS').value)/10*w;$('bwV').textContent=w.toFixed(1);$('bsV').textContent=st.toFixed(2);const nb=Math.ceil((5.6-st)/w)+1;
+  const c=histBins($('bwSvg'),GEY,{start:+(st-w).toFixed(3),w,nb,rel:hm==='rel',ltick:Math.max(1,Math.round(.5/w)),xlab:'Eruption duration (minutes)',ylab:hm==='rel'?'Percent':'Count'});
+  $('bwMsg').innerHTML=w>=0.9?'Very wide bins → the <b>two peaks disappear</b>.':w<=0.15?'Very narrow bins → too bumpy to see the pattern.':'Two clusters (peaks) near 2 and 4.4 minutes → <b>bimodal</b>.';}
+['bwS','bsS'].forEach(i=>$(i).oninput=bw);document.querySelectorAll('[data-hm]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-hm]').forEach(x=>x.classList.remove('on'));b.classList.add('on');hm=b.dataset.hm;bw();});bw();
+
+/* shape thumbnails */
+function shapeData(t,r){const a=[];const N=60;for(let i=0;i<N;i++){const u=r(),v=r();const z=Math.sqrt(-2*Math.log(u||1e-9))*Math.cos(2*Math.PI*v);let x;
+  if(t===0)x=5+1.4*z;else if(t===1)x=1+Math.min(9,-2.2*Math.log(1-r()));else if(t===2)x=9-Math.min(8,-2.2*Math.log(1-r()));else if(t===3)x=(r()<.5?2.8:7.2)+0.8*z;else x=0.5+r()*9;a.push(Math.max(0,Math.min(10,Math.round(x))));}return a;}
+const SHN=['Roughly symmetric','Skewed right','Skewed left','Bimodal','Approximately uniform'];
+for(let i=0;i<5;i++){const s=$('shp'+i);if(!s)continue;const d=shapeData(i,srand(100+i));dotplotV(s,d,{lo:0,hi:10,step:2,r:4,dy:7.5,B:115,fs:10,col:i===1||i===2?PINKD:NAVY});lab(s,130,143,SHN[i],INK,'middle',13);}
+/* unusual features static */
+(function(){const s=$('ufStatic');const d=[2,3,3,4,4,4,4,5,5,5,6,6,11,11,12,12,12,13,13,20];dotplotV(s,d,{lo:0,hi:22,step:2,r:6,B:150,hl:v=>v===20?ROSE:(v>=11?'#E2B64F':null)});
+  lab(s,80,30,'cluster 1',NAVY,'middle',13);lab(s,300,50,'cluster 2','#B07B0C','middle',13);lab(s,200,105,'gap',MUTED,'middle',13);lab(s,500,105,'outlier',ROSE,'middle',13);})();
+
+/* shape game */
+let sgT=0,sgR=0,sgN=0,sgDone=false;
+function sgNew(){sgT=rint(0,4);sgDone=false;dotplotV($('sgSvg'),shapeData(sgT,Math.random),{lo:0,hi:10,step:1,r:6,dy:11,B:230,xlab:'Value'});$('sgFb').innerHTML='';}
+document.querySelectorAll('[data-sg]').forEach(b=>b.onclick=()=>{if(sgDone)return;sgDone=true;const ok=+b.dataset.sg===sgT;sgN++;if(ok)sgR++;$('sgFb').innerHTML=ok?`<div class="ans">✓ ${SHN[sgT]}!</div>`:`<div class="note warn small">✗ It is <b>${SHN[sgT].toLowerCase()}</b>.</div>`;$('sgScore').textContent=`Score: ${sgR} / ${sgN}`;});
+$('sgNew').onclick=sgNew;sgNew();
+
+/* describe goals */
+dotplotV($('gEx'),GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:195});
+(function(){function draw(k){const s=$('gDesc');const X=dotplotV(s,GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:205,hl:k===2?(v=>v>=9?ROSE:null):(k===4?(v=>'#8A93B8'):null)});
+  if(k>=1){el('path',{d:`M ${X(1.3)} 120 Q ${X(5)} 160 ${X(10)} 175`,stroke:ROSE,'stroke-width':2.5,fill:'none'},s);lab(s,X(7),120,'skewed right · gap 5–9',ROSE,'middle',13);}
+  if(k>=2)lab(s,X(9.5),150,'outliers',ROSE,'middle',13);if(k>=3){el('line',{x1:X(2),x2:X(2),y1:40,y2:205,stroke:NAVY,'stroke-width':2,'stroke-dasharray':'5 4'},s);lab(s,X(2)+6,40,'median = 2',NAVY,'start',13);}
+  if(k>=4){el('line',{x1:X(1),x2:X(10),y1:28,y2:28,stroke:'#B07B0C','stroke-width':3},s);lab(s,X(5.5),22,'range: 1 to 10 goals','#B07B0C','middle',13);}}draw(0);onStep('gDesc',draw);})();
+
+/* household sizes */
+function rep(pairs){const a=[];pairs.forEach(([v,c])=>{for(let i=0;i<c;i++)a.push(v);});return a;}
+const UK=rep([[2,3],[3,9],[4,20],[5,13],[6,5]]),SA=rep([[3,4],[4,10],[5,8],[6,6],[7,5],[8,5],[9,4],[10,3],[11,1],[12,2],[15,1],[26,1]]);
+function hh(svg,k){clear(svg);const L=90,R=540,lo=0,hi=30;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  [[SA,'South Africa',125,PINKD],[UK,'U.K.',265,NAVY]].forEach(([d,n,B,c])=>{el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);for(let t=0;t<=30;t+=5)el('text',{x:X(t),y:B+14,'text-anchor':'middle','font-size':11,fill:INK},svg,t);
+    el('text',{x:10,y:B-30,'font-size':14,'font-weight':800,fill:c},svg,n);const cnt={};d.forEach(v=>{cnt[v]=(cnt[v]||0)+1;const hl=k===2&&n==='South Africa'&&v>=15;el('circle',{cx:X(v),cy:B-4-(cnt[v]-1)*5,r:2.6,fill:hl?'#E2B64F':c},svg);});
+    if(k>=3){const m=median(d);el('line',{x1:X(m),x2:X(m),y1:B-110,y2:B,stroke:'#E2B64F','stroke-width':2,'stroke-dasharray':'4 3'},svg);lab(svg,X(m)+5,B-96,'median '+m,'#B07B0C','start',12);}
+    if(k>=4){const a=Math.min(...d),b=Math.max(...d);el('line',{x1:X(a),x2:X(b),y1:B+24,y2:B+24,stroke:c,'stroke-width':3},svg);lab(svg,X(b)+4,B+29,`${a}–${b}`,c,'start',12);}});
+  el('text',{x:(L+R)/2,y:290,'text-anchor':'middle','font-size':12,'font-weight':700,fill:INK},svg,'Household size (people)');}
+hh($('hhEx'),0);onStep('hhSol',k=>hh($('hhSol'),k));hh($('hhSol'),0);
+
+/* justify */
+dotplotV($('gJ'),GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:195});
+(function(){function draw(k){const X=dotplotV($('gJs'),GOALS,{lo:0,hi:10,step:1,r:8,xlab:'Goals scored',B:195,hl:k===1?(v=>v>=2?ROSE:null):(k===3?(v=>v>=5?'#E2B64F':null):null)});const s=$('gJs');
+  if(k===1)lab(s,400,40,'2 or more: 14 of 20 = 70%',ROSE);if(k===2){el('rect',{x:X(5.5),y:60,width:X(8.5)-X(5.5),height:135,fill:'#F4C3D0',opacity:.4},s);lab(s,X(7),55,'gap 6–8',ROSE);}if(k===3)lab(s,400,40,'median = 2, not 5','#B07B0C');}draw(0);onStep('gJs',draw);})();
+
+/* MCQ 1 */
+(function(){const d=[8,8,9,9,9,10,10,10,10,10,11,11,11,11,12,12,12,9,10,11,20,25,30];function draw(k){const X=dotplotV($('mq1'),d,{lo:5,hi:32,step:5,r:6,xlab:'Minutes to finish the quiz',B:190,hl:k>=1?(v=>v>=20?ROSE:null):null});if(k>=1){el('path',{d:`M ${X(13)} 150 L ${X(30)} 150`,stroke:ROSE,'stroke-width':3,'marker-end':''},$('mq1'));lab($('mq1'),X(22),140,'long right tail →',ROSE);}}draw(0);onStep('mq1',draw);})();
+
+/* three graphs */
+function tgDraw(){const d=nums($('tgIn').value);if(d.length<2)return;const lo=Math.min(...d),hi=Math.max(...d);const span=hi-lo||1;const step=span>40?10:span>20?5:span>10?2:1;const lo2=Math.floor(lo/step)*step,hi2=Math.ceil(hi/step)*step;
+  dotplotV($('tgDot'),d,{lo:lo2,hi:hi2,step,r:Math.max(3,Math.min(6,120/d.length)),dy:Math.max(5,Math.min(12,240/d.length)),B:135});
+  const ints=d.every(v=>Number.isInteger(v));$('tgStem').innerHTML=ints&&hi<1000?stemHTML(d,{key:`${Math.floor(hi/10)} | ${hi%10} = ${hi}`}):'<p class="small muted">Stemplot needs whole numbers.</p>';
+  const w=step;histBins($('tgHist'),d,{start:lo2,w,nb:Math.max(1,Math.ceil((hi2-lo2+1e-9)/w)+(hi===hi2?1:0)),labels:true,B:160});}
+$('tgGo').onclick=tgDraw;$('tgEx1').onclick=()=>{$('tgIn').value=SF.join(' ');tgDraw();};tgDraw();
+
+/* exit */
+(function(){const d=nums('7 8 6 7 7 9 5 8 7 6 8 7 3 8 7');function draw(k){const X=dotplotV($('exSol'),k>=1?d:[],{lo:2,hi:10,step:1,r:8,xlab:'Hours of sleep last night',B:190,hl:k>=2?(v=>v===3?ROSE:null):null});if(k>=2){lab($('exSol'),X(3),70,'outlier',ROSE);el('line',{x1:X(7),x2:X(7),y1:30,y2:190,stroke:'#E2B64F','stroke-width':2,'stroke-dasharray':'4 3'},$('exSol'));lab($('exSol'),X(7)+6,30,'median 7','#B07B0C','start',13);}}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>
