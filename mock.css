@@ -25,3 +25,5 @@
 .reference-scroll{overflow:auto;max-height:62dvh;background:#fff}
 .reference-scroll img{display:block;width:100%;height:auto;max-width:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+#calculator{width:min(860px,calc(100vw - 32px));height:650px;max-height:calc(100dvh - 100px);top:80px;right:16px;min-width:280px;min-height:320px}#calculator:not([hidden]){display:flex;flex-direction:column}#calculator [hidden]{display:none!important}#calculator .calculator-heading,#calculator .calculator-tabs{flex-shrink:0}#calculator .calculator-tabs{justify-content:flex-start;gap:8px;padding:6px 12px;background:#fff}#calculator .calculator-tabs button{padding:6px 10px;font-size:13px}#calculator .calculator-tabs button[aria-pressed=true]{background:#244fce;color:white}#calculator p{margin:6px 12px;padding:0;flex-shrink:0}#calculator iframe{flex:1;min-height:0;height:auto;width:100%;background:white}@media(max-width:620px){#calculator{top:16px;max-height:calc(100dvh - 32px);width:calc(100vw - 32px)}}
