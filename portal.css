@@ -874,3 +874,20 @@ dialog::backdrop {
     grid-row: 2 / 4;
   }
 }
+.q-text strong span {
+  font-weight: 500;
+  color: var(--mg-muted);
+  font-size: 13.5px;
+  margin-left: 2px;
+}
+.q-user {
+  background: var(--mg-paper);
+  color: var(--mg-ink-2);
+  border: 1px solid var(--mg-line);
+}
+.q-user.signed-in {
+  background: var(--mg-ink);
+  color: #fff;
+  border-color: var(--mg-ink);
+  font-size: 18px;
+}
