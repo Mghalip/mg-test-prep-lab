@@ -1,0 +1,646 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Reading 02 · Words in Context II</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#1f6f78; --acc2:#dcefee; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Words in Context II" data-foot="Digital SAT Reading · 02 · Words in Context II"><div class="no">LESSON 02</div><h1>Words in Context II</h1><div class="sub">Contrast clues, negative words, and words used in an unusual sense</div><div class="cnsub">转折对比线索、否定词，以及熟词僻义</div><div class="goals"><div><b>CONTRAST</b>Use but, however, rather, on the other hand to predict the opposite of the clue.</div><div><b>NEGATION</b>Handle not, by no means, unlikely to, declines to without losing track of the meaning.</div><div><b>MOST NEARLY MEAN</b>Choose the meaning a familiar word has in this particular sentence.</div></div></section>
+<section class="slide " data-title="From Lesson 1: the text always explains the blank" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Review</div><h2>From Lesson 1: the text always explains the blank</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Lesson 1 clues</h3><ul class="concept-list"><li><b>Restatement / synonym</b><span class="cn">重述 / 同义表达</span></li><li><b>Cause and result</b><span class="cn">原因与结果</span></li><li><b>Examples / word association</b><span class="cn">举例 / 词语关联</span></li></ul><p>In all of these, the clue means <b>the same</b> as the blank.</p><p class="cn">第一课的线索：空格和线索“同向”。</p></div>
+ <div class="box acc"><h3>This lesson</h3><ul class="concept-list"><li><b>Contrast clues</b>: the clue means the <b>opposite</b> of the blank.<span class="cn">转折线索：线索与空格“反向”。</span></li><li><b>Negation</b>: a word like <i>not</i> flips the meaning of the blank.<span class="cn">否定词：注意 not 如何改变方向。</span></li><li><b>Most nearly mean</b>: a familiar word is used with a less common meaning.<span class="cn">熟词生义：根据当前语境判断含义。</span></li></ul></div>
+</div></section>
+<section class="slide " data-title="Contrast clues: find the opposite, then flip it" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Contrast clues</div><h2>Contrast clues: find the opposite, then flip it</h2></header>
+<table class="t sm">
+<tr><th>Signal</th><th>Examples of signal words</th></tr>
+<tr><td>Contrast</td><td><i>but, however, yet, although, though, while, whereas, despite, in contrast, on the other hand, unlike, instead, rather than</i></td></tr>
+<tr><td>Correction</td><td><i>not … but …, rather, in fact, actually</i>: the second half corrects the first</td></tr>
+</table>
+<div class="ex">A viburnum plant experiencing insect damage may develop erineum—a <u>discolored, felty growth</u>. A <span class="bl"></span> viburnum plant, <u>on the other hand</u>, will have leaves with smooth surfaces and uniformly green coloration.</div>
+<div class="grid g2">
+ <div class="box white"><h3>How to use it</h3><p>1. Find the idea on the other side of the signal: a <b>damaged</b> plant. 2. Flip it: <b>not damaged</b>. 3. Match: <b>healthy</b> (3-2-1).</p><p class="cn">先找转折另一边的意思，再取反。</p></div>
+ <div class="box white"><h3>Careful</h3><p>Ask <b>what exactly</b> is being contrasted. Here it is damaged vs. undamaged, so “healthy” fits; “simple” or “beneficial” do not.</p><p class="cn">弄清楚对比的是哪一点。</p></div>
+</div></section>
+<section class="slide " data-title="Negative words change the direction" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Negation</div><h2>Negative words change the direction</h2></header>
+<p class="lead">When a negative word stands next to the blank, decide first what the <b>whole phrase</b> must mean, then work out the blank.</p>
+<table class="t sm">
+<tr><th>Text</th><th>Whole phrase must mean</th><th>So the blank means</th></tr>
+<tr><td>It is <b>by no means</b> ___ to recognize Bosch’s influence; <i>indeed, Banisadr himself cites Bosch</i>… <span class="cn">4-1-4</span></td><td>recognizing it <b>matters</b></td><td>not important → <b>unimportant</b></td></tr>
+<tr><td>Poet is an occupation which is <b>not</b> ___ in Delany’s work: <i>nearly a dozen characters are poets</i>. <span class="cn">4-2-5</span></td><td>poets are <b>common</b></td><td>unusual → <b>atypical</b></td></tr>
+<tr><td>The delays are <b>unlikely to</b> ___ her projection <b>entirely but</b> will extend its time frame. <span class="cn">2-2-3</span></td><td>the projection <b>survives</b>, just later</td><td>destroy it → <b>invalidate</b></td></tr>
+<tr><td>Jemisin <b>declines to</b> ___ the conventions…; readers like her <i>willingness to thwart expectations</i>. <span class="cn">3-2-3</span></td><td>she <b>breaks</b> the conventions</td><td>follow → <b>conform to</b></td></tr>
+</table>
+<div class="box acc"><p><b>Double negatives</b> (<i>by no means un-…</i>, <i>not atypical</i>) are common in hard questions. Say the whole phrase in plain words first: “not atypical” = “typical.” <span class="cn">双重否定先翻译成肯定的大白话。</span></p></div></section>
+<section class="slide " data-title="The second stem: “most nearly mean”" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Most nearly mean</div><h2>The second stem: “most nearly mean”</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>What it looks like</h3><p class="ex" style="font-size:16px">As used in the text, what does the word “trace” most nearly mean?</p>
+  <p style="margin-top:8px">There is no blank. One word in the text is the target, and the choices are possible meanings. The word is usually <b>familiar</b>, used in a <b>less common</b> sense, often in an older literary text.</p><p class="cn">没有空格，问原文某个词在此处的意思。常考熟词僻义，多出现在文学选段里。</p></div>
+ <div class="box white"><h3>How to do it</h3><ol>
+  <li><b>Cover the word</b> and treat it as a blank.</li>
+  <li>Predict a word from the context, as in Lesson 1.</li>
+  <li>Put each choice in place of the word. Keep the one that fits <b>this</b> sentence, not the word’s most common meaning.</li></ol>
+  <p class="cn">把目标词当作空格，用上下文预测，再把选项代回去。不要选这个词最常见的意思。</p>
+  <p style="margin-top:8px"><i>disputing every inch of our passage</i> with wagons and baskets → not “arguing” but <b>getting in the way</b> (6-1-4).</p></div>
+</div></section>
+<section class="slide " data-title="Steps for contrast and negation questions" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">How to approach it</div><h2>Steps for contrast and negation questions</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Read the whole text and circle signal words</h3><p><i>but, however, on the other hand, rather</i>; <i>not, no, never, by no means, unlikely, declines, fails</i>. <span class="cn">圈出转折词和否定词。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Find the clue on the other side</h3><p>What does the text say on the other side of the contrast, or after the colon? <span class="cn">找转折另一侧或冒号后的线索。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Decide the meaning of the whole phrase, then the blank</h3><p>Flip for contrast; flip again for each negative word. Write your prediction down. <span class="cn">先定整句意思，遇转折、否定各翻转一次。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Match and reread</h3><p>Read the full sentence with your choice, including the negative word. Does it say what the text means? <span class="cn">连同否定词一起代回去读。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Skill builder · Flip it: a contrast think-aloud" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Skill Builder</div><h2>Contrast think-aloud: find the other side, then flip it</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Read the text · say “blank”</h3><p class="ex"><span class="why" style="margin:0 0 3px">Mini passage · teacher-written</span>After the six-hour climb, most of the hikers collapsed onto the grass, too tired to speak. Mina, <b>however</b>, seemed completely _______, as if she had just woken from a long nap.</p><p style="font-size:16px"><b>Which choice completes the text with the most logical and precise word?</b><br>A) weary&nbsp;&nbsp; B) refreshed&nbsp;&nbsp; C) cautious&nbsp;&nbsp; D) annoyed</p><div class="box acc"><p><b>Contrast rule:</b> the blank is the <b>opposite</b> of the idea on the other side of <i>however</i> — but only on the point being contrasted (here: tired vs. not tired). <span class="cn">转折题：找到转折另一边的意思再取反，而且只在“被对比的那一点”上取反。</span></p></div></div><div class="box white"><h3>Think aloud · 边读边想</h3><p style="margin:0 0 8px"><b class="term">1 · Circle the signal</b> <b>however</b> → Mina is different from “most of the hikers.” <span class="cn">however 表明 Mina 与其他人相反。</span></p><p style="margin:0 0 8px"><b class="term">2 · What is on the other side?</b> The others were “too tired to speak.” <span class="cn">另一边：其他人累得说不出话。</span></p><p style="margin:0 0 8px"><b class="term">3 · Flip it, and check with a second clue</b> Opposite of very tired = full of energy. A second clue agrees: “as if she had just woken from a long nap.” <span class="cn">取反：精力充沛；后半句“像刚睡醒”再次确认。</span></p><p style="margin:0 0 8px"><b class="term">4 · Match</b> <b>refreshed</b> ✓. <i>weary</i> (= tired) describes the other hikers — a classic trap. <i>cautious</i> and <i>annoyed</i> are not about tiredness at all. <span class="cn">weary 是“没翻转”的陷阱；另外两个与对比点无关。</span></p></div></div></section>
+<section class="slide " data-title="Skill builder · Count the negatives" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Skill Builder</div><h2>Negative words: decide what the whole phrase means</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Words that flip the meaning · 否定/反向词</h3>
+<p><b>not / never / no</b> 不 · <b>hardly, scarcely</b> 几乎不 · <b>by no means</b> 绝不 · <b>far from</b> 远非 · <b>unlikely to</b> 不太可能 · <b>fail to</b> 未能 · <b>decline to / refuse to</b> 拒绝 · <b>lack</b> 缺乏 · <b>rarely, seldom</b> 很少 · prefixes <b>un- / in- / dis-</b> 不</p>
+<div class="box acc"><p><b>Two negatives = a positive.</b> “not uncommon” = common. “hardly surprising” = expected. <span class="cn">双重否定 = 肯定。每遇到一个否定词就把方向翻一次。</span></p></div><p class="ex"><span class="why" style="margin:0 0 3px">Example 2</span>The new rule is <b>unlikely to</b> _______ the problem entirely, but it should make it smaller.</p><p style="margin:0 0 8px"><b class="term">1 · Whole phrase → blank</b> The problem will still exist, just smaller. So the rule will <i>not</i> <b>eliminate</b> it. <span class="cn">问题仍在只是变小 → 不能“彻底消除”。</span></p></div><div class="box white"><h3>Think aloud · hardly + blank</h3><p class="ex"><span class="why" style="margin:0 0 3px">Example 1</span>The result was <b>hardly</b> _______: almost every scientist had predicted it years earlier.</p><p style="margin:0 0 8px"><b class="term">1 · Whole phrase</b> Everyone predicted it → the result was <i>expected</i>. <span class="cn">整句意思：在预料之中。</span></p><p style="margin:0 0 8px"><b class="term">2 · Remove the negative</b> “hardly ___” = expected, so ___ = <b>surprising / unexpected</b>. <span class="cn">去掉 hardly，空格就取反：令人意外的。</span></p><p class="ex"><span class="why" style="margin:0 0 3px">Example 3</span>Snow is <b>far from</b> _______ in this mountain town: it falls on more than 150 days a year.</p><p style="margin:0 0 8px"><b class="term">1 · Whole phrase → blank</b> Snow 150 days a year → snow is <i>common</i>. “far from ___” = common, so ___ = <b>rare / unusual</b>. <span class="cn">远非罕见 = 很常见，空格取反：罕见的。</span></p></div></div></section>
+<section class="slide " data-title="Skill builder · “Most nearly mean” and precision" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Skill Builder</div><h2>“Most nearly mean”: replace the word, keep the sentence’s meaning</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Think aloud · cover the word</h3><p class="ex"><span class="why" style="margin:0 0 3px">Mini passage · teacher-written</span>Visitors to the temple are asked to <b>observe</b> a few simple rules: remove your shoes, speak quietly, and do not take photographs.</p><p style="font-size:16px"><b>As used in the text, what does the word “observe” most nearly mean?</b><br>A) watch&nbsp;&nbsp; B) follow&nbsp;&nbsp; C) notice&nbsp;&nbsp; D) study</p><p style="margin:0 0 8px"><b class="term">1 · Cover the word</b> Visitors are asked to ___ rules, and the rules are actions to do. <span class="cn">先遮住目标词。</span></p><p style="margin:0 0 8px"><b class="term">2 · Predict</b> to obey, to do what the rules say · 遵守。</p><p style="margin:0 0 8px"><b class="term">3 · Match</b> <b>follow</b> ✓. “watch / notice / study” are the usual meanings of <i>observe</i>, but you cannot “watch” a rule. <span class="cn">常见词义 watch 是陷阱，要用语境义。</span></p></div><div class="box white"><h3>Precision: close is not enough · 精确</h3>
+<p>When two choices point the same direction, choose the one that matches the <b>exact</b> idea and the <b>strength</b> of the text.</p>
+<p class="ex">Text: the critic “had a few doubts” about the film.</p>
+<p class="ex ok">✅ <i>reservations</i> (some doubts)<span class="why">same idea, same strength · 保留意见</span></p>
+<p class="ex no">❌ <i>contempt</i> (strong hatred)<span class="why">too strong · 程度过强</span></p>
+<p class="ex no">❌ <i>indifference</i> (not caring)<span class="why">wrong idea: doubts ≠ not caring</span></p>
+<p class="cn">两个选项方向相同时，比较“具体意思”和“程度强弱”，选和原文最一致的那个。</p></div></div></section>
+<section class="slide " data-title="Quick check · Contrast, negation, precision" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Quick Check</div><h2>Quick check · Contrast, negation, precision<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>Most early critics dismissed the novel, but later readers found it _______.</summary><div class="a">Opposite of “dismissed” → <b>valuable / admirable</b>. 前人否定，后人肯定。</div></details><details class="qc"><summary><span class="q">2.</span>Unlike his talkative brother, Sam was _______ and rarely spoke in class.</summary><div class="a">Opposite of talkative → <b>reserved / quiet / reticent</b>. 有两个线索：unlike + rarely spoke。</div></details><details class="qc"><summary><span class="q">3.</span>The findings are <i>not</i> _______; in fact, three other studies reported the same pattern.</summary><div class="a">Whole phrase: the findings are typical → blank = <b>unusual / anomalous</b>. 双重否定。</div></details><details class="qc"><summary><span class="q">4.</span>Although the town is small, its library is surprisingly _______.</summary><div class="a">Contrast with “small” → <b>large / extensive</b>.</div></details><details class="qc"><summary><span class="q">5.</span>The company <i>failed to</i> _______ its goal; sales fell short by 20 percent.</summary><div class="a">What it did not do → <b>meet / achieve</b> the goal.</div></details><details class="qc"><summary><span class="q">6.</span>“The judge’s ruling was <i>sound</i>.” “sound” most nearly means:</summary><div class="a"><b>reasonable / well-founded</b> (合理的), not “noise.” 熟词僻义。</div></details><details class="qc"><summary><span class="q">7.</span>Text: the plan was “slightly delayed.” Choice: <i>abandoned</i>. Good match?</summary><div class="a"><b>No</b>: delayed ≠ given up; also much too strong.</div></details><details class="qc"><summary><span class="q">8.</span>Rather than _______ the old theory, the new data actually support it.</summary><div class="a">Opposite of “support” → <b>challenge / undermine</b>. rather than 两边相反。</div></details></div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T4-1-04" data-lab="Form 4 · Module 1 · Question 4 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The blank describes recognizing Bosch’s influence on Banisadr’s paintings. But notice: “It is <b>by no means</b> ___”. We must decide what the whole phrase means.</p><p class="cn">注意 by no means（绝不）放在空格前面。</p></div></div><div class="right fitq"><div class="qimg" data-q="T4-1-04"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T4-1-04" data-hl="1-4" data-lab="Form 4 · Module 1 · Question 4 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Find the clue</h3><p>“<b>indeed</b>, Banisadr himself cites Bosch as an inspiration.” <i>Indeed</i> supports the first sentence: Bosch’s influence is real and obvious.</p></div></div><div class="step"><div class="n">2</div><div><h3>Meaning of the whole phrase</h3><p>Recognizing Bosch’s influence is <b>reasonable / worthwhile</b>. The next sentence (<i>However</i>…) only says another work may have had a <i>greater</i> impact.</p></div></div><div class="step"><div class="n">3</div><div><h3>Remove the negative</h3><p>“by no means ___” = “worthwhile” → the blank = <b>not worthwhile, unimportant</b>.</p></div></div><div class="step"><div class="n">4</div><div><h3>Check</h3><p>“It is by no means unimportant” = it is important. ✓</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T4-1-04"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r">“by no means <i>substantial</i>” = not important at all. That conflicts with “indeed, Banisadr himself cites Bosch.”</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r"><i>satisfying</i>: the text is about whether the influence is real, not whether noticing it is pleasant.</div></div><div class="vd keep hidden-v"><div class="L">C</div><div class="v">KEEP ✓</div><div class="r">“by no means <i>unimportant</i>” = it does matter to recognize Bosch’s influence, which Banisadr himself confirms.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">“by no means <i>appropriate</i>” = it would be wrong to recognize the influence. Opposite of the text.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: C.</b> First decide what the whole phrase must mean (recognizing Bosch’s influence matters), then remove the negative. <span class="cn">双重否定：by no means unimportant = important。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 6 · Module 2 · Question 3" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Worked Example 2</div><h2>Form 6 · Module 2 · Question 3<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T6-2-03" data-hl="5-7" data-lab="Form 6 · Module 2 · Question 3 · the text"></div><div class="qimg" data-q="T6-2-03"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Fill the blank: what did skeptical colleagues say the kea’s use of stones “might simply be”? <span class="cn">空格是“怀疑者”对鹦鹉用石头这一行为的看法。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 找线索</h3><p>Signal: “…might simply be ___, <b>but</b> Bastos and her team showed that the kea was using the stones <b>deliberately</b>.” <span class="cn">but 后：研究团队证明鹦鹉是“故意的”。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>The skeptics said the opposite of “deliberately” → “by chance, not on purpose.” <span class="cn">取反：偶然的、无意的。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对比选项</h3><p><b>accidental</b> = not on purpose ✓. It is the exact opposite of “deliberately.” <span class="cn">accidental 正好是 deliberately 的反义。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ <i>intriguing</i> = interesting. Being interesting is not the opposite of deliberate, and skeptics would not doubt it.<br><b>B</b> ✗ <i>obvious</i>: the contrast is about whether the act was on purpose, not whether it was easy to see.<br><b>D</b> ✗ <i>observable</i>: the stone use was clearly observed; the question was whether it was intentional.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: C.</b> <b>Contrast.</b> The skeptics said the kea’s use of stones might be ___, <b>but</b> Bastos showed the kea “was using the stones <b>deliberately</b>.” The opposite of deliberately is <b>accidental</b>. <span class="cn">but 后是 deliberately（故意的），反义 → accidental。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 3 · Module 2 · Question 1" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Worked Example 3</div><h2>Form 3 · Module 2 · Question 1<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T3-2-01" data-hl="1-6" data-lab="Form 3 · Module 2 · Question 1 · the text"></div><div class="qimg" data-q="T3-2-01"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Fill the blank: what kind of viburnum plant has smooth, green leaves? <span class="cn">空格描述一种叶子光滑、均匀绿色的植物。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 找线索</h3><p>Sentence 1: a plant “experiencing insect <b>damage</b>” gets a discolored, felty growth. Sentence 2: “A ___ plant, <b>on the other hand</b>, will have … smooth … green” leaves. <span class="cn">on the other hand 表对比：受虫害 vs. 空格。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>Opposite of “damaged by insects” → “not damaged, in good condition.” <span class="cn">取反：没受损的、健康的。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对比选项</h3><p><b>healthy</b> ✓. Check the contrast point: damaged vs. undamaged — not helpful vs. harmful, not simple vs. complex. <span class="cn">对比的是“受损 vs. 健康”。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ <i>struggling</i> describes the damaged plant, not its opposite.<br><b>B</b> ✗ <i>beneficial</i> = helpful to others. The contrast is damaged vs. not damaged, not helpful vs. harmful.<br><b>C</b> ✗ <i>simple</i>: nothing in the text is about how complex the plant is.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> <b>Contrast.</b> First: a plant <b>with insect damage</b> gets a discolored, felty growth. “<b>On the other hand</b>”: a ___ plant has smooth, uniformly green leaves. Opposite of a damaged plant = <b>healthy</b>. <span class="cn">受虫害的植物 vs. 健康的植物。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 1 · Module 2 · Question 3" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Worked Example 4</div><h2>Form 1 · Module 2 · Question 3<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T1-2-03" data-hl="3-5" data-lab="Form 1 · Module 2 · Question 3 · the text"></div><div class="qimg" data-q="T1-2-03"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Fill the blank: how does the diaphragm contract during hiccups? <span class="cn">空格描述打嗝时膈肌“怎样”收缩。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 找线索</h3><p>Next sentence: “<b>these uncontrollable contractions</b>.” <i>These</i> points back to the blank. Careful: <i>However</i> contrasts the struggle to find causes with Whitehead’s finding; it does not flip the blank. <span class="cn">these 回指空格；However 对比的不是空格本身。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“without control, not on purpose.” <span class="cn">预测：不受控制地。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对比选项</h3><p><b>involuntarily</b> = without choosing to ✓ = uncontrollable. <span class="cn">involuntarily 与 uncontrollable 同义复现。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ <i>beneficially</i>: the possible benefit is Whitehead’s new finding, not part of the definition of a hiccup.<br><b>C</b> ✗ <i>strenuously</i> = with great effort. The text says the contractions are uncontrollable, not effortful.<br><b>D</b> ✗ <i>smoothly</i>: nothing describes hiccups as smooth; they are sudden and uncontrolled.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> <b>Restatement after a contrast.</b> The <i>However</i> sentence calls them “these <b>uncontrollable</b> contractions.” “These” points back to the blank, so the contractions happen without control: <b>involuntarily</b>. Note: <i>However</i> contrasts the <b>struggle</b> to find causes with Whitehead’s finding; it does not flip the blank. <span class="cn">these uncontrollable contractions 回指空格 → involuntarily。看清 However 对比的是什么。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 2-2-3" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Practice 1 of 4</div><h2>Form 2 · Module 2 · Question 3</h2></header><div class="work"><div class="pv" data-p="T2-2-03" data-lab="Form 2 · Module 2 · Question 3 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-03"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="5-7" data-hint="5-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Look at <i>unlikely to … entirely but</i>. What will happen to the economist’s projection?</div><div class="fb"></div><template class="why"><b>Negation + correction.</b> The delays “are unlikely to ___ her projection <b>entirely</b> <b>but</b> will … extend its time frame.” So the projection will survive; it will just take longer. The delays will not completely <b>invalidate</b> (= prove wrong) it. <span class="cn">不会“完全推翻”，只会“推迟”。</span></template><template class="wrong" data-l="A"><i>dispute</i> = argue against. Delays are events, not people who argue. Also, “unlikely to dispute it entirely” is unclear.</template><template class="wrong" data-l="B"><i>withdraw</i>: only the economist could withdraw her own projection; delays cannot.</template><template class="wrong" data-l="C"><i>underscore</i> = emphasize, support. Delays work against growth, so they would not support the projection at all.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 5-1-1" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Practice 2 of 4</div><h2>Form 5 · Module 1 · Question 1</h2></header><div class="work"><div class="pv" data-p="T5-1-01" data-lab="Form 5 · Module 1 · Question 1 · the text"></div><div class="right"><div class="qimg" data-q="T5-1-01"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="7-9" data-hint="7-9"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Cover the word “trace.” What did Fox-Foot not want the group to leave, since he thinks they are followed?</div><div class="fb"></div><template class="why"><b>Most nearly mean.</b> Fox-Foot suspects they are being followed, so he allows “no fire,” “no landing,” and “no trace of their passing to be left.” He wants no sign that they were there: no <b>evidence</b>. <span class="cn">怕被跟踪 → 不留下任何“痕迹、证据”。</span></template><template class="wrong" data-l="B"><i>Blemish</i> = a small mark that spoils how something looks. The worry is being tracked, not appearance.</template><template class="wrong" data-l="C"><i>Amount</i>: “no amount of their passing” makes no sense.</template><template class="wrong" data-l="D"><i>Sketch</i> = a quick drawing. A common meaning of “trace” (to copy a drawing), but not the meaning here.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 6-1-4" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Practice 3 of 4</div><h2>Form 6 · Module 1 · Question 4</h2></header><div class="work"><div class="pv" data-p="T6-1-04" data-lab="Form 6 · Module 1 · Question 4 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-04"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="8-11" data-hint="8-11"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Cover the word “disputing.” What are the crowds with wagons and baskets doing to the taxi’s passage?</div><div class="fb"></div><template class="why"><b>Most nearly mean.</b> The shoppers, with their wagons, handtrucks, and baskets, are “disputing, every inch, our passage”: they fill the street and get in the taxi’s way. They are <b>providing resistance to</b> its movement. <span class="cn">人群和推车挡住出租车的路 → 阻挡。</span></template><template class="wrong" data-l="A"><i>Arguing about</i> is the most common meaning of “dispute,” but nobody is talking with the taxi; they are physically in the way.</template><template class="wrong" data-l="B"><i>Disapproving of</i>: the text says nothing about the crowd’s opinion of the taxi.</template><template class="wrong" data-l="C"><i>Asserting possession of</i> = claiming to own. The crowd blocks the way; it does not claim to own the road.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 4-2-5" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Practice 4 of 4</div><h2>Form 4 · Module 2 · Question 5</h2></header><div class="work"><div class="pv" data-p="T4-2-05" data-lab="Form 4 · Module 2 · Question 5 · the text"></div><div class="right"><div class="qimg" data-q="T4-2-05"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="3-5" data-hint="3-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>After the colon: are poets rare or common in Delany’s novels? Then deal with <i>not</i>.</div><div class="fb"></div><template class="why"><b>Negation.</b> After the colon: “nearly a dozen of the characters … are poets or writers.” So being a poet is <b>common</b> in his work. “not ___” = common → the blank means <b>unusual</b>: <b>atypical</b>. “Not atypical” = typical. <span class="cn">not atypical = typical（双重否定）。</span></template><template class="wrong" data-l="A">“not <i>infallible</i>” = not perfect. The text is about how often poets appear, not whether they make mistakes.</template><template class="wrong" data-l="C">“not <i>lucrative</i>” = does not pay well. Money is never mentioned.</template><template class="wrong" data-l="D">“not <i>tedious</i>” = not boring. The text gives no information about whether the job is boring.</template></div></div></div></section>
+<section class="slide " data-title="Precision: the meaning must fit exactly" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Precision</div><h2>Precision: the meaning must fit exactly</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Right direction, wrong word</h3><p>In 2-2-3, <i>dispute</i> and <i>invalidate</i> are both “against” the projection, but delays (events) cannot <i>dispute</i>; only people dispute. Ask: <b>who or what</b> does the action?</p><p class="cn">方向对还不够，要看主语能不能做这个动作。</p></div>
+ <div class="box white"><h3>Common meaning trap</h3><p>In “most nearly mean” questions, one choice is usually the word’s most common meaning (<i>dispute</i> → <i>arguing</i>; <i>trace</i> → <i>sketch</i>). It is almost always wrong. Read the sentence.</p><p class="cn">最常见的意思往往是陷阱。</p></div>
+</div></section>
+<section class="slide " data-title="Words from this lesson to learn" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">Vocabulary</div><h2>Words from this lesson to learn</h2></header>
+<table class="t sm">
+<tr><th>Word</th><th>Meaning</th><th>Word</th><th>Meaning</th></tr>
+<tr><td>atypical</td><td>not typical, unusual 非典型的</td><td>infallible</td><td>never wrong 绝对正确的</td></tr>
+<tr><td>lucrative</td><td>making a lot of money 赚钱的</td><td>tedious</td><td>long and boring 乏味的</td></tr>
+<tr><td>invalidate</td><td>show to be wrong 使无效、推翻</td><td>underscore</td><td>emphasize 强调</td></tr>
+<tr><td>involuntarily</td><td>without control 不由自主地</td><td>strenuously</td><td>with great effort 费力地</td></tr>
+<tr><td>adhere to</td><td>follow (rules, traditions) 遵守</td><td>conform to</td><td>follow (conventions) 遵从</td></tr>
+<tr><td>overtly</td><td>openly 公开地</td><td>tenuous</td><td>weak, not well supported 站不住脚的</td></tr>
+</table></section>
+<section class="slide summary-layout" data-foot="Digital SAT Reading · 02 · Words in Context II" data-title="What to remember about contrast, negation, and precision"><header><div class="kk">Summary</div><h2>What to remember about contrast, negation, and precision<span class="cn">语境词义（二）要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 转折信号</h3><div class="summary-copy">Contrast signals (<i>but, however, on the other hand, rather, unlike</i>): find the clue on the other side, then <b>flip</b> it.</div></article><article class="summary-card"><h3 class="summary-label">02 · 明确对比对象</h3><div class="summary-copy">Make sure you know <b>what</b> is being contrasted: <i>However</i> may contrast two whole ideas, not the blank.</div></article><article class="summary-card"><h3 class="summary-label">03 · 否定表达</h3><div class="summary-copy">Negation (<i>not, by no means, unlikely to, declines to</i>): decide what the whole phrase means, then remove the negative.</div></article><article class="summary-card"><h3 class="summary-label">04 · 熟词生义</h3><div class="summary-copy"><i>Most nearly mean</i>: cover the word, predict from context, and avoid the word’s most common meaning.</div></article><article class="summary-card"><h3 class="summary-label">05 · 方向与搭配</h3><div class="summary-copy">Precise = right direction <b>and</b> right fit with the words around it.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What does the question ask? Which words support your answer? Why does one tempting choice fail?</div><p class="cn">识别任务 → 指出原文依据 → 排除一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">More Practice</div><h2>5 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 3-1-5" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">More Practice 1 of 5</div><h2>Form 3 · Module 1 · Question 5</h2></header><div class="work"><div class="pv" data-p="T3-1-05" data-lab="Form 3 · Module 1 · Question 5 · the text"></div><div class="right"><div class="qimg" data-q="T3-1-05"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="1-5" data-hint="1-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find <i>but</i>: what don’t the artisans do <b>strictly</b>? Then what do they usually do?</div><div class="fb"></div><template class="why"><b>Contrast.</b> They “typically ___ the techniques … <b>but</b> they don’t strictly observe every tradition.” The <i>but</i> means they usually <b>do</b> observe (follow) the traditions, just not every one: they <b>adhere to</b> them. <span class="cn">but 后是“不完全遵守” → 前面是“通常遵守”。</span></template><template class="wrong" data-l="A"><i>experiment with</i> = try new things with. The point is that they mostly keep the old methods.</template><template class="wrong" data-l="C"><i>improve on</i>: the air-conditioning example is the exception after <i>but</i>, not what they typically do.</template><template class="wrong" data-l="D"><i>grapple with</i> = struggle with. Nothing suggests the techniques are a struggle for them.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 3-2-3" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">More Practice 2 of 5</div><h2>Form 3 · Module 2 · Question 3</h2></header><div class="work"><div class="pv" data-p="T3-2-03" data-lab="Form 3 · Module 2 · Question 3 · the text"></div><div class="right"><div class="qimg" data-q="T3-2-03"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What do readers like about Jemisin? Then deal with <i>declines to</i>.</div><div class="fb"></div><template class="why"><b>Negation.</b> Readers like her “willingness to <b>thwart expectations</b> and avoid formulaic plots.” So she does not follow the genre’s conventions. “Declines to ___ the conventions” = does not follow them → ___ = follow: <b>conform to</b>. <span class="cn">declines to conform to = 不遵循套路。</span></template><template class="wrong" data-l="A">“declines to <i>question</i>” = she accepts the conventions. Opposite of thwarting expectations.</template><template class="wrong" data-l="B">“declines to <i>react to</i>”: she clearly reacts to the conventions, by breaking them.</template><template class="wrong" data-l="C">“declines to <i>perceive</i>” = refuses to notice. She must notice the conventions to avoid them.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 6-1-2" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">More Practice 3 of 5</div><h2>Form 6 · Module 1 · Question 2</h2></header><div class="work"><div class="pv" data-p="T6-1-02" data-lab="Form 6 · Module 1 · Question 2 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-02"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="3-7" data-hint="3-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find <i>in contrast to</i>. How were the politics of the earlier stories signaled?</div><div class="fb"></div><template class="why"><b>Contrast.</b> The 1970s writing is “<b>in contrast to</b>” earlier stories “whose politics were <b>less deliberately signaled</b>.” So in the 1970s the feminism was signaled clearly and openly: <b>overtly</b>. <span class="cn">早期“不明显” vs. 70 年代“公开明显”。</span></template><template class="wrong" data-l="A"><i>prudently</i> = carefully, cautiously. The contrast is about openness, not caution.</template><template class="wrong" data-l="C"><i>cordially</i> = in a friendly way. Not related to how clearly politics were signaled.</template><template class="wrong" data-l="D"><i>inadvertently</i> = by accident. Opposite of “deliberately” signaled.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 2-1-7" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">More Practice 4 of 5</div><h2>Form 2 · Module 1 · Question 7</h2></header><div class="work"><div class="pv" data-p="T2-1-07" data-lab="Form 2 · Module 1 · Question 7 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-07"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="2-4" data-hint="2-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Read <i>as it fails to account for</i>. Is the author’s claim strong or weak?</div><div class="fb"></div><template class="why"><b>Negative clue (cause).</b> The claim is ___ “<b>as</b> (= because) it <b>fails</b> to account for several recent discoveries”; to be convincing, it would need to address them. A claim that is not convincing is weak: <b>tenuous</b>. <span class="cn">因为没考虑新发现，所以论点站不住脚。</span></template><template class="wrong" data-l="A"><i>disorienting</i> = confusing. The problem is missing evidence, not confusion.</template><template class="wrong" data-l="C"><i>nuanced</i> = showing fine distinctions; a compliment. The text criticizes the claim.</template><template class="wrong" data-l="D"><i>unoriginal</i>: the text says the claim ignores new evidence, not that someone else said it first.</template></div></div></div></section>
+<section class="slide " data-title="Practice 5: 6-2-1" data-foot="Digital SAT Reading · 02 · Words in Context II"><header><div class="kk">More Practice 5 of 5</div><h2>Form 6 · Module 2 · Question 1</h2></header><div class="work"><div class="pv" data-p="T6-2-01" data-lab="Form 6 · Module 2 · Question 1 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-01"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find <i>but</i>. Where were her early murals shown, and where are her works now?</div><div class="fb"></div><template class="why"><b>Contrast.</b> Her early murals “were displayed in outdoor public spaces,” <b>but</b> her works are “now ___ in museums.” The contrast is the <b>place</b> of display: now they are displayed, <b>featured</b>, in museums. <span class="cn">早期在户外展出 vs. 现在在博物馆展出（featured）。</span></template><template class="wrong" data-l="A"><i>invented</i> in museums: she created the works herself; museums did not invent them.</template><template class="wrong" data-l="B"><i>adjusted</i> = changed slightly. Nothing says museums change her works.</template><template class="wrong" data-l="D"><i>recommended</i>: the contrast is about where works are shown, not who recommends them.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T4-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">It is by no means _______ to recognize the influence </span> <span data-line=\"2\">of Dutch painter Hieronymus Bosch on Ali </span> <span data-line=\"3\">Banisadr’s paintings; indeed, Banisadr himself cites </span> <span data-line=\"4\">Bosch as an inspiration. However, some scholars </span> <span data-line=\"5\">have suggested that the ancient Mesopotamian poem </span> <span data-line=\"6\"><i>E</i><i>p</i><i>i</i><i>c</i><i> </i><i>o</i><i>f</i><i> </i><i>G</i><i>i</i><i>l</i><i>g</i><i>a</i><i>m</i><i>e</i><i>s</i><i>h</i><i> </i>may have had a far greater impact </span> <span data-line=\"7\">on Banisadr’s work. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Animal researcher Amalia P.M. Bastos led a 2021 </span> <span data-line=\"2\">study about a wild kea parrot that used small stones </span> <span data-line=\"3\">as tools to preen its feathers. Skeptical colleagues </span> <span data-line=\"4\">had initially suggested to Bastos that the kea’s </span> <span data-line=\"5\">interactions with the stones might simply be </span> <span data-line=\"6\">_______ , but Bastos and her team showed that </span> <span data-line=\"7\">the kea was using the stones deliberately. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">According to botanists, a viburnum plant </span> <span data-line=\"2\">experiencing insect damage may develop erineum—a </span> <span data-line=\"3\">discolored, felty growth—on its leaf blades. A ______ </span> <span data-line=\"4\">viburnum plant, on the other hand, will have leaves </span> <span data-line=\"5\">with smooth surfaces and uniformly green </span> <span data-line=\"6\">coloration. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Researchers have struggled to pinpoint specific </span> <span data-line=\"2\">causes for hiccups, which happen when a </span> <span data-line=\"3\">person’s diaphragm contracts _______ . However, </span> <span data-line=\"4\">neuroscientist Kimberley Whitehead has found that </span> <span data-line=\"5\">these uncontrollable contractions may play an </span> <span data-line=\"6\">important role in helping infants regulate their </span> <span data-line=\"7\">breathing. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Interruptions in the supply chain for microchips </span> <span data-line=\"2\">used in personal electronics have challenged an </span> <span data-line=\"3\">economist’s assertion that retailers can expect robust </span> <span data-line=\"4\">growth in sales of those devices in the coming </span> <span data-line=\"5\">months. The delays are unlikely to ______ her </span> <span data-line=\"6\">projection entirely but will almost certainly extend </span> <span data-line=\"7\">its time frame. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The following text is from the 1913 story “The King’s </span> <span data-line=\"2\">Coin” by Emily Pauline Johnson, a Kanienkahagen </span> <span data-line=\"3\">(Mohawk) writer also known as Tekahionwake. </span> <span data-line=\"4\">Fox-Foot, a young Ojibwe man, is guiding a group of </span> <span data-line=\"5\">fur traders who are traveling by canoe and suspects </span> <span data-line=\"6\">that they are being followed. </span></p><p><span data-line=\"7\">At supper time, Fox-Foot would allow no fire to </span> <span data-line=\"8\">be built, no landing to be made, no </span><u><span data-line=\"8\">t</span><span data-line=\"8\">r</span><span data-line=\"8\">a</span><span data-line=\"8\">c</span><span data-line=\"8\">e</span></u><span data-line=\"8\"> of their </span> <span data-line=\"9\">passing to be left. They ate canned meat and </span> <span data-line=\"10\">marmalade, drank again of the stream and </span> <span data-line=\"11\">pushed on, until just at dusk they reached the </span> <span data-line=\"12\">edge of a long, still lake, with shores of granite </span> <span data-line=\"13\">and dense fir forest. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The following text is adapted from James Baldwin’s </span> <span data-line=\"2\">1956 novel <i>G</i><i>i</i><i>o</i><i>v</i><i>a</i><i>n</i><i>n</i><i>i</i><i>’</i><i>s</i><i> </i><i>R</i><i>o</i><i>o</i><i>m</i>. The narrator is riding </span> <span data-line=\"3\">in a taxi down a street lined with food vendors and </span> <span data-line=\"4\">shoppers in Paris, France. </span></p><p><span data-line=\"5\">The multitude of Paris seems to be dressed in </span> <span data-line=\"6\">blue every day but Sunday, when, for the most </span> <span data-line=\"7\">part, they put on an unbelievably festive black. </span> <span data-line=\"8\">Here they were now, in blue, </span><u><span data-line=\"8\">d</span><span data-line=\"8\">i</span><span data-line=\"8\">s</span><span data-line=\"8\">p</span><span data-line=\"8\">u</span><span data-line=\"8\">t</span><span data-line=\"8\">i</span><span data-line=\"8\">n</span><span data-line=\"8\">g</span></u><span data-line=\"8\">, every </span> <span data-line=\"9\">inch, our passage, with their wagons, </span> <span data-line=\"10\">handtrucks, their bursting baskets carried at an </span> <span data-line=\"11\">angle steeply self-confident on the back. </span> <span data-line=\"12\">©1956 by James Baldwin </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-05":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Rydra Wong, the protagonist of Samuel R. Delany’s </span> <span data-line=\"2\">1966 novel Babel-17, is a poet, an occupation which, </span> <span data-line=\"3\">in Delany’s work, is not _______: nearly a dozen of </span> <span data-line=\"4\">the characters that populate his novels are poets or </span> <span data-line=\"5\">writers. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-05":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The artisans of the Igun Eronmwon guild in Benin </span> <span data-line=\"2\">City, Nigeria, typically _______ the bronze- and </span> <span data-line=\"3\">brass-casting techniques that have been passed down </span> <span data-line=\"4\">through their families since the thirteenth century, </span> <span data-line=\"5\">but they don’t strictly observe every tradition; for </span> <span data-line=\"6\">example, guild members now use air-conditioning </span> <span data-line=\"7\">motors instead of handheld bellows to help heat their </span> <span data-line=\"8\">forges. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Novelist N. K. Jemisin declines to ______ the </span> <span data-line=\"2\">conventions of the science fiction genre in which </span> <span data-line=\"3\">she writes, and she has suggested that her readers </span> <span data-line=\"4\">appreciate her work precisely because of this </span> <span data-line=\"5\">willingness to thwart expectations and avoid </span> <span data-line=\"6\">formulaic plots and themes. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In editor Lisa Yaszek’s introduction to her anthology </span> <span data-line=\"2\"><i>T</i><i>h</i><i>e</i><i> </i><i>F</i><i>u</i><i>t</i><i>u</i><i>r</i><i>e</i><i> </i><i>I</i><i>s</i><i> </i><i>F</i><i>e</i><i>m</i><i>a</i><i>l</i><i>e</i><i>!</i><i> </i><i>M</i><i>o</i><i>r</i><i>e</i><i> </i><i>C</i><i>l</i><i>a</i><i>s</i><i>s</i><i>i</i><i>c</i><i> </i><i>S</i><i>c</i><i>i</i><i>e</i><i>n</i><i>c</i><i>e</i><i> </i><i>F</i><i>i</i><i>c</i><i>t</i><i>i</i><i>o</i><i>n</i><i> </i></span> <span data-line=\"3\"><i>S</i><i>t</i><i>o</i><i>r</i><i>i</i><i>e</i><i>s</i><i> </i><i>b</i><i>y</i><i> </i><i>W</i><i>o</i><i>m</i><i>e</i><i>n</i>, Yaszek identifies an increasing </span> <span data-line=\"4\">sense of _______ feminist mode of writing in the </span> <span data-line=\"5\">1970s, in contrast to many woman-authored science </span> <span data-line=\"6\">fiction stories of the 1920s to 1960s whose politics </span> <span data-line=\"7\">were less deliberately signaled. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-07":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The author’s claim about the relationship between </span> <span data-line=\"2\">Neanderthals and <i>H</i><i>o</i><i>m</i><i>o</i><i> </i><i>s</i><i>a</i><i>p</i><i>i</i><i>e</i><i>n</i><i>s</i><i> </i>is ______, as it </span> <span data-line=\"3\">fails to account for several recent archaeological </span> <span data-line=\"4\">discoveries. To be convincing, his argument would </span> <span data-line=\"5\">need to address recent finds of additional hominid </span> <span data-line=\"6\">fossils, such as the latest Denisovan specimens and </span> <span data-line=\"7\"><i>H</i><i>o</i><i>m</i><i>o</i><i> </i><i>l</i><i>o</i><i>n</i><i>g</i><i>i</i>. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The works of Chicana artist Ester Hernandez are </span> <span data-line=\"2\">now _______ in museums both in the United States </span> <span data-line=\"3\">and abroad, but the murals she contributed to as a </span> <span data-line=\"4\">member of Las Mujeres Muralistas early in her </span> <span data-line=\"5\">artistic career were displayed in outdoor public </span> <span data-line=\"6\">spaces across San Francisco. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T4-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) substantial </span></p><p><span data-line=\"4\">B) satisfying </span></p><p><span data-line=\"5\">C) unimportant </span></p><p><span data-line=\"6\">D) appropriate </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) intriguing </span></p><p><span data-line=\"4\">B) obvious </span></p><p><span data-line=\"5\">C) accidental </span></p><p><span data-line=\"6\">D) observable </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) struggling </span></p><p><span data-line=\"4\">B) beneficial </span></p><p><span data-line=\"5\">C) simple </span></p><p><span data-line=\"6\">D) healthy </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) involuntarily </span></p><p><span data-line=\"4\">B) beneficially </span></p><p><span data-line=\"5\">C) strenuously </span></p><p><span data-line=\"6\">D) smoothly </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) dispute </span></p><p><span data-line=\"4\">B) withdraw </span></p><p><span data-line=\"5\">C) underscore </span></p><p><span data-line=\"6\">D) invalidate </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">As used in the text, what does the word “trace” most </span> <span data-line=\"2\">nearly mean? </span></p><p><span data-line=\"3\">A) Evidence </span></p><p><span data-line=\"4\">B) Blemish </span></p><p><span data-line=\"5\">C) Amount </span></p><p><span data-line=\"6\">D) Sketch </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">As used in the text, what does the word “disputing” </span> <span data-line=\"2\">most nearly mean? </span></p><p><span data-line=\"3\">A) Arguing about </span></p><p><span data-line=\"4\">B) Disapproving of </span></p><p><span data-line=\"5\">C) Asserting possession of </span></p><p><span data-line=\"6\">D) Providing resistance to </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-05":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) infallible </span></p><p><span data-line=\"4\">B) atypical </span></p><p><span data-line=\"5\">C) lucrative </span></p><p><span data-line=\"6\">D) tedious </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-05":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) experiment with </span></p><p><span data-line=\"4\">B) adhere to </span></p><p><span data-line=\"5\">C) improve on </span></p><p><span data-line=\"6\">D) grapple with </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) question </span></p><p><span data-line=\"4\">B) react to </span></p><p><span data-line=\"5\">C) perceive </span></p><p><span data-line=\"6\">D) conform to </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) a prudently </span></p><p><span data-line=\"4\">B) an overtly </span></p><p><span data-line=\"5\">C) a cordially </span></p><p><span data-line=\"6\">D) an inadvertently </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-07":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) disorienting </span></p><p><span data-line=\"4\">B) tenuous </span></p><p><span data-line=\"5\">C) nuanced </span></p><p><span data-line=\"6\">D) unoriginal </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) invented </span></p><p><span data-line=\"4\">B) adjusted </span></p><p><span data-line=\"5\">C) featured </span></p><p><span data-line=\"6\">D) recommended </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

@@ -1,0 +1,654 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Reading 01 · Words in Context I</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#1f6f78; --acc2:#dcefee; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Words in Context I" data-foot="Digital SAT Reading · 01 · Words in Context I"><div class="no">LESSON 01</div><h1>Words in Context I</h1><div class="sub">Use the clues in the text to choose the most logical and precise word</div><div class="cnsub">用短文里的线索，选出最符合逻辑、最精确的词</div><div class="goals"><div><b>RECOGNIZE</b>Spot a Words in Context question and know what “logical and precise” means.</div><div><b>FIND THE CLUE</b>Find the words in the text that explain, repeat, or result from the blank.</div><div><b>PREDICT, THEN MATCH</b>Put your own simple word in the blank first, then find the choice that means the same.</div></div></section>
+<section class="slide " data-title="What is a Words in Context question?" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">What is it?</div><h2>What is a Words in Context question?</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Definition</h3>
+  <p>A short text has one blank. You choose the word or phrase that best completes it.</p>
+  <p>The College Board says these questions test whether you can “use context clues to find a replacement for the target word, and then confirm the choice by seeing if it fits.”</p>
+  <p class="cn">一段短文中有一个空格，选出最合适的词或短语。它考的是“根据上下文推断词义”，不是单纯背单词。</p></div>
+ <div class="box white"><h3>How often?</h3>
+  <p>12–13 questions per test, about <b>18%</b> of the section. It is the single most common reading question, and it always comes <b>first</b> in each module.</p>
+  <p class="cn">每套约 12–13 题，是阅读中最多的题型，每个模块的开头都是它。</p>
+  <h3 style="margin-top:12px">“Logical and precise”</h3>
+  <p><b>Logical</b>: the word agrees with what the rest of the text says. <b>Precise</b>: the word says exactly that, not something close or vaguer.</p>
+  <p class="cn">logical = 和上下文意思一致；precise = 意思准确，不偏不泛。</p></div>
+</div></section>
+<section class="slide " data-title="Two forms of the question" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">What does it look like?</div><h2>Two forms of the question<span class="cn">两种问法</span></h2></header><p class="lead">Almost every Words in Context question uses the first stem. The second form is rare; it is taught in Lesson 2.</p><div class="stems"><div class="stem"><div class="src">4-1-1</div><div class="t">Which choice completes the text with the most <mark>logical and precise word or phrase</mark>?</div><div class="note">The blank form: the text has a blank “_______”.</div></div><div class="stem"><div class="src">3-1-8</div><div class="t">Which choice completes the text with the most <mark>logical and precise word or phrase</mark>?</div><div class="note">The answer can be a phrase, such as “paucity of” or “similarities with.”</div></div><div class="stem"><div class="src">5-1-1</div><div class="t">As used in the text, what does the word “trace” <mark>most nearly mean</mark>?</div><div class="note">The underlined-word form: no blank; a word in the text is underlined. See Lesson 2.</div></div></div></section>
+<section class="slide " data-title="The text always explains the blank" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">The key idea</div><h2>The text always explains the blank</h2></header>
+<p class="lead">Test writers never choose a word you must simply know. Somewhere in the text, there are words that tell you what the blank must mean. We call them <b>clues</b>.</p>
+<div class="ex">Many ancient sculptures of people’s heads are missing their noses. This is because the nose is the most <span class="bl"></span> part of a sculpture of a person’s head. <u>It is delicate and sticks out from the rest of the sculpture, making it especially easy to break.</u></div>
+<div class="grid g2">
+ <div class="box white"><h3>The clue</h3><p>The next sentence explains the blank: <i>delicate … especially easy to break</i>.</p><p class="cn">下一句直接解释了空格：容易断。</p></div>
+ <div class="box acc"><h3>Your prediction</h3><p>“easy to break” → <b>fragile</b> (5-1-2, answer B).</p><p class="cn">先自己填“容易坏的”，再去选项里找同义词。</p></div>
+</div></section>
+<section class="slide " data-title="Four kinds of context clues" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Four clues</div><h2>Four kinds of context clues</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>1 · Definition or restatement 定义 / 解释</h3><p>The text explains the blank right after it, often after a <b>colon</b>, a <b>dash</b>, or words like <i>that is, in other words</i>.</p><p class="cn">冒号、破折号后面常常就是对空格的解释。</p></div>
+ <div class="box white"><h3>2 · Synonym or repetition 同义复现</h3><p>The same idea appears again elsewhere in the text, in different words: <i>continuously</i> → <i>persistent</i>.</p><p class="cn">同一个意思在别处换个说法再出现一次。</p></div>
+ <div class="box white"><h3>3 · Cause and result 因果</h3><p><i>because, so, thus, as a result</i>: the blank is the cause of a stated result, or the result of a stated cause.</p><p class="cn">空格是原因或结果，看 because / thus 连接的另一半。</p></div>
+ <div class="box white"><h3>4 · Examples and word association 举例 / 搭配</h3><p>A list of examples describes the blank (<i>including…</i>), or the blank must fit the words around it (<i>a web of relations</i>, <i>achieve … use</i>).</p><p class="cn">后面列举的例子说明空格；或者空格必须和前后的词搭配。</p></div>
+</div>
+<div class="box acc"><p>The fifth kind, <b>contrast</b> (<i>but, however, rather than, not</i>), is so important that it has its own lesson: Lesson 2. <span class="cn">对比 / 转折线索放在第二课专门讲。</span></p></div></section>
+<section class="slide " data-title="Clues in real SAT texts" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Clues in real questions</div><h2>Clues in real SAT texts</h2></header>
+<table class="t sm">
+<tr><th>Clue</th><th>Text (shortened)</th><th>Prediction → answer</th></tr>
+<tr><td>Restatement</td><td>…they spend much of their time <b>___</b> what is invisible to the naked eye<b>:</b> <u>they closely examine</u> the behavior of subatomic particles. <span class="cn">4-2-3</span></td><td>closely examining → <b>inspecting</b></td></tr>
+<tr><td>Synonym</td><td>Wauneka <u>continuously</u> worked to promote public health; this <b>___</b> effort involved traveling… <span class="cn">1-1-2</span></td><td>continuous → <b>persistent</b></td></tr>
+<tr><td>Cause / result</td><td><u>Because</u> it represented the sounds of Cherokee so accurately, his script was easy to learn and <u>thus</u> quickly achieved <b>___</b> use: <u>by 1830, over 90 percent</u> could read and write it. <span class="cn">3-1-1</span></td><td>used by almost everyone → <b>widespread</b></td></tr>
+<tr><td>Examples</td><td>…share basic <b>___</b> true hedgehogs, <u>including</u> protective spines, pointed snouts, and small body size… <span class="cn">6-1-1</span></td><td>things in common → <b>similarities with</b></td></tr>
+</table>
+<p class="cn">表中的题都在后面的练习里，先看懂线索的种类，练习时再完整做一遍。</p></section>
+<section class="slide " data-title="Four steps for Words in Context" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">How to approach it</div><h2>Four steps for Words in Context</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Read the whole text, saying “blank” for the blank</h3><p>Do not look at the choices yet. Understand what the text is about. <span class="cn">先读完整段，空格处读作“blank”，不要先看选项。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Find the clue</h3><p>Ask: which words tell me about the blank? Look especially <b>after</b> the blank (colon, dash, next sentence) and at linking words (<i>because, thus, including</i>). <span class="cn">找线索：空格后面的解释、同义词、因果词、例子。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Predict a simple word of your own</h3><p>It can be plain English or even Chinese: “easy to break,” “used by everyone,” “常见的.” Decide at least whether it is positive or negative. <span class="cn">用自己的简单词（中文也可以）填空，至少判断褒贬。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Match, then check by reading the sentence again</h3><p>Choose the option closest to your prediction. Put it into the blank and read the full sentence: it must be logical <b>and</b> fit the words around it. <span class="cn">选出最接近的词，代回原句再读一遍。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Skill builder · Predict before you peek" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Skill Builder</div><h2>Predict the blank before you look at the choices</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Read the text · say “blank”</h3><p class="ex"><span class="why" style="margin:0 0 3px">Mini passage · teacher-written</span>The new bridge was designed to be extremely _______: engineers tested it against winds of 200 kilometers per hour, and it did not move at all.</p><p style="font-size:16px"><b>Which choice completes the text with the most logical and precise word?</b><br>A) elegant&nbsp;&nbsp; B) sturdy&nbsp;&nbsp; C) temporary&nbsp;&nbsp; D) fragile</p><div class="box acc"><p><b>Why predict first?</b> If you read the choices first, every word “sounds possible.” A prediction gives you a target. <span class="cn">先看选项，四个词好像都能填；先预测，就有了明确目标，不容易被干扰项带走。</span></p></div></div><div class="box white"><h3>Think aloud · 边读边想</h3><p style="margin:0 0 8px"><b class="term">1 · What is the text about?</b> A new bridge and how it was designed. <span class="cn">讲一座新桥的设计。</span></p><p style="margin:0 0 8px"><b class="term">2 · Find the clue</b> The <b>colon</b> means “here is the explanation”: it was tested against very strong winds and “did not move at all.” <span class="cn">冒号后就是对空格的解释：大风中纹丝不动。</span></p><p style="margin:0 0 8px"><b class="term">3 · Predict in my own words</b> “very strong, hard to move” · 结实的、稳固的。</p><p style="margin:0 0 8px"><b class="term">4 · Match and check</b> <b>sturdy</b> = strong and solid ✓. elegant (beautiful) is about looks; temporary (not lasting) and fragile (easy to break) go the wrong way. Read it back: “designed to be extremely sturdy” ✓ <span class="cn">代回原句检查。</span></p></div></div></section>
+<section class="slide " data-title="Skill builder · Cause and restatement clues" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Skill Builder</div><h2>Two more clues: cause → result, and “this / these”</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Cause → result · 因果线索</h3><p class="ex"><span class="why" style="margin:0 0 3px">Mini passage · teacher-written</span><b>Because</b> the museum guide was written in short sentences and everyday words, even young visitors found it _______.</p><p style="margin:0 0 8px"><b class="term">1 · Clue</b> <i>Because</i> gives the cause: short sentences, everyday words.</p><p style="margin:0 0 8px"><b class="term">2 · Predict</b> The result: easy to understand · 容易懂的。</p><p style="margin:0 0 8px"><b class="term">3 · Match</b> <b>accessible</b> ✓ (easy to reach or understand). Not <i>obscure</i> (hard to understand, the opposite), not <i>lengthy</i> (long), not <i>costly</i>. <span class="cn">原因是“句子短、用词简单”，结果自然是“容易理解”。</span></p></div><div class="box white"><h3>“this / these + noun” · 回指线索</h3><p class="ex"><span class="why" style="margin:0 0 3px">Mini passage · teacher-written</span>The chef is known for her _______ approach to cooking: <b>this careful attention to every detail</b> shows in each dish she serves.</p><p style="margin:0 0 8px"><b class="term">1 · Clue</b> “<b>this</b> careful attention to every detail” points back to the blank. <span class="cn">this 回指空格：空格 = 对细节的仔细关注。</span></p><p style="margin:0 0 8px"><b class="term">2 · Predict</b> “very careful about details” · 一丝不苟的。</p><p style="margin:0 0 8px"><b class="term">3 · Match</b> <b>meticulous</b> ✓. Not <i>casual</i> (relaxed, opposite), not <i>creative</i> (a real quality of chefs, but the text says “careful”), not <i>rapid</i>.</p></div></div></section>
+<section class="slide " data-title="Skill builder · Traps and multiple-meaning words" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Skill Builder</div><h2>Traps: the dictionary meaning is not always the meaning in context</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Four common traps</h3>
+<p class="ex">Wrong meaning in context · 语境义错<span class="why">A familiar dictionary meaning that does not fit this sentence: “a <i>novel</i> idea” means a new idea, not a book.</span></p>
+<p class="ex">Right feeling, wrong meaning · 色彩对、词义错<span class="why">Positive text, positive word, but the meaning is not the one the clue gives: <i>creative</i> for “careful.”</span></p>
+<p class="ex">Too strong · 程度过强<span class="why">“somewhat unusual” → <i>shocking</i>; “helped” → <i>guaranteed</i>.</span></p>
+<p class="ex">Wrong usage · 搭配不合<span class="why">The word does not fit the words around it: the physicists <i>decide</i> what is invisible ✗.</span></p>
+<p class="cn">干扰项常常“意思对一半”：看清证据要求的具体意思，再检查程度和搭配。</p></div><div class="box white"><h3>Common words with a second meaning · 熟词僻义</h3>
+<table class="t sm">
+<tr><th>Word</th><th>Usual meaning</th><th>SAT meaning · 例句</th></tr>
+<tr><td>address</td><td>地址</td><td>deal with 处理: <i>address</i> a problem</td></tr>
+<tr><td>novel</td><td>小说</td><td>new 新颖的: a <i>novel</i> method</td></tr>
+<tr><td>sound</td><td>声音</td><td>reliable 合理的: a <i>sound</i> argument</td></tr>
+<tr><td>check</td><td>检查</td><td>stop 抑制: <i>check</i> the spread of a disease</td></tr>
+<tr><td>appreciate</td><td>感激</td><td>understand 认识到: <i>appreciate</i> the risk</td></tr>
+<tr><td>qualify</td><td>有资格</td><td>limit 限定: <i>qualify</i> a claim</td></tr>
+<tr><td>command</td><td>命令</td><td>mastery 掌握: a <i>command</i> of Spanish</td></tr>
+</table></div></div></section>
+<section class="slide " data-title="Quick check · Predict the blank" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Quick Check</div><h2>Quick check · Predict the blank<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The old map was nearly _______: the ink had faded so much that most place names could not be read.</summary><div class="a">Predict: impossible to read → <b>illegible / unreadable</b>. Clue: after the colon. 冒号后解释。</div></details><details class="qc"><summary><span class="q">2.</span>Because the trail was steep and rocky, only the most _______ hikers reached the top.</summary><div class="a">Predict: strong, tough → <b>determined / experienced</b>. Clue: cause → result. 路难走 → 坚持的人。</div></details><details class="qc"><summary><span class="q">3.</span>Her explanation was _______; in other words, it left out nothing important.</summary><div class="a">Predict: complete → <b>thorough / comprehensive</b>. Clue: “in other words.” 换句话说。</div></details><details class="qc"><summary><span class="q">4.</span>The town’s population grew _______: it doubled in just two years.</summary><div class="a">Predict: very fast → <b>rapidly</b>. Clue: “doubled in two years.”</div></details><details class="qc"><summary><span class="q">5.</span>The scientist’s results were _______, so other labs repeated the experiment and got the same numbers.</summary><div class="a">Predict: dependable → <b>reliable / replicable</b>. 其他实验室重复得到同样结果。</div></details><details class="qc"><summary><span class="q">6.</span>The senator promised to <i>address</i> the water shortage. “address” most nearly means:</summary><div class="a"><b>deal with</b> (处理), not “give a speech to” or “write a location on.” 熟词僻义。</div></details><details class="qc"><summary><span class="q">7.</span>The plant is _______ in the region: it grows in nearly every field and garden.</summary><div class="a">Predict: found everywhere → <b>common / widespread / ubiquitous</b>.</div></details><details class="qc"><summary><span class="q">8.</span>Text says the plan was “somewhat risky.” A choice says <i>reckless</i>. Good match?</summary><div class="a"><b>No</b> — too strong. “somewhat risky” ≠ reckless (鲁莽的). 程度过强。</div></details></div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T4-1-01" data-lab="Form 4 · Module 1 · Question 1 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The text describes what the spacecraft OSIRIS-REx did on the asteroid Bennu. The blank is a <b>verb</b>: what did it do to “a sample of the surface”?</p><p class="cn">题目问：探测器对小行星表面的样本做了什么？空格是动词。</p></div></div><div class="right fitq"><div class="qimg" data-q="T4-1-01"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T4-1-01" data-hl="5-7" data-lab="Form 4 · Module 1 · Question 1 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Read with “blank”</h3><p>Despite many boulders on the surface, OSIRIS-REx successfully <i>blank</i> a sample of the surface…</p></div></div><div class="step"><div class="n">2</div><div><h3>Find the clue</h3><p>Right after the blank, the text explains it: “<b>gathering pieces of it to bring back to Earth</b>.” This is a <b>restatement</b> clue.</p></div></div><div class="step"><div class="n">3</div><div><h3>Predict</h3><p>It <i>took</i> / <i>picked up</i> a sample. <span class="cn">预测：取回、采集。</span></p></div></div><div class="step"><div class="n">4</div><div><h3>Match</h3><p>Look for a verb meaning “took and kept.”</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T4-1-01"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r"><i>attached</i> = joined something to something. The spacecraft did not attach anything to the asteroid; it took pieces away.</div></div><div class="vd keep hidden-v"><div class="L">B</div><div class="v">KEEP ✓</div><div class="r"><i>collected</i> = gathered and took. This matches “gathering pieces of it to bring back.”</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r"><i>followed</i> = went after. You cannot follow a sample you are holding; nothing in the text is about following.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r"><i>replaced</i> = put back. Opposite: the pieces are taken <b>away</b> to Earth, not put back.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: B.</b> The clue came right after the blank: “gathering pieces of it.” <i>Collected</i> says the same thing. <span class="cn">线索就在空格后面，collected = gathering。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 3 · Module 1 · Question 1" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Worked Example 2</div><h2>Form 3 · Module 1 · Question 1<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T3-1-01" data-hl="6-8" data-lab="Form 3 · Module 1 · Question 1 · the text"></div><div class="qimg" data-q="T3-1-01"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>A blank to fill: “the most logical and precise word.” The blank describes the kind of <b>use</b> the script achieved. <span class="cn">词汇填空：空格描述文字被使用的情况。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 找线索</h3><p>“easy to learn and <b>thus</b> quickly achieved ___ use<b>:</b> by 1830, over 90 percent of the Cherokee people could read and write it.” Two clues: <i>thus</i> (result) and the colon (explanation). <span class="cn">thus 表结果，冒号后是解释。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>Over 90 percent of people used it → “used by almost everyone.” <span class="cn">预测：几乎所有人都在用 → 广泛的。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对比选项</h3><p><b>widespread</b> = used in many places by many people ✓. Read it back: “quickly achieved widespread use” ✓ <span class="cn">widespread 与预测一致，代回通顺。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ <i>careful</i> use describes how carefully people use something. The text is about <b>how many</b> people used it.<br><b>C</b> ✗ <i>unintended</i> = not planned. People learned the script on purpose; nothing suggests the use was accidental.<br><b>D</b> ✗ <i>infrequent</i> = rare. Opposite of “over 90 percent.”</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> <b>Clue: cause and result + restatement.</b> The script was accurate and easy to learn, <i>thus</i> it achieved ___ use; the colon explains: “over 90 percent of the Cherokee people could read and write it.” Use by almost everyone = <b>widespread</b>. <span class="cn">冒号后：90% 的人都会用 → 广泛的。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 4 · Module 2 · Question 3" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Worked Example 3</div><h2>Form 4 · Module 2 · Question 3<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T4-2-03" data-hl="3-5" data-lab="Form 4 · Module 2 · Question 3 · the text"></div><div class="qimg" data-q="T4-2-03"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Fill the blank: what do the physicists spend their time doing to “what is invisible to the naked eye”? <span class="cn">空格是一个动作：物理学家对看不见的东西做什么。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 找线索</h3><p>After the <b>colon</b>: “using sophisticated technology, they <b>closely examine</b> the behavior of subatomic particles.” The colon restates the blank. <span class="cn">冒号后 closely examine 就是对空格的解释。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“looking at very carefully” · 仔细观察、检查。</p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对比选项</h3><p><b>inspecting</b> = examining closely ✓. selecting, creating, deciding are not the same action as “closely examine.” <span class="cn">只有 inspecting 与 closely examine 同义。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ <i>selecting</i> = choosing. The physicists study the particles; they do not choose them.<br><b>C</b> ✗ <i>creating</i> = making. The text says they examine particles, not make them.<br><b>D</b> ✗ <i>deciding</i> what is invisible makes no sense: things are invisible because they are tiny, not because someone decides.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> <b>Clue: restatement after a colon.</b> “they <b>closely examine</b> the behavior of subatomic particles.” Spending time closely examining = <b>inspecting</b>. <span class="cn">冒号后的 closely examine 就是 inspecting。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 5 · Module 1 · Question 2" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Worked Example 4</div><h2>Form 5 · Module 1 · Question 2<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T5-1-02" data-hl="4-5" data-lab="Form 5 · Module 1 · Question 2 · the text"></div><div class="qimg" data-q="T5-1-02"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Fill the blank: what kind of part of a sculpture is the nose? The sentence starts with “This is <b>because</b>”: the blank must explain why noses are missing. <span class="cn">空格要解释“为什么鼻子都掉了”。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 找线索</h3><p>The next sentence explains: the nose “is <b>delicate</b> and sticks out …, making it <b>especially easy to break</b>.” <span class="cn">下一句解释：鼻子脆弱、突出、容易断。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“easy to break” · 易碎的、脆弱的。</p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对比选项</h3><p><b>fragile</b> = easily broken ✓. It also explains the missing noses. <span class="cn">fragile 既符合下一句的解释，又能说明鼻子为什么缺失。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ <i>recognizable</i> = easy to identify. The text explains why noses <b>break off</b>, not why they are easy to recognize.<br><b>C</b> ✗ <i>common</i> = found often. Every head has one nose; being common would not explain why noses are missing.<br><b>D</b> ✗ <i>sophisticated</i> = complex or refined. The text says nothing about how skillfully noses were carved.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> <b>Clue: the next sentence explains.</b> The nose “is delicate … making it especially easy to break.” Easy to break = <b>fragile</b>. This explains why so many noses are missing. <span class="cn">容易断 = fragile。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 1-1-2" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Practice 1 of 4</div><h2>Form 1 · Module 1 · Question 2</h2></header><div class="work"><div class="pv" data-p="T1-1-02" data-lab="Form 1 · Module 1 · Question 2 · the text"></div><div class="right"><div class="qimg" data-q="T1-1-02"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-3" data-hint="1-3"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Which word earlier in the sentence describes Wauneka’s work?</div><div class="fb"></div><template class="why"><b>Clue: synonym.</b> She “<b>continuously</b> worked to promote public health”; the blank describes the same effort, which also involved traveling throughout a vast homeland and writing a dictionary. Continuous, long-lasting = <b>persistent</b>. <span class="cn">continuously 与 persistent 同义复现。</span></template><template class="wrong" data-l="A"><i>impartial</i> = not taking sides. Fairness is never discussed.</template><template class="wrong" data-l="B"><i>offhand</i> = casual, done without care. Opposite of years of continuous, hard work.</template><template class="wrong" data-l="D"><i>mandatory</i> = required by rule. Nothing says she was forced; she chose to do this work.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 2-1-1" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Practice 2 of 4</div><h2>Form 2 · Module 1 · Question 1</h2></header><div class="work"><div class="pv" data-p="T2-1-01" data-lab="Form 2 · Module 1 · Question 1 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-01"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="3-7" data-hint="3-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Read what comes after the colon: what kind of things did Juarez do?</div><div class="fb"></div><template class="why"><b>Clue: restatement with examples.</b> After the colon: “among the many <b>significant accomplishments</b>…”: he consolidated the national government and advanced Indigenous rights. A figure with many significant accomplishments is <b>important</b>. <span class="cn">冒号后列举重大成就 → 重要的人物。</span></template><template class="wrong" data-l="A"><i>unpredictable</i> = hard to predict. The text lists achievements, not surprising behavior.</template><template class="wrong" data-l="C"><i>secretive</i> = hiding things. Nothing about secrecy; his achievements are well known.</template><template class="wrong" data-l="D"><i>ordinary</i> = not special. Opposite of “many significant accomplishments.”</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 6-1-1" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Practice 3 of 4</div><h2>Form 6 · Module 1 · Question 1</h2></header><div class="work"><div class="pv" data-p="T6-1-01" data-lab="Form 6 · Module 1 · Question 1 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-01"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="2-4" data-hint="2-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Look at the list after <i>including</i>. What do the two animals have?</div><div class="fb"></div><template class="why"><b>Clue: examples.</b> The tenrecs share basic ___ true hedgehogs, “<b>including</b> protective spines, pointed snouts, and small body size”: traits <b>both</b> animals have. Shared traits = <b>similarities with</b>. Note the phrase must also fit “share basic ___”. <span class="cn">including 后面是两种动物共有的特征 → 相似之处。</span></template><template class="wrong" data-l="A"><i>examples of</i> true hedgehogs: the text says the two groups are “not closely related,” so tenrecs are not a kind of hedgehog.</template><template class="wrong" data-l="B"><i>concerns about</i> = worries about. Animals do not share worries; the list is of body features.</template><template class="wrong" data-l="C"><i>indications of</i> = signs of. “Share basic indications of true hedgehogs” is unclear and does not describe common features.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 3-1-4" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Practice 4 of 4</div><h2>Form 3 · Module 1 · Question 4</h2></header><div class="work"><div class="pv" data-p="T3-1-04" data-lab="Form 3 · Module 1 · Question 4 · the text"></div><div class="right"><div class="qimg" data-q="T3-1-04"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="3-7" data-hint="3-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Read everything after the colon. How many parts are in this “web,” and how do they connect?</div><div class="fb"></div><template class="why"><b>Clue: word association + examples.</b> The blank describes a “web of relations,” and the colon explains it: maize supports the beans, squash covers the soil, beans enrich the soil for both. Many parts that depend on each other = a complex web: <b>intricate</b>. <span class="cn">三种作物相互依赖，关系复杂 → intricate。</span></template><template class="wrong" data-l="A"><i>indecipherable</i> = impossible to understand. The text explains the relations clearly.</template><template class="wrong" data-l="B"><i>ornamental</i> = decorative. Each crop has a practical job, not a decorative one.</template><template class="wrong" data-l="C"><i>obscure</i> = unclear or little known. Again, the text explains the system clearly.</template></div></div></div></section>
+<section class="slide " data-title="When two choices seem possible" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Precise, not just possible</div><h2>When two choices seem possible</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Look for the most exact match</h3><p>In 2-1-1, <i>important</i> fits better than a word like “popular”: the text proves importance (significant accomplishments), not popularity.</p><p>In 6-1-1, only <i>similarities with</i> fits both the meaning and the words around it: “share basic <b>similarities with</b> true hedgehogs.”</p><p class="cn">两个选项都“说得通”时，选和线索意思最贴、搭配最自然的那个。</p></div>
+ <div class="box white"><h3>Do not choose a word just because it is hard</h3><p>The correct answer is often a simple word (<i>collected, important, fragile</i>). Difficult words are frequently traps: <i>indecipherable, ornamental, obscure</i>.</p><p>Never pick a word you cannot define. If you know three of the four words and they are all wrong, then the unknown word is the answer.</p><p class="cn">难词不一定对。认识的三个都错，才选不认识的那个。</p></div>
+</div></section>
+<section class="slide " data-title="Words from this lesson to learn" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">Vocabulary</div><h2>Words from this lesson to learn</h2></header>
+<table class="t sm">
+<tr><th>Word</th><th>Meaning</th><th>Word</th><th>Meaning</th></tr>
+<tr><td>widespread</td><td>found or used over a large area or by many people 广泛的</td><td>persistent</td><td>continuing for a long time 持续的、坚持不懈的</td></tr>
+<tr><td>impartial</td><td>not favoring one side 公正的</td><td>offhand</td><td>casual, without care 随意的</td></tr>
+<tr><td>mandatory</td><td>required by a rule 强制的</td><td>fragile</td><td>easily broken 易碎的</td></tr>
+<tr><td>sophisticated</td><td>complex, refined 复杂精致的</td><td>intricate</td><td>having many connected parts 错综复杂的</td></tr>
+<tr><td>indecipherable</td><td>impossible to read or understand 无法理解的</td><td>ornamental</td><td>decorative 装饰性的</td></tr>
+<tr><td>obscure</td><td>unclear; not well known 模糊的；鲜为人知的</td><td>inspect</td><td>to examine closely 仔细检查</td></tr>
+</table></section>
+<section class="slide summary-layout" data-foot="Digital SAT Reading · 01 · Words in Context I" data-title="What to remember about Words in Context"><header><div class="kk">Summary</div><h2>What to remember about Words in Context<span class="cn">语境词义要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 识别题干</h3><div class="summary-copy">Stem: <i>Which choice completes the text with the most logical and precise word or phrase?</i> About 18% of the section, always first.</div></article><article class="summary-card"><h3 class="summary-label">02 · 寻找线索</h3><div class="summary-copy">The text <b>always</b> contains a clue. Look after the blank (colon, dash, next sentence) and at linking words.</div></article><article class="summary-card"><h3 class="summary-label">03 · 四类线索</h3><div class="summary-copy">Four clues in this lesson: <b>restatement</b>, <b>synonym</b>, <b>cause and result</b>, <b>examples / word association</b>.</div></article><article class="summary-card"><h3 class="summary-label">04 · 预测与代入</h3><div class="summary-copy">Predict a simple word first (Chinese is fine), then match, then read the sentence again with your choice.</div></article><article class="summary-card"><h3 class="summary-label">05 · 精确匹配</h3><div class="summary-copy">Choose the most <b>precise</b> match, not the most difficult word.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What does the question ask? Which words support your answer? Why does one tempting choice fail?</div><p class="cn">识别任务 → 指出原文依据 → 排除一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">More Practice</div><h2>5 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 1-1-3" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">More Practice 1 of 5</div><h2>Form 1 · Module 1 · Question 3</h2></header><div class="work"><div class="pv" data-p="T1-1-03" data-lab="Form 1 · Module 1 · Question 3 · the text"></div><div class="right"><div class="qimg" data-q="T1-1-03"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="6-8" data-hint="6-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Read what comes after the colon. Does the collaboration follow the model or avoid it?</div><div class="fb"></div><template class="why"><b>Clue: restatement after a colon.</b> The model = tribes and researchers as equal partners. After the colon: tribal citizens “worked alongside scientists” to design the study and collect data. The collaboration is a clear example of the model: it <b>exemplifies</b> it. <span class="cn">冒号后的内容正是“平等合作”模式的实例 → exemplifies（体现、是…的典范）。</span></template><template class="wrong" data-l="A"><i>circumvents</i> = avoids or gets around. The collaboration follows the model, it does not avoid it.</template><template class="wrong" data-l="B"><i>eclipses</i> = outshines or makes less important. Nothing says the collaboration is greater than the model.</template><template class="wrong" data-l="C"><i>fabricates</i> = makes up (often falsely). The model already existed; the collaboration did not invent it.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 4-2-7" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">More Practice 2 of 5</div><h2>Form 4 · Module 2 · Question 7</h2></header><div class="work"><div class="pv" data-p="T4-2-07" data-lab="Form 4 · Module 2 · Question 7 · the text"></div><div class="right"><div class="qimg" data-q="T4-2-07"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="2-6" data-hint="2-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What did Sumner do for Black students who wanted to study psychology?</div><div class="fb"></div><template class="why"><b>Clue: example.</b> He helped found the psychology department at Howard University, a historically Black university. That is working <b>for</b> more opportunity: he was a supporter, a <b>proponent of</b> it. <span class="cn">他创建了心理学系，说明他是“推动者、支持者”。</span></template><template class="wrong" data-l="B"><i>supplement to</i> = something added to something else. A person is not “added to” an opportunity.</template><template class="wrong" data-l="C"><i>beneficiary of</i> = someone who receives the benefit. He created opportunities for students; he did not receive them.</template><template class="wrong" data-l="D"><i>distraction for</i> = something that takes attention away. Opposite of his role.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 5-1-4" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">More Practice 3 of 5</div><h2>Form 5 · Module 1 · Question 4</h2></header><div class="work"><div class="pv" data-p="T5-1-04" data-lab="Form 5 · Module 1 · Question 4 · the text"></div><div class="right"><div class="qimg" data-q="T5-1-04"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="4-8" data-hint="4-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>After the colon: what did the team <b>do</b> with the metals’ magnetic fields?</div><div class="fb"></div><template class="why"><b>Clue: restatement after a colon.</b> The team showed that changes in the magnetic field “can be measured from a distance and can reveal concentrations of stress.” They <b>used</b> this property of metal to check pipes without digging: they <b>exploited</b> it (= made use of it). <span class="cn">exploit 在这里是中性的“利用”，不是“剥削”。</span></template><template class="wrong" data-l="A"><i>hypothesized</i> = suggested something might be true. The team did more than suggest: they showed and used it.</template><template class="wrong" data-l="B"><i>discounted</i> = treated as unimportant. Opposite: the tendency was the key to their method.</template><template class="wrong" data-l="C"><i>redefined</i> = gave a new definition. The text is about using the tendency, not defining it.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 5-2-2" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">More Practice 4 of 5</div><h2>Form 5 · Module 2 · Question 2</h2></header><div class="work"><div class="pv" data-p="T5-2-02" data-lab="Form 5 · Module 2 · Question 2 · the text"></div><div class="right"><div class="qimg" data-q="T5-2-02"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="2-6" data-hint="2-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What happened to the information because the fossils are so well preserved?</div><div class="fb"></div><template class="why"><b>Clue: cause and result.</b> “The fossils are <b>so</b> well preserved <b>that</b> the team has been able to ___ detailed information”: color patterns, interactions. Good preservation lets them <b>get</b> information: <b>obtain</b>. <span class="cn">so…that 因果：保存得好 → 能获得详细信息。</span></template><template class="wrong" data-l="A"><i>occupy</i> = live in or fill a space. You cannot occupy information.</template><template class="wrong" data-l="B"><i>hoard</i> = collect and hide away. Nothing suggests the team is keeping the information secret.</template><template class="wrong" data-l="C"><i>reserve</i> = keep for later. The text is about learning the information, not saving it.</template></div></div></div></section>
+<section class="slide " data-title="Practice 5: 6-2-2" data-foot="Digital SAT Reading · 01 · Words in Context I"><header><div class="kk">More Practice 5 of 5</div><h2>Form 6 · Module 2 · Question 2</h2></header><div class="work"><div class="pv" data-p="T6-2-02" data-lab="Form 6 · Module 2 · Question 2 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-02"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="5-8" data-hint="5-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Read the words after the blank: what does she draw from?</div><div class="fb"></div><template class="why"><b>Clue: restatement.</b> “drawing from memories of her childhood … or details of her current surroundings.” Creating art by drawing on your own experience = being <b>inspired by</b> direct experience. <span class="cn">drawing from 就是“从…获取灵感”。</span></template><template class="wrong" data-l="A"><i>complimented by</i> = praised by. Experience cannot praise a person.</template><template class="wrong" data-l="B"><i>uncertain about</i>: nothing suggests doubt; she uses her experience confidently.</template><template class="wrong" data-l="C"><i>unbothered by</i> = not troubled by. This does not explain how her experience appears in her art.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T4-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The spacecraft OSIRIS-REx briefly made contact </span> <span data-line=\"2\">with the asteroid 101955 Bennu in 2020. NASA </span> <span data-line=\"3\">scientist Daniella DellaGiustina reports that despite </span> <span data-line=\"4\">facing the unexpected obstacle of a surface mostly </span> <span data-line=\"5\">covered in boulders, OSIRIS-REx successfully </span> <span data-line=\"6\">_______ a sample of the surface, gathering pieces of </span> <span data-line=\"7\">it to bring back to Earth. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In the early 1800s, the Cherokee scholar Sequoyah </span> <span data-line=\"2\">created the first script, or writing system, for an </span> <span data-line=\"3\">Indigenous language in the United States. Because it </span> <span data-line=\"4\">represented the sounds of spoken Cherokee so </span> <span data-line=\"5\">accurately, his script was easy to learn and thus </span> <span data-line=\"6\">quickly achieved _______ use: by 1830, over </span> <span data-line=\"7\">90 percent of the Cherokee people could read and </span> <span data-line=\"8\">write it. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Particle physicists like Ayana Holloway Arce and </span> <span data-line=\"2\">Aida El-Khadra spend much of their time _______ </span> <span data-line=\"3\">what is invisible to the naked eye: using sophisticated </span> <span data-line=\"4\">technology, they closely examine the behavior of </span> <span data-line=\"5\">subatomic particles, the smallest detectable parts of </span> <span data-line=\"6\">matter. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Many ancient sculptures of people’s heads are </span> <span data-line=\"2\">missing their noses. This is because the nose is the </span> <span data-line=\"3\">most _______ part of a sculpture of a person’s head. </span> <span data-line=\"4\">It is delicate and sticks out from the rest of the </span> <span data-line=\"5\">sculpture, making it especially easy to break. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Beginning in the 1950s, Navajo Nation legislator </span> <span data-line=\"2\">Annie Dodge Wauneka continuously worked to </span> <span data-line=\"3\">promote public health; this _______ effort involved </span> <span data-line=\"4\">traveling throughout the vast Navajo homeland </span> <span data-line=\"5\">and writing a medical dictionary for speakers of </span> <span data-line=\"6\"><i>D</i><i>i</i><i>n</i><i>é</i><i> </i><i>b</i><i>i</i><i>z</i><i>a</i><i>a</i><i>d</i>, the Navajo language. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">As Mexico’s first president from an Indigenous </span> <span data-line=\"2\">community, Benito Juarez became one of the most </span> <span data-line=\"3\">______ figures in his country’s history: among the </span> <span data-line=\"4\">many significant accomplishments of his long tenure </span> <span data-line=\"5\">in office (1858–1872), Juarez consolidated the </span> <span data-line=\"6\">authority of the national government and advanced </span> <span data-line=\"7\">the rights of Indigenous peoples. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Though not closely related, the hedgehog tenrecs of </span> <span data-line=\"2\">Madagascar share basic _______ true hedgehogs, </span> <span data-line=\"3\">including protective spines, pointed snouts, and </span> <span data-line=\"4\">small body size—traits the two groups of mammals </span> <span data-line=\"5\">independently developed in response to equivalent </span> <span data-line=\"6\">roles in their respective habitats. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In the Indigenous intercropping system known as the </span> <span data-line=\"2\">Three Sisters, maize, squash, and beans form an </span> <span data-line=\"3\">_______ web of relations: maize provides the </span> <span data-line=\"4\">structure on which the bean vines grow; the squash </span> <span data-line=\"5\">vines cover the soil, discouraging competition from </span> <span data-line=\"6\">weeds; and the beans aid their two “sisters” by </span> <span data-line=\"7\">enriching the soil with essential nitrogen. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Following the principles of community-based </span> <span data-line=\"2\">participatory research, tribal nations and research </span> <span data-line=\"3\">institutions are equal partners in health studies </span> <span data-line=\"4\">conducted on reservations. A collaboration between </span> <span data-line=\"5\">the Crow Tribe and Montana State University </span> <span data-line=\"6\">_______ this model: tribal citizens worked alongside </span> <span data-line=\"7\">scientists to design the methodology and continue to </span> <span data-line=\"8\">assist in data collection. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-07":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In addition to being an accomplished psychologist </span> <span data-line=\"2\">himself, Francis Cecil Sumner was a _______ </span> <span data-line=\"3\">increasing the opportunity for Black students to </span> <span data-line=\"4\">study psychology, helping to found the psychology </span> <span data-line=\"5\">department at Howard University, a historically </span> <span data-line=\"6\">Black university, in 1930. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">To demonstrate that the integrity of underground </span> <span data-line=\"2\">metal pipes can be assessed without unearthing the </span> <span data-line=\"3\">pipes, engineer Aroba Saleem and colleagues </span> <span data-line=\"4\">_______ the tendency of some metals’ internal </span> <span data-line=\"5\">magnetic fields to alter under stress: the team showed </span> <span data-line=\"6\">that such alterations can be measured from a </span> <span data-line=\"7\">distance and can reveal concentrations of stress in </span> <span data-line=\"8\">the pipes. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">A team of paleontologists has found a rich fossil </span> <span data-line=\"2\">deposit near Gulgong, Australia. The fossils are so </span> <span data-line=\"3\">well preserved that the team has been able to </span> <span data-line=\"4\">_______ detailed information about the life forms </span> <span data-line=\"5\">that left them behind, such as color patterns and how </span> <span data-line=\"6\">they interacted with other species. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Whether Carmen Lomas Garza is creating small </span> <span data-line=\"2\">paintings and illustrations or large public </span> <span data-line=\"3\">artworks—such as Baile, a copper cutout of </span> <span data-line=\"4\">traditional Mexican dance in the San Francisco </span> <span data-line=\"5\">International Airport—she is _______ direct </span> <span data-line=\"6\">experience, drawing from memories of her childhood </span> <span data-line=\"7\">in Texas or details of her current surroundings in </span> <span data-line=\"8\">California. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T4-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) attached </span></p><p><span data-line=\"4\">B) collected </span></p><p><span data-line=\"5\">C) followed </span></p><p><span data-line=\"6\">D) replaced </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) widespread </span></p><p><span data-line=\"4\">B) careful </span></p><p><span data-line=\"5\">C) unintended </span></p><p><span data-line=\"6\">D) infrequent </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) selecting </span></p><p><span data-line=\"4\">B) inspecting </span></p><p><span data-line=\"5\">C) creating </span></p><p><span data-line=\"6\">D) deciding </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) recognizable </span></p><p><span data-line=\"4\">B) fragile </span></p><p><span data-line=\"5\">C) common </span></p><p><span data-line=\"6\">D) sophisticated </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) impartial </span></p><p><span data-line=\"4\">B) offhand </span></p><p><span data-line=\"5\">C) persistent </span></p><p><span data-line=\"6\">D) mandatory</span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) unpredictable </span></p><p><span data-line=\"4\">B) important </span></p><p><span data-line=\"5\">C) secretive </span></p><p><span data-line=\"6\">D) ordinary </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-01":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) examples of </span></p><p><span data-line=\"4\">B) concerns about </span></p><p><span data-line=\"5\">C) indications of </span></p><p><span data-line=\"6\">D) similarities with </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) indecipherable </span></p><p><span data-line=\"4\">B) ornamental </span></p><p><span data-line=\"5\">C) obscure </span></p><p><span data-line=\"6\">D) intricate </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-03":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) circumvents </span></p><p><span data-line=\"4\">B) eclipses </span></p><p><span data-line=\"5\">C) fabricates </span></p><p><span data-line=\"6\">D) exemplifies </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-07":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) proponent of </span></p><p><span data-line=\"4\">B) supplement to </span></p><p><span data-line=\"5\">C) beneficiary of </span></p><p><span data-line=\"6\">D) distraction for </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-04":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) hypothesized </span></p><p><span data-line=\"4\">B) discounted </span></p><p><span data-line=\"5\">C) redefined </span></p><p><span data-line=\"6\">D) exploited </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) occupy </span></p><p><span data-line=\"4\">B) hoard </span></p><p><span data-line=\"5\">C) reserve </span></p><p><span data-line=\"6\">D) obtain </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-02":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical and precise word or phrase? </span></p><p><span data-line=\"3\">A) complimented by </span></p><p><span data-line=\"4\">B) uncertain about </span></p><p><span data-line=\"5\">C) unbothered by </span></p><p><span data-line=\"6\">D) inspired by </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

@@ -1,0 +1,630 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Reading 07 · Central Ideas</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#a4452c; --acc2:#f6e3dc; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Central Ideas" data-foot="Digital SAT Reading · 07 · Central Ideas"><div class="no">LESSON 07</div><h1>Central Ideas</h1><div class="sub">State what the whole text is mainly saying</div><div class="cnsub">概括整段文字主要在说什么</div><div class="goals"><div><b>FIND THE FOCUS</b>Who or what is the text about, and what does it say about that topic?</div><div><b>WATCH THE TURN</b>The main idea often comes after but / however / although.</div><div><b>RIGHT SIZE</b>Not too narrow (one detail), not too broad, not too strong.</div></div></section>
+<section class="slide " data-title="What is a Central Ideas question?" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">What is it?</div><h2>What is a Central Ideas question?</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Definition</h3><p>You choose the statement that best expresses the <b>main idea</b> of the text: the point that most of the details support.</p>
+  <p>It belongs to <b>Information and Ideas</b>: the answer is a <b>paraphrase</b> of what the text says, not a description of how it is written.</p>
+  <p class="cn">问全文主旨。属于“信息与观点”：答案是对原文意思的同义改写。</p></div>
+ <div class="box white"><h3>The stems</h3><p class="ex" style="font-size:17px">Which choice best states the main idea of the text?</p><p class="ex" style="font-size:17px;margin-top:6px">What is the main idea of the text?</p>
+  <h3 style="margin-top:12px">How often?</h3><p>1–2 per test, at the start of the Information and Ideas group.</p>
+  <p class="cn">与“写作目的”区分：目的问“作者在做什么（To…）”，主旨问“说了什么（一个陈述句）”。</p></div>
+</div></section>
+<section class="slide " data-title="What makes a good main idea?" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">The main idea</div><h2>What makes a good main idea?</h2></header>
+<div class="grid g3" style="flex:1">
+ <div class="box white"><h3>Covers most details</h3><p>Every sentence in the text should fit under it. If a choice matches only one sentence, it is too narrow.</p><p class="cn">能涵盖大部分细节。</p></div>
+ <div class="box white"><h3>Includes the emphasis</h3><p>If the text turns (<i>but, however, although</i>), the part after the turn is usually what the author emphasizes. Good answers often keep both sides: “<b>Although</b> X, Y.”</p><p class="cn">包含作者强调的重点，转折后面是重点。</p></div>
+ <div class="box white"><h3>Adds nothing new</h3><p>No new ideas, no stronger claims (<i>most effective, always, proves</i>), nothing that contradicts the text.</p><p class="cn">不加新内容，不说得更绝对，不与原文矛盾。</p></div>
+</div>
+<div class="box acc"><p><b>Notice:</b> several correct answers on the SAT use the pattern “<b>Although</b> [one side], [main point].” This mirrors texts that admit something and then make their point. <span class="cn">正确答案常见 “Although…, …” 结构，对应原文的让步 + 重点。</span></p></div></section>
+<section class="slide " data-title="Main ideas in literary texts" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Literary texts</div><h2>Main ideas in literary texts</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Ask three questions</h3><ol><li><b>Who</b> is the focus? (Mary; Buck; the speaker)</li><li>What is the <b>situation</b>? (working in a garden; meeting Thornton’s friends; going to bed)</li><li>What does the text show about their <b>feelings or attitude</b>?</li></ol>
+  <p class="cn">文学选段：谁？处境？情感/态度？</p></div>
+ <div class="box white"><h3>Words that carry the feeling</h3><p><i>very much absorbed · more pleased every hour · a fascinating sort of play</i> → Mary feels <b>very satisfied</b>.</p><p style="margin-top:6px"><i>Thornton alone held him · the rest of mankind was as nothing</i> → Buck values Thornton <b>above everyone else</b>.</p>
+  <p class="cn">抓住表达情感的词，翻译成简单的结论。</p></div>
+</div></section>
+<section class="slide " data-title="Four steps for Central Ideas" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">How to approach it</div><h2>Four steps for Central Ideas</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Read the whole text and find the topic</h3><p>Who or what is it about? <span class="cn">找话题。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Find what the text says about the topic</h3><p>Look at the first and last sentences and at any turn (<i>but, however, although</i>). <span class="cn">看首尾句和转折。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Say the main idea in one sentence</h3><p>Use your own words. If the text turns, include both sides: “Although…, …” <span class="cn">用一句话说出主旨。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Choose the closest match and check its size</h3><p>Cut choices that are a single detail, too broad, too strong, or not in the text. <span class="cn">选最接近的，并检查范围和语气。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Skill builder · Topic vs. main point" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Skill Builder</div><h2>Topic is not enough: find the main point</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Mini passage 1 (informational)</h3><p class="ex">Octopuses are usually described as loners that live and hunt alone. <b>However</b>, divers in one bay in Australia have found groups of a certain octopus species sharing dens on the sea floor. The animals signal to one another by changing color, and they sometimes push each other out of the dens. Such behavior suggests that <b>at least some</b> octopuses are more social than scientists believed.</p><p><b>Q:</b> Which choice best states the main idea of the text?</p></div><div class="box white"><h3>Think aloud · 出声思考</h3><ol><li><b>1 · Topic (话题).</b> Octopuses and how social they are. A topic is not yet an answer. <span class="cn">话题只是“关于什么”，不是主旨。</span></li><li><b>2 · Turn + emphasis.</b> Old view: loners. <i>However</i> → new evidence: some live in groups. The last sentence states the point. <span class="cn">转折后 + 末句 = 作者强调的重点。</span></li><li><b>3 · Main point (主旨).</b> <b>Although octopuses are usually seen as loners, some may be more social than expected.</b> <span class="cn">模板：对象 + 核心判断 + 必要的限定（at least some）。</span></li><li><b>4 · Check size.</b> Keep “some” (not “all”); color signals are only a detail. <span class="cn">保留限定词 some；变色只是细节。</span></li></ol></div></div></section>
+<section class="slide " data-title="Skill builder · Literary main ideas" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Skill Builder</div><h2>Literary texts: who, what situation, what feeling?</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Mini passage 2 (literary)</h3><p class="ex">Grandfather’s old radio no longer worked, but Ben would not let anyone throw it away. Every evening he dusted it carefully and set it back on the shelf by the window. Sometimes, when the house was quiet, he turned the dead knob and smiled, as if he could still hear the baseball games they used to share.</p><p><b>Q:</b> Main idea? → <b>Ben treasures the radio because it keeps his memories of his grandfather alive.</b> <span class="cn">谁：Ben；处境：收音机坏了；情感：珍惜、怀念。</span></p></div><div class="box white"><h3>Words that carry the feeling · 情感线索</h3>
+<table class="t sm">
+<tr><th>In the text</th><th>What it shows</th></tr>
+<tr><td>would not let anyone throw it away</td><td>values it 珍视</td></tr>
+<tr><td>dusted it carefully every evening</td><td>care, habit 用心</td></tr>
+<tr><td>turned the dead knob and smiled</td><td>fond memory 温暖的怀念</td></tr>
+<tr><td>as if he could still hear…</td><td>missing the past 怀旧</td></tr>
+</table>
+<p><b>Traps:</b> “Ben wants to fix the radio” (not in text) · “Ben loves baseball more than anything” (too narrow / distorted).</p>
+<p class="cn">把描写动作的词“翻译”成情感，再把情感合成一句主旨；不能加原文没有的打算或原因。</p></div></div></section>
+<section class="slide " data-title="Skill builder · Wrong-answer traps" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Skill Builder</div><h2>Five traps in main-idea choices (Mini passage 1)</h2></header>
+<table class="t sm">
+<tr><th style="width:22%">Trap · 错误特征</th><th style="width:42%">Wrong choice</th><th>Why it is wrong</th></tr>
+<tr><td>Too narrow<br>以偏概全</td><td>“Some octopuses change color to signal.”</td><td>True, but only one detail. <span class="cn">细节属实，但不是全文核心。</span></td></tr>
+<tr><td>Too broad<br>范围过宽</td><td>“All octopuses prefer to live in groups.”</td><td>The text says <b>some</b>, in one bay. <span class="cn">从部分扩大到全部。</span></td></tr>
+<tr><td>Distortion<br>信息歪曲</td><td>“Scientists have always known octopuses are social.”</td><td>Reverses the old view (loners). <span class="cn">重复原词，却把方向弄反。</span></td></tr>
+<tr><td>Unsupported addition<br>无据增添</td><td>“Octopuses form groups to protect their young.”</td><td>The text gives no reason for the groups. <span class="cn">原文没说原因，选项自己加了。</span></td></tr>
+<tr><td>Wrong focus<br>答非所问</td><td>“Divers in Australia often study sea animals.”</td><td>About the divers, not the octopuses. <span class="cn">对象错了。</span></td></tr>
+</table>
+<div class="box acc"><p><b>Turn words</b> that mark the main point: however 然而 · but 但是 · yet 然而 · although 尽管 · in fact 事实上 · suggests 表明 · therefore 因此. <span class="cn">主旨常在这些词之后。正确答案常用 “Although X, Y” 结构。</span></p></div></section>
+<section class="slide " data-title="Quick check · Topic, main idea, or trap?" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Quick Check</div><h2>Quick check · Topic, main idea, or trap?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>“Honeybees.” Topic or main idea?</summary><div class="a"><b>Topic</b> only: no claim about bees. <span class="cn">只是话题。</span></div></details><details class="qc"><summary><span class="q">2.</span>“Although honeybees are small, their pollination is worth billions of dollars to farmers.” Topic or main idea?</summary><div class="a"><b>Main idea</b>: object + claim. <span class="cn">对象 + 判断 = 主旨。</span></div></details><details class="qc"><summary><span class="q">3.</span>Text: one school tried a four-day week and attendance rose. Choice: “Four-day weeks improve all schools.”</summary><div class="a"><b>Too broad</b>: one school → all schools. <span class="cn">范围过宽。</span></div></details><details class="qc"><summary><span class="q">4.</span>Text: the cat ignored its new toy and slept in the box it came in. Choice: “The cat preferred the box to the toy.”</summary><div class="a"><b>Good main idea</b> ✓ <span class="cn">正确概括。</span></div></details><details class="qc"><summary><span class="q">5.</span>Same text. Choice: “The cat was sick, so it slept all day.”</summary><div class="a"><b>Unsupported addition</b>: no illness in the text. <span class="cn">无据增添。</span></div></details><details class="qc"><summary><span class="q">6.</span>Text: critics hated the film at first, but today it is called a classic. Choice: “Critics hated the film.”</summary><div class="a"><b>Too narrow</b>: misses the turn and the point after <i>but</i>. <span class="cn">只对应转折前。</span></div></details></div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T3-1-12" data-lab="Form 3 · Module 1 · Question 12 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The question asks for the main idea of the text about Gins and Arakawa’s apartment building.</p><p class="cn">问这段关于公寓设计的文字的主旨。</p></div></div><div class="right fitq"><div class="qimg" data-q="T3-1-12"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T3-1-12" data-hl="7-10" data-lab="Form 3 · Module 1 · Question 12 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Topic</h3><p>An apartment building designed by Gins and Arakawa.</p></div></div><div class="step"><div class="n">2</div><div><h3>What the text says</h3><p>It is “more fanciful than <b>functional</b>” (impractical: uneven counters, a door to nowhere). But the effect is “disorienting <b>but invigorating</b>,” and a resident reported “significant <b>health benefits</b>.”</p></div></div><div class="step"><div class="n">3</div><div><h3>One sentence</h3><p><b>Although impractical, the building may improve residents’ health.</b></p></div></div><div class="step"><div class="n">4</div><div><h3>Size check</h3><p>One resident reported benefits, so the answer should say “may,” not “proves” or “the most effective.”</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T3-1-12"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r">The text never says living there is “unsustainable”: the filmmaker lived there four years and benefited.</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r">Too strong: “the <b>most effective way</b>” is never claimed or compared.</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">Only a detail, and wrong: nothing says Yamaoka has long supported these artists.</div></div><div class="vd keep hidden-v"><div class="L">D</div><div class="v">KEEP ✓</div><div class="r">Both sides: impractical design + possible health benefits. “May” matches the limited evidence.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: D.</b> The text turns from “impractical” to “invigorating … health benefits.” The correct choice keeps both sides with <i>Although</i>. <span class="cn">正确答案保留了转折的两边：虽然不实用，但可能有益健康。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 4 · Module 1 · Question 10" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Worked Example 2</div><h2>Form 4 · Module 1 · Question 10<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T4-1-10" data-hl="5-11" data-lab="Form 4 · Module 1 · Question 10 · the text"></div><div class="qimg" data-q="T4-1-10"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Main idea of a literary text. Ask: who (Mary), what situation (working in the hidden garden), what feeling? <span class="cn">谁？处境？情感？</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 定位</h3><p>“very much <b>absorbed</b>,” “only becoming <b>more pleased</b> with her work every hour instead of tiring of it,” “a <b>fascinating</b> sort of play.” <span class="cn">情感词：absorbed 专注、pleased 高兴、fascinating 着迷。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“Mary really enjoys working in the garden.” <span class="cn">预测：Mary 很享受照料花园。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对照选项</h3><p>D: “feels very <b>satisfied</b> when she’s taking care of the garden” = enjoys the work. C copies the word “play” but changes its meaning. <span class="cn">D 是同义改写；C 借用原词 play 却歪曲了意思。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ Chores are never mentioned; she is working hard in the garden, not hiding.<br><b>B</b> ✗ Opposite: she becomes more pleased, “instead of tiring of it.”<br><b>C</b> ✗ The work itself “seemed … like a fascinating sort of play”; she is not making a space to play in.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> Mary is “very much <b>absorbed</b>,” becomes “more <b>pleased</b> with her work every hour instead of tiring of it,” and finds it “a <b>fascinating</b> sort of play.” → Mary feels <b>very satisfied</b> taking care of the garden. <span class="cn">absorbed, pleased, fascinating → 很满足。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 4 · Module 1 · Question 12" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Worked Example 3</div><h2>Form 4 · Module 1 · Question 12<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T4-1-12" data-hl="4-14" data-lab="Form 4 · Module 1 · Question 12 · the text"></div><div class="qimg" data-q="T4-1-12"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Main idea about Buck, a sled dog. How does he treat people? <span class="cn">主旨：Buck 怎样对待人？</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 定位</h3><p>“<b>Thornton alone</b> held [Buck]. The rest of mankind was as nothing.” He is cold to strangers and accepts Hans and Pete only after learning they are close to Thornton. <span class="cn">首两句是核心；后面都是例子。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“Buck cares about Thornton far more than anyone else.” <span class="cn">预测：Thornton 在他心中最重要。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对照选项</h3><p>D: “holds Thornton in <b>higher regard than any other person</b>” = cares about him most. B is too broad: Buck does not avoid all humans. <span class="cn">D 对应；B 范围过宽。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ The text says nothing about how social Buck was before living with Thornton.<br><b>B</b> ✗ Too strong: he does not avoid all humans; he loves Thornton and tolerates Hans and Pete.<br><b>C</b> ✗ The text describes how Buck treats people, not how much they like him.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> “<b>Thornton alone</b> held [Buck]. The rest of mankind was as nothing.” Buck is cold to strangers, and he accepts Thornton’s partners only because they are close to Thornton. → Buck holds Thornton in <b>higher regard than anyone else</b>. <span class="cn">只有 Thornton 在他心中有分量。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 1 · Module 2 · Question 10" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Worked Example 4</div><h2>Form 1 · Module 2 · Question 10<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T1-2-10" data-hl="5-11" data-lab="Form 1 · Module 2 · Question 10 · the text"></div><div class="qimg" data-q="T1-2-10"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Main idea of a poem. The speaker talks to an absent friend (“thee”). What happens when he goes to bed? <span class="cn">诗：说话人上床后发生了什么？</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 定位</h3><p>Body: “Weary with toil, I [hurry] to my bed.” <b>But then</b> “begins a journey in my head”: thoughts make “a zealous pilgrimage to thee” and “keep my drooping eyelids <b>open wide</b>.” <span class="cn">But then 是转折：身体累了，脑子却开始“旅行”。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“He is tired, but he can’t sleep because he keeps thinking of the friend.” The journey is only in his mind. <span class="cn">旅行只是比喻：在想朋友。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对照选项</h3><p>D: “thinking about the friend instead of immediately falling asleep.” A says he is asleep, but his eyes are “open wide.” <span class="cn">D 正确；A 与“睁着眼”矛盾。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ He is not asleep: his eyelids are “open wide.” The journey is in his thoughts, not a dream.<br><b>B</b> ✗ The journey is in his mind; no real trip is being planned.<br><b>C</b> ✗ There is no discussion with the friend; the friend is far away.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> He hurries to bed, “weary with toil,” but “then begins a journey in my head”: his thoughts make “a zealous pilgrimage to thee” and “keep my drooping eyelids <b>open wide</b>.” → He is <b>thinking about the friend instead of falling asleep</b>. <span class="cn">身体累了，脑子却在想朋友，睁着眼睡不着。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 2-1-12" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Practice 1 of 4</div><h2>Form 2 · Module 1 · Question 12</h2></header><div class="work"><div class="pv" data-p="T2-1-12" data-lab="Form 2 · Module 1 · Question 12 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-12"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-7" data-hint="1-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Read the last sentence, especially <i>but</i>. What has changed, and what continues?</div><div class="fb"></div><template class="why">Jalis have traditionally kept family histories and records. “New technologies may have changed some aspects of the role today, <b>but</b> jalis <b>continue</b> to be valued for knowing and protecting their peoples’ stories.” → <b>Despite some changes, jalis still preserve their communities’ histories.</b> <span class="cn">角色有变化，但仍在守护历史。</span></template><template class="wrong" data-l="B">Nothing says which role jalis like best.</template><template class="wrong" data-l="C">Entertaining is never mentioned; the focus is keeping histories.</template><template class="wrong" data-l="D">Technology changed “some aspects,” but the main point is that jalis remain valued.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 2-1-13" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Practice 2 of 4</div><h2>Form 2 · Module 1 · Question 13</h2></header><div class="work"><div class="pv" data-p="T2-1-13" data-lab="Form 2 · Module 1 · Question 13 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-13"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-12" data-hint="1-12"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What was the status of the Wigner crystal before 2021? What did Wang’s team achieve?</div><div class="fb"></div><template class="why">The Wigner crystal “remained largely <b>conjecture</b>” until 2021, when Wang’s team captured an image: “the <b>first visual confirmation</b> of the Wigner crystal.” → Researchers have obtained the <b>most definitive evidence</b> so far that it exists. <span class="cn">从“猜想”到“首次看到”→ 迄今最确凿的证据。</span></template><template class="wrong" data-l="B">The text is about confirming one crystal, not a new general method for many crystal structures.</template><template class="wrong" data-l="C">Graphene is one step in the method; the text does not call it the most important component.</template><template class="wrong" data-l="D">The text does not say the honeycomb shape made imaging difficult.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 5-2-11" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Practice 3 of 4</div><h2>Form 5 · Module 2 · Question 11</h2></header><div class="work"><div class="pv" data-p="T5-2-11" data-lab="Form 5 · Module 2 · Question 11 · the text"></div><div class="right"><div class="qimg" data-q="T5-2-11"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-13" data-hint="1-13"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find <i>But</i>. What did Bakhtin think about the two concepts fabula and syuzhet?</div><div class="fb"></div><template class="why">The text explains two concepts (fabula, syuzhet) with an example. “<b>But</b> … Bakhtin maintained that fabula and syuzhet are <b>insufficient</b> to completely describe a narrative.” → Bakhtin argued that some important features of narratives are <b>not fully captured by these two concepts</b>. <span class="cn">But 之后是重点：Bakhtin 认为这两个概念不足以描述叙事。</span></template><template class="wrong" data-l="B">Too specific and too strong: Bakhtin says meaning is created partly through interaction; the text does not say people interpret narratives differently.</template><template class="wrong" data-l="C">The film is only an example of the concepts; the main point is Bakhtin’s objection.</template><template class="wrong" data-l="D">The text never compares how hard chronological and non-chronological stories are to understand.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 6-1-10" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Practice 4 of 4</div><h2>Form 6 · Module 1 · Question 10</h2></header><div class="work"><div class="pv" data-p="T6-1-10" data-lab="Form 6 · Module 1 · Question 10 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-10"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-12" data-hint="1-12"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What did the team test, and what did they learn? Is the lamp-versus-torch fact the main idea or an example?</div><div class="fb"></div><template class="why">The team tested “three different Paleolithic light sources” to understand “how Paleolithic artists navigated dark caves,” and learned each had a purpose. The lamp-and-torch detail begins with “<b>For instance</b>,” so it is an example. → The team tested light sources and <b>learned some details about how artists traveled in caves</b>. <span class="cn">For instance 后面是例子，不是主旨。</span></template><template class="wrong" data-l="A">Fireplaces are only listed; nothing says they were essential.</template><template class="wrong" data-l="B">The text says lamps were less useful than torches for walking; it says nothing about which was used more often.</template><template class="wrong" data-l="C">The team did draw conclusions; no difficulty with replicas is mentioned.</template></div></div></div></section>
+<section class="slide " data-title="How wrong main-idea choices are built" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">Wrong answers</div><h2>How wrong main-idea choices are built</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Only a detail</h3><p>True, but only one sentence: the lamp-versus-torch example; the graphene sheet.</p><p class="cn">只是一个细节或例子。</p></div>
+ <div class="box white"><h3>Too strong</h3><p><i>the most effective way · avoids all humans · the most important component</i></p><p class="cn">说得太绝对。</p></div>
+ <div class="box white"><h3>Opposite or not in the text</h3><p>“getting bored” when Mary is more pleased every hour; “unsustainable” when the resident stayed four years.</p><p class="cn">与原文相反，或原文没有。</p></div>
+ <div class="box white"><h3>Misses the turn</h3><p>Repeats the part before <i>but</i> (technology changed the role) and drops the main point after it.</p><p class="cn">只说了转折前的内容，丢了重点。</p></div>
+</div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Reading · 07 · Central Ideas" data-title="What to remember about Central Ideas"><header><div class="kk">Summary</div><h2>What to remember about Central Ideas<span class="cn">中心思想要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 识别题干</h3><div class="summary-copy">Stem: <i>Which choice best states the main idea of the text?</i> 1–2 per test.</div></article><article class="summary-card"><h3 class="summary-label">02 · 覆盖与重点</h3><div class="summary-copy">The main idea covers <b>most of the details</b> and includes what the author emphasizes.</div></article><article class="summary-card"><h3 class="summary-label">03 · 转折与让步</h3><div class="summary-copy">After <i>but / however / although</i> comes the emphasis; good answers often keep both sides (“Although…, …”).</div></article><article class="summary-card"><h3 class="summary-label">04 · 文学类文本</h3><div class="summary-copy">In literary texts: who, what situation, what feeling? Translate the feeling words into a plain statement.</div></article><article class="summary-card"><h3 class="summary-label">05 · 排除干扰</h3><div class="summary-copy">Cut details, examples (after <i>for instance</i>), choices that are too strong, and choices that miss the turn.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What does the question ask? Which words support your answer? Why does one tempting choice fail?</div><p class="cn">识别任务 → 指出原文依据 → 排除一个易错选项。</p></article></div></section>
+<section class="slide" data-foot="Digital SAT Reading · 07 · Central Ideas" data-title="More practice"><header><div class="kk">More Practice</div><h2>1 more question for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide review-wide " data-title="Practice 1: 6-2-10" data-foot="Digital SAT Reading · 07 · Central Ideas"><header><div class="kk">More Practice 1 of 1</div><h2>Form 6 · Module 2 · Question 10</h2></header><div class="work"><div class="pv" data-p="T6-2-10" data-lab="Form 6 · Module 2 · Question 10 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-10"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-13" data-hint="1-13"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What correlation did Asiedu find? Why might it seem surprising, and how does she explain it (after <i>but Asiedu notes</i>)?</div><div class="fb"></div><template class="why">Asiedu found a <b>negative</b> correlation: more resource extraction → <b>less</b> foreign investment. This “may appear counterintuitive” (extraction needs big investments), “<b>but</b>” boom-bust cycles create uncertainty “to which foreign investors are typically averse.” → One might expect more investment, but the <b>opposite</b> happens because reliance on resources creates <b>conditions investors dislike</b>. <span class="cn">直觉上应增加投资，实际相反，因为资源依赖带来不稳定，投资者回避。</span></template><template class="wrong" data-l="A">The text says large initial investments are “best met by multinational corporations”; it does not blame the decline on investments being too large.</template><template class="wrong" data-l="B">The text says investment decreases; it does not say countries become less dependent on it, or that the change might not occur.</template><template class="wrong" data-l="D">The text does not say investment rises later as industries stabilize.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T3-1-12":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Believing that living in an impractical space can </span> <span data-line=\"2\">heighten awareness and even improve health, </span> <span data-line=\"3\">conceptual artists Madeline Gins and Shusaku </span> <span data-line=\"4\">Arakawa designed an apartment building in Japan to </span> <span data-line=\"5\">be more fanciful than functional. A kitchen counter </span> <span data-line=\"6\">is chest-high on one side and knee-high on the other; </span> <span data-line=\"7\">a ceiling has a door to nowhere. The effect is </span> <span data-line=\"8\">disorienting but invigorating: after four years there, </span> <span data-line=\"9\">filmmaker Nobu Yamaoka reported significant </span> <span data-line=\"10\">health benefits. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The following text is adapted from Frances Hodgson </span> <span data-line=\"2\">Burnett’s 1911 novel <i>T</i><i>h</i><i>e</i><i> </i><i>S</i><i>e</i><i>c</i><i>r</i><i>e</i><i>t</i><i> </i><i>G</i><i>a</i><i>r</i><i>d</i><i>e</i><i>n</i>. Mary, a </span> <span data-line=\"3\">young girl, recently found an overgrown hidden </span> <span data-line=\"4\">garden. </span></p><p><span data-line=\"5\">Mary was an odd, determined little person, </span> <span data-line=\"6\">and now she had something interesting to be </span> <span data-line=\"7\">determined about, she was very much absorbed, </span> <span data-line=\"8\">indeed. She worked and dug and pulled up </span> <span data-line=\"9\">weeds steadily, only becoming more pleased with </span> <span data-line=\"10\">her work every hour instead of tiring of it. It </span> <span data-line=\"11\">seemed to her like a fascinating sort of play. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-12":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The following text is adapted from Jack London’s </span> <span data-line=\"2\">1903 novel <i>T</i><i>h</i><i>e</i><i> </i><i>C</i><i>a</i><i>l</i><i>l</i><i> </i><i>o</i><i>f</i><i> </i><i>t</i><i>h</i><i>e</i><i> </i><i>W</i><i>i</i><i>l</i><i>d</i>. Buck is a sled dog </span> <span data-line=\"3\">living with John Thornton in Yukon, Canada. </span></p><p><span data-line=\"4\">Thornton alone held [Buck]. The rest of </span> <span data-line=\"5\">mankind was as nothing. Chance travellers </span> <span data-line=\"6\">might praise or pet him; but he was cold under it </span> <span data-line=\"7\">all, and from a too demonstrative man he would </span> <span data-line=\"8\">get up and walk away. When Thornton’s </span> <span data-line=\"9\">partners, Hans and Pete, arrived on the </span> <span data-line=\"10\">long-expected raft, Buck refused to notice them </span> <span data-line=\"11\">till he learned they were close to Thornton; after </span> <span data-line=\"12\">that he tolerated them in a passive sort of way, </span> <span data-line=\"13\">accepting favors from them as though he favored </span> <span data-line=\"14\">them by accepting. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The following text is adapted from William </span> <span data-line=\"2\">Shakespeare’s 1609 poem “Sonnet 27.” The poem is </span> <span data-line=\"3\">addressed to a close friend as if he were physically </span> <span data-line=\"4\">present. </span></p><p><span data-line=\"5\">Weary with toil, I [hurry] to my bed, </span> <span data-line=\"6\">The dear repose for limbs with travel tired; </span> <span data-line=\"7\">But then begins a journey in my head </span> <span data-line=\"8\">To work my mind, when body’s work’s expired: </span> <span data-line=\"9\">For then my thoughts—from far where I abide— </span> <span data-line=\"10\">[Begin] a zealous pilgrimage to thee, </span> <span data-line=\"11\">And keep my drooping eyelids open wide, </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-12":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In West Africa, jalis have traditionally been keepers </span> <span data-line=\"2\">of information about family histories and records of </span> <span data-line=\"3\">important events. They have often served as teachers </span> <span data-line=\"4\">and advisers, too. New technologies may have </span> <span data-line=\"5\">changed some aspects of the role today, but jalis </span> <span data-line=\"6\">continue to be valued for knowing and protecting </span> <span data-line=\"7\">their peoples’ stories. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-13":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1934 physicist Eugene Wigner posited the </span> <span data-line=\"2\">existence of a crystal consisting entirely of electrons </span> <span data-line=\"3\">in a honeycomb-like structure. The so-called Wigner </span> <span data-line=\"4\">crystal remained largely conjecture, however, until </span> <span data-line=\"5\">Feng Wang and colleagues announced in 2021 that </span> <span data-line=\"6\">they had captured an image of one. The researchers </span> <span data-line=\"7\">trapped electrons between two semiconductors and </span> <span data-line=\"8\">then cooled the apparatus, causing the electrons to </span> <span data-line=\"9\">settle into a crystalline structure. By inserting an </span> <span data-line=\"10\">ultrathin sheet of graphene above the crystal, the </span> <span data-line=\"11\">researchers obtained an impression—the first visual </span> <span data-line=\"12\">confirmation of the Wigner crystal. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-11":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Many literary theorists distinguish between fabula, a </span> <span data-line=\"2\">narrative’s content, and syuzhet, a narrative’s </span> <span data-line=\"3\">arrangement and presentation of events. In the film </span> <span data-line=\"4\">The Godfather Part II, the fabula is the story of the </span> <span data-line=\"5\">Corleone family, and the syuzhet is the presentation </span> <span data-line=\"6\">of the story as it alternates between two timelines in </span> <span data-line=\"7\">1901 and 1958. But literary theorist Mikhail Bakhtin </span> <span data-line=\"8\">maintained that fabula and syuzhet are insufficient to </span> <span data-line=\"9\">completely describe a narrative—he held that </span> <span data-line=\"10\">systematic categorizations of artistic phenomena </span> <span data-line=\"11\">discount the subtle way in which meaning is created </span> <span data-line=\"12\">by interactions between the artist, the work, and the </span> <span data-line=\"13\">audience. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">To understand how Paleolithic artists navigated dark </span> <span data-line=\"2\"></span> <span data-line=\"3\">caves, archaeologist M<sup>a</sup> Ángeles Medina-Alcaide and </span> <span data-line=\"4\">her team tested different lighting methods in a cave </span> <span data-line=\"5\">in Spain using replicas of artifacts found in European </span> <span data-line=\"6\">caves with art. They used three different Paleolithic </span> <span data-line=\"7\">light sources—torches, animal-fat lamps, and </span> <span data-line=\"8\">fireplaces—determining that each likely had a </span> <span data-line=\"9\">specific purpose. For instance, the team learned that </span> <span data-line=\"10\">the animal-fat lamps were less useful than torches </span> <span data-line=\"11\">while walking because the lamps didn’t illuminate </span> <span data-line=\"12\">the cave floor. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Elizabeth Asiedu has identified a negative correlation </span> <span data-line=\"2\">between the share of developing countries’ </span> <span data-line=\"3\">economies derived from natural-resource extraction </span> <span data-line=\"4\">and those countries’ receipts of foreign investment. </span> <span data-line=\"5\">This may appear counterintuitive—resource </span> <span data-line=\"6\">extraction requires initial investments (in extractive </span> <span data-line=\"7\">technology, for instance) at scales best met by </span> <span data-line=\"8\">multinational corporations—but Asiedu notes that </span> <span data-line=\"9\">natural-resource industries’ boom-bust cycle can </span> <span data-line=\"10\">destabilize local currencies and increase developing </span> <span data-line=\"11\">countries’ vulnerability to external shocks, creating </span> <span data-line=\"12\">levels of uncertainty to which foreign investors are </span> <span data-line=\"13\">typically averse. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T3-1-12":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Although inhabiting a home surrounded by </span> <span data-line=\"3\">fanciful features such as those designed by Gins </span> <span data-line=\"4\">and Arakawa can be rejuvenating, it is </span> <span data-line=\"5\">unsustainable. </span></p><p><span data-line=\"6\">B) Designing disorienting spaces like those in the </span> <span data-line=\"7\">Gins and Arakawa building is the most effective </span> <span data-line=\"8\">way to create a physically stimulating </span> <span data-line=\"9\">environment. </span></p><p><span data-line=\"10\">C) As a filmmaker, Yamaoka has long supported </span> <span data-line=\"11\">the designs of conceptual artists such as Gins </span> <span data-line=\"12\">and Arakawa. </span></p><p><span data-line=\"13\">D) Although impractical, the design of the </span> <span data-line=\"14\">apartment building by Gins and Arakawa may </span> <span data-line=\"15\">improve the well-being of the building’s </span> <span data-line=\"16\">residents. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Mary hides in the garden to avoid doing her </span> <span data-line=\"3\">chores. </span></p><p><span data-line=\"4\">B) Mary is getting bored with pulling up so many </span> <span data-line=\"5\">weeds in the garden. </span></p><p><span data-line=\"6\">C) Mary is clearing out the garden to create a space </span> <span data-line=\"7\">to play. </span></p><p><span data-line=\"8\">D) Mary feels very satisfied when she’s taking care </span> <span data-line=\"9\">of the garden. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-12":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Buck has become less social since he began living </span> <span data-line=\"3\">with Thornton. </span></p><p><span data-line=\"4\">B) Buck mistrusts humans and does his best to </span> <span data-line=\"5\">avoid them. </span></p><p><span data-line=\"6\">C) Buck has been especially well liked by most of </span> <span data-line=\"7\">Thornton’s friends. </span></p><p><span data-line=\"8\">D) Buck holds Thornton in higher regard than any </span> <span data-line=\"9\">other person. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">What is the main idea of the text? </span></p><p><span data-line=\"2\">A) The speaker is asleep and dreaming about </span> <span data-line=\"3\">traveling to see the friend. </span></p><p><span data-line=\"4\">B) The speaker is planning an upcoming trip to the </span> <span data-line=\"5\">friend’s house. </span></p><p><span data-line=\"6\">C) The speaker is too fatigued to continue a </span> <span data-line=\"7\">discussion with the friend. </span></p><p><span data-line=\"8\">D) The speaker is thinking about the friend instead </span> <span data-line=\"9\">of immediately falling asleep.</span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-12":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Even though there have been some changes in </span> <span data-line=\"3\">their role, jalis continue to preserve their </span> <span data-line=\"4\">communities’ histories. </span></p><p><span data-line=\"5\">B) Although jalis have many roles, many of them </span> <span data-line=\"6\">like teaching best. </span></p><p><span data-line=\"7\">C) Jalis have been entertaining the people within </span> <span data-line=\"8\">their communities for centuries. </span></p><p><span data-line=\"9\">D) Technology can now do some of the things jalis </span> <span data-line=\"10\">used to be responsible for. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-13":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Researchers have obtained the most definitive </span> <span data-line=\"3\">evidence to date of the existence of the Wigner </span> <span data-line=\"4\">crystal. </span></p><p><span data-line=\"5\">B) Researchers have identified an innovative new </span> <span data-line=\"6\">method for working with unusual crystalline </span> <span data-line=\"7\">structures. </span></p><p><span data-line=\"8\">C) Graphene is the most important of the </span> <span data-line=\"9\">components required to capture an image of a </span> <span data-line=\"10\">Wigner crystal. </span></p><p><span data-line=\"11\">D) It’s difficult to acquire an image of a Wigner </span> <span data-line=\"12\">crystal because of the crystal’s honeycomb </span> <span data-line=\"13\">structure. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-11":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Literary theorist Mikhail Bakhtin argued that </span> <span data-line=\"3\">there are important characteristics of narratives </span> <span data-line=\"4\">that are not fully encompassed by two concepts </span> <span data-line=\"5\">that other theorists have used to analyze </span> <span data-line=\"6\">narratives. </span></p><p><span data-line=\"7\">B) Literary theorist Mikhail Bakhtin claimed that </span> <span data-line=\"8\">meaning is not inherent in a narrative but is </span> <span data-line=\"9\">created when an audience encounters a narrative </span> <span data-line=\"10\">so that narratives are interpreted differently by </span> <span data-line=\"11\">different people. </span></p><p><span data-line=\"12\">C) The storytelling methods used in The Godfather </span> <span data-line=\"13\">Part II may seem unusually complicated, but </span> <span data-line=\"14\">they can be easily understood when two concepts </span> <span data-line=\"15\">from literary theory are utilized. </span></p><p><span data-line=\"16\">D) Narratives that are told out of chronological </span> <span data-line=\"17\">order are more difficult for audiences to </span> <span data-line=\"18\">understand than are narratives presented </span> <span data-line=\"19\">chronologically. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Medina-Alcaide and her team’s study </span> <span data-line=\"3\">demonstrated that fireplaces were essential to the </span> <span data-line=\"4\">creators of Paleolithic cave art. </span></p><p><span data-line=\"5\">B) Medina-Alcaide and her team discovered that </span> <span data-line=\"6\">Paleolithic cave artists in Spain used animal-fat </span> <span data-line=\"7\">lamps more often than they used torches. </span></p><p><span data-line=\"8\">C) Medina-Alcaide and her team were reluctant to </span> <span data-line=\"9\">draw many conclusions from their study because </span> <span data-line=\"10\">of the difficulty they had replicating light sources </span> <span data-line=\"11\">based on known artifacts. </span></p><p><span data-line=\"12\">D) Medina-Alcaide and her team tested Paleolithic </span> <span data-line=\"13\">light sources and learned some details about how </span> <span data-line=\"14\">Paleolithic artists traveled within dark caves. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice best states the main idea of the text? </span></p><p><span data-line=\"2\">A) Although it may seem surprising that foreign </span> <span data-line=\"3\">investment declines in developing countries as </span> <span data-line=\"4\">natural-resource extraction makes up a larger </span> <span data-line=\"5\">share of those countries’ economies, that decline </span> <span data-line=\"6\">happens because resource extraction requires </span> <span data-line=\"7\">initial investments too large for foreign investors </span> <span data-line=\"8\">to supply. </span></p><p><span data-line=\"9\">B) Although developing countries tend to become </span> <span data-line=\"10\">less dependent on foreign investment as </span> <span data-line=\"11\">natural-resource industries make up a larger </span> <span data-line=\"12\">share of their economies, this change may not </span> <span data-line=\"13\">occur if the boom-bust cycle of those industries </span> <span data-line=\"14\">destabilizes local currencies or increases </span> <span data-line=\"15\">countries’ vulnerability to external shocks. </span></p><p><span data-line=\"16\">C) Although one might expect that foreign </span> <span data-line=\"17\">investment would increase as natural-resource </span> <span data-line=\"18\">extraction makes up a larger share of developing </span> <span data-line=\"19\">countries’ economies, the opposite happens </span> <span data-line=\"20\">because heavy reliance on natural resources can </span> <span data-line=\"21\">lead to unattractive conditions for investors. </span></p><p><span data-line=\"22\">D) Although foreign investors tend to avoid initial </span> <span data-line=\"23\">investments in natural-resource industries in </span> <span data-line=\"24\">developing countries, foreign investment may </span> <span data-line=\"25\">increase significantly as those industries stabilize </span> <span data-line=\"26\">and the risks associated with them decline. </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

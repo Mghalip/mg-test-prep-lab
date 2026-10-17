@@ -1,0 +1,627 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Reading 06 · Cross-Text Connections</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#6a4c93; --acc2:#ebe4f4; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Cross-Text Connections" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><div class="no">LESSON 06</div><h1>Cross-Text Connections</h1><div class="sub">Read two short texts and predict how one author would answer the other</div><div class="cnsub">读两篇短文，判断一位作者会怎样回应另一位</div><div class="goals"><div><b>SUMMARIZE EACH</b>State the main claim of Text 1 and of Text 2 in one sentence each.</div><div><b>FIND THE TARGET</b>Find exactly which part of Text 1 the question asks about.</div><div><b>PREDICT THE RESPONSE</b>Agree, disagree, or partly agree, and for what reason.</div></div></section>
+<section class="slide " data-title="What is a Cross-Text Connections question?" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">What is it?</div><h2>What is a Cross-Text Connections question?</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Definition</h3><p>The question gives <b>two</b> short texts on the same topic, labeled Text 1 and Text 2. You decide how the author (or the researchers) of one text would most likely <b>respond to</b> or <b>characterize</b> an idea in the other.</p>
+  <p class="cn">两篇同一话题的短文，问一方会如何回应/评价另一方的观点。每套 1 题，位置在结构、目的题之后。</p></div>
+ <div class="box white"><h3>The stems</h3>
+  <p class="ex" style="font-size:16px">Based on the texts, how would <b>the author of Text 2</b> most likely <b>respond to</b> the overall argument presented in Text 1?</p>
+  <p class="ex" style="font-size:16px;margin-top:6px">…how would Putirka and Xu (Text 2) most likely <b>characterize</b> the conclusion presented in Text 1?</p>
+  <p class="ex" style="font-size:16px;margin-top:6px">…how would the author of Text 2 respond to the <b>underlined claim</b> in Text 1?</p>
+  <p class="cn">几乎总是“Text 2 怎么看 Text 1”。注意题目针对的是 Text 1 的哪一部分。</p></div>
+</div></section>
+<section class="slide " data-title="Common relationships between the two texts" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Relationships</div><h2>Common relationships between the two texts</h2></header>
+<table class="t sm">
+<colgroup><col style="width:20%"><col style="width:40%"><col style="width:40%"></colgroup>
+<tr><th>Relationship</th><th>What Text 2 does</th><th>Typical answer words</th></tr>
+<tr><td>Disagrees</td><td>offers evidence or reasoning against Text 1’s view</td><td>disputing, challenging, arguing that it is based on a misconception, questionable</td></tr>
+<tr><td>Partly agrees</td><td>accepts part of Text 1 (often with <i>although, indeed</i>) but rejects its conclusion</td><td>conceding … but asserting; suggesting a revision instead of rejection</td></tr>
+<tr><td>Cools the excitement</td><td>adds facts that make Text 1’s claim seem too strong or too early</td><td>overly optimistic, premature, overstates</td></tr>
+<tr><td>Agrees / extends</td><td>supports Text 1 or adds an explanation</td><td>would agree, supports, helps explain</td></tr>
+</table>
+<div class="box acc"><p><b>Most SAT pairs disagree in some way.</b> Text 2 usually answers Text 1. Look for the word that shows the turn: <i>However, but, argue that … unduly</i>, or a different explanation for the same facts. <span class="cn">大多数是“不同意”或“部分同意”。</span></p></div></section>
+<section class="slide " data-title="Four steps for Cross-Text Connections" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">How to approach it</div><h2>Four steps for Cross-Text Connections</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Read the stem first: who responds to what?</h3><p>Underline “Text 2” and the exact target in Text 1: <i>the conventional wisdom</i>, <i>the conclusion</i>, <i>the underlined claim</i>. <span class="cn">先看题干：谁回应谁的哪个观点。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Summarize Text 1’s target in one sentence</h3><p>“Text 1 says: human societies developed in fixed stages.” <span class="cn">一句话概括 Text 1 被问到的观点。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Summarize Text 2’s view on the same point</h3><p>“Text 2 says: societies were always flexible, switching back and forth.” <span class="cn">一句话概括 Text 2 在同一点上的看法。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Predict the response, then match</h3><p>Agree or disagree? Fully or partly? Why? The correct choice must use only what Text 2 actually says. <span class="cn">预测态度和理由，答案必须来自 Text 2 的内容。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Skill builder · Two texts, one question" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Skill Builder</div><h2>Two texts, one question: summarize each side first</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Mini pair (teacher-written)</h3>
+<p class="ex"><b>Text 1</b> Many students study with music playing. Some researchers claim that background music helps students remember new vocabulary, because it keeps the brain alert.</p>
+<p class="ex"><b>Text 2</b> A psychologist tested music with 300 students. Instrumental music caused no harm, <b>but</b> songs with lyrics lowered vocabulary scores, since the brain tried to process two sets of words at once.</p>
+<p><b>Q:</b> How would the psychologist (Text 2) most likely respond to the claim in Text 1?</p></div><div class="box white"><h3>Think aloud · 出声思考</h3><ol><li><b>1 · Who responds to what?</b> Text 2 → the claim in Text 1 (“music helps memory”). <span class="cn">确认方向：Text 2 回应 Text 1 的主张。</span></li><li><b>2 · Text 1 in one line.</b> Claim: music helps vocabulary memory. Reason: keeps the brain alert. <span class="cn">T1：主张 + 理由。</span></li><li><b>3 · Text 2 in one line.</b> Instrumental music: no harm. Songs with lyrics: <b>lower</b> scores. <span class="cn">T2：无歌词无害，有歌词反而降低成绩。</span></li><li><b>4 · Relationship + predict.</b> Not a total “no”: Text 2 <b>qualifies</b> the claim. Predict: “Too general: songs with lyrics actually hurt memory.” <span class="cn">关系是“限定”：说法太笼统，有歌词的音乐反而有害。</span></li></ol></div></div></section>
+<section class="slide " data-title="Skill builder · Response words" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Skill Builder</div><h2>Words in the answer choices: how does one author judge the other?</h2></header>
+<table class="t sm">
+<tr><th style="width:22%">Word in the choice</th><th style="width:16%">中文</th><th>Text 2 would say this when…</th></tr>
+<tr><td>overly optimistic / premature</td><td>过于乐观 / 为时过早</td><td>Text 1 is excited, but Text 2 shows the evidence is not strong enough yet.</td></tr>
+<tr><td>questionable / flawed</td><td>值得怀疑 / 有缺陷</td><td>Text 2 points out a problem in Text 1’s method or reasoning.</td></tr>
+<tr><td>based on a misconception</td><td>基于误解</td><td>Text 1 assumes something that Text 2 shows is false.</td></tr>
+<tr><td>oversimplified / too general</td><td>过于简单化 / 太笼统</td><td>Text 2 shows the claim is true only under certain conditions (qualify 限定).</td></tr>
+<tr><td>concede … but</td><td>承认…但是</td><td>Text 2 accepts part of Text 1 and rejects another part.</td></tr>
+<tr><td>supports / helps explain</td><td>支持 / 帮助解释</td><td>Text 2 adds evidence or a reason for what Text 1 describes (complement 补充).</td></tr>
+</table>
+<div class="box acc"><p><b>Mini pair check:</b> “oversimplified” fits (✓); “based on a misconception” is too strong, because Text 2 agrees instrumental music causes no harm. <span class="cn">先判断方向（同意/反对），再判断程度（全部/部分）。“限定”不等于“全盘否定”。</span></p></div></section>
+<section class="slide " data-title="Skill builder · Wrong-answer traps" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Skill Builder</div><h2>Five traps in Cross-Text choices (mini pair)</h2></header>
+<table class="t sm">
+<tr><th style="width:22%">Trap · 错误特征</th><th style="width:42%">Wrong choice</th><th>Why it is wrong</th></tr>
+<tr><td>One-text answer<br>只符合一篇</td><td>“Songs with lyrics lower vocabulary scores.”</td><td>True in Text 2, but it does not say how Text 2 <b>responds</b> to Text 1. <span class="cn">没回答两文关系。</span></td></tr>
+<tr><td>Overstatement<br>夸大分歧</td><td>“Music never helps learning.”</td><td>Text 2 only limits the claim; it never says “never.” <span class="cn">限定 ≠ 彻底否定。</span></td></tr>
+<tr><td>Misattribution<br>立场错配</td><td>“Text 1 warns that lyrics are distracting.”</td><td>That is Text 2’s view, given to the wrong author. <span class="cn">把观点安到了错误的作者身上。</span></td></tr>
+<tr><td>Unsupported agreement<br>虚构共识</td><td>“Both authors agree that music with lyrics is best.”</td><td>Text 1 never mentions lyrics. <span class="cn">一方没说，不等于同意。</span></td></tr>
+<tr><td>Wrong point<br>争点错误</td><td>“They disagree about how many students study with music.”</td><td>They disagree about <b>whether music helps memory</b>. <span class="cn">争点错了。</span></td></tr>
+</table>
+<p class="cn">最后检查：答案能分别在两篇找到依据，并且回应方向没有写反。</p></section>
+<section class="slide " data-title="Quick check · What is the relationship?" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Quick Check</div><h2>Quick check · What is the relationship?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>T1: Dinosaurs died out because of an asteroid. T2: The asteroid hit, but huge volcanic eruptions had already weakened many species. → T2 on T1?</summary><div class="a"><b>Complements / qualifies</b>: adds another cause. <span class="cn">补充另一个原因，不是全盘否定。</span></div></details><details class="qc"><summary><span class="q">2.</span>T1: This new battery will replace all car batteries within two years. T2: It has only been tested in a lab for three weeks. → T2 on T1?</summary><div class="a"><b>Premature / overly optimistic.</b> <span class="cn">为时过早、过于乐观。</span></div></details><details class="qc"><summary><span class="q">3.</span>T1: City trees lower summer temperatures. T2: Streets with many trees were 4°C cooler than streets with none. → T2 on T1?</summary><div class="a"><b>Supports</b> it with data. <span class="cn">用数据支持。</span></div></details><details class="qc"><summary><span class="q">4.</span>T1: People choose foods mainly by price. T2: In surveys, shoppers ranked taste far above price. → T2 on T1?</summary><div class="a"><b>Disagrees</b>: the claim rests on a mistaken assumption. <span class="cn">反驳。</span></div></details><details class="qc"><summary><span class="q">5.</span>Choice: “Both authors agree that the battery is safe.” (Neither text mentions safety.) OK?</summary><div class="a">No: <b>unsupported agreement</b>. <span class="cn">虚构共识。</span></div></details><details class="qc"><summary><span class="q">6.</span>Choice: “T2 would say trees have no effect on temperature.” (Item 3) OK?</summary><div class="a">No: <b>reversed</b>. T2 supports T1. <span class="cn">方向写反。</span></div></details></div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T4-1-09" data-lab="Form 4 · Module 1 · Question 9 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>How would Graeber and Wengrow (Text 2) respond to the “<b>conventional wisdom</b>” in Text 1? First find what that conventional wisdom is.</p><p class="cn">先找 Text 1 中的“传统观点”是什么。</p></div></div><div class="right fitq"><div class="qimg" data-q="T4-1-09"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T4-1-09" data-hl="11-20" data-lab="Form 4 · Module 1 · Question 9 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Text 1’s target</h3><p>Conventional wisdom: social systems “evolved <b>in stages</b>”: equal hunter-gatherer bands → (after agriculture) clans → chiefdoms → states. One direction, step by step.</p></div></div><div class="step"><div class="n">2</div><div><h3>Text 2’s view</h3><p>Humans “have <b>always</b> been socially flexible, <b>alternately</b> forming” hierarchical and collective systems; some hunter-gatherers changed structure <b>seasonally</b>.</p></div></div><div class="step"><div class="n">3</div><div><h3>Predict</h3><p>Text 2 rejects the idea of a fixed, one-way sequence of stages.</p></div></div><div class="step"><div class="n">4</div><div><h3>Match</h3><p>Look for a choice that disputes the stage-by-stage (linear) progression.</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T4-1-09"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r">Text 2 does not rank collective societies as more significant; it says people moved between both kinds.</div></div><div class="vd keep hidden-v"><div class="L">B</div><div class="v">KEEP ✓</div><div class="r">Flexible, alternating systems contradict a linear progression through distinct stages.</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">Opposite: Text 2 says even early hunter-gatherer communities “included esteemed individuals,” so hierarchy did exist before agriculture.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">Text 2 does not deny that hunter-gatherer groups were among the earliest; it disputes how they changed.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: B.</b> Text 1 = fixed stages in one direction; Text 2 = always flexible, back and forth. So Text 2 disputes the linear progression. <span class="cn">Text 1 线性阶段论 vs. Text 2 灵活来回变化。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 1 · Module 2 · Question 9" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Worked Example 2</div><h2>Form 1 · Module 2 · Question 9<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T1-2-09" data-hl="13-21" data-lab="Form 1 · Module 2 · Question 9 · the text"></div><div class="qimg" data-q="T1-2-09"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>Text 2’s author judges Text 1’s <b>characterization</b> of the EGR discovery: how does Text 1 describe it? <span class="cn">问 Text 2 如何评价 Text 1 对 EGR 发现的“描述/定性”。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 定位</h3><p>Text 1: “exciting progress,” “an <b>especially promising</b> discovery.” Text 2: “caused excitement. <b>However</b>, … the gene likely functions very differently in humans”; how it works in humans “remains unclear.” <span class="cn">T1 很乐观；T2 用 However 泼冷水。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>Text 2: “Text 1 is too hopeful: we don’t yet know how EGR works in humans.” <span class="cn">预测：T1 太乐观了。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对照选项</h3><p>B: “<b>overly optimistic</b> given additional observations from Srivastava and her team” = too hopeful + the team’s own warning. <span class="cn">overly optimistic = 过于乐观，理由来自团队的补充观察。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ Text 2 says the team has <b>not</b> identified how EGR works in humans.<br><b>C</b> ✗ Text 2 agrees the finding caused excitement; Text 1’s excitement is not unexpected, just too strong.<br><b>D</b> ✗ Text 1 is enthusiastic, not dismissive.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> Text 1 calls the EGR discovery “<b>especially promising</b>” and “exciting progress” toward understanding human regeneration. Text 2: the discovery “caused excitement. <b>However</b> … the gene likely functions <b>very differently in humans</b>,” and how it works in humans “remains unclear.” So Text 2 would call Text 1’s view <b>overly optimistic</b>. <span class="cn">Text 1 很乐观；Text 2 指出人类中的功能可能完全不同 → 过于乐观。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 2 · Module 1 · Question 10" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Worked Example 3</div><h2>Form 2 · Module 1 · Question 10<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T2-1-10" data-hl="11-20" data-lab="Form 2 · Module 1 · Question 10 · the text"></div><div class="qimg" data-q="T2-1-10"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Read the question · 读题</h3><p>How would Behrenfeld’s team (Text 2) respond to the <b>“conventional wisdom”</b> in Text 1? First find that wisdom. <span class="cn">先找 Text 1 中的“传统观点”。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Locate the key lines · 定位</h3><p>Conventional wisdom: species compete, so “one species should emerge after outcompeting the rest.” Text 2: tiny, far apart, so “direct competition … probably happens much less than previously thought.” <span class="cn">传统观点假设激烈竞争；T2 说竞争其实很少。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Predict · 预测</h3><p>“The conventional wisdom is wrong about competition: phytoplankton rarely compete directly.” <span class="cn">预测：传统观点对“竞争”的假设错了。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Compare with the choices · 对照选项</h3><p>A: “based on a <b>misconception</b> about phytoplankton species competing with one another” = a wrong assumption about competition. <span class="cn">misconception = 误解，正对应。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ Text 2 never mentions nutrient replenishment.<br><b>C</b> ✗ Text 2 is about competition among phytoplankton, not with larger organisms.<br><b>D</b> ✗ Text 2 says dense water <b>reduces</b> interaction and competition; it does not recommend research on how density increases competition.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> Conventional wisdom (Text 1): species compete, so “one species should emerge after <b>outcompeting</b> the rest.” Text 2: phytoplankton are tiny and far apart, so “direct <b>competition</b> … probably happens <b>much less than previously thought</b>.” The conventional wisdom rests on a mistaken assumption about competition. <span class="cn">传统观点假设物种间激烈竞争；Text 2 认为竞争其实很少 → 传统观点基于误解。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 3-2-8" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Practice 1 of 3</div><h2>Form 3 · Module 2 · Question 8</h2></header><div class="work"><div class="pv" data-p="T3-2-08" data-lab="Form 3 · Module 2 · Question 8 · the text"></div><div class="right"><div class="qimg" data-q="T3-2-08"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="11-20" data-hint="11-20"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What evidence does Text 1’s conclusion rely on? What do Putirka and Xu say studies like this overlook?</div><div class="fb"></div><template class="why">Text 1: traces of lithium and sodium “support the presence of exoplanets with continental crusts similar to Earth’s.” Text 2: such studies “<b>unduly emphasize</b>” individual elements and “don’t adequately account for” other minerals and <b>rock types not found on Earth</b>. So the conclusion is <b>questionable</b>: it ignores other possible sources of those elements. <span class="cn">Text 2 认为只看元素、忽略其他矿物和岩石来源 → 结论可疑。</span></template><template class="wrong" data-l="A">Text 2 says past studies already concluded that exoplanets had crusts, so the conclusion was not unexpected.</template><template class="wrong" data-l="B">Text 2 mentions earlier studies of the same question, so research has not “just begun.”</template><template class="wrong" data-l="D">Text 2 does not say detecting lithium and sodium is unusual; it questions how the detection is interpreted.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 5-2-8" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Practice 2 of 3</div><h2>Form 5 · Module 2 · Question 8</h2></header><div class="work"><div class="pv" data-p="T5-2-08" data-lab="Form 5 · Module 2 · Question 8 · the text"></div><div class="right"><div class="qimg" data-q="T5-2-08"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="12-20" data-hint="12-20"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Text 1 says graphic novels use language “only sparingly.” How important is language according to Text 2?</div><div class="fb"></div><template class="why">Text 1: graphic novels aren’t literature because they tell stories through images and use language “<b>only sparingly</b>.” Text 2: “Without captions and dialogue, readers would be unable to understand” the pictures, and some graphic novels are “beautifully written.” → Language plays a <b>more important role</b> than Text 1 recognizes. <span class="cn">Text 1 认为语言作用很小；Text 2 认为语言不可或缺。</span></template><template class="wrong" data-l="B">Text 2 defends graphic novels; it does not admit a flaw common to all of them.</template><template class="wrong" data-l="C">Text 2 does not discuss how hard their story lines are to understand.</template><template class="wrong" data-l="D">Text 2 praises the writing in many graphic novels; it does not agree they are poorly crafted.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 6-1-9" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Practice 3 of 3</div><h2>Form 6 · Module 1 · Question 9</h2></header><div class="work"><div class="pv" data-p="T6-1-09" data-lab="Form 6 · Module 1 · Question 9 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-09"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="6-20" data-hint="6-20"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The underlined claim says the show should “no longer be produced.” Does Text 2 agree that it is outdated? What does it suggest doing?</div><div class="fb"></div><template class="why">Text 1 (underlined): the show is stuck in the past, “so it should <b>no longer be produced</b>.” Text 2 agrees it is “outdated, <b>but</b> it should be kept,” and “there are creative ways to <b>update</b> the show,” e.g., <i>Hot Chocolate Nutcracker</i>. → Offer <b>revised versions</b> instead of rejecting the show. <span class="cn">Text 2 同意它过时，但主张改编而不是取消 → 部分同意。</span></template><template class="wrong" data-l="A">Text 2 agrees the story is outdated, and it says an updated version has been gaining popularity.</template><template class="wrong" data-l="B">Text 2 calls the show a “holiday favorite”; audiences have not stopped going.</template><template class="wrong" data-l="C">Text 2 says the show already provides income; it does not claim that most companies would earn more from modern versions.</template></div></div></div></section>
+<section class="slide " data-title="How wrong Cross-Text choices are built" data-foot="Digital SAT Reading · 06 · Cross-Text Connections"><header><div class="kk">Wrong answers</div><h2>How wrong Cross-Text choices are built</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Wrong direction</h3><p>Says Text 2 agrees when it disagrees, or rejects completely when it only disagrees in part (the <i>Nutcracker</i> pair).</p><p class="cn">态度方向错，或把“部分同意”说成“完全否定”。</p></div>
+ <div class="box white"><h3>Wrong target</h3><p>Answers a part of Text 1 that the question did not ask about.</p><p class="cn">回应的不是题目问的那个观点。</p></div>
+ <div class="box white"><h3>Not in Text 2</h3><p>A reason that sounds scientific but Text 2 never gives: “nutrient replenishment,” “larger organisms.”</p><p class="cn">Text 2 没提过的理由。</p></div>
+ <div class="box white"><h3>Wrong reason</h3><p>The attitude is right (“questionable”), but the reason after <i>because</i> is wrong.</p><p class="cn">态度对，理由不对：because 后面也要核对。</p></div>
+</div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Reading · 06 · Cross-Text Connections" data-title="What to remember about Cross-Text Connections"><header><div class="kk">Summary</div><h2>What to remember about Cross-Text Connections<span class="cn">双篇关系要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 识别题干</h3><div class="summary-copy">Stem: <i>Based on the texts, how would the author of Text 2 most likely respond to / characterize … in Text 1?</i> About one per test.</div></article><article class="summary-card"><h3 class="summary-label">02 · 定位讨论对象</h3><div class="summary-copy">First find the exact <b>target</b> in Text 1 (the conventional wisdom, the conclusion, the underlined claim).</div></article><article class="summary-card"><h3 class="summary-label">03 · 概括双方观点</h3><div class="summary-copy">Summarize Text 1’s target and Text 2’s view on the <b>same point</b>, one sentence each.</div></article><article class="summary-card"><h3 class="summary-label">04 · 态度与理由</h3><div class="summary-copy">Decide the relationship: disagree, partly agree, “too optimistic,” or agree; then check the reason.</div></article><article class="summary-card"><h3 class="summary-label">05 · 核对讨论对象</h3><div class="summary-copy">Check that the answer addresses the exact idea named in the question, and that its reason comes from Text 2.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What does the question ask? Which words support your answer? Why does one tempting choice fail?</div><p class="cn">识别任务 → 指出原文依据 → 排除一个易错选项。</p></article></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T4-1-09":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>1</b><b> </b></span> <span data-line=\"2\">Conventional wisdom long held that human </span> <span data-line=\"3\">social systems evolved in stages, beginning with </span> <span data-line=\"4\">hunter-gatherers forming small bands of members </span> <span data-line=\"5\">with roughly equal status. The shift to agriculture </span> <span data-line=\"6\">about 12,000 years ago sparked population growth </span> <span data-line=\"7\">that led to the emergence of groups with hierarchical </span> <span data-line=\"8\">structures: associations of clans first, then chiefdoms, </span> <span data-line=\"9\">and finally, bureaucratic states. </span></p><p><span data-line=\"10\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>2</b><b> </b></span> <span data-line=\"11\">In a 2021 book, anthropologist David Graeber and </span> <span data-line=\"12\">archaeologist David Wengrow maintain that humans </span> <span data-line=\"13\">have always been socially flexible, alternately forming </span> <span data-line=\"14\">systems based on hierarchy and collective ones with </span> <span data-line=\"15\">decentralized leadership. The authors point to </span> <span data-line=\"16\">evidence that as far back as 50,000 years ago some </span> <span data-line=\"17\">hunter-gatherers adjusted their social structures </span> <span data-line=\"18\">seasonally, at times dispersing in small groups but </span> <span data-line=\"19\">also assembling into communities that included </span> <span data-line=\"20\">esteemed individuals. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-09":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>1</b><b> </b></span> <span data-line=\"2\">Most animals can regenerate some parts of their </span> <span data-line=\"3\">bodies, such as skin. But when a three-banded </span> <span data-line=\"4\">panther worm is cut into three pieces, each piece </span> <span data-line=\"5\">grows into a new worm. Researchers are </span> <span data-line=\"6\">investigating this feat partly to learn more about </span> <span data-line=\"7\">humans’ comparatively limited abilities to </span> <span data-line=\"8\">regenerate, and they’re making exciting progress. An </span> <span data-line=\"9\">especially promising discovery is that both humans </span> <span data-line=\"10\">and panther worms have a gene for early growth </span> <span data-line=\"11\">response (EGR) linked to regeneration. </span></p><p><span data-line=\"12\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>2</b><b> </b></span> <span data-line=\"13\">When Mansi Srivastava and her team reported that </span> <span data-line=\"14\">panther worms, like humans, possess a gene for EGR, </span> <span data-line=\"15\">it caused excitement. However, as the team pointed </span> <span data-line=\"16\">out, the gene likely functions very differently in </span> <span data-line=\"17\">humans than it does in panther worms. Srivastava </span> <span data-line=\"18\">has likened EGR to a switch that activates other </span> <span data-line=\"19\">genes involved in regeneration in panther worms, </span> <span data-line=\"20\">but how this switch operates in humans remains </span> <span data-line=\"21\">unclear. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\"><b>T</b></span><span data-line=\"1\"><b>e</b></span><span data-line=\"1\"><b>x</b></span><span data-line=\"1\"><b>t</b></span><span data-line=\"1\"><b> </b></span><span data-line=\"1\"><b>1</b></span><span data-line=\"1\"><b> </b></span> <span data-line=\"2\">Ecologists have long wondered how thousands of </span> <span data-line=\"3\">microscopic phytoplankton species can live together </span> <span data-line=\"4\">near ocean surfaces competing for the same </span> <span data-line=\"5\">resources. According to </span><u><span data-line=\"5\">c</span><span data-line=\"5\">o</span><span data-line=\"5\">n</span><span data-line=\"5\">v</span><span data-line=\"5\">e</span><span data-line=\"5\">n</span><span data-line=\"5\">t</span><span data-line=\"5\">i</span><span data-line=\"5\">o</span><span data-line=\"5\">n</span><span data-line=\"5\">a</span><span data-line=\"5\">l</span><span data-line=\"5\"> </span><span data-line=\"5\">w</span><span data-line=\"5\">i</span><span data-line=\"5\">s</span><span data-line=\"5\">d</span><span data-line=\"5\">o</span><span data-line=\"5\">m</span></u><span data-line=\"5\">, one </span> <span data-line=\"6\">species should emerge after outcompeting the rest. </span> <span data-line=\"7\">So why do so many species remain? Ecologists’ many </span> <span data-line=\"8\">efforts to explain this phenomenon still haven’t </span> <span data-line=\"9\">uncovered a satisfactory explanation. </span></p><p><span data-line=\"10\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>2</b><b> </b></span> <span data-line=\"11\">Ecologist Michael Behrenfeld and colleagues have </span> <span data-line=\"12\">connected phytoplankton’s diversity to their </span> <span data-line=\"13\">microscopic size. Because these organisms are so </span> <span data-line=\"14\">tiny, they are spaced relatively far apart from each </span> <span data-line=\"15\">other in ocean water and, moreover, experience that </span> <span data-line=\"16\">water as a relatively dense substance. This in turn </span> <span data-line=\"17\">makes it hard for them to move around and interact </span> <span data-line=\"18\">with one another. Therefore, says Behrenfeld’s team, </span> <span data-line=\"19\">direct competition among phytoplankton probably </span> <span data-line=\"20\">happens much less than previously thought. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-08":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>1</b><b> </b></span> <span data-line=\"2\">Astronomer Mark Holland and colleagues examined </span> <span data-line=\"3\">four white dwarfs—small, dense remnants of past </span> <span data-line=\"4\">stars—in order to determine the composition of </span> <span data-line=\"5\">exoplanets that used to orbit those stars. Studying </span> <span data-line=\"6\">wavelengths of light in the white dwarf atmospheres, </span> <span data-line=\"7\">the team reported that traces of elements such as </span> <span data-line=\"8\">lithium and sodium support the presence of </span> <span data-line=\"9\">exoplanets with continental crusts similar to Earth’s. </span></p><p><span data-line=\"10\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>2</b><b> </b></span> <span data-line=\"11\">Past studies of white dwarf atmospheres have </span> <span data-line=\"12\">concluded that certain exoplanets had continental </span> <span data-line=\"13\">crusts. Geologist Keith Putirka and astronomer </span> <span data-line=\"14\">Siyi Xu argue that those studies unduly emphasize </span> <span data-line=\"15\">atmospheric traces of lithium and other individual </span> <span data-line=\"16\">elements as signifiers of the types of rock found on </span> <span data-line=\"17\">Earth. The studies don’t adequately account for </span> <span data-line=\"18\">different minerals made up of various ratios of those </span> <span data-line=\"19\">elements, and the possibility of rock types not found </span> <span data-line=\"20\">on Earth that contain those minerals. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-08":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>1</b> </span> <span data-line=\"2\">Graphic novels are increasingly popular in </span> <span data-line=\"3\">bookstores and libraries, but they shouldn’t be </span> <span data-line=\"4\">classified as literature. By definition, literature tells a </span> <span data-line=\"5\">story or conveys meaning through language only; </span> <span data-line=\"6\">graphic novels tell stories through illustrations and </span> <span data-line=\"7\">use language only sparingly, in captions and </span> <span data-line=\"8\">dialogue. Graphic novels are experienced as series of </span> <span data-line=\"9\">images and not as language, making them more </span> <span data-line=\"10\">similar to film than to literature. </span></p><p><span data-line=\"11\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>2</b> </span> <span data-line=\"12\">Graphic novels present their stories through both </span> <span data-line=\"13\">language and images. Without captions and dialogue, </span> <span data-line=\"14\">readers would be unable to understand what is </span> <span data-line=\"15\">depicted in the illustrations: the story results from </span> <span data-line=\"16\">the interaction of text and image. Moreover, Alison </span> <span data-line=\"17\">Bechdel’s Fun Home and many other graphic novels </span> <span data-line=\"18\">feature text that is as beautifully written as the prose </span> <span data-line=\"19\">found in many standard novels. Therefore, graphic </span> <span data-line=\"20\">novels qualify as literary texts. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-09":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\"><b>T</b></span><span data-line=\"1\"><b>e</b></span><span data-line=\"1\"><b>x</b></span><span data-line=\"1\"><b>t</b></span><span data-line=\"1\"><b> </b></span><span data-line=\"1\"><b>1</b></span> <span data-line=\"2\">In 1954 George Balanchine choreographed a </span> <span data-line=\"3\">production of </span><span data-line=\"3\"><i>T</i></span><span data-line=\"3\"><i>h</i></span><span data-line=\"3\"><i>e</i></span><span data-line=\"3\"><i> </i></span><span data-line=\"3\"><i>N</i></span><span data-line=\"3\"><i>u</i></span><span data-line=\"3\"><i>t</i></span><span data-line=\"3\"><i>c</i></span><span data-line=\"3\"><i>r</i></span><span data-line=\"3\"><i>a</i></span><span data-line=\"3\"><i>c</i></span><span data-line=\"3\"><i>k</i></span><span data-line=\"3\"><i>e</i></span><span data-line=\"3\"><i>r</i></span><span data-line=\"3\">, a ballet by Pyotr Ilyich </span> <span data-line=\"4\">Tchaikovsky. It has since become a tradition for </span> <span data-line=\"5\">hundreds of dance companies in North America to </span> <span data-line=\"6\">stage </span><span data-line=\"6\"><i>T</i></span><span data-line=\"6\"><i>h</i></span><span data-line=\"6\"><i>e</i></span><span data-line=\"6\"><i> </i></span><span data-line=\"6\"><i>N</i></span><span data-line=\"6\"><i>u</i></span><span data-line=\"6\"><i>t</i></span><span data-line=\"6\"><i>c</i></span><span data-line=\"6\"><i>r</i></span><span data-line=\"6\"><i>a</i></span><span data-line=\"6\"><i>c</i></span><span data-line=\"6\"><i>k</i></span><span data-line=\"6\"><i>e</i></span><span data-line=\"6\"><i>r</i></span><span data-line=\"6\"><i> </i></span><span data-line=\"6\">each year. </span><u><span data-line=\"6\">B</span><span data-line=\"6\">u</span><span data-line=\"6\">t</span><span data-line=\"6\"> </span><span data-line=\"6\">t</span><span data-line=\"6\">h</span><span data-line=\"6\">e</span><span data-line=\"6\"> </span><span data-line=\"6\">s</span><span data-line=\"6\">h</span><span data-line=\"6\">o</span><span data-line=\"6\">w</span><span data-line=\"6\"> </span><span data-line=\"6\">i</span><span data-line=\"6\">s</span><span data-line=\"6\"> </span><span data-line=\"6\">s</span><span data-line=\"6\">t</span><span data-line=\"6\">u</span><span data-line=\"6\">c</span><span data-line=\"6\">k</span><span data-line=\"6\"> </span> <span data-line=\"7\">i</span><span data-line=\"7\">n</span><span data-line=\"7\"> </span><span data-line=\"7\">t</span><span data-line=\"7\">h</span><span data-line=\"7\">e</span><span data-line=\"7\"> </span><span data-line=\"7\">p</span><span data-line=\"7\">a</span><span data-line=\"7\">s</span><span data-line=\"7\">t</span><span data-line=\"7\">,</span><span data-line=\"7\"> </span><span data-line=\"7\">w</span><span data-line=\"7\">i</span><span data-line=\"7\">t</span><span data-line=\"7\">h</span><span data-line=\"7\"> </span><span data-line=\"7\">a</span><span data-line=\"7\">n</span><span data-line=\"7\"> </span><span data-line=\"7\">o</span><span data-line=\"7\">l</span><span data-line=\"7\">d</span><span data-line=\"7\">-</span><span data-line=\"7\">f</span><span data-line=\"7\">a</span><span data-line=\"7\">s</span><span data-line=\"7\">h</span><span data-line=\"7\">i</span><span data-line=\"7\">o</span><span data-line=\"7\">n</span><span data-line=\"7\">e</span><span data-line=\"7\">d</span><span data-line=\"7\"> </span><span data-line=\"7\">s</span><span data-line=\"7\">t</span><span data-line=\"7\">o</span><span data-line=\"7\">r</span><span data-line=\"7\">y</span><span data-line=\"7\"> </span><span data-line=\"7\">a</span><span data-line=\"7\">n</span><span data-line=\"7\">d</span><span data-line=\"7\"> </span> <span data-line=\"8\">r</span><span data-line=\"8\">e</span><span data-line=\"8\">f</span><span data-line=\"8\">e</span><span data-line=\"8\">r</span><span data-line=\"8\">e</span><span data-line=\"8\">n</span><span data-line=\"8\">c</span><span data-line=\"8\">e</span><span data-line=\"8\">s</span><span data-line=\"8\">,</span><span data-line=\"8\"> </span><span data-line=\"8\">s</span><span data-line=\"8\">o</span><span data-line=\"8\"> </span><span data-line=\"8\">i</span><span data-line=\"8\">t</span><span data-line=\"8\"> </span><span data-line=\"8\">s</span><span data-line=\"8\">h</span><span data-line=\"8\">o</span><span data-line=\"8\">u</span><span data-line=\"8\">l</span><span data-line=\"8\">d</span><span data-line=\"8\"> </span><span data-line=\"8\">n</span><span data-line=\"8\">o</span><span data-line=\"8\"> </span><span data-line=\"8\">l</span><span data-line=\"8\">o</span><span data-line=\"8\">n</span><span data-line=\"8\">g</span><span data-line=\"8\">e</span><span data-line=\"8\">r</span><span data-line=\"8\"> </span><span data-line=\"8\">b</span><span data-line=\"8\">e</span><span data-line=\"8\"> </span><span data-line=\"8\">p</span><span data-line=\"8\">r</span><span data-line=\"8\">o</span><span data-line=\"8\">d</span><span data-line=\"8\">u</span><span data-line=\"8\">c</span><span data-line=\"8\">e</span><span data-line=\"8\">d</span><span data-line=\"8\">.</span></u><span data-line=\"8\"> Ballet </span> <span data-line=\"9\">needs to create new traditions if it wants to stay </span> <span data-line=\"10\">relevant to contemporary audiences. </span></p><p><span data-line=\"11\"><b>T</b><b>e</b><b>x</b><b>t</b><b> </b><b>2</b></span> <span data-line=\"12\"><i>T</i><i>h</i><i>e</i><i> </i><i>N</i><i>u</i><i>t</i><i>c</i><i>r</i><i>a</i><i>c</i><i>k</i><i>e</i><i>r</i><i> </i>is outdated, but it should be kept </span> <span data-line=\"13\">because it’s a holiday favorite and provides </span> <span data-line=\"14\">substantial income for some dance companies. </span> <span data-line=\"15\">Although it can be behind the times, there are </span> <span data-line=\"16\">creative ways to update the show. For example, </span> <span data-line=\"17\">Debbie Allen successfully modernized the story. Her </span> <span data-line=\"18\">show <i>H</i><i>o</i><i>t</i><i> </i><i>C</i><i>h</i><i>o</i><i>c</i><i>o</i><i>l</i><i>a</i><i>t</i><i>e</i><i> </i><i>N</i><i>u</i><i>t</i><i>c</i><i>r</i><i>a</i><i>c</i><i>k</i><i>e</i><i>r</i><i> </i>combines ballet, tap, </span> <span data-line=\"19\">hip-hop, and other styles, and it has been gaining in </span> <span data-line=\"20\">popularity since it opened in 2009. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T4-1-09":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on the texts, how would Graeber and </span> <span data-line=\"2\">Wengrow (Text 2) most likely respond to the </span> <span data-line=\"3\">“conventional wisdom” presented in Text 1? </span></p><p><span data-line=\"4\">A) By conceding the importance of hierarchical </span> <span data-line=\"5\">systems but asserting the greater significance of </span> <span data-line=\"6\">decentralized collective societies </span></p><p><span data-line=\"7\">B) By disputing the idea that developments in social </span> <span data-line=\"8\">structures have followed a linear progression </span> <span data-line=\"9\">through distinct stages </span></p><p><span data-line=\"10\">C) By acknowledging that hierarchical roles likely </span> <span data-line=\"11\">weren’t a part of social systems before the rise of </span> <span data-line=\"12\">agriculture </span></p><p><span data-line=\"13\">D) By challenging the assumption that groupings of </span> <span data-line=\"14\">hunter-gatherers were among the earliest forms </span> <span data-line=\"15\">of social structure </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-09":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on the texts, what would the author of Text 2 </span> <span data-line=\"2\">most likely say about Text 1’s characterization of the </span> <span data-line=\"3\">discovery involving EGR? </span></p><p><span data-line=\"4\">A) It is reasonable given that Srivastava and her </span> <span data-line=\"5\">team have identified how EGR functions in both </span> <span data-line=\"6\">humans and panther worms. </span></p><p><span data-line=\"7\">B) It is overly optimistic given additional </span> <span data-line=\"8\">observations from Srivastava and her team. </span></p><p><span data-line=\"9\">C) It is unexpected given that Srivastava and her </span> <span data-line=\"10\">team’s findings were generally met with </span> <span data-line=\"11\">enthusiasm. </span></p><p><span data-line=\"12\">D) It is unfairly dismissive given the progress that </span> <span data-line=\"13\">Srivastava and her team have reported. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-10":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on the texts, how would Behrenfeld and </span> <span data-line=\"2\">colleagues (Text 2) most likely respond to the </span> <span data-line=\"3\">“conventional wisdom” discussed in Text 1? </span></p><p><span data-line=\"4\">A) By arguing that it is based on a misconception </span> <span data-line=\"5\">about phytoplankton species competing with </span> <span data-line=\"6\">one another </span></p><p><span data-line=\"7\">B) By asserting that it fails to recognize that routine </span> <span data-line=\"8\">replenishment of ocean nutrients prevents </span> <span data-line=\"9\">competition between phytoplankton species </span></p><p><span data-line=\"10\">C) By suggesting that their own findings help clarify </span> <span data-line=\"11\">how phytoplankton species are able to compete </span> <span data-line=\"12\">with larger organisms </span></p><p><span data-line=\"13\">D) By recommending that more ecologists focus </span> <span data-line=\"14\">their research on how competition among </span> <span data-line=\"15\">phytoplankton species is increased with water </span> <span data-line=\"16\">density </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-08":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on the texts, how would Putirka and Xu </span> <span data-line=\"2\">(Text 2) most likely characterize the conclusion </span> <span data-line=\"3\">presented in Text 1? </span></p><p><span data-line=\"4\">A) As unexpected, because it was widely believed at </span> <span data-line=\"5\">the time that white dwarf exoplanets lack </span> <span data-line=\"6\">continental crusts </span></p><p><span data-line=\"7\">B) As premature, because researchers have only just </span> <span data-line=\"8\">begun trying to determine what kinds of crusts </span> <span data-line=\"9\">white dwarf exoplanets had </span></p><p><span data-line=\"10\">C) As questionable, because it rests on an </span> <span data-line=\"11\">incomplete consideration of potential sources </span> <span data-line=\"12\">of the elements detected in white dwarf </span> <span data-line=\"13\">atmospheres </span></p><p><span data-line=\"14\">D) As puzzling, because it’s unusual to successfully </span> <span data-line=\"15\">detect lithium and sodium when analyzing </span> <span data-line=\"16\">wavelengths of light in white dwarf atmospheres </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-08":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on the texts, how would the author of Text 2 </span> <span data-line=\"2\">most likely respond to the overall argument </span> <span data-line=\"3\">presented in Text 1? </span></p><p><span data-line=\"4\">A) By asserting that language plays a more </span> <span data-line=\"5\">important role in graphic novels than the author </span> <span data-line=\"6\">of Text 1 recognizes </span></p><p><span data-line=\"7\">B) By acknowledging that the author of Text 1 has </span> <span data-line=\"8\">identified a flaw that is common to all graphic </span> <span data-line=\"9\">novels </span></p><p><span data-line=\"10\">C) By suggesting that the story lines of certain </span> <span data-line=\"11\">graphic novels are more difficult to understand </span> <span data-line=\"12\">than the author of Text 1 claims </span></p><p><span data-line=\"13\">D) By agreeing with the author of Text 1 that most </span> <span data-line=\"14\">graphic novels aren’t as well crafted as most </span> <span data-line=\"15\">literary works are </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-09":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on the texts, how would the author of Text 2 </span> <span data-line=\"2\">most likely respond to the underlined claim in </span> <span data-line=\"3\">Text 1? </span></p><p><span data-line=\"4\">A) By questioning the idea that the story of <i>T</i><i>h</i><i>e</i><i> </i></span> <span data-line=\"5\"><i>N</i><i>u</i><i>t</i><i>c</i><i>r</i><i>a</i><i>c</i><i>k</i><i>e</i><i>r</i><i> </i>is stuck in the past and by rejecting </span> <span data-line=\"6\">the suggestion that contemporary audiences </span> <span data-line=\"7\">would enjoy an updated version </span></p><p><span data-line=\"8\">B) By agreeing that contemporary audiences have </span> <span data-line=\"9\">largely stopped going to see performances of <i>T</i><i>h</i><i>e</i><i> </i></span> <span data-line=\"10\"><i>N</i><i>u</i><i>t</i><i>c</i><i>r</i><i>a</i><i>c</i><i>k</i><i>e</i><i>r</i><i> </i>because it’s so old-fashioned </span></p><p><span data-line=\"11\">C) By pointing out that most dance companies </span> <span data-line=\"12\">could increase their incomes by offering </span> <span data-line=\"13\">modernized versions of <i>T</i><i>h</i><i>e</i><i> </i><i>N</i><i>u</i><i>t</i><i>c</i><i>r</i><i>a</i><i>c</i><i>k</i><i>e</i><i>r</i><i> </i></span></p><p><span data-line=\"14\">D) By suggesting that dance companies should </span> <span data-line=\"15\">consider offering revised versions of <i>T</i><i>h</i><i>e</i><i> </i></span> <span data-line=\"16\"><i>N</i><i>u</i><i>t</i><i>c</i><i>r</i><i>a</i><i>c</i><i>k</i><i>e</i><i>r</i><i> </i>instead of completely rejecting the </span> <span data-line=\"17\">show </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>
