@@ -28,3 +28,12 @@ Install `@electric-sql/pglite` and `playwright` into a separate working director
 - `node backend/browser.test.cjs`: serve this repository at `http://127.0.0.1:8770`; uses installed Chrome. Mocks Supabase responses to test frontend flows; does not claim to validate the deployed database or email delivery.
 
 The public readiness function returns only a schema version. If setup is missing, existing guest practice remains available while the account page explains that cloud setup is pending.
+
+
+## Student reasoning and teacher feedback (2026-10-18)
+
+Run `003_reflections.sql` in the Supabase SQL editor after the account setup. This adds `mg_reflections`, `mg_feedback`, and two authenticated RPCs without changing previous scores. Students submit reasoning after a SAT/ACT mock, or from account record details. Drafts stay in account-specific browser storage until submitted. Students and teachers can read authorized records; direct writes are denied. RPCs check ownership, submitted question membership, teacher status and revision numbers. Published feedback retains the student text/version it reviewed.
+
+Teachers open a result → question → download Codex review material. No AI service is called by the website. The downloaded Markdown excludes student email/name/UUID, includes submitted reasoning and source question references, and is manually shared for review. SVG text extraction may include other questions on the same source page; formulas must be checked against the linked original SVG/crop. Teachers paste their reviewed feedback and explicitly publish it. Student edits do not silently overwrite the meaning of old feedback.
+
+Validation: `node backend/reflections.test.cjs` (PGlite) and `node backend/browser.test.cjs` (Playwright, server at port 8770); resolve dependencies through the existing MG后台验证 node_modules. The browser service is mocked; live database acceptance still requires installing the SQL and testing with real student and teacher accounts.
