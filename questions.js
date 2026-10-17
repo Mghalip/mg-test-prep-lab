@@ -2637,7 +2637,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 19,
     "page": 14,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>One of the earliest known maps is a Babylonian clay tablet thought to be almost 4,500 years old. The map _______ the area of a plot of land, shows a river valley, and includes the cardinal directions.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2647,7 +2647,8 @@ const QUESTIONS = [
       "D": "are describing"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of verb forms within a sentence. The singular verb “describes” agrees in number with the singular subject “map.” Choice B is incorrect because the plural verb “describe” doesn’t agree in number with the singular subject “map.” Choice C is incorrect because the plural verb “have described” doesn’t agree in number with the singular subject “map.” Choice D is incorrect because the plural verb “are describing” doesn’t agree in number with the singular subject “map.”"
+    "explanation": "Choice A is the best answer. The convention being tested is the use of verb forms within a sentence. The singular verb “describes” agrees in number with the singular subject “map.” Choice B is incorrect because the plural verb “describe” doesn’t agree in number with the singular subject “map.” Choice C is incorrect because the plural verb “have described” doesn’t agree in number with the singular subject “map.” Choice D is incorrect because the plural verb “are describing” doesn’t agree in number with the singular subject “map.”",
+    "officialTopic": "form"
   },
   {
     "id": "t7m1q20",
@@ -2655,7 +2656,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 20,
     "page": 14,
-    "topic": "form",
+    "topic": "pronouns",
     "passage": "<p>Eighteen letters written by Louisa May Alcott, author of the popular novel <i>Little Women</i> (1868), can be found at the New York Historical Society. _______ letters demonstrate Alcott’s keen business sense in her interactions with publishers.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2665,7 +2666,8 @@ const QUESTIONS = [
       "D": "These"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of determiners in a sentence. The plural determiner “these” agrees in number with the plural noun “letters” that it modifies. This choice clearly indicates that the letters demonstrate Alcott’s business sense. Choice A is incorrect because the singular determiner “one” doesn’t agree in number with the plural noun “letters.” Choice B is incorrect because the singular determiner “that” doesn’t agree in number with the plural noun “letters.” Choice C is incorrect because the singular determiner “this” doesn’t agree in number with the plural noun “letters.”"
+    "explanation": "Choice D is the best answer. The convention being tested is the use of determiners in a sentence. The plural determiner “these” agrees in number with the plural noun “letters” that it modifies. This choice clearly indicates that the letters demonstrate Alcott’s business sense. Choice A is incorrect because the singular determiner “one” doesn’t agree in number with the plural noun “letters.” Choice B is incorrect because the singular determiner “that” doesn’t agree in number with the plural noun “letters.” Choice C is incorrect because the singular determiner “this” doesn’t agree in number with the plural noun “letters.”",
+    "officialTopic": "form"
   },
   {
     "id": "t7m1q21",
@@ -2673,7 +2675,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 21,
     "page": 14,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>The Dust Bowl was a period of severe drought that plagued the Great Plains of the US during the 1930s. During this time, dust storms _______ over 100 million acres of land. They even reached as far east as New York City.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2683,7 +2685,8 @@ const QUESTIONS = [
       "D": "affected"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of verbs to express tense in a sentence. In this choice, the past tense verb “affected,” used in conjunction with the phrase “during this time,” correctly indicates that the dust storms occurred in the 1930s. Choice A is incorrect because the present progressive tense verb “are affecting” doesn’t indicate that the dust storms occurred in the 1930s. Choice B is incorrect because the future perfect tense verb “will have affected” doesn’t indicate that the dust storms occurred in the 1930s. Choice C is incorrect because the future tense verb “will affect” doesn’t indicate that the dust storms occurred in the 1930s."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of verbs to express tense in a sentence. In this choice, the past tense verb “affected,” used in conjunction with the phrase “during this time,” correctly indicates that the dust storms occurred in the 1930s. Choice A is incorrect because the present progressive tense verb “are affecting” doesn’t indicate that the dust storms occurred in the 1930s. Choice B is incorrect because the future perfect tense verb “will have affected” doesn’t indicate that the dust storms occurred in the 1930s. Choice C is incorrect because the future tense verb “will affect” doesn’t indicate that the dust storms occurred in the 1930s.",
+    "officialTopic": "form"
   },
   {
     "id": "t7m1q22",
@@ -2691,7 +2694,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 22,
     "page": 14,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>Many mechanical calculators were powered by a notched cylinder mechanism called the Leibniz wheel. Leibniz wheel calculators were popular in the first half of the twentieth _______ these ingenious devices were eventually replaced by electronic calculators.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2701,7 +2704,8 @@ const QUESTIONS = [
       "D": "century that"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the coordination of main clauses within a sentence. This choice correctly uses a comma and a coordinating conjunction (“but”) to join the first main clause (“Leibniz...century”) and the second main clause (“these ingenious...calculators”). Choice A is incorrect because it results in a run-on sentence. The two main clauses are fused without punctuation and/or a conjunction. Choice B is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses. Choice D is incorrect because joining the two main clauses in this way with the subordinating conjunction “that” results in an ungrammatical and illogical sentence."
+    "explanation": "Choice C is the best answer. The convention being tested is the coordination of main clauses within a sentence. This choice correctly uses a comma and a coordinating conjunction (“but”) to join the first main clause (“Leibniz...century”) and the second main clause (“these ingenious...calculators”). Choice A is incorrect because it results in a run-on sentence. The two main clauses are fused without punctuation and/or a conjunction. Choice B is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses. Choice D is incorrect because joining the two main clauses in this way with the subordinating conjunction “that” results in an ungrammatical and illogical sentence.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m1q23",
@@ -2709,7 +2713,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 23,
     "page": 14,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>Featuring jagged peaks of black ink surrounded by hazy swirls of blue and green paint, Zhang Daqian’s 1983 painting <i>Panorama of Mount Lu</i> is inspired by the tradition of <i>qinglü shanshui</i>, a type of Chinese landscape painting _______ by the use of blue and green hues to depict ethereal, otherworldly landscapes.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2719,7 +2723,8 @@ const QUESTIONS = [
       "D": "is characterized"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of verb forms within a sentence. The nonfinite past participle “characterized” is correctly used within a supplementary element that modifies the main clause “Zhang...shanshui,” defining qinglü shanshui and explaining some of its identifying traits. Choice A is incorrect because it results in a comma splice. Using the finite present perfect tense verb “has been characterized” creates a second main clause in the sentence, and the two main clauses can’t be joined in this way by only the comma before “a type.” Choice B is incorrect because it results in a comma splice. Using the finite future tense verb “will be characterized” creates a second main clause in the sentence, and the two main clauses can’t be joined in this way by only the comma before “a type.” Choice D is incorrect because it results in a comma splice. Using the finite present tense verb “is characterized” creates a second main clause in the sentence, and the two main clauses can’t be joined in this way by only the comma before “a type.”"
+    "explanation": "Choice C is the best answer. The convention being tested is the use of verb forms within a sentence. The nonfinite past participle “characterized” is correctly used within a supplementary element that modifies the main clause “Zhang...shanshui,” defining qinglü shanshui and explaining some of its identifying traits. Choice A is incorrect because it results in a comma splice. Using the finite present perfect tense verb “has been characterized” creates a second main clause in the sentence, and the two main clauses can’t be joined in this way by only the comma before “a type.” Choice B is incorrect because it results in a comma splice. Using the finite future tense verb “will be characterized” creates a second main clause in the sentence, and the two main clauses can’t be joined in this way by only the comma before “a type.” Choice D is incorrect because it results in a comma splice. Using the finite present tense verb “is characterized” creates a second main clause in the sentence, and the two main clauses can’t be joined in this way by only the comma before “a type.”",
+    "officialTopic": "form"
   },
   {
     "id": "t7m1q24",
@@ -2727,7 +2732,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 24,
     "page": 15,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>Increasing the heat on an uncovered boiling pot of water does not increase the temperature of the water. What increases is the rate at which the water turns to _______ a pressure cooker pot, though, an airtight seal traps the vapor in the pot, creating pressure that allows the temperature of the water to increase past its boiling point.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2737,7 +2742,8 @@ const QUESTIONS = [
       "D": "vapor and with"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is punctuation use between sentences. In this choice, the period is used correctly to mark the boundary between one sentence (“What…vapor”) and another (“With…point”). Choice B is incorrect because it results in a run-on sentence. The sentences (“What…vapor” and “with…point”) are fused without punctuation and/or a conjunction. Choice C is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between sentences. Choice D is incorrect. Without a comma preceding it, the conjunction “and” can’t be used in this way to join sentences."
+    "explanation": "Choice A is the best answer. The convention being tested is punctuation use between sentences. In this choice, the period is used correctly to mark the boundary between one sentence (“What…vapor”) and another (“With…point”). Choice B is incorrect because it results in a run-on sentence. The sentences (“What…vapor” and “with…point”) are fused without punctuation and/or a conjunction. Choice C is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between sentences. Choice D is incorrect. Without a comma preceding it, the conjunction “and” can’t be used in this way to join sentences.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m1q25",
@@ -2745,7 +2751,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 25,
     "page": 15,
-    "topic": "form",
+    "topic": "modifiers",
     "passage": "<p>Wanting to celebrate the 100th anniversary of the Alaska Purchase, _______ up with a motto that best captured the state’s unique character. The commission selected “North to the Future,” submitted by Juneau journalist Richard Peter, as its winning entry.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2755,7 +2761,8 @@ const QUESTIONS = [
       "D": "the Alaska Centennial Commission sponsored a contest that would award $300 to an individual who came"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is subject-modifier placement. This choice makes the noun phrase “the Alaska Centennial Commission” the subject of the sentence and places it immediately after the modifying phrase “wanting…Purchase.” In doing so, this choice clearly establishes that the Alaska Centennial Commission—and not another noun in the sentence— wanted to celebrate the 100th anniversary of the Alaska Purchase. Choice A is incorrect because it results in a dangling modifier. The placement of the noun phrase “a contest” immediately after the modifying phrase illogically suggests that the contest wanted to celebrate the 100th anniversary of the Alaska Purchase. Choice B is incorrect because it results in a dangling modifier. The placement of the noun phrase “an award of $300” immediately after the modifying phrase illogically suggests that the award of $300 wanted to celebrate the 100th anniversary of the Alaska Purchase. Choice C is incorrect because it results in a dangling modifier. The placement of the noun phrase “$300” immediately after the modifying phrase illogically suggests that the $300 wanted to celebrate the 100th anniversary of the Alaska Purchase."
+    "explanation": "Choice D is the best answer. The convention being tested is subject-modifier placement. This choice makes the noun phrase “the Alaska Centennial Commission” the subject of the sentence and places it immediately after the modifying phrase “wanting…Purchase.” In doing so, this choice clearly establishes that the Alaska Centennial Commission—and not another noun in the sentence— wanted to celebrate the 100th anniversary of the Alaska Purchase. Choice A is incorrect because it results in a dangling modifier. The placement of the noun phrase “a contest” immediately after the modifying phrase illogically suggests that the contest wanted to celebrate the 100th anniversary of the Alaska Purchase. Choice B is incorrect because it results in a dangling modifier. The placement of the noun phrase “an award of $300” immediately after the modifying phrase illogically suggests that the award of $300 wanted to celebrate the 100th anniversary of the Alaska Purchase. Choice C is incorrect because it results in a dangling modifier. The placement of the noun phrase “$300” immediately after the modifying phrase illogically suggests that the $300 wanted to celebrate the 100th anniversary of the Alaska Purchase.",
+    "officialTopic": "form"
   },
   {
     "id": "t7m1q26",
@@ -2763,7 +2770,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 26,
     "page": 15,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>Recently unearthed Neronian tools in France dating to 54,000 years ago and attributed to <i>Homo sapiens </i>may provide evidence that interactions between Neanderthals and modern humans occurred 10,000 years earlier than was previously _______ finding that, if true, would overturn current theories about <i>H. sapiens</i> migration during the Upper Paleolithic.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2773,7 +2780,8 @@ const QUESTIONS = [
       "D": "supposed, a"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to mark the boundary between the main clause (“Recently...supposed”) and the supplementary element (“a finding...Paleolithic”) that provides additional information about the implications of the Neronian tool discovery. Choice A is incorrect because a semicolon can’t be used in this way to join the main clause (“Recently...supposed”) and the supplementary element (“a finding... Paleolithic”). Choice B is incorrect because it results in a rhetorically unacceptable sentence fragment beginning with “a finding.” Choice C is incorrect because it results in a run-on sentence. The main clause (“Recently...supposed”) and the supplementary element (“a finding...Paleolithic”) are fused without punctuation and/or a conjunction."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to mark the boundary between the main clause (“Recently...supposed”) and the supplementary element (“a finding...Paleolithic”) that provides additional information about the implications of the Neronian tool discovery. Choice A is incorrect because a semicolon can’t be used in this way to join the main clause (“Recently...supposed”) and the supplementary element (“a finding... Paleolithic”). Choice B is incorrect because it results in a rhetorically unacceptable sentence fragment beginning with “a finding.” Choice C is incorrect because it results in a run-on sentence. The main clause (“Recently...supposed”) and the supplementary element (“a finding...Paleolithic”) are fused without punctuation and/or a conjunction.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m1q27",
@@ -2791,7 +2799,8 @@ const QUESTIONS = [
       "D": "Instead,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “Additionally” logically signals that guard cells’ role in regulating water loss is an additional function of these specialized plant cells that is separate from the function of regulating carbon dioxide intake. Choice B is incorrect because “previously” illogically signals that the activity described in this sentence occurs earlier in a chronological sequence of events than the regulation of carbon dioxide intake described in the previous sentence. Instead, regulating water loss is an additional function of guard cells that is separate from the function of regulating carbon dioxide intake. Choice C is incorrect because “in conclusion” illogically signals that the description of guard cells’ role in regulating water loss concludes or summarizes the information about guard cells provided in the previous sentences. Instead, regulating water loss is one of the two distinct functions of guard cells described in the text. Choice D is incorrect because “instead” illogically signals that the activity described in this sentence happens in place of the activity of regulating carbon dioxide intake described in the previous sentence. Rather, regulating water loss is an additional function of guard cells."
+    "explanation": "Choice A is the best answer. “Additionally” logically signals that guard cells’ role in regulating water loss is an additional function of these specialized plant cells that is separate from the function of regulating carbon dioxide intake. Choice B is incorrect because “previously” illogically signals that the activity described in this sentence occurs earlier in a chronological sequence of events than the regulation of carbon dioxide intake described in the previous sentence. Instead, regulating water loss is an additional function of guard cells that is separate from the function of regulating carbon dioxide intake. Choice C is incorrect because “in conclusion” illogically signals that the description of guard cells’ role in regulating water loss concludes or summarizes the information about guard cells provided in the previous sentences. Instead, regulating water loss is one of the two distinct functions of guard cells described in the text. Choice D is incorrect because “instead” illogically signals that the activity described in this sentence happens in place of the activity of regulating carbon dioxide intake described in the previous sentence. Rather, regulating water loss is an additional function of guard cells.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t7m1q28",
@@ -2809,7 +2818,8 @@ const QUESTIONS = [
       "D": "Chaudhuri is a sedimentologist."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The sentence identifies the type of scientist Chaudhuri is, noting that she is a sedimentologist. Choice A is incorrect. The sentence provides an example of a type of sedimentary rock; it doesn’t identify what type of scientist Chaudhuri is. Choice B is incorrect. The sentence indicates types of rock that some scientists study; it doesn’t identify what type of scientist Chaudhuri is. Choice C is incorrect. While the sentence states that some scientists study sedimentary rocks, it doesn’t identify Chaudhuri as this type of scientist."
+    "explanation": "Choice D is the best answer. The sentence identifies the type of scientist Chaudhuri is, noting that she is a sedimentologist. Choice A is incorrect. The sentence provides an example of a type of sedimentary rock; it doesn’t identify what type of scientist Chaudhuri is. Choice B is incorrect. The sentence indicates types of rock that some scientists study; it doesn’t identify what type of scientist Chaudhuri is. Choice C is incorrect. While the sentence states that some scientists study sedimentary rocks, it doesn’t identify Chaudhuri as this type of scientist.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m1q29",
@@ -2827,7 +2837,8 @@ const QUESTIONS = [
       "D": "“Raymond’s Run” was written by Toni Cade Bambara."
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The sentence indicates where “Raymond’s Run” takes place, stating that it takes place in Harlem. Choice B is incorrect. The sentence identifies the book in which the story “Raymond’s Run” was published; it doesn’t indicate where the story takes place. Choice C is incorrect. The sentence indicates the point of view used in “Raymond’s Run”; it doesn’t indicate where the story takes place. Choice D is incorrect. The sentence identifies the author of “Raymond’s Run”; it doesn’t indicate where the story takes place."
+    "explanation": "Choice A is the best answer. The sentence indicates where “Raymond’s Run” takes place, stating that it takes place in Harlem. Choice B is incorrect. The sentence identifies the book in which the story “Raymond’s Run” was published; it doesn’t indicate where the story takes place. Choice C is incorrect. The sentence indicates the point of view used in “Raymond’s Run”; it doesn’t indicate where the story takes place. Choice D is incorrect. The sentence identifies the author of “Raymond’s Run”; it doesn’t indicate where the story takes place.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m1q30",
@@ -2845,7 +2856,8 @@ const QUESTIONS = [
       "D": "Among the famous tilework of the Royal Alcázar of Seville are majolica style tiles, made by painting designs directly on the ceramic tiles."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence contrasts the two styles of tiles, noting that tiles in the arista style have designs stamped into them, whereas tiles in the majolica style have designs painted directly on them. Choice A is incorrect because the sentence indicates that the two styles of tile can be found in the same location; it doesn’t contrast the two styles of tile. Choice B is incorrect because the sentence indicates that the Royal Alcázar of Seville features tiles in both the majolica and arista styles; it doesn’t contrast the two styles of tile. Choice D is incorrect because the sentence indicates that the tilework of the Royal Alcázar of Seville includes tiles in the majolica style; it doesn’t contrast tiles in the majolica style with tiles in the arista style."
+    "explanation": "Choice C is the best answer. The sentence contrasts the two styles of tiles, noting that tiles in the arista style have designs stamped into them, whereas tiles in the majolica style have designs painted directly on them. Choice A is incorrect because the sentence indicates that the two styles of tile can be found in the same location; it doesn’t contrast the two styles of tile. Choice B is incorrect because the sentence indicates that the Royal Alcázar of Seville features tiles in both the majolica and arista styles; it doesn’t contrast the two styles of tile. Choice D is incorrect because the sentence indicates that the tilework of the Royal Alcázar of Seville includes tiles in the majolica style; it doesn’t contrast tiles in the majolica style with tiles in the arista style.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m1q31",
@@ -2863,7 +2875,8 @@ const QUESTIONS = [
       "D": "Released in 1932 by Aunt Molly Jackson, the song “Poor Miner’s Farewell” was a protest against the unlivable wages and dangerous working conditions faced by Kentucky coal miners."
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The sentence contrasts the two songs, noting that “Poor Miner’s Farewell” is about coal miners in Kentucky, whereas “Bring Him Back Home” is about Nelson Mandela. Choice A is incorrect. The sentence emphasizes a similarity between “Poor Miner’s Farewell” and “Bring Him Back Home”; it doesn’t contrast the two songs. Choice C is incorrect. While the sentence provides a description of the song “Bring Him Back Home,” it doesn’t mention “Poor Miner’s Farewell” or contrast the two songs. Choice D is incorrect. While the sentence provides a description of the song “Poor Miner’s Farewell,” it doesn’t mention “Bring Him Back Home” or contrast the two songs."
+    "explanation": "Choice B is the best answer. The sentence contrasts the two songs, noting that “Poor Miner’s Farewell” is about coal miners in Kentucky, whereas “Bring Him Back Home” is about Nelson Mandela. Choice A is incorrect. The sentence emphasizes a similarity between “Poor Miner’s Farewell” and “Bring Him Back Home”; it doesn’t contrast the two songs. Choice C is incorrect. While the sentence provides a description of the song “Bring Him Back Home,” it doesn’t mention “Poor Miner’s Farewell” or contrast the two songs. Choice D is incorrect. While the sentence provides a description of the song “Poor Miner’s Farewell,” it doesn’t mention “Bring Him Back Home” or contrast the two songs.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m1q32",
@@ -2881,7 +2894,8 @@ const QUESTIONS = [
       "D": "Thucydides explained that conflict was caused by “the rise of Athens and the fear this instilled in Sparta,” but Allison disagreed, seeing the conflict as an example of the Thucydides trap."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. Using a quotation from Stewart, the sentence challenges Thucydides’s explanation that the rise of Athens caused the conflict, suggesting that it was instead caused by a “clash of cultures.” Choice A is incorrect. While the sentence uses a quotation, the quotation doesn’t challenge Thucydides’s explanation of the conflict. Choice B is incorrect. While the sentence mentions that Stewart challenged Thucydides’s explanation of the conflict, it doesn’t use a quotation to challenge Thucydides’s explanation: the quoted word “inevitable” is from Thucydides. Choice D is incorrect. While the sentence appears to refute Thucydides’s explanation, it does so in a way that misrepresents the information in the notes; Allison’s Thucydides trap theory is based on Thucydides’s explanation of the conflict. Thus, Allison’s theory affirms, rather than challenges, Thucydides’s explanation."
+    "explanation": "Choice C is the best answer. Using a quotation from Stewart, the sentence challenges Thucydides’s explanation that the rise of Athens caused the conflict, suggesting that it was instead caused by a “clash of cultures.” Choice A is incorrect. While the sentence uses a quotation, the quotation doesn’t challenge Thucydides’s explanation of the conflict. Choice B is incorrect. While the sentence mentions that Stewart challenged Thucydides’s explanation of the conflict, it doesn’t use a quotation to challenge Thucydides’s explanation: the quoted word “inevitable” is from Thucydides. Choice D is incorrect. While the sentence appears to refute Thucydides’s explanation, it does so in a way that misrepresents the information in the notes; Allison’s Thucydides trap theory is based on Thucydides’s explanation of the conflict. Thus, Allison’s theory affirms, rather than challenges, Thucydides’s explanation.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m1q33",
@@ -2899,7 +2913,8 @@ const QUESTIONS = [
       "D": "Though some of the languages differed in number of syllables spoken per second, all 17 conveyed information at roughly the same rate."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The sentence presents an overview of the study’s findings, noting that, for some of the languages (the examples of Spanish and Vietnamese are given in the notes), the number of syllables spoken per second varied, while the amount of information conveyed per second remained roughly constant across all 17 languages. Choice A is incorrect. While the sentence describes one of the metrics the study assessed, it doesn’t present any of the study’s findings. Choice B is incorrect. While the sentence compares specific findings about two of the languages studied, it doesn’t provide an overview of the study’s findings across all 17 languages. Choice C is incorrect. The sentence compares specific findings about two of the languages studied; it doesn’t provide an overview of the study’s findings across all 17 languages. It also misrepresents the information from the notes about Spanish’s information rate. Reading and Writing Module 2 (33 questions)"
+    "explanation": "Choice D is the best answer. The sentence presents an overview of the study’s findings, noting that, for some of the languages (the examples of Spanish and Vietnamese are given in the notes), the number of syllables spoken per second varied, while the amount of information conveyed per second remained roughly constant across all 17 languages. Choice A is incorrect. While the sentence describes one of the metrics the study assessed, it doesn’t present any of the study’s findings. Choice B is incorrect. While the sentence compares specific findings about two of the languages studied, it doesn’t provide an overview of the study’s findings across all 17 languages. Choice C is incorrect. The sentence compares specific findings about two of the languages studied; it doesn’t provide an overview of the study’s findings across all 17 languages. It also misrepresents the information from the notes about Spanish’s information rate. Reading and Writing Module 2 (33 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m2q19",
@@ -2907,7 +2922,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 19,
     "page": 27,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>Nowadays, tug-of-war is usually seen as an informal game one might play at a picnic or in gym class. Surprisingly, the Olympic committee once decided _______ tug-of-war as an official Olympic event! Nations competed in the event at the Olympic Games from 1900 to 1920.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2917,7 +2932,8 @@ const QUESTIONS = [
       "D": "to include"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of verb forms within a sentence. The nonfinite to-infinitive verb “to include” is correctly used to form a subordinate clause that indicates what the Olympic committee decided (to include tug-of-war as an Olympic event). Choice A is incorrect because it results in an ungrammatical sentence. The finite verb “included” can’t be used in this way to form a subordinate clause that indicates what the Olympic committee decided. Choice B is incorrect because it results in an ungrammatical sentence. The nonfinite participle “including” can’t be used in this way to form a subordinate clause that indicates what the Olympic committee decided. Choice C is incorrect because it results in an ungrammatical sentence. The finite verb “include” can’t be used in this way to form a subordinate clause that indicates what the Olympic committee decided."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of verb forms within a sentence. The nonfinite to-infinitive verb “to include” is correctly used to form a subordinate clause that indicates what the Olympic committee decided (to include tug-of-war as an Olympic event). Choice A is incorrect because it results in an ungrammatical sentence. The finite verb “included” can’t be used in this way to form a subordinate clause that indicates what the Olympic committee decided. Choice B is incorrect because it results in an ungrammatical sentence. The nonfinite participle “including” can’t be used in this way to form a subordinate clause that indicates what the Olympic committee decided. Choice C is incorrect because it results in an ungrammatical sentence. The finite verb “include” can’t be used in this way to form a subordinate clause that indicates what the Olympic committee decided.",
+    "officialTopic": "form"
   },
   {
     "id": "t7m2q20",
@@ -2925,7 +2941,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 20,
     "page": 27,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>The Globe Theatre in London is a reconstruction of the famed venue where many of Shakespeare’s plays were first performed. In 1613, a prop cannon _______ during a performance and ignited the Globe’s thatched roof. No one was hurt, but in two hours the original Globe was gone.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2935,7 +2951,8 @@ const QUESTIONS = [
       "D": "malfunctioned"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the past tense verb “malfunctioned” is consistent with the other past tense verbs (“ignited” and “was”) used to describe the destruction of the original Globe Theatre. Choice A is incorrect because the present tense verb “malfunctions” isn’t consistent with the other past tense verbs used to describe the destruction of the original Globe Theatre. Choice B is incorrect because the future tense verb “will malfunction” isn’t consistent with the other past tense verbs used to describe the destruction of the original Globe Theatre. Choice C is incorrect because the present perfect tense verb “has malfunctioned” isn’t consistent with the other past tense verbs used to describe the destruction of the original Globe Theatre."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the past tense verb “malfunctioned” is consistent with the other past tense verbs (“ignited” and “was”) used to describe the destruction of the original Globe Theatre. Choice A is incorrect because the present tense verb “malfunctions” isn’t consistent with the other past tense verbs used to describe the destruction of the original Globe Theatre. Choice B is incorrect because the future tense verb “will malfunction” isn’t consistent with the other past tense verbs used to describe the destruction of the original Globe Theatre. Choice C is incorrect because the present perfect tense verb “has malfunctioned” isn’t consistent with the other past tense verbs used to describe the destruction of the original Globe Theatre.",
+    "officialTopic": "form"
   },
   {
     "id": "t7m2q21",
@@ -2943,7 +2960,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 21,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>Nigerian American artist Toyin Ojih Odutola uses black-ink pens to create highly detailed drawings of human figures. Her portrait of novelist Zadie _______ is displayed in the National Portrait Gallery in London.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2953,7 +2970,8 @@ const QUESTIONS = [
       "D": "Smith,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is punctuation use between a subject and a verb. No punctuation is needed when, as in this case, a subject (“Her portrait of novelist Zadie Smith”) is immediately followed by a main verb (“is displayed”). Choice A is incorrect because no punctuation is needed between the subject and the verb. Choice B is incorrect because no punctuation is needed between the subject and the verb. Choice D is incorrect because no punctuation is needed between the subject and the verb."
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation use between a subject and a verb. No punctuation is needed when, as in this case, a subject (“Her portrait of novelist Zadie Smith”) is immediately followed by a main verb (“is displayed”). Choice A is incorrect because no punctuation is needed between the subject and the verb. Choice B is incorrect because no punctuation is needed between the subject and the verb. Choice D is incorrect because no punctuation is needed between the subject and the verb.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m2q22",
@@ -2961,7 +2979,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 22,
     "page": 28,
-    "topic": "form",
+    "topic": "pronouns",
     "passage": "<p>When a given industry—water and electricity are two well-known examples—carries high infrastructural start-up costs and other barriers that discourage competition, _______ of just one or two suppliers per municipality. Such industries are known as natural monopolies.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2971,7 +2989,8 @@ const QUESTIONS = [
       "D": "this often consists"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is pronoun-antecedent agreement. The singular pronoun “it” agrees in number with the singular antecedent “industry” and clearly indicates that the industry consists of just one or two suppliers per municipality. Choice A is incorrect. The plural pronoun “these” neither agrees in number with the singular antecedent “industry” nor clearly indicates that the industry—not another plural noun in the sentence, such as “start-up costs” or “barriers”— consists of just one or two suppliers per municipality. Choice B is incorrect because the plural pronoun “they” doesn’t agree in number with the singular antecedent “industry.” Choice D is incorrect because the singular pronoun “this” is ambiguous in this context; the resulting sentence leaves unclear what consists of just one or two suppliers per municipality."
+    "explanation": "Choice C is the best answer. The convention being tested is pronoun-antecedent agreement. The singular pronoun “it” agrees in number with the singular antecedent “industry” and clearly indicates that the industry consists of just one or two suppliers per municipality. Choice A is incorrect. The plural pronoun “these” neither agrees in number with the singular antecedent “industry” nor clearly indicates that the industry—not another plural noun in the sentence, such as “start-up costs” or “barriers”— consists of just one or two suppliers per municipality. Choice B is incorrect because the plural pronoun “they” doesn’t agree in number with the singular antecedent “industry.” Choice D is incorrect because the singular pronoun “this” is ambiguous in this context; the resulting sentence leaves unclear what consists of just one or two suppliers per municipality.",
+    "officialTopic": "form"
   },
   {
     "id": "t7m2q23",
@@ -2979,7 +2998,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 23,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>As the fourteenth US librarian of Congress, Carla Hayden has many responsibilities. These include overseeing the Library of Congress’s collections, which boast more than 162 million _______ the US Copyright Office, which registers copyright claims and advises Congress on copyright law; and appointing the US poet laureate.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -2989,7 +3008,8 @@ const QUESTIONS = [
       "D": "items. Managing"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of elements in a complex series. It’s conventional to use a semicolon to separate items in a complex series with internal punctuation, and in this choice, the semicolon after “items” is conventionally used to separate the first item (“overseeing…items”) and the second item (“managing…law”) in a list of Hayden’s responsibilities. Choice A is incorrect because it fails to use appropriate punctuation to separate the first item and the second item in the complex series. Choice B is incorrect because a comma after “items” doesn’t match the semicolon used later to separate the second and third items in the series (“managing…law” and “and appointing the US poet laureate”). Choice D is incorrect because it results in a rhetorically unacceptable sentence fragment beginning with “Managing.”"
+    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of elements in a complex series. It’s conventional to use a semicolon to separate items in a complex series with internal punctuation, and in this choice, the semicolon after “items” is conventionally used to separate the first item (“overseeing…items”) and the second item (“managing…law”) in a list of Hayden’s responsibilities. Choice A is incorrect because it fails to use appropriate punctuation to separate the first item and the second item in the complex series. Choice B is incorrect because a comma after “items” doesn’t match the semicolon used later to separate the second and third items in the series (“managing…law” and “and appointing the US poet laureate”). Choice D is incorrect because it results in a rhetorically unacceptable sentence fragment beginning with “Managing.”",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m2q24",
@@ -2997,7 +3017,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 24,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>Digital artist Jung (Lulu) Chen primarily uses a suite of software tools to create illustrations for children’s books. To manifest the warm and welcoming atmospheres that are a signature of her _______ she occasionally relies on more traditional art techniques, such as painting with watercolors.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3007,7 +3027,8 @@ const QUESTIONS = [
       "D": "work, though;"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation within a sentence. The comma after “work” pairs with the comma after “though” to separate the supplementary element “though” from the rest of the sentence. This supplementary element signals that what follows is an exception to Chen using software tools to create illustrations, and the pair of commas indicates that this element could be removed without affecting the grammatical coherence of the sentence. Choice B is incorrect because the comma after “work” must be paired with a comma after “though” to separate the supplementary element from the rest of the sentence. Choice C is incorrect because a semicolon can’t be paired with a comma in this way to separate the supplementary element from the rest of the sentence. Choice D is incorrect because a semicolon can’t be paired with a comma in this way to separate the supplementary element from the rest of the sentence."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation within a sentence. The comma after “work” pairs with the comma after “though” to separate the supplementary element “though” from the rest of the sentence. This supplementary element signals that what follows is an exception to Chen using software tools to create illustrations, and the pair of commas indicates that this element could be removed without affecting the grammatical coherence of the sentence. Choice B is incorrect because the comma after “work” must be paired with a comma after “though” to separate the supplementary element from the rest of the sentence. Choice C is incorrect because a semicolon can’t be paired with a comma in this way to separate the supplementary element from the rest of the sentence. Choice D is incorrect because a semicolon can’t be paired with a comma in this way to separate the supplementary element from the rest of the sentence.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m2q25",
@@ -3015,7 +3036,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 25,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>Chondrites are stony meteorites that are undifferentiated—that is, their contents have not melted and separated into distinct layers. They are hardly _______ many chondrites experience aqueous alteration as a result of exposure to fluids, as well as fracturing, veining, and localized melting due to collisions with other objects.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3025,7 +3046,8 @@ const QUESTIONS = [
       "D": "pristine, though,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to separate the supplementary adverb “though” from the preceding main clause (“They are hardly pristine”) and uses a semicolon to join the two main clauses (“They… though” and “many…objects”). Further, placing the semicolon after “though” indicates that the information in the preceding main clause (chondrites are far from pristine) is contrary to what might be assumed from the information in the previous sentence (chondrites have been generally unaltered by their environment). Choice A is incorrect because placing the comma after “pristine” and using “though” as a subordinating conjunction illogically indicates that the information in the next main clause (many chondrites have experienced damage) is contrary to the information in the previous clause (chondrites are far from pristine). Choice C is incorrect because placing the semicolon after “pristine” illogically indicates that the information in the next main clause (many chondrites have experienced damage) is contrary to the information in the previous clause (chondrites are far from pristine). Choice D is incorrect because it results in a comma splice. Without a conjunction following it, the comma after “though” can’t be used in this way to join two main clauses."
+    "explanation": "Choice B is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to separate the supplementary adverb “though” from the preceding main clause (“They are hardly pristine”) and uses a semicolon to join the two main clauses (“They… though” and “many…objects”). Further, placing the semicolon after “though” indicates that the information in the preceding main clause (chondrites are far from pristine) is contrary to what might be assumed from the information in the previous sentence (chondrites have been generally unaltered by their environment). Choice A is incorrect because placing the comma after “pristine” and using “though” as a subordinating conjunction illogically indicates that the information in the next main clause (many chondrites have experienced damage) is contrary to the information in the previous clause (chondrites are far from pristine). Choice C is incorrect because placing the semicolon after “pristine” illogically indicates that the information in the next main clause (many chondrites have experienced damage) is contrary to the information in the previous clause (chondrites are far from pristine). Choice D is incorrect because it results in a comma splice. Without a conjunction following it, the comma after “though” can’t be used in this way to join two main clauses.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m2q26",
@@ -3033,7 +3055,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 26,
     "page": 29,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>That the geographic center of North America lay in the state of North Dakota was conceded by all _______ establishing its precise coordinates proved more divisive.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3043,7 +3065,8 @@ const QUESTIONS = [
       "D": "involved;"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of punctuation within a sentence. This choice uses a semicolon in a conventional way to join the first main clause (“That the...involved”) and the second main clause (“establishing...divisive”). Further, the semicolon is the most appropriate choice when joining two separate, parallel statements, such as here, where the information following the semicolon contrasts with the information before. Choice A is incorrect because placing a colon after “involved” illogically indicates that the information in the second main clause (the precise location was the subject of disagreement) explains or amplifies the information in the previous main clause (the general location was agreed upon by all). Instead, the information in the second clause contrasts with the previous information. Choice B is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses. Choice C is incorrect because it results in a run-on sentence. The two main clauses are fused without punctuation and/or a conjunction."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of punctuation within a sentence. This choice uses a semicolon in a conventional way to join the first main clause (“That the...involved”) and the second main clause (“establishing...divisive”). Further, the semicolon is the most appropriate choice when joining two separate, parallel statements, such as here, where the information following the semicolon contrasts with the information before. Choice A is incorrect because placing a colon after “involved” illogically indicates that the information in the second main clause (the precise location was the subject of disagreement) explains or amplifies the information in the previous main clause (the general location was agreed upon by all). Instead, the information in the second clause contrasts with the previous information. Choice B is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses. Choice C is incorrect because it results in a run-on sentence. The two main clauses are fused without punctuation and/or a conjunction.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t7m2q27",
@@ -3061,7 +3084,8 @@ const QUESTIONS = [
       "D": "In comparison,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “As a result” logically signals that the action described in this sentence—closing the area around Garisenda Tower to explore stabilization solutions—occurred as a consequence or result of measurements revealing the tower’s concerning rotation. Choice A is incorrect because “similarly” illogically signals that the action of closing the tower area is similar to the discovery of concerning rotation described in the previous sentence. Instead, closing the area around the tower to explore solutions occurred as a result of the measurements revealing the rotation. Choice C is incorrect because “for example” illogically signals that the action of closing the tower area serves as an example of the tower’s concerning rotation described in the previous sentence. Instead, closing the area around the tower to explore solutions occurred as a result of the measurements revealing the rotation. Choice D is incorrect because “in comparison” illogically signals that the action of closing the tower area is being compared to the discovery of concerning rotation described in the previous sentence. Instead, closing the area around the tower to explore solutions occurred as a result of the measurements revealing the rotation."
+    "explanation": "Choice B is the best answer. “As a result” logically signals that the action described in this sentence—closing the area around Garisenda Tower to explore stabilization solutions—occurred as a consequence or result of measurements revealing the tower’s concerning rotation. Choice A is incorrect because “similarly” illogically signals that the action of closing the tower area is similar to the discovery of concerning rotation described in the previous sentence. Instead, closing the area around the tower to explore solutions occurred as a result of the measurements revealing the rotation. Choice C is incorrect because “for example” illogically signals that the action of closing the tower area serves as an example of the tower’s concerning rotation described in the previous sentence. Instead, closing the area around the tower to explore solutions occurred as a result of the measurements revealing the rotation. Choice D is incorrect because “in comparison” illogically signals that the action of closing the tower area is being compared to the discovery of concerning rotation described in the previous sentence. Instead, closing the area around the tower to explore solutions occurred as a result of the measurements revealing the rotation.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t7m2q28",
@@ -3079,7 +3103,8 @@ const QUESTIONS = [
       "D": "Specifically,"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. “Specifically” logically signals that the information in this sentence—that the Local Bubble’s expansion trapped clouds of gas and dust that formed new stars—provides specific, precise details elaborating on the more general information in the previous sentence about the relationship between the Local Bubble’s expansion and the formation of new stars. Choice A is incorrect because “hence” illogically signals that the information in this sentence is a result of the information in the previous sentence about the relationship between the Local Bubble’s expansion and the formation of new stars. Instead, this sentence provides specific, precise details elaborating on that information. Choice B is incorrect because “however” illogically signals that the information in this sentence contrasts with the information in the previous sentence about the relationship between the Local Bubble’s expansion and the formation of new stars. Instead, this sentence provides specific, precise details elaborating on that information. Choice C is incorrect because “admittedly” illogically signals that the information in this sentence provides an exception or caveat to the previous information about the relationship between the Local Bubble’s expansion and the formation of new stars. Instead, this sentence provides specific, precise details elaborating on that information."
+    "explanation": "Choice D is the best answer. “Specifically” logically signals that the information in this sentence—that the Local Bubble’s expansion trapped clouds of gas and dust that formed new stars—provides specific, precise details elaborating on the more general information in the previous sentence about the relationship between the Local Bubble’s expansion and the formation of new stars. Choice A is incorrect because “hence” illogically signals that the information in this sentence is a result of the information in the previous sentence about the relationship between the Local Bubble’s expansion and the formation of new stars. Instead, this sentence provides specific, precise details elaborating on that information. Choice B is incorrect because “however” illogically signals that the information in this sentence contrasts with the information in the previous sentence about the relationship between the Local Bubble’s expansion and the formation of new stars. Instead, this sentence provides specific, precise details elaborating on that information. Choice C is incorrect because “admittedly” illogically signals that the information in this sentence provides an exception or caveat to the previous information about the relationship between the Local Bubble’s expansion and the formation of new stars. Instead, this sentence provides specific, precise details elaborating on that information.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t7m2q29",
@@ -3097,7 +3122,8 @@ const QUESTIONS = [
       "D": "second of all,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “In particular” logically signals that the information in this sentence—that maize and wheat supply chains transformed North American foodways into a global food system—provides specific, precise details elaborating on the more general information in the previous sentence about the transformation of North American foodways (with maize and wheat the “certain grains” at the center of it). Choice B is incorrect because “alternatively” illogically signals that the information in this sentence is an alternative option to the previous information about the transformation of North American foodways. Instead, the roles of maize and wheat in creating a global food system are specific, precise details elaborating on that information. Choice C is incorrect because “by comparison” illogically signals that the information in this sentence is being compared to the previous information about the transformation of North American foodways. Instead, the roles of maize and wheat in creating a global food system are specific, precise details elaborating on that information. Choice D is incorrect because “second of all” illogically signals that the information in this sentence is a second, separate claim from the previous claim that North American foodways were transformed. Instead, the roles of maize and wheat in creating a global food system are specific, precise details elaborating on that information, rather than a separate claim."
+    "explanation": "Choice A is the best answer. “In particular” logically signals that the information in this sentence—that maize and wheat supply chains transformed North American foodways into a global food system—provides specific, precise details elaborating on the more general information in the previous sentence about the transformation of North American foodways (with maize and wheat the “certain grains” at the center of it). Choice B is incorrect because “alternatively” illogically signals that the information in this sentence is an alternative option to the previous information about the transformation of North American foodways. Instead, the roles of maize and wheat in creating a global food system are specific, precise details elaborating on that information. Choice C is incorrect because “by comparison” illogically signals that the information in this sentence is being compared to the previous information about the transformation of North American foodways. Instead, the roles of maize and wheat in creating a global food system are specific, precise details elaborating on that information. Choice D is incorrect because “second of all” illogically signals that the information in this sentence is a second, separate claim from the previous claim that North American foodways were transformed. Instead, the roles of maize and wheat in creating a global food system are specific, precise details elaborating on that information, rather than a separate claim.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t7m2q30",
@@ -3115,7 +3141,8 @@ const QUESTIONS = [
       "D": "To that end,"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. “To that end” logically signals that the information in this sentence—the students’ creation of a show with six starring female roles—is the product of a goal or desire in the previous sentence (the students’ wish to develop a musical with roles for female actors). Choice A is incorrect because “in other words” illogically signals that the information in this sentence is a paraphrase or restatement of the previous information about the students’ wish to develop a musical with roles for female actors. Instead, the students’ show is the product of that desire. Choice B is incorrect because “in summary” illogically signals that the information in this sentence summarizes the previous information about the students’ wish to develop a musical with roles for female actors. Instead, the students’ show is the product of that desire. Choice C is incorrect because “for example” illogically signals that the information in this sentence is merely an example of the previous information about the students’ wish to develop a musical with roles for female actors. Instead, the students’ show is the direct product of that desire."
+    "explanation": "Choice D is the best answer. “To that end” logically signals that the information in this sentence—the students’ creation of a show with six starring female roles—is the product of a goal or desire in the previous sentence (the students’ wish to develop a musical with roles for female actors). Choice A is incorrect because “in other words” illogically signals that the information in this sentence is a paraphrase or restatement of the previous information about the students’ wish to develop a musical with roles for female actors. Instead, the students’ show is the product of that desire. Choice B is incorrect because “in summary” illogically signals that the information in this sentence summarizes the previous information about the students’ wish to develop a musical with roles for female actors. Instead, the students’ show is the product of that desire. Choice C is incorrect because “for example” illogically signals that the information in this sentence is merely an example of the previous information about the students’ wish to develop a musical with roles for female actors. Instead, the students’ show is the direct product of that desire.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t7m2q31",
@@ -3133,7 +3160,8 @@ const QUESTIONS = [
       "D": "Nonetheless,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. “More often” logically signals that the claim in this sentence—that new via ferratas favor recreation over utility—explains a difference between the new “sporting activity” routes and the older “mode of travel” routes. In so doing, it emphasizes and reinforces the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Choice A is incorrect because “additionally” illogically signals that this sentence’s claim about new via ferratas adds a new, separate point to the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Instead, the second claim—that new routes favor recreation over utility—emphasizes and reinforces the previous one. Choice B is incorrect because “on the other hand” illogically signals that this sentence’s claim about new via ferratas contrasts with or opposes the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Instead, the second claim—that new routes favor recreation over utility—emphasizes and reinforces the previous one. Choice D is incorrect because “nonetheless” illogically signals that this sentence’s claim about new via ferratas is true despite the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Instead, the second claim—that new routes favor recreation over utility—emphasizes and reinforces the previous one."
+    "explanation": "Choice C is the best answer. “More often” logically signals that the claim in this sentence—that new via ferratas favor recreation over utility—explains a difference between the new “sporting activity” routes and the older “mode of travel” routes. In so doing, it emphasizes and reinforces the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Choice A is incorrect because “additionally” illogically signals that this sentence’s claim about new via ferratas adds a new, separate point to the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Instead, the second claim—that new routes favor recreation over utility—emphasizes and reinforces the previous one. Choice B is incorrect because “on the other hand” illogically signals that this sentence’s claim about new via ferratas contrasts with or opposes the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Instead, the second claim—that new routes favor recreation over utility—emphasizes and reinforces the previous one. Choice D is incorrect because “nonetheless” illogically signals that this sentence’s claim about new via ferratas is true despite the previous claim (“modern via ferratas are rarely designed to simply reach a summit”). Instead, the second claim—that new routes favor recreation over utility—emphasizes and reinforces the previous one.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t7m2q32",
@@ -3151,7 +3179,8 @@ const QUESTIONS = [
       "D": "One of Samuel Delany’s novels was among the best works of science fiction published in the US."
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The sentence indicates the title of a novel that won a Nebula Award, noting that Babel-17 by Samuel Delany won the award in 1967. Choice B is incorrect because the sentence identifies the year that Samuel Delany published a science fiction novel; it doesn’t indicate the novel’s title or that it won a Nebula Award. Choice C is incorrect because the sentence provides an introduction of Samuel Delany; it doesn’t indicate the title of a novel that has won a Nebula Award. Choice D is incorrect because the sentence indicates that one of Samuel Delany’s novels met the qualification for a Nebula Award; it doesn’t indicate the novel’s title or that it won an award."
+    "explanation": "Choice A is the best answer. The sentence indicates the title of a novel that won a Nebula Award, noting that Babel-17 by Samuel Delany won the award in 1967. Choice B is incorrect because the sentence identifies the year that Samuel Delany published a science fiction novel; it doesn’t indicate the novel’s title or that it won a Nebula Award. Choice C is incorrect because the sentence provides an introduction of Samuel Delany; it doesn’t indicate the title of a novel that has won a Nebula Award. Choice D is incorrect because the sentence indicates that one of Samuel Delany’s novels met the qualification for a Nebula Award; it doesn’t indicate the novel’s title or that it won an award.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t7m2q33",
@@ -3169,7 +3198,8 @@ const QUESTIONS = [
       "D": "Obata used a Japanese painting method called sumi-e."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence indicates the year Yosemite Falls was completed, stating that it was completed in 1930. Choice A is incorrect. The sentence indicates where Obata created black ink paintings; it doesn’t indicate when the painting was completed. Choice B is incorrect. While the sentence identifies Obata as an artist who created a notable painting, it doesn’t indicate when that painting was completed. Choice D is incorrect. The sentence identifies the method Obata used; it doesn’t indicate when the painting was completed. Math Module 1 (27 questions)"
+    "explanation": "Choice C is the best answer. The sentence indicates the year Yosemite Falls was completed, stating that it was completed in 1930. Choice A is incorrect. The sentence indicates where Obata created black ink paintings; it doesn’t indicate when the painting was completed. Choice B is incorrect. While the sentence identifies Obata as an artist who created a notable painting, it doesn’t indicate when that painting was completed. Choice D is incorrect. The sentence identifies the method Obata used; it doesn’t indicate when the painting was completed. Math Module 1 (27 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t8m1q19",
@@ -3177,7 +3207,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 19,
     "page": 11,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>When writing <i>The Other Black Girl</i> (2021), novelist Zakiya Dalila Harris drew on her own experiences working at a publishing office. The award-winning book is Harris’s first novel, but her writing _______ honored before. At the age of twelve, she entered a contest to have a story published in<i> American Girl</i> magazine—and won.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3187,7 +3217,8 @@ const QUESTIONS = [
       "D": "are"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is subject-verb agreement. The singular verb “has been” agrees in number with the singular subject “writing.” Choice A is incorrect because the plural verb “were” doesn’t agree in number with the singular subject “writing.” Choice B is incorrect because the plural verb “have been” doesn’t agree in number with the singular subject “writing.” Choice D is incorrect because the plural verb “are” doesn’t agree in number with the singular subject “writing.”"
+    "explanation": "Choice C is the best answer. The convention being tested is subject-verb agreement. The singular verb “has been” agrees in number with the singular subject “writing.” Choice A is incorrect because the plural verb “were” doesn’t agree in number with the singular subject “writing.” Choice B is incorrect because the plural verb “have been” doesn’t agree in number with the singular subject “writing.” Choice D is incorrect because the plural verb “are” doesn’t agree in number with the singular subject “writing.”",
+    "officialTopic": "form"
   },
   {
     "id": "t8m1q20",
@@ -3195,7 +3226,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 20,
     "page": 11,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>In order to prevent nonnative fish species from moving freely between the Mediterranean and Red Seas, marine biologist Bella Galil has proposed that a saline lock system be installed along the Suez Canal in Egypt’s Great Bitter Lakes. The lock would increase the salinity of the lakes and _______ a natural barrier of water most marine creatures would be unable to cross.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3205,7 +3236,8 @@ const QUESTIONS = [
       "D": "created"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the use of non-finite (untensed) verb forms in a sentence. The modal “would,” which indicates the future from a perspective in the past, should be accompanied by a non-finite plain form verb. In this choice, the non-finite plain form verb “create” is used correctly in conjunction with the non-finite plain form verb “increase” to describe what the lock would do. Choice A is incorrect because the finite present tense verb “creates” can’t be used in this way with the modal “would” to describe what the lock would do. Choice C is incorrect because the present participle “creating” can’t be used in this way with the modal “would” to describe what the lock would do. Choice D is incorrect because the finite past tense verb “created” can’t be used in this way with the modal “would” to describe what the lock would do."
+    "explanation": "Choice B is the best answer. The convention being tested is the use of non-finite (untensed) verb forms in a sentence. The modal “would,” which indicates the future from a perspective in the past, should be accompanied by a non-finite plain form verb. In this choice, the non-finite plain form verb “create” is used correctly in conjunction with the non-finite plain form verb “increase” to describe what the lock would do. Choice A is incorrect because the finite present tense verb “creates” can’t be used in this way with the modal “would” to describe what the lock would do. Choice C is incorrect because the present participle “creating” can’t be used in this way with the modal “would” to describe what the lock would do. Choice D is incorrect because the finite past tense verb “created” can’t be used in this way with the modal “would” to describe what the lock would do.",
+    "officialTopic": "form"
   },
   {
     "id": "t8m1q21",
@@ -3213,7 +3245,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 21,
     "page": 12,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>Paintings by the renowned twentieth-century US _______ were featured in <i>Artist to Artist</i>, an exhibition at the Smithsonian Art Museum that paired the works of artists whose career trajectories intersected in meaningful ways.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3223,7 +3255,8 @@ const QUESTIONS = [
       "D": "artists, Thomas Hart Benton and Jackson Pollock"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the use of punctuation around noun phrases. No punctuation is needed because the coordinated noun phrase “Thomas Hart Benton and Jackson Pollock” is a restrictive appositive, meaning that it provides essential identifying information about the noun phrase before it, “the renowned twentieth-century US artists.” Choice A is incorrect because no punctuation is needed between the noun phrase “the renowned twentieth-century US artists” and the restrictive appositive “Thomas Hart Benton and Jackson Pollock.” Additionally, no punctuation is needed between the sentence’s subject (“paintings by the renowned twentieth- century US artists Thomas Hart Benton and Jackson Pollock”) and the main verb (“were featured”). Choice C is incorrect because no punctuation is needed between the coordinated elements “Thomas Hart Benton” and “Jackson Pollock.” Additionally, no punctuation is needed between the sentence’s subject (“paintings by the renowned twentieth-century US artists Thomas Hart Benton and Jackson Pollock”) and the main verb (“were featured”). Choice D is incorrect because no punctuation is needed between the noun phrase “the renowned twentieth- century US artists” and the restrictive appositive “Thomas Hart Benton and Jackson Pollock.”"
+    "explanation": "Choice B is the best answer. The convention being tested is the use of punctuation around noun phrases. No punctuation is needed because the coordinated noun phrase “Thomas Hart Benton and Jackson Pollock” is a restrictive appositive, meaning that it provides essential identifying information about the noun phrase before it, “the renowned twentieth-century US artists.” Choice A is incorrect because no punctuation is needed between the noun phrase “the renowned twentieth-century US artists” and the restrictive appositive “Thomas Hart Benton and Jackson Pollock.” Additionally, no punctuation is needed between the sentence’s subject (“paintings by the renowned twentieth- century US artists Thomas Hart Benton and Jackson Pollock”) and the main verb (“were featured”). Choice C is incorrect because no punctuation is needed between the coordinated elements “Thomas Hart Benton” and “Jackson Pollock.” Additionally, no punctuation is needed between the sentence’s subject (“paintings by the renowned twentieth-century US artists Thomas Hart Benton and Jackson Pollock”) and the main verb (“were featured”). Choice D is incorrect because no punctuation is needed between the noun phrase “the renowned twentieth- century US artists” and the restrictive appositive “Thomas Hart Benton and Jackson Pollock.”",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m1q22",
@@ -3231,7 +3264,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 22,
     "page": 12,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>In 1943, in the midst of World War II, mathematics professor Grace Hopper was recruited by the US military to help the war effort by solving complex equations. Hopper’s subsequent career would involve more than just _______ as a pioneering computer programmer, Hopper would help usher in the digital age.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3241,7 +3274,8 @@ const QUESTIONS = [
       "D": "equations though"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation to mark boundaries between supplements and clauses. The comma after “equations” is used to separate the independent clause (“Hopper’s… equation”) from the supplementary adverb phrase “though.” The colon after “though” is used to mark the boundary between the clause ending with “though” and the following clause (“as…age”). A colon used in this way introduces information that illustrates or explains information that has come before it. In this case, the colon after “though” introduces the following explanation of how Hopper’s subsequent career would involve more than just solving equations: she would become a pioneering computer programmer. Choice B is incorrect because it results in a comma splice. A comma can’t be used in this way to join two independent clauses (“Hopper’s…though” and “as… age”) such as these. Choice C is incorrect because it results in an illogical sequence of sentences. Placing the period after “equations” and beginning the next sentence with “Though” illogically suggests that the following information (that Hopper would help usher in the digital age) is contrary to the information in the previous sentence (Hopper’s subsequent career would involve more than just solving equations). Instead, the information that follows supports the information from the previous sentence by explaining how her work and influence extended beyond solely solving equations. Choice D is incorrect because it results in a run-on sentence. The two independent clauses (“Hopper’s…though” and “as…age”) are fused without punctuation."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation to mark boundaries between supplements and clauses. The comma after “equations” is used to separate the independent clause (“Hopper’s… equation”) from the supplementary adverb phrase “though.” The colon after “though” is used to mark the boundary between the clause ending with “though” and the following clause (“as…age”). A colon used in this way introduces information that illustrates or explains information that has come before it. In this case, the colon after “though” introduces the following explanation of how Hopper’s subsequent career would involve more than just solving equations: she would become a pioneering computer programmer. Choice B is incorrect because it results in a comma splice. A comma can’t be used in this way to join two independent clauses (“Hopper’s…though” and “as… age”) such as these. Choice C is incorrect because it results in an illogical sequence of sentences. Placing the period after “equations” and beginning the next sentence with “Though” illogically suggests that the following information (that Hopper would help usher in the digital age) is contrary to the information in the previous sentence (Hopper’s subsequent career would involve more than just solving equations). Instead, the information that follows supports the information from the previous sentence by explaining how her work and influence extended beyond solely solving equations. Choice D is incorrect because it results in a run-on sentence. The two independent clauses (“Hopper’s…though” and “as…age”) are fused without punctuation.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m1q23",
@@ -3249,7 +3283,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 23,
     "page": 12,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>Increased gender diversity is revitalizing the field of economics, according to Harvard’s Claudia Goldin. The trailblazing accomplishments of Goldin, winner of the 2023 Nobel Prize in Economics for her work on women in the labor force, _______ to the value of scholars of diverse backgrounds in spurring research into previously unexplored, but vitally important, topics.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3259,7 +3293,8 @@ const QUESTIONS = [
       "D": "attest"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is subject-verb agreement. The plural verb “attest” agrees in number with the plural subject “trailblazing accomplishments.” Choice A is incorrect because the singular verb “attests” doesn’t agree in number with the plural subject “trailblazing accomplishments.” Choice B is incorrect because the singular verb “has attested” doesn’t agree in number with the plural subject “trailblazing accomplishments.” Choice C is incorrect because the singular verb “is attesting” doesn’t agree in number with the plural subject “trailblazing accomplishments.”"
+    "explanation": "Choice D is the best answer. The convention being tested is subject-verb agreement. The plural verb “attest” agrees in number with the plural subject “trailblazing accomplishments.” Choice A is incorrect because the singular verb “attests” doesn’t agree in number with the plural subject “trailblazing accomplishments.” Choice B is incorrect because the singular verb “has attested” doesn’t agree in number with the plural subject “trailblazing accomplishments.” Choice C is incorrect because the singular verb “is attesting” doesn’t agree in number with the plural subject “trailblazing accomplishments.”",
+    "officialTopic": "form"
   },
   {
     "id": "t8m1q24",
@@ -3267,7 +3302,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 24,
     "page": 12,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>During the English neoclassical period (1660–1789), many writers imitated the epic poetry and satires of ancient Greece and Rome. They were not the first in England to adopt the literary modes of classical _______ some of the most prominent figures of the earlier Renaissance period were also influenced by ancient Greek and Roman literature.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3277,7 +3312,8 @@ const QUESTIONS = [
       "D": "antiquity; however,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of a supplementary phrase following a clause. This choice uses a comma to separate the supplementary adverb phrase “however” from the independent clause it modifies (“They…antiquity”) and uses a semicolon to join the first independent clause (“They…antiquity”) and the second independent clause (“some…literature”). Further, placing the semicolon after “however” indicates that the information in the clause that this is part of (that neoclassical writers were not the first to adopt classical literary modes) is contrary to what might be assumed from the information in the previous sentence (that the neoclassical writers were unique in imitating classical epic poetry and satires). Choice A is incorrect because it fails to mark the boundary after “however” between the two independent clauses with appropriate punctuation. Choice B is incorrect because the comma after “however” can’t be used in this way to mark the boundary between the two independent clauses. Choice D is incorrect because placing the semicolon after “antiquity” illogically indicates that the information in the clause that this is part of (that prominent Renaissance figures were also influenced by classical literature) is contrary to the information in the previous clause (that neoclassical writers were not the first to adopt classical literary modes)."
+    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of a supplementary phrase following a clause. This choice uses a comma to separate the supplementary adverb phrase “however” from the independent clause it modifies (“They…antiquity”) and uses a semicolon to join the first independent clause (“They…antiquity”) and the second independent clause (“some…literature”). Further, placing the semicolon after “however” indicates that the information in the clause that this is part of (that neoclassical writers were not the first to adopt classical literary modes) is contrary to what might be assumed from the information in the previous sentence (that the neoclassical writers were unique in imitating classical epic poetry and satires). Choice A is incorrect because it fails to mark the boundary after “however” between the two independent clauses with appropriate punctuation. Choice B is incorrect because the comma after “however” can’t be used in this way to mark the boundary between the two independent clauses. Choice D is incorrect because placing the semicolon after “antiquity” illogically indicates that the information in the clause that this is part of (that prominent Renaissance figures were also influenced by classical literature) is contrary to the information in the previous clause (that neoclassical writers were not the first to adopt classical literary modes).",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m1q25",
@@ -3285,7 +3321,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 25,
     "page": 13,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>English poet and Shakespeare contemporary John Donne’s _______ much admired during his lifetime (1572–1631) and in the decades that followed, had, at the time of their enthusiastic rediscovery by the early twentieth-century modernists, been essentially gathering dust for the intervening 250 years.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3295,7 +3331,8 @@ const QUESTIONS = [
       "D": "works had been"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation and verb forms within a sentence. This choice leaves the verb “admired” in its nonfinite past participle form to function within a supplementary element (“much…followed”). Offset by commas after “works” and “followed,” this supplementary element interrupts the main clause (“English poet and Shakespeare contemporary John Donne’s works…had…been essentially gathering dust…”) with additional information about the works’ reception during Donne’s lifetime. Choice A is incorrect because it fails to offset the supplementary element (“much…followed”) with appropriate punctuation, and using the finite verb “were much admired” results in an ungrammatical sentence. Choice B is incorrect because using the finite verb “were much admired” results in an ungrammatical sentence. Choice D is incorrect because it fails to offset the supplementary element (“much…followed”) with appropriate punctuation, and using the finite verb “had been much admired” results in an ungrammatical sentence."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation and verb forms within a sentence. This choice leaves the verb “admired” in its nonfinite past participle form to function within a supplementary element (“much…followed”). Offset by commas after “works” and “followed,” this supplementary element interrupts the main clause (“English poet and Shakespeare contemporary John Donne’s works…had…been essentially gathering dust…”) with additional information about the works’ reception during Donne’s lifetime. Choice A is incorrect because it fails to offset the supplementary element (“much…followed”) with appropriate punctuation, and using the finite verb “were much admired” results in an ungrammatical sentence. Choice B is incorrect because using the finite verb “were much admired” results in an ungrammatical sentence. Choice D is incorrect because it fails to offset the supplementary element (“much…followed”) with appropriate punctuation, and using the finite verb “had been much admired” results in an ungrammatical sentence.",
+    "officialTopic": "form"
   },
   {
     "id": "t8m1q26",
@@ -3303,7 +3340,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 26,
     "page": 13,
-    "topic": "form",
+    "topic": "modifiers",
     "passage": "<p>Compared to that of alumina glass, _______ silica glass atoms are so far apart that they are unable to re-form bonds after being separated.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3313,7 +3350,8 @@ const QUESTIONS = [
       "D": "silica glass’s atomic arrangement is more dispersed, resulting in a significant disadvantage:"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is subject-modifier placement. This choice makes “silica glass’s atomic arrangement” the subject of the sentence and places it immediately after the modifying phrase “compared to that of alumina glass.” In doing so, this choice clearly establishes that silica glass’s atomic arrangement—and not another noun in the sentence—is being compared to the atomic arrangement (“that”) of alumina glass. Choice A is incorrect because it results in a dangling modifier. The placement of the noun phrase “silica glass” immediately after the modifying phrase illogically suggests that silica glass itself (rather than its atomic arrangement) is being compared to alumina glass’s atomic arrangement. Choice B is incorrect because it results in a dangling modifier. The placement of the noun phrase “silica glass” immediately after the modifying phrase illogically suggests that silica glass itself (rather than its atomic arrangement) is being compared to alumina glass’s atomic arrangement. Choice C is incorrect because it results in a dangling modifier. The placement of the noun phrase “a significant disadvantage” immediately after the modifying phrase illogically suggests that “a significant disadvantage” is being compared to alumina glass’s atomic arrangement."
+    "explanation": "Choice D is the best answer. The convention being tested is subject-modifier placement. This choice makes “silica glass’s atomic arrangement” the subject of the sentence and places it immediately after the modifying phrase “compared to that of alumina glass.” In doing so, this choice clearly establishes that silica glass’s atomic arrangement—and not another noun in the sentence—is being compared to the atomic arrangement (“that”) of alumina glass. Choice A is incorrect because it results in a dangling modifier. The placement of the noun phrase “silica glass” immediately after the modifying phrase illogically suggests that silica glass itself (rather than its atomic arrangement) is being compared to alumina glass’s atomic arrangement. Choice B is incorrect because it results in a dangling modifier. The placement of the noun phrase “silica glass” immediately after the modifying phrase illogically suggests that silica glass itself (rather than its atomic arrangement) is being compared to alumina glass’s atomic arrangement. Choice C is incorrect because it results in a dangling modifier. The placement of the noun phrase “a significant disadvantage” immediately after the modifying phrase illogically suggests that “a significant disadvantage” is being compared to alumina glass’s atomic arrangement.",
+    "officialTopic": "form"
   },
   {
     "id": "t8m1q27",
@@ -3331,7 +3369,8 @@ const QUESTIONS = [
       "D": "Furthermore,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “Still” logically signals that the information about Sher-Gil in this sentence—that she longed to leave Paris and return to India— contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris in the previous sentences. Choice B is incorrect because “therefore” illogically signals that the information about Sher-Gil in this sentence is a result or consequence of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris. Choice C is incorrect because “indeed” illogically signals that the information about Sher-Gil in this sentence offers additional emphasis in support of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris. Choice D is incorrect because “furthermore” illogically signals that the information about Sher-Gil in this sentence offers additional support for or confirmation of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris."
+    "explanation": "Choice A is the best answer. “Still” logically signals that the information about Sher-Gil in this sentence—that she longed to leave Paris and return to India— contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris in the previous sentences. Choice B is incorrect because “therefore” illogically signals that the information about Sher-Gil in this sentence is a result or consequence of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris. Choice C is incorrect because “indeed” illogically signals that the information about Sher-Gil in this sentence offers additional emphasis in support of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris. Choice D is incorrect because “furthermore” illogically signals that the information about Sher-Gil in this sentence offers additional support for or confirmation of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m1q28",
@@ -3349,7 +3388,8 @@ const QUESTIONS = [
       "D": "Earlier,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “Specifically” logically signals that the information in this sentence—that Molina and Rowland’s research laid the foundation for a later treaty—provides specific, precise details elaborating on the previous sentence’s more general claim about the influence of the research. Choice A is incorrect because “regardless” illogically signals that the information in this sentence is true despite the previous sentence’s claim about the influence of Molina and Rowland’s research. Instead, this information—that the research laid the foundation for a later treaty—provides specific details elaborating on the previous claim. Choice C is incorrect because “however” illogically signals that the information in this sentence contrasts with the previous sentence’s claim about the influence of Molina and Rowland’s research. Instead, this information—that the research laid the foundation for a later treaty—provides specific details elaborating on the previous claim. Choice D is incorrect because “earlier” illogically signals that the information in this sentence occurred at a time before Molina and Rowland’s research influenced the fight against CFCs. Instead, this information—that the research laid the foundation for a later treaty—provides specific details elaborating on the previous claim about the research’s influence."
+    "explanation": "Choice B is the best answer. “Specifically” logically signals that the information in this sentence—that Molina and Rowland’s research laid the foundation for a later treaty—provides specific, precise details elaborating on the previous sentence’s more general claim about the influence of the research. Choice A is incorrect because “regardless” illogically signals that the information in this sentence is true despite the previous sentence’s claim about the influence of Molina and Rowland’s research. Instead, this information—that the research laid the foundation for a later treaty—provides specific details elaborating on the previous claim. Choice C is incorrect because “however” illogically signals that the information in this sentence contrasts with the previous sentence’s claim about the influence of Molina and Rowland’s research. Instead, this information—that the research laid the foundation for a later treaty—provides specific details elaborating on the previous claim. Choice D is incorrect because “earlier” illogically signals that the information in this sentence occurred at a time before Molina and Rowland’s research influenced the fight against CFCs. Instead, this information—that the research laid the foundation for a later treaty—provides specific details elaborating on the previous claim about the research’s influence.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m1q29",
@@ -3367,7 +3407,8 @@ const QUESTIONS = [
       "D": "Nevertheless,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. “Indeed” logically signals that the description of the art installation in this sentence—its blue room and preening unicorn that leave visitors “dazzled and confused”—offers additional emphasis in support of the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Choice A is incorrect because “second” illogically signals that the description in this sentence is a second, separate claim from the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Instead, the specific details describing the installation emphasize and support the previous claim. Choice B is incorrect because “instead” illogically signals that the description in this sentence is an alternative to the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Rather, the specific details describing the installation emphasize and support that claim. Choice D is incorrect because “nevertheless” illogically signals that the description in this sentence is true despite the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Instead, the specific details describing the installation emphasize and support that claim."
+    "explanation": "Choice C is the best answer. “Indeed” logically signals that the description of the art installation in this sentence—its blue room and preening unicorn that leave visitors “dazzled and confused”—offers additional emphasis in support of the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Choice A is incorrect because “second” illogically signals that the description in this sentence is a second, separate claim from the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Instead, the specific details describing the installation emphasize and support the previous claim. Choice B is incorrect because “instead” illogically signals that the description in this sentence is an alternative to the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Rather, the specific details describing the installation emphasize and support that claim. Choice D is incorrect because “nevertheless” illogically signals that the description in this sentence is true despite the previous sentence’s claim about the installation’s “whimsical yet perplexing experience.” Instead, the specific details describing the installation emphasize and support that claim.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m1q30",
@@ -3385,7 +3426,8 @@ const QUESTIONS = [
       "D": "A historic Pennsylvania road, the Philadelphia and Lancaster Turnpike was completed in 1794."
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The sentence emphasizes the distance covered by the Philadelphia and Lancaster Turnpike, noting that the turnpike, which connected the two Pennsylvania cities in its name, was sixty-two miles long. Choice B is incorrect. The sentence emphasizes the significance of the turnpike; it doesn’t emphasize the distance that the turnpike covered. Choice C is incorrect. While the sentence mentions that the turnpike connected two Pennsylvania cities, it doesn’t emphasize the specific distance covered by the turnpike. Choice D is incorrect. The sentence emphasizes when the turnpike was built; it doesn’t emphasize the distance that the turnpike covered."
+    "explanation": "Choice A is the best answer. The sentence emphasizes the distance covered by the Philadelphia and Lancaster Turnpike, noting that the turnpike, which connected the two Pennsylvania cities in its name, was sixty-two miles long. Choice B is incorrect. The sentence emphasizes the significance of the turnpike; it doesn’t emphasize the distance that the turnpike covered. Choice C is incorrect. While the sentence mentions that the turnpike connected two Pennsylvania cities, it doesn’t emphasize the specific distance covered by the turnpike. Choice D is incorrect. The sentence emphasizes when the turnpike was built; it doesn’t emphasize the distance that the turnpike covered.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t8m1q31",
@@ -3403,7 +3445,8 @@ const QUESTIONS = [
       "D": "Kentaro Terada’s study determined that Earth is sending a small amount of oxygen to the Moon."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence emphasizes the aim, or goal, of the research study, noting what Terada set out to do: determine whether some of the Moon’s oxygen was coming from Earth. Choice A is incorrect. The sentence focuses on how the Kaguya satellite collected data; it doesn’t emphasize the aim of the research study. Choice B is incorrect. While the sentence mentions what Terada was curious about before conducting the research study, it doesn’t emphasize his study’s aim. Choice D is incorrect. The sentence presents the research study’s conclusion; it doesn’t emphasize the study’s aim."
+    "explanation": "Choice C is the best answer. The sentence emphasizes the aim, or goal, of the research study, noting what Terada set out to do: determine whether some of the Moon’s oxygen was coming from Earth. Choice A is incorrect. The sentence focuses on how the Kaguya satellite collected data; it doesn’t emphasize the aim of the research study. Choice B is incorrect. While the sentence mentions what Terada was curious about before conducting the research study, it doesn’t emphasize his study’s aim. Choice D is incorrect. The sentence presents the research study’s conclusion; it doesn’t emphasize the study’s aim.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t8m1q32",
@@ -3421,7 +3464,8 @@ const QUESTIONS = [
       "D": "Researchers obtained clutch-size and habitat data for over 3,900 lizard species and analyzed the data with statistical models."
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The sentence emphasizes the aim of the research study by highlighting what the researchers conducting the study wanted to know—specifically, which factors influence clutch size among lizards. Choice B is incorrect because the sentence emphasizes what researchers determined at the end of the study, not what the study’s aim was. Choice C is incorrect because the sentence emphasizes a finding from the research study, not the aim of the study. Choice D is incorrect because the sentence emphasizes the research study’s methodology, not its aim."
+    "explanation": "Choice A is the best answer. The sentence emphasizes the aim of the research study by highlighting what the researchers conducting the study wanted to know—specifically, which factors influence clutch size among lizards. Choice B is incorrect because the sentence emphasizes what researchers determined at the end of the study, not what the study’s aim was. Choice C is incorrect because the sentence emphasizes a finding from the research study, not the aim of the study. Choice D is incorrect because the sentence emphasizes the research study’s methodology, not its aim.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t8m1q33",
@@ -3439,7 +3483,8 @@ const QUESTIONS = [
       "D": "Researchers have used statistical methods to address questions of authorship within the field of music."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The sentence uses information from the notes to make a generalization about the kind of study Glickman, Brown, and Song conducted. Specifically, the sentence indicates that the study was of a kind that used statistical methods to address questions of authorship within the field of music. Choice A is incorrect because the sentence summarizes the methodology and findings of a particular analysis of a single song; it doesn’t make a generalization about the kind of study conducted. Choice B is incorrect because the sentence mentions the data and conclusion of a particular analysis of a single song; it doesn’t make a generalization about the kind of study conducted. Choice C is incorrect because the sentence focuses on a specific conclusion from a particular analysis of a single song; it doesn’t make a generalization about the kind of study conducted. Reading and Writing Module 2 (33 questions)"
+    "explanation": "Choice D is the best answer. The sentence uses information from the notes to make a generalization about the kind of study Glickman, Brown, and Song conducted. Specifically, the sentence indicates that the study was of a kind that used statistical methods to address questions of authorship within the field of music. Choice A is incorrect because the sentence summarizes the methodology and findings of a particular analysis of a single song; it doesn’t make a generalization about the kind of study conducted. Choice B is incorrect because the sentence mentions the data and conclusion of a particular analysis of a single song; it doesn’t make a generalization about the kind of study conducted. Choice C is incorrect because the sentence focuses on a specific conclusion from a particular analysis of a single song; it doesn’t make a generalization about the kind of study conducted. Reading and Writing Module 2 (33 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t8m2q19",
@@ -3447,7 +3492,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 19,
     "page": 26,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>To survive when water is scarce, embryos inside African turquoise killifish eggs ______ a dormant state known as diapause. In this state, embryonic development is paused for as long as two years—longer than the life span of an adult killifish.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3457,7 +3502,8 @@ const QUESTIONS = [
       "D": "entering"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is finite and nonfinite verb forms within a sentence. A main clause requires a finite verb to perform the action of the subject (in this case, “embryos”), and this choice supplies the clause with the finite present tense verb “enter” to indicate how the embryos achieve diapause. Choice B is incorrect because the nonfinite to-infinitive “to enter” doesn’t supply the main clause with a finite verb. Choice C is incorrect because the nonfinite participle “having entered” doesn’t supply the main clause with a finite verb. Choice D is incorrect because the nonfinite participle “entering” doesn’t supply the main clause with a finite verb."
+    "explanation": "Choice A is the best answer. The convention being tested is finite and nonfinite verb forms within a sentence. A main clause requires a finite verb to perform the action of the subject (in this case, “embryos”), and this choice supplies the clause with the finite present tense verb “enter” to indicate how the embryos achieve diapause. Choice B is incorrect because the nonfinite to-infinitive “to enter” doesn’t supply the main clause with a finite verb. Choice C is incorrect because the nonfinite participle “having entered” doesn’t supply the main clause with a finite verb. Choice D is incorrect because the nonfinite participle “entering” doesn’t supply the main clause with a finite verb.",
+    "officialTopic": "form"
   },
   {
     "id": "t8m2q20",
@@ -3465,7 +3511,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 20,
     "page": 26,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>Formed in 1967 to foster political and economic stability within the Asia-Pacific region, the Association of Southeast Asian Nations was originally made up of five members: Thailand, the Philippines, Singapore, Malaysia, and Indonesia. By the end of the 1990s, the organization ______ its initial membership.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3475,7 +3521,8 @@ const QUESTIONS = [
       "D": "will double"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the past perfect verb “had doubled” properly indicates that the doubling of the organization’s initial membership occurred during a specific period before the present (between the organization’s founding in 1967 and the end of the 1990s). Choice A is incorrect because the present perfect verb “has doubled” doesn’t indicate that the organization’s doubling of its initial membership occurred during a specific period in the past. Choice C is incorrect because the present tense verb “doubles” doesn’t indicate that the organization’s doubling of its initial membership occurred during a specific period in the past. Choice D is incorrect because the future tense verb “will double” doesn’t indicate that the organization’s doubling of its initial membership occurred during a specific period in the past."
+    "explanation": "Choice B is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the past perfect verb “had doubled” properly indicates that the doubling of the organization’s initial membership occurred during a specific period before the present (between the organization’s founding in 1967 and the end of the 1990s). Choice A is incorrect because the present perfect verb “has doubled” doesn’t indicate that the organization’s doubling of its initial membership occurred during a specific period in the past. Choice C is incorrect because the present tense verb “doubles” doesn’t indicate that the organization’s doubling of its initial membership occurred during a specific period in the past. Choice D is incorrect because the future tense verb “will double” doesn’t indicate that the organization’s doubling of its initial membership occurred during a specific period in the past.",
+    "officialTopic": "form"
   },
   {
     "id": "t8m2q21",
@@ -3483,7 +3530,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 21,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>After the United Kingdom began rolling out taxes equivalent to a few cents on single-use plastic grocery bags in 2011, plastic-bag consumption decreased by up to ninety _______ taxes are subject to what economists call the “rebound effect”: as the change became normalized, plastic-bag use started to creep back up.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3493,7 +3540,8 @@ const QUESTIONS = [
       "D": "percent such"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is punctuation use between sentences. In this choice, the period after “percent” is used correctly to mark the boundary between one sentence (“After…percent”) and another (“Such… up”). Choice A is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between sentences. Choice B is incorrect. Without a comma preceding it, the conjunction “and” can’t be used in this way to join sentences. Choice D is incorrect because it results in a run-on sentence. The sentences (“After…percent” and “Such…up”) are fused without punctuation and/or a conjunction."
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation use between sentences. In this choice, the period after “percent” is used correctly to mark the boundary between one sentence (“After…percent”) and another (“Such… up”). Choice A is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between sentences. Choice B is incorrect. Without a comma preceding it, the conjunction “and” can’t be used in this way to join sentences. Choice D is incorrect because it results in a run-on sentence. The sentences (“After…percent” and “Such…up”) are fused without punctuation and/or a conjunction.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m2q22",
@@ -3501,7 +3549,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 22,
     "page": 27,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>In 1966, Emmett Ashford became the first African American to umpire a Major League Baseball game. His energetic gestures announcing when a player had struck out and his habit of barreling after a hit ball to see if it would land out of _______ transform the traditionally solemn umpire role into a dynamic one.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3511,7 +3559,8 @@ const QUESTIONS = [
       "D": "bounds to help"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is finite verb use in a main clause. A main clause requires a finite verb to perform the action of the subject (in this case, Ashford’s “gestures” and “habit”), and this choice supplies the finite past tense verb “helped” to indicate what Ashford’s gestures and habit helped accomplish. Choice B is incorrect because the non-finite participle “helping” doesn’t supply the main clause with a finite verb. Choice C is incorrect because the relative clause “that helped” doesn’t supply the main clause with a finite verb. Choice D is incorrect because the non-finite to-infinitive “to help” doesn’t supply the main clause with a finite verb."
+    "explanation": "Choice A is the best answer. The convention being tested is finite verb use in a main clause. A main clause requires a finite verb to perform the action of the subject (in this case, Ashford’s “gestures” and “habit”), and this choice supplies the finite past tense verb “helped” to indicate what Ashford’s gestures and habit helped accomplish. Choice B is incorrect because the non-finite participle “helping” doesn’t supply the main clause with a finite verb. Choice C is incorrect because the relative clause “that helped” doesn’t supply the main clause with a finite verb. Choice D is incorrect because the non-finite to-infinitive “to help” doesn’t supply the main clause with a finite verb.",
+    "officialTopic": "form"
   },
   {
     "id": "t8m2q23",
@@ -3519,7 +3568,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 23,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>The forty-seven geothermal springs of Arkansas’ Hot Springs National Park are sourced via a process known as natural groundwater recharge, in which rainwater percolates downward through the earth—in this case, the porous rocks of the hills around Hot ______ collect in a subterranean basin.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3529,7 +3578,8 @@ const QUESTIONS = [
       "D": "Springs, to"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of a supplementary element within a sentence. The dash after “Springs” pairs with the dash after “earth” to separate the supplementary element “in this case, the porous rocks of the hills around Hot Springs” from the rest of the sentence. Choice A is incorrect because it fails to use appropriate punctuation to separate the supplementary element from the rest of the sentence. Choice B is incorrect because a colon can’t be paired with a dash in this way to separate the supplementary element from the rest of the sentence. Choice D is incorrect because a comma can’t be paired with a dash in this way to separate the supplementary element from the rest of the sentence."
+    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of a supplementary element within a sentence. The dash after “Springs” pairs with the dash after “earth” to separate the supplementary element “in this case, the porous rocks of the hills around Hot Springs” from the rest of the sentence. Choice A is incorrect because it fails to use appropriate punctuation to separate the supplementary element from the rest of the sentence. Choice B is incorrect because a colon can’t be paired with a dash in this way to separate the supplementary element from the rest of the sentence. Choice D is incorrect because a comma can’t be paired with a dash in this way to separate the supplementary element from the rest of the sentence.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m2q24",
@@ -3537,7 +3587,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 24,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>Over twenty years ago, in a landmark experiment in the psychology of choice, professor Sheena Iyengar set up a jam-tasting booth at a grocery store. The number of jams available for tasting ______ some shoppers had twenty-four different options, others only six. Interestingly, the shoppers with fewer jams to choose from purchased more jam.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3547,7 +3597,8 @@ const QUESTIONS = [
       "D": "varied while"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of a colon within a sentence. In this choice, the colon is used in a conventional way to introduce the following description of how the number of jams available varied. Choice B is incorrect because it creates a comma splice. A comma can’t be used in this way to join two main clauses (“the number…varied” and “some…six”). Choice C is incorrect because it results in an illogical and confusing sentence. Using the conjunction “while” to join the main clause (“the number…varied”) with the following clause’s description of the number of jams available suggests that the variation in the number of jams is in contrast to some shoppers having twenty-four options. Choice D is incorrect because it results in an illogical and confusing sentence. Using “while” in this way suggests that the number of jams available varied during the time in which some shoppers had twenty-four options and others had six. The sentence makes clear, however, that what follows “varied” is a description of the variation, not a separate, simultaneous occurrence."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of a colon within a sentence. In this choice, the colon is used in a conventional way to introduce the following description of how the number of jams available varied. Choice B is incorrect because it creates a comma splice. A comma can’t be used in this way to join two main clauses (“the number…varied” and “some…six”). Choice C is incorrect because it results in an illogical and confusing sentence. Using the conjunction “while” to join the main clause (“the number…varied”) with the following clause’s description of the number of jams available suggests that the variation in the number of jams is in contrast to some shoppers having twenty-four options. Choice D is incorrect because it results in an illogical and confusing sentence. Using “while” in this way suggests that the number of jams available varied during the time in which some shoppers had twenty-four options and others had six. The sentence makes clear, however, that what follows “varied” is a description of the variation, not a separate, simultaneous occurrence.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m2q25",
@@ -3555,7 +3606,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 25,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>Nigerian author Buchi Emecheta’s celebrated literary oeuvre includes <i>The Joys of Motherhood</i>, a novel about the changing roles of women in 1950s ______ a television play about the private struggles of a newlywed couple in Nigeria; and <i>Head Above Water</i>, her autobiography.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3565,7 +3616,8 @@ const QUESTIONS = [
       "D": "Lagos; A Kind of Marriage"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the punctuation of items in a complex series (a series including internal punctuation). In this choice, the semicolon after “Lagos” is conventionally used to separate the first item (“The Joys…Lagos”) and the second item (“A Kind…Nigeria”) in the series. Further, the comma after “Marriage” correctly separates the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it. Choice A is incorrect because the comma after “Lagos” doesn’t match the semicolon used later in the series to separate the second item (“A Kind…Nigeria”) from the third item (“and…autobiography”). Choice C is incorrect because the comma after “Lagos” doesn’t match the semicolon used later in the series to separate the second item (“A Kind…Nigeria”) from the third item (“and… autobiography”). Additionally, a colon can’t be used in this way to separate the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it. Choice D is incorrect because it fails to use appropriate punctuation to separate the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it."
+    "explanation": "Choice B is the best answer. The convention being tested is the punctuation of items in a complex series (a series including internal punctuation). In this choice, the semicolon after “Lagos” is conventionally used to separate the first item (“The Joys…Lagos”) and the second item (“A Kind…Nigeria”) in the series. Further, the comma after “Marriage” correctly separates the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it. Choice A is incorrect because the comma after “Lagos” doesn’t match the semicolon used later in the series to separate the second item (“A Kind…Nigeria”) from the third item (“and…autobiography”). Choice C is incorrect because the comma after “Lagos” doesn’t match the semicolon used later in the series to separate the second item (“A Kind…Nigeria”) from the third item (“and… autobiography”). Additionally, a colon can’t be used in this way to separate the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it. Choice D is incorrect because it fails to use appropriate punctuation to separate the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m2q26",
@@ -3573,7 +3625,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 26,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>Jetties—long, narrow structures that extend from a landmass into the water—are often constructed to protect coastlines from erosion. Jetties can sometimes have the opposite _______ obstructing the natural flow of sand along the shore can lead to increased erosion in some areas.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3583,7 +3635,8 @@ const QUESTIONS = [
       "D": "effect, though,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to separate the supplementary adverb “though” from the preceding main clause (“Jetties can sometimes have the opposite effect”) and uses a semicolon to join the next main clause (“obstructing…areas”) to the rest of the sentence. Further, placing the semicolon after “though” logically indicates that the information earlier in this sentence (that jetties can sometimes cause erosion) is contrary to what might be assumed from the information in the previous sentence (that jetties are often constructed for the purpose of protecting coastlines from erosion). Choice B is incorrect because it fails to mark the boundary between the two main clauses with appropriate punctuation. With “though…areas” functioning as a subordinate clause following the comma, this choice illogically indicates that the following information (that obstructing the natural flow of sand along the shore can sometimes lead to erosion) is contrary to the information earlier in the sentence (that jetties can sometimes cause erosion). Instead, the information following “though” supports the previous claim about the erosive effects of jetties. Choice C is incorrect because it’s not conventional to use a semicolon in this way to separate a main clause from a dependent clause. Further, it illogically indicates that the following information (that obstructing the natural flow of sand along the shore can sometimes lead to erosion) is contrary to the information earlier in the sentence (that jetties can sometimes cause erosion). Instead, the information following “though” supports the previous claim about the erosive effects of jetties. Choice D is incorrect because it results in a comma splice. Commas can’t be used in this way to set off a supplementary word or phrase between two main clauses."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to separate the supplementary adverb “though” from the preceding main clause (“Jetties can sometimes have the opposite effect”) and uses a semicolon to join the next main clause (“obstructing…areas”) to the rest of the sentence. Further, placing the semicolon after “though” logically indicates that the information earlier in this sentence (that jetties can sometimes cause erosion) is contrary to what might be assumed from the information in the previous sentence (that jetties are often constructed for the purpose of protecting coastlines from erosion). Choice B is incorrect because it fails to mark the boundary between the two main clauses with appropriate punctuation. With “though…areas” functioning as a subordinate clause following the comma, this choice illogically indicates that the following information (that obstructing the natural flow of sand along the shore can sometimes lead to erosion) is contrary to the information earlier in the sentence (that jetties can sometimes cause erosion). Instead, the information following “though” supports the previous claim about the erosive effects of jetties. Choice C is incorrect because it’s not conventional to use a semicolon in this way to separate a main clause from a dependent clause. Further, it illogically indicates that the following information (that obstructing the natural flow of sand along the shore can sometimes lead to erosion) is contrary to the information earlier in the sentence (that jetties can sometimes cause erosion). Instead, the information following “though” supports the previous claim about the erosive effects of jetties. Choice D is incorrect because it results in a comma splice. Commas can’t be used in this way to set off a supplementary word or phrase between two main clauses.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t8m2q27",
@@ -3601,7 +3654,8 @@ const QUESTIONS = [
       "D": "Instead,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “In fact” logically signals that the information in this sentence about the large number of recordings in ANLA’s collection emphasizes and supports the previous claim that ANLA is known for its impressive audio collection. Choice B is incorrect because “after” illogically signals that the information in this sentence occurs later in a sequence of events than the previous claim about ANLA’s impressive audio collection. Instead, the information about the large number of recordings emphasizes and supports that claim. Choice C is incorrect because “regardless” illogically signals that the information in this sentence is true despite the previous claim about ANLA’s impressive audio collection. Instead, the information about the large number of recordings emphasizes and supports that claim. Choice D is incorrect because “instead” illogically signals that the information in this sentence presents an alternative to the previous claim about ANLA’s impressive audio collection. Rather, the information about the large number of recordings emphasizes and supports that claim."
+    "explanation": "Choice A is the best answer. “In fact” logically signals that the information in this sentence about the large number of recordings in ANLA’s collection emphasizes and supports the previous claim that ANLA is known for its impressive audio collection. Choice B is incorrect because “after” illogically signals that the information in this sentence occurs later in a sequence of events than the previous claim about ANLA’s impressive audio collection. Instead, the information about the large number of recordings emphasizes and supports that claim. Choice C is incorrect because “regardless” illogically signals that the information in this sentence is true despite the previous claim about ANLA’s impressive audio collection. Instead, the information about the large number of recordings emphasizes and supports that claim. Choice D is incorrect because “instead” illogically signals that the information in this sentence presents an alternative to the previous claim about ANLA’s impressive audio collection. Rather, the information about the large number of recordings emphasizes and supports that claim.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m2q28",
@@ -3619,7 +3673,8 @@ const QUESTIONS = [
       "D": "However,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “Currently” logically signals that the archaeologists’ use of drones (a current technology) to photograph the lines is the present-day continuation of the ongoing archaeological research described in the previous sentence. Choice B is incorrect because “in comparison” illogically signals that the action described in this sentence offers a comparison to the ongoing archaeological research described in the previous sentence. Instead, the use of drones is the present-day continuation of that research. Choice C is incorrect because “still” illogically signals that the action described in this sentence occurs despite the ongoing archaeological research described in the previous sentence. Instead, the use of drones is the present-day continuation of that research. Choice D is incorrect because “however” illogically signals that the action described in this sentence occurs either despite or in contrast to the ongoing archaeological research described in the previous sentence. Instead, the use of drones is the present-day continuation of that research."
+    "explanation": "Choice A is the best answer. “Currently” logically signals that the archaeologists’ use of drones (a current technology) to photograph the lines is the present-day continuation of the ongoing archaeological research described in the previous sentence. Choice B is incorrect because “in comparison” illogically signals that the action described in this sentence offers a comparison to the ongoing archaeological research described in the previous sentence. Instead, the use of drones is the present-day continuation of that research. Choice C is incorrect because “still” illogically signals that the action described in this sentence occurs despite the ongoing archaeological research described in the previous sentence. Instead, the use of drones is the present-day continuation of that research. Choice D is incorrect because “however” illogically signals that the action described in this sentence occurs either despite or in contrast to the ongoing archaeological research described in the previous sentence. Instead, the use of drones is the present-day continuation of that research.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m2q29",
@@ -3637,7 +3692,8 @@ const QUESTIONS = [
       "D": "accordingly,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. “By contrast” logically signals that the information in this sentence—that dogs can see, hear, and smell by the end of two weeks— contrasts with the preceding information (that wolves can smell but not see or hear at the same age). Choice A is incorrect because “in other words” illogically signals that the information about domesticated dogs in this sentence paraphrases the information about wolves in the previous sentence. Instead, the information about dogs contrasts with what came before. Choice B is incorrect because “for instance” illogically signals that the information about domesticated dogs in this sentence exemplifies the information about wolves in the previous sentence. Instead, the information about dogs contrasts with what came before. Choice D is incorrect because “accordingly” illogically signals that the information about domesticated dogs in this sentence is in accordance with, or results from, the information about wolves in the previous sentence. Instead, the information about dogs contrasts with what came before."
+    "explanation": "Choice C is the best answer. “By contrast” logically signals that the information in this sentence—that dogs can see, hear, and smell by the end of two weeks— contrasts with the preceding information (that wolves can smell but not see or hear at the same age). Choice A is incorrect because “in other words” illogically signals that the information about domesticated dogs in this sentence paraphrases the information about wolves in the previous sentence. Instead, the information about dogs contrasts with what came before. Choice B is incorrect because “for instance” illogically signals that the information about domesticated dogs in this sentence exemplifies the information about wolves in the previous sentence. Instead, the information about dogs contrasts with what came before. Choice D is incorrect because “accordingly” illogically signals that the information about domesticated dogs in this sentence is in accordance with, or results from, the information about wolves in the previous sentence. Instead, the information about dogs contrasts with what came before.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m2q30",
@@ -3655,7 +3711,8 @@ const QUESTIONS = [
       "D": "Next,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “On the contrary” logically signals that the information in this sentence—that Dies Irae’s appearance of depth is merely an illusion—contrasts with the previous statement about a viewer’s possible assumption regarding the street painting. Choice A is incorrect because “additionally” illogically signals that this sentence is simply additional information about a viewer’s possible assumption regarding the street painting. Instead, the information about how Wenner achieved the illusion of depth contrasts with the previous sentence’s description of the illusion. Choice C is incorrect because “as a result” illogically signals that the information in this sentence is a result of, or caused by, a viewer’s possible assumption regarding the street painting. Instead, the information about how Wenner achieved the illusion of depth contrasts with the previous sentence’s description of the illusion. Choice D is incorrect because “next” illogically signals that the information in this sentence is the next step in a process. Instead, the information about how Wenner achieved the illusion of depth contrasts with the previous sentence’s description of the illusion."
+    "explanation": "Choice B is the best answer. “On the contrary” logically signals that the information in this sentence—that Dies Irae’s appearance of depth is merely an illusion—contrasts with the previous statement about a viewer’s possible assumption regarding the street painting. Choice A is incorrect because “additionally” illogically signals that this sentence is simply additional information about a viewer’s possible assumption regarding the street painting. Instead, the information about how Wenner achieved the illusion of depth contrasts with the previous sentence’s description of the illusion. Choice C is incorrect because “as a result” illogically signals that the information in this sentence is a result of, or caused by, a viewer’s possible assumption regarding the street painting. Instead, the information about how Wenner achieved the illusion of depth contrasts with the previous sentence’s description of the illusion. Choice D is incorrect because “next” illogically signals that the information in this sentence is the next step in a process. Instead, the information about how Wenner achieved the illusion of depth contrasts with the previous sentence’s description of the illusion.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m2q31",
@@ -3673,7 +3730,8 @@ const QUESTIONS = [
       "D": "As such,"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. “As such” correctly signals that the claim in this sentence—that Ostrom’s work is a repudiation of the “tragedy of the commons” view—follows logically from the information about Ostrom’s studies in the previous sentence. According to that sentence, Ostrom’s studies demonstrate that common pool resources can in fact be sustainably managed by the people who use them. Choice A is incorrect because “by contrast” illogically signals that the information in this sentence contrasts with the information about Ostrom’s studies in the previous sentence. Instead, the claim that Ostrom’s work repudiates the “tragedy of the commons” view follows logically from that information. Choice B is incorrect because “for example” illogically signals that the claim in this sentence exemplifies the information about Ostrom’s studies in the previous sentence. Instead, the claim that Ostrom’s work repudiates the “tragedy of the commons” view follows logically from that information. Choice C is incorrect because “that said” illogically signals that the information in this sentence is an exception or caveat to the information about Ostrom’s studies in the previous sentence. Instead, the claim that Ostrom’s work repudiates the “tragedy of the commons” view follows logically from that information."
+    "explanation": "Choice D is the best answer. “As such” correctly signals that the claim in this sentence—that Ostrom’s work is a repudiation of the “tragedy of the commons” view—follows logically from the information about Ostrom’s studies in the previous sentence. According to that sentence, Ostrom’s studies demonstrate that common pool resources can in fact be sustainably managed by the people who use them. Choice A is incorrect because “by contrast” illogically signals that the information in this sentence contrasts with the information about Ostrom’s studies in the previous sentence. Instead, the claim that Ostrom’s work repudiates the “tragedy of the commons” view follows logically from that information. Choice B is incorrect because “for example” illogically signals that the claim in this sentence exemplifies the information about Ostrom’s studies in the previous sentence. Instead, the claim that Ostrom’s work repudiates the “tragedy of the commons” view follows logically from that information. Choice C is incorrect because “that said” illogically signals that the information in this sentence is an exception or caveat to the information about Ostrom’s studies in the previous sentence. Instead, the claim that Ostrom’s work repudiates the “tragedy of the commons” view follows logically from that information.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t8m2q32",
@@ -3691,7 +3749,8 @@ const QUESTIONS = [
       "D": "As methods for removing carvings from sandstone, power grinding and infilling differ in their level of invasiveness."
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The sentence effectively explains an advantage of infilling: it’s less invasive than using a power grinder. Choice A is incorrect. The sentence identifies a disadvantage of power grinding; it doesn’t explain an advantage of infilling. Choice C is incorrect. The sentence identifies the two techniques park rangers use; it doesn’t explain an advantage of infilling. Choice D is incorrect. The sentence indicates that power grinding and infilling are different in one aspect; it fails to explain an advantage of infilling."
+    "explanation": "Choice B is the best answer. The sentence effectively explains an advantage of infilling: it’s less invasive than using a power grinder. Choice A is incorrect. The sentence identifies a disadvantage of power grinding; it doesn’t explain an advantage of infilling. Choice C is incorrect. The sentence identifies the two techniques park rangers use; it doesn’t explain an advantage of infilling. Choice D is incorrect. The sentence indicates that power grinding and infilling are different in one aspect; it fails to explain an advantage of infilling.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t8m2q33",
@@ -3709,7 +3768,8 @@ const QUESTIONS = [
       "D": "Thinking it was an island, Spanish explorers called a peninsula California after an island in a popular novel."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The sentence emphasizes the role a misconception played in the naming of a place, explaining that Spanish explorers mistook a peninsula for an island and, as a result, named the peninsula after a fictional island, California. Choice A is incorrect. The sentence mentions a novel that featured a fictional island, California; it doesn’t emphasize the role a misconception played in the naming of a place. Choice B is incorrect. The sentence notes that Baja California was originally named after a fictional place; it doesn’t emphasize the role a misconception—specifically, the Spanish explorers’ mistaken belief that the peninsula was an island—played in the naming of a place. Choice C is incorrect. The sentence indicates when Spanish explorers learned of the peninsula they called California; it doesn’t emphasize the role a misconception played in the naming of a place. Math Module 1 (27 questions)"
+    "explanation": "Choice D is the best answer. The sentence emphasizes the role a misconception played in the naming of a place, explaining that Spanish explorers mistook a peninsula for an island and, as a result, named the peninsula after a fictional island, California. Choice A is incorrect. The sentence mentions a novel that featured a fictional island, California; it doesn’t emphasize the role a misconception played in the naming of a place. Choice B is incorrect. The sentence notes that Baja California was originally named after a fictional place; it doesn’t emphasize the role a misconception—specifically, the Spanish explorers’ mistaken belief that the peninsula was an island—played in the naming of a place. Choice C is incorrect. The sentence indicates when Spanish explorers learned of the peninsula they called California; it doesn’t emphasize the role a misconception played in the naming of a place. Math Module 1 (27 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m1q19",
@@ -3717,7 +3777,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 19,
     "page": 12,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>A member of the Cherokee Nation, Mary Golda Ross is renowned for her contributions to NASA’s Planetary Flight Handbook, which _______ detailed mathematical guidance for missions to Mars and Venus.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3727,7 +3787,8 @@ const QUESTIONS = [
       "D": "providing"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of finite verbs in a relative clause. Relative clauses, such as the one beginning with “which,” require a finite verb, a verb that can function as the main verb of a clause. This choice correctly supplies the clause with the finite past tense verb “provided.” Choice B is incorrect because the non-finite participle “having provided” doesn’t supply the clause with a finite verb. Choice C is incorrect because the non-finite to-infinitive “to provide” doesn’t supply the clause with a finite verb. Choice D is incorrect because the non-finite participle “providing” doesn’t supply the clause with a finite verb."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of finite verbs in a relative clause. Relative clauses, such as the one beginning with “which,” require a finite verb, a verb that can function as the main verb of a clause. This choice correctly supplies the clause with the finite past tense verb “provided.” Choice B is incorrect because the non-finite participle “having provided” doesn’t supply the clause with a finite verb. Choice C is incorrect because the non-finite to-infinitive “to provide” doesn’t supply the clause with a finite verb. Choice D is incorrect because the non-finite participle “providing” doesn’t supply the clause with a finite verb.",
+    "officialTopic": "form"
   },
   {
     "id": "t9m1q20",
@@ -3735,7 +3796,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 20,
     "page": 12,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>The classic children’s board game Chutes and Ladders is a version of an ancient Nepalese game, Paramapada Sopanapata<i>.</i> In both games, players encounter “good” or “bad” spaces while traveling along a path; landing on one of the good spaces _______ a player to skip ahead and arrive closer to the end goal.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3745,7 +3806,8 @@ const QUESTIONS = [
       "D": "allow"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is subject–verb agreement. The singular verb “allows” agrees in number with the singular subject “landing.” Choice B is incorrect because the plural verb “are allowing” doesn’t agree in number with the singular subject “landing.” Choice C is incorrect because the plural verb “have allowed” doesn’t agree in number with the singular subject “landing.” Choice D is incorrect because the plural verb “allow” doesn’t agree in number with the singular subject “landing.”"
+    "explanation": "Choice A is the best answer. The convention being tested is subject–verb agreement. The singular verb “allows” agrees in number with the singular subject “landing.” Choice B is incorrect because the plural verb “are allowing” doesn’t agree in number with the singular subject “landing.” Choice C is incorrect because the plural verb “have allowed” doesn’t agree in number with the singular subject “landing.” Choice D is incorrect because the plural verb “allow” doesn’t agree in number with the singular subject “landing.”",
+    "officialTopic": "form"
   },
   {
     "id": "t9m1q21",
@@ -3753,7 +3815,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 21,
     "page": 12,
-    "topic": "form",
+    "topic": "pronouns",
     "passage": "<p>In 1930, Japanese American artist Chiura Obata depicted the natural beauty of Yosemite National Park in two memorable woodcuts: <i>Evening at Carl Inn</i> and <i>Lake Basin in the High Sierra</i>. In 2019, _______ exhibited alongside 150 of Obata’s other works in a single-artist show at the Smithsonian American Art Museum.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3763,7 +3825,8 @@ const QUESTIONS = [
       "D": "some were"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is pronoun–antecedent agreement. The plural pronoun “they” agrees in number with the plural antecedent “woodcuts” and clearly identifies what was exhibited at the Smithsonian American Art Museum. Choice A is incorrect because the singular pronoun “it” doesn’t agree in number with the plural antecedent “woodcuts.” Choice C is incorrect because the singular pronoun “this” doesn’t agree in number with the plural antecedent “woodcuts.” Choice D is incorrect because the plural pronoun “some” is illogical in this context (referring to “some” of two woodcuts)."
+    "explanation": "Choice B is the best answer. The convention being tested is pronoun–antecedent agreement. The plural pronoun “they” agrees in number with the plural antecedent “woodcuts” and clearly identifies what was exhibited at the Smithsonian American Art Museum. Choice A is incorrect because the singular pronoun “it” doesn’t agree in number with the plural antecedent “woodcuts.” Choice C is incorrect because the singular pronoun “this” doesn’t agree in number with the plural antecedent “woodcuts.” Choice D is incorrect because the plural pronoun “some” is illogical in this context (referring to “some” of two woodcuts).",
+    "officialTopic": "form"
   },
   {
     "id": "t9m1q22",
@@ -3771,7 +3834,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 22,
     "page": 13,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>Journalists have dubbed Gil Scott-Heron the “godfather of rap,” a title that has appeared in hundreds of articles about him since the 1990s. Scott- Heron himself resisted the godfather _______ feeling that it didn’t encapsulate his devotion to the broader African American blues music tradition as well as “bluesologist,” the moniker he preferred.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3781,7 +3844,8 @@ const QUESTIONS = [
       "D": "nickname; however,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is punctuation use between a main clause and two supplementary elements. In this choice, the commas after “nickname” and “however” are correctly used to separate the supplementary adverb “however” from the main clause (“Scott-Heron… nickname”) on one side and the supplementary participial phrase (“feeling… bluesologist”) on the other. Choice A is incorrect because it fails to mark the boundary between the supplementary adverb “however” and the supplementary phrase (“feeling… bluesologist”). Choice B is incorrect because a semicolon can’t be used in this way to join the supplementary adverb “however” and the supplementary phrase (“feeling…bluesologist”). Choice D is incorrect because a semicolon can’t be used in this way to join the main clause (“Scott-Heron…nickname”) and the supplementary word and phrase (“however” and “feeling…bluesologist”). Moreover, placing the semicolon after “nickname” illogically signals that the following information (Scott-Heron’s feeling that the nickname didn’t encapsulate his devotion to the blues tradition) is contrary to the information in the previous clause (Scott-Heron’s resistance to the nickname)."
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation use between a main clause and two supplementary elements. In this choice, the commas after “nickname” and “however” are correctly used to separate the supplementary adverb “however” from the main clause (“Scott-Heron… nickname”) on one side and the supplementary participial phrase (“feeling… bluesologist”) on the other. Choice A is incorrect because it fails to mark the boundary between the supplementary adverb “however” and the supplementary phrase (“feeling… bluesologist”). Choice B is incorrect because a semicolon can’t be used in this way to join the supplementary adverb “however” and the supplementary phrase (“feeling…bluesologist”). Choice D is incorrect because a semicolon can’t be used in this way to join the main clause (“Scott-Heron…nickname”) and the supplementary word and phrase (“however” and “feeling…bluesologist”). Moreover, placing the semicolon after “nickname” illogically signals that the following information (Scott-Heron’s feeling that the nickname didn’t encapsulate his devotion to the blues tradition) is contrary to the information in the previous clause (Scott-Heron’s resistance to the nickname).",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m1q23",
@@ -3789,7 +3853,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 23,
     "page": 13,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>Stomata, tiny pore structures in a leaf that absorb gases needed for plant growth, open when guard cells surrounding each pore swell with water. In a pivotal 2007 article, plant cell _______ showed that lipid molecules called phosphatidylinositol phosphates are responsible for signaling guard cells to open stomata.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3799,7 +3863,8 @@ const QUESTIONS = [
       "D": "biologist, Yuree Lee,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation between titles and proper nouns. No punctuation is needed to offset the proper noun “Yuree Lee” from the title “plant cell biologist” that describes Lee. Choice A is incorrect because no punctuation is needed. Choice B is incorrect because no punctuation is needed. Choice D is incorrect because no punctuation is needed around the proper noun “Yuree Lee.” Setting the phrase off with punctuation suggests that it could be removed without affecting the coherence of the sentence, which isn’t the case."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation between titles and proper nouns. No punctuation is needed to offset the proper noun “Yuree Lee” from the title “plant cell biologist” that describes Lee. Choice A is incorrect because no punctuation is needed. Choice B is incorrect because no punctuation is needed. Choice D is incorrect because no punctuation is needed around the proper noun “Yuree Lee.” Setting the phrase off with punctuation suggests that it could be removed without affecting the coherence of the sentence, which isn’t the case.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m1q24",
@@ -3807,7 +3872,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 24,
     "page": 13,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>As cheesemaking practices spread throughout Europe and Asia during and after the Neolithic, divergent strategies for preserving milk _______ whereas rennet-coagulated cheesemaking became key to milk preservation in Europe and Southwest Asia, acid-heat coagulation methods became common among nomadic herding populations of the northeastern Eurasian steppe.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3817,7 +3882,8 @@ const QUESTIONS = [
       "D": "emerged,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is punctuation use within a sentence. A colon can be used between two main clauses to signal that what follows is an elaboration of what came before. In this choice, the colon correctly introduces the following explanation of the divergent milk preservation strategies that emerged. Choice A is incorrect because it results in a run-on sentence. The main clause (“As…emerged”) and the subordinate clause followed by another main clause (“whereas…steppe”) are fused without punctuation and/or a conjunction. Choice B is incorrect. Without a comma preceding it, the conjunction “and” can’t be used in this way to join a main clause (“As…emerged”) and a subordinate clause followed by another main clause (“whereas…steppe”). Choice D is incorrect because it results in a comma splice. A comma can’t be used in this way to join a main clause (“As…emerged”) and a subordinate clause followed by another main clause (“whereas…steppe”)."
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation use within a sentence. A colon can be used between two main clauses to signal that what follows is an elaboration of what came before. In this choice, the colon correctly introduces the following explanation of the divergent milk preservation strategies that emerged. Choice A is incorrect because it results in a run-on sentence. The main clause (“As…emerged”) and the subordinate clause followed by another main clause (“whereas…steppe”) are fused without punctuation and/or a conjunction. Choice B is incorrect. Without a comma preceding it, the conjunction “and” can’t be used in this way to join a main clause (“As…emerged”) and a subordinate clause followed by another main clause (“whereas…steppe”). Choice D is incorrect because it results in a comma splice. A comma can’t be used in this way to join a main clause (“As…emerged”) and a subordinate clause followed by another main clause (“whereas…steppe”).",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m1q25",
@@ -3825,7 +3891,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 25,
     "page": 13,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>Recent pollen analyses of the Aran Islands have led some researchers to propose that the now treeless islands were once wooded. This hypothesis _______ that certain trees, such as <i>P. sylvestris</i>, survived without interruption or human intervention throughout the Holocene cannot stand, researchers Michael O’Connell and Karen Molloy counter, unless other explanations can first be ruled out.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3835,7 +3901,8 @@ const QUESTIONS = [
       "D": "has suggested"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of verb forms within a sentence. The nonfinite present participle “suggesting” is correctly used to form a restrictive participial phrase (“suggesting...Holocene”) within the main clause (“This hypothesis...cannot stand...”). This participial phrase functions as part of the sentence’s subject (“This...Holocene”), providing essential identifying information about what the hypothesis states—namely, that certain trees survived without interruption or human intervention throughout the Holocene. Choice B is incorrect because it results in an ungrammatical sentence. The finite verb “suggested” can’t be used in this way within the subject of the sentence. Choice C is incorrect because it results in an ungrammatical sentence. The finite verb “suggests” can’t be used in this way within the subject of the sentence. Choice D is incorrect because it results in an ungrammatical sentence. The finite verb “has suggested” can’t be used in this way within the subject of the sentence."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of verb forms within a sentence. The nonfinite present participle “suggesting” is correctly used to form a restrictive participial phrase (“suggesting...Holocene”) within the main clause (“This hypothesis...cannot stand...”). This participial phrase functions as part of the sentence’s subject (“This...Holocene”), providing essential identifying information about what the hypothesis states—namely, that certain trees survived without interruption or human intervention throughout the Holocene. Choice B is incorrect because it results in an ungrammatical sentence. The finite verb “suggested” can’t be used in this way within the subject of the sentence. Choice C is incorrect because it results in an ungrammatical sentence. The finite verb “suggests” can’t be used in this way within the subject of the sentence. Choice D is incorrect because it results in an ungrammatical sentence. The finite verb “has suggested” can’t be used in this way within the subject of the sentence.",
+    "officialTopic": "form"
   },
   {
     "id": "t9m1q26",
@@ -3843,7 +3910,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 26,
     "page": 14,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>Researchers studying the “terra-cotta army,” the thousands of life-size statues of warriors found interred near the tomb of Emperor Qin Shi Huang of China, were shocked to realize that the shape of each statue’s ears, like the shape of each person’s ears, _______ unique.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3853,7 +3920,8 @@ const QUESTIONS = [
       "D": "have been"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is subject-verb agreement. The singular verb “is” agrees in number with the singular subject “the shape.” Choice A is incorrect because the plural verb “are” doesn’t agree in number with the singular subject “the shape.” Choice C is incorrect because the plural verb “were” doesn’t agree in number with the singular subject “the shape.” Choice D is incorrect because the plural verb “have been” doesn’t agree in number with the singular subject “the shape.”"
+    "explanation": "Choice B is the best answer. The convention being tested is subject-verb agreement. The singular verb “is” agrees in number with the singular subject “the shape.” Choice A is incorrect because the plural verb “are” doesn’t agree in number with the singular subject “the shape.” Choice C is incorrect because the plural verb “were” doesn’t agree in number with the singular subject “the shape.” Choice D is incorrect because the plural verb “have been” doesn’t agree in number with the singular subject “the shape.”",
+    "officialTopic": "form"
   },
   {
     "id": "t9m1q27",
@@ -3871,7 +3939,8 @@ const QUESTIONS = [
       "D": "In fact,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “Meanwhile” logically signals that the action described in this sentence (Obinze’s move to London to pursue a career) is simultaneous with the action described in the previous sentence (Ifemelu’s move to the United States). The first sentence establishes that the actions take place around the same time, referring to the characters’ “divergent experiences” following high school. Choice B is incorrect because “nevertheless” illogically signals that the information in this sentence about Obinze’s move to London is true despite the previous information about Ifemelu’s move to the United States. Instead, as the first sentence establishes, Obinze’s move and Ifemelu’s move are related, parallel experiences that occur around the same time. Choice C is incorrect because “secondly” illogically signals that the information in this sentence is a second point or reason separate from the previous information about Ifemelu’s move to the United States. Instead, as the first sentence establishes, Obinze’s move and Ifemelu’s move are related, parallel experiences that occur around the same time. Choice D is incorrect because “in fact” illogically signals that the information in this sentence emphasizes, modifies, or contradicts the previous information about Ifemelu’s move to the United States. Instead, as the first sentence establishes, Obinze’s move and Ifemelu’s move are related, parallel experiences that occur around the same time."
+    "explanation": "Choice A is the best answer. “Meanwhile” logically signals that the action described in this sentence (Obinze’s move to London to pursue a career) is simultaneous with the action described in the previous sentence (Ifemelu’s move to the United States). The first sentence establishes that the actions take place around the same time, referring to the characters’ “divergent experiences” following high school. Choice B is incorrect because “nevertheless” illogically signals that the information in this sentence about Obinze’s move to London is true despite the previous information about Ifemelu’s move to the United States. Instead, as the first sentence establishes, Obinze’s move and Ifemelu’s move are related, parallel experiences that occur around the same time. Choice C is incorrect because “secondly” illogically signals that the information in this sentence is a second point or reason separate from the previous information about Ifemelu’s move to the United States. Instead, as the first sentence establishes, Obinze’s move and Ifemelu’s move are related, parallel experiences that occur around the same time. Choice D is incorrect because “in fact” illogically signals that the information in this sentence emphasizes, modifies, or contradicts the previous information about Ifemelu’s move to the United States. Instead, as the first sentence establishes, Obinze’s move and Ifemelu’s move are related, parallel experiences that occur around the same time.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t9m1q28",
@@ -3889,7 +3958,8 @@ const QUESTIONS = [
       "D": "For example,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “Additionally” logically signals that the claim in this sentence—that some Supreme Court justices worry that viewers (of televised court arguments) would watch only short, misleading clips—adds to the information in the previous sentence. Specifically, the previous sentence indicates one concern raised by those opposed to televising the court’s oral arguments, and the claim that follows indicates a second, additional concern. Choice A is incorrect because “however” illogically signals that the claim in this sentence contrasts with the information in the previous sentence. Instead, the claim adds to the information, indicating a second, additional concern that some Supreme Court justices have about televising the court’s arguments. Choice C is incorrect because “in comparison” illogically signals that the claim in this sentence is being compared to the information in the previous sentence. Instead, the claim adds to the information, indicating a second, additional concern that some Supreme Court justices have about televising the court’s arguments. Choice D is incorrect because “for example” illogically signals that the claim in this sentence exemplifies the information in the previous sentence. Instead, the claim adds to the information, indicating a second, additional concern that some Supreme Court justices have about televising the court’s arguments."
+    "explanation": "Choice B is the best answer. “Additionally” logically signals that the claim in this sentence—that some Supreme Court justices worry that viewers (of televised court arguments) would watch only short, misleading clips—adds to the information in the previous sentence. Specifically, the previous sentence indicates one concern raised by those opposed to televising the court’s oral arguments, and the claim that follows indicates a second, additional concern. Choice A is incorrect because “however” illogically signals that the claim in this sentence contrasts with the information in the previous sentence. Instead, the claim adds to the information, indicating a second, additional concern that some Supreme Court justices have about televising the court’s arguments. Choice C is incorrect because “in comparison” illogically signals that the claim in this sentence is being compared to the information in the previous sentence. Instead, the claim adds to the information, indicating a second, additional concern that some Supreme Court justices have about televising the court’s arguments. Choice D is incorrect because “for example” illogically signals that the claim in this sentence exemplifies the information in the previous sentence. Instead, the claim adds to the information, indicating a second, additional concern that some Supreme Court justices have about televising the court’s arguments.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t9m1q29",
@@ -3907,7 +3977,8 @@ const QUESTIONS = [
       "D": "Thus,"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. “Thus” logically signals that the claim in this sentence—that animals performing only basic actions should allocate relatively few resources to their brain tissue—is a consequence of the previous sentence’s claim about the energy demands of animal brains (namely, that the more diverse an animal’s behaviors, the more energy its brain needs). Choice A is incorrect because “subsequently” illogically signals that the claim in this sentence occurs later in a chronological sequence of events than the previous sentence’s claim about the energy demands of animal brains. Instead, the second claim is a consequence of the first. Choice B is incorrect because “besides” illogically signals that the claim in this sentence provides a separate point in addition to, or apart from, the previous sentence’s claim about the energy demands of animal brains. Instead, the second claim is a consequence of the first. Choice C is incorrect because “nevertheless” illogically signals that the claim in this sentence is true in spite of the previous sentence’s claim about the energy demands of animal brains. Instead, the second claim is a consequence of the first."
+    "explanation": "Choice D is the best answer. “Thus” logically signals that the claim in this sentence—that animals performing only basic actions should allocate relatively few resources to their brain tissue—is a consequence of the previous sentence’s claim about the energy demands of animal brains (namely, that the more diverse an animal’s behaviors, the more energy its brain needs). Choice A is incorrect because “subsequently” illogically signals that the claim in this sentence occurs later in a chronological sequence of events than the previous sentence’s claim about the energy demands of animal brains. Instead, the second claim is a consequence of the first. Choice B is incorrect because “besides” illogically signals that the claim in this sentence provides a separate point in addition to, or apart from, the previous sentence’s claim about the energy demands of animal brains. Instead, the second claim is a consequence of the first. Choice C is incorrect because “nevertheless” illogically signals that the claim in this sentence is true in spite of the previous sentence’s claim about the energy demands of animal brains. Instead, the second claim is a consequence of the first.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t9m1q30",
@@ -3925,7 +3996,8 @@ const QUESTIONS = [
       "D": "In conclusion,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “By contrast” logically signals that the information in this sentence—that a firefly’s glow ceases when it stops drawing in oxygen— contrasts with the previous sentence’s discussion of the processes that cause a firefly to begin to glow. Choice A is incorrect because “for instance” illogically signals that the information in the sentence exemplifies the previous sentence’s discussion of how a firefly begins to glow. Instead, it contrasts with the previous sentence’s discussion. Choice C is incorrect because “specifically” illogically signals that the information in the sentence provides specific details elaborating on the previous sentence’s discussion of how a firefly begins to glow. Instead, it contrasts with the previous sentence’s discussion. Choice D is incorrect because “in conclusion” illogically signals that the information in the sentence sums up the previous sentence’s discussion of how a firefly begins to glow. Instead, it contrasts with the previous sentence’s discussion."
+    "explanation": "Choice B is the best answer. “By contrast” logically signals that the information in this sentence—that a firefly’s glow ceases when it stops drawing in oxygen— contrasts with the previous sentence’s discussion of the processes that cause a firefly to begin to glow. Choice A is incorrect because “for instance” illogically signals that the information in the sentence exemplifies the previous sentence’s discussion of how a firefly begins to glow. Instead, it contrasts with the previous sentence’s discussion. Choice C is incorrect because “specifically” illogically signals that the information in the sentence provides specific details elaborating on the previous sentence’s discussion of how a firefly begins to glow. Instead, it contrasts with the previous sentence’s discussion. Choice D is incorrect because “in conclusion” illogically signals that the information in the sentence sums up the previous sentence’s discussion of how a firefly begins to glow. Instead, it contrasts with the previous sentence’s discussion.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t9m1q31",
@@ -3943,7 +4015,8 @@ const QUESTIONS = [
       "D": "Though they are different sizes, both microprobes and rovers can be used to explore the surface of Mars."
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The sentence explains an advantage of microprobes, noting that because microprobes weigh as little as 50 milligrams, they can explore areas inaccessible to rovers. Choice A is incorrect. The sentence indicates that rovers can land successfully on Mars despite their weight; it doesn’t explain an advantage of microprobes. Choice C is incorrect. While the sentence mentions that microprobes have been proposed as an alternative to rovers, it doesn’t explain an advantage of microprobes. Choice D is incorrect. The sentence emphasizes a similarity between microprobes and rovers; it doesn’t explain an advantage of microprobes."
+    "explanation": "Choice B is the best answer. The sentence explains an advantage of microprobes, noting that because microprobes weigh as little as 50 milligrams, they can explore areas inaccessible to rovers. Choice A is incorrect. The sentence indicates that rovers can land successfully on Mars despite their weight; it doesn’t explain an advantage of microprobes. Choice C is incorrect. While the sentence mentions that microprobes have been proposed as an alternative to rovers, it doesn’t explain an advantage of microprobes. Choice D is incorrect. The sentence emphasizes a similarity between microprobes and rovers; it doesn’t explain an advantage of microprobes.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m1q32",
@@ -3961,7 +4034,8 @@ const QUESTIONS = [
       "D": "Though his discovery of PNPase was critical to deciphering the human genetic code, Ochoa incorrectly hypothesized that the enzyme was the source of mRNA’s genetic blueprints."
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The sentence emphasizes the significance of Ochoa’s discovery, noting that it proved critical to deciphering the human genetic code, which resulted in a better understanding of how genetic variations affect human health. Choice B is incorrect. While the sentence explains what Ochoa discovered, it doesn’t emphasize the significance of the discovery. Choice C is incorrect. While the sentence explains what Ochoa discovered, it doesn’t emphasize the significance of the discovery. Choice D is incorrect. While the sentence mentions that Ochoa’s discovery was crucial, it emphasizes Ochoa’s incorrect hypothesis, not the significance of the discovery."
+    "explanation": "Choice A is the best answer. The sentence emphasizes the significance of Ochoa’s discovery, noting that it proved critical to deciphering the human genetic code, which resulted in a better understanding of how genetic variations affect human health. Choice B is incorrect. While the sentence explains what Ochoa discovered, it doesn’t emphasize the significance of the discovery. Choice C is incorrect. While the sentence explains what Ochoa discovered, it doesn’t emphasize the significance of the discovery. Choice D is incorrect. While the sentence mentions that Ochoa’s discovery was crucial, it emphasizes Ochoa’s incorrect hypothesis, not the significance of the discovery.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m1q33",
@@ -3979,7 +4053,8 @@ const QUESTIONS = [
       "D": "In 1971, Cecilia Vicuña exhibited her first solo art exhibition, Pinturas, poemas y explicaciones, in Chile, her country of birth."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence effectively introduces the poetry collection Precario/Precarious, noting that it is a collection by Vicuña that was published in 1983 by Tanam Press. Choice A is incorrect. While the sentence mentions the 1983 poetry collection Precario/Precarious, it focuses mainly on Vicuña’s visual art. Choice B is incorrect. The sentence doesn’t introduce the 1983 poetry collection Precario/Precarious; instead, it introduces Vicuña. Choice D is incorrect. The sentence emphasizes the location of Vicuña’s 1971 exhibition Pinturas, poemas y explicaciones; it doesn’t introduce the 1983 poetry collection Precario/Precarious. Reading and Writing Module 2 (33 questions)"
+    "explanation": "Choice C is the best answer. The sentence effectively introduces the poetry collection Precario/Precarious, noting that it is a collection by Vicuña that was published in 1983 by Tanam Press. Choice A is incorrect. While the sentence mentions the 1983 poetry collection Precario/Precarious, it focuses mainly on Vicuña’s visual art. Choice B is incorrect. The sentence doesn’t introduce the 1983 poetry collection Precario/Precarious; instead, it introduces Vicuña. Choice D is incorrect. The sentence emphasizes the location of Vicuña’s 1971 exhibition Pinturas, poemas y explicaciones; it doesn’t introduce the 1983 poetry collection Precario/Precarious. Reading and Writing Module 2 (33 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m2q19",
@@ -3987,7 +4062,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 19,
     "page": 26,
-    "topic": "form",
+    "topic": "pronouns",
     "passage": "<p>British scientists James Watson and Francis Crick won the Nobel Prize in part for their 1953 paper announcing the double helix structure of DNA, but it is misleading to say that Watson and Crick discovered the double helix. _______ findings were based on a famous X-ray image of DNA fibers, “Photo 51,” developed by X-ray crystallographer Rosalind Franklin and her graduate student Raymond Gosling.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -3997,7 +4072,8 @@ const QUESTIONS = [
       "D": "Its"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of possessive determiners. The plural possessive determiner “their” agrees in number with the plural conjoined noun phrase “Watson and Crick” and thus indicates that the findings were those of Watson and Crick. Choice A is incorrect because “they’re” is the contraction for “they are,” not a possessive determiner. Choice B is incorrect because “it’s” is the contraction for “it is” or “it has,” not a possessive determiner. Choice D is incorrect because the singular possessive determiner “its” doesn’t agree in number with the plural conjoined noun phrase “Watson and Crick.”"
+    "explanation": "Choice C is the best answer. The convention being tested is the use of possessive determiners. The plural possessive determiner “their” agrees in number with the plural conjoined noun phrase “Watson and Crick” and thus indicates that the findings were those of Watson and Crick. Choice A is incorrect because “they’re” is the contraction for “they are,” not a possessive determiner. Choice B is incorrect because “it’s” is the contraction for “it is” or “it has,” not a possessive determiner. Choice D is incorrect because the singular possessive determiner “its” doesn’t agree in number with the plural conjoined noun phrase “Watson and Crick.”",
+    "officialTopic": "form"
   },
   {
     "id": "t9m2q20",
@@ -4005,7 +4081,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 20,
     "page": 26,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>In the historical novel <i>The Surrender Tree</i>, Cuban American author Margarita Engle uses poetry rather than prose _______ the true story of Cuban folk hero Rosa La Bayamesa.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4015,7 +4091,8 @@ const QUESTIONS = [
       "D": "to tell"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of finite and nonfinite verb forms within a sentence. The nonfinite to-infinitive “to tell” is correctly used to form a nonfinite (infinitive) clause that explains the reason Engle uses poetry in her novel. Choice A is incorrect because the finite present tense verb “tells” can’t be used in this way to explain the reason that Engle uses poetry in her novel. Choice B is incorrect because the finite past tense verb “told” can’t be used in this way to explain the reason that Engle uses poetry in her novel. Choice C is incorrect because the finite present progressive tense verb “is telling” can’t be used in this way to explain the reason that Engle uses poetry in her novel."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of finite and nonfinite verb forms within a sentence. The nonfinite to-infinitive “to tell” is correctly used to form a nonfinite (infinitive) clause that explains the reason Engle uses poetry in her novel. Choice A is incorrect because the finite present tense verb “tells” can’t be used in this way to explain the reason that Engle uses poetry in her novel. Choice B is incorrect because the finite past tense verb “told” can’t be used in this way to explain the reason that Engle uses poetry in her novel. Choice C is incorrect because the finite present progressive tense verb “is telling” can’t be used in this way to explain the reason that Engle uses poetry in her novel.",
+    "officialTopic": "form"
   },
   {
     "id": "t9m2q21",
@@ -4023,7 +4100,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 21,
     "page": 26,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>Interest in mechanotransduction, the mechanism by which cells sense and convert mechanical stimuli into biochemical signals, is expanding because of innovative work by biomedical scientists—many of whom, like neuroscience and biophysics expert Elba Serrano, _______ this mechanism to better understand how the body’s neurological and biomechanical systems interact.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4033,7 +4110,8 @@ const QUESTIONS = [
       "D": "studies"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of verb forms within a sentence. The plural verb “study” agrees in number with the plural subject “many.” Choice A is incorrect because the singular verb “is studying” doesn’t agree in number with the plural subject “many.” Choice B is incorrect because the singular verb “has studied” doesn’t agree in number with the plural subject “many.” Choice D is incorrect because the singular verb “studies” doesn’t agree in number with the plural subject “many.”"
+    "explanation": "Choice C is the best answer. The convention being tested is the use of verb forms within a sentence. The plural verb “study” agrees in number with the plural subject “many.” Choice A is incorrect because the singular verb “is studying” doesn’t agree in number with the plural subject “many.” Choice B is incorrect because the singular verb “has studied” doesn’t agree in number with the plural subject “many.” Choice D is incorrect because the singular verb “studies” doesn’t agree in number with the plural subject “many.”",
+    "officialTopic": "form"
   },
   {
     "id": "t9m2q22",
@@ -4041,7 +4119,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 22,
     "page": 26,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>In crafting her fantasy fiction, Nigerian-born British author Helen Oyeyemi has drawn inspiration from the classic nineteenth-century fairy tales of the Brothers Grimm. Her 2014 novel <i>Boy, Snow, Bird</i>, for instance, is a complex retelling of the story of Snow White, while her 2019 novel ______ offers a delicious twist on the classic tale of Hansel and Gretel.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4051,7 +4129,8 @@ const QUESTIONS = [
       "D": "Gingerbread:"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is punctuation between a subject and a verb. When, as in this case, a subject (“her 2019 novel Gingerbread”) is immediately followed by a verb (“offers”), no punctuation is needed. Choice A is incorrect because no punctuation is needed between the subject and the verb. Choice B is incorrect because no punctuation is needed between the subject and the verb. Choice D is incorrect because no punctuation is needed between the subject and the verb."
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation between a subject and a verb. When, as in this case, a subject (“her 2019 novel Gingerbread”) is immediately followed by a verb (“offers”), no punctuation is needed. Choice A is incorrect because no punctuation is needed between the subject and the verb. Choice B is incorrect because no punctuation is needed between the subject and the verb. Choice D is incorrect because no punctuation is needed between the subject and the verb.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m2q23",
@@ -4059,7 +4138,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 23,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>Sociologist Todd Gitlin co-opted the term “recombinant,” normally used in reference to genetic engineering, to describe serialized television shows of the 1980s. Gitlin’s use of the term referenced TV studios’ practice of repackaging successful narrative formulas as new _______ even shows that varied only slightly from other shows still attracted sizeable audiences.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4069,7 +4148,8 @@ const QUESTIONS = [
       "D": "content, in that era,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the use of punctuation within a sentence. This choice uses a semicolon in a conventional way to join the first main clause (“Gitlin’s…content”) and the second main clause beginning with a supplementary phrase (“in…audiences”). Further, placing a comma after “era” separates the supplementary phrase “in that era” from the rest of the main clause that follows (“even…audiences”). Choice A is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses. Further, this choice fails to mark the boundary between the supplementary phrase “in that era” and the rest of the main clause that follows (“even…audiences”). Choice C is incorrect because it results in a run-on sentence. The two main clauses (“Gitlin’s… content” and “in…audiences”) are fused without punctuation and/or a conjunction. Choice D is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses."
+    "explanation": "Choice B is the best answer. The convention being tested is the use of punctuation within a sentence. This choice uses a semicolon in a conventional way to join the first main clause (“Gitlin’s…content”) and the second main clause beginning with a supplementary phrase (“in…audiences”). Further, placing a comma after “era” separates the supplementary phrase “in that era” from the rest of the main clause that follows (“even…audiences”). Choice A is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses. Further, this choice fails to mark the boundary between the supplementary phrase “in that era” and the rest of the main clause that follows (“even…audiences”). Choice C is incorrect because it results in a run-on sentence. The two main clauses (“Gitlin’s… content” and “in…audiences”) are fused without punctuation and/or a conjunction. Choice D is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m2q24",
@@ -4077,7 +4157,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 24,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "supplements",
     "passage": "<p>When external forces are applied to common glass made from silicates, energy builds up around minuscule defects in the material, resulting in fractures. Recently, engineer Erkka Frankberg of Tampere University in Finland used the chemical ______ to make a glassy solid that can withstand higher strain than silicate glass can before fracturing.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4087,7 +4167,8 @@ const QUESTIONS = [
       "D": "compound aluminum oxide"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of punctuation around noun phrases. No punctuation is needed because the noun phrase “aluminum oxide” is a restrictive appositive, meaning that it provides essential identifying information about the noun phrase before it, “the chemical compound,” and thus doesn’t require punctuation around it. Choice A is incorrect because no punctuation is needed. Choice B is incorrect because no punctuation is needed. Choice C is incorrect because the noun phrase “aluminum oxide” is a restrictive appositive. Setting the phrase off with punctuation suggests that it could be removed without affecting the coherence of the sentence, which isn’t the case."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of punctuation around noun phrases. No punctuation is needed because the noun phrase “aluminum oxide” is a restrictive appositive, meaning that it provides essential identifying information about the noun phrase before it, “the chemical compound,” and thus doesn’t require punctuation around it. Choice A is incorrect because no punctuation is needed. Choice B is incorrect because no punctuation is needed. Choice C is incorrect because the noun phrase “aluminum oxide” is a restrictive appositive. Setting the phrase off with punctuation suggests that it could be removed without affecting the coherence of the sentence, which isn’t the case.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m2q25",
@@ -4095,7 +4176,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 25,
     "page": 27,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>In the late nineteenth and early twentieth centuries, automobiles were commonly referred to as horseless carriages after the older technology they still resembled. Known as the Brass Era, this period in automotive design is remembered for its grandeur and artistry, its vehicles _______ by collectors for their ornate detailing and gleaming brass fittings.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4105,7 +4186,8 @@ const QUESTIONS = [
       "D": "were highly prized"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of verb forms in a sentence. The nonfinite past participle phrase “highly prized” is correctly used to form a supplementary element that modifies the main clause “this…artistry,” describing memorable features of Brass Era automotive design. Choice A is incorrect because it results in a comma splice. Using the finite present tense verb phrase “are highly prized” creates a second main clause in the sentence, and two main clauses can’t be joined in this way with only a comma after “artistry.” Choice B is incorrect because it results in a comma splice. Using the finite past perfect tense verb phrase “had been highly prized” creates a second main clause in the sentence, and two main clauses can’t be joined in this way with only a comma after “artistry.” Choice D is incorrect because it results in a comma splice. Using the finite past tense verb phrase “were highly prized” creates a second main clause in the sentence, and two main clauses can’t be joined in this way with only a comma after “artistry.”"
+    "explanation": "Choice C is the best answer. The convention being tested is the use of verb forms in a sentence. The nonfinite past participle phrase “highly prized” is correctly used to form a supplementary element that modifies the main clause “this…artistry,” describing memorable features of Brass Era automotive design. Choice A is incorrect because it results in a comma splice. Using the finite present tense verb phrase “are highly prized” creates a second main clause in the sentence, and two main clauses can’t be joined in this way with only a comma after “artistry.” Choice B is incorrect because it results in a comma splice. Using the finite past perfect tense verb phrase “had been highly prized” creates a second main clause in the sentence, and two main clauses can’t be joined in this way with only a comma after “artistry.” Choice D is incorrect because it results in a comma splice. Using the finite past tense verb phrase “were highly prized” creates a second main clause in the sentence, and two main clauses can’t be joined in this way with only a comma after “artistry.”",
+    "officialTopic": "form"
   },
   {
     "id": "t9m2q26",
@@ -4113,7 +4195,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 26,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>With the development of new technologies that use natural resources more efficiently, the overall consumption of those resources might be expected to decrease. Economists have observed that improvements in efficiency often correlate negatively with resource _______ efficiency gains, lowering the cost of use, may increase demand to the extent that resource consumption ultimately rises.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4123,7 +4205,8 @@ const QUESTIONS = [
       "D": "conservation, though"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to separate the supplementary adverb “though” from the preceding main clause (“Economists…conservation”) and uses a semicolon to join the next main clause (“efficiency gains…rises”) to the rest of the sentence. Further, placing the semicolon after “though” indicates that the information in the preceding main clause (“improvements in efficiency often correlate negatively with resource conservation”) is contrary to what might be assumed from the information in the previous sentence (resource consumption would be expected to decrease with the development of new, more efficient technologies). Choice A is incorrect because it results in a comma splice. Commas can’t be used in this way to punctuate a supplementary word or phrase between two main clauses. Choice B is incorrect because it fails to mark the boundary between the two main clauses (“Economists...though” and “efficiency gains…rises”) with appropriate punctuation. Moreover, placing the semicolon after “conservation” illogically indicates that the information in the next clause (gains in efficiency may lead to an increase in resource consumption) is contrary to the information in the previous clause (“improvements in efficiency often correlate negatively with resource conservation”). Choice D is incorrect because placing a comma after “conservation” illogically indicates that the information in the next clause (gains in efficiency may lead to an increase in resource consumption) is contrary to the information in the previous clause (“improvements in efficiency often correlate negatively with resource conservation”)."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation within a sentence. This choice correctly uses a comma to separate the supplementary adverb “though” from the preceding main clause (“Economists…conservation”) and uses a semicolon to join the next main clause (“efficiency gains…rises”) to the rest of the sentence. Further, placing the semicolon after “though” indicates that the information in the preceding main clause (“improvements in efficiency often correlate negatively with resource conservation”) is contrary to what might be assumed from the information in the previous sentence (resource consumption would be expected to decrease with the development of new, more efficient technologies). Choice A is incorrect because it results in a comma splice. Commas can’t be used in this way to punctuate a supplementary word or phrase between two main clauses. Choice B is incorrect because it fails to mark the boundary between the two main clauses (“Economists...though” and “efficiency gains…rises”) with appropriate punctuation. Moreover, placing the semicolon after “conservation” illogically indicates that the information in the next clause (gains in efficiency may lead to an increase in resource consumption) is contrary to the information in the previous clause (“improvements in efficiency often correlate negatively with resource conservation”). Choice D is incorrect because placing a comma after “conservation” illogically indicates that the information in the next clause (gains in efficiency may lead to an increase in resource consumption) is contrary to the information in the previous clause (“improvements in efficiency often correlate negatively with resource conservation”).",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t9m2q27",
@@ -4141,7 +4224,8 @@ const QUESTIONS = [
       "D": "In other words,"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. “Similarly” logically signals that the activity described in this sentence (Nancy Tuttle Craig distributing Votes for Women Tea in her Los Angeles grocery stores) is like the activity described in the previous sentence (the Woman’s Suffrage Party selling Equality Tea at fairs in San Francisco). Together, the two examples support the preceding claim that “activists across the state sold tea to promote the cause of suffrage.” Choice A is incorrect because “for example” illogically signals that the activity described in this sentence exemplifies the activity described in the previous sentence. Instead, the two activities are similar, and both support the preceding claim about selling tea to promote women’s right to vote. Choice B is incorrect because “to conclude” illogically signals that the activity described in this sentence concludes or summarizes the information in the previous sentences. Instead, the activity is similar to the one described in the previous sentence, and both support the preceding claim about selling tea to promote women’s right to vote. Choice D is incorrect because “in other words” illogically signals that the activity described in this sentence paraphrases the activity described in the previous sentence. Instead, the two activities are similar, and both support the preceding claim about selling tea to promote women’s right to vote."
+    "explanation": "Choice C is the best answer. “Similarly” logically signals that the activity described in this sentence (Nancy Tuttle Craig distributing Votes for Women Tea in her Los Angeles grocery stores) is like the activity described in the previous sentence (the Woman’s Suffrage Party selling Equality Tea at fairs in San Francisco). Together, the two examples support the preceding claim that “activists across the state sold tea to promote the cause of suffrage.” Choice A is incorrect because “for example” illogically signals that the activity described in this sentence exemplifies the activity described in the previous sentence. Instead, the two activities are similar, and both support the preceding claim about selling tea to promote women’s right to vote. Choice B is incorrect because “to conclude” illogically signals that the activity described in this sentence concludes or summarizes the information in the previous sentences. Instead, the activity is similar to the one described in the previous sentence, and both support the preceding claim about selling tea to promote women’s right to vote. Choice D is incorrect because “in other words” illogically signals that the activity described in this sentence paraphrases the activity described in the previous sentence. Instead, the two activities are similar, and both support the preceding claim about selling tea to promote women’s right to vote.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t9m2q28",
@@ -4159,7 +4243,8 @@ const QUESTIONS = [
       "D": "Hence,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “Specifically” logically signals that the information in this sentence—that the Sun releases charged particles that later collide with atoms, resulting in auroral light—provides specific, precise details about how auroras result from the Sun’s activity. Choice B is incorrect because “similarly” illogically signals that the information in this sentence is similar to the general information about auroras in the previous sentence. Instead, this sentence provides specific, precise details about how auroras form. Choice C is incorrect because “nevertheless” illogically signals that the information in this sentence is despite the general information about auroras in the previous sentence. Instead, this sentence provides specific, precise details about how auroras form. Choice D is incorrect because “hence” illogically signals that the information in this sentence is a result of the general information about auroras in the previous sentence. Instead, this sentence provides specific, precise details about how auroras form."
+    "explanation": "Choice A is the best answer. “Specifically” logically signals that the information in this sentence—that the Sun releases charged particles that later collide with atoms, resulting in auroral light—provides specific, precise details about how auroras result from the Sun’s activity. Choice B is incorrect because “similarly” illogically signals that the information in this sentence is similar to the general information about auroras in the previous sentence. Instead, this sentence provides specific, precise details about how auroras form. Choice C is incorrect because “nevertheless” illogically signals that the information in this sentence is despite the general information about auroras in the previous sentence. Instead, this sentence provides specific, precise details about how auroras form. Choice D is incorrect because “hence” illogically signals that the information in this sentence is a result of the general information about auroras in the previous sentence. Instead, this sentence provides specific, precise details about how auroras form.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t9m2q29",
@@ -4177,7 +4262,8 @@ const QUESTIONS = [
       "D": "Both the Seikan Tunnel, which is located in Japan, and the Channel Tunnel, which is located in Europe, are examples of rail tunnels."
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The sentence compares the lengths of the two rail tunnels, noting that the Channel Tunnel (about 31 miles long) is slightly shorter than the Seikan Tunnel (roughly 33 miles long). Choice A is incorrect. The sentence makes a generalization about the length of some rail tunnels; it doesn’t compare the lengths of the two rail tunnels. Choice C is incorrect. The sentence describes a single rail tunnel; it doesn’t compare the lengths of the two rail tunnels. Choice D is incorrect. While the sentence mentions the two rail tunnels, it doesn’t compare their lengths."
+    "explanation": "Choice B is the best answer. The sentence compares the lengths of the two rail tunnels, noting that the Channel Tunnel (about 31 miles long) is slightly shorter than the Seikan Tunnel (roughly 33 miles long). Choice A is incorrect. The sentence makes a generalization about the length of some rail tunnels; it doesn’t compare the lengths of the two rail tunnels. Choice C is incorrect. The sentence describes a single rail tunnel; it doesn’t compare the lengths of the two rail tunnels. Choice D is incorrect. While the sentence mentions the two rail tunnels, it doesn’t compare their lengths.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m2q30",
@@ -4195,7 +4281,8 @@ const QUESTIONS = [
       "D": "A “transitional fossil” was recently found by paleobiologist Natalia Rybczynski."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence effectively emphasizes the fossil’s significance, explaining that the fossil is rare and illustrates an early stage in the evolution of pinnipeds from their land-dwelling ancestors. Choice A is incorrect. The sentence describes the fossil Rybczynski found; it doesn’t emphasize the fossil’s significance. Choice B is incorrect. The sentence mentions that a fossil resembling both pinnipeds and their ancestors was found; it doesn’t emphasize the fossil’s significance. Choice D is incorrect. The sentence notes a term used to describe the fossil Rybczynski found; it doesn’t emphasize the fossil’s significance."
+    "explanation": "Choice C is the best answer. The sentence effectively emphasizes the fossil’s significance, explaining that the fossil is rare and illustrates an early stage in the evolution of pinnipeds from their land-dwelling ancestors. Choice A is incorrect. The sentence describes the fossil Rybczynski found; it doesn’t emphasize the fossil’s significance. Choice B is incorrect. The sentence mentions that a fossil resembling both pinnipeds and their ancestors was found; it doesn’t emphasize the fossil’s significance. Choice D is incorrect. The sentence notes a term used to describe the fossil Rybczynski found; it doesn’t emphasize the fossil’s significance.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m2q31",
@@ -4213,7 +4300,8 @@ const QUESTIONS = [
       "D": "Whereas the reflective metal fibers had an emissivity of just 0.02, the silicon carbide fibers absorbed large amounts of heat, resulting in an emissivity of 0.74."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The sentence uses “whereas” to contrast the emissivities of the two fibers, noting that the emissivity of the reflective metal fibers was just 0.02, far lower than that of the silicon carbide fibers (0.74). Choice A is incorrect. The sentence emphasizes the ability of reflective metal fibers and silicon carbide fibers to emit heat; it doesn’t contrast the emissivities of the two fibers. Choice B is incorrect. The sentence states a law of thermodynamics: the amount of heat a material absorbs is equal to the amount it emits. The sentence doesn’t contrast the emissivity of reflective metal fibers with that of silicon carbide fibers. Choice C is incorrect. While the sentence includes a generalization about the emissivities of reflective metal fibers and silicon carbide fibers, it emphasizes Abebe’s plans for their use in a garment; it doesn’t contrast the emissivities of the two fibers."
+    "explanation": "Choice D is the best answer. The sentence uses “whereas” to contrast the emissivities of the two fibers, noting that the emissivity of the reflective metal fibers was just 0.02, far lower than that of the silicon carbide fibers (0.74). Choice A is incorrect. The sentence emphasizes the ability of reflective metal fibers and silicon carbide fibers to emit heat; it doesn’t contrast the emissivities of the two fibers. Choice B is incorrect. The sentence states a law of thermodynamics: the amount of heat a material absorbs is equal to the amount it emits. The sentence doesn’t contrast the emissivity of reflective metal fibers with that of silicon carbide fibers. Choice C is incorrect. While the sentence includes a generalization about the emissivities of reflective metal fibers and silicon carbide fibers, it emphasizes Abebe’s plans for their use in a garment; it doesn’t contrast the emissivities of the two fibers.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m2q32",
@@ -4231,7 +4319,8 @@ const QUESTIONS = [
       "D": "Using an interactive format, theater students at Radford and Virginia Tech created “Women and the Vote,” a play about woman suffrage activists."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence explains an advantage of the “Women and the Vote” format, noting that the format appealed to audiences because it allowed them to control the experience. Choice A is incorrect. The sentence describes a digital drawing on the “Women and the Vote” website; it doesn’t explain an advantage of the play’s format. Choice B is incorrect. The sentence explains how audiences interacted with the “Women and the Vote” website; it doesn’t explain an advantage of the play’s format. Choice D is incorrect. While the sentence mentions that “Women and the Vote” had an interactive format, it doesn’t explain what advantage this format might have."
+    "explanation": "Choice C is the best answer. The sentence explains an advantage of the “Women and the Vote” format, noting that the format appealed to audiences because it allowed them to control the experience. Choice A is incorrect. The sentence describes a digital drawing on the “Women and the Vote” website; it doesn’t explain an advantage of the play’s format. Choice B is incorrect. The sentence explains how audiences interacted with the “Women and the Vote” website; it doesn’t explain an advantage of the play’s format. Choice D is incorrect. While the sentence mentions that “Women and the Vote” had an interactive format, it doesn’t explain what advantage this format might have.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t9m2q33",
@@ -4249,7 +4338,8 @@ const QUESTIONS = [
       "D": "Naval architect Zhiming Yuan discovered that ducklings are pushed in a forward direction by the waves of their mother’s wake, reducing the effect of drag by 158%."
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The sentence presents both the study and its methodology (that is, the researcher’s approach to the problem), explaining that Yuan used computer simulations to study the effect of the mother duck’s wake on the ducklings’ energy expenditure. Choice A is incorrect. The sentence describes the findings of Yuan’s study; it doesn’t present the study and its methodology. Choice C is incorrect. While the sentence provides general information about Yuan’s study, it doesn’t present the study’s methodology. Choice D is incorrect. The sentence describes the findings of Yuan’s study; it doesn’t present the study and its methodology. Math Module 1 (27 questions)"
+    "explanation": "Choice B is the best answer. The sentence presents both the study and its methodology (that is, the researcher’s approach to the problem), explaining that Yuan used computer simulations to study the effect of the mother duck’s wake on the ducklings’ energy expenditure. Choice A is incorrect. The sentence describes the findings of Yuan’s study; it doesn’t present the study and its methodology. Choice C is incorrect. While the sentence provides general information about Yuan’s study, it doesn’t present the study’s methodology. Choice D is incorrect. The sentence describes the findings of Yuan’s study; it doesn’t present the study and its methodology. Math Module 1 (27 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t10m1q20",
@@ -4257,7 +4347,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 20,
     "page": 12,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>The Alvarez theory, developed in 1980 by physicist Luis Walter Alvarez and his geologist son Walter Alvarez, maintained that the secondary effects of an asteroid impact caused many dinosaurs and other animals to die _______ it left unexplored the question of whether unrelated volcanic activity might have also contributed to the mass extinctions.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4267,7 +4357,8 @@ const QUESTIONS = [
       "D": "out,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the coordination of main clauses within a sentence. This choice correctly uses a comma and the coordinating conjunction “but” to join the first main clause (“the Alvarez…out”) and the second main clause (“it left…extinctions”). Choice A is incorrect because when coordinating two longer main clauses such as these, it’s conventional to use a comma before the coordinating conjunction. Choice C is incorrect because it results in a run-on sentence. The two main clauses are fused without punctuation and/or a conjunction. Choice D is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses."
+    "explanation": "Choice B is the best answer. The convention being tested is the coordination of main clauses within a sentence. This choice correctly uses a comma and the coordinating conjunction “but” to join the first main clause (“the Alvarez…out”) and the second main clause (“it left…extinctions”). Choice A is incorrect because when coordinating two longer main clauses such as these, it’s conventional to use a comma before the coordinating conjunction. Choice C is incorrect because it results in a run-on sentence. The two main clauses are fused without punctuation and/or a conjunction. Choice D is incorrect because it results in a comma splice. Without a conjunction following it, a comma can’t be used in this way to join two main clauses.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m1q21",
@@ -4275,7 +4366,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 21,
     "page": 13,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>Typically, underlines, scribbles, and notes left in the margins by a former owner lower a book’s _______ when the former owner is a famous poet like Walt Whitman, such markings, known as marginalia, can be a gold mine to literary scholars.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4285,7 +4376,8 @@ const QUESTIONS = [
       "D": "value but"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the coordination of independent clauses within a sentence. An independent clause is a phrase containing a subject and a verb that can stand on its own as a sentence. This choice uses a comma and the coordinating conjunction “but” to join the first independent clause (“underlines…lower a book’s value”) and the second independent clause (“such markings…can be a gold mine to scholars”) to create a compound sentence. Choice B is incorrect because it results in a run-on sentence. The two independent clauses are fused without punctuation and/or a conjunction. Choice C is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between two independent clauses. Choice D is incorrect because a comma is needed to mark the boundary between two coordinated independent clauses."
+    "explanation": "Choice A is the best answer. The convention being tested is the coordination of independent clauses within a sentence. An independent clause is a phrase containing a subject and a verb that can stand on its own as a sentence. This choice uses a comma and the coordinating conjunction “but” to join the first independent clause (“underlines…lower a book’s value”) and the second independent clause (“such markings…can be a gold mine to scholars”) to create a compound sentence. Choice B is incorrect because it results in a run-on sentence. The two independent clauses are fused without punctuation and/or a conjunction. Choice C is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between two independent clauses. Choice D is incorrect because a comma is needed to mark the boundary between two coordinated independent clauses.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m1q22",
@@ -4293,7 +4385,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 22,
     "page": 13,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>In winter, the diets of Japanese macaques, also known as snow monkeys, are influenced more by food availability than by food preference. Although the monkeys prefer to eat vegetation and land-dwelling invertebrates, those food sources may become unavailable because of extensive snow and ice cover, _______ the monkeys to hunt for marine animals in any streams that have not frozen over.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4303,7 +4395,8 @@ const QUESTIONS = [
       "D": "forced"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of finite and nonfinite verb forms within a sentence. The nonfinite present participle “forcing” is correctly used to form a participial phrase that supplements the main clause “those...cover,” describing the effects on monkeys of the lack of food sources. Choice A is incorrect because the finite present tense verb “forces” can’t be used in this way to supplement the main clause (“those...cover”). Choice B is incorrect. While the nonfinite to-infinitive “to force” could be used to form a subordinate clause that supplements the main clause (“those...cover”), to-infinitives conventionally express purpose, and nothing in the sentence suggests that the food sources become unavailable for the purpose of forcing monkeys to hunt marine animals. Choice D is incorrect because the finite past tense verb “forced” can’t be used in this way to supplement the main clause (“those...cover”)."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of finite and nonfinite verb forms within a sentence. The nonfinite present participle “forcing” is correctly used to form a participial phrase that supplements the main clause “those...cover,” describing the effects on monkeys of the lack of food sources. Choice A is incorrect because the finite present tense verb “forces” can’t be used in this way to supplement the main clause (“those...cover”). Choice B is incorrect. While the nonfinite to-infinitive “to force” could be used to form a subordinate clause that supplements the main clause (“those...cover”), to-infinitives conventionally express purpose, and nothing in the sentence suggests that the food sources become unavailable for the purpose of forcing monkeys to hunt marine animals. Choice D is incorrect because the finite past tense verb “forced” can’t be used in this way to supplement the main clause (“those...cover”).",
+    "officialTopic": "form"
   },
   {
     "id": "t10m1q23",
@@ -4311,7 +4404,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 23,
     "page": 13,
-    "topic": "boundaries",
+    "topic": "clauses",
     "passage": "<p>While many video game creators strive to make their graphics ever more ______ others look to the past, developing titles with visuals inspired by the “8-bit” games of the 1980s and 1990s. (The term “8-bit” refers to a console whose processor could only handle eight bits of data at once.)</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4321,7 +4414,8 @@ const QUESTIONS = [
       "D": "lifelike, but"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is punctuation between a subordinate clause and a main clause. This choice correctly uses a comma to mark the boundary between the subordinate clause (“While…lifelike”) and the main clause (“others look to the past”). Choice A is incorrect because it results in an incomplete sentence with no main clause. Choice B is incorrect because it fails to mark the boundary between the subordinate clause (“While…lifelike”) and the main clause (“others…past”). Choice D is incorrect because it results in an incomplete sentence with no main clause."
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation between a subordinate clause and a main clause. This choice correctly uses a comma to mark the boundary between the subordinate clause (“While…lifelike”) and the main clause (“others look to the past”). Choice A is incorrect because it results in an incomplete sentence with no main clause. Choice B is incorrect because it fails to mark the boundary between the subordinate clause (“While…lifelike”) and the main clause (“others…past”). Choice D is incorrect because it results in an incomplete sentence with no main clause.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m1q24",
@@ -4329,7 +4423,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 24,
     "page": 13,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>Food and the sensation of taste are central to Monique Truong’s novels. In <i>The Book of Salt</i>, for example, the exiled character of Bình connects to his native Saigon through the food he prepares, while in <i>Bitter in the Mouth</i>, the character of Linda ______ a form of synesthesia whereby the words she hears evoke tastes.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4339,7 +4433,8 @@ const QUESTIONS = [
       "D": "will be experiencing"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the present tense verb “experiences” is consistent with the other present tense verbs (e.g., “connects” and “prepares”) used to describe the events in Truong’s novels. Furthermore, it’s conventional to use the present tense when discussing a literary work. Choice A is incorrect because the past tense verb “experienced” isn’t consistent with the other present tense verbs used to describe the events in Truong’s novels. Choice B is incorrect because the past perfect tense verb “had experienced” isn’t consistent with the other present tense verbs used to describe the events in Truong’s novels. Choice D is incorrect because the future progressive tense verb “will be experiencing” isn’t consistent with the other present tense verbs used to describe the events in Truong’s novels."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the present tense verb “experiences” is consistent with the other present tense verbs (e.g., “connects” and “prepares”) used to describe the events in Truong’s novels. Furthermore, it’s conventional to use the present tense when discussing a literary work. Choice A is incorrect because the past tense verb “experienced” isn’t consistent with the other present tense verbs used to describe the events in Truong’s novels. Choice B is incorrect because the past perfect tense verb “had experienced” isn’t consistent with the other present tense verbs used to describe the events in Truong’s novels. Choice D is incorrect because the future progressive tense verb “will be experiencing” isn’t consistent with the other present tense verbs used to describe the events in Truong’s novels.",
+    "officialTopic": "form"
   },
   {
     "id": "t10m1q25",
@@ -4347,7 +4442,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 25,
     "page": 14,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>Along with carbon dioxide concentration and temperature, light intensity affects the chemical reaction rate of _______ as light intensity increases, so does the rate at which the reactants (water and carbon dioxide) are converted into their products (glucose and oxygen).</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4357,7 +4452,8 @@ const QUESTIONS = [
       "D": "photosynthesis"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation in a sentence. In this choice, a colon is correctly used to mark the boundary between one main clause (“Along with...photosynthesis”) and another main clause (“as light...oxygen”) and to introduce the following explanation of how light intensity affects photosynthesis. Choice A is incorrect because when coordinating two longer main clauses such as these, it’s conventional to use a comma before the coordinating conjunction (“and”). Choice B is incorrect because it results in a comma splice. Without a coordinating conjunction following it, a comma can’t be used in this way to join two main clauses (“Along with...photosynthesis” and “as light...oxygen”). Choice D is incorrect because it results in a run-on sentence. The two main clauses (“Along with...photosynthesis” and “as light...oxygen”) are fused without punctuation and/or a conjunction."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of punctuation in a sentence. In this choice, a colon is correctly used to mark the boundary between one main clause (“Along with...photosynthesis”) and another main clause (“as light...oxygen”) and to introduce the following explanation of how light intensity affects photosynthesis. Choice A is incorrect because when coordinating two longer main clauses such as these, it’s conventional to use a comma before the coordinating conjunction (“and”). Choice B is incorrect because it results in a comma splice. Without a coordinating conjunction following it, a comma can’t be used in this way to join two main clauses (“Along with...photosynthesis” and “as light...oxygen”). Choice D is incorrect because it results in a run-on sentence. The two main clauses (“Along with...photosynthesis” and “as light...oxygen”) are fused without punctuation and/or a conjunction.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m1q26",
@@ -4365,7 +4461,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 26,
     "page": 14,
-    "topic": "form",
+    "topic": "pronouns",
     "passage": "<p>In Marisol’s 1968 sculpture <i>Mi Mama y Yo</i>, gone are the types of pop culture references that made the Parisian-born Venezuelan American artist a star at the height of the pop art movement. In _______ place is a far more personal subject: a sculptural depiction of the artist as a young girl with her mother.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4375,7 +4471,8 @@ const QUESTIONS = [
       "D": "it’s"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is the use of possessive determiners. The plural possessive determiner “their” agrees in number with the plural noun “types” and thus indicates that the more personal subject matter of Marisol’s 1968 sculpture takes the place of those types of pop culture references that made Marisol a star. Choice A is incorrect because the singular possessive determiner “its” doesn’t agree in number with the plural noun “types.” Choice B is incorrect because “they’re” is the contraction for “they are,” not a possessive determiner. Choice D is incorrect because “it’s” is the contraction for “it is” or “it has,” not a possessive determiner."
+    "explanation": "Choice C is the best answer. The convention being tested is the use of possessive determiners. The plural possessive determiner “their” agrees in number with the plural noun “types” and thus indicates that the more personal subject matter of Marisol’s 1968 sculpture takes the place of those types of pop culture references that made Marisol a star. Choice A is incorrect because the singular possessive determiner “its” doesn’t agree in number with the plural noun “types.” Choice B is incorrect because “they’re” is the contraction for “they are,” not a possessive determiner. Choice D is incorrect because “it’s” is the contraction for “it is” or “it has,” not a possessive determiner.",
+    "officialTopic": "form"
   },
   {
     "id": "t10m1q27",
@@ -4383,7 +4480,7 @@ const QUESTIONS = [
     "module": 1,
     "number": 27,
     "page": 14,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>The ghazal, a poetic form originating in seventh‑century Arabic poetry, has an intricate structure. The twentieth‑century Kashmiri American poet Agha Shahid Ali explains that each one of a ghazal’s couplets, while adhering to the patterns of rhyme (<i>qafia</i>) and refrain (<i>radif</i>) established in the poem’s opening lines (<i>matla</i>), _______ thematically and logically autonomous, resulting in a poem with “a stringently formal disunity.”</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4393,7 +4490,8 @@ const QUESTIONS = [
       "D": "are"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of verb forms within a sentence. The singular verb “is” agrees in number with the singular subject “each one of a ghazal’s couplets.” While the prepositional phrase “of a ghazal’s couplets” within the subject contains a plural noun, the head of the subject (“each one”) is singular, indicating that each individual couplet (not the couplets as a group) is “thematically and logically autonomous,” or self-standing. Choice B is incorrect because the plural verb “were” doesn’t agree in number with the singular subject “each one of a ghazal’s couplets.” Choice C is incorrect because the plural verb “have been” doesn’t agree in number with the singular subject “each one of a ghazal’s couplets.” Choice D is incorrect because the plural verb “are” doesn’t agree in number with the singular subject “each one of a ghazal’s couplets.”"
+    "explanation": "Choice A is the best answer. The convention being tested is the use of verb forms within a sentence. The singular verb “is” agrees in number with the singular subject “each one of a ghazal’s couplets.” While the prepositional phrase “of a ghazal’s couplets” within the subject contains a plural noun, the head of the subject (“each one”) is singular, indicating that each individual couplet (not the couplets as a group) is “thematically and logically autonomous,” or self-standing. Choice B is incorrect because the plural verb “were” doesn’t agree in number with the singular subject “each one of a ghazal’s couplets.” Choice C is incorrect because the plural verb “have been” doesn’t agree in number with the singular subject “each one of a ghazal’s couplets.” Choice D is incorrect because the plural verb “are” doesn’t agree in number with the singular subject “each one of a ghazal’s couplets.”",
+    "officialTopic": "form"
   },
   {
     "id": "t10m1q28",
@@ -4411,7 +4509,8 @@ const QUESTIONS = [
       "D": "consequently,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “For example” logically signals that the information in this sentence—that tadpole shrimp embryos can pause development during extended periods of drought— exemplifies the previous sentence’s claim that organisms have evolved surprising adaptations to survive in adverse conditions. Choice A is incorrect because “in contrast” illogically signals that the information in this sentence contrasts with the claim about organisms in the previous sentence. Instead, it exemplifies this claim. Choice C is incorrect because “meanwhile” illogically signals that the information in this sentence is separate from (while occurring simultaneously with) the claim about organisms in the previous sentence. Instead, it exemplifies this claim. Choice D is incorrect because “consequently” illogically signals that the information in this sentence is a consequence, or result, of the claim about organisms in the previous sentence. Instead, it exemplifies this claim."
+    "explanation": "Choice B is the best answer. “For example” logically signals that the information in this sentence—that tadpole shrimp embryos can pause development during extended periods of drought— exemplifies the previous sentence’s claim that organisms have evolved surprising adaptations to survive in adverse conditions. Choice A is incorrect because “in contrast” illogically signals that the information in this sentence contrasts with the claim about organisms in the previous sentence. Instead, it exemplifies this claim. Choice C is incorrect because “meanwhile” illogically signals that the information in this sentence is separate from (while occurring simultaneously with) the claim about organisms in the previous sentence. Instead, it exemplifies this claim. Choice D is incorrect because “consequently” illogically signals that the information in this sentence is a consequence, or result, of the claim about organisms in the previous sentence. Instead, it exemplifies this claim.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m1q29",
@@ -4429,7 +4528,8 @@ const QUESTIONS = [
       "D": "Likewise,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “Previously” logically signals that the event described in this sentence—Bigelow being named best director—occurred before Zhao’s win. The fact that only one other woman had won the award before puts Zhao’s win in perspective. Choice A is incorrect because “as a result” illogically signals that the event described in this sentence occurred as a result or consequence of Zhao’s win. Instead, it occurred before Zhao was named best director and puts Zhao’s win in perspective. Choice C is incorrect because “however” illogically signals that the event described in this sentence occurred in spite of or in contrast to Zhao’s win. Instead, it occurred before Zhao was named best director and puts Zhao’s win in perspective. Choice D is incorrect because “likewise” illogically signals that this sentence merely adds a second, similar piece of information to the information about Zhao’s win. Instead, the fact that only one other woman had won the award before puts Zhao’s win in perspective."
+    "explanation": "Choice B is the best answer. “Previously” logically signals that the event described in this sentence—Bigelow being named best director—occurred before Zhao’s win. The fact that only one other woman had won the award before puts Zhao’s win in perspective. Choice A is incorrect because “as a result” illogically signals that the event described in this sentence occurred as a result or consequence of Zhao’s win. Instead, it occurred before Zhao was named best director and puts Zhao’s win in perspective. Choice C is incorrect because “however” illogically signals that the event described in this sentence occurred in spite of or in contrast to Zhao’s win. Instead, it occurred before Zhao was named best director and puts Zhao’s win in perspective. Choice D is incorrect because “likewise” illogically signals that this sentence merely adds a second, similar piece of information to the information about Zhao’s win. Instead, the fact that only one other woman had won the award before puts Zhao’s win in perspective.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m1q30",
@@ -4447,7 +4547,8 @@ const QUESTIONS = [
       "D": "Likewise,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “Hence” correctly signals that the claim in this sentence regarding extraterrestrial material follows logically from the information in the previous sentences. The previous sentences establish that siderophile elements in the mantle are more abundant than predicted in the core- differentiation model. This sentence claims, logically, that these elements came from extraterrestrial material that accreted to Earth after core differentiation. Choice A is incorrect because “that said” illogically signals that the information in this sentence regarding extraterrestrial material is an exception to the previous information about siderophiles’ abundance in the mantle. Instead, it is a new claim that follows logically from the previous information. Choice C is incorrect because “for example” illogically signals that the information in this sentence regarding extraterrestrial material exemplifies the previous information about siderophiles’ abundance in the mantle. Instead, it is a new claim that follows logically from the previous information. Choice D is incorrect because “likewise” illogically signals that the information in this sentence regarding extraterrestrial material is merely similar to the previous information about siderophiles’ abundance in the mantle. Instead, it is a new claim that follows logically from the previous information."
+    "explanation": "Choice B is the best answer. “Hence” correctly signals that the claim in this sentence regarding extraterrestrial material follows logically from the information in the previous sentences. The previous sentences establish that siderophile elements in the mantle are more abundant than predicted in the core- differentiation model. This sentence claims, logically, that these elements came from extraterrestrial material that accreted to Earth after core differentiation. Choice A is incorrect because “that said” illogically signals that the information in this sentence regarding extraterrestrial material is an exception to the previous information about siderophiles’ abundance in the mantle. Instead, it is a new claim that follows logically from the previous information. Choice C is incorrect because “for example” illogically signals that the information in this sentence regarding extraterrestrial material exemplifies the previous information about siderophiles’ abundance in the mantle. Instead, it is a new claim that follows logically from the previous information. Choice D is incorrect because “likewise” illogically signals that the information in this sentence regarding extraterrestrial material is merely similar to the previous information about siderophiles’ abundance in the mantle. Instead, it is a new claim that follows logically from the previous information.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m1q31",
@@ -4465,7 +4566,8 @@ const QUESTIONS = [
       "D": "Cat bone fragments estimated to be 5,300 years old were found in Quanhucun, China, in 2013."
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The sentence presents the study, describing it as a 2013 analysis of Quanhucun cat bone fragments, and its conclusions, indicating what the analysis suggests about cat domestication in Quanhucun. Choice A is incorrect because the sentence focuses on the study’s methodology; it doesn’t present conclusions from the study. Choice C is incorrect. While the sentence provides a general overview of the study, it doesn’t present conclusions from the study. Choice D is incorrect. The sentence describes a finding from the study; it doesn’t present conclusions from the study."
+    "explanation": "Choice B is the best answer. The sentence presents the study, describing it as a 2013 analysis of Quanhucun cat bone fragments, and its conclusions, indicating what the analysis suggests about cat domestication in Quanhucun. Choice A is incorrect because the sentence focuses on the study’s methodology; it doesn’t present conclusions from the study. Choice C is incorrect. While the sentence provides a general overview of the study, it doesn’t present conclusions from the study. Choice D is incorrect. The sentence describes a finding from the study; it doesn’t present conclusions from the study.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t10m1q32",
@@ -4483,7 +4585,8 @@ const QUESTIONS = [
       "D": "Luis Jimenez was a Mexican American sculptor, and Rudolfo Anaya was a Mexican American writer."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence emphasizes a difference between the portraits, noting that one is a painting and the other is a drawing. Choice A is incorrect. The sentence emphasizes a similarity between the two portraits rather than a difference. Choice B is incorrect. The sentence makes a generalization about Enriquez’s portraits; it doesn’t emphasize a difference between the portraits of Jimenez and Anaya. Choice D is incorrect. While the sentence notes a difference between Jimenez and Anaya, it doesn’t emphasize a difference between, or even mention, their portraits."
+    "explanation": "Choice C is the best answer. The sentence emphasizes a difference between the portraits, noting that one is a painting and the other is a drawing. Choice A is incorrect. The sentence emphasizes a similarity between the two portraits rather than a difference. Choice B is incorrect. The sentence makes a generalization about Enriquez’s portraits; it doesn’t emphasize a difference between the portraits of Jimenez and Anaya. Choice D is incorrect. While the sentence notes a difference between Jimenez and Anaya, it doesn’t emphasize a difference between, or even mention, their portraits.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t10m1q33",
@@ -4501,7 +4604,8 @@ const QUESTIONS = [
       "D": "Influenced by the traditions of West and Central Africa, Gullah culture developed in parts of the southeastern United States in the 18th century."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence emphasizes both the duration (the length of time) and the purpose of Cohen’s and Rodrigues’s work by noting that the women have been working since 2003 to preserve Gullah culture. Choice A is incorrect. While the sentence emphasizes what visitors to Cohen’s and Rodrigues’s museums can learn, it doesn’t mention the duration or purpose of the women’s work. Choice B is incorrect. While the sentence emphasizes the purpose of Cohen’s and Rodrigues’s work, it doesn’t mention the duration of that work (the length of time the women have been working to preserve Gullah culture). Choice D is incorrect. While the sentence emphasizes where and when Gullah culture developed, it doesn’t mention the duration or purpose of Cohen’s and Rodrigues’s work. Reading and Writing Module 2 (33 questions)"
+    "explanation": "Choice C is the best answer. The sentence emphasizes both the duration (the length of time) and the purpose of Cohen’s and Rodrigues’s work by noting that the women have been working since 2003 to preserve Gullah culture. Choice A is incorrect. While the sentence emphasizes what visitors to Cohen’s and Rodrigues’s museums can learn, it doesn’t mention the duration or purpose of the women’s work. Choice B is incorrect. While the sentence emphasizes the purpose of Cohen’s and Rodrigues’s work, it doesn’t mention the duration of that work (the length of time the women have been working to preserve Gullah culture). Choice D is incorrect. While the sentence emphasizes where and when Gullah culture developed, it doesn’t mention the duration or purpose of Cohen’s and Rodrigues’s work. Reading and Writing Module 2 (33 questions)",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t10m2q18",
@@ -4509,7 +4613,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 18,
     "page": 27,
-    "topic": "form",
+    "topic": "pronouns",
     "passage": "<p>Public-awareness campaigns about the need to reduce single-use plastics can be successful, says researcher Kim Borg of Monash University in Australia, when these campaigns give consumers a choice: for example, Japan achieved a 40 percent reduction in plastic-bag use after cashiers were instructed to ask customers whether _______ wanted a bag.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4519,7 +4623,8 @@ const QUESTIONS = [
       "D": "it"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is pronoun-antecedent agreement. The plural pronoun “they” agrees in number with the plural antecedent “customers.” Choice B is incorrect because the singular pronoun “one” doesn’t agree in number with the plural antecedent “customers.” Choice C is incorrect because the second person pronoun “you” isn’t conventional as a substitute for “customers.” It suggests that the audience (“you”) is the customer. Choice D is incorrect because the singular pronoun “it” doesn’t agree in number with the plural antecedent “customers.”"
+    "explanation": "Choice A is the best answer. The convention being tested is pronoun-antecedent agreement. The plural pronoun “they” agrees in number with the plural antecedent “customers.” Choice B is incorrect because the singular pronoun “one” doesn’t agree in number with the plural antecedent “customers.” Choice C is incorrect because the second person pronoun “you” isn’t conventional as a substitute for “customers.” It suggests that the audience (“you”) is the customer. Choice D is incorrect because the singular pronoun “it” doesn’t agree in number with the plural antecedent “customers.”",
+    "officialTopic": "form"
   },
   {
     "id": "t10m2q19",
@@ -4527,7 +4632,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 19,
     "page": 27,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>Lucía Michel of the University of Chile observed that alkaline soils contain an insoluble form of iron that blueberry plants cannot absorb, thus inhibiting blueberry growth. If these plants were grown in alkaline soil alongside grasses that aid in iron solubilization, _______ Michel was determined to find out.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4537,7 +4642,8 @@ const QUESTIONS = [
       "D": "could the blueberries thrive?"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is end-of-sentence punctuation. This choice correctly uses a question mark to punctuate the interrogative clause “could the blueberries thrive,” which asks a direct question at the end of the sentence. Choice A is incorrect because a period can’t be used in this way to punctuate an interrogative clause, such as “could the blueberries thrive,” at the end of a sentence. Choice B is incorrect because the context requires an interrogative clause. The declarative clause “the blueberries could thrive” incorrectly indicates that it was known that the blueberries could thrive in alkaline soil, whereas Michel had yet to find this out. Choice C is incorrect because a question mark can’t be used in this way to punctuate a declarative clause, such as “the blueberries could thrive,” at the end of a sentence."
+    "explanation": "Choice D is the best answer. The convention being tested is end-of-sentence punctuation. This choice correctly uses a question mark to punctuate the interrogative clause “could the blueberries thrive,” which asks a direct question at the end of the sentence. Choice A is incorrect because a period can’t be used in this way to punctuate an interrogative clause, such as “could the blueberries thrive,” at the end of a sentence. Choice B is incorrect because the context requires an interrogative clause. The declarative clause “the blueberries could thrive” incorrectly indicates that it was known that the blueberries could thrive in alkaline soil, whereas Michel had yet to find this out. Choice C is incorrect because a question mark can’t be used in this way to punctuate a declarative clause, such as “the blueberries could thrive,” at the end of a sentence.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m2q20",
@@ -4545,7 +4651,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 20,
     "page": 27,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>Atoms in a synchrotron, a type of circular particle accelerator, travel faster and faster until they ______ a desired energy level, at which point they are diverted to collide with a target, smashing the atoms.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4555,7 +4661,8 @@ const QUESTIONS = [
       "D": "are reaching"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the use of verbs to express tense in a sentence. In this choice, the present tense verb “reach” is consistent with the present tense verbs “travel” and “are diverted” used to describe how atoms move through the synchrotron. Choice A is incorrect because the future tense verb “will reach” is inconsistent with the present tense verbs used to describe how atoms move through the synchrotron. Though the atoms’ movement is a recurring action and “will reach” can also be used to indicate a habitual or recurring action, it creates a logical inconsistency in this sentence when paired with the present tense verbs “travel” and “are diverted.” Choice C is incorrect because the past perfect tense verb “had reached” is inconsistent with the present tense verbs used to describe how atoms move through the synchrotron. Choice D is incorrect because the present progressive tense verb “are reaching” is inconsistent with the present tense verbs used to describe how atoms move through the synchrotron. While both verbs occur in the present, the present progressive tense suggests that the action is currently in progress. This creates a logical inconsistency when paired with the present tense verbs “travel” and “are diverted,” which offer a general description of the tendencies of the atoms’ movement, rather than a description of an action that is currently in progress."
+    "explanation": "Choice B is the best answer. The convention being tested is the use of verbs to express tense in a sentence. In this choice, the present tense verb “reach” is consistent with the present tense verbs “travel” and “are diverted” used to describe how atoms move through the synchrotron. Choice A is incorrect because the future tense verb “will reach” is inconsistent with the present tense verbs used to describe how atoms move through the synchrotron. Though the atoms’ movement is a recurring action and “will reach” can also be used to indicate a habitual or recurring action, it creates a logical inconsistency in this sentence when paired with the present tense verbs “travel” and “are diverted.” Choice C is incorrect because the past perfect tense verb “had reached” is inconsistent with the present tense verbs used to describe how atoms move through the synchrotron. Choice D is incorrect because the present progressive tense verb “are reaching” is inconsistent with the present tense verbs used to describe how atoms move through the synchrotron. While both verbs occur in the present, the present progressive tense suggests that the action is currently in progress. This creates a logical inconsistency when paired with the present tense verbs “travel” and “are diverted,” which offer a general description of the tendencies of the atoms’ movement, rather than a description of an action that is currently in progress.",
+    "officialTopic": "form"
   },
   {
     "id": "t10m2q21",
@@ -4563,7 +4670,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 21,
     "page": 27,
-    "topic": "form",
+    "topic": "verbs",
     "passage": "<p>In his 1963 exhibition <i>Exposition of Music— Electronic Television</i>, Korean American artist Nam June Paik showed how television images could be manipulated to express an artist’s perspective. Today, Paik _______ considered the first video artist.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4573,7 +4680,8 @@ const QUESTIONS = [
       "D": "is"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the present tense verb “is,” used in conjunction with the word “today,” correctly indicates that Paik is currently considered the first video artist. Choice A is incorrect because the future tense verb “will be” doesn’t indicate that Paik is currently considered the first video artist. Choice B is incorrect because the past perfect tense verb “had been” doesn’t indicate that Paik is currently considered the first video artist. Choice C is incorrect because the past tense verb “was” doesn’t indicate that Paik is currently considered the first video artist."
+    "explanation": "Choice D is the best answer. The convention being tested is the use of verbs to express tense. In this choice, the present tense verb “is,” used in conjunction with the word “today,” correctly indicates that Paik is currently considered the first video artist. Choice A is incorrect because the future tense verb “will be” doesn’t indicate that Paik is currently considered the first video artist. Choice B is incorrect because the past perfect tense verb “had been” doesn’t indicate that Paik is currently considered the first video artist. Choice C is incorrect because the past tense verb “was” doesn’t indicate that Paik is currently considered the first video artist.",
+    "officialTopic": "form"
   },
   {
     "id": "t10m2q22",
@@ -4581,7 +4689,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 22,
     "page": 27,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>Former First Lady of the United States Eleanor Roosevelt and Indian activist and educator Hansa Mehta were instrumental in drafting the United Nations’ Universal Declaration of Human Rights, a document that ______ the basic freedoms to which all people are entitled.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4591,7 +4699,8 @@ const QUESTIONS = [
       "D": "outline"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The convention being tested is subject-verb agreement. The singular verb “outlines” agrees in number with the singular subject “document.” Choice A is incorrect because the plural verb “have outlined” doesn’t agree in number with the singular subject “document.” Choice B is incorrect because the plural verb “were outlining” doesn’t agree in number with the singular subject “document.” Choice D is incorrect because the plural verb “outline” doesn’t agree in number with the singular subject “document.”"
+    "explanation": "Choice C is the best answer. The convention being tested is subject-verb agreement. The singular verb “outlines” agrees in number with the singular subject “document.” Choice A is incorrect because the plural verb “have outlined” doesn’t agree in number with the singular subject “document.” Choice B is incorrect because the plural verb “were outlining” doesn’t agree in number with the singular subject “document.” Choice D is incorrect because the plural verb “outline” doesn’t agree in number with the singular subject “document.”",
+    "officialTopic": "form"
   },
   {
     "id": "t10m2q23",
@@ -4599,7 +4708,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 23,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>In February 1919, following the end of the First World War, women from ten countries around the world convened the Inter-Allied Women’s Conference in Paris. The conference’s goals were _______ ensure women’s participation in the proceedings of the Paris Peace Conference, to secure the right of women to serve in the League of Nations, and to advocate for human rights.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4609,7 +4718,8 @@ const QUESTIONS = [
       "D": "threefold; to"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation within a sentence. In this choice, the colon correctly introduces the series of goals held by the 1919 Inter-Allied Women’s Conference. Choice B is incorrect because placing a period after “threefold” results in a rhetorically unacceptable sentence fragment beginning with “To.” Choice C is incorrect because it results in a run-on sentence. The main clause (“The conference’s goals were threefold”) and the series supplement (“to…rights”) are fused without punctuation. Choice D is incorrect because a semicolon can’t be used in this way to introduce a series. A semicolon is conventionally used to join two main clauses, whereas a colon is conventionally used to introduce a series, making the colon the better choice in this context."
+    "explanation": "Choice A is the best answer. The convention being tested is the use of punctuation within a sentence. In this choice, the colon correctly introduces the series of goals held by the 1919 Inter-Allied Women’s Conference. Choice B is incorrect because placing a period after “threefold” results in a rhetorically unacceptable sentence fragment beginning with “To.” Choice C is incorrect because it results in a run-on sentence. The main clause (“The conference’s goals were threefold”) and the series supplement (“to…rights”) are fused without punctuation. Choice D is incorrect because a semicolon can’t be used in this way to introduce a series. A semicolon is conventionally used to join two main clauses, whereas a colon is conventionally used to introduce a series, making the colon the better choice in this context.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m2q24",
@@ -4617,7 +4727,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 24,
     "page": 28,
-    "topic": "form",
+    "topic": "agreement",
     "passage": "<p>Mathematician Grigori Perelman, sometimes in conjunction with mathematicians Richard S. Hamilton and Shing-Tung Yau, _______ credited with proving the Poincaré conjecture. Having built on Hamilton’s previous work to solve the proof, Perelman has insisted that Hamilton receive credit. Yau later found and closed gaps in Perelman’s proof, persuading some mathematicians that he deserves credit as well.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4627,7 +4737,8 @@ const QUESTIONS = [
       "D": "is"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The convention being tested is subject-verb agreement. The singular verb “is credited” agrees in number with the singular subject “mathematician Grigori Perelman.” Choice A is incorrect because the plural verb “are credited” doesn’t agree in number with the singular subject “mathematician Grigori Perelman.” Choice B is incorrect because the plural verb “have been credited” doesn’t agree in number with the singular subject “mathematician Grigori Perelman.” Choice C is incorrect because the plural verb “are being credited” doesn’t agree in number with the singular subject “mathematician Grigori Perelman.”"
+    "explanation": "Choice D is the best answer. The convention being tested is subject-verb agreement. The singular verb “is credited” agrees in number with the singular subject “mathematician Grigori Perelman.” Choice A is incorrect because the plural verb “are credited” doesn’t agree in number with the singular subject “mathematician Grigori Perelman.” Choice B is incorrect because the plural verb “have been credited” doesn’t agree in number with the singular subject “mathematician Grigori Perelman.” Choice C is incorrect because the plural verb “are being credited” doesn’t agree in number with the singular subject “mathematician Grigori Perelman.”",
+    "officialTopic": "form"
   },
   {
     "id": "t10m2q25",
@@ -4635,7 +4746,7 @@ const QUESTIONS = [
     "module": 2,
     "number": 25,
     "page": 28,
-    "topic": "boundaries",
+    "topic": "punctuation",
     "passage": "<p>Researchers studying magnetosensation have determined why some soil-dwelling roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field when searching for _______ in the Northern Hemisphere, the magnetic field points down, into the ground, but in the Southern Hemisphere, it points up, toward the surface and away from worms’ food sources.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
@@ -4645,7 +4756,8 @@ const QUESTIONS = [
       "D": "food"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. The convention being tested is colon use within a sentence. A colon used in this way introduces information that illustrates or explains information that has come before it. In this case, the colon introduces the following explanation of why some roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field. Choice B is incorrect because it results in a comma splice. A comma can’t be used in this way to join two long independent clauses (“Researchers…food” and “in… sources”) such as these. Choice C is incorrect because it results in a run-on sentence. The two clauses (“Researchers…food” and “in…sources”) are fused without punctuation. Furthermore, the conjunction “while” fails to indicate that what follows is an explanation of why some roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field. Choice D is incorrect because it results in a run-on sentence. The two clauses (“Researchers… food” and “in…sources”) are fused without punctuation and/or a conjunction."
+    "explanation": "Choice A is the best answer. The convention being tested is colon use within a sentence. A colon used in this way introduces information that illustrates or explains information that has come before it. In this case, the colon introduces the following explanation of why some roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field. Choice B is incorrect because it results in a comma splice. A comma can’t be used in this way to join two long independent clauses (“Researchers…food” and “in… sources”) such as these. Choice C is incorrect because it results in a run-on sentence. The two clauses (“Researchers…food” and “in…sources”) are fused without punctuation. Furthermore, the conjunction “while” fails to indicate that what follows is an explanation of why some roundworms in the Southern Hemisphere move in the opposite direction of Earth’s magnetic field. Choice D is incorrect because it results in a run-on sentence. The two clauses (“Researchers… food” and “in…sources”) are fused without punctuation and/or a conjunction.",
+    "officialTopic": "boundaries"
   },
   {
     "id": "t10m2q26",
@@ -4663,7 +4775,8 @@ const QUESTIONS = [
       "D": "in addition,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “For instance” logically signals that the information in this sentence—that larch trees lose their needles every fall—is an example supporting the claim in the previous sentence (that not all conifer species keep their leaves or needles year-round). Choice B is incorrect because “nevertheless” illogically signals that the information in this sentence is true in spite of the claim about conifer species in the previous sentence. Instead, it’s an example supporting that claim. Choice C is incorrect because “meanwhile” illogically signals that the information in this sentence is separate from (while occurring simultaneously with) the claim about conifer species in the previous sentence. Instead, it’s an example supporting that claim. Choice D is incorrect because “in addition” illogically signals that the information in this sentence is merely an additional fact related to the claim about conifer species in the previous sentence. Instead, it’s an example supporting that claim."
+    "explanation": "Choice A is the best answer. “For instance” logically signals that the information in this sentence—that larch trees lose their needles every fall—is an example supporting the claim in the previous sentence (that not all conifer species keep their leaves or needles year-round). Choice B is incorrect because “nevertheless” illogically signals that the information in this sentence is true in spite of the claim about conifer species in the previous sentence. Instead, it’s an example supporting that claim. Choice C is incorrect because “meanwhile” illogically signals that the information in this sentence is separate from (while occurring simultaneously with) the claim about conifer species in the previous sentence. Instead, it’s an example supporting that claim. Choice D is incorrect because “in addition” illogically signals that the information in this sentence is merely an additional fact related to the claim about conifer species in the previous sentence. Instead, it’s an example supporting that claim.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m2q27",
@@ -4681,7 +4794,8 @@ const QUESTIONS = [
       "D": "In sum,"
     },
     "answer": "B",
-    "explanation": "Choice B is the best answer. “Next” logically signals that the action described in this sentence—Konkoly recording participants’ eye movements—is the next step in Konkoly’s experiment. Choice A is incorrect because “specifically” illogically signals that this sentence specifies or elaborates on an aspect of the action described in the previous sentence. Instead, it describes the next step in Konkoly’s experiment. Choice C is incorrect because “for instance” illogically signals that the action described in this sentence is an example of the action described in the previous sentence. Instead, it is the next step in Konkoly’s experiment. Choice D is incorrect because “in sum” illogically signals that this sentence summarizes or concludes the action described in the previous sentence. Instead, it describes the next step in Konkoly’s experiment."
+    "explanation": "Choice B is the best answer. “Next” logically signals that the action described in this sentence—Konkoly recording participants’ eye movements—is the next step in Konkoly’s experiment. Choice A is incorrect because “specifically” illogically signals that this sentence specifies or elaborates on an aspect of the action described in the previous sentence. Instead, it describes the next step in Konkoly’s experiment. Choice C is incorrect because “for instance” illogically signals that the action described in this sentence is an example of the action described in the previous sentence. Instead, it is the next step in Konkoly’s experiment. Choice D is incorrect because “in sum” illogically signals that this sentence summarizes or concludes the action described in the previous sentence. Instead, it describes the next step in Konkoly’s experiment.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m2q28",
@@ -4699,7 +4813,8 @@ const QUESTIONS = [
       "D": "Specifically,"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. “Specifically” logically signals that the information in this sentence about Sauer’s argument—that, according to Sauer, cultures play a role in their own development, as opposed to being shaped solely by natural surroundings—provides specific, precise details elaborating on the more general information in the previous sentence about how Sauer challenged prevailing views about how natural landscapes influence human cultures. Choice A is incorrect because “similarly” illogically signals that the information in this sentence about Sauer’s argument is similar to, but separate from, the more general information in the previous sentence. Instead, it provides specific, precise details elaborating on that information. Choice B is incorrect because “finally” illogically signals that the information in this sentence about Sauer’s argument indicates a last step in a process or a concluding summary. Instead, it provides specific, precise details elaborating on the general information in the previous sentence. Choice C is incorrect because “therefore” illogically signals that the information in this sentence about Sauer’s argument is a result of the more general information in the previous sentence. Instead, it provides specific, precise details elaborating on that information."
+    "explanation": "Choice D is the best answer. “Specifically” logically signals that the information in this sentence about Sauer’s argument—that, according to Sauer, cultures play a role in their own development, as opposed to being shaped solely by natural surroundings—provides specific, precise details elaborating on the more general information in the previous sentence about how Sauer challenged prevailing views about how natural landscapes influence human cultures. Choice A is incorrect because “similarly” illogically signals that the information in this sentence about Sauer’s argument is similar to, but separate from, the more general information in the previous sentence. Instead, it provides specific, precise details elaborating on that information. Choice B is incorrect because “finally” illogically signals that the information in this sentence about Sauer’s argument indicates a last step in a process or a concluding summary. Instead, it provides specific, precise details elaborating on the general information in the previous sentence. Choice C is incorrect because “therefore” illogically signals that the information in this sentence about Sauer’s argument is a result of the more general information in the previous sentence. Instead, it provides specific, precise details elaborating on that information.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m2q29",
@@ -4717,7 +4832,8 @@ const QUESTIONS = [
       "D": "In other words,"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. “Fittingly” logically signals that the naming of an unprecedented radiocarbon surge for Fusa Miyake is appropriate to the situation, since Miyake is the person who identified the surge (through her Yaku Island tree-ring analysis). Choice B is incorrect because “similarly” illogically signals that the information in this sentence is similar to the previous information about Miyake’s identification of a massive radiation burst through tree-ring analysis. Instead, the naming of the event for its discoverer is a fitting and appropriate outcome. Choice C is incorrect because “however” illogically signals that the information in this sentence contrasts with the previous information about Miyake’s identification of a massive radiation burst through tree-ring analysis. Instead, the naming of the event for its discoverer is a fitting and appropriate outcome. Choice D is incorrect because “in other words” illogically signals that the information in this sentence is a paraphrase or restatement of the previous information about Miyake’s identification of a massive radiation burst through tree-ring analysis. Instead, the naming of the event for its discoverer is a fitting and appropriate outcome."
+    "explanation": "Choice A is the best answer. “Fittingly” logically signals that the naming of an unprecedented radiocarbon surge for Fusa Miyake is appropriate to the situation, since Miyake is the person who identified the surge (through her Yaku Island tree-ring analysis). Choice B is incorrect because “similarly” illogically signals that the information in this sentence is similar to the previous information about Miyake’s identification of a massive radiation burst through tree-ring analysis. Instead, the naming of the event for its discoverer is a fitting and appropriate outcome. Choice C is incorrect because “however” illogically signals that the information in this sentence contrasts with the previous information about Miyake’s identification of a massive radiation burst through tree-ring analysis. Instead, the naming of the event for its discoverer is a fitting and appropriate outcome. Choice D is incorrect because “in other words” illogically signals that the information in this sentence is a paraphrase or restatement of the previous information about Miyake’s identification of a massive radiation burst through tree-ring analysis. Instead, the naming of the event for its discoverer is a fitting and appropriate outcome.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m2q30",
@@ -4735,7 +4851,8 @@ const QUESTIONS = [
       "D": "Increasingly,"
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. “Increasingly” logically signals that the claim in this sentence— that mathematicians are collaborating with their peers—marks a change relative to what was traditionally done. As the previous sentence explains, while mathematicians may have traditionally worked alone, evidence points to a shift in the opposite direction. The claim describes the shift: a rise in collaboration. Choice A is incorrect because “similarly” illogically signals that the claim in this sentence is similar to, but separate from, the previous claim about the shift away from mathematicians working alone. Instead, the claim about the rise in collaboration elaborates on the previous claim, describing the shift. Choice B is incorrect because “for this reason” illogically signals that the claim in this sentence is caused by the previous claim about the shift away from mathematicians working alone. Instead, the claim about the rise in collaboration elaborates on the previous claim, describing the shift. Choice C is incorrect because “furthermore” illogically signals that the claim in this sentence is in addition to the previous claim about the shift away from mathematicians working alone. Instead, the claim about the rise in collaboration elaborates on the previous claim, describing the shift."
+    "explanation": "Choice D is the best answer. “Increasingly” logically signals that the claim in this sentence— that mathematicians are collaborating with their peers—marks a change relative to what was traditionally done. As the previous sentence explains, while mathematicians may have traditionally worked alone, evidence points to a shift in the opposite direction. The claim describes the shift: a rise in collaboration. Choice A is incorrect because “similarly” illogically signals that the claim in this sentence is similar to, but separate from, the previous claim about the shift away from mathematicians working alone. Instead, the claim about the rise in collaboration elaborates on the previous claim, describing the shift. Choice B is incorrect because “for this reason” illogically signals that the claim in this sentence is caused by the previous claim about the shift away from mathematicians working alone. Instead, the claim about the rise in collaboration elaborates on the previous claim, describing the shift. Choice C is incorrect because “furthermore” illogically signals that the claim in this sentence is in addition to the previous claim about the shift away from mathematicians working alone. Instead, the claim about the rise in collaboration elaborates on the previous claim, describing the shift.",
+    "officialTopic": "transitions"
   },
   {
     "id": "t10m2q31",
@@ -4753,7 +4870,8 @@ const QUESTIONS = [
       "D": "Shaun Tan’s books Tales from Outer Suburbia and Tales from the Inner City both describe surreal events occurring in otherwise ordinary places."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer. The sentence uses “both” to emphasize a thematic similarity between Tan’s two books, noting that both Tales from Outer Suburbia and Tales from the Inner City describe surreal events occurring in otherwise ordinary places. Choice A is incorrect. The sentence emphasizes a difference (one contains fewer stories than the other), not a similarity, between the two books. Choice B is incorrect. The sentence indicates that Tan’s books were published ten years apart; it doesn’t emphasize a similarity between the two books. Choice C is incorrect. The sentence uses “unlike” to emphasize a difference between Tales from Outer Suburbia and Tales from the Inner City; it doesn’t emphasize a similarity between the two books."
+    "explanation": "Choice D is the best answer. The sentence uses “both” to emphasize a thematic similarity between Tan’s two books, noting that both Tales from Outer Suburbia and Tales from the Inner City describe surreal events occurring in otherwise ordinary places. Choice A is incorrect. The sentence emphasizes a difference (one contains fewer stories than the other), not a similarity, between the two books. Choice B is incorrect. The sentence indicates that Tan’s books were published ten years apart; it doesn’t emphasize a similarity between the two books. Choice C is incorrect. The sentence uses “unlike” to emphasize a difference between Tales from Outer Suburbia and Tales from the Inner City; it doesn’t emphasize a similarity between the two books.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t10m2q32",
@@ -4771,7 +4889,8 @@ const QUESTIONS = [
       "D": "The Scripps National Spelling Bee uses words from diverse linguistic origins, such as “guerdon” and “Laodicean.”"
     },
     "answer": "A",
-    "explanation": "Choice A is the best answer. Noting that “guerdon” is of Anglo-French origin and “Laodicean” is of ancient Greek origin, the sentence uses “while” to emphasize a difference in the origins of the two words. Choice B is incorrect. While the sentence emphasizes two words used in the Scripps National Spelling Bee, it doesn’t emphasize (or mention) the words’ linguistic origins. Choice C is incorrect. While the sentence specifies the linguistic origin of one word used in the Scripps National Spelling Bee, it doesn’t mention the other word or emphasize a difference in the two words’ origins. Choice D is incorrect. While the sentence makes a generalization about words used in the Scripps National Spelling Bee, it doesn’t emphasize a difference in the words’ origins."
+    "explanation": "Choice A is the best answer. Noting that “guerdon” is of Anglo-French origin and “Laodicean” is of ancient Greek origin, the sentence uses “while” to emphasize a difference in the origins of the two words. Choice B is incorrect. While the sentence emphasizes two words used in the Scripps National Spelling Bee, it doesn’t emphasize (or mention) the words’ linguistic origins. Choice C is incorrect. While the sentence specifies the linguistic origin of one word used in the Scripps National Spelling Bee, it doesn’t mention the other word or emphasize a difference in the two words’ origins. Choice D is incorrect. While the sentence makes a generalization about words used in the Scripps National Spelling Bee, it doesn’t emphasize a difference in the words’ origins.",
+    "officialTopic": "synthesis"
   },
   {
     "id": "t10m2q33",
@@ -4789,6 +4908,7 @@ const QUESTIONS = [
       "D": "Leutze’s painting depicts Revolutionary War soldiers, while Monkman’s depicts Indigenous people and refugees."
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer. The sentence emphasizes a similarity between the two paintings, noting that Leutze’s painting (which measures 149 × 255 inches) and Monkman’s painting (which measures 132 × 264 inches) are both very large. Choice A is incorrect. The sentence mentions that Monkman’s painting was completed in 2019 and Leutze’s was completed in 1851; it doesn’t emphasize a similarity between the two paintings. Choice B is incorrect. While the sentence acknowledges that one painting was inspired by the other, it emphasizes differences between the two paintings; it doesn’t emphasize a similarity between them. Choice D is incorrect. The sentence mentions a difference between the two paintings; it doesn’t emphasize a similarity between them. Math Module 1 (27 questions)"
+    "explanation": "Choice C is the best answer. The sentence emphasizes a similarity between the two paintings, noting that Leutze’s painting (which measures 149 × 255 inches) and Monkman’s painting (which measures 132 × 264 inches) are both very large. Choice A is incorrect. The sentence mentions that Monkman’s painting was completed in 2019 and Leutze’s was completed in 1851; it doesn’t emphasize a similarity between the two paintings. Choice B is incorrect. While the sentence acknowledges that one painting was inspired by the other, it emphasizes differences between the two paintings; it doesn’t emphasize a similarity between them. Choice D is incorrect. The sentence mentions a difference between the two paintings; it doesn’t emphasize a similarity between them. Math Module 1 (27 questions)",
+    "officialTopic": "synthesis"
   }
 ];
