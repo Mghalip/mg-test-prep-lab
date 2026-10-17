@@ -13,3 +13,50 @@ body.exam-mode{background:#fff;color:#161616}body.exam-mode>aside,body.exam-mode
 .chart-zoom{display:block;text-align:center;color:#234dcc;font:13px Arial,sans-serif;margin:-10px 0 24px;text-decoration:underline}
 
 .subject-links{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.subject-links a{padding:10px 18px;border:1px solid #b8c9f4;border-radius:8px;color:#234dcc;text-decoration:none;background:#fff;font-weight:600}.subject-links a:hover{background:#eaf0ff}.section-head{scroll-margin-top:24px}.grammar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.source-notes{padding-left:1.3em}.source-notes li{padding-left:.2em;margin:0 0 .7em}@media(max-width:650px){.grammar-grid{grid-template-columns:1fr}}
+/* Readable English topic library and practice controls. */
+:root{--muted:#526077}
+body{font-size:16px;line-height:1.65}
+button,select{min-height:42px}
+aside{width:260px;padding:28px 20px}.shell{margin-left:260px}
+nav button{font-size:15px;line-height:1.5}
+.side-bottom{left:20px;right:20px;font-size:14px}.side-bottom .pill{white-space:normal}
+header{font-size:14px;height:auto;min-height:76px;gap:16px;padding-block:12px}
+header>div{flex-shrink:0}h1{font-size:32px;line-height:1.25;letter-spacing:-.5px}h2{line-height:1.4}h3{font-size:20px;line-height:1.4}
+.hero p{font-size:17px}.hero>div{min-width:0}
+.metric span,.pill,.eyebrow,.section-head span,.card p,.card-bottom,.notice,.journey p,footer,small,.history-row small,.student-card small{font-size:14px}
+.card{padding:22px;min-width:0;gap:8px}.card h3{margin:8px 0 0}.card p{margin:0 0 10px;line-height:1.6}.card-bottom{gap:12px;flex-wrap:wrap}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr))}.grammar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.toolbar{flex-wrap:wrap}.toolbar .actions{gap:12px}.toolbar label{white-space:nowrap}.journey{flex-wrap:wrap}
+.metric{min-width:0;padding:18px}.metric strong{font-size:28px}.section-head{flex-wrap:wrap}
+.panel,.history-row{min-width:0}.review p{font-size:18px}.review small{font-size:14px}
+.passage,.question-stem,.option-text{font-size:var(--reading-size,20px);line-height:1.7}
+.passage,.question-stem{max-width:65ch}.option-text{min-width:0;overflow-wrap:anywhere}
+dialog{width:calc(100% - 32px);max-height:85dvh;overflow:auto;font-size:16px;line-height:1.65}#practice-setup,#login-dialog{width:min(520px,calc(100% - 32px));max-width:520px}#practice-setup select{margin:8px 0;display:block}
+table{font-size:15px}th{font-size:14px}.skill-bar>div:first-child{font-size:15px}
+body.exam-mode .examtop{grid-template-columns:minmax(0,1fr) auto auto;gap:24px;padding:14px 28px}
+.exam-title{min-width:0}.exam-title strong{font-size:21px}.exam-title small{font-size:14px;line-height:1.4}.exam-clock small,.exam-brand small{font-size:14px}.exam-clock button{font-size:14px}
+.exam-tools button{font-size:15px;white-space:nowrap}
+.reading-controls{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:8px 28px;border-bottom:1px solid #ddd;flex-shrink:0}
+.exam-mode .exam-annotations{padding:0;border:0;font-size:15px;min-width:0;flex:1}
+.exam-annotations summary{text-align:left;padding:10px 0;line-height:1.5}
+.text-size-controls{display:flex;align-items:center;gap:8px;flex-shrink:0;font-size:14px}.text-size-controls button{min-width:42px}.text-size-controls output{min-width:24px;text-align:center}
+.exam-mode .annotation-toolbar{position:static;font-size:14px}.exam-mode .annotation-toolbar button,.exam-mode #annotation-status{font-size:14px}
+.exam-mode .passage,.exam-mode .question-stem,.exam-mode .option-text{line-height:1.7}
+.exam-mode .answer-key{min-height:32px;height:32px}.exam-mode .eliminate{min-width:32px;min-height:36px}
+.exam-mode .question-heading button{font-size:15px}.exam-mode .text-exercise>.panel{padding:30px 36px}
+@media(max-width:1100px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.grammar-grid{grid-template-columns:1fr}.exam-mode .text-exercise>.panel{padding:24px}}
+@media(max-width:900px){
+aside{position:static;width:100%;height:auto;padding:12px 16px;display:block}aside .logo,aside h2,aside>p,.side-bottom{display:none}
+nav{display:flex;overflow-x:auto;margin:0;gap:8px;max-width:100%}nav button{flex-shrink:0;white-space:nowrap;font-size:14px;padding:10px 12px}
+.shell{margin:0}header{padding:12px 18px}main{padding:24px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+body.exam-mode .examtop{grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;padding:12px 16px}
+.exam-title strong{font-size:18px}.exam-title small{font-size:14px}.exam-tools{grid-column:1/-1;flex-direction:row;justify-content:flex-end;gap:12px}.exam-tools button{font-size:14px;padding:6px 10px}
+.reading-controls{padding:8px 16px;flex-wrap:wrap;gap:4px}.exam-mode .exam-annotations{flex-basis:100%;order:2}.text-size-controls{margin-left:auto}
+.exam-mode .text-exercise>.panel{padding:24px 20px}.exam-menu-button{font-size:14px}.exam-footer .actions>button{font-size:14px}
+.exam-legend{gap:12px;flex-wrap:wrap;font-size:14px}.exam-dialog .dots{gap:10px}
+}
+@media(max-width:520px){
+header{flex-wrap:wrap;gap:8px}h1{font-size:28px}.grid,.grammar-grid{grid-template-columns:1fr}main{padding:24px 16px}.metric{padding:14px}.metric strong{font-size:26px}.history-row{overflow-wrap:anywhere}.hero p{font-size:16px}
+}
