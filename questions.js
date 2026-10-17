@@ -215,5 +215,293 @@ const QUESTIONS = [
     "explanation": "Choice D is the best answer because it most accurately states the main idea of the text. According to the text, conceptual artists Gins and Arakawa have designed an apartment building that is disorienting because of several unconventional elements, such as uneven kitchen counters and “a door to nowhere.” The text goes on to suggest that there may be benefits to this kind of design because filmmaker Yamaoka lived in the apartment building for four years and reported health benefits. Thus, although the design is impractical, it may improve the well-being of the apartment building’s residents. Choice A is incorrect. Although the text mentions that Yamaoka lived in the apartment for four years, it doesn’t address how long someone can beneficially live in a home surrounded by fanciful features or whether doing so can be sustained. Choice B is incorrect. Although the text mentions the potential benefits of living in a home with disorienting design features, it doesn’t suggest that this is the most effective method to create a physically stimulating environment. Choice C is incorrect because the text refers to Yamaoka to support the claim that Gins and Arakawa’s apartment building design may be beneficial, but the text doesn’t indicate that Yamaoka supports the designs of other conceptual artists.",
     "passage": "<p>Believing that living in an impractical space can heighten awareness and even improve health, conceptual artists Madeline Gins and Shusaku Arakawa designed an apartment building in Japan to be more fanciful than functional. A kitchen counter is chest-high on one side and knee-high on the other; a ceiling has a door to nowhere. The effect is disorienting but invigorating: after four years there, filmmaker Nobu Yamaoka reported significant health benefits.</p>",
     "stem": "Which choice best states the main idea of the text?"
+  },
+  {
+    "id": "t7m1q3",
+    "test": 7,
+    "module": 1,
+    "number": 3,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>At the turn of the twentieth century, Black residents of Richmond, Virginia, had few formal options for banking and other financial services. To _______ this situation, Maggie Lena Walker chartered the St. Luke Penny Savings Bank in 1903. The bank went on to provide home loans and savings opportunities to thousands of Black families over the following decades.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "prolong",
+      "B": "rectify",
+      "C": "retain",
+      "D": "highlight"
+    },
+    "answer": "B",
+    "explanation": "Choice B is the best answer because it most logically completes the text’s discussion of how Maggie Lena Walker addressed the lack of financial services available to Black residents in Richmond, Virginia, at the turn of the twentieth century. In this context, “rectify” means to correct or remedy something undesirable. The text indicates that by chartering the St. Luke Penny Savings Bank in 1903, Walker took action to provide local Black residents with greater access to financial services like home loans and savings opportunities. This context supports the idea that she aimed to rectify the undesirable situation affecting these residents. Choice A is incorrect because in this context, “prolong” would mean to lengthen something in time. The text indicates that at the turn of the twentieth century, Black residents in Richmond, Virginia, were faced with a lack of formal banking options. The text then states that Walker founded a new bank that provided these residents with financial services. Therefore, instead of prolonging the situation, she took steps to rectify, or correct, it. Choice C is incorrect because in this context, “retain” would mean to continue to have or to keep something. According to the text, at the turn of the twentieth century, Black residents in Richmond, Virginia, had few formal banking options, and Walker chartered a new institution to provide these residents with expanded financial services; therefore, she took steps to rectify, not retain, the situation. Choice D is incorrect because in this context, “highlight” would mean to emphasize or call attention to something, but the text indicates that Walker took concrete steps beyond merely drawing attention to the situation Black residents were facing in Richmond, Virginia, at the turn of the twentieth century. According to the text, Walker worked to rectify, or correct, the lack of formal banking options that were available to these residents by establishing a bank that provided them with home loans and savings opportunities."
+  },
+  {
+    "id": "t7m1q4",
+    "test": 7,
+    "module": 1,
+    "number": 4,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>The results of randomized clinical trials testing the efficacy of common medical interventions sometimes fail to _______ conclusions that practitioners reach based on their real-world observations of patients. While there are several possible reasons for this, one is that practitioners may overlook confounding variables that account for the results they attribute to the interventions in question.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "circumvent",
+      "B": "corroborate",
+      "C": "disseminate",
+      "D": "implement"
+    },
+    "answer": "B",
+    "explanation": "Choice B is the best answer because it most logically completes the text’s discussion of a relationship between the results of randomized clinical tests of how effective common medical interventions are and the conclusions practitioners reach about such interventions in real-world settings. In this context, “corroborate” means confirm or support with evidence. The text indicates that one possible explanation for the relationship being discussed is that practitioners may overlook confounding variables—that is, additional factors other than the medical interventions being investigated that affect the observed outcomes. This means that practitioners may assume that an outcome is the direct result of a medical intervention when it is actually the result of a combination of factors. Clinical trials take steps to rule out factors other than the one being studied, so if those extra factors are actually having an effect on real-world outcomes, the trials are likely to produce conclusions different from those practitioners reach in their real-world observations. In other words, clinical trials may fail to corroborate practitioners’ conclusions. Choice A is incorrect because it wouldn’t make sense to say that the results of clinical trials could “circumvent,” or find a way around or bypass, conclusions practitioners reach in real-world scenarios with patients; it’s possible that researchers conducting the trials might avoid engaging with practitioners’ conclusions, but findings from a study can’t choose to get around something. Choice C is incorrect because it wouldn’t make sense to say that the results of clinical trials could “disseminate,” or spread widely, conclusions practitioners reach in real-world scenarios with patients; the researchers conducting the trials might choose to draw attention to practitioners’ conclusions, but findings from a study can’t spread anything. Choice D is incorrect because it wouldn’t make sense to say that the results of clinical trials could “implement,” or put into effect, conclusions practitioners reach in real-world scenarios with patients; the researchers conducting the trials might consider practitioners’ conclusions, but findings from a study can’t put anything into effect."
+  },
+  {
+    "id": "t7m1q5",
+    "test": 7,
+    "module": 1,
+    "number": 5,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>Diadromous fish migrate between freshwater and marine biomes during their life cycle. The migration’s obligate nature is why diadromous fish can be _______ those that are merely euryhaline (able to tolerate high salinity): the euryhaline blackchin tilapia can survive high salinity, but its life cycle does not involve relocation to a different biome, as does that of the diadromous wild salmon.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "demarcated from",
+      "B": "reconstituted as",
+      "C": "conflated with",
+      "D": "derived from"
+    },
+    "answer": "A",
+    "explanation": "Choice A is the best answer because it most logically completes the text’s discussion of diadromous fish. In this context, “demarcated from” means separate or set apart from. The text indicates that diadromous fish differ from euryhaline fish in that diadromous fish “migrate between freshwater and marine biomes during their life,” whereas euryhaline fish do not relocate to a different biome because they can tolerate higher salinity environments. Therefore, this context suggests that because of differences between their migration patterns, diadromous fish are distinct and can be demarcated from euryhaline fish. Choice B is incorrect. Although the text states that diadromous fish migrate and relocate, the text does not suggest that diadromous fish would be “reconstituted as,” or formed again as, anything new. Only their environments change and not the fish themselves. Choice C is incorrect because the text does not suggest that diadromous fish can be “conflated with,” or combined with, euryhaline fish. Instead, the text distinguishes the two types of fish by pointing out their differences with regard to migration and tolerance for salinity. Choice D is incorrect because the text indicates that based on migration habits and tolerance for salinity, diadromous fish are different from euryhaline fish; so it would not make logical sense to say that diadromous fish would be “derived from,” or be an extension of or result from, euryhaline fish."
+  },
+  {
+    "id": "t7m1q18",
+    "test": 7,
+    "module": 1,
+    "number": 18,
+    "page": 13,
+    "topic": "inference",
+    "passage": "<p>To address the susceptibility of materials used in components of high-performance machinery, such as aircraft engines, to creep (deformation that is induced by persistent mechanical stress and that often occurs at elevated temperatures), materials researchers have developed silicon carbide (SiC) fibers for producing aerospace composites. Testing the thermomechanical properties of several commercially available SiC fibers, Ramakrishna T. Bhatt et al. found that in comparison with two polymer-derived SiC fibers, a nitrogen-treated SiC fiber exhibited a lower minimum creep rate, a measure of the rate at which a stress-exposed material deforms at a constant temperature and uniaxial load. The finding suggests that _______</p>",
+    "stem": "Which choice most logically completes the text?",
+    "options": {
+      "A": "unlike the two polymer-derived SiC fibers, the nitrogen-treated SiC fiber can substantially inhibit creep, provided that temperatures and loads are consistent.",
+      "B": "the two polymer-derived SiC fibers likely hold similar potential for reducing the creep resistance of materials exposed to stress and elevated temperatures, thus prolonging the life span of aerospace machinery.",
+      "C": "composites based on the two polymer-derived SiC fibers have chemical properties that may improve the mechanical and thermal stability of aerospace equipment to a greater extent than do composites based on the nitrogen-treated SiC fiber.",
+      "D": "aerospace composites containing the nitrogen-treated SiC fiber may have the ability to withstand mechanical stress for a longer period of time than can aerospace composites containing either of the two polymer-derived SiC fibers."
+    },
+    "answer": "D",
+    "explanation": "Choice D is the best answer because it most logically completes the text’s discussion of silicon carbide (SiC) fibers and creep, or deformation related to ongoing mechanical stress and elevated temperatures. The text states that Bhatt et al. found that a nitrogen-treated SiC fiber had a lower minimum creep rate than two polymer-derived SiC fibers did. Because having a lower creep rate means that the material is slower to deform with exposure to stress, as the text explains, this finding suggests that aerospace composites made with the nitrogen-treated SiC fiber may be able to withstand mechanical stress for a longer period than those made with the other two polymer-derived SiC fibers can. Choice A is incorrect because it overstates the implications of the study’s findings, which have to do with the rate of a material’s deformation under stress, not the absolute degree of deformation. The text states that Bhatt et al. observed that a nitrogen-treated SiC fiber had a lower minimum creep rate than two polymer-derived SiC fibers did, meaning only that it deformed more slowly over time under constant stress, not that it underwent less deformation overall. Choice B is incorrect because the text doesn’t establish any similarity between the two polymer-derived SiC fibers other than that both had a higher creep rate than the nitrogen-treated SiC fiber did in Bhatt et al.’s study. Moreover, reducing a material’s resistance to creep would mean that the material becomes more susceptible to deformation with exposure to stress and elevated temperatures, which would be expected to shorten rather than prolong the lifespan of machinery made with that material. Choice C is incorrect because the text suggests that the stability of aerospace equipment may be better improved by composites containing nitrogen-treated SiC fiber than by composites containing the two polymer-derived SiC fibers, not the other way around. The text indicates that Bhatt et al. observed that the nitrogen-treated SiC fiber had a lower minimum creep rate than the other two fibers did, meaning that it was slower to degrade under exposure to mechanical stress and elevated temperatures—suggesting that it may remain stable for longer periods."
+  },
+  {
+    "id": "t8m1q3",
+    "test": 8,
+    "module": 1,
+    "number": 3,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>Kelp forests grow underwater along the eastern Pacific Coast. These underwater forests are important to fish and other marine animals. Ocean currents can be powerful and rough, making it difficult for animals to find safe places to hide from predators. The underwater forests slow down the currents. This creates a more _______ environment with calmer waters where animals can take shelter.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "tranquil",
+      "B": "dangerous",
+      "C": "imaginative",
+      "D": "surprising"
+    },
+    "answer": "A",
+    "explanation": "Choice A is the best answer because it most logically completes the text’s discussion of how kelp forests help marine animals. In this context, “tranquil” means free from disturbance, or calm. The text indicates that ocean currents are powerful and make it difficult for marine animals to hide from predators and that kelp forests slow currents down to create calmer areas. In other words, kelp forests create a more tranquil environment. Choice B is incorrect because the text indicates that kelp forests provide shelter for marine animals, meaning they create environments that are safer, not more “dangerous.” Choice C is incorrect because the text discusses how kelp forests affect currents in the ocean, and it isn’t clear how an ocean environment could be “imaginative,” or full of imagination. Choice D is incorrect because the text indicates that kelp forests create a calm and safe environment, and an environment that is “surprising” would be characterized by unexpected occurrences, not calmness."
+  },
+  {
+    "id": "t8m1q4",
+    "test": 8,
+    "module": 1,
+    "number": 4,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>The Mule Bone, a 1930 play written by Zora Neale Hurston and Langston Hughes, is perhaps the best-known of the few examples of ______ in literature. Most writers prefer working alone, and given that working together cost Hurston and Hughes their friendship, it is not hard to see why.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "characterization",
+      "B": "interpretation",
+      "C": "collaboration",
+      "D": "commercialization"
+    },
+    "answer": "C",
+    "explanation": "Choice C is the best answer because it logically and precisely completes the text’s discussion of The Mule Bone, a play that Zora Neale Hurston and Langston Hughes wrote together. In this context, “collaboration” means working together with someone to write a literary work. The text indicates that most writers prefer to work alone and that working together destroyed the friendship between Hurston and Hughes. This establishes that The Mule Bone is a relatively rare example of collaboration in literature. Choice A is incorrect because in this context, “characterization” would mean a literary work’s portrayal of characters’ psychological experiences and motivations, but the text doesn’t discuss characterization in The Mule Bone specifically or in collaborative works more generally. Choice B is incorrect because in this context, “interpretation” would mean the explanation of a literary work’s meaning or significance, but the text doesn’t discuss how readers or critics have interpreted The Mule Bone; instead, the text discusses how the play was written collaboratively and how the writing process affected the two authors. Choice D is incorrect because in this context, “commercialization” would mean writing a literary work in such a way as to ensure its commercial appeal, but the text never discusses commercial appeal as a factor in the writing of The Mule Bone specifically or the writing of collaborative works more generally."
+  },
+  {
+    "id": "t8m1q5",
+    "test": 8,
+    "module": 1,
+    "number": 5,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>Ofelia Zepeda’s contributions to the field of linguistics are _______: her many accomplishments include working as a linguistics professor and bilingual poet, authoring the first Tohono O’odham grammar book, and co-founding the American Indian Language Development Institute.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "pragmatic",
+      "B": "controversial",
+      "C": "extensive",
+      "D": "universal"
+    },
+    "answer": "C",
+    "explanation": "Choice C is the best answer because it most logically completes the text’s discussion of how Ofelia Zepeda has contributed to the field of linguistics. As used in this context, “extensive” means having a wide or considerable extent. The text indicates that Zepeda’s many accomplishments in linguistics are varied, including teaching linguistics, writing poetry in more than one language, creating a grammar book, and co-founding a language institute. This context supports the idea that Zepeda’s contributions to the field are extensive. Choice A is incorrect because the sentence presents Zepeda’s accomplishments as examples to support the claim made in the first part of the sentence. It wouldn’t make sense to say that achievements as a professor, poet and author, and co-founder of a language institute demonstrate that Zepeda’s contributions in her field are “pragmatic,” or related to practical matters and not involving intellectual or artistic matters. Choice B is incorrect because the sentence presents Zepeda’s accomplishments as a professor, poet and author, and co-founder of a language institute as examples to support the claim made in the first part of the sentence. There’s no reason to believe that the positive achievements listed demonstrate that Zepeda’s contributions in her field are “controversial,” or have caused disputes and opposing viewpoints. Choice D is incorrect because in this context, “universal” would mean including or covering everything in a group. The sentence presents Zepeda’s accomplishments as examples to support the claim made in the first part of the sentence, and it wouldn’t make sense to say that these specific achievements—particularly as the author of a grammar book specific to the Tohono O’odham language—demonstrate that Zepeda’s contributions relate to everything in the field of linguistics."
+  },
+  {
+    "id": "t8m1q7",
+    "test": 8,
+    "module": 1,
+    "number": 7,
+    "page": 6,
+    "topic": "purpose",
+    "passage": "<p>The following text is from Sarah Orne Jewett’s 1899 short story “Martha’s Lady.” Martha is employed by Miss Pyne as a maid. Miss Pyne sat by the window watching, in her best dress, looking stately and calm; she seldom went out now, and it was almost time for the carriage. Martha was just coming in from the garden with the strawberries, and with more flowers in her apron. It was a bright cool evening in June, the golden robins sang in the elms, and the sun was going down behind the apple-trees at the foot of the garden. The beautiful old house stood wide open to the long-expected guest.</p>",
+    "stem": "Which choice best states the main purpose of the text?",
+    "options": {
+      "A": "To convey the worries brought about by a new guest",
+      "B": "To describe how the characters have changed over time",
+      "C": "To contrast the activity indoors with the stillness outside",
+      "D": "To depict the setting as the characters await a visitor’s arrival"
+    },
+    "answer": "D",
+    "explanation": "Choice D is the best answer because it most accurately reflects the main purpose of the text. The text portrays Miss Pyne as awaiting the arrival of a carriage while Martha brings strawberries and flowers from the garden into the house. The text also describes the surroundings of the scene, stating that Miss Pyne looks “stately and calm,” the evening is bright and cool, and birds are singing in the garden as the sun sets. Then the last sentence states that the house was “wide open to the long-expected guest,” which strongly suggests that Miss Pyne’s anticipation and Martha’s activities were in preparation for the guest who is expected to arrive in the carriage. Thus, the text depicts the setting and conveys what these characters are doing as they await the arrival of their visitor. Choice A is incorrect because there is nothing in the text to indicate that the characters feel any worry about the guest’s arrival. The text indicates that the guest was “long-expected,“ but characterizing Miss Pyne as “stately and calm” conflicts with the idea that the characters are worried about the guest. Choice B is incorrect because the text describes a moment in time when two characters are awaiting the arrival of a visitor rather than an extended period over which characters could be seen changing. Choice C is incorrect. Although the text describes the activity indoors (Miss Pyne sitting calmly), it describes a higher level of activity, not stillness, outside (Martha bringing fruit and flowers and birds singing)."
+  },
+  {
+    "id": "t8m1q10",
+    "test": 8,
+    "module": 1,
+    "number": 10,
+    "page": 7,
+    "topic": "details",
+    "passage": "<p>For many years, the only existing fossil evidence of mixopterid eurypterids—an extinct family of large aquatic arthropods known as sea scorpions and related to modern arachnids and horseshoe crabs—came from four species living on the paleocontinent of Laurussia. In a discovery that expands our understanding of the geographical distribution of mixopterids, paleontologist Bo Wang and others have identified fossilized remains of a new mixopterid species, Terropterus xiushanensis, that lived over 400 million years ago on the paleocontinent of Gondwana.</p>",
+    "stem": "According to the text, why was Wang and his team’s discovery of the Terropterus xiushanensis fossil significant?",
+    "options": {
+      "A": "The fossil constitutes the first evidence found by scientists that mixopterids lived more than 400 million years ago.",
+      "B": "The fossil helps establish that mixopterids are more closely related to modern arachnids and horseshoe crabs than previously thought.",
+      "C": "The fossil helps establish a more accurate timeline of the evolution of mixopterids on the paleocontinents of Laurussia and Gondwana.",
+      "D": "The fossil constitutes the first evidence found by scientists that mixopterids existed outside the paleocontinent of Laurussia."
+    },
+    "answer": "D",
+    "explanation": "Choice D is the best answer because it states why Wang and his team’s discovery of the Terropterus xiushanensis fossil was significant. The text explains that up until Wang and his team’s discovery, the only fossil evidence of mixopterids came from the paleocontinent of Laurussia. Wang and his team, however, identified fossil remains of a mixopterid species from the paleocontinent Gondwana. Therefore, the team’s discovery was significant because the fossil remains of a mixopterid species were outside of the paleocontinent Laurussia. Choice A is incorrect. Although the text states that Wang and his team identified fossilized remains of a mixopterid species that lived more than 400 million years ago, it doesn’t indicate that mixopterid fossils previously found by scientists dated to a more recent period than that. Choice B is incorrect. Although the text states that mixopterids are related to modern arachnids and horseshoe crabs, it doesn’t suggest that the fossil discovered by Wang and his team confirmed that this relationship is closer than scientists had previously thought. Choice C is incorrect because the team’s fossil established the presence of mixopterids on Gondwana, not on Laurussia. Moreover, the text only discusses the fossil in relation to the geographical distribution of mixopterids, not in relation to their evolution."
+  },
+  {
+    "id": "t8m2q13",
+    "test": 8,
+    "module": 2,
+    "number": 13,
+    "page": 22,
+    "topic": "central",
+    "passage": "<p>Eighteenth-century economist Adam Smith is famed for his metaphor of the invisible hand, which he putatively used to illustrate a robust model of how individuals produce aggregate benefits by pursuing their own economic interests. Note “putatively”: as Gavin Kennedy has shown, Smith deploys this metaphor only once in his economic writings—to make a narrow point about the then-dominant economic theory of mercantilism—and it was largely ignored until some twentieth-century economists eager to secure an intellectual pedigree for their views elevated it to a fully-fledged paradigm.</p>",
+    "stem": "Which choice best states the main idea of the text?",
+    "options": {
+      "A": "Although Smith is famed for his metaphor of the invisible hand, the metaphor was largely ignored until economists in the twentieth century came to realize that the metaphor was a robust model that anticipated their own views.",
+      "B": "Some twentieth-century economists gave Smith’s metaphor of the invisible hand a significance it does not have in Smith’s work, but it is nevertheless a useful model of how individuals produce aggregate benefits by pursuing their own economic interests.",
+      "C": "Smith’s metaphor of the invisible hand has been interpreted as a model of how individuals acting in their own interest produce aggregate benefits, but it was intended as a subtle critique of the economic theory of mercantilism.",
+      "D": "The reputation of Smith’s metaphor of the invisible hand is not due to the importance of the metaphor in Smith’s work but rather to the promotion of the metaphor by some later economists for their own ends."
+    },
+    "answer": "D",
+    "explanation": "Choice D is the best answer because it most accurately states the main idea of the text. The text explains that economist Adam Smith’s famous metaphor of the invisible hand was putatively (that is, widely assumed but not proven) intended to illustrate a robust model (a consistently accurate generalization) of how individuals pursuing their own economic interests can create broader benefits for the population. The text then emphasizes the lack of affirmative evidence for this idea by calling out the term “putatively,” and explaining that, according to Gavin Kennedy, Smith used the metaphor only once in his works, in reference to specific circumstances related to the now-outdated economic view known as mercantilism, and that the metaphor didn’t garner much attention until economists in the twentieth century held it up as a paradigm (a theoretical framework in the field) and thereby implied that Smith shared some of their views on economics. By emphasizing “putatively,” the text implies that there is no independent reason to believe that Smith would agree with the metaphor’s use outside of the specific context for which he wrote it and that, therefore, the twentieth-century economists who used it did so to support their own views without regard for the metaphor’s importance to Smith’s work. Choice A is incorrect. Although the text indicates that Smith’s metaphor was largely ignored until some twentieth-century economists revived it and bolstered its status, the text suggests that the later economists used Smith’s metaphor to self-servingly boost their own work while ignoring the original context in which Smith wrote it. Moreover, the statement in this choice fails to reflect the text’s emphasis on Smith’s limited use of the metaphor in his work. Choice B is incorrect. Although the text indicates that some twentieth-century economists altered the significance of Smith’s metaphor, the text doesn’t suggest that the metaphor is a “useful model” of how aggregate benefits arise from individuals’ selfish actions, let alone that this usefulness is unaffected by taking the metaphor out of its original context. Choice C is incorrect. Although the text indicates that Smith’s metaphor was intended as a model of how individuals acting in their own interest produce aggregate benefits and it was written within the context of the now-outdated economic theory of mercantilism, these points are subordinate to the primary idea in the text, which is that Smith’s use of the metaphor was tightly constrained but twentieth-century economists ignored the original context so that they could use the metaphor to suggest, without support, that Smith would agree with their economic views."
+  },
+  {
+    "id": "t10m1q3",
+    "test": 10,
+    "module": 1,
+    "number": 3,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>Former astronaut Ellen Ochoa says that although she doesn’t have a definite idea of when it might happen, she _______ that humans will someday need to be able to live in other environments than those found on Earth. This conjecture informs her interest in future research missions to the moon.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "demands",
+      "B": "speculates",
+      "C": "doubts",
+      "D": "establishes"
+    },
+    "answer": "B",
+    "explanation": "Choice B is the best answer because it most logically completes the text’s discussion of Ochoa’s prediction that humans will one day need to live in places other than Earth. As used in this context, “speculates” would mean puts forward an idea without firm evidence. The text states that Ochoa “doesn’t have a definite idea” about when humans might need to live in other environments and characterizes Ochoa’s prediction as a “conjecture,” or a conclusion presented without convincing evidence. This context indicates that Ochoa speculates when she makes this prediction. Choice A is incorrect because saying that Ochoa “demands,” or insists or requires, that humans will one day need to live in other environments than Earth’s would not make sense in context. The text indicates that she’s unsure about the timing but hypothesizes that it will someday happen. Choice C is incorrect because saying that Ochoa “doubts,” or questions or disbelieves, that humans will one day need to live in other environments than Earth’s would not make sense in context. The text indicates that although Ochoa is unsure about the timing, she hypothesizes that humans will need to live in places other than Earth and encourages research into future travel to the moon. Choice D is incorrect because saying that Ochoa “establishes,” or proves, that humans will one day need to live in other environments than Earth’s would not make sense in context. Rather than stating that Ochoa discusses her idea with certainty and supports it with evidence, the text indicates that Ochoa is unsure about when humans might need to live in other environments."
+  },
+  {
+    "id": "t10m1q4",
+    "test": 10,
+    "module": 1,
+    "number": 4,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>The parasitic dodder plant increases its reproductive success by flowering at the same time as the host plant it has latched onto. In 2020, Jianqiang Wu and his colleagues determined that the tiny dodder achieves this _______ with its host by absorbing and utilizing a protein the host produces when it is about to flower.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "synchronization",
+      "B": "hibernation",
+      "C": "prediction",
+      "D": "moderation"
+    },
+    "answer": "A",
+    "explanation": "Choice A is the best answer because it most logically completes the text’s discussion of a relationship between the dodder plant and its host plant. As used in this context, “synchronization” means the act of things happening at the same time. The text indicates that the dodder and its host plant flower in unison and that this synchronization occurs because the dodder makes use of a protein produced by the host shortly before flowering. Choice B is incorrect because referring to “hibernation,” or the state of being dormant or inactive, wouldn’t make sense in context. The text focuses on something the dodder plant actively engages in—making use of a protein and producing flowers. Choice C is incorrect because stating that the dodder plant and its host engage together in “prediction,” or the act of declaring or indicating something in advance, wouldn’t make sense in context. Rather than indicating that the dodder plant and its host plant make a prediction about flowering activity, the text suggests that the host produces a protein as part of its regular flowering process and that the dodder then absorbs and uses that protein to flower at the same time. Choice D is incorrect because referring to “moderation,” or the act of causing something to become less intense or extreme, wouldn’t make sense in context. Although the text states that the dodder plant absorbs and uses a protein made by its host plant, it doesn’t suggest that the dodder lessens the host plant’s flowering activity; the two plants simply flower in unison."
+  },
+  {
+    "id": "t10m1q5",
+    "test": 10,
+    "module": 1,
+    "number": 5,
+    "page": 5,
+    "topic": "words",
+    "passage": "<p>Barring major archaeological discoveries, we are unlikely to ever have _______ account of ancient Egypt under the female pharaoh Hatshepsut, as much of the evidence of her reign was deliberately destroyed by her successors.</p>",
+    "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+    "options": {
+      "A": "an imaginative",
+      "B": "a superficial",
+      "C": "an exhaustive",
+      "D": "a questionable"
+    },
+    "answer": "C",
+    "explanation": "Choice C is the best answer because it most logically completes the text’s discussion of historical evidence about ancient Egypt under the reign of the pharaoh Hatshepsut. In this context, “an exhaustive” account would be a thorough one. The text states that much of the evidence from her reign was purposely destroyed—in other words, there is a lack of surviving records. This context conveys that unless there are major new archaeological discoveries, an exhaustive account of Hatshepsut’s reign is unlikely. Choice A is incorrect because in this context, “an imaginative” account would be an account based on imagination, or ideas and speculation, rather than facts. The text indicates that much of the evidence of Hatshepsut’s reign was deliberately destroyed, and a lack of evidence actually makes it more likely that accounts will be imaginative to some degree and not strictly factual. Choice B is incorrect because in this context, “a superficial” account would be one that is lacking in depth or concerned only with what is obvious. The text indicates that most evidence of Hatshepsut’s reign was purposely destroyed, which suggests that accounts of that time are likely already somewhat superficial, since there is little information available to support deeper knowledge. Further, it would be illogical to suggest that discovering major new evidence would make it more likely that accounts would be superficial. Choice D is incorrect because “a questionable” account would be one likely to be challenged or doubted, and since the text suggests that little evidence of Hatshepsut’s reign has survived, accounts of that time probably involve some speculation and thus may already be open to doubt. Further, it would be illogical to suggest that discovering major new evidence would make it more likely that accounts would be questionable."
+  },
+  {
+    "id": "t10m1q6",
+    "test": 10,
+    "module": 1,
+    "number": 6,
+    "page": 5,
+    "topic": "purpose",
+    "passage": "<p>Jazz tap is a dance form that was first developed in African American communities. Jazz tap was heavily influenced by jazz music, which became widely popular in the United States in the 1920s. Tap dancers were inspired by jazz music’s quick rhythms and by the way jazz musicians would make up melodies as they played. As jazz music continued to develop in the 1930s and 1940s, jazz tap evolved with it. Because of jazz music’s influence, jazz tap quickly developed into a dance form that was very different from earlier kinds of tap dance.</p>",
+    "stem": "Which choice best states the main purpose of the text?",
+    "options": {
+      "A": "It explains why audiences prefer some kinds of music over others.",
+      "B": "It discusses the development of a dance form.",
+      "C": "It describes how to play a musical instrument.",
+      "D": "It emphasizes the popularity of a famous dancer."
+    },
+    "answer": "B",
+    "explanation": "Choice B is the best answer because it best describes the main purpose of the text. The text indicates where and when jazz tap first developed (in African American communities in the 1920s) and what influenced it (the quick rhythms and improvisations in jazz music) and then explains that it evolved alongside jazz music in the 1930s and 1940s, resulting in a very different form of tap dance than had existed before. Therefore, the main purpose of the text is to discuss jazz tap’s development. Choice A is incorrect. Although the text indicates that jazz music became widely popular in the US in the 1920s and describes some of jazz music’s qualities, the text never explains why audiences prefer some kinds of music—jazz or otherwise—over others. Choice C is incorrect because the text never mentions any musical instruments and doesn’t describe how to play one. Choice D is incorrect because the text discusses jazz tap generally and never identifies a particular dancer, famous or otherwise."
+  },
+  {
+    "id": "t10m1q7",
+    "test": 10,
+    "module": 1,
+    "number": 7,
+    "page": 6,
+    "topic": "structure",
+    "passage": "<p>The north celestial pole (NCP)—the fixed point around which stars in the Northern Hemisphere (including the Sun) appear to rotate—is discernible only at night. Inspired by the navigational strategies of some insects and birds, researchers devised a method for locating the NCP in daytime using skylight polarization, which occurs as atmospheric particles scatter sunlight. A polarimetric camera captures images of polarization patterns, which rotate as the Sun’s position in the sky changes; temporal variances across images can then be used to determine an observer’s latitude and bearing relative to the NCP.</p>",
+    "stem": "Which choice best describes the overall structure of the text?",
+    "options": {
+      "A": "It illustrates how most navigational tools utilize the NCP, recounts how researchers discovered that certain animals are able to navigate without using the NCP, and then proposes that this discovery could be used to avoid problems in navigation associated with reliance on the NCP.",
+      "B": "It presents a celestial-based method of navigation, enumerates the comparative benefits of an alternative method used by certain animals that is based on an unrelated natural occurrence, and then indicates how researchers assessed the relative accuracy of the two methods.",
+      "C": "It explains how the NCP is typically located, emphasizes a key difference between how humans and certain animals use the NCP for navigation, and then suggests an alternative way of using the NCP to improve existing navigational instruments.",
+      "D": "It notes an obstacle to observing an astronomical phenomenon, mentions a navigational ability of certain animals that inspired a solution to that obstacle, and then explains how researchers used an optical device to mimic that ability."
+    },
+    "answer": "D",
+    "explanation": "Choice D is the best answer because it accurately describes the overall structure of the text. The text begins by pointing out an obstacle to observing the astronomical phenomenon of the NCP: the NCP is visible only at night. The text then indicates that, inspired by the ability of some insects and birds to navigate using visualizations of polarized sunlight, researchers devised a way to locate the NCP during daylight. The text then indicates that the researchers mimicked the insects’ and birds’ polarized-light visualization capabilities using a polarimetric camera. Thus, the text notes an obstacle to observing an astronomical phenomenon, mentions a navigational ability of certain animals that inspired a solution to that obstacle, and then explains how researchers used an optical device to mimic that ability. Choice A is incorrect. Although it’s reasonable to conjecture that humans have used the NCP for navigation, the text doesn’t indicate this is the case, let alone that the NCP is relevant to a majority of navigational tools. Furthermore, the text doesn’t state that researchers discovered that insects and birds navigate without the NCP; rather, it indicates that it’s known that some animals navigate by using skylight polarization to locate the NCP during the day and that this knowledge inspired the method the researchers devised. Choice B is incorrect. Although it’s reasonable to conjecture that humans have used the NCP for navigation, the text doesn’t state that this is the case. Furthermore, the text discusses how some animals’ use of navigational strategies based on the same celestial occurrence served as the inspiration for the researchers’ polarized-light approach, not as the basis for a comparison of the relative effectiveness of animal and human methods of navigation. Choice C is incorrect. Although the text implies that humans have typically been able to locate the NCP visually at night and indicates that some animals use the NCP to navigate, the text doesn’t state that humans use the NCP for navigation. The text therefore doesn’t emphasize a difference between how humans and animals use the NCP for this purpose. Furthermore, the text doesn’t suggest that existing navigational instruments will be augmented with polarimetric technologies."
+  },
+  {
+    "id": "t10m1q10",
+    "test": 10,
+    "module": 1,
+    "number": 10,
+    "page": 7,
+    "topic": "cross",
+    "passage": "<p><strong>Text 1</strong></p><p>Astronomer Mark Holland and colleagues examined four white dwarfs—small, dense remnants of past stars—in order to determine the composition of exoplanets that used to orbit those stars. Studying wavelengths of light in the white dwarf atmospheres, the team reported that traces of elements such as lithium and sodium support the presence of exoplanets with continental crusts similar to Earth’s. </p><p><strong>Text 2</strong></p><p>Past studies of white dwarf atmospheres have concluded that certain exoplanets had continental crusts. Geologist Keith Putirka and astronomer Siyi Xu argue that those studies unduly emphasize atmospheric traces of lithium and other individual elements as signifiers of the types of rock found on Earth. The studies don’t adequately account for different minerals made up of various ratios of those elements, and the possibility of rock types not found on Earth that contain those minerals.</p>",
+    "stem": "Based on the texts, how would Putirka and Xu (Text 2) most likely characterize the conclusion presented in Text 1?",
+    "options": {
+      "A": "As unexpected, because it was widely believed at the time that white dwarf exoplanets lack continental crusts",
+      "B": "As premature, because researchers have only just begun trying to determine what kinds of crusts white dwarf exoplanets had",
+      "C": "As questionable, because it rests on an incomplete consideration of potential sources of the elements detected in white dwarf atmospheres",
+      "D": "As puzzling, because it’s unusual to successfully detect lithium and sodium when analyzing wavelengths of light in white dwarf atmospheres"
+    },
+    "answer": "C",
+    "explanation": "Choice C is the best answer because it reflects how Putirka and Xu (Text 2) would likely characterize the conclusion presented in Text 1. Text 1 discusses a study by Mark Holland and colleagues in which they detected traces of lithium and sodium in the atmospheres of four white dwarf stars. The team claims that this supports the idea that exoplanets with continental crusts like Earth’s once orbited these stars. Text 2 introduces Putirka and Xu, who indicate that sodium and lithium are present in several different minerals and that some of those minerals might exist in types of rock that are not found on Earth. Therefore, Putirka and Xu would likely describe the conclusion in Text 1 as questionable because it does not consider that lithium and sodium are also found in rocks that are not like Earth’s continental crust. Choice A is incorrect because the texts do not indicate how widely held any of the viewpoints described are. Choice B is incorrect because neither text discusses how new this area of study is. Choice D is incorrect because neither text discusses how likely lithium and sodium are to be detected by analyzing wavelengths of light."
   }
 ];
