@@ -1,20 +1,23 @@
-// Browser only uses the public key and the signed-in user's token. Database RLS enforces access.
-const CONFIG=window.READING_CONFIG;let AUTH=null,owner=false,submitting=false,expiry=null;
+// SAT topic adapter for the shared MG account service.
+const CONFIG=window.READING_CONFIG;
+let AUTH=null,owner=false,submitting=false;
 window.readingNames={};
-const baseHome=home,baseTeacher=teacher,baseStart=start,baseFinish=finish,baseGo=go;
-function configured(){return CONFIG?.enabled===true&&/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(CONFIG.url)&&!!CONFIG.publishableKey}
-home=function(){return (configured()?'':'<div class="notice"><b>公开体验版</b> · 可试做题目，体验记录仅保存在此浏览器。无需注册；教师页为虚构数据演示，不连接学生数据库。</div>')+baseHome()};
-teacher=function(){return owner&&AUTH?baseTeacher():'<div class="panel empty"><h2>教师后台未开放</h2><p>只有服务器确认的教师账号才能读取全班记录。</p><p>当前没有连接数据库，不存在公开的学生记录。</p></div>'};
-go=function(v){if(v==='teacher'&&!(AUTH&&owner)){showLogin();return}baseGo(v)};
-start=function(cat){if(configured()&&!AUTH){showLogin();return}if(AUTH)student=AUTH.id;baseStart(cat)};
-function authMessage(s){const el=document.querySelector('#auth-message');if(el)el.textContent=s}
-function showLogin(){if(!configured()){alert('登录与教师后台尚未启用，正在等待数据库项目和教师账号配置。现在可匿名试做，记录只保存在此浏览器，可在练习记录中清空。');return}let d=document.querySelector('#login-dialog');if(!d){d=document.createElement('dialog');d.id='login-dialog';d.innerHTML='<h2>登录学习空间</h2><form id="login-form"><label>邮箱<input name="email" type="email" autocomplete="username" required></label><label>密码<input name="password" type="password" autocomplete="current-password" minlength="10" required></label><p id="auth-message" role="status"></p><div class="actions"><button type="button" onclick="this.closest(\'dialog\').close()">取消</button><button class="primary" type="submit">登录</button><button type="button" onclick="signUp()">注册学生账号</button></div></form>';document.body.append(d);d.querySelector('form').onsubmit=signIn}d.showModal()}
-async function api(path,{method='GET',body,headers={}}={}){if(!configured())throw Error('登录服务未配置');const response=await fetch(CONFIG.url+path,{method,headers:{apikey:CONFIG.publishableKey,...(AUTH?{Authorization:'Bearer '+AUTH.token}:{}),'Content-Type':'application/json',...headers},body:body?JSON.stringify(body):undefined,cache:'no-store'});if(!response.ok){if(response.status===401&&AUTH){clearAccount();throw Error('登录已过期，请重新登录。')}throw Error(response.status===403?'没有访问权限。':'请求失败，请核对账号或稍后重试。')}const raw=await response.text();return raw?JSON.parse(raw):null}
-async function signIn(e){e.preventDefault();const form=e.target,button=form.querySelector('button[type="submit"]');button.disabled=true;authMessage('正在验证…');try{const data=await api('/auth/v1/token?grant_type=password',{method:'POST',body:{email:form.email.value.trim(),password:form.password.value}});AUTH={id:data.user.id,token:data.access_token,email:data.user.email};form.password.value='';await loadAccount();expiry=setTimeout(()=>{clearAccount();alert('登录已过期，请重新登录。')},Math.max(1000,(data.expires_in-30)*1000));document.querySelector('#login-dialog').close()}catch{clearAccount();authMessage('登录失败。请检查邮箱、密码和邮箱验证状态。')}finally{button.disabled=false}}
-async function signUp(){const form=document.querySelector('#login-form');if(!form.reportValidity())return;authMessage('正在提交注册…');try{await api('/auth/v1/signup',{method:'POST',body:{email:form.email.value.trim(),password:form.password.value}});form.password.value='';authMessage('请查收验证邮件，验证邮箱后再登录。注册不会授予教师权限。')}catch(e){authMessage(e.message)}}
-async function loadAccount(){owner=await api('/rest/v1/rpc/reading_is_owner',{method:'POST',body:{}});let profiles=await api('/rest/v1/reading_profiles?select=id,display_name');if(!profiles.some(x=>x.id===AUTH.id)){await api('/rest/v1/reading_profiles',{method:'POST',body:{display_name:AUTH.email},headers:{Prefer:'return=minimal'}});profiles=await api('/rest/v1/reading_profiles?select=id,display_name')}
-window.readingNames=Object.fromEntries(profiles.map(p=>[p.id,p.display_name]));const rows=await api('/rest/v1/reading_attempts?select=id,student_id,started,submitted,items&order=submitted.asc');db={attempts:rows.map(r=>({...r,student:r.student_id})),drafts:{}};student=AUTH.id;session=null;view='home';$('#account-label').textContent=owner?'教师账号':'学生账号';$('#logout').hidden=false;$('#nav-teacher').hidden=!owner;$('#student').hidden=!owner;$('#student').innerHTML=profiles.map(p=>`<option value="${esc(p.id)}">${esc(p.display_name)}</option>`).join('');$('#student').value=student;$('#student').onchange=e=>{if(owner){tick();session=null;student=e.target.value;view='teacher';render()}};document.querySelector('footer').textContent='已连接私有数据库。学生只能读取本人记录，教师权限由数据库校验。退出或刷新页面后需要重新登录。';render()}
-function clearAccount(){clearTimeout(expiry);AUTH=null;owner=false;session=null;db={attempts:[],drafts:{}};window.readingNames={};student='visitor';view='home';selectedMark=null;$('#account-label').textContent='未登录';$('#logout').hidden=true;$('#student').hidden=true;$('#nav-teacher').hidden=true;render()}
-async function logout(){try{await api('/auth/v1/logout',{method:'POST'})}catch{}finally{clearAccount()}}
-finish=async function(){if(!configured()){baseFinish();return}if(!AUTH){showLogin();return}if(!session||submitting)return;submitting=true;try{const payload={id:session.id,started:session.started,items:session.ids.map(id=>({id,answer:session.answers[id]||null,seconds:Math.round(session.times[id]||0)}))};let rows;try{rows=await api('/rest/v1/reading_attempts',{method:'POST',body:payload,headers:{Prefer:'return=representation'}})}catch(e){rows=await api('/rest/v1/reading_attempts?id=eq.'+session.id+'&select=*');if(!rows.length)throw e}const a=rows[0];db.attempts.push({...a,student:a.student_id});delete db.drafts[student];session=null;view='result';$('#confirm').close();render()}catch(e){alert(e.message+' 作答尚未提交，请保留页面后重试。')}finally{submitting=false}};
-$('#nav-teacher').hidden=true;render();
+function configured(){return !!MG.user}
+function showLogin(){location.href='account.html'}
+async function logout(){tick();save();await MG.sync();const {error}=await MG.client.auth.signOut({scope:'local'});if(error)alert('退出失败，请稍后重试。');else location.reload()}
+const accountBaseStart=start,accountBaseFinish=finish,accountBaseGo=go;
+go=function(v){if(v==='teacher'){location.href='account.html?view=teacher';return}accountBaseGo(v)};
+start=function(cat){accountBaseStart(cat)};
+function topicPayload(a){return {id:a.id,kind:'sat-topic',exam:'SAT 专题练习',started:a.started,submitted:a.submitted,mode:'practice',summary:{correct:a.items.filter(x=>x.answer===qby(x.id).answer).length,total:a.items.length},items:a.items.map(x=>{const q=qby(x.id);return {...x,expected:q.answer,correct:x.answer===q.answer,topic:topic(q.topic)[1],section:TOPICS.slice(0,11).some(t=>t[0]===q.topic)?'Reading':'Writing',number:`T${q.test} M${q.module} Q${q.number}`}})}}
+finish=async function(){if(!session||submitting)return;submitting=true;try{tick();if(MG.user){const a={id:session.id,started:session.started,submitted:new Date().toISOString(),items:session.ids.map(id=>({id,answer:session.answers[id]||null,seconds:Math.round(session.times[id]||0)}))};await MG.submit(topicPayload(a))}accountBaseFinish()}catch(e){alert(e.message+' 请保留页面并重试。')}finally{submitting=false}};
+MG.ready.then(async()=>{
+  if(!MG.user)return;
+  AUTH={id:MG.user.id};owner=MG.teacher;student=AUTH.id;
+  const cache=MG.read('mg-topic-db',{attempts:[],drafts:{}});db=cache;session=null;
+  save=function(){MG.write('mg-topic-db',db)};
+  $('#account-label').textContent=owner?'教师账号':'学生账号';$('#logout').hidden=false;
+  $('#nav-teacher').hidden=!owner;$('#nav-teacher').textContent='教师后台';$('#student').hidden=true;
+  document.querySelector('footer').textContent='登录后成绩同步至学习空间。未提交练习保存在当前设备，云端记录可由本人及本站教师查看。';
+  render();
+  try{const rows=await MG.rows('sat-topic');const known=new Set(QUESTIONS.map(q=>q.id));const merged=new Map(db.attempts.map(a=>[a.id,a]));for(const r of rows){if(r.items.every(x=>x&&known.has(x.id)))merged.set(r.id,{...r,student:r.student_id})}db.attempts=[...merged.values()].sort((a,b)=>a.submitted.localeCompare(b.submitted));save();if(view!=='practice')render()}catch{notify('暂时无法读取云端历史，仍可继续本机练习。')}
+});
