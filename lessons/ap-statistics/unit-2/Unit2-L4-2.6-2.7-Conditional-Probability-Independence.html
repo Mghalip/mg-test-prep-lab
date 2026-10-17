@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 2 · Lesson 4 — Conditional Probability &amp; Independence</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:17px;margin:5px 0}
+.slider-row label{width:210px;font-weight:700}
+.slider-row input[type=range]{flex:1}
+.slider-row .v{width:60px;font-family:var(--mono);text-align:right}
+table.tw input{width:70px}
+.rule-btns{display:flex;flex-wrap:wrap;gap:6px}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:7px 12px;font-size:16px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:12px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 8px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.big{font-family:var(--mono);font-size:24px}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 2 第四课：2.6 + 2.7，对应 TPS 5.3（条件概率、一般乘法法则、树状图、独立性）。2.7 的并集公式上节课已讲，这里复习并结合独立性。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 2 · Lesson 4</div><h1>Conditional Probability &amp; Independence</h1><div class="zhT">条件概率与独立性</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 2.6 Conditional Probability · Topic 2.7 Independent Events and Unions of Events</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 5.3</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 2 全貌。" data-title="Unit 2 roadmap">
+<div class="tag">Unit 2 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 2 <span class="zh">单元路线图</span></h2>
+<p class="sub">Probability, Random Variables, and Probability Distributions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>2.1 + 2.2 Two Categorical Variables<span class="old">TPS 1.1</span></div><div class="lesson"><span class="n">2</span>2.3 + 2.4 Simulation &amp; Intro to Probability<span class="old">TPS 5.1</span></div><div class="lesson"><span class="n">3</span>2.5 Mutually Exclusive Events<span class="old">TPS 5.2</span></div><div class="lesson now"><span class="n">4</span>2.6 + 2.7 Conditional Prob. &amp; Independence<span class="old">TPS 5.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">5</span>2.8 + 2.9 Random Variables<span class="old">TPS 6.1</span></div><div class="lesson"><span class="n">6</span>2.10 The Binomial Distribution<span class="old">TPS 6.3</span></div><div class="lesson"><span class="n">7</span>2.11 The Normal Distribution<span class="old">TPS 2.2</span></div><div class="lesson"><span class="n">8</span>2.12 Sampling Distributions &amp; CLT<span class="old">TPS 7.1</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 1’s <strong>conditional relative frequency</strong> is today’s <strong>conditional probability</strong>. <span class="zh">“条件相对频率” → “条件概率”。</span></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 4 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">2.6.A · Skill 3.C</div><h3>Conditional <span class="stars">★★<span class="off">★★</span></span></h3><p>Calculate <strong>conditional probabilities</strong> and use the <strong>general multiplication rule</strong>.</p><p class="zh muted small" style="margin-top:6px">计算条件概率，使用一般乘法法则</p></div><div class="card"><div class="k">2.7.A · Skill 3.C</div><h3>Independence &amp; union <span class="stars">★★★<span class="off">★</span></span></h3><p>Calculate probabilities for independent events and for the union of two events.</p><p class="zh muted small" style="margin-top:6px">独立事件与并集的概率</p></div><div class="card" style="background:var(--pink-3)"><div class="k">From TPS 5.3</div><h3>Tree diagrams <span class="stars">★★★<span class="off">★</span></span></h3><p>Use <strong>tree diagrams</strong> to model a chance process with two or more stages.</p><p class="zh muted small" style="margin-top:6px">用树状图建模多步随机过程</p></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 4 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:60px">3'</div>Warm-up: does knowing gender change the chance?</div><div class="it"><div class="bar n" style="width:200px">16' · 2.6</div>Conditional probability → general multiplication rule → tree diagrams</div><div class="it"><div class="bar n" style="width:180px">14' · 2.7</div>Independence → multiplication rule → independent vs. disjoint → union</div><div class="it"><div class="bar" style="width:100px">9'</div>Practice: mini-FRQ + AP-style MCQ</div><div class="it"><div class="bar" style="width:60px">3'</div>Summary &amp; exit ticket</div><div class="it"><div class="bar g" style="width:130px">Bonus</div>Random table generator · cards without replacement</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 2.6.A.1 → 2.6.A.2 → 2.7.A.1 → 2.7.A.2 → 2.7.A.3</p><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 4 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simGrades" href="#"><span class="ic">🎮</span><span>Conditional probability explorer<small>条件概率探索 · numerator vs. denominator</small></span></a><a data-goto="simTree" href="#"><span class="ic">🎮</span><span>Tree diagram builder<small>树状图 · drag the branch probabilities</small></span></a><a data-goto="simTest" href="#"><span class="ic">🎮</span><span>Disease test: change the numbers<small>医学检测模拟器 · prevalence vs. P(disease | +)</small></span></a><a data-goto="simIC" href="#"><span class="ic">🎮</span><span>Independence checker<small>独立性检验器 · make the two bars equal</small></span></a><a data-goto="simOring" href="#"><span class="ic">🎮</span><span>O-rings: more joints, more risk<small>O 型环模拟器 · P(all n work) = pⁿ</small></span></a><a data-goto="simCG" href="#"><span class="ic">🎮</span><span>Conditional-probability generator<small>随机练习（Bonus） · infinite practice</small></span></a><a data-goto="simAces" href="#"><span class="ic">🎮</span><span>Two aces: with or without replacement?<small>有放回 vs 无放回（Bonus） · simulate 100,000 draws</small></span></a></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="总体 57.9% 有耳洞，男生中只有 21.1%。" data-title="📝 Warm-up: Does knowing gender change the chance?">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Does knowing gender change the chance? <span class="zh">热身：知道性别会改变概率吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Same class as Lesson 3. Choose a student at random.</p><div class="q"><b class="n">Q1</b>Find P(pierced ears).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(pierced) = 103/178 ≈ 0.579</div></div><div class="q"><b class="n">Q2</b>You are told the student is <b>male</b>. Now what is the chance he has pierced ears?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Only look at the <b>Male</b> row: 19/90 ≈ 0.211</div></div><div class="q"><b class="n">Q3</b>Did the new information change the probability?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes — a lot! Knowing “male” changed 0.579 → 0.211. Today: <b>conditional probability</b> and independence.</div></div></div><div class="keyidea">🔑 Pierced ears: all students vs. males only.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="wu" style="font-size:22px;"><thead><tr><th>Gender</th><th>Pierced</th><th>Not</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Male</th><td data-k="0-0">19</td><td data-k="0-1">71</td><td class="tot" data-k="0-2">90</td></tr><tr><th class="rh">Female</th><td data-k="1-0">84</td><td data-k="1-1">4</td><td class="tot" data-k="1-2">88</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">103</td><td data-k="2-1">75</td><td data-k="2-2">178</td></tr></tbody></table></div><div class="sv"><div class="row" style="align-items:center;gap:8px"><div style="flex:1"><table class="tw" id="wus" style="font-size:17px;"><thead><tr><th>Gender</th><th>Pierced</th><th>Not</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Male</th><td data-k="0-0">19</td><td data-k="0-1">71</td><td class="tot" data-k="0-2">90</td></tr><tr><th class="rh">Female</th><td data-k="1-0">84</td><td data-k="1-1">4</td><td class="tot" data-k="1-2">88</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">103</td><td data-k="2-1">75</td><td data-k="2-2">178</td></tr></tbody></table></div><div style="flex:1"><svg id="wuBars" viewbox="0 0 300 240" width="100%"></svg></div></div></div></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.6" data-sec="1" data-title="§ 2.6 Conditional Probability">
+<div class="tag">Topic</div><div class="num">2.6</div><h1>Conditional Probability</h1><div class="zhT">条件概率</div><div class="eks"><span>2.6.A.1 P(A | B) = P(A ∩ B) / P(B)</span><span>2.6.A.2 General multiplication rule</span><span>+ Tree diagrams (TPS 5.3)</span></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.6.A.1。分母是“条件”的概率。" data-title="Conditional Probability">
+<div class="tag">2.6 <b>· Key Concept</b><span class="ek">EK 2.6.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Conditional Probability <span class="zh">条件概率</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">The probability that event A will occur <strong>given that</strong> event B has occurred is called a <strong>conditional probability</strong>, written <strong style="font-family:var(--mono)">P(A | B)</strong>. It is defined as <span style="font-family:var(--mono);font-weight:800;font-size:24px">P(A | B) = P(A ∩ B) / P(B)</span>.</div><div class="cn">在事件 B <b>已经发生</b>的条件下，事件 A 发生的概率叫作<b>条件概率</b>，记作 P(A | B)，竖线读作 “given that（已知）”。P(A | B) = P(A ∩ B) ÷ P(B)。</div></div><div class="note" style="margin-top:6px">🔑 The condition (after the bar) goes in the <strong>denominator</strong> — exactly like Lesson 1’s “among…” questions. <span class="zh">竖线后面的“条件”就是分母。</span></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Grades at a university">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.6.A.1</span></div>
+<h2>Grades at a university <span class="zh">大学成绩</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Choose one of 10,000 grades at random. E: the grade comes from an Engineering &amp; Physical Sciences course. <b>L</b>: the grade is lower than a B.</p><div class="q"><b class="n">a</b>P(L)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No condition → grand total: 3656/10000 = 0.3656</div></div><div class="q"><b class="n">b</b>P(E | L)</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Condition L → “Below B” column: 800/3656 ≈ 0.219</div></div><div class="q"><b class="n">c</b>P(L | E)</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Condition E → EPS row: 800/1600 = 0.500 ≠ P(E | L)!</div></div><div class="q"><b class="n">d</b>P(A | Health)</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Condition Health → Health row: 882/2100 = 0.420</div></div></div><div class="keyidea">🔑 10,000 grades by school.</div><div class="takeaway">💡 P(A | B) ≠ P(B | A) in general — the condition picks the denominator.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="gr" style="font-size:17px;"><thead><tr><th>School</th><th>A</th><th>B</th><th>Below B</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Liberal Arts</th><td data-k="0-0">2142</td><td data-k="0-1">1890</td><td data-k="0-2">2268</td><td class="tot" data-k="0-3">6300</td></tr><tr><th class="rh">Eng. &amp; Phys. Sci. (E)</th><td data-k="1-0">368</td><td data-k="1-1">432</td><td data-k="1-2">800</td><td class="tot" data-k="1-3">1600</td></tr><tr><th class="rh">Health &amp; Human Serv.</th><td data-k="2-0">882</td><td data-k="2-1">630</td><td data-k="2-2">588</td><td class="tot" data-k="2-3">2100</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">3392</td><td data-k="3-1">2952</td><td data-k="3-2">3656</td><td data-k="3-3">10000</td></tr></tbody></table></div><div class="sv"><table class="tw" id="grs" style="font-size:16px;"><thead><tr><th>School</th><th>A</th><th>B</th><th>Below B</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Liberal Arts</th><td data-k="0-0">2142</td><td data-k="0-1">1890</td><td data-k="0-2">2268</td><td class="tot" data-k="0-3">6300</td></tr><tr><th class="rh">Eng. &amp; Phys. Sci. (E)</th><td data-k="1-0">368</td><td data-k="1-1">432</td><td data-k="1-2">800</td><td class="tot" data-k="1-3">1600</td></tr><tr><th class="rh">Health &amp; Human Serv.</th><td data-k="2-0">882</td><td data-k="2-1">630</td><td data-k="2-2">588</td><td class="tot" data-k="2-3">2100</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">3392</td><td data-k="3-1">2952</td><td data-k="3-2">3656</td><td data-k="3-3">10000</td></tr></tbody></table><div class="cap">gold = numerator · pink = denominator</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 4 · Example from TPS 5.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="点按钮看分子（黄）分母（粉）。" data-title="🎮 Simulator: Conditional probability explorer" id="simGrades">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Conditional probability explorer</span><span class="zh">条件概率探索</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.6.A.1</span>
+<div class="btns"><button class="b" data-gq="0">P(L)</button><button class="b" data-gq="1">P(E | L)</button><button class="b" data-gq="2">P(L | E)</button><button class="b" data-gq="3">P(A | Health)</button><button class="b" data-gq="4">P(Health | A)</button></div>
+<div class="row center"><table class="tw" id="grTab" style="font-size:19px"><thead><tr><th>School</th><th>A</th><th>B</th><th>Below B</th><th>Total</th></tr></thead><tbody>
+<tr><th class="rh">Liberal Arts</th><td data-k="0-0">2142</td><td data-k="0-1">1890</td><td data-k="0-2">2268</td><td class="tot" data-k="0-3">6300</td></tr>
+<tr><th class="rh">Eng. &amp; Phys. Sci. (E)</th><td data-k="1-0">368</td><td data-k="1-1">432</td><td data-k="1-2">800</td><td class="tot" data-k="1-3">1600</td></tr>
+<tr><th class="rh">Health &amp; Human Serv.</th><td data-k="2-0">882</td><td data-k="2-1">630</td><td data-k="2-2">588</td><td class="tot" data-k="2-3">2100</td></tr>
+<tr class="totrow"><th class="rh">Total</th><td data-k="3-0">3392</td><td data-k="3-1">2952</td><td data-k="3-2">3656</td><td data-k="3-3">10000</td></tr></tbody></table>
+<div class="col"><div class="note" id="grBox" style="min-height:200px"><strong>Click a button.</strong><br/><span class="muted">Yellow = numerator · Pink = denominator</span></div></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Using the formula">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.6.A.1</span></div>
+<h2>Using the formula <span class="zh">只给概率时用公式</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>P(A) = 0.5, P(A ∩ B) = 0.2. Find P(B | A).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.2 / 0.5 = 0.4</div></div><div class="q"><b class="n">b</b>40% of students play a sport; 12% play a sport <em>and</em> an instrument. Among athletes, what proportion play an instrument?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(instrument | sport) = 0.12 / 0.40 = 0.30 (the dark part of the sport bar →)</div></div><div class="q"><b class="n">c</b>Grades: which is bigger, P(Health | grade A) or P(grade A | Health)?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(Health | A) = 882/3392 ≈ 0.260 vs. P(A | Health) = 882/2100 = 0.420. Same numerator, different denominators.</div></div></div><div class="keyidea">🔑 P(A | B) = P(A ∩ B) / P(B).</div><div class="takeaway">💡 ⚠️ In general <b>P(A | B) ≠ P(B | A)</b>. 条件和事件不能对调。</div></div></div><div class="col vis"><svg id="fmSvg" viewbox="0 0 540 280" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.6.A.2。由条件概率公式移项得到。" data-title="General Multiplication Rule">
+<div class="tag">2.6 <b>· Key Concept</b><span class="ek">EK 2.6.A.2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>General Multiplication Rule <span class="zh">一般乘法法则</span></h2><div class="concept pink"><div class="term">Rule<span class="zh">法则</span></div><div class="en">The probability that events A and B <strong>both</strong> occur equals the probability that A occurs times the conditional probability that B occurs given that A has occurred: <span style="font-family:var(--mono);font-weight:800;font-size:24px">P(A ∩ B) = P(A) · P(B | A)</span>.</div><div class="cn">A 和 B <b>都</b>发生的概率 = A 发生的概率 × 在 A 已发生的条件下 B 发生的概率。</div></div><div class="note small" style="margin-top:6px">It is just the conditional probability formula rearranged: P(B | A) = P(A ∩ B)/P(A) → multiply both sides by P(A). <span class="zh">先 A 发生，然后在此基础上 B 发生。</span></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Two hearts">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.6.A.2</span></div>
+<h2>Two hearts <span class="zh">两张红心（无放回）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Draw 2 cards from a standard deck <b>without replacement</b>.</p><div class="q"><b class="n">a</b>Find P(both hearts).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(♥ ∩ ♥) = 13/52 · 12/51 ≈ 0.0588</div></div><div class="q"><b class="n">b</b>Find P(exactly one heart).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(♥, not) + P(not, ♥) = 13/52 · 39/51 + 39/52 · 13/51 ≈ 0.1912 + 0.1912 = 0.382</div></div><div class="q"><b class="n">c</b>Find P(the second card is a heart).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(2nd ♥) = 13/52 · 12/51 + 39/52 · 13/51 = 0.25 — the same as the first card!</div></div></div><div class="keyidea">🔑 2 cards without replacement: ♥ or not ♥.</div><div class="takeaway">💡 Multiply <b>along</b> branches, add across the ends you need.</div></div></div><div class="col vis"><svg id="hhTree" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="旧课件：多步骤随机过程用树状图。" data-title="Tree Diagrams">
+<div class="tag">2.6 <b>· Tree Diagrams</b><span class="ek">TPS 5.3 · EK 2.6.A.2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Tree Diagrams <span class="zh">树状图</span></h2><div class="concept"><div class="term">Tool<span class="zh">工具</span></div><div class="en">A <strong>tree diagram</strong> shows the sample space of a chance process with <strong>several stages</strong>. Each branch is labeled with a (conditional) probability. Multiply <strong>along</strong> a path to get P(that path); add the paths you need.</div><div class="cn"><b>树状图</b>用于多步骤随机过程：每条分支标上（条件）概率；沿路径<b>相乘</b>得到该路径的概率，再把需要的路径<b>相加</b>。</div></div><div class="row center"><svg viewbox="0 0 640 170" width="640"><circle cx="30" cy="85" fill="#1E2A4A" r="6"></circle><line stroke="#1E2A4A" stroke-width="2" x1="30" x2="200" y1="85" y2="40"></line><line stroke="#1E2A4A" stroke-width="2" x1="30" x2="200" y1="85" y2="130"></line><text fill="#4B5A88" font-size="14" font-weight="700" x="100" y="45">P(A)</text><text fill="#4B5A88" font-size="14" font-weight="700" x="100" y="135">P(Aᶜ)</text><line stroke="#C8577B" stroke-width="3" x1="200" x2="360" y1="40" y2="15"></line><line stroke="#1E2A4A" stroke-width="2" x1="200" x2="360" y1="40" y2="65"></line><text fill="#C8577B" font-size="13" font-weight="700" x="260" y="18">P(B | A)</text><text fill="#C8577B" font-size="14" font-weight="800" x="370" y="20">P(A) · P(B | A) = P(A ∩ B)</text><line stroke="#1E2A4A" stroke-width="2" x1="200" x2="360" y1="130" y2="110"></line><line stroke="#1E2A4A" stroke-width="2" x1="200" x2="360" y1="130" y2="155"></line><text fill="#1E2A4A" font-size="13" x="370" y="114">…</text></svg></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Teens online">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.6.A.2 · TPS 5.3</span></div>
+<h2>Teens online <span class="zh">青少年上网</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The Pew Internet Project found that 93% of teens (12–17) use the Internet, and 55% of online teens have posted a profile on a social-networking site.</p><div class="q"><b class="n">a</b>Draw a tree diagram.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">First branches: online 0.93 / not online 0.07. Second branches (given online): profile 0.55 / no profile 0.45.</div></div><div class="q"><b class="n">b</b>What percent of teens are online <em>and</em> have posted a profile?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(online ∩ profile) = 0.93 × 0.55 = 0.5115 → about 51% of teens.</div></div></div><div class="keyidea">🔑 Online → profile.</div></div></div><div class="col vis"><svg id="pewTree" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4 · Example from TPS 5.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="拖动滑块看每条路径的概率。" data-title="🎮 Simulator: Tree diagram builder" id="simTree">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Tree diagram builder</span><span class="zh">树状图</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.6.A.2</span>
+<div class="row"><div class="col" style="flex:.9">
+<div class="slider-row"><label>P(online)</label><input id="t1" max="100" min="0" type="range" value="93"/><span class="v" id="t1v"></span></div>
+<div class="slider-row"><label>P(profile | online)</label><input id="t2" max="100" min="0" type="range" value="55"/><span class="v" id="t2v"></span></div>
+<div class="slider-row"><label>P(profile | not online)</label><input id="t3" max="100" min="0" type="range" value="0"/><span class="v" id="t3v"></span></div>
+<div class="note small" id="trMsg" style="margin-top:6px"></div><p class="small muted">Check: the four ends always add to 1. <span class="zh">四个末端之和总是 1。</span></p></div>
+<div class="col frame"><svg id="tree1" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Given a positive test…">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.6.A.1 · 2.6.A.2</span></div>
+<h2>Given a positive test… <span class="zh">检测阳性，真的患病吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A disease affects 2% of a population. A test is positive for 95% of people who have it, and for 6% of people who don’t. <span class="muted small">(illustrative)</span></p><div class="q"><b class="n">a</b>Find P(test positive).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Tree: P(D ∩ +) = 0.02 × 0.95 = 0.019 · P(Dᶜ ∩ +) = 0.98 × 0.06 = 0.0588.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. P(+) = 0.019 + 0.0588 = 0.0778 (add the two pink ends).</div></div><div class="q"><b class="n">b</b>A person tests positive. Find P(disease | +).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(D | +) = 0.019 / 0.0778 ≈ 0.244 — far below 95%!</div></div><div class="q"><b class="n">c</b>Predict first: is it close to 95%?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Why? Most positives come from the <b>large</b> group without the disease. <span class="zh">大部分阳性来自没病的人群。</span></div></div></div><div class="keyidea">🔑 P(D) = 0.02 · P(+ | D) = 0.95 · P(+ | Dᶜ) = 0.06.</div><div class="takeaway">💡 “Reverse” conditional: P(D | +) = P(D ∩ +) / P(+).</div></div></div><div class="col vis"><svg id="dzTree" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="患病率低时，即使检测很准，阳性者真正患病的概率也不高。" data-title="🎮 Simulator: Disease test: change the numbers" id="simTest">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Disease test: change the numbers</span><span class="zh">医学检测模拟器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.6.A.1 · 2.6.A.2</span>
+<div class="row"><div class="col" style="flex:.9">
+<div class="slider-row"><label>P(disease)</label><input id="m1" max="50" min="0" type="range" value="2"/><span class="v" id="m1v"></span></div>
+<div class="slider-row"><label>P(+ | disease)</label><input id="m2" max="100" min="50" type="range" value="95"/><span class="v" id="m2v"></span></div>
+<div class="slider-row"><label>P(+ | no disease)</label><input id="m3" max="30" min="0" type="range" value="6"/><span class="v" id="m3v"></span></div>
+<div class="note small" id="mdA" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="tree2" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.7" data-sec="1" data-title="§ 2.7 Independent Events and Unions of Events">
+<div class="tag">Topic</div><div class="num">2.7</div><h1>Independent Events and Unions of Events</h1><div class="zhT">独立事件与事件的并集</div><div class="eks">2.7.A.1 Independence<span>2.7.A.2 Union P(A ∪ B)</span><span>2.7.A.3 P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</span></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.7.A.1。AP 上检验独立性通常比较 P(A | B) 和 P(A)。" data-title="Independent Events">
+<div class="tag">2.7 <b>· Key Concept</b><span class="ek">EK 2.7.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Independent Events <span class="zh">独立事件</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">Events A and B are <strong>independent</strong> if and only if their joint probability equals the product of their probabilities:</div><div class="formula" data-math-tex="P(A\cap B)=P(A)\,P(B)"></div><div class="en">Equivalent conditional-probability checks, when the conditioning event has positive probability:</div><div class="formula" data-math-tex="\begin{aligned}P(A\mid B)&amp;=P(A)\qquad\text{if }P(B)>0,\\P(B\mid A)&amp;=P(B)\qquad\text{if }P(A)>0.\end{aligned}"></div><div class="cn">独立：一个事件的发生不改变另一个事件发生的概率。<b>三个等式是分别使用的判定条件，不是连乘式。</b>条件概率要求所给事件的概率大于 0；乘积判定式也适用于零概率事件。</div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Independent or not?">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.7.A.1</span></div>
+<h2>Independent or not? <span class="zh">独立吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>Pierced ears: P(pierced) = 0.579, P(pierced | male) = 0.211. Independent?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.211 ≠ 0.579 → not independent: knowing “male” changes the chance.</div></div><div class="q"><b class="n">b</b>Grades: P(L) = 0.3656, P(L | E) = 0.5. Independent?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.5 ≠ 0.3656 → not independent: EPS grades are more likely to be below B.</div></div><div class="q"><b class="n">c</b>Toss a coin twice: “1st is H” and “2nd is H”. Independent?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(2nd H | 1st H) = 0.5 = P(2nd H) → independent: the coin has no memory.</div></div></div><div class="keyidea">🔑 Compare P(B | A) with P(B).</div><div class="takeaway">💡 Same bar heights → independent. Different → not.</div></div></div><div class="col vis"><svg id="indSvg" viewbox="0 0 540 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="挑战：Male: 20, 30；Female: 40, 60。" data-title="🎮 Simulator: Independence checker" id="simIC">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Independence checker</span><span class="zh">独立性检验器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.7.A.1</span>
+<p class="small">Edit the counts. <strong>Challenge:</strong> make A and B independent! <span class="zh">修改数字，试着让 A 和 B 独立。</span></p>
+<div class="row center" style="margin-top:8px"><table class="tw" style="font-size:20px"><thead><tr><th></th><th>B</th><th>Bᶜ</th><th>Total</th></tr></thead><tbody>
+<tr><th class="rh">A</th><td><input id="ic00" value="19"/></td><td><input id="ic01" value="71"/></td><td class="tot" id="icR0"></td></tr>
+<tr><th class="rh">Aᶜ</th><td><input id="ic10" value="84"/></td><td><input id="ic11" value="4"/></td><td class="tot" id="icR1"></td></tr>
+<tr class="totrow"><th class="rh">Total</th><td id="icC0"></td><td id="icC1"></td><td id="icG"></td></tr></tbody></table>
+<div class="col"><div class="note" id="icMsg" style="font-size:18px;min-height:180px"></div></div><div style="width:260px"><svg id="icSvg" viewbox="0 0 260 220" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="独立 → 直接相乘。" data-title="Multiplication Rule for Independent Events">
+<div class="tag">2.7 <b>· Rule</b><span class="ek">EK 2.7.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Multiplication Rule for Independent Events <span class="zh">独立事件的乘法法则</span></h2><div class="concept"><div class="term">Rule<span class="zh">法则</span></div><div class="en">If A and B are independent, then <span style="font-family:var(--mono);font-weight:800;font-size:24px">P(A ∩ B) = P(A) · P(B)</span>. (In the general rule, P(B | A) = P(B).)</div><div class="cn">若 A、B <b>独立</b>，则 P(A ∩ B) = P(A) · P(B)（一般乘法法则中 P(B | A) = P(B)）。</div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: The Challenger O-rings">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.7.A.1</span></div>
+<h2>The Challenger O-rings <span class="zh">挑战者号 O 型环</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>🚀 After the Space Shuttle <em>Challenger</em> disaster, O-ring joint failure was found to blame. In cold conditions, P(one joint works) ≈ 0.977. Assume the 6 joints work independently.</p><div class="q"><b class="n">a</b>Find P(all 6 work).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Independent → multiply: (0.977)⁶ ≈ 0.87 — only an 87% chance of a safe launch.</div></div><div class="q"><b class="n">b</b>Find P(at least one fails).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">“At least one” → complement: 1 − 0.87 = 0.13.</div></div></div><div class="keyidea">🔑 6 independent joints, each works with probability 0.977.</div><div class="takeaway">💡 “At least one” → 1 − P(none).</div></div></div><div class="col vis"><svg id="orSvg" viewbox="0 0 540 280" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4 · Example from TPS 5.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="拖动滑块看 n 增加时概率下降。" data-title="🎮 Simulator: O-rings: more joints, more risk" id="simOring">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">O-rings: more joints, more risk</span><span class="zh">O 型环模拟器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.7.A.1</span>
+<div class="row"><div class="col">
+<div class="slider-row"><label style="width:170px">P(one works)</label><input id="o1" max="999" min="900" type="range" value="977"/><span class="v" id="o1v"></span></div>
+<div class="slider-row"><label style="width:170px">Number of joints</label><input id="o2" max="30" min="1" type="range" value="6"/><span class="v" id="o2v"></span></div>
+<p class="big" id="oRes" style="margin-top:10px"></p></div>
+<div class="col frame"><svg id="oSvg" viewbox="0 0 520 190" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学生最容易混淆。" data-title="Independent ≠ mutually exclusive 独立 ≠ 互斥">
+<div class="tag">2.7 <b>· Compare</b><span class="ek">EK 2.5.A.2 · 2.7.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span><h2>Independent ≠ mutually exclusive <span class="zh">独立 ≠ 互斥</span></h2>
+<table class="tw" style="width:100%;margin-top:12px;font-size:19px"><thead><tr><th style="text-align:left"></th><th style="text-align:left">Mutually exclusive 互斥</th><th style="text-align:left">Independent 独立</th></tr></thead><tbody>
+<tr><th class="rh">Meaning</th><td style="text-align:left">Can’t happen together</td><td style="text-align:left">One doesn’t change the chance of the other</td></tr>
+<tr><th class="rh">Check</th><td style="text-align:left;font-family:var(--mono)">P(A ∩ B) = 0</td><td style="text-align:left;font-family:var(--mono)">P(A | B) = P(A)</td></tr>
+<tr><th class="rh">"Or" rule</th><td style="text-align:left;font-family:var(--mono)">P(A ∪ B) = P(A) + P(B)</td><td style="text-align:left;font-family:var(--mono)">P(A ∪ B) = P(A) + P(B) − P(A)P(B)</td></tr>
+<tr><th class="rh">"And" rule</th><td style="text-align:left;font-family:var(--mono)">P(A ∩ B) = 0</td><td style="text-align:left;font-family:var(--mono)">P(A ∩ B) = P(A) · P(B)</td></tr></tbody></table><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 9: Can disjoint events be independent?">
+<div class="exhead"><span class="badge ex">📝 Example 9 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.5.A.2 · 2.7.A.1</span></div>
+<h2>Can disjoint events be independent? <span class="zh">互斥事件能独立吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Roll one die. A = “roll a 1”, B = “roll a 6”. So P(A) = P(B) = 1/6.</p><div class="q"><b class="n">a</b>Are A and B mutually exclusive?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes — one roll can’t be both 1 and 6: P(A ∩ B) = 0.</div></div><div class="q"><b class="n">b</b>Find P(B | A). Are A and B independent?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">If A happened, B can’t happen: P(B | A) = 0 ≠ 1/6 = P(B) → not independent.</div></div><div class="q"><b class="n">c</b>In general: if P(A) &gt; 0 and P(B) &gt; 0, can disjoint events be independent?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No! Disjoint events (with positive probabilities) are always dependent — knowing one happened tells you the other didn’t. <span class="zh">互斥事件（概率都大于 0）一定不独立。</span></div></div></div><div class="keyidea">🔑 A = 1, B = 6 on one die.</div></div></div><div class="col vis"><svg id="djSvg" viewbox="0 0 540 260" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="复习上节课的一般加法法则，并与独立结合。" data-title="Union of Two Events (review)">
+<div class="tag">2.7 <b>· Union</b><span class="ek">EK 2.7.A.2 · 2.7.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Union of Two Events (review) <span class="zh">事件的并（复习）</span></h2><div class="concept"><div class="term">Definition &amp; rule<span class="zh">定义与法则</span></div><div class="en">The probability that event A or event B (or both) will occur is the probability of <strong>A union B</strong>, written P(A ∪ B): <span style="font-family:var(--mono);font-weight:800;font-size:22px">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</span>.</div><div class="cn">A 或 B（或两者都）发生的概率叫作 A 与 B 的<b>并</b>的概率，记作 P(A ∪ B)。</div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 10: Two smoke alarms">
+<div class="exhead"><span class="badge ex">📝 Example 10 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.7.A.1 · 2.7.A.3</span></div>
+<h2>Two smoke alarms <span class="zh">两个烟雾报警器</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A home has two smoke alarms that work <b>independently</b>. P(alarm 1 sounds) = 0.9, P(alarm 2 sounds) = 0.8.</p><div class="q"><b class="n">a</b>Find P(both sound).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Independent → P(both) = 0.9 × 0.8 = 0.72</div></div><div class="q"><b class="n">b</b>Find P(at least one sounds) two ways.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Addition rule: 0.9 + 0.8 − 0.72 = 0.98. Complement: 1 − (0.1)(0.2) = 0.98 ✓</div></div><div class="q"><b class="n">c</b>Grades: find P(E ∪ L), where P(E) = 0.16, P(L) = 0.3656, P(E ∩ L) = 0.08.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.16 + 0.3656 − 0.08 = 0.4456</div></div></div><div class="keyidea">🔑 Independent alarms; grades union.</div></div></div><div class="col vis"><svg id="saV" viewbox="0 0 360 230" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 示例活动：先判断用哪个公式，不计算。" data-title="Which rule do I use? 该用哪个公式？">
+<div class="tag">2.6–2.7 <b>· Think–Pair–Share</b></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span><h2>Which rule do I use? <span class="zh">该用哪个公式？</span></h2><p class="small muted">Identify the rule first — don’t calculate yet. <span class="score" id="ruScore"></span></p><div class="claims" id="ruleSort" style="margin-top:6px"></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="常见错误。" data-title="Common mistakes 常见错误">
+<div class="tag">2.6–2.7 <b>· AP Exam Tips</b></div><h2>Common mistakes <span class="zh">常见错误</span></h2>
+<div class="cards" style="grid-template-columns:1fr 1fr;margin-top:12px"><div class="card"><div class="k">✗ Mistake 1</div><h3>Flipping the condition</h3><p>P(A | B) and P(B | A) are usually different.</p><p class="zh muted small">把条件和事件对调。</p></div><div class="card"><div class="k">✗ Mistake 2</div><h3>Multiplying without independence</h3><p>P(A)·P(B) works for "and" <strong>only if</strong> A and B are independent. Otherwise use P(A)·P(B | A).</p><p class="zh muted small">不独立时不能直接相乘。</p></div><div class="card"><div class="k">✗ Mistake 3</div><h3>Disjoint = independent?</h3><p>No! Disjoint events with positive probabilities are always <em>dependent</em>.</p><p class="zh muted small">互斥 ≠ 独立。</p></div><div class="card"><div class="k">✗ Mistake 4</div><h3>"At least one" by adding</h3><p>Use the complement: P(at least one) = 1 − P(none).</p><p class="zh muted small">“至少一个”用补集。</p></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 11: Left-handedness">
+<div class="exhead"><span class="badge ex">📝 Example 11 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.6.A.1 · 2.7.A.1 · 2.7.A.3</span></div>
+<h2>Left-handedness <span class="zh">左撇子（mini-FRQ）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>200 students are classified by gender and handedness. Choose one at random. <span class="muted small">(illustrative data)</span></p><div class="q"><b class="n">a</b>Find P(left-handed | female).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(left | female) = 8/80 = 0.10</div></div><div class="q"><b class="n">b</b>Are “female” and “left-handed” independent? Justify.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes. P(left | female) = 0.10 = P(left) = 20/200. Knowing the student is female doesn’t change the probability of being left-handed.</div></div><div class="q"><b class="n">c</b>Find P(male ∪ left-handed).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">120/200 + 20/200 − 12/200 = 128/200 = 0.64</div></div><div class="q"><b class="n">d</b>Are “male” and “left-handed” mutually exclusive?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No — P(male ∩ left) = 12/200 = 0.06 ≠ 0. (Independent, but not disjoint!)</div></div></div><div class="keyidea">🔑 Gender × handedness (200 students).</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="lh" style="font-size:21px;"><thead><tr><th></th><th>Left</th><th>Right</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Male</th><td data-k="0-0">12</td><td data-k="0-1">108</td><td class="tot" data-k="0-2">120</td></tr><tr><th class="rh">Female</th><td data-k="1-0">8</td><td data-k="1-1">72</td><td class="tot" data-k="1-2">80</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">20</td><td data-k="2-1">180</td><td data-k="2-2">200</td></tr></tbody></table></div><div class="sv"><div class="row" style="align-items:center;gap:8px"><div style="flex:1"><table class="tw" id="lhs" style="font-size:17px;"><thead><tr><th></th><th>Left</th><th>Right</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Male</th><td data-k="0-0">12</td><td data-k="0-1">108</td><td class="tot" data-k="0-2">120</td></tr><tr><th class="rh">Female</th><td data-k="1-0">8</td><td data-k="1-1">72</td><td class="tot" data-k="1-2">80</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">20</td><td data-k="2-1">180</td><td data-k="2-2">200</td></tr></tbody></table></div><div style="flex:1"><svg id="lhBars" viewbox="0 0 300 240" width="100%"></svg></div></div></div></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Union of independent events">
+<div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.7.A.1 · 2.7.A.3</span></div>
+<h2>Union of independent events</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">Events A and B are independent, with P(A) = 0.3 and P(B) = 0.5. What is P(A ∪ B)?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) 0.15</li><li>(B) 0.50</li><li>(C) 0.65</li><li>(D) 0.80</li><li>(E) 0.85</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Independent → P(A ∩ B) = 0.3 × 0.5 = 0.15.</p><p style="margin:3px 0">P(A ∪ B) = 0.3 + 0.5 − 0.15 = 0.65 → (C). (D) assumes disjoint; (A) is P(A ∩ B).</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq1" viewbox="0 0 360 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 13: Which statement is true?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 13 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.6.A.1 · 2.7.A.1</span></div>
+<h2>Which statement is true?</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">P(A) = 0.4, P(B) = 0.25, and P(A ∩ B) = 0.1. Which statement is true?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) A and B are mutually exclusive.</li><li>(B) P(B | A) = 0.4</li><li>(C) A and B are not independent because P(A ∩ B) ≠ 0.</li><li>(D) A and B are independent because P(A | B) = P(A).</li><li>(E) P(A ∪ B) = 0.65</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">P(A | B) = 0.1 / 0.25 = 0.4 = P(A) → independent → (D).</p><p style="margin:3px 0">(A) P(A ∩ B) ≠ 0 · (B) P(B | A) = 0.1/0.4 = 0.25 · (C) confuses independent with disjoint · (E) P(A ∪ B) = 0.55.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq2" viewbox="0 0 360 252" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus。约 1/3 的机会生成恰好独立的表。" data-title="🎮 Simulator: Conditional-probability generator" id="simCG">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Conditional-probability generator</span><span class="zh">随机练习（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.6.A.1 · 2.7.A.1</span>
+<div class="row" style="margin-top:6px"><div class="col"><p class="small muted" id="cgCtx"></p><table class="tw" id="cgTab" style="font-size:20px"></table></div>
+<div class="col"><p id="cgQ" style="font-size:20px;min-height:80px"></p><div id="cgInWrap" style="display:flex;gap:10px;align-items:center"><input class="bigin" id="cgIn" placeholder="0.25"/><button class="rv" id="cgChk" style="margin:0">Check</button></div>
+<div class="btns" id="cgYN" style="display:none"><button class="b" data-yn="1">Independent</button><button class="b" data-yn="0">Not independent</button></div>
+<div id="cgFb" style="margin-top:10px;min-height:70px"></div><div class="btns"><button class="b" id="cgNew">New problem ↻</button><button class="b" id="cgShow">Show solution</button></div><p class="score" id="cgScore"></p></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus。有放回 → 独立；无放回 → 不独立。" data-title="🎮 Simulator: Two aces: with or without replacement?" id="simAces">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Two aces: with or without replacement?</span><span class="zh">有放回 vs 无放回（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.6.A.2 · 2.7.A.1</span>
+<div class="row" style="margin-top:6px"><div class="col card"><div class="k">With replacement 有放回</div><p class="small">Draws are independent:</p><p class="big">4/52 · 4/52 ≈ 0.0059</p></div>
+<div class="col card"><div class="k">Without replacement 无放回</div><p class="small">Draws are dependent — general multiplication rule:</p><p class="big">4/52 · 3/51 ≈ 0.0045</p></div></div>
+<div class="btns" style="margin-top:12px"><button class="b" id="acSim">Simulate 100,000 pairs of draws each way</button></div><div class="note" id="acMsg" style="font-size:19px;min-height:80px"></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Conditional probability</th><td class="zh" style="text-align:left">条件概率</td><td style="text-align:left">P(A | B) = P(A ∩ B) / P(B)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">General multiplication rule</th><td class="zh" style="text-align:left">一般乘法法则</td><td style="text-align:left">P(A ∩ B) = P(A) · P(B | A)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Tree diagram</th><td class="zh" style="text-align:left">树状图</td><td style="text-align:left">Multiply along branches; add the ends you need</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Independent events</th><td class="zh" style="text-align:left">独立事件</td><td style="text-align:left">P(A | B) = P(A); P(A ∩ B) = P(A)·P(B)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Union</th><td class="zh" style="text-align:left">并</td><td style="text-align:left">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">2.6.A · 2.7.A</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>P(A) = 0.6, P(B) = 0.3, P(A ∩ B) = 0.18.</p><div class="q"><b class="n">1</b>Find P(B | A).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.18 / 0.6 = 0.3</div></div><div class="q"><b class="n">2</b>Are A and B independent? Justify.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes — P(B | A) = 0.3 = P(B). (Also 0.6 × 0.3 = 0.18 = P(A ∩ B).)</div></div><div class="q"><b class="n">3</b>Find P(A ∪ B).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">0.6 + 0.3 − 0.18 = 0.72</div></div></div><div class="keyidea">🔑 P(A) = 0.6, P(B) = 0.3, P(A ∩ B) = 0.18.</div></div></div><div class="col vis"><svg id="exV" viewbox="0 0 360 230" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 4</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：2.8 + 2.9（TPS 6.1）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 5</div><h1>Random Variables &amp; Probability Distributions</h1><div class="zhT">随机变量与概率分布 · Topics 2.8 + 2.9</div><p class="muted" style="margin-top:26px;font-size:22px">Turning outcomes into numbers: probability distributions, expected value, and standard deviation.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+
+/* ===== Lesson 4 v2 ===== */
+const GOLD='#F2C46B',PINKD='#C8577B';
+/* warm-up */
+stepHL('wus',{1:[['2-0'],['2-2']],2:[['0-0'],['0-2']],3:[['0-0'],['0-2']]});
+(function(){function draw(k){vbars($('wuBars'),['all\nstudents','male','female'],[k>=1?103/178:null,k>=2?19/90:null,k>=3?84/88:null],[NAVY,ROSE,'#8A93B8'],{title:'P(pierced …)',fmt:v=>v.toFixed(3)});}
+  draw(0);onStep('wuBars',draw);})();
+
+/* grades */
+stepHL('grs',{1:[['3-2'],['3-3']],2:[['1-2'],['3-2']],3:[['1-2'],['1-3']],4:[['2-0'],['2-3']]});
+const GQ=[
+ {k:'P(L)',q:'Probability a randomly chosen grade is <strong>lower than a B</strong>.',num:['3-2'],den:['3-3'],calc:'3656 / 10000 = <strong>0.3656</strong>',why:'No condition → divide by the grand total.'},
+ {k:'P(E | L)',q:'<strong>Given</strong> the grade is lower than a B, probability it came from <strong>EPS</strong>.',num:['1-2'],den:['3-2'],calc:'800 / 3656 ≈ <strong>0.2188</strong>',why:'Condition = L → restrict to the "Below B" column.'},
+ {k:'P(L | E)',q:'<strong>Given</strong> the grade came from <strong>EPS</strong>, probability it is lower than a B.',num:['1-2'],den:['1-3'],calc:'800 / 1600 = <strong>0.5000</strong>',why:'Condition = E → restrict to the EPS row. Different from P(E | L)!'},
+ {k:'P(A | Health)',q:'<strong>Given</strong> the grade came from Health &amp; Human Services, probability it is an A.',num:['2-0'],den:['2-3'],calc:'882 / 2100 = <strong>0.42</strong>',why:'Condition = Health → restrict to the Health row.'},
+ {k:'P(Health | A)',q:'<strong>Given</strong> the grade is an A, probability it came from Health.',num:['2-0'],den:['3-0'],calc:'882 / 3392 ≈ <strong>0.260</strong>',why:'Condition = grade A → restrict to the A column.'}];
+document.querySelectorAll('[data-gq]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-gq]').forEach(x=>x.classList.remove('on'));b.classList.add('on');const d=GQ[+b.dataset.gq];
+  hlT('grTab',d.num,d.den);
+  $('grBox').innerHTML=`<span class="pill r">${d.k}</span><p style="margin-top:10px;font-size:19px">${d.q}</p><p style="margin-top:10px;font-size:24px;font-family:var(--mono)">${d.calc}</p><p class="small muted" style="margin-top:8px">${d.why}</p>`;});
+
+/* formula visual */
+(function(){function draw(k){const s=$('fmSvg');clear(s);
+  if(k===1){const L=40,W=460;el('rect',{x:L,y:80,width:W,height:60,fill:'#F3EFF2'},s);el('rect',{x:L,y:80,width:W*.5,height:60,fill:NAVY},s);el('rect',{x:L,y:80,width:W*.2,height:60,fill:GOLD},s);
+    el('text',{x:L+W*.1,y:116,'text-anchor':'middle','font-size':15,'font-weight':800,fill:INK},s,'A ∩ B 0.2');el('text',{x:L+W*.35,y:116,'text-anchor':'middle','font-size':15,'font-weight':800,fill:'#fff'},s,'rest of A');
+    el('text',{x:L,y:70,'font-size':15,'font-weight':700,fill:INK},s,'P(A) = 0.5 → P(B | A) = 0.2 / 0.5 = 0.4');}
+  if(k===2){const L=40,W=460;el('rect',{x:L,y:60,width:W,height:60,fill:'#F3EFF2'},s);el('text',{x:L+W-6,y:96,'text-anchor':'end','font-size':14,fill:MUTED},s,'no sport 0.60');
+    el('rect',{x:L,y:60,width:W*.4,height:60,fill:BLUSH},s);el('rect',{x:L,y:60,width:W*.12,height:60,fill:NAVY},s);
+    el('text',{x:L+W*.06,y:96,'text-anchor':'middle','font-size':14,'font-weight':800,fill:'#fff'},s,'0.12');el('text',{x:L+W*.26,y:96,'text-anchor':'middle','font-size':14,'font-weight':700,fill:INK},s,'sport only 0.28');
+    el('line',{x1:L,x2:L+W*.4,y1:140,y2:140,stroke:ROSE,'stroke-width':3},s);el('text',{x:L+W*.2,y:162,'text-anchor':'middle','font-size':15,'font-weight':800,fill:ROSE},s,'new “whole” = athletes (0.40)');
+    el('text',{x:L,y:210,'font-size':17,'font-weight':800,fill:INK},s,'0.12 / 0.40 = 0.30');}
+  if(k>=3){vbars(s,['P(Health | A)\n882 / 3392','P(A | Health)\n882 / 2100'],[882/3392,882/2100],[NAVY,ROSE],{max:.5,fmt:v=>v.toFixed(3),bot:46});}}
+  draw(0);onStep('fmSvg',draw);})();
+
+/* 2-stage tree with probabilities */
+function tree2s(svg,o){clear(svg);
+  const R=[30,165],M=[[220,80],[220,250]],Lf=[[390,40],[390,120],[390,210],[390,290]];
+  const p=o.p,q=[o.q1,1-o.q1,o.q2,1-o.q2],first=[p,1-p];const f=o.f||(v=>v.toFixed(2));const show=o.show??4;
+  const line=(a,b,hl)=>el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:hl?ROSE:INK,'stroke-width':hl?4:2},svg);
+  const lab=(a,b,t)=>el('text',{x:(a[0]+b[0])/2,y:(a[1]+b[1])/2-8,'text-anchor':'middle','font-size':14,'font-weight':700,fill:'#4B5A88'},svg,t);
+  M.forEach((m,i)=>{line(R,m,o.hl&&o.hl.some(h=>Math.floor(h/2)===i));lab(R,m,o.t1?o.t1[i]:f(first[i]));});
+  if(show>=2)Lf.forEach((l,j)=>{const m=M[Math.floor(j/2)];const hl=o.hl&&o.hl.includes(j);line(m,l,hl);lab(m,l,o.t2?o.t2[j]:f(q[j]));});
+  el('circle',{cx:R[0],cy:R[1],r:6,fill:INK},svg);
+  M.forEach((m,i)=>{el('circle',{cx:m[0],cy:m[1],r:5,fill:INK},svg);el('text',{x:m[0],y:m[1]+22,'text-anchor':'middle','font-size':13,fill:INK},svg,o.l1[i]);});
+  if(show>=2)Lf.forEach((l,j)=>{const v=first[Math.floor(j/2)]*q[j];const hl=o.hl&&o.hl.includes(j);
+    el('circle',{cx:l[0],cy:l[1],r:5,fill:hl?ROSE:INK},svg);el('text',{x:l[0]+12,y:l[1]-2,'font-size':13,fill:INK},svg,o.l2[j%2]);
+    if(show>=3)el('text',{x:l[0]+12,y:l[1]+16,'font-size':14,'font-weight':800,fill:hl?ROSE:INK,'font-family':'var(--mono)'},svg,o.ends?o.ends[j]:`${f(first[Math.floor(j/2)])}×${f(q[j])} = ${v.toFixed(4)}`);});
+}
+/* hearts tree */
+(function(){function draw(k){const hl=k===1?[0]:k===2?[1,2]:k>=3?[0,2]:[];
+  tree2s($('hhTree'),{p:.25,q1:12/51,q2:13/51,l1:['1st ♥','1st not ♥'],l2:['2nd ♥','2nd not ♥'],t1:['13/52','39/52'],t2:['12/51','39/51','13/51','38/51'],ends:['0.0588','0.1912','0.1912','0.5588'],hl,show:k>=1?3:2});}
+  draw(0);onStep('hhTree',draw);})();
+/* pew tree */
+(function(){function draw(k){tree2s($('pewTree'),{p:.93,q1:.55,q2:0,l1:['Online','Not online'],l2:['Profile','No profile'],hl:k>=2?[0]:[],show:k>=2?3:k>=1?2:1});}draw(0);onStep('pewTree',draw);})();
+function tr1(){const p=$('t1').value/100,q1=$('t2').value/100,q2=$('t3').value/100;$('t1v').textContent=p.toFixed(2);$('t2v').textContent=q1.toFixed(2);$('t3v').textContent=q2.toFixed(2);
+  tree2s($('tree1'),{p,q1,q2,l1:['Online','Not online'],l2:['Profile','No profile'],hl:[0]});
+  $('trMsg').innerHTML=`P(online ∩ profile) = ${p.toFixed(2)} × ${q1.toFixed(2)} = <b>${(p*q1).toFixed(4)}</b>`;}
+['t1','t2','t3'].forEach(i=>$(i).oninput=tr1);tr1();
+/* disease tree */
+(function(){function draw(k){tree2s($('dzTree'),{p:.02,q1:.95,q2:.06,l1:['Disease','No disease'],l2:['+','−'],hl:k>=2?[0,2]:k>=1?[0]:[],show:k>=1?3:2});
+  if(k>=3){el('text',{x:30,y:322,'font-size':15,'font-weight':800,fill:ROSE},$('dzTree'),'P(D | +) = 0.019 / 0.0778 ≈ 0.244');}}draw(0);onStep('dzTree',draw);})();
+function tr2(){const p=$('m1').value/100,s=$('m2').value/100,f=$('m3').value/100;$('m1v').textContent=p.toFixed(2);$('m2v').textContent=s.toFixed(2);$('m3v').textContent=f.toFixed(2);
+  tree2s($('tree2'),{p,q1:s,q2:f,l1:['Disease','No disease'],l2:['+','−'],hl:[0,2]});
+  const tp=p*s,fp=(1-p)*f,pos=tp+fp;
+  $('mdA').innerHTML=`P(+) = ${tp.toFixed(4)} + ${fp.toFixed(4)} = ${pos.toFixed(4)}<br>P(disease | +) = ${tp.toFixed(4)} / ${pos.toFixed(4)} ≈ <strong style="font-size:22px">${pos?(tp/pos).toFixed(3):'—'}</strong>`+(p<=0.05?'<br>Most positives come from the large group <em>without</em> the disease.':'');}
+['m1','m2','m3'].forEach(i=>$(i).oninput=tr2);tr2();
+
+/* independence examples */
+(function(){function draw(k){const s=$('indSvg');const L=['P(pierced)','P(pierced\n| male)','P(L)','P(L | E)','P(2nd H)','P(2nd H\n| 1st H)'];
+  const V=[k>=1?.579:null,k>=1?.211:null,k>=2?.3656:null,k>=2?.5:null,k>=3?.5:null,k>=3?.5:null];
+  vbars(s,L,V,[NAVY,ROSE,NAVY,ROSE,NAVY,ROSE],{max:.7,fmt:v=>v.toFixed(3),bot:46,fs:13});
+  const lb=[['≠ dependent','#C0392B',1],['≠ dependent','#C0392B',3],['= independent','#2E8B6E',5]];lb.forEach(([t,c,i],j)=>{if(k>j)el('text',{x:40+(i)*(490/6),y:20,'text-anchor':'middle','font-size':13,'font-weight':800,fill:c},s,t);});}
+  draw(0);onStep('indSvg',draw);})();
+
+/* independence checker */
+function ic(){const v=['ic00','ic01','ic10','ic11'].map(i=>Math.max(0,parseInt($(i).value)||0));const [a,b,c,d]=v;
+  const r0=a+b,r1=c+d,c0=a+c,c1=b+d,g=r0+r1;$('icR0').textContent=r0;$('icR1').textContent=r1;$('icC0').textContent=c0;$('icC1').textContent=c1;$('icG').textContent=g;
+  if(!g||!r0||!r1){$('icMsg').textContent='Every row needs at least one count.';return;}
+  const pB=c0/g,pBA=a/r0,pBAc=c/r1,pA=r0/g;const exact=a*g===r0*c0;const near=Math.abs(pBA-pB)<0.02;
+  $('icMsg').innerHTML=`P(B) = ${c0}/${g} = <b>${pB.toFixed(3)}</b><br>P(B | A) = ${a}/${r0} = <b>${pBA.toFixed(3)}</b><br>P(B | Aᶜ) = ${c}/${r1} = <b>${pBAc.toFixed(3)}</b><br>`+
+   (exact?'<span style="color:var(--mint-ink);font-size:20px"><b>✓ Independent!</b> P(B | A) = P(B)</span>':near?'<span style="color:#B07B0C"><b>Very close</b> — not exactly equal, so technically not independent.</span>':'<span style="color:var(--rose)"><b>Not independent</b> — knowing A changes P(B).</span>');
+  vbars($('icSvg'),['P(B)','P(B | A)','P(B | Aᶜ)'],[pB,pBA,pBAc],['#8A93B8',NAVY,ROSE],{max:1,fmt:v=>v.toFixed(2),ref:pB});}
+['ic00','ic01','ic10','ic11'].forEach(i=>$(i).oninput=ic);ic();
+
+/* O-rings */
+(function(){function draw(k){const s=$('orSvg');clear(s);const L=40,B=230,H=190,w=16,p=.977;
+  for(let n=1;n<=30;n++){const v=Math.pow(p,n);el('rect',{x:L+(n-1)*w,y:B-v*H,width:w-3,height:v*H,fill:k>=1&&n===6?ROSE:'#C9CEDF',rx:2},s);}
+  el('text',{x:L,y:B+16,'font-size':11,fill:MUTED},s,'n = 1');el('text',{x:L+29*w,y:B+16,'font-size':11,fill:MUTED},s,'30');el('text',{x:L,y:16,'font-size':12,fill:MUTED},s,'P(all n joints work) = 0.977ⁿ');
+  if(k>=1){el('text',{x:300,y:36,'font-size':16,'font-weight':800,fill:ROSE},s,'pink: n = 6 → 0.977⁶ ≈ 0.87');}
+  if(k>=2){const v=Math.pow(p,6);el('rect',{x:L+5*w,y:B-H,width:w-3,height:(1-v)*H,fill:'#E2B64F',rx:2},s);el('text',{x:300,y:58,'font-size':16,'font-weight':800,fill:'#B07B0C'},s,'gold: at least one fails ≈ 0.13');}}
+  draw(0);onStep('orSvg',draw);})();
+function orr(){const p=$('o1').value/1000,n=+$('o2').value;$('o1v').textContent=p.toFixed(3);$('o2v').textContent=n;
+  $('oRes').innerHTML=`P(all ${n} work) = ${p.toFixed(3)}<sup>${n}</sup> = <b>${Math.pow(p,n).toFixed(3)}</b><br><span style="font-size:18px">P(at least one fails) = <b>${(1-Math.pow(p,n)).toFixed(3)}</b></span>`;
+  const svg=$('oSvg');clear(svg);const L=30,B=170,H=150,w=16;
+  for(let k=1;k<=30;k++){const v=Math.pow(p,k);el('rect',{x:L+(k-1)*w,y:B-v*H,width:w-3,height:v*H,fill:k===n?ROSE:'#C9CEDF',rx:2},svg);}
+  el('text',{x:L,y:B+16,'font-size':11,fill:MUTED},svg,'n = 1');el('text',{x:L+29*w,y:B+16,'font-size':11,fill:MUTED},svg,'30');el('text',{x:L,y:12,'font-size':11,fill:MUTED},svg,'P(all n work)');}
+['o1','o2'].forEach(i=>$(i).oninput=orr);orr();
+
+/* disjoint vs independent */
+(function(){function draw(k){const s=$('djSvg');clear(s);faces(s,{1:k>=1?NAVY:null,6:k>=1?ROSE:null},20,k>=1?'A = 1 (navy), B = 6 (pink): no overlap':'One die');
+  if(k>=2){el('text',{x:20,y:140,'font-size':17,'font-weight':800,fill:INK},s,'P(B) = 1/6 ≈ 0.167');el('text',{x:20,y:170,'font-size':17,'font-weight':800,fill:ROSE},s,'P(B | A) = 0   (A happened → B impossible)');}
+  if(k>=3)el('text',{x:20,y:215,'font-size':17,'font-weight':800,fill:'#C0392B'},s,'Disjoint ⇒ dependent (when both P > 0)');}
+  draw(0);onStep('djSvg',draw);})();
+/* smoke alarms Venn */
+(function(){function draw(k){venn($('saV'),{lab:k>=1?(k>=2?{a:'0.18',ab:'0.72',b:'0.08',out:'0.02'}:{ab:'0.72'}):{},shade:k>=2?{a:1,ab:1,b:1}:k>=1?{ab:1}:{},nameA:'alarm 1',nameB:'alarm 2',color:GOLD,fs:18});}draw(0);onStep('saV',draw);})();
+
+cardSet('ruleSort','ruScore',[
+ ['P(A) = 0.5 and P(A ∩ B) = 0.2. Find P(B | A).',0,'Conditional: P(A ∩ B)/P(A).'],['Draw 2 cards without replacement. P(both red)?',1,'General multiplication: 26/52 · 25/51.'],
+ ['Roll a die and toss a coin. P(6 and heads)?',2,'Independent: 1/6 · 1/2.'],['P(A) = 0.4, P(B) = 0.3, P(A ∩ B) = 0.1. Find P(A or B).',3,'General addition: 0.4 + 0.3 − 0.1.'],
+ ['4 independent bulbs, each fails with prob. 0.05. P(at least one fails)?',4,'Complement: 1 − 0.95⁴.'],['70% of students own a laptop; of those, 40% also own a tablet. P(laptop and tablet)?',1,'General multiplication: 0.7 · 0.4.']],
+ ['Conditional','Gen. mult.','Indep. mult.','Gen. addition','Complement']);
+document.querySelectorAll('#ruleSort button').forEach(b=>{b.style.fontSize='12px';b.style.padding='4px 7px';});
+
+/* left-handed */
+stepHL('lhs',{1:[['1-0'],['1-2']],2:[['2-0'],['2-2']],3:[['0-0','0-1','1-0'],['2-2']],4:[['0-0'],['2-2']]});
+(function(){function draw(k){vbars($('lhBars'),['P(left)','P(left\n| female)','P(left\n| male)'],[k>=2?.1:null,k>=1?.1:null,k>=2?.1:null],['#8A93B8',ROSE,NAVY],{max:.2,fmt:v=>v.toFixed(2),ref:k>=2?.1:undefined,bot:46});}draw(0);onStep('lhBars',draw);})();
+/* MCQ Venns */
+(function(){function draw(k){venn($('mq1'),{lab:k>=1?{a:'0.15',ab:'0.15',b:'0.35',out:k>=2?'0.35':''}:{},shade:k>=2?{a:1,ab:1,b:1}:k>=1?{ab:1}:{},color:GOLD});}draw(0);onStep('mq1',draw);})();
+(function(){function draw(k){venn($('mq2'),{lab:k>=1?{a:'0.3',ab:'0.1',b:'0.15',out:'0.45'}:{},shade:k>=1?{ab:1,b:1}:{},color:'#F4C3D0',abcolor:GOLD});if(k>=1)el('text',{x:180,y:244,'text-anchor':'middle','font-size':15,'font-weight':800,fill:ROSE},$('mq2'),'P(A | B) = 0.1 / 0.25 = 0.4');}draw(0);onStep('mq2',draw);})();
+(function(){function draw(k){venn($('exV'),{lab:k>=1?{a:'0.42',ab:'0.18',b:'0.12',out:k>=3?'0.28':''}:{},shade:k>=3?{a:1,ab:1,b:1}:k>=1?{a:1,ab:1}:{},color:'#F4C3D0',abcolor:GOLD});}draw(0);onStep('exV',draw);})();
+
+/* generator */
+const GC=[['Students: plays a sport (A) vs. has a part-time job (B)','Sport','No sport','Job','No job'],['Adults: drinks coffee (A) vs. lives in a city (B)','Coffee','No coffee','City','Not city'],
+ ['Phones: iPhone (A) vs. uses a case (B)','iPhone','Other','Case','No case'],['Students: has a pet (A) vs. walks to school (B)','Pet','No pet','Walks','Doesn\'t walk']];
+let CG=null,cR=0,cN=0;
+function cgNew(){const c=GC[rint(0,GC.length-1)];let a,b,cc,d;
+  if(Math.random()<0.35){const r0=rint(2,8)*10,r1=rint(2,8)*10,f=rint(2,8)/10;a=Math.round(r0*f);b=r0-a;cc=Math.round(r1*f);d=r1-cc;}else{a=rint(5,60);b=rint(5,60);cc=rint(5,60);d=rint(5,60);}
+  const r0=a+b,r1=cc+d,c0=a+cc,g=r0+r1;const indep=a*g===r0*c0;$('cgCtx').textContent=c[0];
+  $('cgTab').innerHTML=`<thead><tr><th></th><th>${c[3]}</th><th>${c[4]}</th><th>Total</th></tr></thead><tbody><tr><th class="rh">${c[1]}</th><td>${a}</td><td>${b}</td><td class="tot">${r0}</td></tr><tr><th class="rh">${c[2]}</th><td>${cc}</td><td>${d}</td><td class="tot">${r1}</td></tr><tr class="totrow"><th class="rh">Total</th><td>${c0}</td><td>${b+d}</td><td>${g}</td></tr></tbody>`;
+  const t=rint(0,3);let q,ans,sol;
+  if(t===0){q=`Find P(${c[3]} | ${c[1]}).`;ans=a/r0;sol=`${a} / ${r0} = ${(a/r0).toFixed(3)}`;}else if(t===1){q=`Find P(${c[1]} | ${c[3]}).`;ans=a/c0;sol=`${a} / ${c0} = ${(a/c0).toFixed(3)}`;}
+  else if(t===2){q=`Find P(${c[3]} | ${c[2]}).`;ans=cc/r1;sol=`${cc} / ${r1} = ${(cc/r1).toFixed(3)}`;}
+  else{q=`Are "${c[1]}" and "${c[3]}" independent?`;ans=indep?1:0;sol=`P(${c[3]}) = ${c0}/${g} = ${(c0/g).toFixed(3)}; P(${c[3]} | ${c[1]}) = ${a}/${r0} = ${(a/r0).toFixed(3)} → ${indep?'equal → independent':'not equal → not independent'}`;}
+  CG={t,ans,sol};$('cgQ').innerHTML=q;$('cgIn').value='';$('cgFb').innerHTML='';$('cgInWrap').style.display=t===3?'none':'flex';$('cgYN').style.display=t===3?'flex':'none';}
+function cgRes(ok){cN++;if(ok)cR++;$('cgFb').innerHTML=ok?`<div class="ans">✓ Correct! ${CG.sol}</div>`:'<div class="note warn small">✗ Not quite — which group is the condition (denominator)?</div>';$('cgScore').textContent=`Score: ${cR} / ${cN}`;}
+$('cgChk').onclick=()=>{const v=parseFloat($('cgIn').value);if(isNaN(v))return;cgRes(Math.abs(v-CG.ans)<=0.005);};
+$('cgIn').addEventListener('keydown',e=>{if(e.key==='Enter')$('cgChk').click();});
+document.querySelectorAll('[data-yn]').forEach(b=>b.onclick=()=>cgRes(+b.dataset.yn===CG.ans));
+$('cgNew').onclick=cgNew;$('cgShow').onclick=()=>$('cgFb').innerHTML=`<div class="ans">${CG.sol}</div>`;cgNew();
+
+/* aces */
+$('acSim').onclick=()=>{const N=100000;let w=0,wo=0;
+  for(let i=0;i<N;i++){if(Math.random()<4/52&&Math.random()<4/52)w++;const x=rint(0,51);let y;do{y=rint(0,51);}while(y===x);if(x<4&&y<4)wo++;}
+  $('acMsg').innerHTML=`With replacement: <b>${w}</b> / ${N} = ${(w/N).toFixed(4)} (theory 0.0059)<br>Without replacement: <b>${wo}</b> / ${N} = ${(wo/N).toFixed(4)} (theory 0.0045)`;};
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 3 · Lesson 8 — Significance Test for p₁ − p₂</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:19px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+table.st td,table.st th{padding:5px 9px!important;font-size:15px}
+.formula{font-family:var(--serif,Georgia);font-size:24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr>span{display:block;padding:0 5px}.fr>span:first-child{border-bottom:2px solid var(--ink)}
+.sq{display:inline-block;border-top:2px solid var(--ink);padding:0 3px;margin-left:1px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}.zbox b{font-family:var(--mono);font-size:20px;display:block;color:var(--navy)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.steps4 .card{padding:10px 12px}
+.tmpl{background:#fff;border:2px dashed var(--rose-2);border-radius:12px;padding:10px 14px;font-size:17px;line-height:1.55;margin-top:8px}
+.tmpl u{text-decoration:none;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 3 第八课：检验两个比例是否有差异；合并比例 p̂c、两样本 z 检验、随机化实验的因果结论。对应 TPS 9.3。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 3 · Lesson 8</div><h1>Significance Test for p₁ − p₂</h1><div class="zhT">两比例之差的显著性检验</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topics 3.12 · 3.13 · hypotheses · pooled proportion · two-sample z test · conclusions · errors · experiments</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 9.3</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 3 全貌。" data-title="Unit 3 roadmap">
+<div class="tag">Unit 3 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 3 <span class="zh">单元路线图</span></h2>
+<p class="sub">Inference for Categorical Data: Proportions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>3.1 Estimators<span class="old">TPS 7.1</span></div><div class="lesson"><span class="n">2</span>3.2 + 3.9 Sampling Distributions of p̂ and p̂₁ − p̂₂<span class="old">TPS 7.2</span></div><div class="lesson"><span class="n">3</span>3.3 + 3.4 Confidence Intervals: The Basics<span class="old">TPS 8.1</span></div><div class="lesson"><span class="n">4</span>3.3 + 3.4 Confidence Interval for p<span class="old">TPS 8.2</span></div><div class="lesson"><span class="n">5</span>3.5 + 3.6 + 3.8 Significance Tests: The Basics<span class="old">TPS 9.1</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">6</span>3.7 + 3.8 Test for p · Power<span class="old">TPS 9.2</span></div><div class="lesson"><span class="n">7</span>3.10 + 3.11 Interval for p₁ − p₂<span class="old">TPS 8.3</span></div><div class="lesson now"><span class="n">8</span>3.12 + 3.13 Test for p₁ − p₂<span class="old">TPS 9.3</span></div><div class="lesson"><span class="n">9</span>3.14 Setting Up a Chi-Square Test<span class="old">TPS 12.2</span></div><div class="lesson"><span class="n">10</span>3.15 Carrying Out a Chi-Square Test<span class="old">TPS 12.2</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 7: <strong>estimate</strong> p₁ − p₂ with an interval. Today: test whether there is a difference — H₀: p₁ = p₂. <span class="zh">从区间估计到检验两比例差异。</span></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 8 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">3.12.B · Skill 2.E</div><h3>Hypotheses <span class="stars">★★<span class="off">★★</span></span></h3><p>State H₀: p₁ − p₂ = 0 and a one- or two-sided Hₐ.</p><p class="zh muted small" style="margin-top:6px">写出两比例的假设</p></div><div class="card"><div class="k">3.12.C · Skill 4.E</div><h3>Pooled conditions <span class="stars">★★★<span class="off">★</span></span></h3><p>Find p̂c and check Random, 10%, and Large Counts with p̂c.</p><p class="zh muted small" style="margin-top:6px">合并比例与条件</p></div><div class="card"><div class="k">3.13.A · Skill 3.E</div><h3>z and p-value <span class="stars">★★★<span class="off">★</span></span></h3><p>Calculate z = (p̂₁ − p̂₂)/√(p̂c(1 − p̂c)(1/n₁ + 1/n₂)).</p><p class="zh muted small" style="margin-top:6px">计算 z 与 p 值</p></div><div class="card"><div class="k">3.13.C · Skill 4.G</div><h3>Conclude <span class="stars">★★★<span class="off">★</span></span></h3><p>Decide and conclude in context; cause-and-effect only for experiments.</p><p class="zh muted small" style="margin-top:6px">下结论；只有实验才能谈因果</p></div><div class="card"><div class="k">3.8 review · Skill 4.D</div><h3>Errors <span class="stars">★★★<span class="off">★</span></span></h3><p>Describe Type I and Type II errors for a two-sample test.</p><p class="zh muted small" style="margin-top:6px">两样本检验的两类错误</p></div><div class="card"><div class="k">Simulation</div><h3>Randomization <span class="stars">★★★<span class="off">★</span></span></h3><p>Use a re-randomization simulation as the null distribution.</p><p class="zh muted small" style="margin-top:6px">用重新随机化模拟零分布</p></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 8 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">5'</div>Warm-up: two drugs for cocaine addiction</div><div class="it"><div class="bar n" style="width:150px">15' · 3.12</div>Hypotheses · pooled proportion · conditions</div><div class="it"><div class="bar n" style="width:150px">15' · 3.13</div>z statistic · four-step test · experiments vs. surveys · errors</div><div class="it"><div class="bar" style="width:50px">8'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Re-randomization simulator · tests vs. intervals</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 3.12 → 3.13</p><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 8 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simTest2" href="#"><span class="ic">🎮</span><span>2-PropZTest calculator<small>两比例 z 检验计算器 · any data → full test</small></span></a><a data-goto="simRand" href="#"><span class="ic">🎮</span><span>Re-randomization simulator<small>重新随机化模拟器 · simulated null distribution</small></span></a></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Breaking an addiction">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Breaking an addiction <span class="zh">戒除成瘾</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>In an experiment, 48 cocaine addicts were <b>randomly assigned</b> to take desipramine (24) or lithium (24). 10 of the desipramine group and 18 of the lithium group relapsed. <span class="zh">随机分配；复发人数 10 vs 18。</span></p><div class="q"><b class="n">Q1</b>Find the proportion who relapsed in each group and the difference p̂_{D} − p̂_{L}.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">p̂_{D} = 10/24 ≈ 0.417, p̂_{L} = 18/24 = 0.75 → difference ≈ −0.333.</div></div><div class="q"><b class="n">Q2</b>If the two drugs were equally effective, could a difference this large happen just because of the random assignment?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Imagine 28 “relapsers” and 20 “non-relapsers” no matter which drug they get. Re-randomize them into two groups of 24 many times and record p̂_{D} − p̂_{L} each time.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. A difference of −0.333 or smaller happened in only about 1% of re-randomizations → hard to explain by chance → convincing evidence desipramine works better.</div></div></div><div class="keyidea">🔑 Assume “no difference”, then ask how surprising the data are.</div><div class="takeaway">💡 That is a significance test for p₁ − p₂. Today we do it with the normal model.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 190" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 8 · TPS 9.3</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 3.12" data-sec="1" data-title="§ 3.12 Setting Up a Test for p₁ − p₂">
+<div class="tag">Topic</div><div class="num">3.12</div><h1>Setting Up a Test for p₁ − p₂</h1><div class="zhT">建立两比例检验</div><div class="eks"><span>3.12 Hypotheses</span><span>3.12 Pooled proportion &amp; conditions</span></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.12。" data-title="Hypotheses for a Two-Sample z Test">
+<div class="tag">3.12 <b>· Key Concepts</b><span class="ek">EK 3.12.B</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Hypotheses for a Two-Sample z Test <span class="zh">两样本 z 检验的假设</span></h2><div class="concept pink"><div class="term">Null hypothesis<span class="zh">零假设</span></div><div class="en">H₀: p₁ − p₂ = 0 (equivalently p₁ = p₂) — no difference between the two populations or treatments.</div><div class="cn">H₀: p₁ − p₂ = 0（即 p₁ = p₂）：两总体或两处理没有差异。</div></div><div class="concept"><div class="term">Alternative<span class="zh">备择假设</span></div><div class="en"><strong>Hₐ: p₁ − p₂ &gt; 0</strong>, &lt; 0, or ≠ 0. Define both parameters in context and say which is “1”.</div><div class="cn"><b>Hₐ: p₁ − p₂ &gt; 0、&lt; 0 或 ≠ 0</b>。在语境中定义两个参数，说明谁是 1。</div></div><div class="tmpl">p₁ = true proportion of <u>(population / treatment 1)</u> who <u>(success)</u>; p₂ = true proportion of <u>(population / treatment 2)</u> who <u>(success)</u>.</div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.12。区间用 p̂₁、p̂₂ 检验大计数；检验用 p̂c。" data-title="Pooled Proportion and Conditions">
+<div class="tag">3.12 <b>· Key Concepts</b><span class="ek">EK 3.12.C</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Pooled Proportion and Conditions <span class="zh">合并比例与条件</span></h2><div class="concept pink"><div class="term">Pooled p̂c<span class="zh">合并比例</span></div><div class="en">If H₀ is true, both groups share one proportion. Estimate it by combining the samples: p̂c = (x₁ + x₂)/(n₁ + n₂) = total successes ÷ total sample size.</div><div class="cn">若 H₀ 为真，两组比例相同；合并两样本估计它：p̂c = (x₁ + x₂)/(n₁ + n₂)。</div></div><div class="concept pink"><div class="term">Conditions<span class="zh">条件</span></div><div class="en"><strong>Random:</strong> two independent random samples or random assignment. 10%: n₁ ≤ 0.10N₁, n₂ ≤ 0.10N₂ (sampling only). <strong>Large Counts:</strong> n₁p̂c, n₁(1 − p̂c), n₂p̂c, n₂(1 − p̂c) all ≥ 10.</div><div class="cn"><b>随机</b>：两个独立随机样本或随机分配。10%：仅抽样时检验。<b>大计数</b>：n₁p̂c、n₁(1−p̂c)、n₂p̂c、n₂(1−p̂c) 都 ≥ 10。</div></div><div class="note warn small">⚠️ Interval (Lesson 7): Large Counts with p̂₁ and p̂₂. Test (today): Large Counts with the <b>pooled p̂c</b>. <span class="zh">检验用合并比例。</span></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Hypotheses and pooled p̂c">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.12</span></div>
+<h2>Hypotheses and pooled p̂c <span class="zh">假设与合并比例</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>For each study, state the hypotheses and find p̂c.</p><div class="q"><b class="n">a</b>Cocaine experiment: does desipramine lead to a <b>lower</b> relapse rate than lithium? (10 of 24 vs. 18 of 24 relapsed)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">a. H₀: p_{D} − p_{L} = 0, Hₐ: p_{D} − p_{L} &lt; 0, where p_{D}, p_{L} = true relapse rates for addicts like these taking desipramine, lithium. p̂c = (10 + 18)/48 = 28/48 ≈ 0.583. Counts: 24(0.583) = 14, 24(0.417) = 10 → all ≥ 10 ✓.</div></div><div class="q"><b class="n">b</b>Random samples of 200 teens in City A and 200 in City B: 62 and 48 have a part-time job. Is there a difference?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">b. H₀: p_{A} − p_{B} = 0, Hₐ: p_{A} − p_{B} ≠ 0, where p_{A}, p_{B} = true proportions of all teens in City A, City B with a part-time job. p̂c = (62 + 48)/400 = 0.275. Counts: 55, 145, 55, 145 ≥ 10 ✓.</div></div></div><div class="keyidea">🔑 H₀ always says “no difference”.</div></div></div><div class="col vis"><svg id="hpSol" viewbox="0 0 560 200" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 3.13" data-sec="1" data-title="§ 3.13 Carrying Out a Test for p₁ − p₂">
+<div class="tag">Topic</div><div class="num">3.13</div><h1>Carrying Out a Test for p₁ − p₂</h1><div class="zhT">两比例检验的实施</div><div class="eks">3.13 z statistic<span>3.13 Conclusions</span><span>3.8 review Errors</span></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.13。" data-title="The Two-Sample z Test Statistic">
+<div class="tag">3.13 <b>· Key Concepts</b><span class="ek">EK 3.13.A</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>The Two-Sample z Test Statistic <span class="zh">两样本 z 检验统计量</span></h2><div class="concept pink"><div class="term">Test statistic<span class="zh">检验统计量</span></div><div class="en">z = (p̂₁ − p̂₂ − 0) / √(p̂c(1 − p̂c)(1/n₁ + 1/n₂)) — (statistic − null value)/standard error using the pooled p̂c. If H₀ is true, z is approximately standard normal.</div><div class="cn">z = (p̂₁ − p̂₂ − 0)/√(p̂c(1 − p̂c)(1/n₁ + 1/n₂))，用合并比例计算标准误；H₀ 为真时 z 近似标准正态。</div></div><div class="concept"><div class="term">p-value<span class="zh">p 值</span></div><div class="en">From the standard normal: P(Z ≥ z), P(Z ≤ z), or 2P(Z ≥ |z|) depending on Hₐ. Calculator: STAT → TESTS → 6:2-PropZTest.</div><div class="cn">按 Hₐ 方向求右尾、左尾或双尾。计算器：2-PropZTest。</div></div><div class="small formula-caption">p̂c = (x₁ + x₂)/(n₁ + n₂)</div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section><section class="slide" data-notes="Formula separated for legibility after mathematical typesetting." data-title="The Two-Sample z Test Statistic · Formula"><div class="tag">Formula · 公式</div><h2>The Two-Sample z Test Statistic <span class="zh">两样本 z 检验统计量</span></h2><div class="formula" data-math-tex="z=\frac{(\hat p_1-\hat p_2)-0}{\sqrt{\hat p_c(1-\hat p_c)\left(\frac1{n_1}+\frac1{n_2}\right)}}\qquad\hat p_c=\frac{x_1+x_2}{n_1+n_2}" style="font-size:26px;margin:42px 0 20px;padding:24px;width:100%;">z=\frac{(\hat p_1-\hat p_2)-0}{\sqrt{\hat p_c(1-\hat p_c)\left(\frac1{n_1}+\frac1{n_2}\right)}}\qquad\hat p_c=\frac{x_1+x_2}{n_1+n_2}</div><p class="small">Read the numerator and denominator separately, then identify each parameter or statistic in context. 先看分子和分母，再说明各符号的含义。</p><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div></section>
+<section class="slide" data-notes="CED 3.13；与 Unit 1 的推断范围表呼应。" data-title="Conclusions: Surveys vs. Experiments">
+<div class="tag">3.13 <b>· Key Concepts</b><span class="ek">EK 3.13.B–C</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Conclusions: Surveys vs. Experiments <span class="zh">结论：调查与实验</span></h2><div class="concept"><div class="term">Decision<span class="zh">决策</span></div><div class="en">p-value ≤ α → reject H₀: convincing evidence of a difference (in the direction of Hₐ). p-value &gt; α → fail to reject H₀: not convincing evidence. Never “accept” H₀.</div><div class="cn">p ≤ α → 拒绝 H₀；p &gt; α → 不拒绝 H₀。不说“接受”。</div></div><div class="concept pink"><div class="term">Scope<span class="zh">推断范围</span></div><div class="en"><strong>Random samples</strong> → generalize to the populations. <strong>Random assignment</strong> (experiment) → a significant result supports cause and effect for subjects like these.</div><div class="cn"><b>随机抽样</b> → 推广到总体；<b>随机分配</b>（实验）→ 显著结果可支持<b>因果</b>结论（对类似受试者）。</div></div><svg id="scSvg" viewbox="0 0 1100 120" width="100%"></svg><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Does preschool help?">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.13 · Skill 4.G</span></div>
+<h2>Does preschool help? <span class="zh">学前教育有帮助吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>In the Perry Preschool experiment, 123 low-income children were <b>randomly assigned</b> to attend preschool (62) or not (61). As adults, 38 of the preschool group and 49 of the control group needed social services.</p><div class="q">Do the data give convincing evidence at α = 0.05 that preschool reduces the later need for social services? Carry out a test.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. State: H₀: p_{P} − p_{C} = 0, Hₐ: p_{P} − p_{C} &lt; 0, α = 0.05; p_{P}, p_{C} = true proportions of children like these who would need social services with / without preschool.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Plan:</b> two-sample z test for p₁ − p₂. Random assignment ✓. p̂c = 87/123 ≈ 0.707: 62(0.707) ≈ 43.9, 62(0.293) ≈ 18.1, 61(0.707) ≈ 43.1, 61(0.293) ≈ 17.9 ≥ 10 ✓.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Do: p̂_{P} = 0.613, p̂_{C} = 0.803; z = (0.613 − 0.803)/√(0.707·0.293(1/62 + 1/61)) ≈ −0.190/0.0821 ≈ −2.32; p-value = P(Z ≤ −2.32) ≈ 0.010: assuming preschool makes no difference, there is about a 0.010 probability of getting a difference of −0.19 or less by chance in the random assignment.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Conclude:</b> 0.010 &lt; 0.05 → reject H₀. Convincing evidence that preschool causes a lower rate of needing social services for children like these (random assignment).</div></div></div><div class="keyidea">🔑 State → Plan → Do → Conclude.</div></div></div><div class="col vis"><div class="qv"><svg id="ppQ" viewbox="0 0 560 170" width="100%"></svg></div><div class="sv"><svg id="ppSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 8 · TPS 9.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="试城市打工数据（62/200 与 48/200，≠）。" data-title="🎮 Simulator: 2-PropZTest calculator" id="simTest2">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">2-PropZTest calculator</span><span class="zh">两比例 z 检验计算器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.12 · 3.13</span>
+<div class="row"><div class="col" style="flex:.85"><p class="small">Enter both groups and Hₐ; the simulator finds p̂c, checks Large Counts and shows every step. <span class="zh">自动计算合并比例与每一步。</span></p>
+<div class="slider-row"><label>x₁</label><input class="bigin" id="ttX1" style="width:90px;font-size:18px" type="number" value="38"/><label style="margin-left:8px">n₁</label><input class="bigin" id="ttN1" style="width:90px;font-size:18px" type="number" value="62"/></div>
+<div class="slider-row"><label>x₂</label><input class="bigin" id="ttX2" style="width:90px;font-size:18px" type="number" value="49"/><label style="margin-left:8px">n₂</label><input class="bigin" id="ttN2" style="width:90px;font-size:18px" type="number" value="61"/></div>
+<div class="btns"><span class="small" style="align-self:center">Hₐ:</span><button class="b on" data-tt="lt">p₁ &lt; p₂</button><button class="b" data-tt="gt">p₁ &gt; p₂</button><button class="b" data-tt="ne">p₁ ≠ p₂</button></div>
+<div class="btns"><span class="small" style="align-self:center">α:</span><button class="b" data-tta="0.01">0.01</button><button class="b on" data-tta="0.05">0.05</button><button class="b" data-tta="0.10">0.10</button></div>
+<div class="small" id="ttOut" style="margin-top:6px"></div></div><div class="col frame"><svg id="ttSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Part-time jobs (two-sided)">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.13 · Skill 4.G</span></div>
+<h2>Part-time jobs (two-sided) <span class="zh">兼职工作（双侧）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Random samples of 200 teens in City A and 200 teens in City B: 62 in A and 48 in B have a part-time job (p̂c = 0.275). Both cities have more than 2000 teens.</p><div class="q"><b class="n">a</b>Calculate the test statistic and p-value for H₀: p_{A} − p_{B} = 0 vs. Hₐ: p_{A} − p_{B} ≠ 0.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. p̂_{A} = 0.31, p̂_{B} = 0.24. z = (0.31 − 0.24)/√(0.275·0.725(1/200 + 1/200)) = 0.07/0.0447 ≈ 1.57.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. p-value = 2P(Z ≥ 1.57) ≈ 0.117.</div></div><div class="q"><b class="n">b</b>What do you conclude at α = 0.05? Which type of error could you have made?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. 0.117 &gt; 0.05 → fail to reject H₀. Not convincing evidence that the proportions of teens with a part-time job differ in the two cities.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. We failed to reject H₀, so we could have made a Type II error: the proportions really differ, but we did not find convincing evidence. (This is an observational study — no cause-and-effect claims anyway.)</div></div></div><div class="keyidea">🔑 ≠ → two tails.</div></div></div><div class="col vis"><div class="qv"><svg id="pjQ" viewbox="0 0 560 150" width="100%"></svg></div><div class="sv"><svg id="pjSol" viewbox="0 0 560 220" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 8 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Hearing loss: test vs. interval">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.13 · 3.11</span></div>
+<h2>Hearing loss: test vs. interval <span class="zh">听力损失：检验与区间</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Lesson 7: 345 of 1771 teens (2005–06) vs. 436 of 2928 teens (1988–94) had some hearing loss; the 95% CI for p_{2005} − p_{1988} was (0.023, 0.069).</p><div class="q"><b class="n">a</b>Test H₀: p_{2005} − p_{1988} = 0 vs. Hₐ: p_{2005} − p_{1988} &gt; 0 (p̂c ≈ 0.166).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">z = (0.195 − 0.149)/√(0.166·0.834(1/1771 + 1/2928)) ≈ 0.046/0.0112 ≈ 4.10; p-value ≈ 0.00002 → reject H₀: convincing evidence that hearing loss became more common.</div></div><div class="q"><b class="n">b</b>How do the test and the interval agree? What extra information does the interval give?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The interval does not contain 0 (all positive) — same conclusion. The interval also estimates <b>how much</b>: an increase of about 2.3 to 6.9 percentage points.</div></div></div><div class="keyidea">🔑 Test: yes/no. Interval: how big.</div></div></div><div class="col vis"><svg id="hlSol" viewbox="0 0 560 200" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 8 · TPS 8.3 · 9.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="比较模拟 p 值（约 0.01）与 z 检验 p 值 0.0096。" data-title="🎮 Simulator: Re-randomization simulator" id="simRand">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Re-randomization simulator</span><span class="zh">重新随机化模拟器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">Bonus · TPS 9.3</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Cocaine experiment: 28 relapsers + 20 non-relapsers. <b>Assume the drug makes no difference</b>, re-randomize them into two groups of 24, and record p̂_{D} − p̂_{L}. <span class="zh">假设药物无差异，重新随机分组。</span></p>
+<div class="btns"><button class="b" id="rr1">+1 shuffle</button><button class="b" id="rr100">+100</button><button class="b" id="rr1000">+1000</button><button class="b" id="rrClr">Reset</button></div>
+<div class="zbox"><div>shuffles<b id="rrN">0</b></div><div>≤ −0.333<b id="rrP" style="color:var(--rose)">–</b></div></div><div class="note small" id="rrMsg" style="margin-top:6px"></div><div class="small muted" id="rrLast" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="rrSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 6: Pooled standard error">
+<div class="exhead"><span class="badge ex">📝 AP Practice 6 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.12 · 3.13</span></div>
+<h2>Pooled standard error</h2><div class="scrollcol"><div class="problem" style="font-size:19px">An experiment gives 30 of 80 successes in group 1 and 45 of 90 in group 2. Which is the standard error used in the test of H₀: p₁ = p₂?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) √(0.375·0.625/80 + 0.5·0.5/90)</li><li>(B) √(0.441·0.559(1/80 + 1/90))</li><li>(C) √(0.441·0.559/170)</li><li>(D) √(0.4375·0.5625(1/80 + 1/90))</li><li>(E) 0.441·0.559(1/80 + 1/90)</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">p̂c = (30 + 45)/(80 + 90) = 75/170 ≈ 0.441 → SE = √(p̂c(1 − p̂c)(1/n₁ + 1/n₂)) → <b>(B)</b>.</p><p style="margin:3px 0">(A) is the unpooled SE for an interval; (D) averages the two p̂’s instead of pooling; (E) forgets the square root.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 7: Correct hypotheses">
+<div class="exhead"><span class="badge ex">📝 AP Practice 7 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.12</span></div>
+<h2>Correct hypotheses</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A researcher wants to know whether the proportion of left-handed people differs between men and women. Which hypotheses are correct?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) H₀: p̂_{M} = p̂_{W}; Hₐ: p̂_{M} ≠ p̂_{W}</li><li>(B) H₀: p_{M} − p_{W} = 0; Hₐ: p_{M} − p_{W} &gt; 0</li><li>(C) H₀: p_{M} − p_{W} = 0; Hₐ: p_{M} − p_{W} ≠ 0</li><li>(D) H₀: p_{M} − p_{W} ≠ 0; Hₐ: p_{M} − p_{W} = 0</li><li>(E) H₀: p_{M} − p_{W} &gt; 0; Hₐ: p_{M} − p_{W} = 0</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Parameters (p, not p̂), equality in H₀, ≠ for “differs” → (C).</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 8: Cause and effect">
+<div class="exhead"><span class="badge ex">📝 AP Practice 8 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.13</span></div>
+<h2>Cause and effect</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A random sample of 500 smokers and a random sample of 500 nonsmokers show a significantly higher rate of heart disease among smokers (p-value = 0.002). Which conclusion is appropriate?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Smoking causes heart disease.</li><li>(B) There is convincing evidence that the proportion with heart disease is higher for all smokers than for all nonsmokers, but this study cannot show causation.</li><li>(C) There is a 0.2% chance that smoking has no effect.</li><li>(D) The result can only be applied to the 1000 people in the study.</li><li>(E) Fail to reject H₀ because the samples are observational.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Random samples → generalize to the populations. No random assignment → no cause-and-effect conclusion → <b>(B)</b>.</p><p style="margin:3px 0">(C) misinterprets the p-value.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Type I error">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.8 review</span></div>
+<h2>Type I error</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A company tests H₀: p_{new} − p_{old} = 0 vs. Hₐ: p_{new} − p_{old} &gt; 0, where p is the proportion of customers who click on an ad. A Type I error would be:</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Concluding the new ad gets more clicks when it really does</li><li>(B) Concluding the new ad gets more clicks when it really does not</li><li>(C) Not concluding the new ad gets more clicks when it really does</li><li>(D) Not concluding the new ad gets more clicks when it really does not</li><li>(E) Using α = 0.05 instead of 0.01</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Reject H₀ (conclude new is better) when H₀ is true (no difference) → <b>(B)</b>. Consequence: switching to a new ad that is not actually better.</p><p style="margin:3px 0">(C) is a Type II error.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">H₀: p₁ − p₂ = 0</th><td class="zh" style="text-align:left">两比例零假设</td><td style="text-align:left">no difference</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Pooled proportion p̂c</th><td class="zh" style="text-align:left">合并比例</td><td style="text-align:left">(x₁ + x₂)/(n₁ + n₂)</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Two-sample z test</th><td class="zh" style="text-align:left">两样本 z 检验</td><td style="text-align:left">z = (p̂₁ − p̂₂)/√(p̂c(1 − p̂c)(1/n₁ + 1/n₂))</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Large Counts (test)</th><td class="zh" style="text-align:left">大计数（检验）</td><td style="text-align:left">n₁p̂c, n₁(1 − p̂c), n₂p̂c, n₂(1 − p̂c) ≥ 10</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Random assignment</th><td class="zh" style="text-align:left">随机分配</td><td style="text-align:left">significant → cause and effect</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Random sampling</th><td class="zh" style="text-align:left">随机抽样</td><td style="text-align:left">generalize to populations</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 3 · Lesson 8</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">3.12–3.13</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A school wants more parents to return permission slips. It randomly assigns 300 families: 150 get a text reminder, 150 do not. 54 reminded families and 39 others return the slip on time.</p><div class="q"><b class="n">1</b>Do the data give convincing evidence at α = 0.05 that text reminders increase the return rate? (four steps)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. State: H₀: p_{R} − p_{N} = 0, Hₐ: p_{R} − p_{N} &gt; 0, α = 0.05; p = true return rate for families like these with / without a reminder. <b>Plan:</b> two-sample z test; random assignment ✓; 150(0.31) = 46.5, 150(0.69) = 103.5 ≥ 10 ✓.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Do: z = (0.36 − 0.26)/√(0.31·0.69(1/150 + 1/150)) = 0.10/0.0534 ≈ 1.87; p-value = P(Z ≥ 1.87) ≈ 0.031.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. <b>Conclude:</b> 0.031 &lt; 0.05 → reject H₀. Convincing evidence that text reminders increase the return rate.</div></div><div class="q"><b class="n">2</b>Can the school conclude that the reminders caused the increase? Explain.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes — families were <b>randomly assigned</b> to the treatments, so the significant difference can be attributed to the reminders (for families like these).</div></div></div><div class="keyidea">🔑 p̂_{R} = 0.36, p̂_{N} = 0.26, p̂c = 93/300 = 0.31.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 170" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 8 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：3.14（TPS 12.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 9</div><h1>Setting Up a Chi-Square Test</h1><div class="zhT">卡方检验的建立 · Topic 3.14</div><p class="muted" style="margin-top:26px;font-size:22px">Two-way tables, expected counts, the chi-square statistic, and hypotheses for homogeneity and independence.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 3 shared helpers ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390',MINT='#2E8B6E';
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+(+v).toFixed(d)).toString();
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs,fmt){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,fmt?fmt(t):+t.toFixed(3));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function gauss(r){r=r||Math.random;const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function binom(n,p,r){r=r||Math.random;let c=0;for(let i=0;i<n;i++)if(r()<p)c++;return c;}
+/* histogram of values on an axis X with bins of width w starting at lo; returns counts */
+function histX(svg,X,vals,lo,w,B,H,col,hl){const cnt={};vals.forEach(v=>{const k=Math.floor((v-lo)/w+1e-9);cnt[k]=(cnt[k]||0)+1;});const mx=Math.max(1,...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c])=>{const a=lo+k*w;el('rect',{x:X(a)+0.5,y:B-c/mx*H,width:Math.max(1,X(a+w)-X(a)-1),height:c/mx*H,fill:hl&&hl(a,a+w)?ROSE:(col||NAVY)},svg);});return cnt;}
+/* stacked dots for discrete values */
+function dotsX(svg,X,vals,B,r,dy,colf){const cnt={};vals.forEach(v=>{const k=(+v).toFixed(4);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(+v),cy:B-r-1-(cnt[k]-1)*dy,r,fill:colf?colf(+v):NAVY},svg);});return cnt;}
+function normPath(svg,X,Y0,H,mu,sd,lo,hi,col,fill,a,b){const f=x=>Math.exp(-(((x-mu)/sd)**2)/2);
+  if(a!==undefined){const aa=Math.max(lo,a),bb=Math.min(hi,b);if(bb>aa){let d=`M${X(aa)},${Y0}`;for(let i=0;i<=100;i++){const x=aa+(bb-aa)*i/100;d+=`L${X(x)},${Y0-H*f(x)}`;}el('path',{d:d+`L${X(bb)},${Y0}Z`,fill:fill||'#F4C3D0'},svg);}}
+  let d='';for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;d+=`${i?'L':'M'}${X(x)},${Y0-H*f(x)}`;}el('path',{d,fill:'none',stroke:col||NAVY,'stroke-width':2.5},svg);}
+function zcrit(C){return invn(1-(1-C)/2);}
+/* ===== Unit 3 · Lesson 8 ===== */
+function twoBars(s,a,b,la,lb,ya){const W=420;[[a,la,0],[b,lb,1]].forEach(([p,l,i])=>{const y=(ya||20)+i*52;lab(s,20,y+24,l,INK,'start',13,700);el('rect',{x:130,y,width:W,height:34,rx:8,fill:GREY},s);el('rect',{x:130,y,width:W*p,height:34,rx:8,fill:i?LAV:NAVY},s);lab(s,130+W*p-8,y+23,Math.round(p*1000)/10+'%','#fff','end',14);});}
+function tags4(s,k,y){['STATE','PLAN','DO','CONCLUDE'].forEach((t,i)=>box(s,30+i*130,y||6,118,28,k>=i+1?ROSE:'#fff',k>=i+1?ROSE:GREY,t,k>=i+1?'#fff':MUTED,13,8));}
+function sub(s,y,h){return el('svg',{x:0,y,width:560,height:h,viewBox:`0 0 560 ${h}`},s);}
+function zpic(s,z,alt,o){o=o||{};const B=o.B||150;const sh={};if(alt==='lt'){sh.a=-4;sh.b=z;}else if(alt==='gt'){sh.a=z;sh.b=4;}else{sh.a=-4;sh.b=-Math.abs(z);sh.a2=Math.abs(z);sh.b2=4;}
+  const zz=Math.max(-3.5,Math.min(3.5,z));const r=ncurve(s,0,1,Object.assign({B,lo:-3.6,hi:3.6,ticks:[-3,-2,-1,0,1,2,3],label:o.label||'z (standard normal, assuming H₀ true)'},sh));
+  vline(s,r.X(zz),30,B,ROSE,'z = '+z.toFixed(2),true,zz<0?'end':'start',34);if(alt==='ne')vline(s,r.X(-zz),30,B,ROSE,'',true);
+  if(o.p!==undefined)lab(s,alt==='lt'?r.X(-2.6):r.X(2.6),B-70,'p ≈ '+o.p,ROSE,'middle',14);return r;}
+/* re-randomization helper: 28 relapse among 48, group D = first 24 */
+function shuffleDiff(){let r=0;const a=[...Array(48)].map((_,i)=>i<28?1:0);for(let i=47;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}for(let i=0;i<24;i++)r+=a[i];return (r-(28-r))/24;}
+const RR0=(function(){const out=[];const r=srand(12);for(let k=0;k<200;k++){const a=[...Array(48)].map((_,i)=>i<28?1:0);for(let i=47;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}let x=0;for(let i=0;i<24;i++)x+=a[i];out.push((x-(28-x))/24);}return out;})();
+function rrPlot(s,data,B,k){clear(s);const X=axis(s,40,540,B,-0.5,0.5,0.1,'p̂D − p̂L in re-randomizations (if no difference)',11,v=>(+v.toFixed(1)).toString());
+  const cnt={};const H=B-40;data.forEach(v=>{const key=Math.round(v*24);cnt[key]=(cnt[key]||0)+1;});const mx=Math.max(...Object.values(cnt));const st=Math.min(6,H/mx);
+  Object.entries(cnt).forEach(([key,c])=>{const v=key/24;for(let i=0;i<c;i++){if(st>=4)el('circle',{cx:X(v),cy:B-4-i*st,r:Math.min(2.6,st/2),fill:k&&v<=-0.333+1e-9?ROSE:LAV},s);}if(st<4)el('rect',{x:X(v)-6,y:B-c*st,width:12,height:c*st,fill:k&&v<=-0.333+1e-9?ROSE:LAV},s);});
+  vline(s,X(-0.333),20,B,ROSE,'observed −0.333',true,'end',26);return X;}
+
+/* warm-up */
+(function(){const s=$('wuQ');clear(s);twoBars(s,10/24,18/24,'Desipramine (24)','Lithium (24)',20);lab(s,300,160,'relapse rates: 10/24 vs. 18/24',INK,'middle',14,700);})();
+(function(){function draw(k){const s=$('wuSol');if(k<2){clear(s);twoBars(s,10/24,18/24,'Desipramine','Lithium',40);if(k>=1)lab(s,300,170,'difference ≈ −0.333',ROSE,'middle',16);return;}
+  rrPlot(s,RR0,190,k>=3);if(k>=3){const n=RR0.filter(v=>v<=-0.333+1e-9).length;lab(s,140,60,`${n}/200 ≈ ${(n/200).toFixed(3)}`,ROSE,'middle',15);}}draw(0);onStep('wuSol',draw);})();
+
+/* hypotheses + pooled */
+(function(){function draw(k){const s=$('hpSol');clear(s);const rows=[['a','Desipramine 10/24','Lithium 18/24','p̂c = 28/48 ≈ 0.583'],['b','City A 62/200','City B 48/200','p̂c = 110/400 = 0.275']];
+  rows.forEach(([l,a,b,c],i)=>{if(k<i+1)return;const y=14+i*92;box(s,8,y+20,36,36,PK,ROSE,l,ROSE,15);box(s,56,y,150,34,NAVY,NAVY,a,'#fff',13);box(s,56,y+42,150,34,LAV,LAV,b,'#fff',13);arrow(s,212,y+38,262,y+38,INK,2.5);box(s,270,y+18,270,42,'rgba(200,87,123,.12)',ROSE,c,ROSE,15);});
+  if(k===0)lab(s,280,100,'Click the answers →',MUTED,'middle',14,600);}draw(0);onStep('hpSol',draw);})();
+
+/* scope (1100) */
+(function(){const s=$('scSvg');clear(s);box(s,20,15,500,90,'rgba(31,42,68,.06)',NAVY,'Random SAMPLING (surveys)\n→ generalize to the POPULATIONS',NAVY,16);box(s,580,15,500,90,'rgba(46,139,110,.10)',MINT,'Random ASSIGNMENT (experiments)\n→ CAUSE AND EFFECT for subjects like these',MINT,16);})();
+
+/* Perry */
+(function(){const s=$('ppQ');clear(s);twoBars(s,38/62,49/61,'Preschool (62)','Control (61)',20);lab(s,300,150,'needed social services as adults',INK,'middle',13,700);})();
+(function(){function draw(k){const s=$('ppSol');clear(s);tags4(s,k);if(k<3){lab(s,280,140,k===0?'Click the answers to build the test →':'Conditions checked ✓ — now compute z',MUTED,'middle',14,600);return;}
+  const g=sub(s,40,200);zpic(g,-2.32,'lt',{B:160,p:'0.010'});if(k>=4)lab(g,440,20,'reject H₀ → preschool helps',MINT,'middle',14);}draw(0);onStep('ppSol',draw);})();
+
+/* 2-PropZTest */
+let ttAlt='lt',ttA=0.05;
+function ttRun(){const x1=+$('ttX1').value,n1=+$('ttN1').value,x2=+$('ttX2').value,n2=+$('ttN2').value;const s=$('ttSvg');clear(s);
+  if(!(n1>0&&n2>0&&x1>=0&&x2>=0&&x1<=n1&&x2<=n2)){$('ttOut').innerHTML='Check the inputs.';return;}
+  const p1=x1/n1,p2=x2/n2,pc=(x1+x2)/(n1+n2),se=Math.sqrt(pc*(1-pc)*(1/n1+1/n2));if(se===0){$('ttOut').innerHTML='p̂c is 0 or 1 — no test possible.';return;}
+  const z=(p1-p2)/se,p=ttAlt==='lt'?ncdf(z):ttAlt==='gt'?1-ncdf(z):2*(1-ncdf(Math.abs(z)));const cnt=[n1*pc,n1*(1-pc),n2*pc,n2*(1-pc)];const lc=cnt.every(v=>v>=10);
+  const ok=v=>v?'<b style="color:#2E8B6E">✓</b>':'<b style="color:var(--rose)">✗</b>';const sym={lt:'<',gt:'>',ne:'≠'}[ttAlt];
+  $('ttOut').innerHTML=`<div>H₀: p₁ − p₂ = 0 &nbsp; Hₐ: p₁ − p₂ ${sym} 0 &nbsp; α = ${ttA}</div><div>p̂c = ${x1+x2}/${n1+n2} = ${pc.toFixed(4)} · counts ${cnt.map(v=>v.toFixed(1)).join(', ')} ≥ 10 ${ok(lc)}</div>
+  <div class="formula" style="font-size:16px;margin:6px 0">p̂₁ = ${p1.toFixed(4)}, p̂₂ = ${p2.toFixed(4)} &nbsp; SE = ${se.toFixed(4)} &nbsp; z = <b>${z.toFixed(2)}</b></div>
+  <div>p-value = <b style="font-size:20px;color:var(--rose)">${p<0.0001?'< 0.0001':p.toFixed(4)}</b> → ${p<=ttA?'<b style="color:var(--rose)">reject H₀</b>':'<b>fail to reject H₀</b>'}</div>`;
+  zpic(s,z,ttAlt,{B:240});}
+['ttX1','ttN1','ttX2','ttN2'].forEach(i=>$(i).oninput=ttRun);
+document.querySelectorAll('[data-tt]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tt]').forEach(x=>x.classList.remove('on'));b.classList.add('on');ttAlt=b.dataset.tt;ttRun();});
+document.querySelectorAll('[data-tta]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tta]').forEach(x=>x.classList.remove('on'));b.classList.add('on');ttA=+b.dataset.tta;ttRun();});ttRun();
+
+/* part-time jobs */
+(function(){const s=$('pjQ');clear(s);twoBars(s,0.31,0.24,'City A (200)','City B (200)',20);})();
+(function(){function draw(k){const s=$('pjSol');if(k<1){clear(s);lab(s,280,110,'Click the answers →',MUTED,'middle',14,600);return;}const r=zpic(s,1.57,'ne',{B:180});if(k>=2)lab(s,110,60,'two tails: p ≈ 0.117',ROSE,'middle',14);if(k>=3)lab(s,110,82,'> 0.05 → fail to reject',NAVY,'middle',13);}draw(0);onStep('pjSol',draw);})();
+
+/* hearing: test vs interval */
+(function(){function draw(k){const s=$('hlSol');clear(s);if(k<1){lab(s,280,100,'Click the answers →',MUTED,'middle',14,600);return;}
+  const g=sub(s,0,110);const r=ncurve(g,0,1,{B:80,lo:-4.5,hi:4.5,ticks:[-4,-2,0,2,4],a:4.1,b:4.5});vline(g,r.X(4.1),10,80,ROSE,'z = 4.10',true,'end',18);
+  if(k>=2){const X=axis(s,40,540,175,-0.02,0.08,0.02,'p₂₀₀₅ − p₁₉₈₈',11,v=>(+v.toFixed(2)).toString());vline(s,X(0),120,175,GOLDD,'',true);el('line',{x1:X(0.023),x2:X(0.069),y1:140,y2:140,stroke:ROSE,'stroke-width':8,'stroke-linecap':'round'},s);lab(s,X(0.046),128,'95% CI (0.023, 0.069): how big',ROSE,'middle',12);}}draw(0);onStep('hlSol',draw);})();
+
+/* re-randomization sim */
+let rrD=[];
+function rrDraw(){const s=$('rrSvg');rrPlot(s,rrD.length?rrD:[0],272,true);const n=rrD.length,e=rrD.filter(v=>v<=-0.333+1e-9).length;$('rrN').textContent=n;$('rrP').textContent=n?(e/n).toFixed(4):'–';
+  $('rrMsg').innerHTML=n?`${e} of ${n} re-randomizations gave a difference of −0.333 or less → simulated p-value ≈ <b>${(e/n).toFixed(3)}</b> (z test: 0.0096).`:'Click to shuffle.';}
+function rrAdd(m){let last;for(let i=0;i<m;i++){last=shuffleDiff();rrD.push(last);}$('rrLast').textContent='last shuffle: p̂D − p̂L = '+last.toFixed(3);rrDraw();}
+$('rr1').onclick=()=>rrAdd(1);$('rr100').onclick=()=>rrAdd(100);$('rr1000').onclick=()=>rrAdd(1000);$('rrClr').onclick=()=>{rrD=[];$('rrLast').textContent='';rrDraw();};rrAdd(200);
+
+/* exit */
+(function(){function draw(k){const s=$('exSol');clear(s);if(k<2){tags4(s,k,60);return;}zpic(s,1.87,'gt',{B:150,p:'0.031'});}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

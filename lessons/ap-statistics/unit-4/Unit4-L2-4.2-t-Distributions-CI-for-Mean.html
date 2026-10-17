@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 4 · Lesson 2 — The t Distributions · Confidence Interval for μ</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:19px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+table.st td,table.st th{padding:5px 9px!important;font-size:15px}
+.formula{font-family:var(--serif,Georgia);font-size:24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr>span{display:block;padding:0 5px}.fr>span:first-child{border-bottom:2px solid var(--ink)}
+.sq{display:inline-block;border-top:2px solid var(--ink);padding:0 3px;margin-left:1px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}.zbox b{font-family:var(--mono);font-size:20px;display:block;color:var(--navy)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.steps4 .card{padding:10px 12px}
+.tmpl{background:#fff;border:2px dashed var(--rose-2);border-radius:12px;padding:10px 14px;font-size:17px;line-height:1.55;margin-top:8px}
+.tmpl u{text-decoration:none;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 4 第二课：σ 未知时用 s 代替，改用 t 分布；单样本 t 区间的条件与计算。对应 TPS 10.1。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 4 · Lesson 2</div><h1>The t Distributions · Confidence Interval for μ</h1><div class="zhT">t 分布 · 总体均值的置信区间</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 4.2 · σ unknown · standard error s/√n · t distributions and df · conditions · one-sample t interval</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 10.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 4 全貌。" data-title="Unit 4 roadmap">
+<div class="tag">Unit 4 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 4 <span class="zh">单元路线图</span></h2>
+<p class="sub">Inference for Quantitative Data: Means · 10–20% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>4.1 Sampling Distribution of x̄<span class="old">TPS 7.3</span></div><div class="lesson now"><span class="n">2</span>4.2 t Distributions · t Interval for μ<span class="old">TPS 10.1</span></div><div class="lesson"><span class="n">3</span>4.2 + 4.3 Paired Data · Interval for μ_d<span class="old">TPS 10.3</span></div><div class="lesson"><span class="n">4</span>4.4 + 4.5 One-Sample t Test<span class="old">TPS 11.1</span></div><div class="lesson"><span class="n">5</span>4.4 + 4.5 Paired t Test<span class="old">TPS 11.1</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">6</span>4.6 Sampling Distribution of x̄₁ − x̄₂<span class="old">TPS 7.3</span></div><div class="lesson"><span class="n">7</span>4.7 + 4.8 Interval for μ₁ − μ₂<span class="old">TPS 10.2</span></div><div class="lesson"><span class="n">8</span>4.9 + 4.10 Two-Sample t Test<span class="old">TPS 11.2</span></div><div class="lesson"><span class="n">9</span>Review · Choosing an Inference Method<span class="old">Units 3–4</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 1 assumed we know σ. In real life we almost never do. Today: replace σ with s, and z* with t*. <span class="zh">σ 未知 → 用 s，并用 t* 代替 z*。</span></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 2 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">4.2.A · Skill 4.C</div><h3>t distributions <span class="stars">★★<span class="off">★★</span></span></h3><p>Describe t distributions: symmetric, wider tails, df = n − 1.</p><p class="zh muted small" style="margin-top:6px">描述 t 分布</p></div><div class="card"><div class="k">4.2.B · Skill 2.C</div><h3>Procedure <span class="stars">★★<span class="off">★★</span></span></h3><p>Identify a one-sample t interval for μ and define the parameter.</p><p class="zh muted small" style="margin-top:6px">选择单样本 t 区间</p></div><div class="card"><div class="k">4.2.C · Skill 4.E</div><h3>Conditions <span class="stars">★★★<span class="off">★</span></span></h3><p>Check Random, 10%, and the sample data condition.</p><p class="zh muted small" style="margin-top:6px">检验三个条件</p></div><div class="card"><div class="k">4.2.D · Skill 3.E</div><h3>Construct <span class="stars">★★★<span class="off">★</span></span></h3><p>Calculate x̄ ± t*·s/√n by hand and with technology.</p><p class="zh muted small" style="margin-top:6px">构造区间</p></div><div class="card"><div class="k">4.2.E · Skill 3.E</div><h3>SE &amp; ME <span class="stars">★★<span class="off">★★</span></span></h3><p>SE = s/√n; ME = t*·SE.</p><p class="zh muted small" style="margin-top:6px">标准误与误差范围</p></div><div class="card" style="background:var(--pink-3)"><div class="k">TPS 10.1</div><h3>Critical values <span class="stars">★★<span class="off">★★</span></span></h3><p>Find t* from Table B or invT.</p><p class="zh muted small" style="margin-top:6px">查 t* 临界值</p></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 2 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">5'</div>Warm-up: what goes wrong when we just plug in s?</div><div class="it"><div class="bar n" style="width:140px">12' · 4.2.A</div>t distributions · degrees of freedom · t*</div><div class="it"><div class="bar n" style="width:160px">20' · 4.2.B–E</div>Conditions · one-sample t interval · four steps · TInterval</div><div class="it"><div class="bar" style="width:50px">8'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Capture simulator · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 4.2.A.1–2 → 4.2.B.1 → 4.2.C.1 → 4.2.D.1–2 → 4.2.E.1–2</p><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 2 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simBingo" href="#"><span class="ic">🎮</span><span>Capture simulator: z vs. t<small>捕获率模拟：z 与 t · capture rates: z vs. t</small></span></a><a data-goto="simTz" href="#"><span class="ic">🎮</span><span>t vs. z explorer<small>t 与 z 对比 · df · C → t* vs. z*</small></span></a><a data-goto="simTi" href="#"><span class="ic">🎮</span><span>TInterval calculator<small>t 区间计算器 · data or stats → t interval</small></span></a></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Tomato BINGO">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Tomato BINGO <span class="zh">番茄宾果</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Tomato weights on a farm are normal with μ = 100 g and σ = 20 g. A farmer takes an SRS of only n = 4 tomatoes and builds a 99% interval for μ in three ways: <span class="zh">三种方法。</span></p><div class="q"><b class="n">M1</b>x̄ ± 2.576 · σ/√n (σ known)</div><div class="q"><b class="n">M2</b>x̄ ± 2.576 · s/√n (plug in s)</div><div class="q"><b class="n">M3</b>x̄ ± 5.841 · s/√n (use t*)</div><div class="q">Which methods capture μ = 100 about 99% of the time? Try the simulator.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. M1 captures about 99% — but in practice we never know σ.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. M2 captures noticeably fewer than 99% (only about 92% in the long run): with n = 4, s is very variable and often <b>too small</b>, so intervals are too short.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. M3 uses a larger critical value t* = 5.841 from a t distribution with df = 3 → captures about 99% again.</div></div></div><div class="keyidea">🔑 Using s adds variability → need a bigger critical value.</div><div class="takeaway">💡 When σ is unknown, use s and a t* critical value.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 190" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 4 · Lesson 2 · TPS 10.1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="先 n = 4 看 M2 明显不足；再拖到 n = 40，三种方法都接近 99%。" data-title="🎮 Simulator: Capture simulator: z vs. t" id="simBingo">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Capture simulator: z vs. t</span><span class="zh">捕获率模拟：z 与 t</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.A.2</span>
+<div class="row"><div class="col" style="flex:.72"><p class="small">Population: normal, μ = 100, σ = 20. Each click takes new samples and builds 99% intervals with all three methods. Pink = missed μ. <span class="zh">粉色 = 没有捕获 μ。</span></p>
+<div class="slider-row"><label>n</label><input id="bgN" max="40" min="2" type="range" value="4"/><span class="v" id="bgNV"></span></div>
+<div class="btns"><button class="b" id="bg1">+1</button><button class="b" id="bg50">+50</button><button class="b" id="bg500">+500</button><button class="b" id="bgClr">Reset</button></div>
+<div class="zbox"><div>M1 z, σ<b id="bgR1">–</b></div><div>M2 z, s<b id="bgR2" style="color:var(--rose)">–</b></div><div>M3 t, s<b id="bgR3">–</b></div></div><div class="note small" id="bgMsg" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="bgSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 4.2" data-sec="1" data-title="§ 4.2 Confidence Interval for a Population Mean">
+<div class="tag">Topic</div><div class="num">4.2</div><h1>Confidence Interval for a Population Mean</h1><div class="zhT">总体均值的置信区间</div><div class="eks">4.2.A t distributions<span>4.2.B–C Procedure &amp; conditions</span><span>4.2.D–E Calculate</span></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 4.2.A。William Gosset（Guinness 啤酒厂，笔名 Student）1908 年提出，所以叫 Student’s t。" data-title="The t Distributions">
+<div class="tag">4.2.A <b>· Key Concepts</b><span class="ek">EK 4.2.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>The t Distributions <span class="zh">t 分布</span></h2><div class="concept pink"><div class="term">Standardizing with s<span class="zh">用 s 标准化</span></div><div class="en">When σ is unknown, we use the standard error s/√n. The statistic t = (x̄ − μ)/(s/√n) has a t distribution with df = n − 1 (degrees of freedom).</div><div class="cn">σ 未知时用<b>标准误</b> s/√n。统计量 t = (x̄ − μ)/(s/√n) 服从自由度 df = n − 1 的 <b>t 分布</b>。</div></div><div class="concept pink"><div class="term">Shape<span class="zh">形状</span></div><div class="en">A family of <strong>symmetric, bell-shaped</strong> curves centered at 0 with <strong>wider (fatter) tails</strong> than the standard normal. As df increases, the t distribution gets closer to the standard normal.</div><div class="cn">一族<b>对称、钟形</b>、中心为 0 的曲线，尾部比标准正态<b>更厚</b>。<b>df 越大</b>越接近标准正态。</div></div><svg id="tdSvg" viewbox="0 0 1100 150" width="100%"></svg><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="df = 1 时 t* 很大；df 增加 t* 逐渐接近 z*。" data-title="🎮 Simulator: t vs. z explorer" id="simTz">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">t vs. z explorer</span><span class="zh">t 与 z 对比</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.A.1</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Move df and the confidence level. Dashed gray = standard normal. Compare t* with z*. <span class="zh">比较 t* 与 z*。</span></p>
+<div class="slider-row"><label>df</label><input id="tzDf" max="60" min="1" type="range" value="4"/><span class="v" id="tzDfV"></span></div>
+<div class="btns"><button class="b" data-tc="0.90">90%</button><button class="b on" data-tc="0.95">95%</button><button class="b" data-tc="0.99">99%</button></div>
+<div class="zbox"><div>t*<b id="tzT" style="color:var(--rose)">–</b></div><div>z*<b id="tzZ">–</b></div><div>t* − z*<b id="tzD">–</b></div></div><div class="note small" id="tzMsg" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="tzSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Finding t*">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 4.2.D.2 · Table B</span></div>
+<h2>Finding t* <span class="zh">查找临界值 t*</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>What critical value t* should be used?</p><div class="q"><b class="n">a</b>A 95% confidence interval based on an SRS of size n = 12.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">df = 11; 95% column → t* = 2.201. Calculator: invT(0.975, 11) = 2.201.</div></div><div class="q"><b class="n">b</b>A 90% confidence interval from a random sample of 48 observations.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">df = 47 is not in Table B → use df = 40 (more conservative): t* = 1.684. Calculator: invT(0.95, 47) ≈ 1.678.</div></div></div><div class="keyidea">🔑 df = n − 1; Table B: if your df is not listed, use the next smaller df.</div></div></div><div class="col vis"><div class="qv"><svg id="tsQ" viewbox="0 0 560 170" width="100%"></svg></div><div class="sv"><svg id="tsSol" viewbox="0 0 560 200" width="100%"></svg></div></div></div><div class="foot"><span>Unit 4 · Lesson 2 · TPS 10.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 4.2.B、4.2.D、4.2.E。计算器：STAT → TESTS → 8:TInterval（Data 或 Stats）。" data-title="One-Sample t Interval for μ">
+<div class="tag">4.2 <b>· Key Concepts</b><span class="ek">EK 4.2.B.1–3 · 4.2.D · 4.2.E</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>One-Sample t Interval for μ <span class="zh">单样本 t 区间</span></h2><div class="concept"><div class="term">Procedure<span class="zh">方法</span></div><div class="en">Use a <strong>one-sample t interval for μ</strong> (σ unknown). Define μ in context: “μ = the true mean <u>(variable)</u> of all <u>(population)</u>.”</div><div class="cn">用<b>单样本 t 区间</b>估计 μ（σ 未知），并在语境中定义 μ。</div></div><div class="concept pink"><div class="term">Formula<span class="zh">公式</span></div><div class="en">x̄ ± t* · s/√n, df = n − 1. SE = s/√n (standard error of x̄). ME = t* · s/√n.</div><div class="cn">x̄ ± t*·s/√n，df = n − 1；SE = s/√n；ME = t*·s/√n。</div></div><div class="formula" data-math-tex="\bar x\pm t^*\frac{s}{\sqrt n}\qquad\mathrm{df}=n-1">\bar x\pm t^*\frac{s}{\sqrt n}\qquad\mathrm{df}=n-1</div><div class="small formula-caption">df = n − 1</div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 4.2.C.1。n &amp;lt; 30 时必须画图（点图、箱线图、茎叶图）并描述。" data-title="Conditions for a t Interval">
+<div class="tag">4.2.C <b>· Key Concepts</b><span class="ek">EK 4.2.C.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Conditions for a t Interval <span class="zh">t 区间的条件</span></h2><div class="concept"><div class="term">Random<span class="zh">随机</span></div><div class="en">Data come from a <strong>random sample</strong> or a <strong>randomized experiment</strong>.</div><div class="cn">数据来自<b>随机样本</b>或<b>随机化实验</b>。</div></div><div class="concept"><div class="term">10%<span class="zh">10% 条件</span></div><div class="en">When sampling without replacement: n ≤ 10% of N.</div><div class="cn">不放回抽样：n ≤ 10%N。</div></div><div class="concept pink"><div class="term">Sample data (Normal/Large Sample)<span class="zh">样本数据条件</span></div><div class="en">The population is approximately normal, or n ≥ 30, or (if n &lt; 30) a graph of the sample data shows <strong>no strong skewness and no outliers</strong>.</div><div class="cn">总体近似正态，<b>或 n ≥ 30</b>，<b>或</b>（n &lt; 30 时）样本数据的图形<b>没有明显偏斜和离群值</b>。</div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Can we use t?">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 4.2.C.1.iii</span></div>
+<h2>Can we use t? <span class="zh">可以用 t 吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Is the sample data condition met?</p><div class="q"><b class="n">a</b>GPAs of a random sample of 50 students; the histogram is skewed left.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">a. Yes — n = 50 ≥ 30, so skewness in the sample is not a problem.</div></div><div class="q"><b class="n">b</b>Force (pounds) to pull apart 20 random pieces of Douglas fir; the dotplot is strongly skewed left with two low outliers.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">b. No — n = 20 &lt; 30 and the graph shows <b>strong skewness and outliers</b>. Don’t use t procedures.</div></div><div class="q"><b class="n">c</b>SAT Math scores of a random sample of 20 students; the boxplot is roughly symmetric with no outliers.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">c. Yes — n = 20 &lt; 30, but the boxplot shows no strong skewness and no outliers.</div></div></div><div class="keyidea">🔑 n ≥ 30? If not, look at the graph.</div></div></div><div class="col vis"><div class="qv"><svg id="cuQ" viewbox="0 0 560 230" width="100%"></svg></div><div class="sv"><svg id="cuSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 4 · Lesson 2 · TPS 10.1 (adapted)</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Screen tension">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 4.2 · Skill 3.E</span></div>
+<h2>Screen tension <span class="zh">屏幕张力</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Tension readings (mV) for a random sample of 20 screens from one day’s production:</p><p style="font-family:var(--mono);font-size:17px">269.5 297.0 269.6 283.3 304.8 280.4 233.5 257.4 317.5 327.4 264.7 307.7 310.0 343.3 328.1 342.6 338.8 340.1 374.6 336.1</p><div class="q">Construct and interpret a 90% confidence interval for the mean tension μ of all screens produced that day.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. State: 90% CI for μ = the true mean tension of all screens produced that day.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Plan:</b> one-sample t interval for μ. Random sample ✓; 20 &lt; 10% of the day’s screens ✓; n = 20 &lt; 30, but the dotplot shows no strong skewness or outliers ✓.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Do: x̄ = 306.32, s = 36.21, df = 19, t* = 1.729: 306.32 ± 1.729(36.21/√20) = 306.32 ± 14.00 → (292.32, 320.32) mV.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Conclude:</b> We are 90% confident that the interval from 292.32 to 320.32 mV captures the true mean tension of all screens produced that day.</div></div></div><div class="keyidea">🔑 State → Plan → Do → Conclude.</div></div></div><div class="col vis"><div class="qv"><svg id="stQ" viewbox="0 0 560 150" width="100%"></svg></div><div class="sv"><svg id="stSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 4 · Lesson 2 · TPS 10.1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="先用屏幕数据（选 90%），再清空数据框，输入睡眠例子的 6.8、1.2、25。" data-title="🎮 Simulator: TInterval calculator" id="simTi">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">TInterval calculator</span><span class="zh">t 区间计算器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.C–E</span>
+<div class="row"><div class="col" style="flex:.85"><p class="small">Paste data (space or comma separated) or clear the box and enter x̄, s, n. The simulator draws a dotplot to check the sample data condition. <span class="zh">输入数据或统计量。</span></p>
+<textarea id="tiData" style="width:100%;height:70px;font-size:15px;border:1px solid #ccd;border-radius:8px;padding:6px">269.5 297.0 269.6 283.3 304.8 280.4 233.5 257.4 317.5 327.4 264.7 307.7 310.0 343.3 328.1 342.6 338.8 340.1 374.6 336.1</textarea>
+<div class="slider-row"><label>x̄</label><input class="bigin" id="tiM" style="width:90px;font-size:16px" type="number" value=""/><label style="margin-left:6px">s</label><input class="bigin" id="tiS" style="width:80px;font-size:16px" type="number" value=""/><label style="margin-left:6px">n</label><input class="bigin" id="tiN" style="width:70px;font-size:16px" type="number" value=""/></div>
+<div class="btns"><button class="b" data-tic="0.90">90%</button><button class="b on" data-tic="0.95">95%</button><button class="b" data-tic="0.99">99%</button></div>
+<div class="small" id="tiOut"></div></div><div class="col frame"><svg id="tiSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: How much do students sleep?">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 4.2 · 4.3.A</span></div>
+<h2>How much do students sleep? <span class="zh">学生睡多久？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A random sample of 25 students at a large school recorded last night’s sleep: x̄ = 6.8 hours, s = 1.2 hours. A dotplot of the data is roughly symmetric with no outliers.</p><div class="q"><b class="n">a</b>Find the standard error and the margin of error for a 95% confidence interval.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">SE = 1.2/√25 = 0.24 hours; df = 24, t* = 2.064; ME = 2.064(0.24) ≈ 0.495 hours.</div></div><div class="q"><b class="n">b</b>Construct and interpret the interval.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">6.8 ± 0.495 → (6.305, 7.295). We are 95% confident that the interval from 6.31 to 7.30 hours captures the true mean sleep time last night for all students at this school.</div></div></div><div class="keyidea">🔑 SE = s/√n; ME = t*·SE.</div></div></div><div class="col vis"><svg id="slSol" viewbox="0 0 560 170" width="100%"></svg></div></div><div class="foot"><span>Unit 4 · Lesson 2 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 6: Degrees of freedom">
+<div class="exhead"><span class="badge ex">📝 AP Practice 6 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.D.2</span></div>
+<h2>Degrees of freedom</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A 95% confidence interval for μ is based on a random sample of 18 observations. What critical value should be used?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) z* = 1.96</li><li>(B) t* with df = 18</li><li>(C) t* with df = 17</li><li>(D) t* with df = 16</li><li>(E) z* = 1.645</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">σ is unknown → t*, df = 18 − 1 = 17 → (C) (t* = 2.110).</p></div></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 7: t vs. standard normal">
+<div class="exhead"><span class="badge ex">📝 AP Practice 7 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.A.1</span></div>
+<h2>t vs. standard normal</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which statement about t distributions is FALSE?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) They are symmetric about 0.</li><li>(B) They have more area in the tails than the standard normal.</li><li>(C) As df increases, they approach the standard normal.</li><li>(D) For the same confidence level, t* is smaller than z*.</li><li>(E) There is a different t distribution for each df.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Because of the wider tails, t* is always <b>larger</b> than z* for the same confidence level → (D) is false.</p></div></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 8: Sample data condition">
+<div class="exhead"><span class="badge ex">📝 AP Practice 8 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.C.1.iii</span></div>
+<h2>Sample data condition</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A random sample of 12 house prices from a city is strongly skewed to the right with one high outlier. Is a one-sample t interval for the mean house price appropriate?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) Yes, because the sample is random.</li><li>(B) Yes, because t procedures are robust to any skewness.</li><li>(C) No, because n &lt; 30 and the data show strong skewness and an outlier.</li><li>(D) No, because σ is unknown.</li><li>(E) Yes, if we use a 99% confidence level.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">With n = 12 &lt; 30, the sample data must be free of strong skewness and outliers. They are not → (C).</p></div></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Standard error">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 4.2.E.1</span></div>
+<h2>Standard error</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A random sample of 64 bags has x̄ = 12.1 oz and s = 0.4 oz. What is the standard error of x̄?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) 0.4</li><li>(B) 0.2</li><li>(C) 0.05</li><li>(D) 0.00625</li><li>(E) 0.025</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">SE = 0.4/√64 = 0.4/8 = 0.05 → (C).</p></div></div></div><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">t distribution</th><td class="zh" style="text-align:left">t 分布</td><td style="text-align:left">symmetric, fatter tails, df = n − 1</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Degrees of freedom (df)</th><td class="zh" style="text-align:left">自由度</td><td style="text-align:left">n − 1 for one sample</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Standard error of x̄</th><td class="zh" style="text-align:left">x̄ 的标准误</td><td style="text-align:left">s/√n</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">One-sample t interval</th><td class="zh" style="text-align:left">单样本 t 区间</td><td style="text-align:left">x̄ ± t*·s/√n</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Sample data condition</th><td class="zh" style="text-align:left">样本数据条件</td><td style="text-align:left">normal pop., or n ≥ 30, or no strong skew/outliers</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 4 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">4.2</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A company claims its chips bags contain <b>28 g</b>. A random sample of 15 bags gives <b>x̄ = 28.4 g</b> and <b>s = 0.9 g</b>; a dotplot shows no strong skewness or outliers.</p><div class="q"><b class="n">1</b>Construct a 99% confidence interval for the true mean weight.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Conditions ✓ (random, 15 &lt; 10% of bags, no strong skew/outliers). 28.4 ± 2.977(0.9/√15) = 28.4 ± 0.692 → (27.71, 29.09) g.</div></div><div class="q"><b class="n">2</b>Does the interval give convincing evidence against the company’s claim?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No — 28 g is inside the interval, so 28 g is a plausible value for the true mean weight.</div></div></div><div class="keyidea">🔑 df = 14, t* = 2.977.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 150" width="100%"></svg></div></div><div class="foot"><span>Unit 4 · Lesson 2 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide extension" data-notes="Optional algebra explanation. Return to core practice after discussion. | Algebra explanation: identities shown on this slide. Reference: https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/t_test.htm" data-title="Extension: Why t instead of z?"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">3 min · beyond required derivation</div><h2>Why t instead of z?<span class="zh">估计 σ 带来的额外不确定性</span></h2><div class="bridge-body"><p>If σ were known, we would standardize with σ/√n. In practice, s changes from sample to sample, so the denominator is also uncertain.</p><div class="algebra" data-math-tex="Z=\frac{\bar X-\mu}{\sigma/\sqrt n}\qquad T=\frac{\bar X-\mu}{S/\sqrt n}">Z=\frac{\bar X-\mu}{\sigma/\sqrt n}\qquad T=\frac{\bar X-\mu}{S/\sqrt n}</div><p>For independent observations from a normal population, T has exactly a t distribution with n − 1 degrees of freedom. For other populations, the t procedure is an approximation under suitable conditions.</p><p>A small S can make |T| unusually large. The t distribution allows more tail probability. As n grows, S estimates σ more stably and t approaches the standard normal.</p><p class="bridge-cn">t 分布的厚尾反映分母也在波动。n−1 来自估计样本方差时的一个均值约束。</p><details><summary>Check your understanding · Why is t* larger for a smaller sample?</summary><p>More uncertainty about σ requires a wider interval at the same confidence level.</p></details></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide extension" data-notes="此表是跨课联系，可在两样本课程再回来复习。 | Algebra explanation: identities shown on this slide. Reference: https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/t_test.htm" data-title="Extension: Degrees of freedom: four settings"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">3 min · beyond required derivation</div><h2>Degrees of freedom: four settings<span class="zh">不要把所有 df 都写成 n−1</span></h2><div class="bridge-body"><table class="bridge-table"><tr><th>Setting</th><th>Degrees of freedom</th><th>Constraint / reason</th></tr><tr><td>One-sample t</td><td>n − 1</td><td>Estimate one mean</td></tr><tr><td>Paired t</td><td>number of pairs − 1</td><td>Analyze one list of differences</td></tr><tr><td>Two-way χ² table</td><td>(rows − 1)(columns − 1)</td><td>Fix row and column totals</td></tr><tr><td>Welch two-sample t</td><td>Technology, possibly noninteger</td><td>Approximation using two estimated variances</td></tr></table><p>“Information remaining after constraints” is a useful intuition. Welch df is an effective approximation, not a literal count of free data values.</p><p class="bridge-cn">配对的 n 是“对数”；Welch 的 df 可以是小数。不能把所有方法都套成“样本量减1”。</p></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide cover" data-notes="下节课：4.2 + 4.3（TPS 10.3）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 3</div><h1>Paired Data · Interpreting Intervals for μ</h1><div class="zhT">配对数据 · 解释均值区间 · Topics 4.2–4.3</div><p class="muted" style="margin-top:26px;font-size:22px">Matched pairs and the mean difference μ_{d}; interpreting confidence intervals and levels; how C and n change the width.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 3 shared helpers ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390',MINT='#2E8B6E';
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+(+v).toFixed(d)).toString();
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs,fmt){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,fmt?fmt(t):+t.toFixed(3));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function gauss(r){r=r||Math.random;const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function binom(n,p,r){r=r||Math.random;let c=0;for(let i=0;i<n;i++)if(r()<p)c++;return c;}
+/* histogram of values on an axis X with bins of width w starting at lo; returns counts */
+function histX(svg,X,vals,lo,w,B,H,col,hl){const cnt={};vals.forEach(v=>{const k=Math.floor((v-lo)/w+1e-9);cnt[k]=(cnt[k]||0)+1;});const mx=Math.max(1,...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c])=>{const a=lo+k*w;el('rect',{x:X(a)+0.5,y:B-c/mx*H,width:Math.max(1,X(a+w)-X(a)-1),height:c/mx*H,fill:hl&&hl(a,a+w)?ROSE:(col||NAVY)},svg);});return cnt;}
+/* stacked dots for discrete values */
+function dotsX(svg,X,vals,B,r,dy,colf){const cnt={};vals.forEach(v=>{const k=(+v).toFixed(4);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(+v),cy:B-r-1-(cnt[k]-1)*dy,r,fill:colf?colf(+v):NAVY},svg);});return cnt;}
+function normPath(svg,X,Y0,H,mu,sd,lo,hi,col,fill,a,b){const f=x=>Math.exp(-(((x-mu)/sd)**2)/2);
+  if(a!==undefined){const aa=Math.max(lo,a),bb=Math.min(hi,b);if(bb>aa){let d=`M${X(aa)},${Y0}`;for(let i=0;i<=100;i++){const x=aa+(bb-aa)*i/100;d+=`L${X(x)},${Y0-H*f(x)}`;}el('path',{d:d+`L${X(bb)},${Y0}Z`,fill:fill||'#F4C3D0'},svg);}}
+  let d='';for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;d+=`${i?'L':'M'}${X(x)},${Y0-H*f(x)}`;}el('path',{d,fill:'none',stroke:col||NAVY,'stroke-width':2.5},svg);}
+function zcrit(C){return invn(1-(1-C)/2);}
+/* ===== t-distribution helpers ===== */
+function lgam(z){const g=7,c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];if(z<0.5)return Math.log(Math.PI/Math.sin(Math.PI*z))-lgam(1-z);z-=1;let x=c[0];for(let i=1;i<g+2;i++)x+=c[i]/(z+i);const t=z+g+0.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x);}
+function betacf(a,b,x){let qab=a+b,qap=a+1,qam=a-1,c=1,d=1-qab*x/qap;if(Math.abs(d)<1e-300)d=1e-300;d=1/d;let h=d;for(let m=1;m<300;m++){const m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));d=1+aa*d;if(Math.abs(d)<1e-300)d=1e-300;c=1+aa/c;if(Math.abs(c)<1e-300)c=1e-300;d=1/d;h*=d*c;aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));d=1+aa*d;if(Math.abs(d)<1e-300)d=1e-300;c=1+aa/c;if(Math.abs(c)<1e-300)c=1e-300;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<1e-14)break;}return h;}
+function ibeta(x,a,b){if(x<=0)return 0;if(x>=1)return 1;const bt=Math.exp(lgam(a+b)-lgam(a)-lgam(b)+a*Math.log(x)+b*Math.log(1-x));return x<(a+1)/(a+b+2)?bt*betacf(a,b,x)/a:1-bt*betacf(b,a,1-x)/b;}
+function tcdf(t,df){const x=df/(df+t*t);const p=0.5*ibeta(x,df/2,0.5);return t>=0?1-p:p;}
+function tpdf(t,df){return Math.exp(lgam((df+1)/2)-lgam(df/2)-0.5*Math.log(df*Math.PI)-(df+1)/2*Math.log(1+t*t/df));}
+function tinv(p,df){let lo=-60,hi=60;for(let i=0;i<120;i++){const m=(lo+hi)/2;if(tcdf(m,df)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+function tcrit(C,df){return tinv(1-(1-C)/2,df);}
+function welchDf(s1,n1,s2,n2){const a=s1*s1/n1,b=s2*s2/n2;return (a+b)**2/(a*a/(n1-1)+b*b/(n2-1));}
+/* draw t (and optionally z) curves; o:{B,H,lo,hi,a,b,a2,b2,fill,z:true,label,L,R} returns X */
+function tcurve(s,df,o){o=o||{};const L=o.L||40,R=o.R||540,B=o.B||220,H=o.H||170,lo=o.lo??-4,hi=o.hi??4;const X=v=>L+(v-lo)/(hi-lo)*(R-L);const pk=Math.max(npdf(0),tpdf(0,df));const Y=v=>B-v/pk*H*0.95;
+  const shade=(a,b)=>{a=Math.max(lo,a);b=Math.min(hi,b);if(b<=a)return;let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const v=a+(b-a)*i/120;d+=`L${X(v).toFixed(1)},${Y(tpdf(v,df)).toFixed(1)}`;}el('path',{d:d+`L${X(b)},${B}Z`,fill:o.fill||'#F4C3D0'},s);};
+  if(o.a!==undefined)shade(o.a,o.b);if(o.a2!==undefined)shade(o.a2,o.b2);
+  if(o.z){let d='';for(let i=0;i<=240;i++){const v=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(v).toFixed(1)},${Y(npdf(v)).toFixed(1)}`;}el('path',{d,fill:'none',stroke:GREY,'stroke-width':2,'stroke-dasharray':'5 4'},s);}
+  let d='';for(let i=0;i<=240;i++){const v=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(v).toFixed(1)},${Y(tpdf(v,df)).toFixed(1)}`;}el('path',{d,fill:'none',stroke:o.col||NAVY,'stroke-width':2.5},s);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);(o.ticks||[-3,-2,-1,0,1,2,3]).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},s);el('text',{x:X(t),y:B+18,'text-anchor':'middle','font-size':11,fill:INK},s,t);});
+  if(o.label!==false)el('text',{x:(L+R)/2,y:B+34,'text-anchor':'middle','font-size':12,'font-weight':700,fill:INK},s,o.label||`t distribution, df = ${+(+df).toFixed(1)}`);return {X,Y};}
+const sd=a=>{const m=mean(a);return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/(a.length-1));};
+/* ===== Unit 4 · Lesson 2 ===== */
+const TEN=[269.5,297.0,269.6,283.3,304.8,280.4,233.5,257.4,317.5,327.4,264.7,307.7,310.0,343.3,328.1,342.6,338.8,340.1,374.6,336.1];
+function ivlh(s,X,y,a,b,col,w){el('line',{x1:X(a),x2:X(b),y1:y,y2:y,stroke:col,'stroke-width':w||3,'stroke-linecap':'round'},s);}
+function dotplot(s,X,vals,B,r,col,step){const cnt={};vals.forEach(v=>{const k=Math.round(v/step)*step;cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(k),cy:B-r-(cnt[k]-1)*(2*r+1),r,fill:col||NAVY},s);});}
+/* warm-up: three methods, 20 intervals */
+function bingo(n,r){const xs=[...Array(n)].map(()=>100+20*gauss(r));const m=mean(xs),s=sd(xs);const z=2.576,t=tcrit(0.99,n-1);return [[m-z*20/Math.sqrt(n),m+z*20/Math.sqrt(n)],[m-z*s/Math.sqrt(n),m+z*s/Math.sqrt(n)],[m-t*s/Math.sqrt(n),m+t*s/Math.sqrt(n)]];}
+function bingoPic(s,ivs,B,showAll){clear(s);const lo=0,hi=200,L=40,R=540;const cw=(R-L)/3;
+  ['M1: z*, σ','M2: z*, s','M3: t*, s'].forEach((t,j)=>{if(!showAll&&j>0)return;const X=v=>L+j*cw+10+(Math.max(lo,Math.min(hi,v))-lo)/(hi-lo)*(cw-20);lab(s,L+j*cw+cw/2,16,t,j===1?ROSE:NAVY,'middle',12,700);vline(s,X(100),24,B,GOLDD,'',true);
+   let miss=0;ivs.forEach((iv,i)=>{const [a,b]=iv[j];const hit=a<=100&&100<=b;if(!hit)miss++;ivlh(s,X,30+i*((B-40)/ivs.length),a,b,hit?NAVY:ROSE,hit?2:3.5);});lab(s,L+j*cw+cw/2,B+16,`${ivs.length-miss}/${ivs.length} capture`,j===1?ROSE:NAVY,'middle',12);});}
+const BG=(function(){const r=srand(21);return [...Array(25)].map(()=>bingo(4,r));})();
+(function(){bingoPic($('wuQ'),BG,160,false);})();
+(function(){function draw(k){bingoPic($('wuSol'),BG,195,true);}draw(0);onStep('wuSol',draw);})();
+
+/* capture sim */
+let bgD=[];
+function bgDraw(){const n=+$('bgN').value;$('bgNV').textContent=n;bingoPic($('bgSvg'),bgD.slice(-30),300,true);const N=bgD.length;const rate=j=>N?(100*bgD.filter(iv=>iv[j][0]<=100&&100<=iv[j][1]).length/N).toFixed(1)+'%':'–';
+  $('bgR1').textContent=rate(0);$('bgR2').textContent=rate(1);$('bgR3').textContent=rate(2);$('bgMsg').innerHTML=N?`${N} samples of size ${n}. t* = ${tcrit(0.99,n-1).toFixed(3)} vs. z* = 2.576.`:'Click to sample.';}
+function bgAdd(m){const n=+$('bgN').value;for(let i=0;i<m;i++)bgD.push(bingo(n));bgDraw();}
+$('bgN').oninput=()=>{bgD=[];bgDraw();};$('bg1').onclick=()=>bgAdd(1);$('bg50').onclick=()=>bgAdd(50);$('bg500').onclick=()=>bgAdd(500);$('bgClr').onclick=()=>{bgD=[];bgDraw();};bgAdd(200);
+
+/* t family (1100) */
+(function(){const s=$('tdSvg');clear(s);const L=60,R=760,B=125,lo=-4,hi=4,X=v=>L+(v-lo)/(hi-lo)*(R-L),Y=v=>B-v/npdf(0)*105;
+  let d='';for(let v=lo;v<=hi;v+=0.05)d+=`${v===lo?'M':'L'}${X(v)},${Y(npdf(v))}`;el('path',{d,fill:'none',stroke:GREY,'stroke-width':2.5,'stroke-dasharray':'6 4'},s);
+  [[1,ROSE],[4,GOLDD],[20,NAVY]].forEach(([df,c])=>{let d='';for(let v=lo;v<=hi+1e-9;v+=0.05)d+=`${v===lo?'M':'L'}${X(v)},${Y(tpdf(v,df))}`;el('path',{d,fill:'none',stroke:c,'stroke-width':2.5},s);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);[-3,-2,-1,0,1,2,3].forEach(t=>lab(s,X(t),B+16,t,INK,'middle',11));
+  [['t, df = 1',ROSE],['t, df = 4',GOLDD],['t, df = 20',NAVY],['standard normal',GREY]].forEach(([t,c],i)=>{el('line',{x1:820,x2:860,y1:28+i*26,y2:28+i*26,stroke:c,'stroke-width':3,'stroke-dasharray':i===3?'6 4':''},s);lab(s,870,33+i*26,t,c==GREY?MUTED:c,'start',14);});})();
+
+/* t vs z explorer */
+let tzC=0.95;
+function tzRun(){const df=+$('tzDf').value;$('tzDfV').textContent=df;const s=$('tzSvg');clear(s);const t=tcrit(tzC,df),z=zcrit(tzC);const hi=Math.max(4,Math.min(t+0.8,8));
+  const r=tcurve(s,df,{B:260,H:210,lo:-hi,hi,a:-hi,b:-t,a2:t,b2:hi,z:true,ticks:[-6,-4,-2,0,2,4,6].filter(v=>Math.abs(v)<=hi)});vline(s,r.X(t),40,260,ROSE,'t* = '+t.toFixed(3),true,'start',46);vline(s,r.X(z),70,260,MUTED,'z* = '+z.toFixed(3),true,'end',76);
+  $('tzT').textContent=t.toFixed(3);$('tzZ').textContent=z.toFixed(3);$('tzD').textContent=(t-z).toFixed(3);$('tzMsg').innerHTML=`df = ${df}: the middle ${Math.round(tzC*100)}% of the t distribution lies between −${t.toFixed(3)} and ${t.toFixed(3)}. ${df>=30?'Close to z*.':'Noticeably larger than z*.'}`;}
+$('tzDf').oninput=tzRun;document.querySelectorAll('[data-tc]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tc]').forEach(x=>x.classList.remove('on'));b.classList.add('on');tzC=+b.dataset.tc;tzRun();});tzRun();
+
+/* finding t* */
+function tableB(s,y0,hl){const rows=[[10,1.372,1.812,2.228],[11,1.363,1.796,2.201],[12,1.356,1.782,2.179],[30,1.310,1.697,2.042],[40,1.303,1.684,2.021],[50,1.299,1.676,2.009]];const cols=['df','80%','90%','95%'];
+  cols.forEach((c,j)=>box(s,60+j*110,y0,104,24,NAVY,NAVY,c,'#fff',12,4));rows.forEach((r,i)=>r.forEach((v,j)=>{const h=hl&&hl(i,j);box(s,60+j*110,y0+26+i*22,104,20,h?'rgba(226,182,79,.45)':'#fff',h?GOLDD:GREY,v,INK,12,4);}));}
+(function(){const s=$('tsQ');clear(s);tableB(s,6,null);})();
+(function(){function draw(k){const s=$('tsSol');clear(s);tableB(s,6,(i,j)=>(k>=1&&i===1&&j===3)||(k>=2&&i===4&&j===2)||(k>=1&&i===1&&j===0)||(k>=2&&i===4&&j===0));if(k>=1)lab(s,280,180,k>=2?'df = 11 → 2.201 · df 47 → use 40 → 1.684':'df = 11 → t* = 2.201',ROSE,'middle',14);}draw(0);onStep('tsSol',draw);})();
+
+/* can we use t */
+const GPA=(function(){const r=srand(5);return [...Array(50)].map(()=>Math.min(4,4-Math.abs(gauss(r))*0.6));})();
+const FIR=[33.8,36.5,40.2,41.5,42.5,43.1,43.6,44.0,44.5,45.0,45.2,45.6,45.9,46.3,46.6,47.0,47.2,47.6,48.0,48.3];FIR[0]=24.0;FIR[1]=27.5;
+function cuPic(s,k){clear(s);const rows=[['a  GPA (n = 50)',GPA,1.6,4.0,0.1],['b  Fir force (n = 20)',FIR,22,50,1],['c  SAT Math (n = 20)',null,400,700,20]];
+  rows.forEach(([t,v,lo,hi,st],i)=>{const B=62+i*72,L=150,R=540,X=x=>L+(x-lo)/(hi-lo)*(R-L);lab(s,10,B-20,t,INK,'start',12,700);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);lab(s,L,B+14,lo,MUTED,'middle',10);lab(s,R,B+14,hi,MUTED,'middle',10);
+   if(i===0){const bins=Array(12).fill(0);v.forEach(x=>{const b=Math.min(11,Math.floor((x-1.6)/0.2));bins[b]++;});const mx=Math.max(...bins);bins.forEach((c,j)=>el('rect',{x:X(1.6+j*0.2)+1,y:B-c/mx*45,width:X(0.2)-X(0)-2,height:c/mx*45,fill:LAV},s));}
+   else if(i===1)dotplot(s,X,v,B,4,LAV,1);
+   else{const q=[470,525,555,585,640];el('line',{x1:X(q[0]),x2:X(q[1]),y1:B-22,y2:B-22,stroke:NAVY,'stroke-width':2},s);el('line',{x1:X(q[3]),x2:X(q[4]),y1:B-22,y2:B-22,stroke:NAVY,'stroke-width':2},s);el('rect',{x:X(q[1]),y:B-36,width:X(q[3])-X(q[1]),height:28,fill:'rgba(140,150,200,.3)',stroke:NAVY,'stroke-width':2},s);el('line',{x1:X(q[2]),x2:X(q[2]),y1:B-36,y2:B-8,stroke:NAVY,'stroke-width':2},s);}
+   if(k>=i+1){const ok=i!==1;box(s,460,B-58,80,24,ok?MINT:ROSE,ok?MINT:ROSE,ok?'use t ✓':'don’t ✗','#fff',12,6);}});}
+(function(){cuPic($('cuQ'),0);})();(function(){function draw(k){cuPic($('cuSol'),k);}draw(0);onStep('cuSol',draw);})();
+
+/* screen tension */
+function tenPlot(s,B,k){clear(s);const lo=220,hi=390,L=40,R=540,X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);for(let t=220;t<=380;t+=20){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},s);lab(s,X(t),B+18,t,INK,'middle',11);}lab(s,(L+R)/2,B+34,'tension (mV)',INK,'middle',12,700);
+  dotplot(s,X,TEN,B,5,LAV,5);if(k>=3){el('line',{x1:X(292.32),x2:X(320.32),y1:B-80,y2:B-80,stroke:ROSE,'stroke-width':8,'stroke-linecap':'round'},s);el('circle',{cx:X(306.32),cy:B-80,r:7,fill:'#fff',stroke:ROSE,'stroke-width':2.5},s);lab(s,X(292.32),B-96,'292.32',ROSE,'middle',12);lab(s,X(320.32),B-96,'320.32',ROSE,'middle',12);}return X;}
+(function(){tenPlot($('stQ'),100,0);})();
+(function(){function draw(k){const s=$('stSol');const B=210;tenPlot(s,B,k);['STATE','PLAN','DO','CONCLUDE'].forEach((t,i)=>box(s,30+i*130,6,118,28,k>=i+1?ROSE:'#fff',k>=i+1?ROSE:GREY,t,k>=i+1?'#fff':MUTED,13,8));if(k>=2)lab(s,280,60,'no strong skew, no outliers ✓',MINT,'middle',13);}draw(0);onStep('stSol',draw);})();
+
+/* TInterval calculator */
+let tiC=0.95;
+function tiRun(){const raw=nums($('tiData').value);let m,s0,n;const s=$('tiSvg');clear(s);
+  if(raw.length>=2){m=mean(raw);s0=sd(raw);n=raw.length;$('tiM').value='';$('tiS').value='';$('tiN').value='';}else{m=+$('tiM').value;s0=+$('tiS').value;n=+$('tiN').value;}
+  if(!(n>=2&&s0>0)){$('tiOut').innerHTML='Enter data, or x̄, s and n.';return;}
+  const df=n-1,t=tcrit(tiC,df),se=s0/Math.sqrt(n),me=t*se;
+  $('tiOut').innerHTML=`<div class="formula" style="font-size:16px;margin:4px 0">x̄ = ${m.toFixed(3)}, s = ${s0.toFixed(3)}, n = ${n}, df = ${df}<br>SE = ${se.toFixed(4)} · t* = ${t.toFixed(3)} · ME = ${me.toFixed(3)}</div><div><b style="font-size:20px;color:var(--rose)">(${(m-me).toFixed(3)}, ${(m+me).toFixed(3)})</b></div><div class="small">${n>=30?'n ≥ 30 ✓ (sample data condition met)':raw.length?'n &lt; 30: check the dotplot for strong skewness or outliers →':'n &lt; 30: you must check a graph of the data.'}</div>`;
+  const lo=Math.min(m-1.6*me,...(raw.length?raw:[m])),hi=Math.max(m+1.6*me,...(raw.length?raw:[m]));const pad=(hi-lo)*0.05;const X=axis(s,40,540,250,lo-pad,hi+pad,(hi-lo+2*pad)/6,'',10,v=>(+v.toPrecision(4)).toString());
+  if(raw.length)dotplot(s,X,raw,250,4,LAV,(hi-lo)/40||1);el('line',{x1:X(m-me),x2:X(m+me),y1:70,y2:70,stroke:ROSE,'stroke-width':9,'stroke-linecap':'round'},s);el('circle',{cx:X(m),cy:70,r:7,fill:'#fff',stroke:ROSE,'stroke-width':2.5},s);lab(s,X(m),50,Math.round(tiC*100)+'% t interval',ROSE,'middle',13);}
+['tiData','tiM','tiS','tiN'].forEach(i=>$(i).oninput=tiRun);document.querySelectorAll('[data-tic]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tic]').forEach(x=>x.classList.remove('on'));b.classList.add('on');tiC=+b.dataset.tic;tiRun();});tiRun();
+
+/* sleep */
+(function(){function draw(k){const s=$('slSol');clear(s);const X=axis(s,40,540,130,6.0,7.6,0.2,'mean hours of sleep',11,v=>v.toFixed(1));el('circle',{cx:X(6.8),cy:80,r:7,fill:NAVY},s);lab(s,X(6.8),62,'x̄ = 6.8',NAVY,'middle',13);
+  if(k>=1)lab(s,X(7.25),62,'SE 0.24 · ME 0.495',GOLDD,'middle',12);if(k>=2){el('line',{x1:X(6.305),x2:X(7.295),y1:100,y2:100,stroke:ROSE,'stroke-width':8,'stroke-linecap':'round'},s);lab(s,X(6.305),118,'6.305',ROSE,'middle',12);lab(s,X(7.295),118,'7.295',ROSE,'middle',12);}}draw(0);onStep('slSol',draw);})();
+
+/* exit */
+(function(){function draw(k){const s=$('exSol');clear(s);const X=axis(s,40,540,110,27.4,29.4,0.2,'mean weight (g)',11,v=>v.toFixed(1));if(k>=1){el('line',{x1:X(27.71),x2:X(29.09),y1:60,y2:60,stroke:ROSE,'stroke-width':8,'stroke-linecap':'round'},s);lab(s,X(27.71),44,'27.71',ROSE,'middle',12);lab(s,X(29.09),44,'29.09',ROSE,'middle',12);}if(k>=2)vline(s,X(28),20,110,MINT,'28 inside → plausible',true,'start',24);}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

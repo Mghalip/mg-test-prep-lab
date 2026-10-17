@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 3 · Lesson 1 — Estimators</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:19px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+table.st td,table.st th{padding:5px 9px!important;font-size:15px}
+.formula{font-family:var(--serif,Georgia);font-size:24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr>span{display:block;padding:0 5px}.fr>span:first-child{border-bottom:2px solid var(--ink)}
+.sq{display:inline-block;border-top:2px solid var(--ink);padding:0 3px;margin-left:1px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}.zbox b{font-family:var(--mono);font-size:20px;display:block;color:var(--navy)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.steps4 .card{padding:10px 12px}
+.tmpl{background:#fff;border:2px dashed var(--rose-2);border-radius:12px;padding:10px 14px;font-size:17px;line-height:1.55;margin-top:8px}
+.tmpl u{text-decoration:none;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 3 第一课：3.1 估计量，对应 TPS 7.1。抽样分布的基本概念在 Unit 2 Lesson 8 已讲，这里重点是估计量的无偏性与变异性。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 3 · Lesson 1</div><h1>Estimators</h1><div class="zhT">估计量：用样本估计总体</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 3.1 Estimators · point estimates · unbiased estimators · bias &amp; variability</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 7.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 3 全貌。" data-title="Unit 3 roadmap">
+<div class="tag">Unit 3 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 3 <span class="zh">单元路线图</span></h2>
+<p class="sub">Inference for Categorical Data: Proportions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson now"><span class="n">1</span>3.1 Estimators<span class="old">TPS 7.1</span></div><div class="lesson"><span class="n">2</span>3.2 + 3.9 Sampling Distributions of p̂ and p̂₁ − p̂₂<span class="old">TPS 7.2</span></div><div class="lesson"><span class="n">3</span>3.3 + 3.4 Confidence Intervals: The Basics<span class="old">TPS 8.1</span></div><div class="lesson"><span class="n">4</span>3.3 + 3.4 Confidence Interval for p<span class="old">TPS 8.2</span></div><div class="lesson"><span class="n">5</span>3.5 + 3.6 + 3.8 Significance Tests: The Basics<span class="old">TPS 9.1</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">6</span>3.7 + 3.8 Test for p · Power<span class="old">TPS 9.2</span></div><div class="lesson"><span class="n">7</span>3.10 + 3.11 Interval for p₁ − p₂<span class="old">TPS 8.3</span></div><div class="lesson"><span class="n">8</span>3.12 + 3.13 Test for p₁ − p₂<span class="old">TPS 9.3</span></div><div class="lesson"><span class="n">9</span>3.14 Setting Up a Chi-Square Test<span class="old">TPS 12.2</span></div><div class="lesson"><span class="n">10</span>3.15 Carrying Out a Chi-Square Test<span class="old">TPS 12.2</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Unit 2 ended with sampling distributions. Unit 3 uses them to <strong>estimate</strong> and test population proportions. Today: what makes a statistic a <strong>good estimator</strong>? <span class="zh">什么样的统计量是好的估计量？</span></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 1 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">3.1.B · Skill 3.D</div><h3>Point estimates <span class="stars">★<span class="off">★★★</span></span></h3><p>Calculate a point estimate for a population parameter (p̂ for p, x̄ for μ, …).</p><p class="zh muted small" style="margin-top:6px">计算点估计值</p></div><div class="card" style="background:var(--pink-3)"><div class="k">TPS 7.1</div><h3>Three distributions <span class="stars">★★<span class="off">★★</span></span></h3><p>Distinguish the population distribution, the distribution of sample data, and the sampling distribution.</p><p class="zh muted small" style="margin-top:6px">区分三种分布</p></div><div class="card"><div class="k">3.1.A · Skill 4.B</div><h3>Unbiased? <span class="stars">★★★<span class="off">★</span></span></h3><p>Justify why an estimator is or is not unbiased.</p><p class="zh muted small" style="margin-top:6px">判断估计量是否无偏并说明理由</p></div><div class="card" style="background:var(--pink-3)"><div class="k">TPS 7.1</div><h3>Bias &amp; variability <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare estimators using bias and variability; explain the effect of sample size.</p><p class="zh muted small" style="margin-top:6px">用偏差与变异性比较估计量</p></div><div class="card" style="background:var(--pink-3)"><div class="k">TPS 7.1</div><h3>Evaluate a claim <span class="stars">★★★<span class="off">★</span></span></h3><p>Use a sampling distribution to evaluate a claim about a parameter.</p><p class="zh muted small" style="margin-top:6px">用抽样分布评价关于参数的说法</p></div><div class="card"><div class="k">Bonus</div><h3>German tanks <span class="stars">★★★★<span class="off"></span></span></h3><p>Compare three estimators of a population maximum by simulation.</p><p class="zh muted small" style="margin-top:6px">德国坦克问题</p></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 1 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">4'</div>Warm-up: how many tanks?</div><div class="it"><div class="bar n" style="width:120px">10' · 3.1.B</div>Parameter vs. statistic · point estimates · three distributions</div><div class="it"><div class="bar n" style="width:170px">15' · 3.1.A</div>Unbiased estimators: sons’ heights, sample range, s² with n − 1</div><div class="it"><div class="bar n" style="width:110px">9' · TPS 7.1</div>Bias vs. variability · sample size · evaluating a claim</div><div class="it"><div class="bar" style="width:60px">7'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>German tank showdown · estimator lab</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 3.1.B.1 → TPS 7.1 (distributions) → 3.1.A.1 → bias &amp; variability → evaluate a claim</p><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 1 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simEst" href="#"><span class="ic">🎮</span><span>Estimator lab<small>估计量实验室 · 6 statistics × 2 populations</small></span></a><a data-goto="simTank" href="#"><span class="ic">🎮</span><span>German tank showdown<small>德国坦克估计大赛（Bonus） · three estimators, one winner</small></span></a></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: How many tanks?">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>How many tanks? <span class="zh">有多少辆坦克？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>In World War II, the Allies wanted to know how many tanks Germany had made. Tanks were numbered 1, 2, 3, …, N. Suppose four captured tanks had serial numbers <span class="mono">19, 40, 42, 60</span>. <span class="zh">缴获的 4 辆坦克编号为 19、40、42、60，估计总数 N。</span></p><div class="q"><b class="n">Q1</b>Give your best estimate of N.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Rule A: use the <b>largest</b> number → 60. But N must be at least 60, so this rule is always <b>too low</b> (or exactly right).</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Rule B: twice the mean − 1 → 2(40.25) − 1 = 79.5. The mean of 1…N is (N + 1)/2.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Rule C: max + (max ÷ n) − 1 → 60 + 15 − 1 = 74 (add the typical gap).</div></div><div class="q"><b class="n">Q2</b>Describe the <b>rule</b> (formula) you used. Would your rule tend to be too low, too high, or about right?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Different <b>rules</b> (estimators) give different <b>estimates</b>. Which rule is best? We judge a rule by how it behaves over <b>many</b> samples → today’s lesson!</div></div></div><div class="keyidea">🔑 Serial numbers 19, 40, 42, 60 — estimate N.</div><div class="takeaway">💡 An estimator is a rule; an estimate is the number the rule gives for one sample.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 190" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 3.1" data-sec="1" data-title="§ 3.1 Estimators">
+<div class="tag">Topic</div><div class="num">3.1</div><h1>Estimators</h1><div class="zhT">估计量</div><div class="eks"><span>3.1.B Point estimates</span><span>3.1.A Unbiased estimators</span><span>TPS 7.1 Bias &amp; variability</span></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.1.B.1。AP 小技巧：定义参数时写 all / true。" data-title="Parameters, Statistics &amp;amp; Point Estimators">
+<div class="tag">3.1.B <b>· Key Concepts</b><span class="ek">EK 3.1.B.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Parameters, Statistics &amp; Point Estimators <span class="zh">参数、统计量与点估计量</span></h2><div class="concept"><div class="term">Parameter · statistic<span class="zh">参数 · 统计量</span></div><div class="en">A <strong>parameter</strong> describes a population (usually unknown). A statistic describes a sample. Remember: statistics come from samples, parameters come from populations.</div><div class="cn"><b>参数</b>描述总体（通常未知）；<b>统计量</b>描述样本。</div></div><div class="concept pink"><div class="term">Point estimator<span class="zh">点估计量</span></div><div class="en">A sample statistic is a <strong>point estimator</strong> of the corresponding parameter; its value for a sample is the <strong>point estimate</strong> — a single point on the number line. Example: the sample proportion p̂ is a point estimator for the population proportion p.</div><div class="cn">样本统计量是对应总体参数的<b>点估计量</b>，由一个样本算出的具体数值叫<b>点估计值</b>。例如 p̂ 是 p 的点估计量。</div></div><table class="tw st" style="margin-top:6px;width:100%"><thead><tr><th>Parameter (population)</th><th>p</th><th>μ</th><th>σ</th><th>p₁ − p₂</th></tr></thead><tbody><tr><th class="rh">Statistic (sample)</th><td>p̂</td><td>x̄</td><td>s</td><td>p̂₁ − p̂₂</td></tr></tbody></table><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Point estimates">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.1.B.1</span></div>
+<h2>Point estimates <span class="zh">点估计值</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>a. In a random sample of 1,502 U.S. adults, 1,067 said they use social media every day. Identify the parameter and find its point estimate.</p><p>b. A random sample of 8 AP students reported weekly study hours: <span class="mono">6 9 4 11 7 8 5 6</span>. Find point estimates for the mean μ and the standard deviation σ of study hours for all AP students.</p><div style="margin-top:8px"><div class="answ solo" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. a. Parameter: p = the proportion of <b>all</b> U.S. adults who use social media every day.</div></div><div class="answ solo" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Point estimate: p̂ = 1067 ÷ 1502 ≈ 0.710.</div></div><div class="answ solo" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. b. x̄ = 56 ÷ 8 = 7 hours estimates μ; s ≈ 2.20 hours estimates σ (calculator: 1-Var Stats).</div></div></div></div><div class="keyidea">🔑 Statistic → point estimate of the matching parameter.</div></div></div><div class="col vis"><svg id="peSol" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 1 · a. constructed from a Pew-style poll</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: The cabin in winter">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 7.1</span></div>
+<h2>The cabin in winter <span class="zh">冬天的小屋</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>To keep pipes from freezing, Mrs. Starnes sets the cabin thermostat at 50°F. She wants to know how low the temperature actually gets. A digital thermometer records the indoor temperature at <b>20 randomly chosen times</b> during a given day. The minimum reading is 38°F.</p><div class="q">Identify the population, the parameter, the sample, and the statistic.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Population:</b> all times during that day.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Parameter:</b> the <b>true minimum</b> temperature in the cabin at all times that day.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. <b>Sample:</b> the 20 randomly selected times. Statistic: the sample minimum, 38°F.</div></div></div><div class="keyidea">🔑 Not every parameter is a mean or a proportion!</div><div class="takeaway">💡 Is the sample minimum a good estimator of the true minimum? Hmm… it can never be lower than the true minimum!</div></div></div><div class="col vis"><div class="qv"><svg id="cbQ" viewbox="0 0 560 210" width="100%"></svg></div><div class="sv"><svg id="cbSol" viewbox="0 0 560 220" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1 · TPS 7.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="AP Exam Tip：不要只说 “the distribution”，要说 “the distribution of ___”；不要用 “sample distribution”。" data-title="Three Different Distributions">
+<div class="tag">TPS 7.1 <b>· Key Concepts</b><span class="ek">TPS 7.1 · AP Exam Tip</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Three Different Distributions <span class="zh">三种不同的分布</span></h2><div class="concept"><div class="term">Population distribution<span class="zh">总体分布</span></div><div class="en">The values of the variable for <strong>all individuals</strong> in the population.</div><div class="cn">总体中<b>所有个体</b>的变量取值的分布。</div></div><div class="concept"><div class="term">Distribution of sample data<span class="zh">样本数据分布</span></div><div class="en">The values of the variable for the individuals <strong>in one sample</strong>.</div><div class="cn"><b>一个样本</b>中个体取值的分布。</div></div><div class="concept pink"><div class="term">Sampling distribution<span class="zh">抽样分布</span></div><div class="en">The values of a statistic from <strong>all possible samples</strong> of the same size from the same population.</div><div class="cn">同一总体中所有相同大小样本的<b>统计量</b>取值的分布。</div></div><svg id="tdSvg" viewbox="0 0 1100 150" width="100%"></svg><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Sampling heights">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 7.1</span></div>
+<h2>Sampling heights <span class="zh">四个儿子的身高</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>John and Carol have four grown sons. Their heights (inches) are <span class="mono">71, 75, 72, 68</span>.</p><div class="q"><b class="n">a</b>List all 6 possible samples of size 2 (without replacement).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Samples: {71, 75}, {71, 72}, {71, 68}, {75, 72}, {75, 68}, {72, 68}.</div></div><div class="q"><b class="n">b</b>Find the mean of each sample and make a dotplot of the sampling distribution of x̄.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Means: 73, 71.5, 69.5, 73.5, 71.5, 70 → dotplot (top).</div></div><div class="q"><b class="n">c</b>Find the range of each sample and make a dotplot of the sampling distribution of the sample range.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Ranges: 4, 1, 3, 3, 7, 4 → dotplot (bottom).</div></div></div><div class="keyidea">🔑 All 6 samples of size 2.</div></div></div><div class="col vis"><div class="qv"><svg id="shQ" viewbox="0 0 560 170" width="100%"></svg></div><div class="sv"><table class="tw st" id="shT" style="width:100%"><thead><tr><th>Sample</th><th>x̄</th><th>Range</th></tr></thead><tbody><tr><td>71, 75</td><td data-k="0-0">73</td><td data-k="0-1">4</td></tr><tr><td>71, 72</td><td data-k="1-0">71.5</td><td data-k="1-1">1</td></tr><tr><td>71, 68</td><td data-k="2-0">69.5</td><td data-k="2-1">3</td></tr><tr><td>75, 72</td><td data-k="3-0">73.5</td><td data-k="3-1">3</td></tr><tr><td>75, 68</td><td data-k="4-0">71.5</td><td data-k="4-1">7</td></tr><tr><td>72, 68</td><td data-k="5-0">70</td><td data-k="5-1">4</td></tr></tbody></table><svg id="shSol" viewbox="0 0 560 200" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1 · TPS 7.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.1.A.1。无偏 ≠ 每次都准；无偏指平均而言命中。" data-title="Unbiased Estimator">
+<div class="tag">3.1.A <b>· Key Concept</b><span class="ek">EK 3.1.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Unbiased Estimator <span class="zh">无偏估计量</span></h2><div class="concept pink"><div class="term">Unbiased<span class="zh">无偏</span></div><div class="en">When estimating a parameter, an estimator is unbiased if, on average, its value does not underestimate or overestimate the parameter: the <strong>mean of its sampling distribution equals the parameter</strong>.</div><div class="cn">若估计量平均来说既不低估也不高估参数，即其<b>抽样分布的均值等于参数</b>，则称它是<b>无偏</b>的。</div></div><div class="concept"><div class="term">Biased<span class="zh">有偏</span></div><div class="en">If the center of the sampling distribution is consistently above or below the parameter, the estimator is biased.</div><div class="cn">若抽样分布的中心系统性地高于或低于参数，则估计量<b>有偏</b>。</div></div><svg id="ubSvg" viewbox="0 0 1100 140" width="100%"></svg><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Are x̄ and the range unbiased?">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.1.A.1 · Skill 4.B</span></div>
+<h2>Are x̄ and the range unbiased? <span class="zh">样本均值与极差无偏吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Use the sampling distributions from the sons’ heights (71, 75, 72, 68).</p><div class="q"><b class="n">a</b>Is the sample mean x̄ an unbiased estimator of the population mean μ? Justify.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">μ = (71 + 75 + 72 + 68) ÷ 4 = 71.5. Mean of the 6 sample means = 429 ÷ 6 = 71.5 = μ → x̄ is unbiased.</div></div><div class="q"><b class="n">b</b>Is the sample range an unbiased estimator of the population range? Justify.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Population range = 75 − 68 = 7. Mean of the 6 sample ranges = 22 ÷ 6 ≈ 3.67 ≠ 7.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. 3.67 &lt; 7 → the sample range is a biased estimator: it consistently <b>underestimates</b> the population range.</div></div></div><div class="keyidea">🔑 Unbiased ⇔ mean of the sampling distribution = parameter.</div></div></div><div class="col vis"><div class="qv"><svg id="urQ" viewbox="0 0 560 210" width="100%"></svg></div><div class="sv"><svg id="urSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Why divide by n − 1?">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.1.A.1 · Skill 4.B</span></div>
+<h2>Why divide by n − 1? <span class="zh">为什么除以 n − 1？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Population: <span class="mono">2, 4, 6</span>. The population variance is σ² = [(2−4)² + 0² + (6−4)²] ÷ 3 = 8/3 ≈ 2.67.</p><p>Take all 9 samples of size 2 <b>with replacement</b>: (2,2), (2,4), (2,6), (4,2), …, (6,6).</p><div class="q"><b class="n">a</b>For each sample, find s² = Σ(x − x̄)² ÷ (n − 1). Is s² unbiased for σ²?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">s² values (÷ 1): 0, 2, 8, 2, 0, 2, 8, 2, 0 → mean = 24 ÷ 9 = 8/3 = σ² → unbiased ✓.</div></div><div class="q"><b class="n">b</b>What if we divided by n instead?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Dividing by n = 2 halves every value → mean = 4/3 &lt; 8/3 → <b>biased low</b>.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. That’s why the sample variance (and our calculator’s s) divides by n − 1.</div></div></div><div class="keyidea">🔑 For a sample (a, b): Σ(x − x̄)² = (a − b)² ÷ 2.</div></div></div><div class="col vis"><table class="tw st" id="svT" style="width:100%;font-size:12px;width:100%;table-layout:fixed"><thead><tr><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">Sample</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2,2</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2,4</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2,6</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">4,2</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">4,4</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">4,6</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">6,2</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">6,4</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">6,6</th><th style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">Mean</th></tr></thead><tbody><tr><th class="rh" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">s² (÷ n−1)</th><td data-k="0-0" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">0</td><td data-k="0-1" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2</td><td data-k="0-2" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">8</td><td data-k="0-3" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2</td><td data-k="0-4" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">0</td><td data-k="0-5" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2</td><td data-k="0-6" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">8</td><td data-k="0-7" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2</td><td data-k="0-8" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">0</td><td data-k="0-9" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">2.67</td></tr><tr><th class="rh" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">÷ n</th><td data-k="1-0" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">0</td><td data-k="1-1" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">1</td><td data-k="1-2" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">4</td><td data-k="1-3" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">1</td><td data-k="1-4" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">0</td><td data-k="1-5" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">1</td><td data-k="1-6" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">4</td><td data-k="1-7" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">1</td><td data-k="1-8" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">0</td><td data-k="1-9" style=";padding:5px 2px;font-size:12px;overflow-wrap:anywhere">1.33</td></tr></tbody></table><svg id="svSol" viewbox="0 0 560 150" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="x̄、s²(÷n−1) 无偏；max、range、s²(÷n) 有偏；n 变大变异变小。" data-title="🎮 Simulator: Estimator lab" id="simEst">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Estimator lab</span><span class="zh">估计量实验室</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.1.A</span>
+<div class="row"><div class="col" style="flex:.72"><p class="small">Pick a population, a statistic, and a sample size. Take 1,000 random samples and look at the <b>sampling distribution</b>. <span class="zh">选总体、统计量和样本量，抽 1000 个样本。</span></p>
+<div class="btns"><button class="b on" data-ep="unif">Uniform 0–100</button><button class="b" data-ep="skew">Skewed right</button></div>
+<div class="btns"><button class="b on" data-es="mean">x̄</button><button class="b" data-es="med">median</button><button class="b" data-es="max">max</button><button class="b" data-es="rng">range</button><button class="b" data-es="s2">s² (÷ n−1)</button><button class="b" data-es="s2n">s² (÷ n)</button></div>
+<div class="slider-row"><label>Sample size n</label><input id="esN" max="50" min="2" type="range" value="5"/><span class="v" id="esNV"></span></div><div class="note small" id="esMsg"></div></div>
+<div class="col frame"><svg id="esSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="AP Exam Tip：增大样本让估计更 precise，不是更 accurate。" data-title="Bias and Variability">
+<div class="tag">TPS 7.1 <b>· Key Concepts</b><span class="ek">TPS 7.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Bias and Variability <span class="zh">偏差与变异性</span></h2><div class="concept"><div class="term">Bias (accuracy)<span class="zh">偏差（准确性）</span></div><div class="en"><strong>Bias</strong>: the sampling distribution is not centered at the parameter → estimates are not accurate. Fix it by choosing a better estimator or a better (random) sampling method.</div><div class="cn"><b>偏差</b>：抽样分布的中心不在参数上，估计不<b>准确</b>。</div></div><div class="concept pink"><div class="term">Variability (precision)<span class="zh">变异性（精确性）</span></div><div class="en"><strong>High variability</strong>: repeated samples give very different results → estimates are not precise. <strong>Larger random samples</strong> give less variability; bias is not fixed by a larger sample.</div><div class="cn"><b>变异大</b>：重复抽样结果差别大，估计不<b>精确</b>。增大随机样本量可减小变异，但不能消除偏差。</div></div><svg id="bvSvg" viewbox="0 0 1100 150" width="100%"></svg><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Which estimator is best?">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.1.A · TPS 7.1</span></div>
+<h2>Which estimator is best? <span class="zh">哪个估计量最好？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The dotplots show simulated sampling distributions of three statistics (A, B, C) used to estimate the same parameter. The dashed line marks the parameter value.</p><div class="q"><b class="n">a</b>Which statistics are unbiased?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A and C are centered at the parameter → unbiased. B is centered too high → biased.</div></div><div class="q"><b class="n">b</b>Which statistic is the best estimator? Explain using bias and variability.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. B has low variability, but it is <b>consistently wrong</b>.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. C is best: unbiased and the least variable of the unbiased ones → precise and accurate.</div></div></div><div class="keyidea">🔑 Check center first (bias), then spread (variability).</div></div></div><div class="col vis"><div class="qv"><svg id="abcQ" viewbox="0 0 560 270" width="100%"></svg></div><div class="sv"><svg id="abcSol" viewbox="0 0 560 270" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Mrs. Lin’s chips">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 7.1</span></div>
+<h2>Mrs. Lin’s chips <span class="zh">林老师的筹码</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Mrs. Lin claims her bag has 200 chips and 100 are red. Jenna takes an SRS of 20 chips and gets 7 red (p̂ = 0.35). The dotplot shows p̂ for 500 simulated SRSs of 20 chips from a bag with p = 0.5.</p><div class="q"><b class="n">a</b>Give two explanations for Jenna’s p̂ &lt; 0.5.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">① Mrs. Lin is telling the truth and Jenna got a low p̂ by <b>sampling variability</b>; ② Mrs. Lin is wrong and fewer than half are red.</div></div><div class="q"><b class="n">b</b>Is there convincing evidence that fewer than half the chips are red?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. In the simulation, p̂ ≤ 0.35 happened in about 1 in 6 of the 500 samples — not unusual.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. So there is not convincing evidence that fewer than half the chips are red. (This is the logic of a significance test — Lesson 5!)</div></div></div><div class="keyidea">🔑 Use the sampling distribution assuming the claim is true.</div></div></div><div class="col vis"><div class="qv"><svg id="lnQ" viewbox="0 0 560 240" width="100%"></svg></div><div class="sv"><svg id="lnSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1 · TPS 7.1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="A=max 有偏偏低；B=2x̄−1 无偏但变异大；C=max(1+1/n)−1 无偏且变异小 → 最好。" data-title="🎮 Simulator: German tank showdown" id="simTank">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">German tank showdown</span><span class="zh">德国坦克估计大赛（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.1.A · Bonus</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">The true number of tanks is N = 300. Capture n tanks at random, estimate N with three rules, repeat 1,000 times. <span class="zh">三种估计规则比较。</span></p>
+<div class="slider-row"><label>Captured n</label><input id="tkN" max="20" min="2" type="range" value="4"/><span class="v" id="tkNV"></span></div><div class="btns"><button class="b" id="tkGo">Capture 1,000 times</button></div>
+<table class="tw st" style="width:100%;margin-top:6px"><thead><tr><th>Rule</th><th>Mean</th><th>SD</th></tr></thead><tbody id="tkT"></tbody></table><div class="note small" id="tkMsg" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="tkSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Unbiased means…">
+<div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.1.A.1</span></div>
+<h2>Unbiased means…</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A statistic is an unbiased estimator of a parameter when</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) its value equals the parameter for every sample</li><li>(B) the mean of its sampling distribution equals the parameter</li><li>(C) it comes from a large random sample</li><li>(D) its sampling distribution has a small standard deviation</li><li>(E) its sampling distribution is approximately normal</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Unbiased: <b>on average</b>, it neither overestimates nor underestimates → the mean of the sampling distribution = parameter → <b>(B)</b>.</p><p style="margin:3px 0">(A) is not required: estimates can vary across samples. (C) large n alone does not remove bias; (D) concerns variability; (E) concerns shape.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 10: Reduce the variability">
+<div class="exhead"><span class="badge ex">📝 AP Practice 10 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS 7.1</span></div>
+<h2>Reduce the variability</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A researcher wants the sampling distribution of p̂ to have less variability. Which action helps?</div><ul class="opts" data-correct="0" data-quiet="1"><li>(A) Use a larger random sample</li><li>(B) Use a convenience sample of the same size</li><li>(C) Use a 99% confidence level</li><li>(D) Use the sample median instead</li><li>(E) Use a smaller random sample</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Larger random samples → statistics vary less from sample to sample → (A).</p><p style="margin:3px 0">A larger sample does not remove bias; a convenience sample adds bias.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 11: Name the point estimate">
+<div class="exhead"><span class="badge ex">📝 AP Practice 11 · AP 选择题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.1.B.1</span></div>
+<h2>Name the point estimate</h2><div class="scrollcol"><div class="problem" style="font-size:19px">In an SRS of 400 adults in a city, 132 said they ride a bike at least once a week. Which is the point estimate of the proportion of all adults in the city who ride a bike weekly?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) p = 132</li><li>(B) p = 0.33</li><li>(C) p̂ = 0.33</li><li>(D) p̂ = 400</li><li>(E) μ = 0.33</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">p̂ = 132 ÷ 400 = 0.33 is the statistic (point estimate) → (C).</p><p style="margin:3px 0">p (no hat) is the unknown parameter — we never know its value from the sample.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Sample maximum">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.1.A.1</span></div>
+<h2>Sample maximum</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">To estimate the maximum weight of all packages shipped by a company in a day, a clerk uses the maximum weight in a random sample of 15 packages. This estimator is</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) unbiased, because the sample is random</li><li>(B) biased; it tends to overestimate the true maximum</li><li>(C) biased; it tends to underestimate the true maximum</li><li>(D) unbiased, because n ≥ 10</li><li>(E) unbiased if the weights are normally distributed</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">The sample maximum can never be <b>larger</b> than the population maximum and is usually smaller.</p><p style="margin:3px 0">So it consistently <b>underestimates</b> → biased → (C).</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq4" viewbox="0 0 560 180" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Point estimator · point estimate</th><td class="zh" style="text-align:left">点估计量 · 点估计值</td><td style="text-align:left">rule vs. number (p̂ estimates p)</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Parameter · statistic</th><td class="zh" style="text-align:left">参数 · 统计量</td><td style="text-align:left">population vs. sample</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Sampling distribution</th><td class="zh" style="text-align:left">抽样分布</td><td style="text-align:left">values of a statistic over all samples of size n</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Unbiased estimator</th><td class="zh" style="text-align:left">无偏估计量</td><td style="text-align:left">mean of sampling distribution = parameter</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Bias (accuracy)</th><td class="zh" style="text-align:left">偏差（准确）</td><td style="text-align:left">center off the parameter</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Variability (precision)</th><td class="zh" style="text-align:left">变异性（精确）</td><td style="text-align:left">spread; ↓ as n ↑</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">s² with n − 1</th><td class="zh" style="text-align:left">除以 n−1 的样本方差</td><td style="text-align:left">unbiased for σ²</td><td><span class="stars">★★★★<span class="off"></span></span></td></tr></tbody></table><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">3.1</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>To estimate the proportion of students at her school who own a pet, Ana takes an SRS of 40 students; 26 own a pet.</p><div class="q"><b class="n">1</b>Define the parameter and give the point estimate.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">p = proportion of <b>all</b> students at Ana’s school who own a pet; p̂ = 26 ÷ 40 = 0.65.</div></div><div class="q"><b class="n">2</b>Ana says, “Because p̂ is unbiased, my estimate equals the true proportion.” Is she right?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No. Unbiased means p̂ is correct <b>on average</b> over many samples; one sample’s p̂ usually misses p a little (sampling variability).</div></div><div class="q"><b class="n">3</b>How could Ana get a more precise estimate?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Take a <b>larger</b> random sample → less variability → more precise.</div></div></div><div class="keyidea">🔑 Statistic · unbiased · variability.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 200" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide extension" data-notes="先复习期望是重复抽样的长期平均；推导可选，不要求学生记证明。 | Algebra explanation: identities shown on this slide. " data-title="Extension: Why s² estimates σ²"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">4 min · beyond required derivation</div><h2>Why s² estimates σ²<span class="zh">n−1 的代数依据</span></h2><div class="bridge-body"><p>Assume independent observations from one population with mean μ and finite variance σ². Centering at x̄ makes the sum of squares smaller than centering at μ.</p><div class="algebra" data-math-tex="\sum_{i=1}^{n}(X_i-\bar X)^2=\sum_{i=1}^{n}(X_i-\mu)^2-n(\bar X-\mu)^2">\sum_{i=1}^{n}(X_i-\bar X)^2=\sum_{i=1}^{n}(X_i-\mu)^2-n(\bar X-\mu)^2</div><p>Take long-run averages (expectations). Each squared deviation from μ averages σ², and E[(X̄ − μ)²] = Var(X̄) = σ²/n.</p><div class="algebra" data-math-tex="\operatorname E\!\left[\sum_{i=1}^{n}(X_i-\bar X)^2\right]=n\sigma^2-n\frac{\sigma^2}{n}=(n-1)\sigma^2">\operatorname E\!\left[\sum_{i=1}^{n}(X_i-\bar X)^2\right]=n\sigma^2-n\frac{\sigma^2}{n}=(n-1)\sigma^2</div><div class="algebra" data-math-tex="s^2=\frac{\sum_{i=1}^{n}(X_i-\bar X)^2}{n-1}\quad\Longrightarrow\quad \operatorname E(s^2)=\sigma^2">s^2=\frac{\sum_{i=1}^{n}(X_i-\bar X)^2}{n-1}\quad\Longrightarrow\quad \operatorname E(s^2)=\sigma^2</div><p class="bridge-cn">自由度解释“约束”；这个等式解释为什么除以 n−1 能校正方差的低估。s² 无偏，不代表开平方后的 s 也严格无偏。</p></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide cover" data-notes="下节课：3.2 + 3.9（TPS 7.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 2</div><h1>Sampling Distributions of p̂ and p̂₁ − p̂₂</h1><div class="zhT">样本比例及其差的抽样分布 · Topics 3.2 + 3.9</div><p class="muted" style="margin-top:26px;font-size:22px">Mean, standard deviation, 10% condition, Large Counts condition, and normal probabilities.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 3 shared helpers ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390',MINT='#2E8B6E';
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+(+v).toFixed(d)).toString();
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs,fmt){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,fmt?fmt(t):+t.toFixed(3));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function gauss(r){r=r||Math.random;const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function binom(n,p,r){r=r||Math.random;let c=0;for(let i=0;i<n;i++)if(r()<p)c++;return c;}
+/* histogram of values on an axis X with bins of width w starting at lo; returns counts */
+function histX(svg,X,vals,lo,w,B,H,col,hl){const cnt={};vals.forEach(v=>{const k=Math.floor((v-lo)/w+1e-9);cnt[k]=(cnt[k]||0)+1;});const mx=Math.max(1,...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c])=>{const a=lo+k*w;el('rect',{x:X(a)+0.5,y:B-c/mx*H,width:Math.max(1,X(a+w)-X(a)-1),height:c/mx*H,fill:hl&&hl(a,a+w)?ROSE:(col||NAVY)},svg);});return cnt;}
+/* stacked dots for discrete values */
+function dotsX(svg,X,vals,B,r,dy,colf){const cnt={};vals.forEach(v=>{const k=(+v).toFixed(4);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(+v),cy:B-r-1-(cnt[k]-1)*dy,r,fill:colf?colf(+v):NAVY},svg);});return cnt;}
+function normPath(svg,X,Y0,H,mu,sd,lo,hi,col,fill,a,b){const f=x=>Math.exp(-(((x-mu)/sd)**2)/2);
+  if(a!==undefined){const aa=Math.max(lo,a),bb=Math.min(hi,b);if(bb>aa){let d=`M${X(aa)},${Y0}`;for(let i=0;i<=100;i++){const x=aa+(bb-aa)*i/100;d+=`L${X(x)},${Y0-H*f(x)}`;}el('path',{d:d+`L${X(bb)},${Y0}Z`,fill:fill||'#F4C3D0'},svg);}}
+  let d='';for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;d+=`${i?'L':'M'}${X(x)},${Y0-H*f(x)}`;}el('path',{d,fill:'none',stroke:col||NAVY,'stroke-width':2.5},svg);}
+function zcrit(C){return invn(1-(1-C)/2);}
+/* ===== Unit 3 · Lesson 1 ===== */
+/* warm-up */
+(function(){const s=$('wuQ');clear(s);const X=axis(s,30,540,120,0,100,10,'Tank serial number',12);[19,40,42,60].forEach(v=>{el('circle',{cx:X(v),cy:105,r:9,fill:NAVY},s);lab(s,X(v),88,v,NAVY,'middle',13);});
+  el('rect',{x:X(60)+12,y:96,width:X(100)-X(60)-12,height:18,rx:9,fill:PK,stroke:ROSE,'stroke-dasharray':'5 4'},s);lab(s,(X(60)+X(100))/2+6,80,'N = ? (somewhere ≥ 60)',ROSE,'middle',13);})();
+(function(){function draw(k){const s=$('wuSol');clear(s);const X=axis(s,30,540,190,0,100,10,'Tank serial number',12);[19,40,42,60].forEach(v=>{el('circle',{cx:X(v),cy:175,r:8,fill:NAVY},s);});
+  [[60,'A: max = 60',NAVY,1],[79.5,'B: 2x̄ − 1 = 79.5',ROSE,2],[74,'C: max + max/n − 1 = 74',GOLDD,3]].forEach(([v,t,c,i])=>{if(k>=i){vline(s,X(v),40+i*30,190,c,'',true);lab(s,X(v)+(i===2?6:-6),34+i*30,t,c,i===2?'start':'end',13);}});
+  if(k>=4)lab(s,280,24,'Which rule is best over MANY samples?',INK,'middle',14);}draw(0);onStep('wuSol',draw);})();
+
+/* point estimates */
+(function(){function draw(k){const s=$('peSol');clear(s);const L=40,R=520;if(k>=1){lab(s,L,24,'a. 1,502 adults',NAVY,'start',13);}
+  if(k>=2){const w=(R-L)*1067/1502;el('rect',{x:L,y:34,width:w,height:30,fill:ROSE,rx:4},s);el('rect',{x:L+w,y:34,width:R-L-w,height:30,fill:GREY,rx:4},s);lab(s,L+w/2,55,'1,067 daily → p̂ ≈ 0.710','#fff','middle',13);}
+  if(k>=3){const H=[6,9,4,11,7,8,5,6];const X=axis(s,40,520,180,3,12,1,'Weekly study hours (8 AP students)',12);dotsX(s,X,H,180,8,17);vline(s,X(7),100,180,ROSE,'x̄ = 7',false,'start',112);el('line',{x1:X(7-2.2),x2:X(7+2.2),y1:96,y2:96,stroke:GOLDD,'stroke-width':3},s);lab(s,X(9.2)+6,100,'s ≈ 2.20',GOLDD,'start',12);}}draw(0);onStep('peSol',draw);})();
+
+/* cabin */
+function cabin(s,k,B){clear(s);const L=40,R=540,X=t=>L+t/24*(R-L),T=v=>B-(v-34)/(54-34)*(B-30);const f=t=>45-8.5*Math.cos((t-5)/24*2*Math.PI)+1.2*Math.sin(t*1.7);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);for(let h=0;h<=24;h+=4){el('text',{x:X(h),y:B+16,'text-anchor':'middle','font-size':11,fill:INK},s,h+':00');}
+  for(let v=36;v<=52;v+=4){el('line',{x1:L,x2:R,y1:T(v),y2:T(v),stroke:GRID},s);el('text',{x:L-4,y:T(v)+4,'text-anchor':'end','font-size':10,fill:MUTED},s,v+'°');}
+  let d='';for(let i=0;i<=240;i++){const t=i/10;d+=`${i?'L':'M'}${X(t)},${T(f(t))}`;}el('path',{d,fill:'none',stroke:LAV,'stroke-width':2},s);
+  const r=srand(4);const ts=[...Array(20)].map(()=>2+r()*22).sort((a,b)=>a-b);let mn=99,mt=0;ts.forEach(t=>{const v=f(t);if(v<mn){mn=v;mt=t;}});
+  ts.forEach(t=>el('circle',{cx:X(t),cy:T(f(t)),r:5,fill:NAVY},s));el('circle',{cx:X(mt),cy:T(mn),r:8,fill:'none',stroke:ROSE,'stroke-width':3},s);lab(s,X(mt)+10,T(mn)+16,'sample min 38°F',ROSE,'start',12);
+  let tmn=99,tt=0;for(let i=0;i<=240;i++){const v=f(i/10);if(v<tmn){tmn=v;tt=i/10;}}if(k>=2){el('circle',{cx:X(tt),cy:T(tmn),r:6,fill:GOLD},s);lab(s,X(tt)-8,T(tmn)+4,'true min',GOLDD,'end',12);}}
+cabin($('cbQ'),0,180);(function(){function draw(k){cabin($('cbSol'),k,190);if(k>=1)lab($('cbSol'),290,20,'curve = all times (population) · dots = 20 sampled times',INK,'middle',12,700);}draw(0);onStep('cbSol',draw);})();
+
+/* three distributions */
+(function(){const s=$('tdSvg');clear(s);const r=srand(9);const pop=[...Array(4000)].map(()=>Math.min(95,Math.max(1,8+Math.pow(r(),1.6)*70+gauss(r)*4)));
+  const panels=[['Population distribution (all individuals)',pop,0,100,4,LAV],['Distribution of sample data (one sample, n = 25)',pop.slice(0,25),0,100,4,NAVY],['Sampling distribution of x̄ (many samples, n = 25)',[...Array(800)].map((_,i)=>mean(pop.slice(100+i*4,125+i*4).length===25?pop.slice(100+i*4,125+i*4):pop.slice(0,25))),0,100,2,ROSE]];
+  panels.forEach(([t,v,lo,hi,w,c],i)=>{const x0=20+i*365;const X=axis(s,x0,x0+330,120,lo,hi,20,'',10);histX(s,X,v,lo,w,120,85,c);lab(s,x0+165,16,t,c===LAV?SLATE:c,'middle',12);});})();
+
+/* sons */
+const SONS=[[71,75],[71,72],[71,68],[75,72],[75,68],[72,68]];
+(function(){const s=$('shQ');clear(s);[71,75,72,68].forEach((h,i)=>{const x=70+i*120,H=(h-60)*9;el('rect',{x,y:150-H,width:60,height:H,rx:6,fill:[NAVY,ROSE,LAV,GOLD][i]},s);lab(s,x+30,150-H-8,h+'″',INK,'middle',14);lab(s,x+30,166,'Son '+(i+1),INK,'middle',12,600);});})();
+function sonsPlot(s,k,B0){clear(s);const means=SONS.map(([a,b])=>(a+b)/2),rngs=SONS.map(([a,b])=>Math.abs(a-b));
+  if(k>=2){const X=axis(s,40,530,B0,68,76,1,'Sample mean x̄ (in.)',11);dotsX(s,X,means,B0,7,15,()=>NAVY);}
+  if(k>=3){const X=axis(s,40,530,B0+100,0,8,1,'Sample range (in.)',11);dotsX(s,X,rngs,B0+100,7,15,()=>ROSE);}}
+(function(){function draw(k){sonsPlot($('shSol'),k,60);if(k>=2)hlT('shT',k>=3?['0-1','1-1','2-1','3-1','4-1','5-1']:['0-0','1-0','2-0','3-0','4-0','5-0']);else hlT('shT',[]);}draw(0);onStep('shSol',draw);})();
+
+/* unbiased picture */
+(function(){const s=$('ubSvg');clear(s);[[0,'Unbiased: centered at the parameter',NAVY,0],[1,'Biased: centered too low',ROSE,-1.4]].forEach(([i,t,c,sh])=>{const x0=40+i*560;const X=v=>x0+(v+4)/8*460;normPath(s,X,115,80,sh,1,-4,4,c,i?'rgba(200,87,123,.15)':'rgba(30,42,74,.10)',-4,4);el('line',{x1:x0,x2:x0+460,y1:115,y2:115,stroke:INK},s);vline(s,X(0),20,115,GOLDD,'parameter',true,'start',30);lab(s,x0+230,135,t,c,'middle',13);});})();
+(function(){function both(s,B0,k){clear(s);const means=SONS.map(([a,b])=>(a+b)/2),rngs=SONS.map(([a,b])=>Math.abs(a-b));
+  const X1=axis(s,40,530,B0,68,76,1,'Sample mean x̄',11);dotsX(s,X1,means,B0,7,15,()=>NAVY);const X2=axis(s,40,530,B0+105,0,8,1,'Sample range',11);dotsX(s,X2,rngs,B0+105,7,15,()=>ROSE);
+  if(k>=1){vline(s,X1(71.5),B0-55,B0,GOLDD,'μ = 71.5 = mean of x̄’s ✓',true,'start',B0-45);}
+  if(k>=2){vline(s,X2(7),B0+50,B0+105,GOLDD,'pop. range = 7',true,'end',B0+60);vline(s,X2(22/6),B0+50,B0+105,ROSE,'mean = 3.67',false,'start',B0+60);}}
+  both($('urQ'),60,0);function draw(k){both($('urSol'),80,k);}draw(0);onStep('urSol',draw);})();
+/* s^2 */
+(function(){function draw(k){hlT('svT',k===1?['0-0','0-1','0-2','0-3','0-4','0-5','0-6','0-7','0-8','0-9']:k>=2?['1-9']:[],k>=1?['0-9']:[]);const s=$('svSol');clear(s);if(k<1)return;
+  const v1=[0,2,8,2,0,2,8,2,0],v2=v1.map(x=>x/2);const X=axis(s,40,540,105,0,8,1,'',11);dotsX(s,X,v1,120,6,13,()=>NAVY);
+  vline(s,X(8/3),20,120,GOLDD,'σ² = 2.67 = mean of s² ✓',true,'start',22);if(k>=2){vline(s,X(4/3),40,120,ROSE,'÷ n: mean 1.33',false,'end',42);}}draw(0);onStep('svT',draw);})();
+
+/* estimator lab */
+let esP='unif',esS='mean';
+function esPop(r){return esP==='unif'?r()*100:Math.min(100,-Math.log(1-r())*15);}
+const ESPAR={unif:{mean:50,med:50,max:100,rng:100,s2:833.3,s2n:833.3},skew:{mean:15,med:15*Math.log(2),max:100,rng:100,s2:225,s2n:225}};
+const ESN={mean:'x̄',med:'median',max:'max',rng:'range',s2:'s² (÷ n−1)',s2n:'s² (÷ n)'};
+function esStat(a){const n=a.length;if(esS==='mean')return mean(a);if(esS==='med')return median(a);if(esS==='max')return Math.max(...a);if(esS==='rng')return Math.max(...a)-Math.min(...a);const m=mean(a),ss=a.reduce((t,v)=>t+(v-m)**2,0);return esS==='s2'?ss/(n-1):ss/n;}
+function esRun(){const n=+$('esN').value;$('esNV').textContent=n;const vals=[];for(let t=0;t<1000;t++){const a=[];for(let i=0;i<n;i++)a.push(esPop(Math.random));vals.push(esStat(a));}
+  const par=ESPAR[esP][esS];const s=$('esSvg');clear(s);const big=esS.startsWith('s2');const hi=big?(esP==='unif'?2500:1000):100;const X=axis(s,40,540,270,0,hi,hi/5,'Value of '+ESN[esS]+' (1,000 samples)',11);
+  const c=vals.map(v=>Math.min(v,hi*0.999));histX(s,X,c,0,hi/50,270,210,NAVY);const m=mean(vals),sd=sdev(vals);
+  vline(s,X(par),30,270,GOLDD,'parameter = '+fx(par,1),true,'end',26);vline(s,X(Math.min(m,hi)),50,270,ROSE,'mean of statistic = '+fx(m,1),false,m>par?'start':'end',48);
+  const bias=Math.abs(m-par)/Math.max(1,par)>0.03;$('esMsg').innerHTML=`Mean of the 1,000 values = <b>${fx(m,1)}</b> vs. parameter <b>${fx(par,1)}</b> → ${bias?'<b style="color:var(--rose)">biased</b>':'<b>about unbiased</b>'}. SD of the statistic = <b>${fx(sd,2)}</b>. Try a bigger n!`;}
+document.querySelectorAll('[data-ep]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-ep]').forEach(x=>x.classList.remove('on'));b.classList.add('on');esP=b.dataset.ep;esRun();});
+document.querySelectorAll('[data-es]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-es]').forEach(x=>x.classList.remove('on'));b.classList.add('on');esS=b.dataset.es;esRun();});$('esN').oninput=esRun;esRun();
+
+/* bias variability targets */
+(function(){const s=$('bvSvg');clear(s);const T=[['Low bias, low variability',0,0,6],['Low bias, high variability',0,0,20],['High bias, low variability',14,-10,6],['High bias, high variability',14,-10,20]];const r=srand(2);
+  T.forEach(([t,dx,dy,sp],i)=>{const cx=140+i*275,cy=68;[48,32,16].forEach((rr,j)=>el('circle',{cx,cy,r:rr,fill:j%2?'#fff':'#F4C3D0',stroke:ROSE,'stroke-width':1},s));el('circle',{cx,cy,r:4,fill:ROSE},s);
+    for(let k=0;k<12;k++){el('circle',{cx:cx+dx+gauss(r)*sp*0.5,cy:cy+dy+gauss(r)*sp*0.5,r:3.5,fill:NAVY},s);}lab(s,cx,138,t,INK,'middle',13,700);});})();
+
+/* A B C */
+const ABC=(function(){const r=srand(31);return [[0,2.2],[1.6,0.6],[0,0.7]].map(([c,sd])=>[...Array(40)].map(()=>Math.round((c+sd*gauss(r))*4)/4));})();
+function abcDraw(s,k){clear(s);const X=v=>70+(v+6)/12*470;['A','B','C'].forEach((n,i)=>{const B=80+i*80;el('line',{x1:70,x2:540,y1:B,y2:B,stroke:INK},s);lab(s,40,B-6,n,[NAVY,ROSE,GOLDD][i],'middle',18);dotsX(s,X,ABC[i],B,3.4,6.5,()=>[NAVY,ROSE,GOLDD][i]);
+  if(k>=1&&i!==1)lab(s,545,B-30,'unbiased',[NAVY,ROSE,GOLDD][i],'end',12);if(k>=1&&i===1)lab(s,545,B-30,'biased',ROSE,'end',12);});el('line',{x1:X(0),x2:X(0),y1:14,y2:250,stroke:INK,'stroke-width':1.5,'stroke-dasharray':'6 4'},s);lab(s,X(0)+4,12,'parameter',INK,'start',12);
+  if(k>=3){el('rect',{x:20,y:180,width:525,height:84,rx:10,fill:'none',stroke:GOLDD,'stroke-width':3},s);lab(s,300,270,'C: unbiased + low variability → best',GOLDD,'middle',13);}}
+abcDraw($('abcQ'),0);(function(){function draw(k){abcDraw($('abcSol'),k);}draw(0);onStep('abcSol',draw);})();
+
+/* chips */
+const LIN=(function(){const r=srand(77);return [...Array(500)].map(()=>binom(20,0.5,r)/20);})();
+function linDraw(s,k){clear(s);const X=axis(s,40,540,200,0.1,0.9,0.1,'Sample proportion of red chips p̂ (500 SRSs, n = 20, p = 0.5)',11,v=>v.toFixed(1));const cnt={};LIN.forEach(v=>{const key=v.toFixed(2);cnt[key]=(cnt[key]||0)+1;});const mx=Math.max(...Object.values(cnt));
+  Object.entries(cnt).forEach(([v,c])=>el('rect',{x:X(+v)-8,y:200-c/mx*160,width:16,height:c/mx*160,fill:k>=2&&+v<=0.35?ROSE:NAVY,rx:2},s));vline(s,X(0.35),20,200,ROSE,'Jenna: 0.35',true,'end',30);
+  if(k>=2){const n=LIN.filter(v=>v<=0.35).length;lab(s,X(0.62),40,`p̂ ≤ 0.35: ${n} of 500 ≈ ${Math.round(n/5)}%`,ROSE,'middle',14);}}
+linDraw($('lnQ'),0);(function(){function draw(k){linDraw($('lnSol'),k);}draw(0);onStep('lnSol',draw);})();
+
+/* tanks */
+function tkRun(){const n=+$('tkN').value;$('tkNV').textContent=n;const N=300;const est=[[],[],[]];for(let t=0;t<1000;t++){const a=shuffle([...Array(N).keys()].map(i=>i+1)).slice(0,n);const mx=Math.max(...a);est[0].push(mx);est[1].push(2*mean(a)-1);est[2].push(mx*(1+1/n)-1);}
+  const s=$('tkSvg');clear(s);const names=['A: max','B: 2x̄ − 1','C: max(1 + 1/n) − 1'],cols=[NAVY,ROSE,GOLDD];const lo=0,hi=600;
+  est.forEach((e,i)=>{const B=95+i*100;const X=v=>130+(v-lo)/(hi-lo)*410;el('line',{x1:130,x2:540,y1:B,y2:B,stroke:INK},s);histX(s,X,e.map(v=>Math.min(599,Math.max(0,v))),0,12,B,75,cols[i]);lab(s,122,B-30,names[i],cols[i],'end',12);if(i===2)for(let v=0;v<=600;v+=100)el('text',{x:X(v),y:B+16,'text-anchor':'middle','font-size':10,fill:INK},s,v);});
+  const X=v=>130+v/600*410;el('line',{x1:X(N),x2:X(N),y1:10,y2:300,stroke:INK,'stroke-width':1.5,'stroke-dasharray':'6 4'},s);lab(s,X(N)+4,14,'N = 300',INK,'start',12);
+  $('tkT').innerHTML=est.map((e,i)=>`<tr><td style="color:${cols[i]};font-weight:800">${names[i]}</td><td>${fx(mean(e),1)}</td><td>${fx(sdev(e),1)}</td></tr>`).join('');
+  $('tkMsg').innerHTML='A is <b>biased low</b>. B and C are about unbiased, but <b>C varies much less</b> → the best estimator. (The Allies used a rule like C — and were very close!)';}
+$('tkN').oninput=()=>{$('tkNV').textContent=$('tkN').value;};$('tkGo').onclick=tkRun;tkRun();
+
+/* mq4 + exit */
+(function(){function draw(k){const s=$('mq4');clear(s);const r=srand(15);const X=axis(s,30,540,140,0,40,5,'Package weight (lb)',11);const pop=[...Array(150)].map(()=>2+Math.pow(r(),1.5)*36);
+  dotsX(s,X,pop.map(v=>Math.round(v)),140,3,6,()=>GREY);const mxp=Math.max(...pop);vline(s,X(mxp),30,140,GOLDD,'true max',true,'end',30);if(k>=1){const smp=shuffle(pop,r).slice(0,15);vline(s,X(Math.max(...smp)),70,140,ROSE,'sample max',false,'end',70);}}draw(0);onStep('mq4',draw);})();
+(function(){function draw(k){const s=$('exSol');clear(s);const X=axis(s,40,540,160,0.4,0.9,0.05,'Sample proportions p̂ from many SRSs of 40',11,v=>v.toFixed(2));const r=srand(6);const ps=[...Array(60)].map(()=>binom(40,0.62,r)/40);
+  if(k>=2)dotsX(s,X,ps,160,4,8.5,v=>Math.abs(v-0.65)<1e-6?ROSE:LAV);vline(s,X(0.65),20,160,ROSE,'Ana: 0.65',false,'start',24);if(k>=2)vline(s,X(0.62),40,160,GOLDD,'true p (unknown)',true,'end',44);}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

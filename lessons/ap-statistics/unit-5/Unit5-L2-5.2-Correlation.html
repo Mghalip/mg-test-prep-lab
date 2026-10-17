@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 5 · Lesson 2 — Correlation</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:19px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+table.st td,table.st th{padding:5px 9px!important;font-size:15px}
+.formula{font-family:var(--serif,Georgia);font-size:24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr>span{display:block;padding:0 5px}.fr>span:first-child{border-bottom:2px solid var(--ink)}
+.sq{display:inline-block;border-top:2px solid var(--ink);padding:0 3px;margin-left:1px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}.zbox b{font-family:var(--mono);font-size:20px;display:block;color:var(--navy)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.steps4 .card{padding:10px 12px}
+.tmpl{background:#fff;border:2px dashed var(--rose-2);border-radius:12px;padding:10px 14px;font-size:17px;line-height:1.55;margin-top:8px}
+.tmpl u{text-decoration:none;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 5 第二课：相关系数 r 的含义与性质，三个重要提醒（不抗离群值、r 接近 ±1 不代表线性、相关不等于因果）。对应 TPS 3.1。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 5 · Lesson 2</div><h1>Correlation</h1><div class="zhT">相关系数</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 5.2 · the correlation coefficient r · direction and strength · properties · r is not resistant · r ≈ ±1 does not mean linear · correlation is not causation</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 3.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 5 全貌。" data-title="Unit 5 roadmap">
+<div class="tag">Unit 5 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 5 <span class="zh">单元路线图</span></h2>
+<p class="sub">Regression Analysis · 10–20% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>5.1 Scatterplots<span class="old">TPS 3.1</span></div><div class="lesson now"><span class="n">2</span>5.2 Correlation<span class="old">TPS 3.1</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">3</span>5.3 + 5.4 Regression Models &amp; Residuals<span class="old">TPS 3.2</span></div><div class="lesson"><span class="n">4</span>5.5 Least-Squares Regression<span class="old">TPS 3.2</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 1: describe strength “by eye”. Today: measure the strength and direction of a <strong>linear</strong> association with one number, r. <span class="zh">用一个数衡量线性关系。</span></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 2 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">5.2.A · Skill 4.D</div><h3>Interpret r <span class="stars">★★<span class="off">★★</span></span></h3><p>Interpret r as strength and direction of a linear association.</p><p class="zh muted small" style="margin-top:6px">解释 r</p></div><div class="card"><div class="k">5.2.A.1</div><h3>Properties <span class="stars">★★<span class="off">★★</span></span></h3><p>−1 ≤ r ≤ 1, unit-free, sign = direction.</p><p class="zh muted small" style="margin-top:6px">r 的性质</p></div><div class="card"><div class="k">5.2.A.2</div><h3>Strength <span class="stars">★★<span class="off">★★</span></span></h3><p>|r| near 1 → strong; r = 0 → no linear association.</p><p class="zh muted small" style="margin-top:6px">强度</p></div><div class="card"><div class="k">5.2.A.3</div><h3>Linear? <span class="stars">★★★<span class="off">★</span></span></h3><p>r near ±1 does not guarantee a linear model is appropriate.</p><p class="zh muted small" style="margin-top:6px">r 大不等于线性</p></div><div class="card"><div class="k">5.2.A.4</div><h3>Causation <span class="stars">★★★<span class="off">★</span></span></h3><p>Correlation does not imply causation.</p><p class="zh muted small" style="margin-top:6px">相关不等于因果</p></div><div class="card" style="background:var(--pink-3)"><div class="k">TPS 3.1</div><h3>Technology <span class="stars">★★<span class="off">★★</span></span></h3><p>Find r with LinReg (DiagnosticOn).</p><p class="zh muted small" style="margin-top:6px">用计算器求 r</p></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 2 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">5'</div>Warm-up: guess the correlation</div><div class="it"><div class="bar n" style="width:150px">15' · 5.2.A.1–2</div>What r measures · properties · technology</div><div class="it"><div class="bar n" style="width:150px">17' · 5.2.A.3–4</div>Cautions: outliers, curves, causation</div><div class="it"><div class="bar" style="width:50px">8'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Guess-the-r game · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 5.2.A.1 → 5.2.A.2 → 5.2.A.3 → 5.2.A.4</p><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 2 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simGuess" href="#"><span class="ic">🎮</span><span>Guess the correlation<small>猜 r 游戏 · scatterplot → guess r</small></span></a><a data-goto="simOut" href="#"><span class="ic">🎮</span><span>Outlier effect on r<small>离群点对 r 的影响 · one point → r</small></span></a></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Guess the correlation">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Guess the correlation <span class="zh">猜相关系数</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Match each scatterplot with one of these correlations: r = −0.95, −0.5, 0.1, 0.8. <span class="zh">匹配散点图与 r。</span></p><div style="margin-top:8px"><div class="answ solo" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. A: r = 0.8 (moderately strong positive). B: r = −0.95 (very strong negative).</div></div><div class="answ solo" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. C: r = 0.1 (almost no linear association). D: r = −0.5 (moderate negative).</div></div></div></div><div class="keyidea">🔑 Sign = direction; closeness to ±1 = strength.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 250" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 5.2" data-sec="1" data-title="§ 5.2 Correlation">
+<div class="tag">Topic</div><div class="num">5.2</div><h1>Correlation</h1><div class="zhT">相关系数</div><div class="eks"><span>What r measures</span>PropertiesCautions</div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 5.2.A.1–2。计算器：STAT → CALC → 8:LinReg(a+bx)，需先打开 DiagnosticOn。" data-title="The Correlation Coefficient r">
+<div class="tag">5.2.A <b>· Key Concepts</b><span class="ek">EK 5.2.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>The Correlation Coefficient r <span class="zh">相关系数 r</span></h2><div class="concept pink"><div class="term">Meaning<span class="zh">含义</span></div><div class="en">r summarizes the <strong>strength and direction of the linear association</strong> between two quantitative variables.</div><div class="cn">r 概括两个数值变量之间<b>线性关联的强度与方向</b>。</div></div><div class="concept pink"><div class="term">Values<span class="zh">取值</span></div><div class="en">−1 ≤ r ≤ 1. r &gt; 0 → positive; r &lt; 0 → negative. The closer r is to −1 or 1, the stronger. r = 0 → no <strong>linear</strong> association; r = ±1 → perfect linear association.</div><div class="cn">−1 ≤ r ≤ 1。正负号表示方向；越接近 ±1 越强；r = 0 表示没有<b>线性</b>关联；r = ±1 表示完全线性。</div></div><div class="concept"><div class="term">Unit-free<span class="zh">无单位</span></div><div class="en">r has no units; changing units (inches → cm) does not change r. Swapping x and y does not change r.</div><div class="cn">r <b>没有单位</b>；换单位不改变 r；交换 x 与 y 也不改变 r。</div></div><div class="tmpl">“r = <u>0.82</u> indicates a <u>strong</u>, <u>positive</u>, <u>linear</u> association between <u>(x in context)</u> and <u>(y in context)</u>.”</div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="先全班一起猜；之后让学生两两比赛。" data-title="🎮 Simulator: Guess the correlation" id="simGuess">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Guess the correlation</span><span class="zh">猜 r 游戏</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.2.A.2</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">A random scatterplot appears. Move the slider to your guess and click <b>Check</b>. Play several rounds! <span class="zh">拖动滑块猜 r。</span></p>
+<div class="slider-row"><label>your guess</label><input id="grG" max="1" min="-1" step="0.05" type="range" value="0"/><span class="v" id="grGV"></span></div>
+<div class="btns"><button class="b" id="grChk">Check</button><button class="b" id="grNew">New plot</button></div>
+<div class="zbox"><div>true r<b id="grR" style="color:var(--rose)">?</b></div><div>your error<b id="grE">–</b></div><div>rounds<b id="grN">0</b></div><div>average error<b id="grA">–</b></div></div></div>
+<div class="col frame"><svg id="grSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Interpret r">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.2.A · technology</span></div>
+<h2>Interpret r <span class="zh">解释 r</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>For the 10 students in Lesson 1 (high school GPA x, college GPA y), technology gives r = 0.817.</p><div class="q"><b class="n">a</b>Interpret r.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">There is a <b>strong, positive, linear</b> association between high school GPA and first-year college GPA for these students.</div></div><div class="q"><b class="n">b</b>What would r be if GPAs were recorded on a 100-point scale instead?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Still 0.817 — r has no units, so a change of scale does not change it.</div></div><div class="q"><b class="n">c</b>What would r be if we used college GPA to predict high school GPA?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Still 0.817 — r does not depend on which variable is called x.</div></div></div><div class="keyidea">🔑 r is unit-free and symmetric.</div></div></div><div class="col vis"><div class="qv"><svg id="irQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="irSol" viewbox="0 0 560 220" width="100%"></svg></div></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 5.2.A.3–4。Anscombe 四重奏：四组数据 r 都约为 0.82，但散点图完全不同。" data-title="Three Cautions About r">
+<div class="tag">5.2.A <b>· Key Concepts</b><span class="ek">EK 5.2.A.3–4 · TPS 3.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Three Cautions About r <span class="zh">关于 r 的三个提醒</span></h2><div class="concept"><div class="term">r is not resistant<span class="zh">r 不抗离群值</span></div><div class="en">A single outlier can greatly increase or decrease r.</div><div class="cn">一个离群点就能大幅改变 r。</div></div><div class="concept pink"><div class="term">r ≈ ±1 ≠ linear<span class="zh">r 接近 ±1 不代表线性</span></div><div class="en">A curved relationship can have r close to 1. Always <strong>look at the scatterplot</strong> (and later the residual plot).</div><div class="cn"><b>曲线</b>关系也可能 r 接近 1。一定要<b>看散点图</b>（之后还要看残差图）。</div></div><div class="concept pink"><div class="term">Correlation ≠ causation<span class="zh">相关不等于因果</span></div><div class="en">A real relationship between two variables does not mean changes in x cause changes in y — a <strong>lurking (confounding) variable</strong> may explain both.</div><div class="cn">两个变量有关联不代表 x 的变化<b>导致</b> y 的变化——可能有<b>潜在（混杂）变量</b>同时影响两者。</div></div><svg id="anSvg" viewbox="0 0 1100 140" width="100%"></svg><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="把粉点拖到 (20, 1)：r 从 0.96 变成负数。" data-title="🎮 Simulator: Outlier effect on r" id="simOut">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Outlier effect on r</span><span class="zh">离群点对 r 的影响</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS 3.1</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Eight points have r ≈ 0.96. Drag the sliders to move the pink point and watch r change. <span class="zh">移动粉色点，看 r 如何变化。</span></p>
+<div class="slider-row"><label>pink x</label><input id="otX" max="20" min="0" step="0.5" type="range" value="4.5"/><span class="v" id="otXV"></span></div>
+<div class="slider-row"><label>pink y</label><input id="otY" max="12" min="0" step="0.5" type="range" value="4.5"/><span class="v" id="otYV"></span></div>
+<div class="zbox"><div>r (8 points)0.956</div><div>r (with pink)<b id="otR" style="color:var(--rose)">–</b></div></div><div class="note small" id="otMsg" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="otSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Strong r, wrong model">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.2.A.3</span></div>
+<h2>Strong r, wrong model <span class="zh">r 很大，模型却不对</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A ball is dropped and its distance fallen (m) is recorded every 0.1 s for 1 second. The correlation between time and distance is r = 0.97.</p><div class="q"><b class="n">a</b>A student says, “r is very close to 1, so a straight line is a great model.” Respond.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">r = 0.97 indicates a strong positive linear association, but does not guarantee a suitable linear model. Here the data are strongly <b>increasing</b>. The scatterplot is clearly curved (distance grows like time²), so a line is not the most appropriate model even though r is large.</div></div><div class="q"><b class="n">b</b>What should the student do first?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Always make a <b>scatterplot</b> first (and, in Lesson 3, a residual plot) before using r or a line.</div></div></div><div class="keyidea">🔑 Look before you compute.</div></div></div><div class="col vis"><div class="qv"><svg id="bdQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="bdSol" viewbox="0 0 560 220" width="100%"></svg></div></div></div><div class="foot"><span>Unit 5 · Lesson 2 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Ice cream and shark attacks">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.2.A.4</span></div>
+<h2>Ice cream and shark attacks <span class="zh">冰淇淋与鲨鱼袭击</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Over the months of a year, a beach town’s ice-cream sales and number of shark attacks have r = 0.88.</p><div class="q"><b class="n">a</b>Does eating ice cream cause shark attacks?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No — r measures association only.</div></div><div class="q"><b class="n">b</b>Suggest a lurking variable.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Temperature / season</b>: in hot months more people buy ice cream and more people swim in the sea.</div></div><div class="q"><b class="n">c</b>What kind of study could show cause and effect?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A <b>randomized experiment</b> (Unit 1) — this observational example provides no randomized evidence for the proposed causal effect.</div></div></div><div class="keyidea">🔑 Association is not causation.</div></div></div><div class="col vis"><svg id="isSol" viewbox="0 0 560 200" width="100%"></svg></div></div><div class="foot"><span>Unit 5 · Lesson 2 · Class slides</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 5: Interpreting r">
+<div class="exhead"><span class="badge ex">📝 AP Practice 5 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.2.A.1–2</span></div>
+<h2>Interpreting r</h2><div class="scrollcol"><div class="problem" style="font-size:19px">The correlation between the number of hours worked per week and GPA for a sample of students is r = −0.45. Which is the best interpretation?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Working more hours causes lower GPA.</li><li>(B) There is a moderate negative linear association between hours worked and GPA.</li><li>(C) 45% of the variation in GPA is explained by hours worked.</li><li>(D) GPA decreases by 0.45 for each extra hour worked.</li><li>(E) There is no association.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">|r| = 0.45 is moderate, sign negative → <b>(B)</b>. (C) describes r², (D) describes a slope, (A) claims causation.</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 6: Properties of r">
+<div class="exhead"><span class="badge ex">📝 AP Practice 6 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.2.A.1</span></div>
+<h2>Properties of r</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Heights are converted from inches to centimeters. What happens to the correlation between height and weight?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) It is multiplied by 2.54.</li><li>(B) It is divided by 2.54.</li><li>(C) It does not change.</li><li>(D) It becomes 1.</li><li>(E) It changes sign.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Changing units does not change r → (C).</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 7: Which statement is true?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 7 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.2.A.2–4</span></div>
+<h2>Which statement is true?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which statement about correlation is true?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) r = 0 means there is no relationship of any kind.</li><li>(B) r = 0.9 means a linear model is definitely appropriate.</li><li>(C) A strong correlation proves cause and effect.</li><li>(D) r = −1 means a perfect negative linear association.</li><li>(E) r can be larger than 1 for very strong relationships.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">r = −1 is a perfect negative linear association → (D). (A) a curved relationship can have r = 0; (B) and (C) are the CED cautions.</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 8: Outliers">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 8 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS 3.1</span></div>
+<h2>Outliers</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Removing one point far to the right and below the pattern of an otherwise strong positive linear scatterplot will most likely</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) decrease r</li><li>(B) increase r</li><li>(C) not change r</li><li>(D) make r negative</li><li>(E) make r equal to 0</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">That point weakens the positive pattern; removing it makes r larger → <b>(B)</b>.</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Correlation r</th><td class="zh" style="text-align:left">相关系数</td><td style="text-align:left">strength &amp; direction of a linear association</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">−1 ≤ r ≤ 1</th><td class="zh" style="text-align:left">取值范围</td><td style="text-align:left">±1 perfect linear, 0 no linear association</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Not resistant</th><td class="zh" style="text-align:left">不抗离群值</td><td style="text-align:left">outliers can change r a lot</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Lurking variable</th><td class="zh" style="text-align:left">潜在变量</td><td style="text-align:left">affects both x and y</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Correlation ≠ causation</th><td class="zh" style="text-align:left">相关不等于因果</td><td style="text-align:left">need a randomized experiment</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 5 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">5.2</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>For 30 countries, the correlation between the number of TVs per person and life expectancy is r = 0.80.</p><div class="q"><b class="n">1</b>Interpret r.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">There is a strong, positive, linear association between TVs per person and life expectancy for these countries.</div></div><div class="q"><b class="n">2</b>A politician says, “Send TVs to countries with low life expectancy.” Explain the flaw.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Correlation is not causation — <b>national wealth</b> is a lurking variable: richer countries have more TVs and better health care. These data do not establish that sending TVs would raise life expectancy.</div></div></div><div class="keyidea">🔑 Association vs. causation.</div></div><div class="foot"><span>Unit 5 · Lesson 2 · Classic example</span><span class="pg"></span></div>
+</section>
+<section class="slide extension" data-notes="先讲符号，再讲单位。样本z使用样本标准差，分母为n−1。 | Algebra explanation: identities shown on this slide. Reference: https://online.stat.psu.edu/stat500/Lesson09" data-title="Extension: Build r from paired deviations"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">3 min · beyond required derivation</div><h2>Build r from paired deviations<span class="zh">从共同变化到相关系数</span></h2><div class="bridge-body"><p>For each person, compare x and y with their own sample means. Products are positive when both deviations have the same sign, and negative when their signs differ.</p><div class="algebra" data-math-tex="s_{xy}=\frac{\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)}{n-1}">s_{xy}=\frac{\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)}{n-1}</div><p>Covariance depends on units. Divide by both sample SDs to remove the units. Assume sₓ &gt; 0 and sᵧ &gt; 0.</p><div class="algebra" data-math-tex="r=\frac{s_{xy}}{s_xs_y}=\frac{\sum_{i=1}^{n}z_{x_i}z_{y_i}}{n-1}">r=\frac{s_{xy}}{s_xs_y}=\frac{\sum_{i=1}^{n}z_{x_i}z_{y_i}}{n-1}</div><p class="bridge-cn">先看每一对数据是否一起高、一起低，再去掉单位。r 是标准化后的共同变化。</p><details><summary>Check your understanding · One variable is constant. What is r?</summary><p>Undefined: its sample SD is zero, so standardization is impossible.</p></details></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide extension" data-notes="Optional algebra explanation. Return to core practice after discussion. | Algebra explanation: identities shown on this slide. Reference: https://online.stat.psu.edu/stat500/Lesson09" data-title="Extension: Calculate r with three pairs"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">3 min · beyond required derivation</div><h2>Calculate r with three pairs<span class="zh">一个可以手算的例子</span></h2><div class="bridge-body"><table class="bridge-table"><tr><th>x</th><th>y</th><th>x − x̄</th><th>y − ȳ</th><th>Product</th></tr><tr><td>1</td><td>1</td><td>−1</td><td>−1</td><td>1</td></tr><tr><td>2</td><td>3</td><td>0</td><td>1</td><td>0</td></tr><tr><td>3</td><td>2</td><td>1</td><td>0</td><td>0</td></tr></table><div class="algebra" data-math-tex="\bar x=\bar y=2\qquad s_x=s_y=\sqrt{\frac22}=1">\bar x=\bar y=2\qquad s_x=s_y=\sqrt{\frac22}=1</div><div class="algebra" data-math-tex="s_{xy}=\frac{1+0+0}{2}=0.5\quad\Longrightarrow\quad r=0.5">s_{xy}=\frac{1+0+0}{2}=0.5\quad\Longrightarrow\quad r=0.5</div><p>The positive product supports a positive association, but the pairs do not lie on one increasing line.</p><p class="bridge-cn">检查：如果把 y 改成 1、2、3，所有点完全落在上升直线上，r 会变成 1。</p><details><summary>Check your understanding · Replace y by 10y + 5. What happens?</summary><p>The covariance and sᵧ both multiply by 10, so their ratio r stays 0.5.</p></details></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide extension" data-notes="代数选讲4分钟，学生只需会展开平方。 | Algebra explanation: identities shown on this slide. Reference: https://online.stat.psu.edu/stat500/Lesson09" data-title="Extension: Why −1 ≤ r ≤ 1"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">4 min · beyond required derivation</div><h2>Why −1 ≤ r ≤ 1<span class="zh">不用微积分的界限推导</span></h2><div class="bridge-body"><p>For sample-standardized values, Σzₓ² = Σzᵧ² = n − 1. Every square is nonnegative.</p><div class="algebra" data-math-tex="\begin{aligned}0&amp;\leq\sum_{i=1}^{n}(z_{x_i}-z_{y_i})^2=2(n-1)-2\sum_{i=1}^{n}z_{x_i}z_{y_i}\\&amp;\Longrightarrow\sum_{i=1}^{n}z_{x_i}z_{y_i}\leq n-1\Longrightarrow r\leq1\end{aligned}">\begin{aligned}0&amp;\leq\sum_{i=1}^{n}(z_{x_i}-z_{y_i})^2=2(n-1)-2\sum_{i=1}^{n}z_{x_i}z_{y_i}\\&amp;\Longrightarrow\sum_{i=1}^{n}z_{x_i}z_{y_i}\leq n-1\Longrightarrow r\leq1\end{aligned}</div><div class="algebra" data-math-tex="\begin{aligned}0&amp;\leq\sum_{i=1}^{n}(z_{x_i}+z_{y_i})^2=2(n-1)+2\sum_{i=1}^{n}z_{x_i}z_{y_i}\\&amp;\Longrightarrow\sum_{i=1}^{n}z_{x_i}z_{y_i}\geq-(n-1)\Longrightarrow r\geq-1\end{aligned}">\begin{aligned}0&amp;\leq\sum_{i=1}^{n}(z_{x_i}+z_{y_i})^2=2(n-1)+2\sum_{i=1}^{n}z_{x_i}z_{y_i}\\&amp;\Longrightarrow\sum_{i=1}^{n}z_{x_i}z_{y_i}\geq-(n-1)\Longrightarrow r\geq-1\end{aligned}</div><p>Equality requires zᵧ = zₓ for every pair (r = 1), or zᵧ = −zₓ for every pair (r = −1): a perfect straight-line relationship.</p><p class="bridge-cn">上下界来自“平方和不能为负”。需要至少两对数据，而且两个变量都有非零变异。</p></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide extension" data-notes="先教回归基本概念再选讲。最优截距可由残差平方和对均值分解得到，无需微积分。 | Algebra explanation: identities shown on this slide. Reference: https://online.stat.psu.edu/stat500/Lesson09" data-title="Extension: How r determines the regression slope"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">4 min · beyond required derivation</div><h2>How r determines the regression slope<span class="zh">回归预告：标准化斜率</span></h2><div class="bridge-body"><p>Preview after learning least squares: write uᵢ = xᵢ − x̄ and vᵢ = yᵢ − ȳ. A fitted line through (x̄, ȳ) predicts v using bu.</p><div class="algebra" data-math-tex="\begin{aligned}\operatorname{SSE}(b)&amp;=\sum_{i=1}^{n}(v_i-bu_i)^2\\&amp;=\sum_{i=1}^{n}v_i^2-2b\sum_{i=1}^{n}u_iv_i+b^2\sum_{i=1}^{n}u_i^2\end{aligned}">\begin{aligned}\operatorname{SSE}(b)&amp;=\sum_{i=1}^{n}(v_i-bu_i)^2\\&amp;=\sum_{i=1}^{n}v_i^2-2b\sum_{i=1}^{n}u_iv_i+b^2\sum_{i=1}^{n}u_i^2\end{aligned}</div><p>Completing the square gives the minimum at b = Σuᵢvᵢ/Σuᵢ². The best intercept is a = ȳ − bx̄ because residuals sum to zero.</p><div class="algebra" data-math-tex="b=\frac{s_{xy}}{s_x^2}=r\frac{s_y}{s_x}\qquad\frac{\hat y-\bar y}{s_y}=r\frac{x-\bar x}{s_x}">b=\frac{s_{xy}}{s_x^2}=r\frac{s_y}{s_x}\qquad\frac{\hat y-\bar y}{s_y}=r\frac{x-\bar x}{s_x}</div><p class="bridge-cn">r 是标准化单位下的回归斜率；原单位斜率还要乘 sᵧ/sₓ。r 没有单位，b 有单位。</p><details><summary>Check your understanding · r = 0.6, sₓ = 2, sᵧ = 10: slope?</summary><p>b = 0.6 × 10/2 = 3 y-units per x-unit.</p></details></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide extension" data-notes="在回归之后讲。正交性来自Σe=0及Σxe=0。 | Algebra explanation: identities shown on this slide. Reference: https://online.stat.psu.edu/stat500/Lesson09" data-title="Extension: Why r² measures explained variation"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">4 min · beyond required derivation</div><h2>Why r² measures explained variation<span class="zh">回归预告：平方和分解</span></h2><div class="bridge-body"><p>For ordinary least-squares regression with one predictor and an intercept, let eᵢ = yᵢ − ŷᵢ. The fitted deviations and residuals are orthogonal: Σ(ŷᵢ − ȳ)eᵢ = 0.</p><div class="algebra" data-math-tex="\begin{aligned}\sum_{i=1}^{n}(y_i-\bar y)^2&amp;=\sum_{i=1}^{n}(\hat y_i-\bar y)^2+\sum_{i=1}^{n}e_i^2\\\operatorname{SST}&amp;=\operatorname{SSR}+\operatorname{SSE}\end{aligned}">\begin{aligned}\sum_{i=1}^{n}(y_i-\bar y)^2&amp;=\sum_{i=1}^{n}(\hat y_i-\bar y)^2+\sum_{i=1}^{n}e_i^2\\\operatorname{SST}&amp;=\operatorname{SSR}+\operatorname{SSE}\end{aligned}</div><div class="algebra" data-math-tex="\operatorname{SSR}=b^2\sum_{i=1}^{n}(x_i-\bar x)^2=r^2\frac{s_y^2}{s_x^2}(n-1)s_x^2=r^2\operatorname{SST}">\operatorname{SSR}=b^2\sum_{i=1}^{n}(x_i-\bar x)^2=r^2\frac{s_y^2}{s_x^2}(n-1)s_x^2=r^2\operatorname{SST}</div></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide extension" data-notes="在回归之后讲。正交性来自Σe=0及Σxe=0。 | Algebra explanation: identities shown on this slide. Reference: https://online.stat.psu.edu/stat500/Lesson09" data-title="Extension: Interpreting the explained fraction"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">4 min · beyond required derivation</div><h2>Interpreting the explained fraction<span class="zh">解释变异的比例</span></h2><div class="bridge-body"><p>For a one-predictor least-squares line with an intercept, SST = SSR + SSE. Dividing by SST gives the fraction explained by the fitted line.</p><div class="algebra" data-math-tex="R^2=\frac{\operatorname{SSR}}{\operatorname{SST}}=1-\frac{\operatorname{SSE}}{\operatorname{SST}}=r^2">R^2=\frac{\operatorname{SSR}}{\operatorname{SST}}=1-\frac{\operatorname{SSE}}{\operatorname{SST}}=r^2</div><p class="bridge-cn">r² 衡量这条回归线解释的样本 y 变异比例；不是预测正确率，也不是因果贡献比例。这个等式限定为含截距的一元最小二乘回归。</p><details><summary>Check your understanding · r = −0.8: explained variation?</summary><p>64%. The negative sign describes direction; squaring removes it.</p></details></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide cover" data-notes="下节课：5.3 + 5.4（TPS 3.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 3</div><h1>Linear Regression Models and Residuals</h1><div class="zhT">线性回归模型与残差 · Topics 5.3–5.4</div><p class="muted" style="margin-top:26px;font-size:22px">Predicting y from x with ŷ = a + bx, extrapolation vs. interpolation, residuals, and residual plots.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 3 shared helpers ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390',MINT='#2E8B6E';
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+(+v).toFixed(d)).toString();
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs,fmt){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,fmt?fmt(t):+t.toFixed(3));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function gauss(r){r=r||Math.random;const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function binom(n,p,r){r=r||Math.random;let c=0;for(let i=0;i<n;i++)if(r()<p)c++;return c;}
+/* histogram of values on an axis X with bins of width w starting at lo; returns counts */
+function histX(svg,X,vals,lo,w,B,H,col,hl){const cnt={};vals.forEach(v=>{const k=Math.floor((v-lo)/w+1e-9);cnt[k]=(cnt[k]||0)+1;});const mx=Math.max(1,...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c])=>{const a=lo+k*w;el('rect',{x:X(a)+0.5,y:B-c/mx*H,width:Math.max(1,X(a+w)-X(a)-1),height:c/mx*H,fill:hl&&hl(a,a+w)?ROSE:(col||NAVY)},svg);});return cnt;}
+/* stacked dots for discrete values */
+function dotsX(svg,X,vals,B,r,dy,colf){const cnt={};vals.forEach(v=>{const k=(+v).toFixed(4);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(+v),cy:B-r-1-(cnt[k]-1)*dy,r,fill:colf?colf(+v):NAVY},svg);});return cnt;}
+function normPath(svg,X,Y0,H,mu,sd,lo,hi,col,fill,a,b){const f=x=>Math.exp(-(((x-mu)/sd)**2)/2);
+  if(a!==undefined){const aa=Math.max(lo,a),bb=Math.min(hi,b);if(bb>aa){let d=`M${X(aa)},${Y0}`;for(let i=0;i<=100;i++){const x=aa+(bb-aa)*i/100;d+=`L${X(x)},${Y0-H*f(x)}`;}el('path',{d:d+`L${X(bb)},${Y0}Z`,fill:fill||'#F4C3D0'},svg);}}
+  let d='';for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;d+=`${i?'L':'M'}${X(x)},${Y0-H*f(x)}`;}el('path',{d,fill:'none',stroke:col||NAVY,'stroke-width':2.5},svg);}
+function zcrit(C){return invn(1-(1-C)/2);}
+/* ===== Unit 5 helpers ===== */
+function linreg(x,y){const mx=mean(x),my=mean(y);let sxy=0,sxx=0,syy=0;x.forEach((v,i)=>{sxy+=(v-mx)*(y[i]-my);sxx+=(v-mx)**2;syy+=(y[i]-my)**2;});const b=sxy/sxx,a=my-b*mx,r=sxy/Math.sqrt(sxx*syy);return {a,b,r,mx,my};}
+/* scatterplot: o={L,R,T,B,xlo,xhi,ylo,yhi,xs,ys,xl,yl,col,r,line:{a,b},xf,yf} returns {X,Y} */
+function scat(s,x,y,o){const L=o.L??60,R=o.R??540,T=o.T??20,B=o.B??240;const X=v=>L+(v-o.xlo)/(o.xhi-o.xlo)*(R-L),Y=v=>B-(v-o.ylo)/(o.yhi-o.ylo)*(B-T);
+  const xs=o.xs||(o.xhi-o.xlo)/5,ys=o.ys||(o.yhi-o.ylo)/5;const fx=o.xf||(v=>+v.toFixed(2)),fy=o.yf||(v=>+v.toFixed(2));
+  for(let v=o.ylo;v<=o.yhi+1e-9;v+=ys){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},s);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':10,fill:MUTED},s,fy(v));}
+  for(let v=o.xlo;v<=o.xhi+1e-9;v+=xs){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+4,stroke:INK},s);el('text',{x:X(v),y:B+16,'text-anchor':'middle','font-size':10,fill:INK},s,fx(v));}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);el('line',{x1:L,x2:L,y1:T,y2:B,stroke:INK,'stroke-width':1.5},s);
+  if(o.xl)lab(s,(L+R)/2,B+32,o.xl,INK,'middle',12,700);if(o.yl){const t=el('text',{x:14,y:(T+B)/2,'text-anchor':'middle','font-size':12,'font-weight':700,fill:INK,transform:`rotate(-90 14 ${(T+B)/2})`},s,o.yl);}
+  if(o.line){const {a,b}=o.line;const x1=o.xlo,x2=o.xhi;el('line',{x1:X(x1),x2:X(x2),y1:Y(a+b*x1),y2:Y(a+b*x2),stroke:o.lcol||ROSE,'stroke-width':2.5},s);}
+  x.forEach((v,i)=>el('circle',{cx:X(v),cy:Y(y[i]),r:o.r||5,fill:(o.colf?o.colf(i):o.col)||NAVY,opacity:.85},s));return {X,Y};}
+/* ===== Unit 5 · Lesson 2 ===== */
+function genR(rho,n,r){r=r||Math.random;const x=[],y=[];for(let i=0;i<n;i++){const a=gauss(r),b=gauss(r);x.push(a);y.push(rho*a+Math.sqrt(1-rho*rho)*b);}return {x,y};}
+function mini(s,d,L,T,W,H,lbl,col){const xs=d.x,ys=d.y;const xl=Math.min(...xs),xh=Math.max(...xs),yl=Math.min(...ys),yh=Math.max(...ys);el('rect',{x:L,y:T,width:W,height:H,fill:'#fff',stroke:GREY},s);
+  xs.forEach((v,i)=>el('circle',{cx:L+8+(v-xl)/(xh-xl)*(W-16),cy:T+H-8-(ys[i]-yl)/(yh-yl)*(H-16),r:3,fill:col||NAVY},s));if(lbl)lab(s,L+8,T+16,lbl,ROSE,'start',14,800);}
+const WU=(function(){const r=srand(31);return [0.8,-0.95,0.1,-0.5].map(p=>genR(p,40,r));})();
+function wuPlot(s,k){clear(s);WU.forEach((d,i)=>{const L=20+(i%2)*270,T=8+Math.floor(i/2)*120;mini(s,d,L,T,250,110,'ABCD'[i]);if(k)lab(s,L+240,T+16,'r = '+[0.8,-0.95,0.1,-0.5][i],NAVY,'end',13,700);});}
+(function(){wuPlot($('wuQ'),false);})();(function(){function draw(k){wuPlot($('wuSol'),k>=1);}draw(0);onStep('wuSol',draw);})();
+
+/* guess game */
+let grD=null,grRounds=0,grErr=0;
+function grNew(){const rho=Math.round((Math.random()*2-1)*20)/20;grD=genR(rho,60);const lr=linreg(grD.x,grD.y);grD.r=lr.r;const s=$('grSvg');clear(s);mini(s,grD,40,10,480,290,'',NAVY);$('grR').textContent='?';$('grE').textContent='–';}
+function grChk(){if(!grD)return;const g=+$('grG').value,e=Math.abs(g-grD.r);grRounds++;grErr+=e;$('grR').textContent=grD.r.toFixed(2);$('grE').textContent=e.toFixed(2);$('grN').textContent=grRounds;$('grA').textContent=(grErr/grRounds).toFixed(2);}
+$('grG').oninput=()=>$('grGV').textContent=(+$('grG').value).toFixed(2);$('grGV').textContent='0.00';$('grNew').onclick=grNew;$('grChk').onclick=grChk;grNew();
+
+/* GPA */
+const HS=[3.4,3.1,3.7,3.3,3.5,4.0,3.2,3.8,3.9,3.6],CG=[3.1,3.0,3.6,3.6,3.4,3.9,3.2,3.7,3.6,3.3];
+function gpPlot(s,k){clear(s);const cm=k>=2;const xs=cm?HS.map(v=>v*25):HS,ys=cm?CG.map(v=>v*25):CG;const o=cm?{xlo:75,xhi:100,ylo:72.5,yhi:100,xs:5,ys:5,xl:'HS GPA (100-pt scale)',yl:'college (100-pt)'}:{xlo:3.0,xhi:4.0,ylo:2.9,yhi:4.0,xs:0.2,ys:0.2,xl:'high school GPA',yl:'college GPA',xf:v=>v.toFixed(1),yf:v=>v.toFixed(1)};o.B=180;
+scat(s,k>=3?CG:xs,k>=3?HS:ys,k>=3?{xlo:2.9,xhi:4.0,ylo:3.0,yhi:4.0,xs:0.2,ys:0.2,B:180,xl:'college GPA',yl:'high school GPA',xf:v=>v.toFixed(1),yf:v=>v.toFixed(1)}:o);lab(s,330,24,'r = 0.817',ROSE,'middle',15,800);}
+(function(){gpPlot($('irQ'),0);})();(function(){function draw(k){gpPlot($('irSol'),k);}draw(0);onStep('irSol',draw);})();
+
+/* Anscombe (1100) */
+(function(){const s=$('anSvg');clear(s);const X=[10,8,13,9,11,14,6,4,12,7,5];const Y=[[8.04,6.95,7.58,8.81,8.33,9.96,7.24,4.26,10.84,4.82,5.68],[9.14,8.14,8.74,8.77,9.26,8.10,6.13,3.10,9.13,7.26,4.74],[7.46,6.77,12.74,7.11,7.81,8.84,6.08,5.39,8.15,6.42,5.73]];const X4=[8,8,8,8,8,8,8,19,8,8,8],Y4=[6.58,5.76,7.71,8.84,8.47,7.04,5.25,12.50,5.56,7.91,6.89];
+  [[X,Y[0]],[X,Y[1]],[X,Y[2]],[X4,Y4]].forEach(([x,y],i)=>{const L=10+i*272,T=8,W=255,H=118;el('rect',{x:L,y:T,width:W,height:H,fill:'#fff',stroke:GREY},s);x.forEach((v,j)=>el('circle',{cx:L+10+(v-3)/17*(W-20),cy:T+H-10-(y[j]-3)/10*(H-20),r:3.5,fill:NAVY},s));lab(s,L+W-8,T+16,'r ≈ 0.82',ROSE,'end',12,700);});})();
+
+/* outlier sim */
+const OA=[1,2,3,4,5,6,7,8],OB=[2,3,3,5,4,6,7,7];
+function otRun(){const px=+$('otX').value,py=+$('otY').value;$('otXV').textContent=px;$('otYV').textContent=py;const x=OA.concat([px]),y=OB.concat([py]);const lr=linreg(x,y);
+  const s=$('otSvg');clear(s);scat(s,x,y,{xlo:0,xhi:20,ylo:0,yhi:12,xs:4,ys:2,B:280,xl:'x',yl:'y',colf:i=>i===8?ROSE:NAVY,r:6});$('otR').textContent=lr.r.toFixed(3);
+  $('otMsg').innerHTML=Math.abs(lr.r-0.956)<0.05?'The pink point fits the pattern — r barely changes.':`One point changed r from 0.956 to <b>${lr.r.toFixed(3)}</b>.`;}
+['otX','otY'].forEach(i=>$(i).oninput=otRun);otRun();
+
+/* ball drop */
+const BT=[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0],BD=BT.map(t=>+(4.9*t*t).toFixed(2));
+function bdPlot(s,k){clear(s);const lr=linreg(BT,BD);scat(s,BT,BD,{xlo:0,xhi:1,ylo:-1,yhi:5,xs:0.2,ys:1,B:180,xl:'time (s)',yl:'distance (m)',xf:v=>v.toFixed(1),yf:v=>v.toFixed(0),line:k?{a:lr.a,b:lr.b}:null});lab(s,180,30,'r = 0.97',ROSE,'middle',14,800);if(k)lab(s,380,140,'line misses the curve',ROSE,'middle',13);}
+(function(){bdPlot($('bdQ'),false);})();(function(){function draw(k){bdPlot($('bdSol'),k>=1);}draw(0);onStep('bdSol',draw);})();
+
+/* ice cream */
+(function(){function draw(k){const s=$('isSol');clear(s);if(k<2){lab(s,280,90,k?'association ≠ causation':'Click the answers →',k?ROSE:MUTED,'middle',15,700);return;}
+  box(s,190,10,180,44,GOLDD,GOLDD,'hot weather (lurking)','#fff',14);box(s,20,130,180,44,'#fff',NAVY,'ice-cream sales',NAVY,14);box(s,360,130,180,44,'#fff',NAVY,'shark attacks',NAVY,14);arrow(s,250,56,140,128,GOLDD,3);arrow(s,310,56,420,128,GOLDD,3);
+  el('line',{x1:200,x2:360,y1:152,y2:152,stroke:ROSE,'stroke-width':2.5,'stroke-dasharray':'6 4'},s);lab(s,280,145,'r = 0.88',ROSE,'middle',13);lab(s,280,172,'not causal',ROSE,'middle',12);}draw(0);onStep('isSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

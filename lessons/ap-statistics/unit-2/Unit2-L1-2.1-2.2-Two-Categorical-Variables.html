@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 2 · Lesson 1 — Two Categorical Variables</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage">
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 2 第一课：新大纲 2.1 + 2.2，对应旧课本 TPS 1.1 的双向表部分。v2：例题与解答分页、模拟器高亮、难度星级。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 2 · Lesson 1</div><h1>Two Categorical Variables</h1><div class="zhT">两个分类变量：双向表、图形与关联</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 2.1 Tabular &amp; Graphical Representations · Topic 2.2 Summary Statistics</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 1.1 (part 2)</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 2 全貌。" data-title="Unit 2 roadmap">
+<div class="tag">Unit 2 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 2 <span class="zh">单元路线图</span></h2>
+<p class="sub">Probability, Random Variables, and Probability Distributions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson now"><span class="n">1</span>2.1 + 2.2 Two Categorical Variables<span class="old">TPS 1.1</span></div><div class="lesson"><span class="n">2</span>2.3 + 2.4 Simulation &amp; Intro to Probability<span class="old">TPS 5.1</span></div><div class="lesson"><span class="n">3</span>2.5 Mutually Exclusive Events<span class="old">TPS 5.2</span></div><div class="lesson"><span class="n">4</span>2.6 + 2.7 Conditional Prob. &amp; Independence<span class="old">TPS 5.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">5</span>2.8 + 2.9 Random Variables<span class="old">TPS 6.1</span></div><div class="lesson"><span class="n">6</span>2.10 The Binomial Distribution<span class="old">TPS 6.3</span></div><div class="lesson"><span class="n">7</span>2.11 The Normal Distribution<span class="old">TPS 2.2</span></div><div class="lesson"><span class="n">8</span>2.12 Sampling Distributions &amp; CLT<span class="old">TPS 7.1</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Today's <strong>conditional relative frequency</strong> becomes <strong>conditional probability</strong> in Lesson 4. <span class="zh">今天的“条件相对频率”是之后“条件概率”的基础。</span></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 1 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">2.1.A · Skill 4.A</div><h3>Compare <span class="stars">★<span class="off">★★★</span></span></h3><p>Compare tables and graphs (side-by-side, segmented, mosaic) for two categorical variables.</p><p class="zh muted small" style="margin-top:6px">比较两个分类变量的表格与图形</p></div><div class="card"><div class="k">2.1.B · Skill 4.B</div><h3>Justify (graphs) <span class="stars">★★★<span class="off">★</span></span></h3><p>Justify a claim using tables and graphs, in context.</p><p class="zh muted small" style="margin-top:6px">用表格和图形论证结论</p></div><div class="card"><div class="k">2.2.A · Skill 3.B</div><h3>Calculate <span class="stars">★★<span class="off">★★</span></span></h3><p>Calculate joint, marginal and conditional relative frequencies.</p><p class="zh muted small" style="margin-top:6px">计算联合、边际、条件相对频率</p></div><div class="card"><div class="k">2.2.B · Skill 4.A</div><h3>Compare (stats) <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare conditional distributions for evidence of association.</p><p class="zh muted small" style="margin-top:6px">比较条件分布寻找关联证据</p></div><div class="card"><div class="k">2.2.C · Skill 4.B</div><h3>Justify (stats) <span class="stars">★★★★<span class="off"></span></span></h3><p>Justify a claim using summary statistics, in context.</p><p class="zh muted small" style="margin-top:6px">用统计量论证结论</p></div><div class="card" style="background:var(--pink-3)"><div class="k">From TPS 1.1</div><h3>Describe <span class="stars">★★★<span class="off">★</span></span></h3><p>Describe the nature of an association (which group, which direction, how big).</p><p class="zh muted small" style="margin-top:6px">描述关联的具体情况</p></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 1 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:60px">4'</div>Warm-up: the Yellowstone question</div><div class="it"><div class="bar n" style="width:190px">15' · 2.1</div>Two-way tables → three graphs → association</div><div class="it"><div class="bar n" style="width:200px">16' · 2.2</div>Joint → marginal → conditional → compare → justify</div><div class="it"><div class="bar" style="width:110px">7'</div>Practice: Titanic + AP-style MCQ</div><div class="it"><div class="bar" style="width:60px">3'</div>Summary &amp; exit ticket</div><div class="it"><div class="bar g" style="width:120px">Bonus</div>Fill-in table · random generator · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 2.1.A.1 → 2.1.A.2 → 2.1.A.3 → 2.1.B.1 → 2.2.A.1 → 2.2.A.2 → 2.2.A.3 → 2.2.B.1 → 2.2.C.1</p><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 1 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simModes" href="#"><span class="ic">🎮</span><span>Same table, four ways<small>同一张表的四种形式 · counts ↔ relative frequencies</small></span></a><a data-goto="simSBS" href="#"><span class="ic">🎮</span><span>Side-by-side bar chart<small>并列条形图 · counts vs. percents, 2 groupings</small></span></a><a data-goto="simSeg" href="#"><span class="ic">🎮</span><span>Segmented bar chart<small>分段条形图 · switch which variable makes the bars</small></span></a><a data-goto="simMos" href="#"><span class="ic">🎮</span><span>Mosaic plot<small>马赛克图 · width = group size</small></span></a><a data-goto="simAssoc" href="#"><span class="ic">🎮</span><span>How different is "different"?<small>差异多大才算有关联？ · drag from "no association" to "strong"</small></span></a><a data-goto="simDen" href="#"><span class="ic">🎮</span><span>Find the numerator &amp; denominator<small>找分子和分母 · highlights numerator/denominator cells</small></span></a><a data-goto="simGen" href="#"><span class="ic">🎮</span><span>Random practice generator<small>随机练习 · endless joint / marginal / conditional practice</small></span></a></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="Think–Pair–Share：先不给表格。" data-title="📝 Warm-up: Do environmentalists ride snowmobiles less?">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Do environmentalists ride snowmobiles less? <span class="zh">热身：黄石公园</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Yellowstone National Park surveyed 1526 randomly selected winter visitors. <span class="zh">黄石公园随机调查了 1526 名冬季游客。</span></p><div class="q"><b class="n">Q1</b>What <em>two</em> variables were recorded for each visitor?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">① Environmental club membership (Yes / No)   ② Snowmobile use (Never used / Renter / Owner)</div></div><div class="q"><b class="n">Q2</b>What type of variables are they?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Both are <b>categorical</b> variables. <span class="zh">两个都是分类变量。</span></div></div><div class="q"><b class="n">Q3</b>305 were club members and 1221 were not. Can we compare the <em>counts</em> of owners (16 vs. 279) directly?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No! The groups have very different sizes (305 vs. 1221). Compare <b>percents within each group</b>: 16/305 = 5.2% vs. 279/1221 = 22.9%. <span class="zh">两组人数不同，要比较组内百分比。</span></div></div></div><div class="keyidea">🔑 Yellowstone survey of 1526 winter visitors.</div><div class="takeaway">💡 When group sizes differ, compare <b>relative frequencies</b>, not counts.</div></div></div><div class="col vis"><div class="qv"><svg id="wuPic" viewbox="0 0 360 240" width="100%"></svg><div class="cap">1526 visitors · 305 club members (pink) vs. 1221 non-members</div></div><div class="sv"><svg id="wuSol" viewbox="0 0 360 240" width="100%"></svg><div class="cap">Same comparison, using percents</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.1" data-sec="1" data-title="§ 2.1 Tabular &amp;amp; Graphical Representations">
+<div class="tag">Topic</div><div class="num">2.1</div><h1>Tabular &amp; Graphical Representations</h1><div class="zhT">两个分类变量分布的表格与图形表示</div><div class="eks"><span>2.1.A.1 Two-way tables</span><span>2.1.A.2 Graphs</span>2.1.A.3 Association<span>2.1.B.1 Justify a claim</span></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.1.A.1。指出 cell / margin / grand total。" data-title="Two-Way Table">
+<div class="tag">2.1 · Concept<span class="ek">EK 2.1.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Two-Way Table <span class="zh">双向表 / 列联表</span></h2><div class="concept"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>two-way table</strong>, also called a <strong>contingency table</strong>, summarizes and compares data for <strong>two categorical variables</strong>. Cell entries can be <strong>frequencies</strong> (counts) or <strong>relative frequencies</strong> (proportions).</div><div class="cn">双向表（列联表）用于汇总和比较<b>两个分类变量</b>的数据；格子里可以是<b>频数</b>，也可以是<b>相对频率</b>。</div></div><div class="row center"><table class="tw" style="font-size:17px"><thead><tr class="top"><th></th><th colspan="2">Column variable 列变量</th><th></th></tr><tr><th></th><th>Level A</th><th>Level B</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Row level 1</th><td style="background:var(--pink-2)">cell</td><td style="background:var(--pink-2)">cell</td><td class="tot">row total</td></tr><tr><th class="rh">Row level 2</th><td style="background:var(--pink-2)">cell</td><td style="background:var(--pink-2)">cell</td><td class="tot">row total</td></tr><tr class="totrow"><th class="rh">Total</th><td>column total</td><td>column total</td><td style="background:var(--gold)">grand total</td></tr></tbody></table>
+<ul class="clean col small"><li><b>Cell</b> 单元格: one level of <em>each</em> variable</li><li><b>Margins</b> 边际: row &amp; column totals</li><li><b>Grand total</b> 总计: all individuals</li></ul></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Reading the Yellowstone table">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.1.A.1</span></div>
+<h2>Reading the Yellowstone table <span class="zh">读表</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>What is the row variable? The column variable?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Row variable: <b>snowmobile use</b> (3 levels) · Column variable: <b>club membership</b> (2 levels) → a 3 × 2 table.</div></div><div class="q"><b class="n">b</b>How many visitors were club members <em>and</em> snowmobile renters?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">One cell = one level of <em>each</em> variable → 77.</div></div><div class="q"><b class="n">c</b>How many visitors own a snowmobile?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A row total (margin) → 295.</div></div><div class="q"><b class="n">d</b>Check: do the cells add up to the grand total?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">445 + 212 + 497 + 77 + 279 + 16 = 1526 ✓ Each visitor is in exactly one cell.</div></div></div><div class="keyidea">🔑 Yellowstone two-way table (1526 visitors).</div><div class="takeaway">💡 Cells ↔ both variables; margins ↔ one variable.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t1" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div><div class="sv"><table class="tw" id="t1s" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1 · Data: TPS</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: &quot;I'm gonna be rich!&quot;">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.1.A.1</span></div>
+<h2>"I'm gonna be rich!" <span class="zh">我会变有钱吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p class="small">A survey of 4826 randomly selected young adults (aged 19–25) asked: <em>"What do you think the chances are you will have much more than a middle-class income at age 30?"</em></p><div class="q"><b class="n">a</b>What variables does this table describe?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Gender</b> (2 levels) and opinion (5 levels) — both categorical; a 5 × 2 table.</div></div><div class="q"><b class="n">b</b>How many young adults were surveyed?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The grand total: 4826.</div></div><div class="q"><b class="n">c</b>Are the male and female groups the same size? Does it matter?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Close (2459 vs. 2367) but not equal → still compare percents.</div></div></div><div class="keyidea">🔑 Gender × opinion about becoming rich (4826 young adults).</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t2" style="font-size:16px;"><thead><tr><th>Opinion</th><th>Female</th><th>Male</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Almost no chance</th><td data-k="0-0">96</td><td data-k="0-1">98</td><td class="tot" data-k="0-2">194</td></tr><tr><th class="rh">Some chance, but probably not</th><td data-k="1-0">426</td><td data-k="1-1">286</td><td class="tot" data-k="1-2">712</td></tr><tr><th class="rh">A 50-50 chance</th><td data-k="2-0">696</td><td data-k="2-1">720</td><td class="tot" data-k="2-2">1416</td></tr><tr><th class="rh">A good chance</th><td data-k="3-0">663</td><td data-k="3-1">758</td><td class="tot" data-k="3-2">1421</td></tr><tr><th class="rh">Almost certain</th><td data-k="4-0">486</td><td data-k="4-1">597</td><td class="tot" data-k="4-2">1083</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="5-0">2367</td><td data-k="5-1">2459</td><td data-k="5-2">4826</td></tr></tbody></table></div><div class="sv"><table class="tw" id="t2s" style="font-size:16px;"><thead><tr><th>Opinion</th><th>Female</th><th>Male</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Almost no chance</th><td data-k="0-0">96</td><td data-k="0-1">98</td><td class="tot" data-k="0-2">194</td></tr><tr><th class="rh">Some chance, but probably not</th><td data-k="1-0">426</td><td data-k="1-1">286</td><td class="tot" data-k="1-2">712</td></tr><tr><th class="rh">A 50-50 chance</th><td data-k="2-0">696</td><td data-k="2-1">720</td><td class="tot" data-k="2-2">1416</td></tr><tr><th class="rh">A good chance</th><td data-k="3-0">663</td><td data-k="3-1">758</td><td class="tot" data-k="3-2">1421</td></tr><tr><th class="rh">Almost certain</th><td data-k="4-0">486</td><td data-k="4-1">597</td><td class="tot" data-k="4-2">1083</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="5-0">2367</td><td data-k="5-1">2459</td><td data-k="5-2">4826</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1 · Data: TPS 5e</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="CED 2.1.A.1：同一张表 4 种形式。" data-title="🎮 Simulator: Same table, four ways" id="simModes">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Same table, four ways</span><span class="zh">同一张表的四种形式</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.1.A.1</span>
+<p class="small">CED 2.1.A.1: cells can be counts <em>or</em> relative frequencies. Click to switch — watch <b>what adds up to 100%</b>. <span class="zh">注意每种形式下“哪里加起来 = 100%”。</span></p>
+<div class="btns"><button class="b on" data-tm="count">Counts 频数</button><button class="b" data-tm="joint">÷ grand total</button><button class="b" data-tm="col">÷ column total</button><button class="b" data-tm="row">÷ row total</button></div>
+<div class="row center"><table class="tw" id="modeTab" style="font-size:22px;min-width:560px"></table><div class="col"><div class="note" id="modeMsg" style="min-height:170px"></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="先 Counts，再 Percents；再切换分组方式。" data-title="🎮 Simulator: Side-by-side bar chart" id="simSBS">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Side-by-side bar chart</span><span class="zh">并列条形图</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.1.A.2</span>
+<div class="row"><div class="col" style="flex:.95"><div class="concept"><div class="kp">Knowledge point <span class="stars">★<span class="off">★★★</span></span></div><div class="term">Definition<span class="zh">定义</span></div><div class="en" style="font-size:19px">Displays the frequency or relative frequency of each category of one variable <strong>for each category</strong> of the other variable; bars are grouped side by side.</div><div class="cn" style="font-size:16px">对另一个变量的<b>每一个类别</b>，分别画出该变量各类别的频数或相对频率，并排放置。</div></div>
+<div class="btns"><button class="b on" data-sbs="count">Counts</button><button class="b" data-sbs="pct">Percents</button></div><div class="btns" style="margin-top:0"><button class="b on" data-sbsd="club">Group by club</button><button class="b" data-sbsd="use">Group by use</button></div><p class="small muted" id="sbsMsg"></p></div>
+<div class="col vis" style="flex:1.05"><svg id="sbs" viewbox="0 0 560 380" width="100%"></svg><div class="legend" id="sbsLeg"></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="每根柱子 = 100%。切换分组方向。" data-title="🎮 Simulator: Segmented bar chart" id="simSeg">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Segmented bar chart</span><span class="zh">分段条形图</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.1.A.2</span>
+<div class="row"><div class="col"><div class="concept"><div class="kp">Knowledge point <span class="stars">★★<span class="off">★★</span></span></div><div class="term">Definition<span class="zh">定义</span></div><div class="en" style="font-size:19px">Each bar represents 100% of one group, divided into segments; each segment's height is the percent of that group in a category.</div><div class="cn" style="font-size:16px">每根条代表某组的 100%，按类别分段；每段高度 = 该组中这一类别的百分比。</div></div>
+<div class="btns"><button class="b on" data-segd="club">Bars = club status</button><button class="b" data-segd="use">Bars = snowmobile use</button></div><div class="note small" id="segMsg"></div></div>
+<div class="col vis"><svg id="seg" viewbox="0 0 560 380" width="100%"></svg><div class="legend" id="segLeg"></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="宽度 = 组大小；面积 = 联合比例。" data-title="🎮 Simulator: Mosaic plot" id="simMos">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Mosaic plot</span><span class="zh">马赛克图</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.1.A.2</span>
+<div class="row"><div class="col"><div class="concept"><div class="kp">Knowledge point <span class="stars">★★<span class="off">★★</span></span></div><div class="term">Definition<span class="zh">定义</span></div><div class="en" style="font-size:19px">A modified segmented bar chart in which the <strong>width</strong> of each bar is proportional to the number of individuals in that group.</div><div class="cn" style="font-size:16px">改进的分段条形图：条的<b>宽度</b>与该组人数成正比，所以每块<b>面积</b>对应联合比例。</div></div>
+<ul class="clean small"><li><b>Widths</b> → marginal distribution of club (80% / 20%)</li><li><b>Heights</b> → conditional distributions of use</li><li>Area of each tile → joint relative frequency</li></ul>
+<div class="btns"><button class="b" data-mz="w">Highlight widths</button><button class="b" data-mz="a">Biggest tile</button></div><p class="small" id="mzMsg"></p></div>
+<div class="col vis"><svg id="mos" viewbox="0 0 560 380" width="100%"></svg><div class="legend" id="mosLeg"></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="Which graph shows what? 三种图的比较">
+<div class="tag">2.1 <b>· Compare</b><span class="ek">LO 2.1.A</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>Which graph shows what? <span class="zh">三种图的比较</span></h2>
+<table class="tw" style="margin-top:14px;width:100%;font-size:19px"><thead><tr><th style="text-align:left">Graph</th><th>Bars show…</th><th>Shows group sizes?</th><th>Best for…</th><th>Mini picture</th></tr></thead><tbody>
+<tr><th class="rh">Side-by-side 并列条形图</th><td>counts <em>or</em> percents</td><td>Only if counts</td><td>Comparing single categories</td><td><svg id="mini1" viewbox="0 0 120 60" width="110"></svg></td></tr>
+<tr><th class="rh">Segmented 分段条形图</th><td>percents (bar = 100%)</td><td>No</td><td>Comparing whole distributions</td><td><svg id="mini2" viewbox="0 0 120 60" width="110"></svg></td></tr>
+<tr><th class="rh">Mosaic 马赛克图</th><td>percents + width</td><td>Yes (width)</td><td>Conditional &amp; marginal at once</td><td><svg id="mini3" viewbox="0 0 120 60" width="110"></svg></td></tr></tbody></table>
+<div class="note warn" style="margin-top:16px">⚠️ <b>AP Exam Tip:</b> When comparing groups of different sizes, use <b>relative frequencies</b>, not counts. <span class="zh">组的大小不同时，比较百分比。</span></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="左（假设）无关联，右（真实）有关联。强调关联 ≠ 因果。" data-title="Association">
+<div class="tag">2.1 <b>· Key Concept</b><span class="ek">EK 2.1.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Association <span class="zh">关联</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">There is an association between two variables if knowing the value of one variable helps us predict the value of the other. If the conditional distributions are exactly the same for every group, there is no association.</div><div class="cn">如果知道一个变量的取值能帮助<b>预测</b>另一个变量，就说两者<b>存在关联</b>；如果各组条件分布完全相同，就<b>没有关联</b>。</div></div><div class="row"><div class="col vis" style="padding:6px"><div class="small" style="font-weight:700;text-align:center">No association (hypothetical) 无关联</div><svg id="assoc0" viewbox="0 0 400 210" width="100%"></svg></div><div class="col vis" style="padding:6px"><div class="small" style="font-weight:700;text-align:center">Association (real data) 有关联</div><svg id="assoc1" viewbox="0 0 400 210" width="100%"></svg></div><div class="col" style="flex:.8"><div class="note warn small">⚠️ <b>Association does not necessarily imply causation!</b><br/>Joining the club doesn't necessarily <em>cause</em> less snowmobile use.<br/><span class="zh">关联不一定意味着因果。</span></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="拖动滑块：0 = 无关联，1 = 真实数据。" data-title='🎮 Simulator: How different is "different"?' id="simAssoc">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">How different is "different"?</span><span class="zh">差异多大才算有关联？</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.1.A.3</span>
+<div class="row"><div class="col vis"><svg id="slSvg" viewbox="0 0 560 360" width="100%"></svg><div class="legend" id="slLeg"></div></div>
+<div class="col"><p class="small">Drag to change the distribution for <b>club members</b>. Non-members stay fixed.</p><input id="sl" max="120" min="0" style="margin-top:12px" type="range" value="0"/>
+<div class="small muted" style="display:flex;justify-content:space-between"><span>same as non-members</span><span>real data</span><span>extreme</span></div>
+<div class="note" id="slMsg" style="margin-top:14px;font-size:19px"></div><p class="small muted" style="margin-top:10px">There's no fixed cutoff on the AP exam — <b>cite the percents</b> and say whether they're meaningfully different.</p></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Gender and opinion about getting rich">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.1.A.3</span></div>
+<h2>Gender and opinion about getting rich <span class="zh">性别与“变有钱”的看法</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p class="small">The segmented bar chart shows the conditional distributions of opinion for the 4826 young adults.</p><div class="q"><b class="n">a</b>Which segments look most different between females and males?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">"Some chance, but probably not": 18.0% of females vs. 11.6% of males. "Almost certain": 20.5% vs. 24.3%.</div></div><div class="q"><b class="n">b</b>Is there an association between gender and opinion? Describe it.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes, but <b>weak</b>: males in this sample were somewhat more optimistic about becoming rich. Other categories are nearly equal (50-50: 29.4% vs. 29.3%).</div></div><div class="q"><b class="n">c</b>What would the graph look like if there were <em>no</em> association?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The two bars would look <b>identical</b> — same conditional distribution of opinion for both genders.</div></div></div><div class="keyidea">🔑 Segmented bar chart of opinion by gender.</div><div class="takeaway">💡 Describe association with specific percents from <b>both</b> groups.</div></div></div><div class="col vis"><div class="qv"><svg id="rich" viewbox="0 0 560 360" width="100%"></svg><div class="legend" id="richLeg"></div></div><div class="sv"><svg id="richDiff" viewbox="0 0 560 330" width="100%"></svg><div class="cap">Male % − Female % for each opinion (new view: difference bars)</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1 · Data: TPS 5e</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Is the claim supported by the graph?">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.1.B.1</span></div>
+<h2>Is the claim supported by the graph? <span class="zh">图形能支持这个说法吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p class="small">Using the segmented bar chart, decide whether each claim is supported. Explain.</p><div class="q"><b class="n">1</b>A greater percentage of club members than non-members never used a snowmobile.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported ✓ — 69.5% vs. 36.4%.</div></div><div class="q"><b class="n">2</b>More non-members own snowmobiles, so non-members are more likely to own one.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported as stated ✗ — right idea, wrong evidence. Must use percents: 22.9% vs. 5.2%, not counts (279 vs. 16).</div></div><div class="q"><b class="n">3</b>About 1 in 4 club members rents a snowmobile.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported ✓ — 25.2% ≈ 1 in 4.</div></div><div class="q"><b class="n">4</b>Joining an environmental club causes people to stop using snowmobiles.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported ✗ — survey data show association only, not causation.</div></div></div><div class="keyidea">🔑 Four claims about the Yellowstone segmented bar chart.</div><div class="takeaway">💡 A justified claim uses <b>relative frequencies</b> and never claims causation from a survey.</div></div></div><div class="col vis"><div class="qv"><svg id="segB" viewbox="0 0 560 380" width="100%"></svg><div class="legend" id="segBLeg"></div></div><div class="sv"><svg id="segBs" viewbox="0 0 560 380" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 6: Quick check: identical bars">
+<div class="exhead"><span class="badge ex">📝 AP Practice 6 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.1.A.3</span></div>
+<h2>Quick check: identical bars</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">A school surveyed 9th and 12th graders about their favorite lunch (rice / noodles / western). The segmented bar charts for the two grades look <b>almost identical</b>. Which conclusion is best?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) 12th graders prefer rice more than 9th graders do.</li><li>(B) There appears to be little or no association between grade and lunch preference.</li><li>(C) There is a strong association between grade and lunch preference.</li><li>(D) Grade level causes students' lunch preferences.</li><li>(E) We can't compare because the grades have different numbers of students.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Identical conditional distributions → knowing the grade doesn't help predict lunch choice.</p><p style="margin:3px 0">→ <b>(B)</b> little or no association.</p><p style="margin:3px 0">(D) claims causation; (E) is wrong — segmented bars already use percents, so group sizes don't matter.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="lunchSvg" viewbox="0 0 400 260" width="100%"></svg><div class="cap">What "almost identical" looks like</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.2" data-sec="1" data-title="§ 2.2 Summary Statistics for Two Categorical Variables">
+<div class="tag">Topic</div><div class="num">2.2</div><h1>Summary Statistics for Two Categorical Variables</h1><div class="zhT">两个分类变量的汇总统计量</div><div class="eks"><span>2.2.A.1 Joint</span><span>2.2.A.2 Marginal</span><span>2.2.A.3 Conditional</span><span>2.2.B.1 Compare</span><span>2.2.C.1 Justify</span></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 顺序：joint → marginal → conditional。" data-title="Joint Relative Frequency">
+<div class="tag">2.2 · Concept ①<span class="ek">EK 2.2.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Joint Relative Frequency <span class="zh">联合相对频率</span></h2><div class="concept"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>joint relative frequency</strong> is a <strong>cell frequency</strong> divided by the <strong>total for the entire table</strong>. It answers questions about <strong>both</strong> variables ("and").</div><div class="cn"><b>联合相对频率</b> = 某一<b>单元格</b>频数 ÷ <b>全表总数</b>，涉及两个变量（关键词 “and”）。</div></div><div class="formula" data-math-tex="\text{Joint RF}=\frac{\text{cell count}}{\text{grand total}}" style="font-size:22px">\text{Joint RF}=\frac{\text{cell count}}{\text{grand total}}</div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="Marginal Relative Frequency">
+<div class="tag">2.2 · Concept ②<span class="ek">EK 2.2.A.2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Marginal Relative Frequency <span class="zh">边际相对频率</span></h2><div class="concept"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>marginal relative frequency</strong> is a <strong>row total</strong> or a <strong>column total</strong> divided by the total for the entire table. It describes only one variable. All of them together form the <strong>marginal distribution</strong>.</div><div class="cn"><b>边际相对频率</b> = 行总数或列总数 ÷ 全表总数，只描述<b>一个</b>变量；合起来叫<b>边际分布</b>。</div></div><div class="formula" data-math-tex="\text{Marginal RF}=\frac{\text{row or column total}}{\text{grand total}}" style="font-size:22px">\text{Marginal RF}=\frac{\text{row or column total}}{\text{grand total}}</div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Joint and marginal relative frequencies">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.A.1 · 2.2.A.2</span></div>
+<h2>Joint and marginal relative frequencies <span class="zh">联合与边际相对频率</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>What percent of visitors are club members <em>and</em> own snowmobiles?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Joint: 16 / 1526 ≈ 1.0%</div></div><div class="q"><b class="n">b</b>What proportion are <em>not</em> club members <em>and</em> never used snowmobiles?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Joint: 445 / 1526 ≈ 0.292</div></div><div class="q"><b class="n">c</b>What percent of all visitors never used a snowmobile?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Marginal: 657 / 1526 ≈ 43.1%</div></div><div class="q"><b class="n">d</b>Find the marginal distribution of club membership.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Marginal: No 1221/1526 = 80.0%, Yes 305/1526 = 20.0%</div></div></div><div class="keyidea">🔑 Yellowstone table — joint and marginal.</div><div class="takeaway">💡 Joint and marginal both divide by the <b>grand total</b> — they can't show whether the variables are related.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t3" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div><div class="sv"><table class="tw" id="t3s" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table><div class="cap">Yellow = numerator · pink = denominator</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Examine a marginal distribution">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.A.2</span></div>
+<h2>Examine a marginal distribution <span class="zh">计算并展示边际分布</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>Use the "I'm gonna be rich" table to calculate the <b>marginal distribution</b> (in percents) of opinions.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Almost no chance: 194/4826 = 4.0% · Some chance: 712/4826 = 14.8%</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. 50-50: 1416/4826 = 29.3% · Good chance: 1421/4826 = 29.4%</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Almost certain: 1083/4826 = 22.4% (total 100% ✓)</div></div><div class="q"><b class="n">b</b>Make a graph to display it.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Graph: a bar chart of these five percents →</div></div></div><div class="keyidea">🔑 Marginal distribution of opinion (n = 4826).</div><div class="takeaway">💡 A marginal distribution describes one variable only.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t4" style="font-size:16px;"><thead><tr><th>Opinion</th><th>Female</th><th>Male</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Almost no chance</th><td data-k="0-0">96</td><td data-k="0-1">98</td><td class="tot" data-k="0-2">194</td></tr><tr><th class="rh">Some chance, but probably not</th><td data-k="1-0">426</td><td data-k="1-1">286</td><td class="tot" data-k="1-2">712</td></tr><tr><th class="rh">A 50-50 chance</th><td data-k="2-0">696</td><td data-k="2-1">720</td><td class="tot" data-k="2-2">1416</td></tr><tr><th class="rh">A good chance</th><td data-k="3-0">663</td><td data-k="3-1">758</td><td class="tot" data-k="3-2">1421</td></tr><tr><th class="rh">Almost certain</th><td data-k="4-0">486</td><td data-k="4-1">597</td><td class="tot" data-k="4-2">1083</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="5-0">2367</td><td data-k="5-1">2459</td><td data-k="5-2">4826</td></tr></tbody></table></div><div class="sv"><svg id="mdSvg" viewbox="0 0 520 280" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 1 · Question from TPS</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="Conditional Relative Frequency">
+<div class="tag">2.2 · Concept ③<span class="ek">EK 2.2.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Conditional Relative Frequency <span class="zh">条件相对频率</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>conditional relative frequency</strong> is computed by <strong>restricting</strong> to one level (category) of interest — the condition. It is a cell frequency divided by its <strong>row total</strong> or its <strong>column total</strong>.</div><div class="cn"><b>条件相对频率</b>：限定在某一类别（<b>条件</b>）里再算 = 单元格 ÷ 所在<b>行或列的总数</b>。</div></div><div class="formula" data-math-tex="\text{Conditional RF}=\frac{\text{cell count}}{\text{total of the conditioning group}}" style="font-size:22px">\text{Conditional RF}=\frac{\text{cell count}}{\text{total of the conditioning group}}</div><p class="small" style="margin-top:10px">🔑 Signal words → condition = denominator: <b>among</b> · <b>of those who</b> · <b>given that</b> · <b>what percent of ___ are…</b> <span class="zh">“在……之中”后面就是分母。</span></p><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="逐个点按钮；③④ 分子相同、分母不同。" data-title="🎮 Simulator: Find the numerator &amp;amp; denominator" id="simDen">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Find the numerator &amp; denominator</span><span class="zh">找分子和分母</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.2.A.1–3</span>
+<div class="btns"><button class="b" data-q="0">① Joint</button><button class="b" data-q="1">② Marginal</button><button class="b" data-q="2">③ Conditional (column)</button><button class="b" data-q="3">④ Conditional (row)</button></div>
+<div class="row center"><table class="tw" id="itab" style="font-size:22px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table><div class="col"><div class="note" id="qbox" style="min-height:220px"><b>Click a button.</b><br/><span class="muted">Yellow = numerator 分子 · Pink = denominator 分母</span></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 9: Which denominator?">
+<div class="exhead"><span class="badge ex">📝 Example 9 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.A.3</span></div>
+<h2>Which denominator? <span class="zh">条件不同，答案不同</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">A</b>What percent <b>of club members</b> are snowmobile owners?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">A: condition = club members (Yes column) → 16 / 305 ≈ 5.2%</div></div><div class="q"><b class="n">B</b>What percent <b>of snowmobile owners</b> are club members?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">B: condition = owners (Owner row) → 16 / 295 ≈ 5.4%</div></div><div class="q"><b class="n">C</b>What percent <b>of all visitors</b> are club members who own snowmobiles?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">C: no condition → 16 / 1526 ≈ 1.0% (joint)</div></div><div class="q"><b class="n">D</b>What percent of snowmobile renters are <em>not</em> club members?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">D: condition = renters → 497 / 574 ≈ 86.6%</div></div></div><div class="keyidea">🔑 Same numerator 16 — different conditions.</div><div class="takeaway">💡 Same numerator, different condition → different answer. <span class="zh">分子相同，条件不同，答案不同。</span></div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t5" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div><div class="sv"><table class="tw" id="t5s" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 10: Joint, marginal, or conditional?">
+<div class="exhead"><span class="badge ex">📝 Example 10 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.A.1–3</span></div>
+<h2>Joint, marginal, or conditional? <span class="zh">判断类型</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p class="small">Use the Yellowstone table. For each question, name the type and calculate.</p><div class="q"><b class="n">1</b>What percent of visitors are snowmobile renters?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Marginal: 574/1526 ≈ 37.6%</div></div><div class="q"><b class="n">2</b>What percent of non-members are snowmobile owners?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Conditional: 279/1221 ≈ 22.9%</div></div><div class="q"><b class="n">3</b>What percent of visitors are non-members who never used a snowmobile?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Joint: 445/1526 ≈ 29.2%</div></div><div class="q"><b class="n">4</b>Of the renters, what percent are club members?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Conditional: 77/574 ≈ 13.4%</div></div><div class="q"><b class="n">5</b>What proportion of visitors own a snowmobile and are not club members?</div><div class="answ" data-i="4"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Joint: 279/1526 ≈ 0.183</div></div></div><div class="keyidea">🔑 Five questions, three types.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t6" style="font-size:18px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div><div class="sv"><table class="tw" id="t6s" style="font-size:18px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="Conditional Distribution">
+<div class="tag">2.2 <b>· Key Concept</b><span class="ek">EK 2.2.A.3 · 2.2.B.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Conditional Distribution <span class="zh">条件分布</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">The <strong>conditional distribution</strong> of a variable describes its values among individuals who have a specific value of the other variable (the condition). Its percents add to 100%.</div><div class="cn">在另一个变量取某一特定值（条件）的个体中，该变量的分布叫<b>条件分布</b>，各百分比之和为 100%。</div></div><div class="note ok" style="margin-top:6px">To look for association: <b>compare conditional distributions</b> across groups. Different → association. <span class="zh">比较各组的条件分布：不同 → 有关联。</span></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 11: Compare the conditional distributions">
+<div class="exhead"><span class="badge ex">📝 Example 11 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.A.3 · 2.2.B.1</span></div>
+<h2>Compare the conditional distributions <span class="zh">比较条件分布</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>Find the conditional distribution of snowmobile use <b>among club members</b>.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Club = Yes: 212/305 = 69.5% never · 77/305 = 25.2% rent · 16/305 = 5.2% own</div></div><div class="q"><b class="n">b</b>Find the conditional distribution of snowmobile use <b>among non-members</b>.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Club = No: 445/1221 = 36.4% never · 497/1221 = 40.7% rent · 279/1221 = 22.9% own</div></div><div class="q"><b class="n">c</b>Compare. Is there evidence of an association?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Very different (69.5% vs. 36.4% never used) → evidence of an association. These two columns are exactly the two bars of the segmented bar chart →</div></div></div><div class="keyidea">🔑 Conditional distributions of snowmobile use.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t7" style="font-size:20px;"><thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Never used</th><td data-k="0-0">445</td><td data-k="0-1">212</td><td class="tot" data-k="0-2">657</td></tr><tr><th class="rh">Renter</th><td data-k="1-0">497</td><td data-k="1-1">77</td><td class="tot" data-k="1-2">574</td></tr><tr><th class="rh">Owner</th><td data-k="2-0">279</td><td data-k="2-1">16</td><td class="tot" data-k="2-2">295</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="3-0">1221</td><td data-k="3-1">305</td><td data-k="3-2">1526</td></tr></tbody></table></div><div class="sv"><svg id="cdSvg" viewbox="0 0 560 360" width="100%"></svg><div class="legend" id="cdLeg"></div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 12: Gender and opinion — by the numbers">
+<div class="exhead"><span class="badge ex">📝 Example 12 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.B.1</span></div>
+<h2>Gender and opinion — by the numbers <span class="zh">用数字比较</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>Calculate the conditional distribution of opinion <b>among males</b>.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Males: 98/2459 = 4.0% · 286/2459 = 11.6% · 720/2459 = 29.3% · 758/2459 = 30.8% · 597/2459 = 24.3%</div></div><div class="q"><b class="n">b</b>Compare with the females' distribution (4.1%, 18.0%, 29.4%, 28.0%, 20.5%).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Biggest differences: "some chance" (−6.4 points) and "almost certain" (+3.8 points).</div></div><div class="q"><b class="n">c</b>Describe the association.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Males were more likely to say "almost certain" or "good chance"; females more likely to say "some chance, but probably not." There is an association, but it is <b>fairly weak</b>.</div></div></div><div class="keyidea">🔑 Opinion among males vs. females.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t8" style="font-size:16px;"><thead><tr><th>Opinion</th><th>Female</th><th>Male</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Almost no chance</th><td data-k="0-0">96</td><td data-k="0-1">98</td><td class="tot" data-k="0-2">194</td></tr><tr><th class="rh">Some chance, but probably not</th><td data-k="1-0">426</td><td data-k="1-1">286</td><td class="tot" data-k="1-2">712</td></tr><tr><th class="rh">A 50-50 chance</th><td data-k="2-0">696</td><td data-k="2-1">720</td><td class="tot" data-k="2-2">1416</td></tr><tr><th class="rh">A good chance</th><td data-k="3-0">663</td><td data-k="3-1">758</td><td class="tot" data-k="3-2">1421</td></tr><tr><th class="rh">Almost certain</th><td data-k="4-0">486</td><td data-k="4-1">597</td><td class="tot" data-k="4-2">1083</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="5-0">2367</td><td data-k="5-1">2459</td><td data-k="5-2">4826</td></tr></tbody></table></div><div class="sv"><svg id="richDiff2" viewbox="0 0 560 330" width="100%"></svg><div class="cap">Male % − Female %</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1 · Question from TPS</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="How to justify an association claim">
+<div class="tag">2.2 <b>· Justify a Claim</b><span class="ek">EK 2.2.C.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★★<span class="off"></span></span></span><h2>How to justify an association claim <span class="zh">如何论证“有关联”</span></h2>
+<div class="row" style="margin-top:8px"><div class="col"><h3>Sentence frame 句型</h3><div class="note" style="font-size:19px;line-height:1.7">Yes / No, there is / is not an association between <em>[var 1]</em> and <em>[var 2]</em> for <em>[individuals]</em>.<br/>[x]% of <em>[group A]</em> … compared with [y]% of <em>[group B]</em>.<br/>Because these conditional percentages are (not) very different, knowing <em>[var 1]</em> does (not) help predict <em>[var 2]</em>.</div></div>
+<div class="col"><h3>Checklist ✔</h3><ul class="clean"><li>A clear conclusion (yes / no)</li><li>Conditional percents from <b>both</b> groups</li><li>Context (the variables and individuals)</li><li>No causation language</li></ul><div class="note warn small" style="margin-top:8px">Say "<b>a greater percentage of</b> club members…", not "more club members…". <span class="zh">要说“更高的百分比”。</span></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="Common mistakes">
+<div class="tag">2.2 <b>· AP Exam Tips</b></div><h2>Common mistakes <span class="zh">常见错误</span></h2><div class="cards" style="grid-template-columns:1fr 1fr;margin-top:12px">
+<div class="card"><div class="k">✗ Mistake 1</div><h3>Comparing counts</h3><p>"More non-members own snowmobiles (279 vs 16)." Groups differ in size!</p><p class="zh muted small">用频数比较大小不同的组。</p></div>
+<div class="card"><div class="k">✗ Mistake 2</div><h3>Sloppy wording</h3><p>Say "a greater <b>percentage</b> of…", not "more…".</p><p class="zh muted small">措辞不严谨。</p></div>
+<div class="card"><div class="k">✗ Mistake 3</div><h3>Wrong denominator</h3><p>Grand total used when the question says "among club members".</p><p class="zh muted small">分母用错。</p></div>
+<div class="card"><div class="k">✗ Mistake 4</div><h3>Claiming causation</h3><p>Survey data show association only.</p><p class="zh muted small">把关联当成因果。</p></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 13: Who survived the Titanic?">
+<div class="exhead"><span class="badge ex">📝 Example 13 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.2.A.1–3</span></div>
+<h2>Who survived the Titanic? <span class="zh">泰坦尼克号</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">1</b>What proportion of passengers survived? (Which type?)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Marginal: 499/1316 ≈ 0.379</div></div><div class="q"><b class="n">2</b>What proportion were 3rd class <em>and</em> died?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Joint: 528/1316 ≈ 0.401</div></div><div class="q"><b class="n">3</b>Among 1st-class passengers, what proportion survived?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Conditional: 203/325 ≈ 0.625</div></div><div class="q"><b class="n">4</b>Of the survivors, what proportion were 1st class?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Conditional: 203/499 ≈ 0.407 — different denominator from Q3!</div></div></div><div class="keyidea">🔑 Titanic passengers by class and survival.</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t9" style="font-size:20px;"><thead><tr><th>Survival</th><th>1st</th><th>2nd</th><th>3rd</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Survived</th><td data-k="0-0">203</td><td data-k="0-1">118</td><td data-k="0-2">178</td><td class="tot" data-k="0-3">499</td></tr><tr><th class="rh">Died</th><td data-k="1-0">122</td><td data-k="1-1">167</td><td data-k="1-2">528</td><td class="tot" data-k="1-3">817</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">325</td><td data-k="2-1">285</td><td data-k="2-2">706</td><td data-k="2-3">1316</td></tr></tbody></table><div class="cap">Passengers only, by ticket class</div></div><div class="sv"><table class="tw" id="t9s" style="font-size:20px;"><thead><tr><th>Survival</th><th>1st</th><th>2nd</th><th>3rd</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Survived</th><td data-k="0-0">203</td><td data-k="0-1">118</td><td data-k="0-2">178</td><td class="tot" data-k="0-3">499</td></tr><tr><th class="rh">Died</th><td data-k="1-0">122</td><td data-k="1-1">167</td><td data-k="1-2">528</td><td class="tot" data-k="1-3">817</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">325</td><td data-k="2-1">285</td><td data-k="2-2">706</td><td data-k="2-3">1316</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1 · Data: Dawson (1995)</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 14: Titanic: is class associated with survival?">
+<div class="exhead"><span class="badge ex">📝 Example 14 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.1.B.1 · 2.2.C.1</span></div>
+<h2>Titanic: is class associated with survival? <span class="zh">迷你 FRQ</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Use the table to decide whether ticket class and survival are associated for Titanic passengers. <b>Justify</b> your answer with appropriate statistics, in context (2–3 sentences).</p><div style="margin-top:8px"><div class="answ solo" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Compute survival rates: 1st 203/325 = 62.5% · 2nd 118/285 = 41.4% · 3rd 178/706 = 25.2%</div></div><div class="answ solo" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Model answer: "Yes, there is an association between ticket class and survival status for Titanic passengers. 62.5% of first-class passengers survived, compared with 41.4% of second-class and only 25.2% of third-class passengers. Knowing a passenger's class helps predict whether they survived."</div></div></div></div><div class="keyidea">🔑 Mini-FRQ: association between class and survival.</div><div class="takeaway">💡 ✔ conclusion ✔ percents for every group ✔ context ✔ no causation</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t10" style="font-size:20px;"><thead><tr><th>Survival</th><th>1st</th><th>2nd</th><th>3rd</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Survived</th><td data-k="0-0">203</td><td data-k="0-1">118</td><td data-k="0-2">178</td><td class="tot" data-k="0-3">499</td></tr><tr><th class="rh">Died</th><td data-k="1-0">122</td><td data-k="1-1">167</td><td data-k="1-2">528</td><td class="tot" data-k="1-3">817</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">325</td><td data-k="2-1">285</td><td data-k="2-2">706</td><td data-k="2-3">1316</td></tr></tbody></table></div><div class="sv"><svg id="tita" viewbox="0 0 560 330" width="100%"></svg><div class="legend"><i style="background:#1E2A4A"></i>Survived<i style="background:#F4C3D0"></i>Died</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 15: Juniors who drive">
+<div class="exhead"><span class="badge ex">📝 AP Practice 15 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.2.A.3</span></div>
+<h2>Juniors who drive</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">A survey of 500 students: 200 juniors and 300 seniors. Of these, 60 juniors and 150 seniors drive to school. Of the students who drive to school, what proportion are juniors?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) 0.12</li><li>(B) 0.286</li><li>(C) 0.30</li><li>(D) 0.42</li><li>(E) 0.50</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Condition = "students who drive" → denominator = 60 + 150 = 210.</p><p style="margin:3px 0">60 / 210 ≈ 0.286 → (B).</p><p style="margin:3px 0">Every wrong choice uses a wrong denominator: A = 60/500, C = 60/200, D = 210/500, E = 150/300.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><table class="tw" id="t11" style="font-size:20px;"><thead><tr><th></th><th>Drive</th><th>Don't</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Junior</th><td data-k="0-0">60</td><td data-k="0-1">140</td><td class="tot" data-k="0-2">200</td></tr><tr><th class="rh">Senior</th><td data-k="1-0">150</td><td data-k="1-1">150</td><td class="tot" data-k="1-2">300</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">210</td><td data-k="2-1">290</td><td data-k="2-2">500</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 16: Complete the two-way table">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 Example 16 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.1.A.1 · 2.2.A.3</span></div>
+<h2>Complete the two-way table <span class="zh">补全双向表</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p class="small">120 students were asked which phone they use. Fill in the blanks, then decide: is there an association between grade and phone type?</p><table class="tw" style="font-size:22px;margin-top:8px"><thead><tr><th>Phone</th><th>Grade 10</th><th>Grade 11</th><th>Total</th></tr></thead><tbody><tr><th class="rh">iPhone</th><td>45</td><td><input data-a="35"/></td><td class="tot">80</td></tr><tr><th class="rh">Android</th><td><input data-a="15"/></td><td>25</td><td class="tot"><input data-a="40"/></td></tr><tr class="totrow"><th class="rh">Total</th><td>60</td><td><input data-a="60"/></td><td>120</td></tr></tbody></table><button class="rv" id="fillChk">Check my numbers</button> <span class="score" id="fillScore"></span><div style="margin-top:8px"><div class="answ solo" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Fill in: Grade 11 iPhone = 80 − 45 = 35; Grade 10 Android = 60 − 45 = 15; Android total = 15 + 25 = 40; Grade 11 total = 35 + 25 = 60.</div></div><div class="answ solo" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. iPhone users: 45/60 = 75% of Grade 10 vs. 35/60 ≈ 58.3% of Grade 11.</div></div><div class="answ solo" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. These differ noticeably → some association: Grade 10 students in this sample were more likely to use an iPhone.</div></div></div></div><div class="keyidea">🔑 Phone type by grade (120 students).</div></div></div><div class="col vis"><svg id="phoneSvg" viewbox="0 0 400 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus：每次生成新表新题，±0.005 内算对。" data-title="🎮 Simulator: Random practice generator" id="simGen">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Random practice generator</span><span class="zh">随机练习</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.2.A.1–3</span>
+<div class="row"><div class="col" style="flex:1.05"><div class="small muted" id="genCtx" style="margin-bottom:6px"></div><table class="tw" id="genTab" style="font-size:20px"></table></div>
+<div class="col"><p id="genQ" style="font-size:20px;min-height:90px"></p><div style="display:flex;gap:10px;align-items:center"><input class="bigin" id="genIn" placeholder="0.25 or 25%"/><button class="rv" id="genChk" style="margin:0">Check</button></div>
+<div id="genFb" style="margin-top:10px;min-height:70px"></div><div class="btns"><button class="b" id="genNew">New problem ↻</button><button class="b" id="genShow">Show solution</button></div><p class="score" id="genScore"></p></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 17: Which statement is best supported?">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 17 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.2.B.1 · 2.2.C.1</span></div>
+<h2>Which statement is best supported?</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px"><table class="tw" style="font-size:17px;margin-bottom:8px"><thead><tr><th>Daily social media?</th><th>Under 30</th><th>30 and over</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Yes</th><td>72</td><td>66</td><td class="tot">138</td></tr><tr><th class="rh">No</th><td>8</td><td>54</td><td class="tot">62</td></tr><tr class="totrow"><th class="rh">Total</th><td>80</td><td>120</td><td>200</td></tr></tbody></table>Which statement is best supported by the data?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Because 72 &gt; 66, age group and daily use are not associated.</li><li>(B) 90% of adults under 30 use social media daily, compared with 55% of adults 30 and over, suggesting an association.</li><li>(C) 36% of the sample are under 30 and use daily, so there is an association.</li><li>(D) Being under 30 causes daily social media use.</li><li>(E) There is no association because 69% of all adults use social media daily.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Association needs <b>conditional</b> relative frequencies: 72/80 = 90% vs. 66/120 = 55% → (B).</p><p style="margin:3px 0">(A) uses counts · (C) is a joint RF · (E) is a marginal RF · (D) claims causation.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="smSvg" viewbox="0 0 400 320" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Two-way (contingency) table</th><td class="zh" style="text-align:left">双向表 / 列联表</td><td style="text-align:left">Two categorical variables; counts or RFs</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Side-by-side / segmented bar chart</th><td class="zh" style="text-align:left">并列 / 分段条形图</td><td style="text-align:left">Compare one variable across levels of the other</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Mosaic plot</th><td class="zh" style="text-align:left">马赛克图</td><td style="text-align:left">Width ∝ group size</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Joint relative frequency</th><td class="zh" style="text-align:left">联合相对频率</td><td style="text-align:left">cell ÷ grand total</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Marginal relative frequency</th><td class="zh" style="text-align:left">边际相对频率</td><td style="text-align:left">row/column total ÷ grand total</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Conditional relative frequency</th><td class="zh" style="text-align:left">条件相对频率</td><td style="text-align:left">cell ÷ its row/column total</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Association</th><td class="zh" style="text-align:left">关联</td><td style="text-align:left">Conditional distributions differ · ≠ causation</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">2.2.A · 2.2.B</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">1</b>Marginal relative frequency of students who ate breakfast.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">78/160 ≈ 0.488</div></div><div class="q"><b class="n">2</b>Joint relative frequency: Grade 12 <em>and</em> no breakfast.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">50/160 ≈ 0.313</div></div><div class="q"><b class="n">3</b>Is there an association between grade and eating breakfast? Justify.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes: 60% of Grade 10 (48/80) ate breakfast vs. 37.5% of Grade 12 (30/80) — knowing grade helps predict breakfast.</div></div></div><div class="keyidea">🔑 Breakfast by grade (160 students).</div></div></div><div class="col vis"><div class="qv"><table class="tw" id="t12" style="font-size:21px;"><thead><tr><th>Ate breakfast?</th><th>Grade 10</th><th>Grade 12</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Yes</th><td data-k="0-0">48</td><td data-k="0-1">30</td><td class="tot" data-k="0-2">78</td></tr><tr><th class="rh">No</th><td data-k="1-0">32</td><td data-k="1-1">50</td><td class="tot" data-k="1-2">82</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">80</td><td data-k="2-1">80</td><td data-k="2-2">160</td></tr></tbody></table></div><div class="sv"><table class="tw" id="t12s" style="font-size:21px;"><thead><tr><th>Ate breakfast?</th><th>Grade 10</th><th>Grade 12</th><th>Total</th></tr></thead><tbody><tr><th class="rh">Yes</th><td data-k="0-0">48</td><td data-k="0-1">30</td><td class="tot" data-k="0-2">78</td></tr><tr><th class="rh">No</th><td data-k="1-0">32</td><td data-k="1-1">50</td><td class="tot" data-k="1-2">82</td></tr><tr class="totrow"><th class="rh">Total</th><td data-k="2-0">80</td><td data-k="2-1">80</td><td data-k="2-2">160</td></tr></tbody></table></div></div></div><div class="foot"><span>Unit 2 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：2.3 + 2.4。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 2</div><h1>Simulation &amp; Intro to Probability</h1><div class="zhT">模拟与概率入门 · Topics 2.3 + 2.4</div><p class="muted" style="margin-top:26px;font-size:22px">Today: "What percent of club members…?" → Next: "What is the <b>probability</b> that a randomly chosen visitor…?"</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+
+/* ===== Lesson 1 v2 ===== */
+const USE=['Never used','Renter','Owner'];
+const T=[[445,212],[497,77],[279,16]],RT=[657,574,295],CT=[1221,305],G=1526;
+
+const byClub=[{name:'Club: No',counts:T.map(r=>r[0])},{name:'Club: Yes',counts:T.map(r=>r[1])}];
+const byUse=USE.map((u,i)=>({name:u,counts:[T[i][1],T[i][0]]}));
+const CLUBCOL=[ROSE,BLUSH],CLUBTXT=[INK,INK];
+
+/* warm-up pictures */
+(function(){const s=$('wuPic');for(let i=0;i<100;i++){const x=20+(i%20)*16,y=30+Math.floor(i/20)*34;const club=i<20;
+  el('circle',{cx:x+6,cy:y,r:5,fill:club?'#C8577B':NAVY},s);el('rect',{x:x+2,y:y+7,width:8,height:12,rx:3,fill:club?'#C8577B':NAVY},s);}
+  el('text',{x:180,y:225,'text-anchor':'middle','font-size':12,fill:MUTED},s,'each figure ≈ 15 visitors');
+  const t=$('wuSol');[[0,'Non-members',279,1221,NAVY],[1,'Club members',16,305,'#C8577B']].forEach(([i,n,a,b,c])=>{const y=50+i*90;
+    el('text',{x:10,y:y-8,'font-size':14,'font-weight':700,fill:INK},t,n+': owners');el('rect',{x:10,y,width:330,height:30,rx:6,fill:'#EEE'},t);el('rect',{x:10,y,width:330*a/b,height:30,rx:6,fill:c},t);
+    el('text',{x:16+330*a/b,y:y+21,'font-size':15,'font-weight':800,fill:INK},t,` ${a}/${b} = ${(a/b*100).toFixed(1)}%`);});})();
+
+/* solution table highlights */
+stepHL('t1s',{1:[[],[]],2:[['1-1'],[]],3:[['2-2'],[]],4:[['3-2'],[]]});
+stepHL('t3s',{1:[['2-1'],['3-2']],2:[['0-0'],['3-2']],3:[['0-2'],['3-2']],4:[['3-0','3-1'],['3-2']]});
+stepHL('t5s',{1:[['2-1'],['3-1']],2:[['2-1'],['2-2']],3:[['2-1'],['3-2']],4:[['1-0'],['1-2']]});
+stepHL('t6s',{1:[['1-2'],['3-2']],2:[['2-0'],['3-0']],3:[['0-0'],['3-2']],4:[['1-1'],['1-2']],5:[['2-0'],['3-2']]});
+stepHL('t9s',{1:[['0-3'],['2-3']],2:[['1-2'],['2-3']],3:[['0-0'],['2-0']],4:[['0-0'],['0-3']]});
+stepHL('t12s',{1:[['0-2'],['2-2']],2:[['1-1'],['2-2']],3:[['0-0','0-1'],['2-0','2-1']]});
+stepHL('t11',{1:[[],['0-0','1-0']],2:[['0-0'],['2-0']]});
+
+/* modes sim */
+const MODES={count:'<b>Counts (frequencies)</b><br>Each cell = number of visitors.<br><span class="zh">频数表：每格是人数。</span>',
+ joint:'<b>÷ grand total → joint relative frequencies</b><br>The <em>whole table</em> adds to 100%.<br><span class="zh">全表加起来 = 100%。</span>',
+ col:'<b>÷ column total → conditional distributions of use, given club</b><br>Each <em>column</em> adds to 100%.<br><span class="zh">每一列加起来 = 100%。</span>',
+ row:'<b>÷ row total → conditional distributions of club, given use</b><br>Each <em>row</em> adds to 100%.<br><span class="zh">每一行加起来 = 100%。</span>'};
+function drawMode(md){const cell=(v,r,c)=>{if(md==='count')return v;if(md==='joint')return f1(v/G);if(md==='col')return f1(v/(c===2?G:CT[c]));return f1(v/(r===3?G:RT[r]));};
+  let h='<thead><tr class="top"><th></th><th colspan="2">Environmental club</th><th></th></tr><tr><th>Snowmobile use</th><th>No</th><th>Yes</th><th>Total</th></tr></thead><tbody>';
+  const rows=[...T.map((r,i)=>[...r,RT[i]]),[...CT,G]];
+  rows.forEach((r,i)=>{h+=`<tr class="${i===3?'totrow':''}"><th class="rh">${i===3?'Total':USE[i]}</th>`+r.map((v,j)=>{let hl='';if(md==='col'&&i===3&&j<2)hl=' style="background:var(--gold)"';if(md==='row'&&j===2&&i<3)hl=' style="background:var(--gold)"';if(md==='joint'&&i===3&&j===2)hl=' style="background:var(--gold)"';return `<td class="${j===2&&i<3?'tot':''}"${hl}>${cell(v,i,j)}</td>`;}).join('')+'</tr>';});
+  $('modeTab').innerHTML=h+'</tbody>';$('modeMsg').innerHTML=MODES[md];}
+drawMode('count');document.querySelectorAll('[data-tm]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tm]').forEach(x=>x.classList.remove('on'));b.classList.add('on');drawMode(b.dataset.tm);});
+
+/* side-by-side */
+let sbsMode='count',sbsDir='club';
+function drawSBS(){const svg=$('sbs');clear(svg);const L=60,R=540,Tp=20,B=330,H=B-Tp;const groups=sbsDir==='club'?byClub:byUse;const cols=sbsDir==='club'?USECOL:CLUBCOL;const names=sbsDir==='club'?USE:['Club: Yes','Club: No'];
+  const vals=groups.map(g=>{const t=g.counts.reduce((a,b)=>a+b,0);return g.counts.map(c=>sbsMode==='count'?c:c/t*100);});const mx=Math.max(...vals.flat()),step=sbsMode==='count'?100:20,max=Math.ceil(mx*1.1/step)*step;
+  for(let v=0;v<=max;v+=step){const y=B-v/max*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-10,y:y+5,'text-anchor':'end','font-size':13,fill:MUTED},svg,sbsMode==='count'?v:v+'%');}
+  const gw=(R-L)/groups.length,k=groups[0].counts.length,bw=Math.min(48,(gw-30)/k);
+  groups.forEach((g,gi)=>{const cx=L+gw*gi+gw/2,t=g.counts.reduce((a,b)=>a+b,0);vals[gi].forEach((v,ci)=>{const h=v/max*H,x=cx-(k*bw+(k-1)*5)/2+ci*(bw+5);const r=el('rect',{x,y:B,width:bw,height:0,fill:cols[ci],rx:4},svg);requestAnimationFrame(()=>{r.style.transition='all .6s ease';r.setAttribute('y',B-h);r.setAttribute('height',h);});el('text',{x:x+bw/2,y:B-h-7,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,sbsMode==='count'?g.counts[ci]:v.toFixed(1)+'%');});
+    el('text',{x:cx,y:B+24,'text-anchor':'middle','font-size':14,'font-weight':700,fill:INK},svg,g.name+' (n='+t+')');});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);legend('sbsLeg',names,cols);
+  $('sbsMsg').innerHTML=sbsMode==='count'?'With counts, small groups look tiny everywhere — because they <em>are</em> smaller.':(sbsDir==='club'?'Fair comparison: <b>69.5%</b> of members never used vs. <b>36.4%</b> of non-members.':'Club members are <b>32.3%</b> of never-users but only <b>5.4%</b> of owners.');}
+drawSBS();document.querySelectorAll('[data-sbs]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-sbs]').forEach(x=>x.classList.remove('on'));b.classList.add('on');sbsMode=b.dataset.sbs;drawSBS();});
+document.querySelectorAll('[data-sbsd]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-sbsd]').forEach(x=>x.classList.remove('on'));b.classList.add('on');sbsDir=b.dataset.sbsd;drawSBS();});
+
+/* segmented */
+function drawSeg(dir){if(dir==='club'){stacked($('seg'),byClub,{B:340});legend('segLeg',USE,USECOL);$('segMsg').innerHTML='👀 69.5% of club members never used a snowmobile vs. only 36.4% of non-members.';}
+  else{stacked($('seg'),byUse,{B:340,cols:CLUBCOL,txt:CLUBTXT,gap:30});legend('segLeg',['Club: Yes','Club: No'],CLUBCOL);$('segMsg').innerHTML='👀 Club members are 32.3% of never-users, 13.4% of renters, 5.4% of owners → still an association.';}}
+drawSeg('club');document.querySelectorAll('[data-segd]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-segd]').forEach(x=>x.classList.remove('on'));b.classList.add('on');drawSeg(b.dataset.segd);});
+
+/* mosaic */
+function drawMos(mode){stacked($('mos'),byClub,{mosaic:true,B:320});legend('mosLeg',USE,USECOL);const s=$('mos');
+  if(mode==='w'){el('rect',{x:60,y:12,width:(480-6)*0.8,height:310,fill:'none',stroke:'#E2A83B','stroke-width':5},s);el('rect',{x:60+(480-6)*0.8+6,y:12,width:(480-6)*0.2,height:310,fill:'none',stroke:'#E2A83B','stroke-width':5},s);$('mzMsg').innerHTML='Widths: 1221/1526 = <b>80%</b> and 305/1526 = <b>20%</b> → marginal distribution of club.';}
+  if(mode==='a'){const H=304,w=(480-6)*0.8;el('rect',{x:60,y:320-H*(445+497)/1221,width:w,height:H*497/1221,fill:'none',stroke:'#E2A83B','stroke-width':6},s);$('mzMsg').innerHTML='Biggest tile: non-member renters → 497/1526 ≈ <b>32.6%</b> of all visitors (a joint relative frequency).';}}
+drawMos();document.querySelectorAll('[data-mz]').forEach(b=>b.onclick=()=>drawMos(b.dataset.mz));
+
+/* minis */
+(function(){const m1=$('mini1');[[.36,.41,.23],[.70,.25,.05]].forEach((g,gi)=>g.forEach((v,i)=>el('rect',{x:10+gi*55+i*14,y:55-v*50,width:12,height:v*50,fill:USECOL[i]},m1)));
+  const m2=$('mini2');[[.36,.41,.23],[.70,.25,.05]].forEach((g,gi)=>{let y=58;g.forEach((v,i)=>{y-=v*54;el('rect',{x:20+gi*50,y,width:36,height:v*54,fill:USECOL[i],stroke:'#fff'},m2);});});
+  const m3=$('mini3');[[.36,.41,.23,80],[.70,.25,.05,20]].forEach((g,gi)=>{let y=58;const x=gi?10+82:10,w=g[3];g.slice(0,3).forEach((v,i)=>{y-=v*54;el('rect',{x,y,width:w,height:v*54,fill:USECOL[i],stroke:'#fff'},m3);});});})();
+
+/* association */
+stacked($('assoc0'),[{name:'No',counts:[43,38,19]},{name:'Yes',counts:[43,38,19]}],{L:44,R:390,T:8,B:180,fs:12});
+stacked($('assoc1'),byClub.map(g=>({name:g.name.replace('Club: ',''),counts:g.counts})),{L:44,R:390,T:8,B:180,fs:12});
+const pNo=T.map(r=>r[0]/CT[0]*100),pYes=T.map(r=>r[1]/CT[1]*100);
+function drawSlider(){const t=$('sl').value/100;const y=pNo.map((p,i)=>Math.max(0.3,p+t*(pYes[i]-p)));stacked($('slSvg'),[{name:'Club: No',counts:pNo},{name:'Club: Yes',counts:y}],{B:320});
+  const d=Math.abs(y[0]-pNo[0]);const v=d<3?'<b>No (or very little) association</b>':d<12?'<b>Weak / some association</b>':'<b>Clear association</b>';
+  $('slMsg').innerHTML=`Never used: <b>${pNo[0].toFixed(1)}%</b> (No) vs <b>${y[0].toFixed(1)}%</b> (Yes) → difference <b>${d.toFixed(1)}</b> points<br>${v}`;}
+legend('slLeg',USE,USECOL);$('sl').oninput=drawSlider;drawSlider();
+
+/* rich */
+const RICHN=['Almost no chance','Some chance','50-50 chance','Good chance','Almost certain'];const RCOL=['#FBE3EA',BLUSH,ROSE,'#4B5A88',NAVY],RTXT=[INK,INK,INK,'#fff','#fff'];
+const RF=[96,426,696,663,486],RM=[98,286,720,758,597];
+stacked($('rich'),[{name:'Female',counts:RF},{name:'Male',counts:RM}],{B:310,cols:RCOL,txt:RTXT,fs:14});legend('richLeg',RICHN,RCOL);
+function diffBars(id,showUpTo){const s=$(id);clear(s);const L=150,R=540,mid=(L+R)/2,sc=(R-L)/2/8;const d=RM.map((m,i)=>Math.round(m/2459*1000)/10-Math.round(RF[i]/2367*1000)/10);
+  el('line',{x1:mid,x2:mid,y1:10,y2:300,stroke:INK},s);[-8,-4,0,4,8].forEach(v=>el('text',{x:mid+v*sc,y:318,'text-anchor':'middle','font-size':11,fill:MUTED},s,(v>0?'+':'')+v));
+  d.forEach((v,i)=>{const y=20+i*56;el('text',{x:L-8,y:y+22,'text-anchor':'end','font-size':13,fill:INK},s,RICHN[i]);const w=Math.abs(v)*sc;el('rect',{x:v>=0?mid:mid-w,y,width:w,height:32,rx:4,fill:v>=0?NAVY:'#C8577B',opacity:showUpTo===undefined||Math.abs(v)>2?1:.35},s);
+    el('text',{x:v>=0?mid+w+6:mid-w-6,y:y+21,'text-anchor':v>=0?'start':'end','font-size':13,'font-weight':800,fill:INK},s,(v>0?'+':'')+v.toFixed(1));});
+  el('text',{x:mid+4,y:12,'font-size':11,fill:MUTED},s,'males higher →');el('text',{x:mid-4,y:12,'text-anchor':'end','font-size':11,fill:MUTED},s,'← females higher');}
+diffBars('richDiff');diffBars('richDiff2');
+
+/* claims */
+stacked($('segB'),byClub,{B:340});legend('segBLeg',USE,USECOL);
+stacked($('segBs'),byClub,{B:340});
+onStep('segBs',k=>{const s=$('segBs');stacked(s,byClub,{B:340});const W=480*0.86/2-20,x0=60+480*0.07;const mark=(x,y,h,ok)=>{el('rect',{x,y,width:W+0,height:h,fill:'none',stroke:ok?'#2E8B6E':'#C8577B','stroke-width':5},s);};
+  const H=324;if(k===1){mark(x0,340-H*0.364,H*0.364,true);mark(x0+W+40,340-H*0.695,H*0.695,true);}if(k===2){mark(x0,16,H*0.229,false);mark(x0+W+40,16,H*0.052,false);}if(k===3){mark(x0+W+40,340-H*(0.695+0.252),H*0.252,true);}});
+
+/* lunch */
+stacked($('lunchSvg'),[{name:'9th',counts:[42,35,23]},{name:'12th',counts:[40,36,24]}],{L:44,R:390,T:10,B:220,fs:13,cols:[NAVY,ROSE,BLUSH],txt:['#fff',INK,INK]});
+
+/* marginal distribution bar chart (draw at step 4) */
+function md(){const svg=$('mdSvg');clear(svg);const v=[194,712,1416,1421,1083].map(c=>c/4826*100),L=40,B=230,H=200,bw=70;
+  [0,10,20,30].forEach(t=>{const y=B-t/35*H;el('line',{x1:L,x2:510,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-6,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,t+'%');});
+  v.forEach((p,i)=>{const x=L+16+i*94,h=p/35*H;el('rect',{x,y:B-h,width:bw,height:h,fill:i%2?ROSE:NAVY,rx:4},svg);el('text',{x:x+bw/2,y:B-h-6,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,p.toFixed(1)+'%');el('text',{x:x+bw/2,y:B+16,'text-anchor':'middle','font-size':11,fill:INK},svg,RICHN[i]);});
+  el('text',{x:275,y:B+36,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'Marginal distribution of opinion');}
+onStep('mdSvg',k=>{if(k>=4)md();});
+
+/* conditional dist chart */
+onStep('cdSvg',k=>{if(k>=3){stacked($('cdSvg'),byClub,{B:320});legend('cdLeg',USE,USECOL);}else{const groups=[byClub[0],byClub[1]].slice(0,k);if(k===1)stacked($('cdSvg'),[byClub[1]],{B:320});if(k===2)stacked($('cdSvg'),[byClub[1],byClub[0]],{B:320});legend('cdLeg',USE,USECOL);}});
+
+/* titanic */
+stacked($('tita'),[{name:'1st',counts:[203,122]},{name:'2nd',counts:[118,167]},{name:'3rd',counts:[178,528]}],{B:290,cols:[NAVY,BLUSH],txt:['#fff',INK]});
+
+/* phone & social media */
+stacked($('phoneSvg'),[{name:'Grade 10',counts:[45,15]},{name:'Grade 11',counts:[35,25]}],{L:44,R:390,T:10,B:260,fs:14,cols:[NAVY,BLUSH],txt:['#fff',INK]});
+svgLeg($('phoneSvg'),['iPhone','Android'],[NAVY,BLUSH],120,314);
+stacked($('smSvg'),[{name:'Under 30',counts:[72,8]},{name:'30+',counts:[66,54]}],{L:44,R:390,T:10,B:260,fs:14,cols:[NAVY,BLUSH],txt:['#fff',INK]});
+svgLeg($('smSvg'),['Daily use','Not daily'],[NAVY,BLUSH],120,314);
+
+/* denominator sim */
+const Q=[{k:'Joint 联合',q:'Proportion of all visitors who are club members <b>and</b> owners?',num:['2-1'],den:['3-2'],calc:'16 / 1526 ≈ <b>0.010</b>'},
+ {k:'Marginal 边际',q:'Proportion of all visitors who <b>never used</b> a snowmobile?',num:['0-2'],den:['3-2'],calc:'657 / 1526 ≈ <b>0.431</b>'},
+ {k:'Conditional 条件',q:'<b>Among club members</b>, proportion who are owners?',num:['2-1'],den:['3-1'],calc:'16 / 305 ≈ <b>0.052</b>'},
+ {k:'Conditional 条件',q:'<b>Among owners</b>, proportion who are club members?',num:['2-1'],den:['2-2'],calc:'16 / 295 ≈ <b>0.054</b>'}];
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-q]').forEach(x=>x.classList.remove('on'));b.classList.add('on');const d=Q[+b.dataset.q];hlT('itab',d.num,d.den);
+  $('qbox').innerHTML=`<span class="pill r">${d.k}</span><p style="margin-top:10px;font-size:20px">${d.q}</p><p style="margin-top:10px;font-size:24px;font-family:var(--mono)">${d.calc}</p>`;});
+
+/* fill */
+$('fillChk').onclick=()=>{let k=0;const ins=[...document.querySelectorAll('input[data-a]')];ins.forEach(i=>{const ok=i.value!==''&&+i.value===+i.dataset.a;i.classList.toggle('okk',ok);i.classList.toggle('bad',!ok&&i.value!=='');if(ok)k++;});$('fillScore').textContent=`${k} / ${ins.length} correct`;};
+
+/* generator */
+const CTX=[{ctx:'Students: grade vs. favorite subject',rv:'Subject',rows:['Math','Science','English'],cols:['Grade 10','Grade 11']},{ctx:'Adults: age vs. news source',rv:'News source',rows:['Phone app','TV','Newspaper'],cols:['Under 40','40 and over']},{ctx:'Pet owners: pet vs. city size',rv:'Pet',rows:['Dog','Cat'],cols:['Large city','Small town']},{ctx:'Customers: drink vs. time of day',rv:'Drink',rows:['Coffee','Tea','Juice'],cols:['Morning','Afternoon']}];
+let GEN=null,gR=0,gN=0;
+function newGen(){const c=CTX[rint(0,CTX.length-1)];const t=c.rows.map(()=>c.cols.map(()=>rint(8,80)));const rt=t.map(r=>r.reduce((a,b)=>a+b,0)),ct=c.cols.map((_,j)=>t.reduce((a,r)=>a+r[j],0)),g=rt.reduce((a,b)=>a+b,0);
+  const i=rint(0,c.rows.length-1),j=rint(0,c.cols.length-1),type=rint(0,3);let q,num,den,name;
+  if(type===0){q=`What proportion of <b>all</b> individuals are <em>${c.cols[j]}</em> <b>and</b> <em>${c.rows[i]}</em>?`;num=t[i][j];den=g;name='Joint';}
+  else if(type===1){q=`What proportion of all individuals are <em>${c.rows[i]}</em>?`;num=rt[i];den=g;name='Marginal';}
+  else if(type===2){q=`<b>Among</b> <em>${c.cols[j]}</em>, what proportion are <em>${c.rows[i]}</em>?`;num=t[i][j];den=ct[j];name='Conditional (column)';}
+  else{q=`<b>Of those who are</b> <em>${c.rows[i]}</em>, what proportion are <em>${c.cols[j]}</em>?`;num=t[i][j];den=rt[i];name='Conditional (row)';}
+  GEN={ans:num/den,num,den,name};let h=`<thead><tr><th>${c.rv}</th>${c.cols.map(x=>`<th>${x}</th>`).join('')}<th>Total</th></tr></thead><tbody>`;t.forEach((r,ri)=>h+=`<tr><th class="rh">${c.rows[ri]}</th>${r.map(v=>`<td>${v}</td>`).join('')}<td class="tot">${rt[ri]}</td></tr>`);h+=`<tr class="totrow"><th class="rh">Total</th>${ct.map(v=>`<td>${v}</td>`).join('')}<td>${g}</td></tr></tbody>`;
+  $('genTab').innerHTML=h;$('genCtx').textContent=c.ctx;$('genQ').innerHTML=q;$('genIn').value='';$('genFb').innerHTML='';}
+function genSol(){return `<div class="ans" style="font-size:17px"><b>${GEN.name}</b>: ${GEN.num} / ${GEN.den} ≈ <b>${GEN.ans.toFixed(3)}</b></div>`;}
+function genCheck(){const s=$('genIn').value.trim();if(!s)return;let v=parseFloat(s);if(isNaN(v))return;if(s.includes('%')||v>1)v/=100;const ok=Math.abs(v-GEN.ans)<=0.005;gN++;if(ok)gR++;$('genFb').innerHTML=ok?'<div class="ans">✓ Correct!</div>'+genSol():'<div class="note warn small">✗ Not quite — check your denominator.</div>';$('genScore').textContent=`Score: ${gR} / ${gN}`;}
+$('genNew').onclick=newGen;$('genChk').onclick=genCheck;$('genIn').addEventListener('keydown',e=>{if(e.key==='Enter')genCheck();});$('genShow').onclick=()=>$('genFb').innerHTML=genSol();newGen();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

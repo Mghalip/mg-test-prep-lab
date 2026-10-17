@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 2 · Lesson 2 — Simulation &amp; Intro to Probability</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.digits{font-family:var(--mono);font-size:24px;line-height:1.9;letter-spacing:.04em;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+.digits > span{padding:2px 5px;border-radius:6px;margin-right:6px;transition:.2s}
+.digits > span.ap{background:var(--navy);color:#fff}
+.digits > span.ot{background:var(--pink);color:var(--navy)}
+.digits > span.sk{background:#eee;color:#aaa;text-decoration:line-through}
+.digits > span.rp{background:#FFF2DA;color:#B07B0C;text-decoration:line-through}
+.digits > span.cur{outline:3px solid var(--gold)}
+.trials{font-size:17px;margin-top:8px}
+.trials div{padding:4px 0;border-bottom:1px dashed var(--line)}
+.dgrid{display:grid;grid-template-columns:44px repeat(6,52px);gap:4px;font-size:17px}
+.dgrid div{height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.dgrid .h{font-weight:800;color:var(--rose)}
+.dgrid .c{background:#fff;border:1px solid var(--line);font-family:var(--mono);transition:.2s}
+.dgrid .c.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.dgrid .c.co{background:var(--pink);color:var(--navy)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.chip{font-family:var(--mono);font-size:22px;padding:10px 18px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;transition:.2s}
+.chip.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.chip.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+.tosses{display:grid;grid-template-columns:110px repeat(10,1fr);font-size:17px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.tosses div{padding:8px 4px;text-align:center;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.tosses .lh{background:var(--navy);color:#fff;font-weight:700;text-align:left;padding-left:12px}
+.flipstr{font-family:var(--mono);font-size:19px;letter-spacing:.12em;word-break:break-all;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;line-height:1.7}
+.flipstr b{background:var(--gold);border-radius:4px}
+.bigstat{font-size:40px;font-weight:800;color:var(--navy)}
+.pline{position:relative;height:90px;margin:30px 10px 10px}
+.pline .ax{position:absolute;left:0;right:0;top:44px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--pink-2),var(--rose),var(--navy))}
+.pline .tk{position:absolute;top:56px;font-size:15px;font-weight:700;transform:translateX(-50%)}
+.pline .lb{position:absolute;top:0;transform:translateX(-50%);font-size:14px;text-align:center;width:150px;display:none}
+.pline .lb.show{display:block}
+.pline .lb::after{content:"▼";display:block;color:var(--rose)}
+.dgrid.sm{grid-template-columns:34px repeat(6,40px)}.dgrid.sm div{height:32px;font-size:14px}
+.rng{display:flex;height:46px;border-radius:10px;overflow:hidden;font-size:15px;font-weight:700;margin-top:8px}
+.rng div{display:flex;align-items:center;justify-content:center;transition:.3s}
+.mini{font-family:var(--mono);font-size:22px;letter-spacing:.06em}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 2 第二课：2.3 + 2.4，对应旧课本 TPS 5.1（及 5.2 开头的样本空间、补集）。v2：例题与解答分页、模拟器高亮、难度星级。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 2 · Lesson 2</div><h1>Simulation &amp; Intro to Probability</h1><div class="zhT">模拟与概率入门</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 2.3 Estimating Probabilities Using Simulation · Topic 2.4 Introduction to Probability</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 5.1 (+ 5.2 intro)</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 2 全貌。" data-title="Unit 2 roadmap">
+<div class="tag">Unit 2 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 2 <span class="zh">单元路线图</span></h2>
+<p class="sub">Probability, Random Variables, and Probability Distributions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>2.1 + 2.2 Two Categorical Variables<span class="old">TPS 1.1</span></div><div class="lesson now"><span class="n">2</span>2.3 + 2.4 Simulation &amp; Intro to Probability<span class="old">TPS 5.1</span></div><div class="lesson"><span class="n">3</span>2.5 Mutually Exclusive Events<span class="old">TPS 5.2</span></div><div class="lesson"><span class="n">4</span>2.6 + 2.7 Conditional Prob. &amp; Independence<span class="old">TPS 5.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">5</span>2.8 + 2.9 Random Variables<span class="old">TPS 6.1</span></div><div class="lesson"><span class="n">6</span>2.10 The Binomial Distribution<span class="old">TPS 6.3</span></div><div class="lesson"><span class="n">7</span>2.11 The Normal Distribution<span class="old">TPS 2.2</span></div><div class="lesson"><span class="n">8</span>2.12 Sampling Distributions &amp; CLT<span class="old">TPS 7.1</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Last lesson: "What percent of club members…?" Today: "What is the <strong>probability</strong> that…?" <span class="zh">从“百分比”走向“概率”。</span></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 2 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(2,1fr);margin-top:12px"><div class="card"><div class="k">2.3.A · Skill 3.C</div><h3>Estimate with simulation <span class="stars">★★<span class="off">★★</span></span></h3><p>Estimate probabilities using simulations (State · Plan · Do · Conclude).</p><p class="zh muted small" style="margin-top:6px">用模拟估计概率</p></div><div class="card"><div class="k">2.4.A · Skill 3.C</div><h3>Calculate <span class="stars">★★<span class="off">★★</span></span></h3><p>Calculate probabilities for events and their <strong>complements</strong>.</p><p class="zh muted small" style="margin-top:6px">计算事件及其补集的概率</p></div><div class="card" style="background:var(--pink-3)"><div class="k">From TPS 5.1</div><h3>Interpret <span class="stars">★★<span class="off">★★</span></span></h3><p>Interpret probability as a <strong>long-run relative frequency</strong>; recognize myths about randomness.</p><p class="zh muted small" style="margin-top:6px">把概率理解为长期相对频率</p></div><div class="card" style="background:var(--pink-3)"><div class="k">From TPS 5.2</div><h3>Model <span class="stars">★<span class="off">★★★</span></span></h3><p>Describe a <strong>probability model</strong>: sample space + a probability for each outcome.</p><p class="zh muted small" style="margin-top:6px">描述概率模型</p></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 2 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:60px">4'</div>Warm-up: from percent to probability</div><div class="it"><div class="bar n" style="width:220px">20' · 2.3</div>Random process → outcome/event → simulation → long-run relative frequency → LLN</div><div class="it"><div class="bar n" style="width:150px">12' · 2.4</div>Sample space → equally likely → 0 ≤ P ≤ 1 → complement</div><div class="it"><div class="bar" style="width:80px">6'</div>Practice: simulation write-up + AP-style MCQ</div><div class="it"><div class="bar" style="width:60px">3'</div>Summary &amp; exit ticket</div><div class="it"><div class="bar g" style="width:130px">Bonus</div>Dice-event generator · valid models · three coins</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 2.3.A.1 → 2.3.A.2 → 2.3.A.3 → 2.3.A.4 → 2.3.A.5 → 2.3.A.6 → 2.3.A.7 → 2.4.A.1 → 2.4.A.2 → 2.4.A.3 → 2.4.A.4</p><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 2 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simToss" href="#"><span class="ic">🎮</span><span>What is probability? Toss a coin 10 times<small>抛硬币 10 次 · toss · record proportion of heads</small></span></a><a data-goto="simDigits" href="#"><span class="ic">🎮</span><span>Do: read the random digits<small>用随机数字表模拟 · Table D step by step</small></span></a><a data-goto="simGT" href="#"><span class="ic">🎮</span><span>Golden ticket: many trials<small>重复很多次 · estimate P(both AP Stats)</small></span></a><a data-goto="simNascar" href="#"><span class="ic">🎮</span><span>Cereal cards: run it yourself<small>集卡模拟器 · random integers 1–5</small></span></a><a data-goto="simTack" href="#"><span class="ic">🎮</span><span>Thumbtack: estimate P(point up)<small>图钉模拟 · long-run relative frequency</small></span></a><a data-goto="simLLN" href="#"><span class="ic">🎮</span><span>The Law of Large Numbers<small>大数定律 · proportion of heads vs. number of tosses</small></span></a><a data-goto="simRun" href="#"><span class="ic">🎮</span><span>Investigating randomness: longest run<small>最长连续段 · longest run in 50 flips</small></span></a><a data-goto="simDice" href="#"><span class="ic">🎮</span><span>Two dice: event explorer<small>两颗骰子事件 · highlight any event</small></span></a><a data-goto="simGen" href="#"><span class="ic">🎮</span><span>Two-dice probability generator<small>随机练习（Bonus） · infinite practice</small></span></a></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="Think–Pair–Share。Q2/Q3 引出今天的核心：短期不可预测，长期有规律。" data-title="📝 Warm-up: From percent to probability">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>From percent to probability <span class="zh">热身：从百分比到概率</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">Q1</b>305 of the 1526 Yellowstone visitors were club members. If we pick <b>one visitor at random</b>, what is the chance they are a club member?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">305 / 1526 ≈ 0.20. When the individual is chosen <b>at random</b>, a relative frequency becomes a <b>probability</b>. <span class="zh">随机抽取时，相对频率就是概率。</span></div></div><div class="q"><b class="n">Q2</b>You toss a fair coin <b>10 times</b>. Will you get exactly 5 heads? What about 1000 tosses — exactly 500 heads?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Probably <b>not exactly</b> 5 (or 500)! P(exactly 5 of 10) ≈ 0.25 and P(exactly 500 of 1000) ≈ 0.025.</div></div><div class="q"><b class="n">Q3</b>Predict: which is more likely to be close to 50% heads — 10 tosses or 1000 tosses?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">But the proportion of heads is much closer to 0.5 with 1000 tosses (see the two paths →). <span class="zh">次数越多，比例越接近 0.5。</span></div></div></div><div class="keyidea">🔑 Random visitor · 10 vs. 1000 coin tosses.</div><div class="takeaway">💡 Short run: unpredictable. Long run: <b>predictable</b>. That is what probability describes.</div></div></div><div class="col vis"><div class="qv"><svg id="wuPic" viewbox="0 0 400 250" width="100%"></svg><div class="cap">Last lesson’s data: 305 club members out of 1526</div></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 330" width="100%"></svg><div class="cap" id="wuCap">Proportion of heads as tosses increase</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.3" data-sec="1" data-title="§ 2.3 Estimating Probabilities Using Simulation">
+<div class="tag">Topic</div><div class="num">2.3</div><h1>Estimating Probabilities Using Simulation</h1><div class="zhT">用模拟估计概率</div><div class="eks"><span>2.3.A.1 Random process</span><span>2.3.A.2 Outcome</span>2.3.A.3 Event<span>2.3.A.4 Simulation</span><span>2.3.A.5–6 Probability</span><span>2.3.A.7 Law of large numbers</span></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.3.A.1。点击卡片判断是否是随机过程。" data-title="Random Process">
+<div class="tag">2.3 · Concept<span class="ek">EK 2.3.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Random Process <span class="zh">随机过程</span></h2><div class="concept"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>random process</strong> (also called a <em>chance process</em>) generates results that are <strong>determined by chance</strong>. Each repetition of a random process is called a <strong>trial</strong>.</div><div class="cn"><b>随机过程</b>（也叫机会过程）产生的结果<b>由机会决定</b>。随机过程的每一次重复叫作一次<b>试验</b>（trial）。</div></div><p class="small" style="margin-top:4px"><strong>Quick sort:</strong> random process or not? <span class="score" id="rpScore"></span></p><div class="claims" id="rpCards" style="margin-top:4px"></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.3.A.2–3。点击判断。" data-title="Outcome &amp;amp; Event">
+<div class="tag">2.3 · Concepts<span class="ek">EK 2.3.A.2 · 2.3.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Outcome &amp; Event <span class="zh">结果与事件</span></h2><div class="concept"><div class="term">Outcome<span class="zh">结果</span></div><div class="en">An <strong>outcome</strong> is the result of <strong>one trial</strong> of a random process.</div><div class="cn"><b>结果</b>：随机过程<b>一次试验</b>得到的结果。</div></div><div class="concept pink"><div class="term">Event<span class="zh">事件</span></div><div class="en">An event is a <strong>collection of outcomes</strong>. Events are named with capital letters: A, B, C…</div><div class="cn"><b>事件</b>：<b>若干结果的集合</b>（样本空间的子集），通常用大写字母 A、B、C 表示。</div></div><p class="small" style="margin-top:2px">Roll one die 🎲 — outcome or event? <span class="score" id="oeScore"></span></p><div class="claims" id="oeCards" style="margin-top:4px"></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="旧课件 5.1 开场活动。可先让学生用真硬币做。" data-title="🎮 Simulator: What is probability? Toss a coin 10 times" id="simToss">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">What is probability? Toss a coin 10 times</span><span class="zh">抛硬币 10 次</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.4–5</span>
+<p class="small">After each toss, record the <strong>overall proportion of heads</strong> so far. <span class="zh">每抛一次，记录到目前为止正面的比例。</span></p>
+<div class="tosses" id="tossTab" style="margin-top:8px"></div>
+<div class="btns" style="margin:8px 0 0"><button class="b" id="tossOne">Toss 🪙</button><button class="b" id="tossTen">Toss all 10</button><button class="b" id="tossReset">Reset</button></div>
+<svg id="tossSvg" style="width:100%;height:150px" viewbox="0 0 1100 150"></svg>
+<p class="small muted">Discuss: after 10 tosses, is your proportion exactly 0.5? Compare with your neighbors. <span class="zh">和同桌比较。</span></p><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.3.A.4。四步：State / Plan / Do / Conclude。" data-title="Simulation">
+<div class="tag">2.3 <b>· Key Concept</b><span class="ek">EK 2.3.A.4</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Simulation <span class="zh">模拟</span></h2><div class="concept"><div class="term">Definition<span class="zh">定义</span></div><div class="en"><strong>Simulation</strong> is a way to model random events so that simulated outcomes closely match real-world outcomes. All possible outcomes are associated with a value to be determined by chance. Record the counts of simulated outcomes and the <strong>count total</strong>.</div><div class="cn"><b>模拟</b>：用一个能准确反映真实情况的模型来模仿随机事件。把每个可能结果对应到一个由机会决定的值（如随机数字），记录各结果出现的<b>次数</b>和<b>总次数</b>。</div></div><div class="cards" style="grid-template-columns:repeat(4,1fr)"><div class="card"><div class="k">① State</div><p class="small">Ask a question about a chance process.</p><p class="zh muted small">提出问题</p></div><div class="card"><div class="k">② Plan</div><p class="small">Use a chance device to imitate one trial. Say what you'll record.</p><p class="zh muted small">设计一次试验</p></div><div class="card"><div class="k">③ Do</div><p class="small">Perform <strong>many</strong> trials.</p><p class="zh muted small">重复很多次</p></div><div class="card"><div class="k">④ Conclude</div><p class="small">Use the results to answer the question.</p><p class="zh muted small">得出结论</p></div></div>
+<p class="small muted" style="margin-top:8px">Tools: physical devices (coins, dice, cards) · random digits (Table D) · technology (calculator, applet).</p><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: The golden ticket parking lottery">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.3.A.4</span></div>
+<h2>The golden ticket parking lottery <span class="zh">金票停车抽签：设计模拟</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>95 students have permission to park on campus. Each month, <b>2 "golden tickets"</b> are drawn at random for prime parking spaces. Last month, <b>both</b> winners were from the AP Statistics class, which has 28 students with parking permits.</p><div class="q"><b class="n">a</b>State the question we want to answer.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">State: What is the probability that a fair lottery picks 2 winners who are <em>both</em> from AP Stats?</div></div><div class="q"><b class="n">b</b><b>Plan:</b> describe how to use a table of random digits to imitate one lottery drawing. (How do you label? What do you skip? When does one trial stop? What do you record?)</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Label</b> AP Stats students 01–28 and the other students 29–95 (two digits, because we need 95 labels).</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Skip 96–99 and 00, and skip repeats (the same student can’t win twice).</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. <b>One trial</b> = read pairs of digits until you have <b>two different labels</b> from 01–95. Record whether both are from 01–28.</div></div></div><div class="keyidea">🔑 Plan a simulation of the golden-ticket lottery.</div><div class="takeaway">💡 A clear plan = <b>label · skip · stop · record</b>. Someone else must be able to repeat it exactly.</div></div></div><div class="col vis"><div class="qv"><svg id="gtPic" viewbox="0 0 380 250" width="100%"></svg><div class="cap">95 permits · 28 in AP Stats (navy)</div></div><div class="sv"><div style="padding:6px 8px"><p class="small muted">Two-digit labels 00–99</p><div class="rng" id="gtRng"></div><p class="small" id="gtRngMsg" style="margin-top:10px;min-height:60px"></p></div></div></div></div><div class="foot"><span>Unit 2 · Lesson 2 · Example from TPS</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="点 Next pair 一步一步读两位数。每找到两个不同的有效编号就完成一次试验。" data-title="🎮 Simulator: Do: read the random digits" id="simDigits">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Do: read the random digits</span><span class="zh">用随机数字表模拟</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.4</span>
+<div class="legend" style="margin-bottom:8px"><i style="background:var(--navy)"></i>01–28 AP Stats<span><i style="background:var(--pink)"></i>29–95 other</span><i style="background:#eee"></i>skip (96–99, 00)<i style="background:#FFF2DA"></i>repeat — skip</div>
+<div class="digits" id="dgts"></div>
+<div class="btns"><button class="b" id="dNext">Next pair →</button><button class="b" id="dTrial">Finish trial</button><button class="b" id="dNew">New random rows ↻</button></div>
+<div class="trials" id="dTrials"></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="真实概率 = 28/95 × 27/94 ≈ 0.085（第 4 课会用乘法法则算）。" data-title="🎮 Simulator: Golden ticket: many trials" id="simGT">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Golden ticket: many trials</span><span class="zh">重复很多次</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.4 · 2.3.A.6</span>
+<div class="row" style="margin-top:4px"><div class="col" style="flex:.8">
+<div class="btns"><button class="b" data-gt="1">+1 trial</button><button class="b" data-gt="100">+100</button><button class="b" data-gt="1000">+1000</button><button class="b" id="gtReset">Reset</button></div>
+<div class="frame" style="margin-top:6px"><p class="small muted">Trials where <strong>both winners are AP Stats</strong></p><p class="bigstat" id="gtStat">0 / 0</p></div>
+<p class="small muted" style="margin-top:8px">The proportion from a simulation is an <strong>estimate</strong> of the true probability. More trials → better estimate. <span class="zh">次数越多，估计越准。</span></p></div>
+<div class="col frame"><svg id="gtSvg" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Conclude: was the lottery fair?">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.3.A.4 · 2.3.A.6</span></div>
+<h2>Conclude: was the lottery fair? <span class="zh">得出结论</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The textbook ran the simulation <b>100 times</b>. In 9 of the 100 trials, both winners were from AP Stats.</p><div class="q"><b class="n">a</b>Estimate the probability that a fair lottery picks two AP Stats students.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Estimate: P(both AP Stats) ≈ 9/100 = 0.09.</div></div><div class="q"><b class="n">b</b>Is this convincing evidence that the lottery was unfair? Explain.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Ask: if the lottery is fair, how often does this happen? About 9% of the time.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. 9% is <b>not very small</b> — this could easily happen by chance alone. So we do not have convincing evidence that the lottery was unfair. <span class="zh">9% 不算很小，可能纯属偶然。</span></div></div></div><div class="keyidea">🔑 9 of 100 simulated lotteries had both winners from AP Stats.</div><div class="takeaway">💡 Rule of thumb: an outcome is “surprising” only if its probability is <b>small</b> (often below about 5%).</div></div></div><div class="col vis"><div class="qv"><svg id="gtDots" viewbox="0 0 400 260" width="100%"></svg><div class="cap">100 simulated lotteries · pink = both AP Stats</div></div><div class="sv"><svg id="gtLine" viewbox="0 0 540 200" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 2 · Example from TPS</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="旧课件 AP EXAM TIP。" data-title="Describing a simulation on the AP exam AP 考试如何描述模拟">
+<div class="tag">2.3 <b>· AP Exam Tip</b><span class="ek">EK 2.3.A.4</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span><h2>Describing a simulation on the AP exam <span class="zh">AP 考试如何描述模拟</span></h2>
+<div class="note warn" style="font-size:19px;margin-top:8px">⚠️ Give a description <strong>clear enough that someone else could get the same results from only your written explanation.</strong><br/><span class="zh">描述要清楚到：别人只看你写的步骤，就能得到和你完全一样的结果。</span></div>
+<div class="cards" style="grid-template-columns:repeat(5,1fr);margin-top:16px"><div class="card"><div class="k">1 · Label</div><p class="small">How you <strong>label</strong> outcomes (and how many digits)</p></div><div class="card"><div class="k">2 · Skip</div><p class="small">Which labels to skip (unused, repeats)</p></div><div class="card"><div class="k">3 · Stop</div><p class="small">When <strong>one trial stops</strong></p></div><div class="card"><div class="k">4 · Record</div><p class="small">What you record each trial</p></div><div class="card"><div class="k">5 · Estimate</div><p class="small">count ÷ total number of trials</p></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Collecting all 5 cards">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.3.A.4 · 2.3.A.6</span></div>
+<h2>Collecting all 5 cards <span class="zh">集齐 5 张卡片</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Each box of a cereal contains 1 of 5 driver cards, each equally likely. A fan keeps buying until she has all 5. It took her 23 boxes.</p><div class="q"><b class="n">a</b>Describe a simulation (State · Plan) to estimate the probability that it takes <b>23 or more</b> boxes.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. State: P(it takes 23 or more boxes to get all 5 cards) = ?</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Plan:</b> integers 1–5 = the 5 cards. Generate random integers 1–5 until all five appear; record the number of boxes.</div></div><div class="q"><b class="n">b</b>Should she be surprised? Use the simulation results on the next slide.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Do: 1000 trials (histogram →).</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Conclude:</b> only about <b id="nsPct">4%</b> needed 23+ boxes → unlikely, so she <b>should be surprised</b>. Maybe the cards aren’t equally likely.</div></div></div><div class="keyidea">🔑 How many boxes to collect all 5 cards?</div><div class="takeaway">💡 Repeats are <b>allowed</b> here (boxes are independent) — different from the lottery!</div></div></div><div class="col vis"><div class="qv"><svg id="nsPic" viewbox="0 0 400 220" width="100%"></svg><div class="cap">5 cards, each with probability 1/5</div></div><div class="sv"><svg id="nsSol" viewbox="0 0 560 340" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 2 · Example from TPS</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="理论值 P(≥23) ≈ 0.037，平均约 11.4 盒。" data-title="🎮 Simulator: Cereal cards: run it yourself" id="simNascar">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Cereal cards: run it yourself</span><span class="zh">集卡模拟器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.4</span>
+<div class="row"><div class="col" style="flex:.8">
+<p class="small"><strong>Plan:</strong> random integers 1–5 until all five appear; record the number of boxes.</p>
+<div class="btns"><button class="b" data-ns="1">+1 fan</button><button class="b" data-ns="50">+50</button><button class="b" data-ns="500">+500</button><button class="b" id="nsReset">Reset</button></div>
+<p class="small" id="nsLast" style="font-family:var(--mono);min-height:52px"></p>
+<div class="note small" id="nsMsg">Click a button to start.</div></div>
+<div class="col frame"><svg id="nsSvg" viewbox="0 0 560 340" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.3.A.5–6。图钉例子：两种结果不代表各 0.5。" data-title="Probability">
+<div class="tag">2.3 <b>· Key Concept</b><span class="ek">EK 2.3.A.5 · 2.3.A.6</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Probability <span class="zh">概率</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">The <strong>probability</strong> of an outcome or event is its <strong>long-run relative frequency</strong> — its relative frequency over a <strong>large number of trials</strong>. A relative frequency from empirical data can be used to <strong>estimate</strong> the true probability.</div><div class="cn">一个结果或事件的<b>概率</b>，是它在<b>大量重复试验</b>中出现的<b>长期相对频率</b>。用实际数据得到的相对频率可以用来<b>估计</b>真实概率。</div></div><div class="note" style="margin-top:6px">🔍 A tossed thumbtack lands <em>point up</em> or <em>point down</em>. Is P(point up) = 0.5? → Try the 🎮 thumbtack simulator next.</div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="虚拟图钉设定的真实概率是 0.62。" data-title="🎮 Simulator: Thumbtack: estimate P(point up)" id="simTack">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Thumbtack: estimate P(point up)</span><span class="zh">图钉模拟</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.6</span>
+<div class="row"><div class="col" style="flex:.75">
+<p class="small">Two outcomes ≠ equally likely! The only way to find P(point up) is to toss it <strong>many</strong> times. <span class="zh">两种结果不代表概率各 0.5。</span></p>
+<div class="btns"><button class="b" data-tk="10">Toss 10</button><button class="b" data-tk="100">Toss 100</button><button class="b" data-tk="1000">Toss 1000</button><button class="b" id="tkReset">Reset</button></div>
+<div class="frame"><p class="small muted">Point up / total tosses</p><p class="bigstat" id="tkStat">0 / 0</p><p class="small" id="tkEst">Estimate of P(point up): —</p></div>
+<button class="rv" id="tkTrue">Reveal true probability</button> <span class="small" id="tkTrueV"></span></div>
+<div class="col frame"><svg id="tkSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="CED 2.3.A.7。点 New path 画多条路径：开始时差别很大，最后都收敛。" data-title="🎮 Simulator: The Law of Large Numbers" id="simLLN">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">The Law of Large Numbers</span><span class="zh">大数定律</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.7</span>
+<div class="row"><div class="col" style="flex:.8">
+<div class="concept pink" style="margin-top:0"><div class="kp">Knowledge point · Difficulty <span class="stars">★★<span class="off">★★</span></span></div><div class="term">Law of large numbers<span class="zh">大数定律</span></div><div class="en" style="font-size:18px">For <strong>independent trials</strong>, as the number of trials increases, the long-run relative frequency of an outcome or event gets <strong>closer and closer to a single value</strong>.</div><div class="cn">对于<b>独立</b>的重复试验，试验次数越多，相对频率越<b>接近一个固定值</b>（即概率）。</div></div>
+<div class="btns"><button class="b" data-ll="10">+10</button><button class="b" data-ll="100">+100</button><button class="b" data-ll="1000">+1000</button><button class="b" id="llNew">New path</button><button class="b" id="llReset">Reset</button></div>
+<p class="small" id="llMsg"></p></div>
+<div class="col frame"><svg id="llSvg" viewbox="0 0 560 340" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="旧课件两个误区。" data-title="Myths about randomness 关于随机性的误区">
+<div class="tag">2.3 <b>· Myths</b><span class="ek">EK 2.3.A.7</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>Myths about randomness <span class="zh">关于随机性的误区</span></h2>
+<div class="row" style="margin-top:12px"><div class="col concept" style="margin:0"><div class="term">Myth 1 · Short-run regularity<span class="zh">短期规律</span></div><div class="en">Randomness is predictable in the <strong>long run</strong>, but probability does not let us make short-run predictions.</div><div class="cn">概率只在长期有规律，不能预测短期。</div></div>
+<div class="col concept pink" style="margin:0"><div class="term">Myth 2 · "Law of averages"<span class="zh">平均律</span></div><div class="en">Random behavior evens out in the long run, but <strong>future outcomes are not affected by past outcomes</strong>.</div><div class="cn">过去的结果不会影响将来的结果。</div></div></div>
+<div class="note" style="margin-top:16px">🎲 Casinos rely on the <b>long run</b>; gamblers who believe a number is "due" rely on a myth. <span class="zh">赌场靠长期规律赚钱；“该轮到我了”是误区。</span></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Which sequence? What comes next?">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.3.A.7</span></div>
+<h2>Which sequence? What comes next? <span class="zh">随机性误区</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">1</b>Toss a fair coin 6 times. Which is more probable: <span class="mini">HTHTTH</span> or <span class="mini">TTTHHH</span>?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Each specific sequence has probability (1/2)⁶ = 1/64. They are <b>equally likely</b> — TTTHHH only “looks” less random.</div></div><div class="q"><b class="n">2</b>You got <span class="mini">TTTTTT</span>. Is the next toss more likely to be H (“it’s due”), more likely T (“on a streak”), or still 50-50?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Still 50-50: tosses are independent; the coin has no memory. <span class="zh">硬币没有记忆。</span></div></div><div class="q"><b class="n">3</b>Which myth does each wrong answer use?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">“H is due” = <b>law of averages</b> myth. “Looks less random” = expecting <b>short-run regularity</b>.</div></div></div><div class="keyidea">🔑 Six coin tosses; streaks.</div><div class="takeaway">💡 Every one of the 64 sequences has the <b>same</b> probability.</div></div></div><div class="col vis"><svg id="mythSvg" viewbox="0 0 540 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="人编的通常最长只有 3–4，真随机通常 5–6 甚至更长。" data-title="🎮 Simulator: Investigating randomness: longest run" id="simRun">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Investigating randomness: longest run</span><span class="zh">最长连续段</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.4</span>
+<div class="row"><div class="col">
+<p class="small">Step 1. On paper, <em>imagine</em> 50 coin flips. Find your longest run (e.g., HHHH = run of 4).</p>
+<p class="small" style="margin-top:6px">Step 2. Now generate 50 <em>random</em> flips:</p>
+<div class="flipstr" id="lrStr">—</div><p class="small" id="lrLen" style="margin-top:4px"></p>
+<div class="btns"><button class="b" id="lrOne">50 random flips</button><button class="b" id="lrMany">Simulate 1000 sequences</button></div></div>
+<div class="col frame"><svg id="lrSvg" viewbox="0 0 560 330" width="100%"></svg><p class="small muted" id="lrMsg">Distribution of the longest run in 50 random flips</p></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 6: Free-throw probability">
+<div class="exhead"><span class="badge ex">📝 AP Practice 6 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.5–7</span></div>
+<h2>Free-throw probability</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">A basketball player makes 80% of her free throws. Which statement correctly interprets this probability?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) In every 10 free throws, she will make exactly 8.</li><li>(B) If she misses 2 in a row, she is more likely to make the next one.</li><li>(C) Over a very large number of free throws, she will make about 80% of them.</li><li>(D) She will make her next free throw.</li><li>(E) In 5 shots, she will miss exactly 1.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Probability = <b>long-run</b> relative frequency → (C).</p><p style="margin:3px 0">(A), (E) are short-run predictions · (B) is the “law of averages” · (D) treats 0.8 as certainty.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="ftSvg" viewbox="0 0 560 330" width="100%"></svg><div class="cap">Running proportion of made free throws (P = 0.8)</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.4" data-sec="1" data-title="§ 2.4 Introduction to Probability">
+<div class="tag">Topic</div><div class="num">2.4</div><h1>Introduction to Probability</h1><div class="zhT">概率入门</div><div class="eks"><span>2.4.A.1 Sample space</span><span>2.4.A.2 Equally likely outcomes</span>2.4.A.3 0 ≤ P ≤ 1<span>2.4.A.4 Complement</span></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.4.A.1 + 旧课件 5.2。" data-title="Sample Space &amp;amp; Probability Model">
+<div class="tag">2.4 · Concepts<span class="ek">EK 2.4.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Sample Space &amp; Probability Model <span class="zh">样本空间与概率模型</span></h2><div class="concept"><div class="term">Sample space<span class="zh">样本空间</span></div><div class="en">The <strong>sample space S</strong> of a random process is the set of <strong>all possible nonoverlapping outcomes</strong>. The probability of the sample space is 1: P(S) = 1.</div><div class="cn">随机过程的<b>样本空间 S</b> 是所有可能的、<b>互不重叠</b>的结果组成的集合。样本空间的概率为 1。</div></div><div class="concept pink"><div class="term">Probability model<span class="zh">概率模型</span></div><div class="en">A <strong>probability model</strong> describes a random process with two parts: a <strong>sample space S</strong> and a <strong>probability for each outcome</strong>.</div><div class="cn"><b>概率模型</b>由两部分组成：<b>样本空间</b>，以及<b>每个结果的概率</b>。</div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Write the sample space">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.4.A.1</span></div>
+<h2>Write the sample space <span class="zh">写出样本空间</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b>Toss a coin.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">S = {H, T}, each 1/2.</div></div><div class="q"><b class="n">b</b>Roll one die.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">S = {1, 2, 3, 4, 5, 6}, each 1/6.</div></div><div class="q"><b class="n">c</b>Toss <b>two</b> coins. (Careful: is HT the same as TH?)</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">S = {HH, HT, TH, TT}, each 1/4 — HT ≠ TH (tree →).</div></div><div class="q"><b class="n">d</b>Toss two coins and record the <b>number of heads</b>. Are the outcomes equally likely?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">S = {0, 1, 2} but not equally likely: P(0) = 1/4, P(1) = 2/4, P(2) = 1/4.</div></div></div><div class="keyidea">🔑 Sample spaces.</div><div class="takeaway">💡 A tree diagram lists every outcome exactly once — no overlaps, nothing missing.</div></div></div><div class="col vis"><svg id="ssTree" viewbox="0 0 540 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.4.A.2。强调前提：等可能。" data-title="Equally Likely Outcomes">
+<div class="tag">2.4 <b>· Key Concept</b><span class="ek">EK 2.4.A.2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Equally Likely Outcomes <span class="zh">等可能结果</span></h2><div class="concept pink"><div class="term">Theoretical probability<span class="zh">理论概率</span></div><div class="en">If all outcomes in the sample space are <strong>equally likely</strong>, the probability that event E occurs is <span style="font-family:var(--mono);font-weight:700">P(E) = (number of outcomes in E) ÷ (total number of outcomes in S)</span>.</div><div class="cn">如果样本空间中所有结果<b>等可能</b>，事件 E 的概率 = E 包含的结果数 ÷ 样本空间的结果总数。</div></div><div class="note warn small" style="margin-top:6px">⚠️ Only when outcomes are <strong>equally likely</strong>! The sums 2, 3, …, 12 of two dice are <em>not</em> equally likely, so P(sum = 7) ≠ 1/11. <span class="zh">“和”不是等可能的！</span></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Rolling two dice">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.4.A.1 · 2.4.A.2</span></div>
+<h2>Rolling two dice <span class="zh">两颗骰子</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Roll two fair dice and record the pair (die 1, die 2). There are 6 × 6 = 36 equally likely outcomes.</p><div class="q"><b class="n">a</b>P(sum is 5)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Sum 5: (1,4), (2,3), (3,2), (4,1) → 4/36 ≈ 0.111</div></div><div class="q"><b class="n">b</b>P(doubles)</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Doubles: 6 cells on the diagonal → 6/36 = 1/6</div></div><div class="q"><b class="n">c</b>P(sum is 7)</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Sum 7: 6 cells → 6/36 = 1/6</div></div><div class="q"><b class="n">d</b>A student says P(sum = 7) = 1/11 because there are 11 possible sums. What is wrong?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The 11 sums are <b>not equally likely</b> (sum 2 has 1 cell, sum 7 has 6) → count the 36 equally likely pairs instead.</div></div></div><div class="keyidea">🔑 Two dice: 36 equally likely outcomes.</div></div></div><div class="col vis"><div class="qv"><div class="dgrid" id="dgEx"></div><div class="cap">Rows = die 1 · columns = die 2 · cell = sum</div></div><div class="sv"><div class="dgrid" id="dgSol"></div><div class="cap" id="dgSolCap"> </div></div></div></div><div class="foot"><span>Unit 2 · Lesson 2 · Example from TPS 5.2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="点击事件按钮高亮对应格子；再点 Complement 显示补集。" data-title="🎮 Simulator: Two dice: event explorer" id="simDice">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Two dice: event explorer</span><span class="zh">两颗骰子事件</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.4.A.1 · 2.4.A.2 · 2.4.A.4</span>
+<div class="row"><div style="flex:none"><div class="dgrid" id="dgrid"></div><p class="small muted" style="margin-top:6px">Rows = die 1 · Columns = die 2 · each cell shows the sum</p></div>
+<div class="col"><div class="btns" id="evBtns"></div><button class="b" id="evComp" style="margin-top:4px">Show complement Aᶜ</button>
+<div class="note" id="evMsg" style="margin-top:10px;min-height:150px;font-size:19px">Choose an event.</div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.4.A.3。点数字判断能否是概率。" data-title="Every probability is between 0 and 1">
+<div class="tag">2.4 <b>· Rule</b><span class="ek">EK 2.4.A.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Every probability is between 0 and 1 <span class="zh">概率介于 0 和 1 之间</span></h2><div class="concept"><div class="term">Rule<span class="zh">法则</span></div><div class="en">For any event A: 0 ≤ P(A) ≤ 1. An outcome that never occurs has probability 0; an outcome that occurs on every trial has probability 1.</div><div class="cn">任何事件的概率都在 0 到 1 之间（含 0 和 1）。不可能发生的结果概率为 0，必然发生的结果概率为 1。</div></div><div class="pline" id="pline" style="margin-top:6px"><div class="ax"></div><div class="tk" style="left:0%">0</div><div class="tk" style="left:25%">0.25</div><div class="tk" style="left:50%">0.5</div><div class="tk" style="left:75%">0.75</div><div class="tk" style="left:100%">1</div>
+<div class="lb pl2 show" style="left:0%">Impossible<br/><span class="zh">不可能</span></div><div class="lb pl2 show" style="left:22%">Unlikely<br/><span class="zh">不太可能</span></div><div class="lb pl2 show" style="left:50%">Even chance<br/><span class="zh">一半一半</span></div><div class="lb pl2 show" style="left:78%">Likely<br/><span class="zh">很可能</span></div><div class="lb pl2 show" style="left:100%">Certain<br/><span class="zh">必然</span></div></div>
+<p class="small">Click: which numbers <strong>could</strong> be probabilities? <span class="score" id="chScore"></span></p><div class="chips" id="chips"></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.4.A.4：三种记号都要认识。" data-title="Complement">
+<div class="tag">2.4 <b>· Key Concept</b><span class="ek">EK 2.4.A.4</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Complement <span class="zh">补集（对立事件）</span></h2><div class="concept pink"><div class="term">Complement rule<span class="zh">补集法则</span></div><div class="en">The <strong>complement</strong> of event E is "not E," written E′, <strong>Ē</strong>, or <strong>Eᶜ</strong>. Its probability is <span style="font-family:var(--mono);font-weight:800;font-size:24px">P(Eᶜ) = 1 − P(E)</span>.</div><div class="cn">事件 E 的<b>补集</b>（对立事件）是“E 不发生”，记作 E′、Ē 或 Eᶜ。它的概率 = 1 − P(E)。</div></div><div class="row center" style="margin-top:4px"><svg viewbox="0 0 360 200" width="360"><rect fill="#F4C3D0" height="170" rx="14" width="340" x="10" y="10"></rect><text fill="#1E2A4A" font-size="20" font-weight="700" x="28" y="38">S</text><circle cx="170" cy="95" fill="#1E2A4A" r="58"></circle><text fill="#fff" font-size="24" font-weight="700" text-anchor="middle" x="170" y="102">E</text><text fill="#1E2A4A" font-size="22" font-weight="700" text-anchor="middle" x="300" y="165">Eᶜ</text></svg><div class="note" style="flex:1">P(E) + P(Eᶜ) = P(S) = 1<br/><span class="zh">“至少一个”“不是”类问题，先想补集！</span></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 9: Use the complement">
+<div class="exhead"><span class="badge ex">📝 Example 9 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.4.A.4</span></div>
+<h2>Use the complement <span class="zh">用补集</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Roll two fair dice.</p><div class="q"><b class="n">a</b>P(sum is not 5)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not 5: 1 − 4/36 = 32/36 ≈ 0.889</div></div><div class="q"><b class="n">b</b>P(sum is <b>at least 3</b>). <em>Hint: what is the complement?</em></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">At least 3: complement = “sum is 2” = {(1,1)} → 1 − 1/36 = 35/36 ≈ 0.972. Faster than counting 35 cells!</div></div><div class="q"><b class="n">c</b>P(<b>at least one</b> die shows a 6)</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">At least one 6: complement = “no 6” = 5 × 5 = 25 cells → 1 − 25/36 = 11/36 ≈ 0.306</div></div></div><div class="keyidea">🔑 Complements on the two-dice grid (pink = complement).</div><div class="takeaway">💡 “At least …” → think <b>complement</b> first.</div></div></div><div class="col vis"><div class="qv"><div class="dgrid" id="cpEx"></div></div><div class="sv"><div class="dgrid" id="cpSol"></div><div class="cap" id="cpCap"> </div></div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 10: Complete the probability model">
+<div class="exhead"><span class="badge ex">📝 Example 10 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.4.A.1 · 2.4.A.4</span></div>
+<h2>Complete the probability model <span class="zh">补全概率模型</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Choose a person at random from a certain population and record their blood type. <span class="muted small">(illustrative values)</span></p><table class="tw" style="font-size:22px;margin:10px 0"><thead><tr><th>Blood type</th><th>O</th><th>A</th><th>B</th><th>AB</th></tr></thead><tbody><tr><th class="rh">Probability</th><td>0.45</td><td>0.40</td><td>0.11</td><td><input id="btIn" placeholder="?"/></td></tr></tbody></table><button class="rv" id="btChk" style="margin:0">Check</button> <span class="score" id="btMsg"></span><div class="q"><b class="n">a</b>What must P(AB) be? Why?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">All probabilities in S add to 1: P(AB) = 1 − (0.45 + 0.40 + 0.11) = 0.04.</div></div><div class="q"><b class="n">b</b>P(not type O)?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Complement rule: P(not O) = 1 − 0.45 = 0.55 (= 0.40 + 0.11 + 0.04 ✓).</div></div></div><div class="keyidea">🔑 Blood-type probability model.</div></div></div><div class="col vis"><svg id="btSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="旧课件 5.2 的“基本规则”。" data-title="Basic probability rules 基本概率法则">
+<div class="tag">2.4 <b>· Summary</b></div><h2>Basic probability rules <span class="zh">基本概率法则</span></h2>
+<table class="tw" style="width:100%;margin-top:14px;font-size:20px"><thead><tr><th style="text-align:left">Rule</th><th style="text-align:left">In symbols</th><th style="text-align:left">中文</th><th>Level</th></tr></thead><tbody>
+<tr><th class="rh">Probabilities are between 0 and 1</th><td style="text-align:left;font-family:var(--mono)">0 ≤ P(A) ≤ 1</td><td class="zh" style="text-align:left">概率在 0 到 1 之间</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr>
+<tr><th class="rh">All outcomes together have probability 1</th><td style="text-align:left;font-family:var(--mono)">P(S) = 1</td><td class="zh" style="text-align:left">所有结果概率之和为 1</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr>
+<tr><th class="rh">Equally likely outcomes</th><td style="text-align:left;font-family:var(--mono)">P(A) = (# in A) / (# in S)</td><td class="zh" style="text-align:left">等可能时：数结果个数</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr>
+<tr><th class="rh">Complement rule</th><td style="text-align:left;font-family:var(--mono)">P(Aᶜ) = 1 − P(A)</td><td class="zh" style="text-align:left">补集法则</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table>
+<div class="note" style="margin-top:16px">Next lesson (2.5): the addition rule and <strong>mutually exclusive</strong> events. <span class="zh">下节课：互斥事件与加法法则。</span></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="常见错误。" data-title="Common mistakes 常见错误">
+<div class="tag">2.4 <b>· AP Exam Tips</b></div><h2>Common mistakes <span class="zh">常见错误</span></h2>
+<div class="cards" style="grid-template-columns:1fr 1fr;margin-top:12px"><div class="card"><div class="k">✗ Mistake 1</div><h3>"Two outcomes → 50-50"</h3><p>Thumbtacks, sums of dice, basketball shots… outcomes aren't always equally likely.</p><p class="zh muted small">两种结果不代表各占一半。</p></div><div class="card"><div class="k">✗ Mistake 2</div><h3>Short-run predictions</h3><p>P = 0.8 does not mean "exactly 8 out of every 10."</p><p class="zh muted small">概率不能预测短期结果。</p></div><div class="card"><div class="k">✗ Mistake 3</div><h3>Vague simulation steps</h3><p>Forgetting to say how to label, what to skip, when a trial stops, or what to record.</p><p class="zh muted small">模拟步骤写得不清楚。</p></div><div class="card"><div class="k">✗ Mistake 4</div><h3>Ignoring repeats</h3><p>When choosing <em>different</em> people, a repeated label must be skipped.</p><p class="zh muted small">抽不同的人时，重复的编号要跳过。</p></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 11: Describe a simulation">
+<div class="exhead"><span class="badge ex">📝 Example 11 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.3.A.4</span></div>
+<h2>Describe a simulation <span class="zh">写出模拟步骤（mini-FRQ）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A basketball player makes 70% of her free throws. In a game she shoots 5 free throws.</p><div class="q"><b class="n">a</b>Describe how to use random digits to estimate the probability that she makes <b>all 5</b>.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Label:</b> digits <b>0–6 = make</b>, <b>7–9 = miss</b> (7 of 10 digits = 70%).</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>One trial:</b> read <b>5 digits</b>. Repeats are allowed (shots are independent) — nothing to skip.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Repeat many times; estimate P = (# trials with all 5 made) ÷ (# trials). 1000 trials → about 0.17 (theory: 0.7⁵ ≈ 0.168).</div></div><div class="q"><b class="n">b</b>Carry out one trial using the digits below.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Record whether all 5 digits are 0–6. Trial 1: 7 2 5 0 3 → the 7 is a miss → not all made.</div></div><div class="digits" style="margin-top:10px;font-size:26px">7 2 5 0 3   8 6 1 1 9   4 0 6 2 2</div></div><div class="keyidea">🔑 Free throws: P(makes all 5)?</div><div class="takeaway">💡 Independent trials → repeats are <b>OK</b>. Choosing different people → skip repeats.</div></div></div><div class="col vis"><div id="ftRows" style="font-family:var(--mono);font-size:22px;line-height:1.9;padding:4px 8px"></div><div class="cap">navy = make (0–6) · pink = miss (7–9)</div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Chance of rain">
+<div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.3.A.5</span></div>
+<h2>Chance of rain</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">A weather forecaster says “the probability of rain tomorrow is 0.3.” Which is the best interpretation?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) It will rain for 30% of the day tomorrow.</li><li>(B) It didn’t rain for 3 days, so rain tomorrow is more likely than 0.3.</li><li>(C) Over many days with conditions like tomorrow’s, it rains on about 30% of them.</li><li>(D) It will rain in 30% of the city’s area.</li><li>(E) It will not rain tomorrow, because 0.3 &lt; 0.5.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Probability = long-run relative frequency over <b>many similar days</b> → (C).</p><p style="margin:3px 0">(B) is the law-of-averages myth; (A), (D) misread what is being counted; (E) treats probability as a yes/no prediction.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="rainSvg" viewbox="0 0 540 260" width="100%"></svg><div class="cap">100 days with conditions like tomorrow’s</div></div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 13: Not an A or a B">
+<div class="exhead"><span class="badge ex">📝 AP Practice 13 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.4.A.1 · 2.4.A.4</span></div>
+<h2>Not an A or a B</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">A student is chosen at random. The probability model for their grade on a test is shown. What is the probability the student did not get an A or a B?<table class="tw" style="font-size:20px;margin-top:8px"><thead><tr><th>Grade</th><th>A</th><th>B</th><th>C</th><th>D</th><th>F</th></tr></thead><tbody><tr><th class="rh">Probability</th><td>0.27</td><td>0.35</td><td>0.22</td><td>0.10</td><td>?</td></tr></tbody></table></div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) 0.06</li><li>(B) 0.32</li><li>(C) 0.35</li><li>(D) 0.38</li><li>(E) 0.62</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">P(F) = 1 − (0.27 + 0.35 + 0.22 + 0.10) = 0.06.</p><p style="margin:3px 0">P(not A or B) = 1 − (0.27 + 0.35) = 0.38 → (D). Check: 0.22 + 0.10 + 0.06 = 0.38 ✓</p><p style="margin:3px 0">(E) 0.62 is P(A or B), not its complement.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="grSvg" viewbox="0 0 560 320" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus。学生输入分数或小数。" data-title="🎮 Simulator: Two-dice probability generator" id="simGen">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Two-dice probability generator</span><span class="zh">随机练习（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.4.A.2 · 2.4.A.4</span>
+<div class="row" style="margin-top:6px"><div style="flex:none"><div class="dgrid" id="dgrid2"></div></div>
+<div class="col"><p id="dgQ" style="font-size:22px;min-height:70px"></p>
+<div style="display:flex;gap:10px;align-items:center"><input class="bigin" id="dgIn" placeholder="4/36 or 0.111"/><button class="rv" id="dgChk" style="margin:0">Check</button></div>
+<div id="dgFb" style="margin-top:10px;min-height:60px"></div>
+<div class="btns"><button class="b" id="dgNew">New event ↻</button><button class="b" id="dgShow">Show on grid</button></div><p class="score" id="dgScore"></p></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 14: Valid probability model?">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 Example 14 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.4.A.1 · 2.4.A.3</span></div>
+<h2>Valid probability model? <span class="zh">是合法的概率模型吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A valid model needs: every probability between 0 and 1, and a total of exactly 1. Which are valid?</p><div class="q"><b class="n">1</b>Spinner — Red 0.25 · Blue 0.25 · Green 0.30 · Yellow 0.20</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Spinner: total = 1.00, all between 0 and 1 → <b>valid</b>.</div></div><div class="q"><b class="n">2</b>Pizza topping — Cheese 0.45 · Pepperoni 0.40 · Veggie 0.25</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Pizza: total = 1.10 &gt; 1 → <b>not valid</b>.</div></div><div class="q"><b class="n">3</b>Number of pets — 0: 0.30 · 1: 0.45 · 2: 0.35 · 3+: −0.10</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Pets: total = 1.00 but −0.10 &lt; 0 → <b>not valid</b>.</div></div><div class="q"><b class="n">4</b>Coin toss — H 0.6 · T 0.4</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Coin: total = 1 → <b>valid</b> — a model can be valid even if the coin is not fair!</div></div></div><div class="keyidea">🔑 Check each model: 0 ≤ P ≤ 1 and total = 1.</div></div></div><div class="col vis"><svg id="vmSvg" viewbox="0 0 540 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 15: Three coins">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 15 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.4.A.1 · 2.4.A.2</span></div>
+<h2>Three coins</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">Three fair coins are tossed. What is the probability of getting <b>exactly two heads</b>?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) 1/4</li><li>(B) 1/3</li><li>(C) 3/8</li><li>(D) 1/2</li><li>(E) 2/3</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">S has 2 × 2 × 2 = 8 equally likely outcomes (tree →).</p><p style="margin:3px 0">Exactly two heads: HHT, HTH, THH → 3/8 → (C).</p><p style="margin:3px 0">(B) wrongly treats “0, 1, 2, 3 heads” as equally likely.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="c3Tree" viewbox="0 0 540 320" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Random process · trial</th><td class="zh" style="text-align:left">随机过程 · 试验</td><td style="text-align:left">Results determined by chance</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Outcome · event</th><td class="zh" style="text-align:left">结果 · 事件</td><td style="text-align:left">One result · a collection of outcomes</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Simulation</th><td class="zh" style="text-align:left">模拟</td><td style="text-align:left">State · Plan · Do · Conclude</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Probability</th><td class="zh" style="text-align:left">概率</td><td style="text-align:left">Long-run relative frequency</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Law of large numbers</th><td class="zh" style="text-align:left">大数定律</td><td style="text-align:left">More trials → closer to one value</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Sample space · probability model</th><td class="zh" style="text-align:left">样本空间 · 概率模型</td><td style="text-align:left">All outcomes; P(S) = 1</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Complement</th><td class="zh" style="text-align:left">补集 / 对立事件</td><td style="text-align:left">P(Eᶜ) = 1 − P(E)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">2.3.A · 2.4.A</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A fair 8-sided die (faces 1–8) is rolled.</p><div class="q"><b class="n">1</b>Write the sample space. Find P(roll is at least 7).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">S = {1, 2, 3, 4, 5, 6, 7, 8}; P(≥ 7) = 2/8 = 0.25</div></div><div class="q"><b class="n">2</b>Use the complement rule to find P(roll is less than 7).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(&lt; 7) = 1 − 0.25 = 0.75</div></div><div class="q"><b class="n">3</b>Lily rolled four 1s in a row. She says, “An 8 is due next.” Is she right? Explain.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No — rolls are independent; past results don’t change future probabilities. P(8) is still 1/8.</div></div></div><div class="keyidea">🔑 Fair 8-sided die.</div></div></div><div class="col vis"><svg id="exSvg" viewbox="0 0 540 200" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 2</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：2.5 互斥事件（TPS 5.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 3</div><h1>Mutually Exclusive Events</h1><div class="zhT">互斥事件 · Topic 2.5</div><p class="muted" style="margin-top:26px;font-size:22px">Can two events happen at the same time? Joint probability, P(A ∩ B), and Venn diagrams.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+
+/* ===== Lesson 2 v2 ===== */
+const PINKD='#C8577B';
+/* --- warm-up --- */
+(function(){const s=$('wuPic');for(let i=0;i<100;i++){const x=24+(i%20)*18,y=30+Math.floor(i/20)*38;const club=i<20;
+  el('circle',{cx:x+6,cy:y,r:5.5,fill:club?PINKD:NAVY},s);el('rect',{x:x+1.5,y:y+7,width:9,height:13,rx:3,fill:club?PINKD:NAVY},s);}
+  el('text',{x:200,y:232,'text-anchor':'middle','font-size':13,fill:MUTED},s,'each figure ≈ 15 visitors · pink ≈ 20% = club members');})();
+(function(){const r=srand(7);const a=runPath(.5,10,r),b=runPath(.5,1000,srand(11));
+  function draw(k){const ps=k>=3?[a,b]:k>=2?[a]:[];pathPlot($('wuSol'),ps,{target:.5,tlab:'0.5',xlab:'Number of tosses (log scale)',ylab:'Proportion of heads'});
+    if(k>=2)el('text',{x:120,y:40,'font-size':13,'font-weight':700,fill:NAVY},$('wuSol'),`10 tosses → ${a[9].toFixed(2)}`);
+    if(k>=3)el('text',{x:330,y:40,'font-size':13,'font-weight':700,fill:ROSE},$('wuSol'),`1000 tosses → ${b[999].toFixed(3)}`);}
+  draw(0);onStep('wuSol',draw);})();
+
+/* --- cards --- */
+cardSet('rpCards','rpScore',[
+ ['Rolling a fair die and recording the number on top.',0,'Yes — the result is determined by chance.'],
+ ['Randomly selecting 2 students from a class list to win a prize.',0,'Yes — random selection is a random process.'],
+ ['Measuring the length of your desk with a ruler.',1,'No — the result is not determined by chance.'],
+ ['Calculating 7 × 8 on a calculator.',1,'No — the answer is always 56.']],['Random','Not random']);
+cardSet('oeCards','oeScore',[
+ ['The die shows a 4.',0,'One result of one trial → outcome.'],
+ ['The die shows an even number.',1,'Event = {2, 4, 6}, a collection of outcomes.'],
+ ['The die shows a number greater than 4.',1,'Event = {5, 6}.']],['Outcome','Event']);
+
+/* --- coin toss activity --- */
+let tosses=[];
+function drawToss(){
+  let h='<div class="lh">Toss</div>'+[...Array(10)].map((_,i)=>`<div><strong>${i+1}</strong></div>`).join('');
+  h+='<div class="lh">Result</div>'+[...Array(10)].map((_,i)=>`<div style="font-size:22px">${tosses[i]===undefined?'':(tosses[i]?'H':'T')}</div>`).join('');
+  let c=0;h+='<div class="lh">Prop. heads</div>'+[...Array(10)].map((_,i)=>{if(tosses[i]===undefined)return '<div></div>';c+=tosses[i];return `<div style="font-family:var(--mono)">${c}/${i+1}<br><b>${(c/(i+1)).toFixed(2)}</b></div>`;}).join('');
+  $('tossTab').innerHTML=h;
+  const s=$('tossSvg');clear(s);const L=150,R=1090,T=10,B=130;el('line',{x1:L,x2:R,y1:B-(B-T)/2,y2:B-(B-T)/2,stroke:ROSE,'stroke-dasharray':'6 4'},s);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:GRID},s);el('line',{x1:L,x2:R,y1:T,y2:T,stroke:GRID},s);
+  el('text',{x:L-6,y:B+4,'text-anchor':'end','font-size':11,fill:MUTED},s,'0');el('text',{x:L-6,y:T+4,'text-anchor':'end','font-size':11,fill:MUTED},s,'1');el('text',{x:L-6,y:(T+B)/2+4,'text-anchor':'end','font-size':11,fill:ROSE},s,'0.5');
+  let cc=0;const pts=tosses.map((t,i)=>{cc+=t;return [L+(i+.5)*(R-L)/10,B-cc/(i+1)*(B-T)];});
+  if(pts.length){el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0]+','+p[1]).join(''),fill:'none',stroke:NAVY,'stroke-width':2.5},s);pts.forEach(p=>el('circle',{cx:p[0],cy:p[1],r:5,fill:NAVY},s));}
+}
+$('tossOne').onclick=()=>{if(tosses.length<10){tosses.push(Math.random()<.5?1:0);drawToss();}};
+$('tossTen').onclick=()=>{while(tosses.length<10)tosses.push(Math.random()<.5?1:0);drawToss();};
+$('tossReset').onclick=()=>{tosses=[];drawToss();};drawToss();
+
+/* --- golden ticket picture + plan solution --- */
+(function(){const s=$('gtPic');for(let i=0;i<95;i++){const x=22+(i%19)*18.5,y=24+Math.floor(i/19)*44;const ap=i<28;
+  el('circle',{cx:x+6,cy:y,r:6,fill:ap?NAVY:BLUSH},s);el('rect',{x:x+1,y:y+8,width:10,height:15,rx:3,fill:ap?NAVY:BLUSH},s);}
+  el('text',{x:190,y:244,'text-anchor':'middle','font-size':13,fill:MUTED},s,'🎫 🎫  2 winners drawn at random');})();
+(function(){const segs=[[1,28,NAVY,'#fff','01–28 AP Stats'],[29,95,BLUSH,INK,'29–95 others'],[96,99,'#DDD','#888','96–99 skip'],[0,0,'#DDD','#888','00']];
+  function draw(k){const box=$('gtRng');let h='';
+    if(k<2){h=`<div style="flex:1;background:#F3EFF2;color:${MUTED}">00 – 99</div>`;}
+    else{h+=`<div style="flex:1;background:#DDD;color:#888">00</div><div style="flex:28;background:${NAVY};color:#fff">01–28</div><div style="flex:67;background:${BLUSH};color:${INK}">29–95</div>`;
+      h+=k>=3?`<div style="flex:4;background:#DDD;color:#888;font-size:11px">96–99</div>`:`<div style="flex:4;background:#F3EFF2"></div>`;}
+    box.innerHTML=h;
+    const m=['Each pair of digits 00–99 is equally likely.','Each pair of digits 00–99 is equally likely.','<b>28</b> navy labels for AP Stats, <b>67</b> pink labels for everyone else.','Gray = skip. Also skip a label that already won.','Example: 41 · 07 · 97 · 41 · 22 → winners <b>41, 07</b> → not both AP Stats.'];
+    $('gtRngMsg').innerHTML=m[Math.min(k,4)];}
+  draw(0);onStep('gtRng',draw);})();
+
+/* --- random digits (Do) --- */
+let digs=[],pos=0,trialLabels=[],trials=[],marks=[];
+function newDigits(){digs=[];for(let i=0;i<60;i++)digs.push(rint(0,9));pos=0;trialLabels=[];trials=[];marks=[];renderDigits();$('dTrials').innerHTML='';}
+function cls(lbl){if(lbl===0||lbl>95)return 'sk';return lbl<=28?'ap':'ot';}
+function renderDigits(){let h='';for(let i=0;i<digs.length;i+=2){const k=i/2;const m=marks[k];h+=`<span class="${m||''}${i===pos-2?' cur':''}">${digs[i]}${digs[i+1]}</span>`;if((k+1)%10===0)h+='<br>';}$('dgts').innerHTML=h;}
+function nextPair(){if(pos>=digs.length)return false;const lbl=digs[pos]*10+digs[pos+1];const k=pos/2;pos+=2;
+  let c=cls(lbl);if(c!=='sk'&&trialLabels.includes(lbl))c='rp';marks[k]=c;if(c==='ap'||c==='ot')trialLabels.push(lbl);renderDigits();
+  if(trialLabels.length===2){const both=trialLabels.every(x=>x<=28);trials.push(both);
+    $('dTrials').innerHTML+=`<div>Trial ${trials.length}: labels <b>${trialLabels.map(x=>String(x).padStart(2,'0')).join(' & ')}</b> → ${both?'<b style="color:var(--rose)">both AP Stats ✓</b>':'not both AP Stats'}</div>`;trialLabels=[];return 'done';}
+  return true;}
+$('dNext').onclick=()=>nextPair();
+$('dTrial').onclick=()=>{let r;do{r=nextPair();}while(r===true);};
+$('dNew').onclick=()=>newDigits();newDigits();
+
+/* --- golden ticket many trials --- */
+let gt=[0,0],gtHist=[];
+function gtOne(){const a=rint(1,95);let b;do{b=rint(1,95);}while(b===a);return a<=28&&b<=28;}
+function gtDraw(){const s=$('gtSvg');pathPlot(s,gtHist.length?[gtHist]:[],{target:28/95*27/94,tlab:'true P ≈ 0.085',ylab:'Running proportion (both AP Stats)'});}
+document.querySelectorAll('[data-gt]').forEach(b=>b.onclick=()=>{for(let i=0;i<+b.dataset.gt&&gt[1]<20000;i++){gt[1]++;if(gtOne())gt[0]++;gtHist.push(gt[0]/gt[1]);}
+  $('gtStat').textContent=`${gt[0]} / ${gt[1]} = ${(gt[0]/gt[1]).toFixed(3)}`;gtDraw();});
+$('gtReset').onclick=()=>{gt=[0,0];gtHist=[];$('gtStat').textContent='0 / 0';gtDraw();};gtDraw();
+/* 100 dots */
+(function(){const s=$('gtDots');const hit=new Set([7,18,23,41,52,60,77,85,96]);for(let i=0;i<100;i++){const x=30+(i%20)*17.5,y=30+Math.floor(i/20)*40;
+  el('circle',{cx:x,cy:y,r:7,fill:hit.has(i)?ROSE:NAVY,opacity:hit.has(i)?1:.75},s);}
+  el('text',{x:200,y:240,'text-anchor':'middle','font-size':15,'font-weight':700,fill:ROSE},s,'9 of 100 trials');})();
+(function(){function draw(k){const s=$('gtLine');clear(s);const L=30,R=510,y=120,sc=(R-L)/0.3;
+  el('rect',{x:L,y:y-16,width:.05*sc,height:32,fill:'#FCE4E4'},s);el('text',{x:L,y:y+52,'font-size':12,fill:'#9B3B3B'},s,'“surprising” zone (< 0.05)');
+  el('line',{x1:L,x2:R,y1:y,y2:y,stroke:INK,'stroke-width':2},s);
+  [0,.05,.1,.15,.2,.25,.3].forEach(v=>{const x=L+v*sc;el('line',{x1:x,x2:x,y1:y-6,y2:y+6,stroke:INK},s);el('text',{x,y:y+24,'text-anchor':'middle','font-size':12,fill:MUTED},s,v);});
+  if(k>=1){const x=L+.09*sc;el('circle',{cx:x,cy:y,r:10,fill:ROSE},s);el('text',{x,y:y-24,'text-anchor':'middle','font-size':17,'font-weight':800,fill:ROSE},s,'≈ 0.09');}
+  if(k>=3)el('text',{x:(L+R)/2,y:36,'text-anchor':'middle','font-size':15,'font-weight':700,fill:NAVY},s,'0.09 is outside the “surprising” zone → not convincing');}
+  draw(0);onStep('gtLine',draw);})();
+
+/* --- NASCAR --- */
+function collect(r){const s=new Set();let n=0;const seq=[];r=r||Math.random;while(s.size<5){const c=1+Math.floor(r()*5);s.add(c);n++;seq.push(c);}return [n,seq];}
+(function(){const s=$('nsPic');const C=[NAVY,ROSE,'#4B5A88',PINKD,'#8A93B8'];for(let i=0;i<5;i++){const x=20+i*75;el('rect',{x,y:30,width:62,height:90,rx:10,fill:C[i]},s);el('text',{x:x+31,y:85,'text-anchor':'middle','font-size':30,'font-weight':800,fill:'#fff'},s,i+1);
+  el('text',{x:x+31,y:145,'text-anchor':'middle','font-size':14,fill:MUTED},s,'1/5');}
+  el('text',{x:200,y:195,'text-anchor':'middle','font-size':15,'font-weight':700,fill:INK},s,'She needed 23 boxes. Unusual?');})();
+(function(){const r=srand(2026);const c={};let big=0;for(let i=0;i<1000;i++){const n=collect(r)[0];c[n]=(c[n]||0)+1;if(n>=23)big++;}
+  $('nsPct').textContent=(big/10).toFixed(1)+'%';
+  function draw(k){const s=$('nsSol');if(k<3){clear(s);el('text',{x:280,y:170,'text-anchor':'middle','font-size':16,fill:MUTED},s,'(simulation results appear at step 3)');return;}
+    hist(s,c,{lo:5,hi:40,step:5,hl:v=>v>=23,xlab:'Boxes needed to get all 5 cards (pink = 23 or more)'});
+    el('text',{x:530,y:40,'text-anchor':'end','font-size':15,'font-weight':800,fill:ROSE},s,`23+ boxes: ${big} / 1000`);}
+  draw(0);onStep('nsSol',draw);})();
+let ns={},nsN=0,nsBig=0;
+document.querySelectorAll('[data-ns]').forEach(b=>b.onclick=()=>{let last;for(let i=0;i<+b.dataset.ns;i++){const [n,seq]=collect();last=[n,seq];ns[n]=(ns[n]||0)+1;nsN++;if(n>=23)nsBig++;}
+  $('nsLast').innerHTML=`Last fan: ${last[1].join(' ')} → <b>${last[0]} boxes</b>`;
+  $('nsMsg').innerHTML=`Trials: <b>${nsN}</b> · needed ≥ 23 boxes: <b>${nsBig}</b> (${(nsBig/nsN*100).toFixed(1)}%)`;
+  hist($('nsSvg'),ns,{lo:5,hi:Math.max(40,...Object.keys(ns).map(Number)),step:5,hl:v=>v>=23,xlab:'Boxes needed (pink = 23 or more)'});});
+$('nsReset').onclick=()=>{ns={};nsN=0;nsBig=0;clear($('nsSvg'));$('nsLast').textContent='';$('nsMsg').textContent='Click a button to start.';};
+
+/* --- thumbtack --- */
+const PTK=0.62;let tk=[0,0],tkP=[];
+function tkDraw(){pathPlot($('tkSvg'),tkP.length?[tkP]:[],{ylab:'Proportion point up'});}
+document.querySelectorAll('[data-tk]').forEach(b=>b.onclick=()=>{for(let i=0;i<+b.dataset.tk&&tk[1]<10000;i++){tk[1]++;if(Math.random()<PTK)tk[0]++;tkP.push(tk[0]/tk[1]);}
+  $('tkStat').textContent=`${tk[0]} / ${tk[1]}`;$('tkEst').innerHTML=`Estimate of P(point up): <b>${(tk[0]/tk[1]).toFixed(3)}</b>`;tkDraw();});
+$('tkReset').onclick=()=>{tk=[0,0];tkP=[];$('tkStat').textContent='0 / 0';$('tkEst').textContent='Estimate of P(point up): —';$('tkTrueV').textContent='';tkDraw();};
+$('tkTrue').onclick=()=>{$('tkTrueV').innerHTML=`This virtual thumbtack was set to <b>${PTK}</b>.`;pathPlot($('tkSvg'),tkP.length?[tkP]:[],{target:PTK,tlab:'true P = 0.62',ylab:'Proportion point up'});};
+tkDraw();
+
+/* --- LLN --- */
+let paths=[[]];
+function addFlips(n){const p=paths[paths.length-1];let h=p.length?Math.round(p[p.length-1]*p.length):0;for(let i=0;i<n&&p.length<10000;i++){h+=Math.random()<.5?1:0;p.push(h/(p.length+1));}drawLL();}
+function drawLL(){pathPlot($('llSvg'),paths,{target:.5,tlab:'0.5',xlab:'Number of tosses (log scale)',ylab:'Proportion of heads'});
+  const p=paths[paths.length-1];if(p.length)$('llMsg').innerHTML=`Tosses: <b>${p.length}</b> · proportion of heads: <b>${p[p.length-1].toFixed(3)}</b>`;}
+document.querySelectorAll('[data-ll]').forEach(b=>b.onclick=()=>addFlips(+b.dataset.ll));
+$('llNew').onclick=()=>{paths.push([]);addFlips(10);};
+$('llReset').onclick=()=>{paths=[[]];drawLL();$('llMsg').textContent='';};drawLL();
+
+/* --- myths visual: 64 sequences --- */
+(function(){function draw(k){const s=$('mythSvg');clear(s);const all=[];for(let i=0;i<64;i++)all.push([...Array(6)].map((_,j)=>(i>>(5-j))&1?'T':'H').join(''));
+  all.forEach((q,i)=>{const x=10+(i%8)*66,y=14+Math.floor(i/8)*34;const hl=(k>=1&&(q==='HTHTTH'||q==='TTTHHH'))||(k>=2&&q==='TTTTTT');
+    el('rect',{x,y,width:62,height:28,rx:5,fill:hl?(q==='TTTTTT'?ROSE:'#E2B64F'):'#F3EFF2'},s);el('text',{x:x+31,y:y+19,'text-anchor':'middle','font-size':11,'font-family':'monospace',fill:hl?INK:MUTED},s,q);});
+  el('text',{x:270,y:295,'text-anchor':'middle','font-size':13,fill:INK},s,'All 64 sequences of 6 tosses — each has probability 1/64');}
+  draw(0);onStep('mythSvg',draw);})();
+
+/* --- longest run --- */
+function flips(n){return [...Array(n)].map(()=>Math.random()<.5?'H':'T');}
+function longest(f){let best=1,cur=1,bi=0,ci=0;for(let i=1;i<f.length;i++){if(f[i]===f[i-1]){cur++;}else{cur=1;ci=i;}if(cur>best){best=cur;bi=ci;}}return [best,bi];}
+let lr={};
+$('lrOne').onclick=()=>{const f=flips(50);const [b,i]=longest(f);$('lrStr').innerHTML=f.map((c,k)=>k>=i&&k<i+b?`<b>${c}</b>`:c).join('');$('lrLen').innerHTML=`Longest run: <b>${b}</b>`;};
+$('lrMany').onclick=()=>{for(let k=0;k<1000;k++){const b=longest(flips(50))[0];lr[b]=(lr[b]||0)+1;}
+  const tot=Object.values(lr).reduce((a,b)=>a+b,0);const ge5=Object.entries(lr).filter(([k])=>+k>=5).reduce((a,[,v])=>a+v,0);
+  hist($('lrSvg'),lr,{lo:2,hi:12,hl:v=>v>=5,xlab:'Longest run in 50 random flips (pink = 5 or more)'});
+  $('lrMsg').innerHTML=`${tot} sequences · longest run ≥ 5 in <b>${(ge5/tot*100).toFixed(0)}%</b> of them. People who “imagine” flips rarely write runs that long!`;};
+
+/* --- free throw MCQ visual --- */
+(function(){const a=runPath(.8,2000,srand(5)),b=runPath(.8,2000,srand(9));function draw(k){pathPlot($('ftSvg'),k>=1?[a,b]:[a.slice(0,10)],{target:.8,tlab:'0.8',ylab:'Proportion made',xlab:'Number of free throws (log scale)'});}
+  draw(0);onStep('ftSvg',draw);})();
+
+/* --- sample space tree --- */
+(function(){function draw(k){const s=$('ssTree');if(k<3){clear(s);el('text',{x:270,y:150,'text-anchor':'middle','font-size':16,fill:MUTED},s,'(tree diagram appears at step 3)');return;}
+  tree(s,[['H','T'],['H','T']],{W:420,H:280,leaf:(l)=>`${l}   ${k>=4?(n=>'→ '+n+(n===1?' head':' heads'))([...l].filter(c=>c==='H').length):''}`,hl:(l)=>k>=4&&l.split('H').length-1===1});
+  el('text',{x:150,y:20,'font-size':13,fill:MUTED},s,'coin 1');el('text',{x:280,y:20,'font-size':13,fill:MUTED},s,'coin 2');}
+  draw(0);onStep('ssTree',draw);})();
+
+/* --- dice grids --- */
+['dgEx','dgSol','dgrid','dgrid2','cpEx','cpSol'].forEach(diceGrid);
+(function(){const F=[null,(a,b)=>a+b===5,(a,b)=>a===b,(a,b)=>a+b===7,null];const C=['','Sum = 5: 4 cells','Doubles: 6 cells','Sum = 7: 6 cells','Sum 2 → 1 cell · sum 7 → 6 cells: not equally likely'];
+  function draw(k){if(k===4){document.querySelectorAll('#dgSol .c').forEach(c=>{const s=+c.dataset.d1+ +c.dataset.d2;c.classList.toggle('on',s===7);c.classList.toggle('co',s===2);});}else paintDice('dgSol',F[k]);$('dgSolCap').innerHTML=C[k]||'&nbsp;';}
+  onStep('dgSol',draw);})();
+const EVENTS=[['A: sum is 5',(a,b)=>a+b===5],['sum is 7',(a,b)=>a+b===7],['doubles',(a,b)=>a===b],['sum ≥ 10',(a,b)=>a+b>=10],['at least one 6',(a,b)=>a===6||b===6],['sum is 2',(a,b)=>a+b===2]];
+let curEv=null,showComp=false;const evB=$('evBtns');
+EVENTS.forEach(([name,f],i)=>{const b=document.createElement('button');b.className='b';b.textContent=name;b.onclick=()=>{evB.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');curEv=i;showComp=false;upd();};evB.appendChild(b);});
+function upd(){if(curEv===null)return;const [name,f]=EVENTS[curEv];const n=paintDice('dgrid',f,showComp);
+  let m=`<strong>${name}</strong>: <b>${n}</b> of 36 outcomes<br><span style="font-family:var(--mono);font-size:22px">P = ${n}/36 ≈ ${(n/36).toFixed(3)}</span>`;
+  if(showComp)m+=`<br><span style="color:var(--rose)"><strong>Complement</strong>: P = 1 − ${n}/36 = ${36-n}/36 ≈ ${((36-n)/36).toFixed(3)}</span>`;$('evMsg').innerHTML=m;}
+$('evComp').onclick=()=>{showComp=!showComp;upd();};
+/* complement solution */
+(function(){const F=[null,(a,b)=>a+b===5,(a,b)=>a+b===2,(a,b)=>a===6||b===6];const C=['','navy = sum 5 (4) · pink = not 5 (32)','navy = sum 2 (1) · pink = at least 3 (35)','pink = no 6 (25 cells) · navy = at least one 6 (11)'];
+  function draw(k){if(k===0){paintDice('cpSol',null);$('cpCap').innerHTML='&nbsp;';return;}paintDice('cpSol',F[k],true);$('cpCap').textContent=C[k];}
+  onStep('cpSol',draw);})();
+
+/* --- probability chips --- */
+const CH=[['0.37',1],['1.2',0],['−0.1',0],['0',1],['1',1],['5/4',0],['0.999',1],['3/7',1],['110%',0]];
+let chR=0;CH.forEach(([v,ok])=>{const s=document.createElement('span');s.className='chip';s.textContent=v;let done=false;
+  s.onclick=()=>{s.classList.add(ok?'yes':'no');if(!done){done=true;chR++;$('chScore').textContent=`${chR} / ${CH.length} checked`;}};$('chips').appendChild(s);});
+
+/* --- blood type --- */
+$('btChk').onclick=()=>{const i=$('btIn');const ok=Math.abs(parseFloat(i.value)-0.04)<1e-9;i.classList.toggle('okk',ok);i.classList.toggle('bad',!ok);$('btMsg').textContent=ok?'✓ Correct':'Try again — the total must be 1';};
+$('btIn').addEventListener('keydown',e=>{if(e.key==='Enter')$('btChk').click();});
+(function(){function draw(k){const ps=[.45,.40,.11,k>=1?.04:0];bars($('btSvg'),['O','A','B','AB'],ps,{ymax:.5,ystep:.1,hl:(x)=>k>=2?x!=='O':x==='AB'&&k>=1,labels:true,xlab:'Blood type',ylab:'Probability'});
+  if(k>=2)el('text',{x:400,y:40,'text-anchor':'middle','font-size':16,'font-weight':800,fill:ROSE},$('btSvg'),'not O: 0.40 + 0.11 + 0.04 = 0.55');}
+  draw(0);onStep('btSvg',draw);})();
+
+/* --- free throw rows --- */
+(function(){const rows=['72503','86119','40622','15430','93108'];function draw(k){const box=$('ftRows');if(k<3){box.innerHTML='<p class="small muted">Trials appear at step 3.</p>';return;}
+  box.innerHTML=rows.slice(0,k>=4?5:1).map((r,i)=>{const all=[...r].every(d=>+d<=6);return `Trial ${i+1}: `+[...r].map(d=>`<span style="padding:2px 6px;border-radius:5px;margin-right:3px;background:${+d<=6?NAVY:BLUSH};color:${+d<=6?'#fff':INK}">${d}</span>`).join('')+(all?' <b style="color:#2E8B6E">✓ all made</b>':' ✗');}).join('<br>');}
+  draw(0);onStep('ftRows',draw);})();
+
+/* --- rain icons --- */
+(function(){function draw(k){const s=$('rainSvg');clear(s);const r=srand(30);const rainy=new Set();while(rainy.size<30)rainy.add(Math.floor(r()*100));
+  for(let i=0;i<100;i++){const x=20+(i%20)*25.5,y=20+Math.floor(i/20)*42;const on=k>=1&&rainy.has(i);el('text',{x,y:y+18,'font-size':20},s,on?'🌧':'☀️');}
+  if(k>=1)el('text',{x:270,y:250,'text-anchor':'middle','font-size':14,'font-weight':700,fill:ROSE},s,'about 30 of 100 such days are rainy');}
+  draw(0);onStep('rainSvg',draw);})();
+/* --- grade model --- */
+(function(){function draw(k){bars($('grSvg'),['A','B','C','D','F'],[.27,.35,.22,.10,k>=1?.06:0],{ymax:.4,ystep:.1,labels:true,hl:x=>k>=2&&'CDF'.includes(x),xlab:'Grade',ylab:'Probability'});
+  if(k>=2)el('text',{x:330,y:40,'text-anchor':'middle','font-size':16,'font-weight':800,fill:ROSE},$('grSvg'),'not A or B = 0.38');}
+  draw(0);onStep('grSvg',draw);})();
+
+/* --- dice generator --- */
+const GEN=[
+ ['sum is {k}',k=>(a,b)=>a+b===k,()=>rint(2,12)],['sum is at least {k}',k=>(a,b)=>a+b>=k,()=>rint(4,11)],['sum is NOT {k}',k=>(a,b)=>a+b!==k,()=>rint(3,11)],
+ ['sum is less than {k}',k=>(a,b)=>a+b<k,()=>rint(4,10)],['at least one die shows {k}',k=>(a,b)=>a===k||b===k,()=>rint(1,6)],['neither die shows {k}',k=>(a,b)=>a!==k&&b!==k,()=>rint(1,6)],
+ ['both dice are even',()=>(a,b)=>a%2===0&&b%2===0,()=>0],['the dice differ by exactly {k}',k=>(a,b)=>Math.abs(a-b)===k,()=>rint(1,4)]];
+let DG=null,dgR=0,dgN=0;
+function dgNew(){const g=GEN[rint(0,GEN.length-1)];const k=g[2]();const f=g[1](k);let n=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(f(a,b))n++;
+  DG={f,n,txt:g[0].replace('{k}',k)};$('dgQ').innerHTML=`Roll two fair dice. Find <strong>P(${DG.txt})</strong>.`;$('dgIn').value='';$('dgFb').innerHTML='';paintDice('dgrid2',null);}
+function dgParse(s){s=s.trim();if(s.includes('/')){const [a,b]=s.split('/').map(Number);return a/b;}let v=parseFloat(s);if(s.includes('%'))v/=100;return v;}
+function dgCheck(){const v=dgParse($('dgIn').value);if(isNaN(v))return;const ok=Math.abs(v-DG.n/36)<=0.005;dgN++;if(ok)dgR++;
+  $('dgFb').innerHTML=ok?`<div class="ans">✓ Correct! ${DG.n}/36 ≈ ${(DG.n/36).toFixed(3)}</div>`:'<div class="note warn small">✗ Not quite — count the cells carefully, or try the complement.</div>';$('dgScore').textContent=`Score: ${dgR} / ${dgN}`;}
+$('dgNew').onclick=dgNew;$('dgChk').onclick=dgCheck;$('dgIn').addEventListener('keydown',e=>{if(e.key==='Enter')dgCheck();});
+$('dgShow').onclick=()=>{paintDice('dgrid2',DG.f);$('dgFb').innerHTML=`<div class="ans">${DG.n} of 36 cells → P = ${DG.n}/36 ≈ ${(DG.n/36).toFixed(3)}</div>`;};dgNew();
+
+/* --- valid model visual: totals --- */
+(function(){const M=[['Spinner',[.25,.25,.30,.20]],['Pizza',[.45,.40,.25]],['Pets',[.30,.45,.35,-.10]],['Coin',[.6,.4]]];const C=[NAVY,BLUSH,'#4B5A88',PINKD];
+  function draw(k){const s=$('vmSvg');clear(s);const L=110,R=470,sc=(R-L)/1.2;const x0=L+0.1*sc;
+    el('line',{x1:x0+sc,x2:x0+sc,y1:10,y2:260,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},s);el('text',{x:x0+sc,y:280,'text-anchor':'middle','font-size':13,'font-weight':700,fill:ROSE},s,'total = 1');
+    el('line',{x1:x0,x2:x0,y1:10,y2:260,stroke:INK},s);el('text',{x:x0,y:280,'text-anchor':'middle','font-size':12,fill:MUTED},s,'0');
+    M.forEach(([n,ps],i)=>{if(i>=k)return;const y=20+i*60;el('text',{x:L-10,y:y+24,'text-anchor':'end','font-size':15,'font-weight':700,fill:INK},s,n);
+      let cx=x0;ps.forEach((p,j)=>{const w=Math.abs(p)*sc;const neg=p<0;el('rect',{x:neg?x0-w:cx,y:neg?y+38:y,width:w,height:neg?12:34,fill:neg?'#E9A3A3':C[j%4],stroke:'#fff'},s);if(!neg)cx+=w;});
+      const tot=ps.reduce((a,b)=>a+b,0);const ok=ps.every(p=>p>=0)&&Math.abs(tot-1)<1e-9;el('text',{x:R+30,y:y+24,'font-size':18,'font-weight':800,fill:ok?'#2E8B6E':'#C0392B'},s,ok?'✓':'✗');});}
+  draw(0);onStep('vmSvg',draw);})();
+
+/* --- three coins tree --- */
+(function(){function draw(k){tree($('c3Tree'),[['H','T'],['H','T'],['H','T']],{W:440,H:300,fs:15,hl:l=>k>=2&&l.split('H').length-1===2});
+  if(k>=2)el('text',{x:450,y:300,'font-size':14,'font-weight':800,fill:ROSE},$('c3Tree'),'3 of 8');}
+  draw(0);onStep('c3Tree',draw);})();
+
+/* --- exit ticket die --- */
+(function(){function draw(k){const s=$('exSvg');clear(s);for(let i=1;i<=8;i++){const x=20+(i-1)*64;const hl=(k>=1&&i>=7),hl2=(k>=2&&i<7);
+  el('rect',{x,y:40,width:54,height:54,rx:10,fill:hl?ROSE:hl2?NAVY:'#F3EFF2'},s);el('text',{x:x+27,y:75,'text-anchor':'middle','font-size':22,'font-weight':800,fill:hl||hl2?'#fff':INK},s,i);}
+  if(k>=1)el('text',{x:20,y:130,'font-size':15,'font-weight':700,fill:ROSE},s,'at least 7: 2 of 8');if(k>=2)el('text',{x:20,y:155,'font-size':15,'font-weight':700,fill:NAVY},s,'less than 7: 6 of 8 = 1 − 2/8');
+  if(k>=3)el('text',{x:20,y:185,'font-size':15,'font-weight':700,fill:INK},s,'Next roll: each face still 1/8 — no memory.');}
+  draw(0);onStep('exSvg',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

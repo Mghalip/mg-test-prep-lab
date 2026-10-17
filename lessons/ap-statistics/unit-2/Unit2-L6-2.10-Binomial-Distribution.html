@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 2 · Lesson 6 — The Binomial Distribution</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:17px;margin:4px 0}
+.slider-row label{width:60px;font-weight:700;font-family:var(--mono)}
+.slider-row input[type=range]{flex:1}
+.slider-row .v{width:60px;font-family:var(--mono);text-align:right}
+.big{font-family:var(--mono);font-size:24px}
+.bins{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+.bins .card .L{font-size:48px;font-weight:800;color:var(--rose);line-height:1}
+.paths{font-family:var(--mono);font-size:20px;line-height:1.8}
+.paths > span{display:inline-block;padding:2px 8px;margin:2px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.paths > span b{color:var(--rose)}
+select.sel{font-family:var(--sans);font-size:16px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy)}
+input.num{font-family:var(--mono);font-size:18px;width:70px;padding:5px;border:2px solid var(--navy);border-radius:8px;text-align:center}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 2 第六课：2.10，对应 TPS 6.3 二项分布部分。几何分布已从 AP 考试删除；二项分布的正态近似不在 2026 CED 中。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 2 · Lesson 6</div><h1>The Binomial Distribution</h1><div class="zhT">二项分布</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 2.10 The Binomial Distribution</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 6.3 (binomial)</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 2 全貌。" data-title="Unit 2 roadmap">
+<div class="tag">Unit 2 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 2 <span class="zh">单元路线图</span></h2>
+<p class="sub">Probability, Random Variables, and Probability Distributions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>2.1 + 2.2 Two Categorical Variables<span class="old">TPS 1.1</span></div><div class="lesson"><span class="n">2</span>2.3 + 2.4 Simulation &amp; Intro to Probability<span class="old">TPS 5.1</span></div><div class="lesson"><span class="n">3</span>2.5 Mutually Exclusive Events<span class="old">TPS 5.2</span></div><div class="lesson"><span class="n">4</span>2.6 + 2.7 Conditional Prob. &amp; Independence<span class="old">TPS 5.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">5</span>2.8 + 2.9 Random Variables<span class="old">TPS 6.1</span></div><div class="lesson now"><span class="n">6</span>2.10 The Binomial Distribution<span class="old">TPS 6.3</span></div><div class="lesson"><span class="n">7</span>2.11 The Normal Distribution<span class="old">TPS 2.2</span></div><div class="lesson"><span class="n">8</span>2.12 Sampling Distributions &amp; CLT<span class="old">TPS 7.1</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Last lesson: any discrete random variable. Today: one special, very common kind — <strong>counting successes</strong>. <span class="zh">今天学一种特别常见的离散随机变量：数“成功”的次数。</span></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 6 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">2.10.A · Skill 4.B</div><h3>Justify <span class="stars">★★<span class="off">★★</span></span></h3><p>Justify why a random variable is or is not <strong>binomial</strong>.</p><p class="zh muted small" style="margin-top:6px">判断是否为二项随机变量</p></div><div class="card"><div class="k">2.10.B · Skill 3.D</div><h3>Mean &amp; SD <span class="stars">★★<span class="off">★★</span></span></h3><p>Calculate μ = np and σ = √(np(1 − p)).</p><p class="zh muted small" style="margin-top:6px">计算均值和标准差</p></div><div class="card"><div class="k">2.10.C · Skill 4.D</div><h3>Interpret <span class="stars">★★★<span class="off">★</span></span></h3><p>Interpret the mean, SD, and probabilities in context.</p><p class="zh muted small" style="margin-top:6px">结合语境解释</p></div><div class="card"><div class="k">2.10.D · Skill 3.C</div><h3>Simulate <span class="stars">★★<span class="off">★★</span></span></h3><p>Estimate binomial probabilities using a <strong>simulation</strong>.</p><p class="zh muted small" style="margin-top:6px">用模拟估计概率</p></div><div class="card"><div class="k">2.10.E · Skill 3.C</div><h3>Calculate <span class="stars">★★★<span class="off">★</span></span></h3><p>Calculate probabilities with the <strong>binomial probability function</strong>.</p><p class="zh muted small" style="margin-top:6px">用二项概率公式计算</p></div><div class="card" style="background:var(--pink-3)"><div class="k">From TPS 6.3</div><h3>Shape <span class="stars">★★<span class="off">★★</span></span></h3><p>Describe the shape of a binomial distribution as p changes.</p><p class="zh muted small" style="margin-top:6px">描述分布形状</p></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 6 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:60px">3'</div>Warm-up: guessing on a quiz</div><div class="it"><div class="bar n" style="width:140px">8' · 2.10.A</div>The binomial setting: B · I · N · S</div><div class="it"><div class="bar n" style="width:150px">7' · 2.10.B–C</div>Mean, SD, shape — and interpreting them</div><div class="it"><div class="bar n" style="width:110px">5' · 2.10.D</div>Simulation</div><div class="it"><div class="bar n" style="width:150px">10' · 2.10.E</div>Binomial probability formula + calculator</div><div class="it"><div class="bar" style="width:90px">9'</div>Practice: mini-FRQ + AP-style MCQ</div><div class="it"><div class="bar g" style="width:130px">Bonus</div>Binomial generator · 10% condition · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 2.10.A.1 → 2.10.B.1 → 2.10.C.1 → 2.10.D.1 → 2.10.E.1</p><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 6 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simExplore" href="#"><span class="ic">🎮</span><span>Binomial explorer: shape, center, variability<small>二项分布探索器 · drag n and p</small></span></a><a data-goto="simFam" href="#"><span class="ic">🎮</span><span>Simulate many families<small>模拟很多个家庭 · simulated vs. exact</small></span></a><a data-goto="simPaths" href="#"><span class="ic">🎮</span><span>Deriving the formula: count the arrangements<small>推导公式：数排列 · why C(n, x) appears</small></span></a><a data-goto="simCalc" href="#"><span class="ic">🎮</span><span>Binomial calculator<small>二项概率计算器 · binompdf / binomcdf</small></span></a><a data-goto="simGenB" href="#"><span class="ic">🎮</span><span>Binomial generator<small>随机练习（Bonus） · infinite practice</small></span></a></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Guessing on a pop quiz">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Guessing on a pop quiz <span class="zh">热身：全靠猜的小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A quiz has 5 multiple-choice questions, each with 4 options. You guess on every question. Let X = number correct.</p><div class="q"><b class="n">Q1</b>What values can X take?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">X = 0, 1, 2, 3, 4, 5</div></div><div class="q"><b class="n">Q2</b>P(correct) on each question?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">1/4 = 0.25 — the <b>same</b> on every question.</div></div><div class="q"><b class="n">Q3</b>Guess: what is the most likely value of X?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">X = 1 (P ≈ 0.396) — we will compute these bars today!</div></div></div><div class="keyidea">🔑 X = number correct when guessing on 5 four-option questions.</div></div></div><div class="col vis"><svg id="wuSol" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 2.10" data-sec="1" data-title="§ 2.10 The Binomial Distribution">
+<div class="tag">Topic</div><div class="num">2.10</div><h1>The Binomial Distribution</h1><div class="zhT">二项分布</div><div class="eks"><span>2.10.A Binomial setting</span><span>2.10.B μ = np, σ = √(np(1−p))</span>2.10.C Interpret<span>2.10.D Simulation</span><span>2.10.E Probability function</span></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.10.A.1 + 旧课件四个条件 BINS。" data-title="Binomial Random Variable">
+<div class="tag">2.10 <b>· Key Concept</b><span class="ek">EK 2.10.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Binomial Random Variable <span class="zh">二项随机变量</span></h2><div class="concept pink"><div class="term">Definition<span class="zh">定义</span></div><div class="en">A <strong>binomial random variable</strong> X is a discrete random variable that <strong>counts the number of successes</strong> in n repeated independent trials that have only two possible outcomes (success or failure), with probability of success p and probability of failure 1 − p.</div><div class="cn"><b>二项随机变量</b> X：在 n 次<b>独立</b>重复试验中，<b>“成功”的次数</b>。每次试验只有两种结果（成功/失败），成功概率为 p，失败概率为 1 − p。</div></div><div class="bins"><div class="card"><div class="L">B</div><h3>Binary</h3><p class="small">Each trial: success or failure. <span class="zh muted">两种结果</span></p></div><div class="card"><div class="L">I</div><h3>Independent</h3><p class="small">Knowing one trial's result tells nothing about another. <span class="zh muted">相互独立</span></p></div><div class="card"><div class="L">N</div><h3>Number</h3><p class="small">The number of trials n is fixed in advance. <span class="zh muted">次数固定</span></p></div><div class="card"><div class="L">S</div><h3>Same p</h3><p class="small">Same probability of success p on every trial. <span class="zh muted">概率相同</span></p></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Binomial setting or not?">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">LO 2.10.A · Skill 4.B</span></div>
+<h2>Binomial setting or not? <span class="zh">是不是二项？说明理由</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><div class="q"><b class="n">a</b><b>Blood type.</b> Each child of a particular set of parents has probability 0.25 of type O blood, independently. The parents have 5 children. X = number with type O.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Binary</b> type O / not ✓ · Independent genes inherited independently ✓ · <b>Number</b> n = 5 ✓ · <b>Same p</b> 0.25 ✓ → <b>Binomial</b></div></div><div class="q"><b class="n">b</b>Aces. Shuffle a deck. Turn over the first 10 cards, one at a time. X = number of aces.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Independent? No — if the 1st card is an ace, the 2nd is less likely to be an ace (no replacement). → <b>Not binomial</b></div></div><div class="q"><b class="n">c</b><b>Until an ace.</b> Turn over the top card, put it back, shuffle, repeat <b>until you get an ace</b>. X = number of cards turned.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Number?</b> No — the number of trials isn’t fixed in advance. → <b>Not binomial</b></div></div></div><div class="keyidea">🔑 Check Binary · Independent · Number · Same p.</div><div class="takeaway">💡 To show it is not binomial, one failed condition is enough.</div></div></div><div class="col vis"><svg id="binsSvg" viewbox="0 0 540 260" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6 · Examples from TPS 6.3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="点击判断，显示理由。" data-title="Binomial or not? 二项吗？">
+<div class="tag">2.10 <b>· Quick Sort</b><span class="ek">EK 2.10.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>Binomial or not? <span class="zh">二项吗？</span></h2><p class="small muted">Click your answer — the reason appears. <span class="score" id="bsScore"></span></p><div class="claims" id="bsCards" style="margin-top:6px"></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.10.B.1。" data-title="Mean and Standard Deviation of a Binomial">
+<div class="tag">2.10 <b>· Key Concept</b><span class="ek">EK 2.10.B.1 · 2.10.C.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Mean and Standard Deviation of a Binomial <span class="zh">二项分布的均值与标准差</span></h2><div class="concept pink"><div class="term">Formulas<span class="zh">公式</span></div><div class="en">If X is binomial with n trials and success probability p: μ_{X} = np    σ_{X} = √(np(1 − p))</div><div class="cn">二项随机变量的均值 μ = np，标准差 σ = √(np(1 − p))。（这些公式在 AP 公式表上。）</div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Bottled water or tap water?">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.10.B.1 · 2.10.C.1</span></div>
+<h2>Bottled water or tap water? <span class="zh">瓶装水还是自来水？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>In a taste test, each of 21 students tries to identify which of 3 cups holds bottled water. If they are all just guessing, p = 1/3. Let X = number who guess correctly.</p><div class="q"><b class="n">a</b>Calculate and interpret μ_{X}.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">μ = 21(1/3) = 7. If many, many classes of 21 students all guessed, the average number of correct identifications would be about 7.</div></div><div class="q"><b class="n">b</b>Calculate and interpret σ_{X}.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">σ = √(21 · 1/3 · 2/3) ≈ 2.16. The number of correct guesses typically varies from the mean of 7 by about 2.16 students.</div></div><div class="q"><b class="n">c</b>⭐ Challenge: 11 students got it right. Is that convincing evidence that they are not just guessing? <span class="small muted">(P(X ≥ 11) ≈ 0.056)</span></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(X ≥ 11) ≈ 0.056 — not tiny (about 1 in 18), so 11 correct is <b>not very convincing</b> evidence; it could plausibly happen by guessing.</div></div></div><div class="keyidea">🔑 X ~ binomial(n = 21, p = 1/3).</div></div></div><div class="col vis"><svg id="twSol" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6 · Example from TPS 6.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="p = 0.25 右偏，p ≈ 0.5 对称，p = 0.8 左偏；n 越大越对称。" data-title="🎮 Simulator: Binomial explorer: shape, center, variability" id="simExplore">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Binomial explorer: shape, center, variability</span><span class="zh">二项分布探索器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.B.1 · TPS 6.3</span>
+<div class="row"><div class="col" style="flex:.75">
+<div class="slider-row"><label>n</label><input id="bn" max="40" min="1" type="range" value="5"/><span class="v" id="bnv"></span></div>
+<div class="slider-row"><label>p</label><input id="bp" max="99" min="1" type="range" value="25"/><span class="v" id="bpv"></span></div>
+<div class="btns"><button class="b" data-pr="5,25">n=5, p=0.25</button><button class="b" data-pr="5,51">n=5, p=0.51</button><button class="b" data-pr="5,80">n=5, p=0.8</button><button class="b" data-pr="40,25">n=40, p=0.25</button></div>
+<div class="note" id="bxMsg" style="font-size:18px;margin-top:6px"></div></div>
+<div class="col frame"><svg id="bxSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Describe the shape">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 6.3</span></div>
+<h2>Describe the shape <span class="zh">描述形状</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Three binomial distributions, each with n = 5:</p><div class="q"><b class="n">a</b>p = 0.25 (blood type O)</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">p = 0.25 → <b>skewed right</b> (most mass near 0–2)</div></div><div class="q"><b class="n">b</b>p = 0.51 (a newborn is a boy)</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">p = 0.51 → <b>roughly symmetric</b></div></div><div class="q"><b class="n">c</b>p = 0.80</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">p = 0.80 → <b>skewed left</b></div></div><div class="q">Predict the shape of each. What happens as n gets larger?</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Larger n → more <b>symmetric</b> (a preview of Lesson 8!)</div></div></div><div class="keyidea">🔑 Shape depends on p (and n).</div></div></div><div class="col vis"><svg id="shSol" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Simulate the blood-type families">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.10.D.1</span></div>
+<h2>Simulate the blood-type families <span class="zh">模拟二项分布</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Blood-type family: n = 5 children, p = 0.25.</p><div class="q"><b class="n">a</b>Describe how to use random two-digit numbers (00–99) to simulate one family.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Label 00–24 = type O, 25–99 = not (25 of 100 = 0.25). Read 5 two-digit numbers = one family; record X = number of type O. Repeats are fine (independent).</div></div><div class="q"><b class="n">b</b>Use the digits <span class="mini" style="font-family:var(--mono)">07 82 19 64 30</span> to carry out one trial.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">07 ✓, 82, 19 ✓, 64, 30 → X = 2.</div></div><div class="q"><b class="n">c</b>How would you estimate P(X = 1)?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Repeat many times; P(X = 1) ≈ (# families with X = 1) ÷ (# families). The 🎮 simulator does 5000 families →</div></div></div><div class="keyidea">🔑 n = 5, p = 0.25.</div></div></div><div class="col vis"><svg id="simSol" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="与理论值（粉色虚线）对比。" data-title="🎮 Simulator: Simulate many families" id="simFam">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Simulate many families</span><span class="zh">模拟很多个家庭</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.D.1</span>
+<div class="row"><div class="col" style="flex:.8">
+<p class="small"><strong>Plan:</strong> for each child, a random number 00–99; 00–24 = type O. Count type-O children in each family of 5.</p>
+<div class="btns"><button class="b" data-sf="1">+1 family</button><button class="b" data-sf="100">+100</button><button class="b" data-sf="5000">+5000</button><button class="b" id="sfReset">Reset</button></div>
+<p class="small" id="sfLast" style="font-family:var(--mono);min-height:30px"></p><div class="note small" id="sfMsg"></div></div>
+<div class="col frame"><svg id="sfSvg" viewbox="0 0 560 320" width="100%"></svg><p class="small muted">Navy = simulated · pink outline = binomial probability</p></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="一种具体顺序的概率 × 排列数。" data-title="🎮 Simulator: Deriving the formula: count the arrangements" id="simPaths">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Deriving the formula: count the arrangements</span><span class="zh">推导公式：数排列</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.E.1</span>
+<div class="row"><div class="col"><p class="small">S = type O (p = 0.25), F = not (0.75). P(exactly k of 5)? Choose k:</p><div class="btns" id="kBtns"></div><div class="paths" id="paths"></div></div>
+<div class="col note" id="pathMsg" style="font-size:19px;align-self:flex-start"></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 2.10.E.1。" data-title="Binomial Probability Function">
+<div class="tag">2.10 <b>· Key Concept</b><span class="ek">EK 2.10.E.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Binomial Probability Function <span class="zh">二项概率函数</span></h2><div class="concept pink"><div class="term">Formula<span class="zh">公式</span></div><div class="en">The probability that a binomial random variable X has exactly x successes in n independent trials, with success probability p, is <span style="font-family:var(--mono);font-weight:800;font-size:24px">P(X = x) = C(n, x) · pˣ · (1 − p)ⁿ⁻ˣ</span> for x = 0, 1, 2, …, n. Here C(n, x) = n! / (x!(n − x)!) is the number of ways to arrange x successes among n trials.</div><div class="cn">二项随机变量恰好有 x 次成功的概率 = C(n, x) · pˣ · (1 − p)ⁿ⁻ˣ。C(n, x)（也写作 ₙCₓ）是在 n 次中安排 x 次成功的方法数。</div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Use the formula">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.10.E.1</span></div>
+<h2>Use the formula <span class="zh">用公式计算</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Blood type: n = 5 children, p = 0.25.</p><div class="q"><b class="n">a</b>Find P(X = 1).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">C(5,1)(0.25)¹(0.75)⁴ = 5(0.25)(0.3164) ≈ 0.3955</div></div><div class="q"><b class="n">b</b>Should the parents be surprised if <b>more than 3</b> children have type O?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(X &gt; 3) = P(4) + P(5) = 0.0146 + 0.0010 ≈ 0.0156. Yes — that happens only about 1.6% of the time.</div></div></div><div class="keyidea">🔑 X ~ binomial(5, 0.25).</div></div></div><div class="col vis"><svg id="bfSol" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="注意 P(X ≥ k) = 1 − binomcdf(n, p, k − 1)。" data-title="🎮 Simulator: Binomial calculator" id="simCalc">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Binomial calculator</span><span class="zh">二项概率计算器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.E.1</span>
+<div class="row"><div class="col" style="flex:.85">
+<p class="small">n <input class="num" id="cn" value="5"/>   p <input class="num" id="cp" value="0.25"/></p>
+<p class="small" style="margin-top:8px"><select class="sel" id="ct"><option value="eq">P(X = a)</option><option value="le">P(X ≤ a)</option><option value="lt">P(X &lt; a)</option><option value="ge">P(X ≥ a)</option><option value="gt">P(X &gt; a)</option><option value="bt">P(a ≤ X ≤ b)</option></select>   a <input class="num" id="ca" value="1"/>   b <input class="num" id="cb" value="3"/></p>
+<div class="note" id="cMsg" style="font-size:18px;margin-top:10px;min-height:120px"></div><div class="note warn small" style="margin-top:8px">TI-84: <b>binompdf(n, p, k)</b> = P(X = k) · <b>binomcdf(n, p, k)</b> = P(X ≤ k)</div></div>
+<div class="col frame"><svg id="cSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title='📝 Example 7: "Draw a three, get it free"'>
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.10.C.1 · 2.10.E.1 · Skill 4.B</span></div>
+<h2>"Draw a three, get it free" <span class="zh">抽到 3 就免单</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A restaurant’s computer simulates drawing one card from a standard deck for each customer; a <b>three</b> means a free lunch (p = 4/52 = 1/13). On the first day, 250 customers ordered lunch.</p><div class="q"><b class="n">a</b>Find P(fewer than 10 customers win).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(X &lt; 10) = P(X ≤ 9) = binomcdf(250, 1/13, 9) ≈ 0.006</div></div><div class="q"><b class="n">b</b>Only 9 customers won. Is this convincing evidence that the program is flawed?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes. If the program worked properly, there is only a 0.006 probability that fewer than 10 of 250 customers would win — very unusual by chance alone.</div></div><div class="q"><b class="n">c</b>Find the expected number of winners per day and σ.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">μ = 250/13 ≈ 19.2 winners; σ = √(250 · 1/13 · 12/13) ≈ 4.21</div></div></div><div class="keyidea">🔑 X ~ binomial(n = 250, p = 1/13).</div></div></div><div class="col vis"><svg id="ffSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6 · Example from TPS 6.3</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="常见错误。" data-title="Common mistakes 常见错误">
+<div class="tag">2.10 <b>· AP Exam Tips</b></div><h2>Common mistakes <span class="zh">常见错误</span></h2><div class="cards" style="grid-template-columns:1fr 1fr;margin-top:12px"><div class="card"><div class="k">✗ Mistake 1</div><h3>Calculator-speak only</h3><p>"binomcdf(250, 1/13, 9)" alone isn't enough. Define X, name the distribution, give n and p.</p><p class="zh muted small">只写计算器语言不够，要写明 X ~ B(n, p)。</p></div><div class="card"><div class="k">✗ Mistake 2</div><h3>"At least" off by one</h3><p>P(X ≥ 3) = 1 − P(X ≤ 2), not 1 − P(X ≤ 3).</p><p class="zh muted small">“至少”时注意减 1。</p></div><div class="card"><div class="k">✗ Mistake 3</div><h3>Forgetting C(n, x)</h3><p>pˣ(1 − p)ⁿ⁻ˣ is the probability of <em>one</em> arrangement — multiply by the number of arrangements.</p><p class="zh muted small">别忘了乘排列数。</p></div><div class="card"><div class="k">✗ Mistake 4</div><h3>Ignoring "fixed n"</h3><p>"Until the first success" has no fixed n → not binomial.</p><p class="zh muted small">“直到成功为止”不是二项。</p></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Three-point shots">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 2.10.A–E</span></div>
+<h2>Three-point shots <span class="zh">三分球（mini-FRQ）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A player makes 30% of her three-point shots. In a game she takes 10 three-point shots. Assume shots are independent. Let X = number made.</p><div class="q"><b class="n">a</b>Justify that X is binomial.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Binary: make/miss · Independent: given · Number: n = 10 · Same p: 0.30 each shot.</div></div><div class="q"><b class="n">b</b>Find P(X = 3).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">C(10,3)(0.3)³(0.7)⁷ = 120(0.027)(0.0824) ≈ 0.267</div></div><div class="q"><b class="n">c</b>Find P(X ≥ 3).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">1 − P(X ≤ 2) = 1 − binomcdf(10, 0.3, 2) ≈ 0.617</div></div><div class="q"><b class="n">d</b>Calculate and interpret μ and σ.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">μ = 10(0.3) = 3; σ = √(10 · 0.3 · 0.7) ≈ 1.45. Over many games with 10 attempts, she makes about 3 threes on average, typically varying from 3 by about 1.45.</div></div></div><div class="keyidea">🔑 X ~ binomial(n = 10, p = 0.3).</div></div></div><div class="col vis"><svg id="frSol" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Which is binomial?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.A.1</span></div>
+<h2>Which is binomial?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which random variable has a binomial distribution?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) The number of rolls of a die until a 6 appears</li><li>(B) The number of heads in 20 tosses of a fair coin</li><li>(C) The number of girls chosen when 4 students are picked without replacement from a class of 6 girls and 6 boys</li><li>(D) The total of the numbers on 3 rolled dice</li><li>(E) The number of red cards before the first black card in a shuffled deck</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">(B): heads/tails · independent · n = 20 · p = 0.5 → <b>binomial</b>.</p><p style="margin:3px 0">(A), (E): no fixed n · (C): not independent (small population, no replacement) · (D): not counting successes.</p></div></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 10: Mean and SD">
+<div class="exhead"><span class="badge ex">📝 AP Practice 10 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.B.1</span></div>
+<h2>Mean and SD</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">60% of students at a school have a library card. A random sample of 20 students is selected (from a large school). What are the mean and standard deviation of the number with a library card?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) μ = 12, σ = 4.8</li><li>(B) μ = 12, σ = 3.46</li><li>(C) μ = 12, σ = 2.19</li><li>(D) μ = 0.6, σ = 0.11</li><li>(E) μ = 8, σ = 2.19</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">μ = np = 20(0.6) = 12.</p><p style="margin:3px 0">σ = √(20 · 0.6 · 0.4) = √4.8 ≈ 2.19 → (C). (A) forgot the square root.</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq2" viewbox="0 0 560 300" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="Bonus。" data-title="🎮 Simulator: Binomial generator" id="simGenB">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Binomial generator</span><span class="zh">随机练习（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.B · 2.10.E</span>
+<div class="row" style="margin-top:6px"><div class="col"><p id="gQ" style="font-size:21px;min-height:100px"></p><div style="display:flex;gap:10px;align-items:center"><input class="bigin" id="gIn" placeholder="0.25"/><button class="rv" id="gChk" style="margin:0">Check</button></div>
+<div id="gFb" style="margin-top:8px;min-height:60px"></div><div class="btns"><button class="b" id="gNew">New problem ↻</button><button class="b" id="gShow">Show solution</button></div><p class="score" id="gScore"></p></div>
+<div class="col frame"><svg id="gSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="Bonus（旧课件 6.3，Unit 3 会大量用到）。" data-title="The 10% Condition">
+<div class="tag">Bonus <b>· Looking Ahead</b><span class="ek">TPS 6.3 · used in Unit 3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>The 10% Condition <span class="zh">10% 条件</span></h2><div class="concept"><div class="term">10% condition<span class="zh">10% 条件</span></div><div class="en">Real sampling is done <strong>without replacement</strong>, which breaks independence. But when the sample is small compared with the population — n &lt; 10% of N — the count of successes is <strong>approximately binomial</strong>.</div><div class="cn">实际抽样多为不放回，严格来说不独立。但当样本量小于总体的 10%（n &lt; 0.10N）时，成功次数近似服从二项分布。</div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 11: Teens with debit cards">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 Example 11 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 6.3 · EK 2.10.E.1</span></div>
+<h2>Teens with debit cards <span class="zh">借记卡</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Suppose exactly 12% of U.S. teens aged 14–18 have a debit card. A random sample of 500 teens is selected. Let X = number with a debit card.</p><div class="q"><b class="n">a</b>Explain why X can be modeled as binomial even though the sample is taken without replacement.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">500 is far less than 10% of all U.S. teens aged 14–18, so the trials are approximately independent → X ≈ binomial(500, 0.12).</div></div><div class="q"><b class="n">b</b>Find the probability that <b>50 or fewer</b> teens in the sample have a debit card.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">P(X ≤ 50) = binomcdf(500, 0.12, 50) ≈ 0.0932</div></div><div class="q"><b class="n">c</b>Find μ and σ.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">μ = 500(0.12) = 60; σ = √(500 · 0.12 · 0.88) ≈ 7.27</div></div></div><div class="keyidea">🔑 n = 500, p = 0.12.</div></div></div><div class="col vis"><svg id="dcSol" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6 · Example from TPS 6.3</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title='📝 AP Practice 12: "At least" with a calculator'>
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 2.10.E.1</span></div>
+<h2>"At least" with a calculator</h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.3"><div class="scrollcol"><div class="problem" style="font-size:19px">X is binomial with n = 20 and p = 0.6. Which expression gives P(X ≥ 15)?</div><ul class="opts" data-correct="3" data-quiet="1"><li>(A) binomcdf(20, 0.6, 15)</li><li>(B) 1 − binomcdf(20, 0.6, 15)</li><li>(C) binompdf(20, 0.6, 15)</li><li>(D) 1 − binomcdf(20, 0.6, 14)</li><li>(E) 1 − binompdf(20, 0.6, 14)</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">“At least 15” = 15, 16, …, 20. Its complement is X ≤ 14.</p><p style="margin:3px 0">P(X ≥ 15) = 1 − binomcdf(20, 0.6, 14) ≈ 1 − 0.874 = 0.126 → (D).</p></div></div></div></div><div class="col vis" style="flex:.8"><div class="sv"><svg id="mq3" viewbox="0 0 560 300" width="100%"></svg></div></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Binomial setting (BINS)</th><td class="zh" style="text-align:left">二项情境</td><td style="text-align:left">Binary · Independent · Number fixed · Same p</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Binomial random variable</th><td class="zh" style="text-align:left">二项随机变量</td><td style="text-align:left">X = number of successes in n trials</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Binomial probability function</th><td class="zh" style="text-align:left">二项概率函数</td><td style="text-align:left">P(X = x) = C(n, x) pˣ (1 − p)ⁿ⁻ˣ</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Mean · SD</th><td class="zh" style="text-align:left">均值 · 标准差</td><td style="text-align:left">μ = np · σ = √(np(1 − p))</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">binompdf · binomcdf</th><td class="zh" style="text-align:left">计算器</td><td style="text-align:left">P(X = k) · P(X ≤ k)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">2.10.A–E</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>10% of a factory’s light bulbs are defective. A random sample of 8 bulbs is selected (from a very large batch). Let X = number defective.</p><div class="q"><b class="n">1</b>Is X binomial? Why?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes — defective/not; independent (large batch); n = 8; p = 0.1.</div></div><div class="q"><b class="n">2</b>Find P(X = 2).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">C(8,2)(0.1)²(0.9)⁶ ≈ 0.149</div></div><div class="q"><b class="n">3</b>Find P(at least one defective).</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">1 − P(X = 0) = 1 − 0.9⁸ ≈ 0.570</div></div><div class="q"><b class="n">4</b>Find μ_{X}.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">8(0.1) = 0.8 defective bulbs</div></div></div><div class="keyidea">🔑 X ~ binomial(8, 0.1).</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 300" width="100%"></svg></div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide extension" data-notes="限定独立且成功概率不变，避免无条件套用方差相加。 | Algebra explanation: identities shown on this slide. " data-title="Extension: A binomial count is a sum"><div class="tag">Optional algebra · 拓展选讲</div><div class="time bonus">3 min · beyond required derivation</div><h2>A binomial count is a sum<span class="zh">把计数拆成 0 和 1</span></h2><div class="bridge-body"><p>Let Iᵢ = 1 for a success and 0 for a failure. If P(success) = p, then Iᵢ² = Iᵢ.</p><div class="algebra" data-math-tex="\operatorname{E}(I_i)=p\qquad\operatorname{Var}(I_i)=\operatorname{E}(I_i^2)-[\operatorname{E}(I_i)]^2=p-p^2">\operatorname{E}(I_i)=p\qquad\operatorname{Var}(I_i)=\operatorname{E}(I_i^2)-[\operatorname{E}(I_i)]^2=p-p^2</div><p>For n independent trials with the same p, X = I₁ + ⋯ + Iₙ. Expectations add; independence lets variances add.</p><div class="algebra" data-math-tex="\operatorname{E}(X)=np\qquad\operatorname{Var}(X)=np(1-p)">\operatorname{E}(X)=np\qquad\operatorname{Var}(X)=np(1-p)</div><div class="algebra" data-math-tex="\operatorname{SD}(X)=\sqrt{np(1-p)}">\operatorname{SD}(X)=\sqrt{np(1-p)}</div><p class="bridge-cn">二项公式来自“成功记1、失败记0”。相加的是方差，标准差最后才开平方。</p><details><summary>Check your understanding · n = 100, p = 0.20: mean and SD?</summary><p>Mean = 20 successes; variance = 16; SD = 4 successes.</p></details></div><div class="foot"><span>Concept bridge · Derivation optional / 推导不作 AP 必背要求</span><span class="pg"></span></div></section><section class="slide cover" data-notes="下节课：2.11 正态分布（TPS 2.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 7</div><h1>The Normal Distribution</h1><div class="zhT">正态分布 · Topic 2.11</div><p class="muted" style="margin-top:26px;font-size:22px">From counting to measuring: continuous random variables, density curves, and the 68–95–99.7 rule.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+
+/* ===== Lesson 6 v2 ===== */
+function binC(n,k){if(k<0||k>n)return 0;let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return r;}
+function pmf(n,p,k){return binC(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k);}
+function dist(n,p){return [...Array(n+1)].map((_,k)=>pmf(n,p,k));}
+const xsOf=n=>[...Array(n+1)].map((_,k)=>k);
+function bplot(svg,n,p,o){o=o||{};const ps=dist(n,p);const mx=Math.max(...ps);
+  bars(svg,xsOf(n),ps,Object.assign({ymax:Math.min(1,mx*1.2),ystep:mx>0.5?0.2:mx>0.2?0.1:mx>0.08?0.02:0.01,labels:n<=12,xfmt:x=>n>20&&x%5?'':x,B:280,fmt:v=>v.toFixed(3)},o));}
+function note(svg,x,y,t,c,a){el('text',{x,y,'text-anchor':a||'middle','font-size':15,'font-weight':800,fill:c||ROSE},svg,t);}
+
+/* warm-up */
+(function(){function draw(k){bplot($('wuSol'),5,.25,{hl:k>=3?x=>x===1:null,xlab:'X = number correct (guessing)',labels:k>=3});if(k<3){const s=$('wuSol');note(s,300,140,'(the bars appear at step 3)',MUTED);}}draw(0);onStep('wuSol',draw);})();
+
+/* BINS check visual */
+(function(){const R=[['a Blood type',[1,1,1,1]],['b Aces (no replacement)',[1,0,1,1]],['c Until an ace',[1,1,0,1]]];
+  function draw(k){const s=$('binsSvg');clear(s);['B','I','N','S'].forEach((h,j)=>el('text',{x:250+j*58,y:30,'text-anchor':'middle','font-size':24,'font-weight':800,fill:ROSE},s,h));
+    R.forEach(([n,v],i)=>{const y=80+i*62;el('text',{x:10,y:y+6,'font-size':16,'font-weight':700,fill:INK},s,n);if(i>=k)return;
+      v.forEach((ok,j)=>{el('circle',{cx:250+j*58,cy:y,r:20,fill:ok?'#E3F4EC':'#FCE4E4'},s);el('text',{x:250+j*58,y:y+7,'text-anchor':'middle','font-size':20,'font-weight':800,fill:ok?'#2E8B6E':'#C0392B'},s,ok?'✓':'✗');});
+      el('text',{x:540,y:y+6,'text-anchor':'end','font-size':14,'font-weight':800,fill:v.every(Boolean)?'#2E8B6E':'#C0392B'},s,v.every(Boolean)?'binomial':'not');});}
+  draw(0);onStep('binsSvg',draw);})();
+cardSet('bsCards','bsScore',[
+ ['Roll a die 10 times; X = number of 6s.',0,'B: 6/not · I: rolls independent · N: n = 10 · S: p = 1/6.'],['Draw 5 cards from a deck without replacement; X = number of hearts.',1,'Not independent — the deck changes after each draw (and 5 is about 10% of 52).'],
+ ['Shoot free throws until you miss; X = number of shots.',1,'No fixed number of trials.'],['Survey 1000 randomly chosen adults in China; X = number who own a cat.',0,'Approximately binomial — sample is far less than 10% of the population.'],
+ ['Roll a die 10 times; X = sum of the rolls.',1,'Not counting successes — each trial has 6 outcomes.'],['Guess on 20 true/false questions; X = number correct.',0,'B · I · N = 20 · S: p = 0.5.']],['Binomial','Not binomial']);
+
+/* taste test */
+(function(){function draw(k){bplot($('twSol'),21,1/3,{labels:false,xfmt:x=>x%2?'':x,mean:k>=1?7:undefined,sd:k>=2?Math.sqrt(21*2/9):undefined,hl:k>=3?x=>x>=11:null,xlab:'X = number of correct guesses (of 21)'});
+  if(k>=3)note($('twSol'),430,70,'P(X ≥ 11) ≈ 0.056');}draw(0);onStep('twSol',draw);})();
+/* explorer */
+function bx(){const n=+$('bn').value,p=$('bp').value/100;$('bnv').textContent=n;$('bpv').textContent=p.toFixed(2);
+  const mu=n*p,sd=Math.sqrt(n*p*(1-p));bplot($('bxSvg'),n,p,{mean:mu,xlab:'X = number of successes'});
+  const shape=Math.abs(p-0.5)<0.06||n*Math.min(p,1-p)>=10?'roughly symmetric':p<0.5?'skewed to the right':'skewed to the left';
+  $('bxMsg').innerHTML=`μ = np = ${n}(${p.toFixed(2)}) = <b>${mu.toFixed(2)}</b><br>σ = √(np(1−p)) = <b>${sd.toFixed(3)}</b><br>Shape: <b>${shape}</b>`;}
+['bn','bp'].forEach(i=>$(i).oninput=bx);document.querySelectorAll('[data-pr]').forEach(b=>b.onclick=()=>{const [n,p]=b.dataset.pr.split(',');$('bn').value=n;$('bp').value=p;bx();});bx();
+/* shape solution */
+(function(){const P=[.25,.51,.8],T=['skewed right','roughly symmetric','skewed left'];function draw(k){const s=$('shSol');if(k===0){clear(s);note(s,280,160,'(graphs appear step by step)',MUTED);return;}
+  if(k<=3){bplot(s,5,P[k-1],{xlab:`n = 5, p = ${P[k-1]}`});note(s,400,50,T[k-1]);}else{bplot(s,40,.25,{labels:false,xlab:'n = 40, p = 0.25'});note(s,400,50,'n = 40: nearly symmetric!');}}draw(0);onStep('shSol',draw);})();
+
+/* simulation example */
+(function(){function draw(k){const s=$('simSol');clear(s);const D=['07','82','19','64','30'];
+  el('rect',{x:30,y:30,width:125,height:40,rx:8,fill:NAVY},s);el('text',{x:92,y:56,'text-anchor':'middle','font-size':16,'font-weight':800,fill:'#fff'},s,'00–24 = O');
+  el('rect',{x:160,y:30,width:370,height:40,rx:8,fill:BLUSH},s);el('text',{x:345,y:56,'text-anchor':'middle','font-size':16,'font-weight':800,fill:INK},s,'25–99 = not O');
+  if(k>=2){D.forEach((d,i)=>{const o=+d<25;el('rect',{x:40+i*96,y:110,width:80,height:60,rx:10,fill:o?NAVY:'#fff',stroke:o?'none':'#D9D3DA'},s);el('text',{x:80+i*96,y:150,'text-anchor':'middle','font-size':28,'font-weight':800,'font-family':'monospace',fill:o?'#fff':INK},s,d);});note(s,270,210,'X = 2 type-O children in this family');}
+  if(k>=3){const ps=dist(5,.25);ps.forEach((p,i)=>{el('rect',{x:120+i*60,y:290-p*140,width:44,height:p*140,fill:i===1?ROSE:'#C9CEDF'},s);});el('text',{x:470,y:285,'font-size':12,fill:MUTED},s,'exact P(X = k)');el('text',{x:470,y:268,'font-size':12,'font-weight':700,fill:ROSE},s,'pink: X = 1');}}
+  draw(0);onStep('simSol',draw);})();
+let sf=[0,0,0,0,0,0];const TH=dist(5,0.25);
+function sfDraw(){const N=sf.reduce((a,b)=>a+b,0);const ps=sf.map(c=>N?c/N:0);const ym=Math.max(0.5,Math.ceil(Math.max(...ps)*10)/10);
+  bars($('sfSvg'),[0,1,2,3,4,5],ps,{ymax:ym,ystep:0.1,xlab:'Number of type O children (of 5)',ylab:'Relative frequency',fmt:v=>v.toFixed(3)});
+  const L=60,R=540,B=300,H=276,w=(R-L)/6;TH.forEach((p,i)=>el('rect',{x:L+i*w+3,y:B-p/ym*H,width:w-6,height:p/ym*H,fill:'none',stroke:'#C8577B','stroke-width':3,'stroke-dasharray':'6 3'},$('sfSvg')));
+  $('sfMsg').innerHTML=N?`${N} families · P(X = 1) estimate: <b>${ps[1].toFixed(3)}</b> (true 0.396) · P(X &gt; 3) estimate: <b>${(ps[4]+ps[5]).toFixed(4)}</b> (true 0.0156)`:'';}
+document.querySelectorAll('[data-sf]').forEach(b=>b.onclick=()=>{let last;for(let i=0;i<+b.dataset.sf;i++){const d=[...Array(5)].map(()=>rint(0,99));const k=d.filter(x=>x<25).length;sf[k]++;last=d;}
+  $('sfLast').innerHTML='Last family: '+last.map(x=>x<25?`<b style="color:#C8577B">${String(x).padStart(2,'0')}</b>`:String(x).padStart(2,'0')).join(' ')+` → ${last.filter(x=>x<25).length} type O`;sfDraw();});
+$('sfReset').onclick=()=>{sf=[0,0,0,0,0,0];$('sfLast').textContent='';sfDraw();};sfDraw();
+
+/* paths */
+function combos(n,k){const out=[];(function r(s,c){if(s.length===n){if(c===k)out.push(s);return;}r(s+'S',c+1);r(s+'F',c);})('',0);return out;}
+[0,1,2,3,4,5].forEach(k=>{const b=document.createElement('button');b.className='b';b.textContent='k = '+k;b.onclick=()=>{$('kBtns').querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');showK(k);};$('kBtns').appendChild(b);});
+function showK(k){const cs=combos(5,k);$('paths').innerHTML=cs.map(s=>'<span>'+s.split('').map(c=>c==='S'?'<b>S</b>':'F').join('')+'</span>').join('');const one=Math.pow(.25,k)*Math.pow(.75,5-k);
+  $('pathMsg').innerHTML=`Each arrangement: (0.25)<sup>${k}</sup>(0.75)<sup>${5-k}</sup> = ${one.toFixed(5)}<br>Number of arrangements: C(5, ${k}) = <b>${cs.length}</b><br>P(X = ${k}) = ${cs.length} × ${one.toFixed(5)} = <b>${(cs.length*one).toFixed(4)}</b>`;}
+$('kBtns').children[1].click();
+/* formula solution */
+(function(){function draw(k){bplot($('bfSol'),5,.25,{hl:k===1?x=>x===1:k>=2?x=>x>3:null,xlab:'X = number of type-O children'});if(k===1)note($('bfSol'),400,60,'5 arrangements × 0.0791 = 0.3955');if(k>=2)note($('bfSol'),400,60,'P(X > 3) ≈ 0.0156 — rare!');}draw(0);onStep('bfSol',draw);})();
+/* calculator */
+function calc(){const n=Math.max(1,Math.min(200,parseInt($('cn').value)||1)),p=Math.min(1,Math.max(0,parseFloat($('cp').value)||0)),t=$('ct').value,a=parseInt($('ca').value)||0,b=parseInt($('cb').value)||0;
+  const inS={eq:k=>k===a,le:k=>k<=a,lt:k=>k<a,ge:k=>k>=a,gt:k=>k>a,bt:k=>k>=a&&k<=b}[t];const ps=dist(n,p);const P=ps.reduce((s,v,k)=>s+(inS(k)?v:0),0);
+  const calcTxt={eq:`binompdf(${n}, ${p}, ${a})`,le:`binomcdf(${n}, ${p}, ${a})`,lt:`binomcdf(${n}, ${p}, ${a-1})`,ge:`1 − binomcdf(${n}, ${p}, ${a-1})`,gt:`1 − binomcdf(${n}, ${p}, ${a})`,bt:`binomcdf(${n}, ${p}, ${b}) − binomcdf(${n}, ${p}, ${a-1})`}[t];
+  bplot($('cSvg'),n,p,{hl:x=>inS(x),xlab:'X'});
+  $('cMsg').innerHTML=`X ~ binomial(n = ${n}, p = ${p})<br><span style="font-family:var(--mono)">${calcTxt}</span><br>Probability = <b style="font-size:24px">${P.toFixed(4)}</b>`+(t==='eq'?`<br><span class="small">= C(${n},${a})(${p})<sup>${a}</sup>(${(1-p).toFixed(2)})<sup>${n-a}</sup></span>`:'');}
+['cn','cp','ca','cb'].forEach(i=>$(i).oninput=calc);$('ct').onchange=calc;calc();
+/* fast food */
+(function(){const ps=dist(250,1/13).slice(0,41);function draw(k){bars($('ffSvg'),xsOf(40),ps,{ymax:0.1,ystep:0.02,labels:false,hl:k>=1?x=>x<=9:null,xfmt:x=>x%5?'':x,xlab:'X = number of winners out of 250 (0–40 shown)',mean:k>=3?250/13:undefined,sd:k>=3?4.21:undefined,B:280});
+  if(k>=1)note($('ffSvg'),130,70,'P(X ≤ 9) ≈ 0.006','#C0392B','start');}draw(0);onStep('ffSvg',draw);})();
+/* FRQ */
+(function(){function draw(k){bplot($('frSol'),10,.3,{hl:k===2?x=>x===3:k>=3?x=>x>=3:null,mean:k>=4?3:undefined,sd:k>=4?Math.sqrt(2.1):undefined,xlab:'X = threes made (of 10)'});}draw(0);onStep('frSol',draw);})();
+(function(){function draw(k){bplot($('mq2'),20,.6,{labels:false,mean:k>=1?12:undefined,sd:k>=2?Math.sqrt(4.8):undefined,xlab:'X = number with a library card'});}draw(0);onStep('mq2',draw);})();
+(function(){function draw(k){bplot($('mq3'),20,.6,{labels:false,hl:k>=1?x=>x>=15:null,xlab:'X (pink = 15 or more)'});if(k>=2)note($('mq3'),130,60,'1 − P(X ≤ 14) ≈ 0.126','#C0392B','start');}draw(0);onStep('mq3',draw);})();
+(function(){const ps=dist(500,.12).slice(30,91);function draw(k){bars($('dcSol'),[...Array(61)].map((_,i)=>i+30),ps,{ymax:.07,ystep:.01,labels:false,hl:k>=2?x=>x<=50:null,xfmt:x=>x%10?'':x,mean:k>=3?60:undefined,sd:k>=3?7.27:undefined,xlab:'X = teens with a debit card (30–90 shown)',B:280});
+  if(k>=2)note($('dcSol'),130,60,'P(X ≤ 50) ≈ 0.093','#C0392B','start');}draw(0);onStep('dcSol',draw);})();
+(function(){function draw(k){bplot($('exSol'),8,.1,{hl:k===2?x=>x===2:k===3?x=>x>=1:null,mean:k>=4?.8:undefined,xlab:'X = defective bulbs (of 8)'});if(k===3)note($('exSol'),380,70,'1 − P(X = 0) = 1 − 0.430');}draw(0);onStep('exSol',draw);})();
+
+/* generator */
+let G=null,gR=0,gN=0;
+function gNew(){const n=rint(4,15),p=[0.1,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.9][rint(0,10)];const t=rint(0,4);const a=rint(0,n);let q,ans,sol,hl;
+  if(t===0){ans=pmf(n,p,a);q=`X ~ binomial(n = ${n}, p = ${p}). Find P(X = ${a}).`;sol=`C(${n},${a})(${p})<sup>${a}</sup>(${+(1-p).toFixed(2)})<sup>${n-a}</sup> = ${ans.toFixed(4)}`;hl=x=>x===a;}
+  else if(t===1){ans=dist(n,p).slice(0,a+1).reduce((s,v)=>s+v,0);q=`X ~ binomial(n = ${n}, p = ${p}). Find P(X ≤ ${a}).`;sol=`binomcdf(${n}, ${p}, ${a}) = ${ans.toFixed(4)}`;hl=x=>x<=a;}
+  else if(t===2){const b=Math.max(1,a);ans=1-dist(n,p).slice(0,b).reduce((s,v)=>s+v,0);q=`X ~ binomial(n = ${n}, p = ${p}). Find P(X ≥ ${b}).`;sol=`1 − binomcdf(${n}, ${p}, ${b-1}) = ${ans.toFixed(4)}`;hl=x=>x>=b;}
+  else if(t===3){ans=n*p;q=`X ~ binomial(n = ${n}, p = ${p}). Find μ<sub>X</sub>.`;sol=`np = ${n}(${p}) = ${+ans.toFixed(3)}`;hl=null;}
+  else{ans=Math.sqrt(n*p*(1-p));q=`X ~ binomial(n = ${n}, p = ${p}). Find σ<sub>X</sub>.`;sol=`√(${n} · ${p} · ${+(1-p).toFixed(2)}) = ${ans.toFixed(3)}`;hl=null;}
+  G={ans,sol,n,p,hl};$('gQ').innerHTML=q;$('gIn').value='';$('gFb').innerHTML='';bplot($('gSvg'),n,p,{xlab:'X'});}
+function gChk(){const v=parseFloat($('gIn').value);if(isNaN(v))return;const ok=Math.abs(v-G.ans)<=0.005;gN++;if(ok)gR++;
+  $('gFb').innerHTML=ok?`<div class="ans">✓ Correct! ${G.sol}</div>`:'<div class="note warn small">✗ Not quite — try again.</div>';$('gScore').textContent=`Score: ${gR} / ${gN}`;}
+$('gNew').onclick=gNew;$('gChk').onclick=gChk;$('gIn').addEventListener('keydown',e=>{if(e.key==='Enter')gChk();});
+$('gShow').onclick=()=>{$('gFb').innerHTML=`<div class="ans">${G.sol}</div>`;if(G.hl)bplot($('gSvg'),G.n,G.p,{xlab:'X',hl:G.hl});};gNew();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>
