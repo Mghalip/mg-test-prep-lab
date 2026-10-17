@@ -1,1 +1,39 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MG IT 备考平台 · SAT 专题练习</title><link rel="stylesheet" href="style.css?v=20261017-mg1"><link rel="icon" type="image/svg+xml" href="assets/mg-mark.svg"><link rel="stylesheet" href="mg-brand.css?v=20261017-mg1"></head><body><aside><a class="mg-identity" href="index.html" aria-label="MG IT 备考平台首页"><img class="mg-mark" src="assets/mg-mark.svg" alt="MG"><span><strong class="mg-name">MG IT</strong><span class="mg-subtitle">备考平台 · 标准化考试与数学</span></span></a><nav><button id="nav-mock" onclick="location.href='mock.html'">▤　完整模考 · 26 套</button><button id="nav-learn" onclick="go('home')">▦　专题练习</button><button id="nav-history" onclick="go('history')">◷　练习记录</button><button id="nav-wrong" onclick="go('wrong')">↺　错题本</button><button id="nav-teacher" onclick="go('teacher')">◷　教师后台</button></nav><div class="side-bottom"><span class="pill">读写专题 · 264 题</span><p>Practice Tests 7–10<br>Reading & Writing · 专题练习</p><small>非 College Board 官方网站</small></div></aside><div class="shell"><header><span id="crumb">学习空间 / 阅读专题</span><div><span id="account-label">访客体验</span><select id="student" hidden aria-label="选择学生"></select><button onclick="showLogin()">登录</button><button id="logout" hidden onclick="logout()">退出</button></div></header><main id="app"></main><footer>公开体验版：尚未连接学生数据库，不收集真实学生信息。正式登录待权限验证后开放。</footer></div><dialog id="confirm"><h2>提交这组练习？</h2><p id="submit-note"></p><div class="actions"><button onclick="document.querySelector('#confirm').close()">继续检查</button><button class="primary" onclick="finish()">确认提交</button></div></dialog><script src="config.js?v=20261017-mg1"></script><script src="questions.js?v=20261017-mg1"></script><script src="app.js?v=20261017-mg1"></script><script src="auth.js?v=20261017-mg1"></script><script src="experience.js?v=20261017-mg1"></script><script src="exam.js?v=20261017-mg1"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MG Test Prep Lab · 标准化考试与数学</title>
+<meta name="description" content="MG Test Prep Lab：SAT、ACT、AP、IB 与 Cambridge A Level 数学学习平台。集中访问课程课件、专题练习与完整模考。">
+<meta name="theme-color" content="#172a48">
+<link rel="icon" type="image/svg+xml" href="assets/mg-mark.svg">
+<link rel="stylesheet" href="portal.css?v=20261017-portal1">
+</head>
+<body>
+<a class="skip" href="#main">跳至主要内容</a>
+<header class="site-header"><div class="header-inner">
+<a class="identity" href="index.html" aria-label="MG Test Prep Lab 首页"><img src="assets/mg-mark.svg" alt="MG" width="60" height="48"><span><strong>MG Test Prep Lab</strong><small>标准化考试与数学</small></span></a>
+<nav aria-label="课程导航"><a href="#sat">SAT</a><a href="#act">ACT</a><a href="#ap">AP</a><a href="#ib">IB</a><a href="#alevel">A Level</a></nav>
+<a class="header-action" href="sat.html">进入 SAT 练习 <span aria-hidden="true">↗</span></a>
+</div></header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<div class="hero-copy"><p class="eyebrow">MG TEST PREP LAB / 学习中心</p><h1 id="hero-title">标准化考试<br>与数学学习平台<span class="period">.</span></h1><p class="intro">从课程课件到专题练习、完整模考。<br>按考试体系与科目，找到你的学习内容。</p><a class="text-link" href="#programs">浏览课程目录 <span aria-hidden="true">↓</span></a></div>
+<aside class="hero-note" aria-label="平台内容状态"><span class="note-label">AVAILABLE NOW</span><h2>SAT 学习空间</h2><p>阅读与语法专题练习、阅读语法与数学完整模考现已开放。</p><div class="hero-stats"><div><strong>264<span>题</span></strong><small>阅读与语法专题题库</small></div><div><strong>26<span>套</span></strong><small>SAT 完整模考</small></div></div><a href="mock.html">进入完整模考 <span aria-hidden="true">→</span></a></aside>
+</section>
+<section class="programs" id="programs" aria-labelledby="programs-title">
+<div class="section-title"><div><p class="eyebrow">PROGRAMS</p><h2 id="programs-title">课程与练习</h2></div><p>5 个学习板块 · 课件将陆续上线</p></div>
+<article class="sat-card" id="sat">
+<div class="sat-main"><div class="card-top"><span class="course-number">01 / SAT</span><span class="status live"><i aria-hidden="true"></i> 练习与模考已上线</span></div><h3>MG SAT Prep Lab</h3><p class="course-subtitle">阅读 · 语法 · 数学</p><p class="description">按考点练习阅读与语法，或完成包含读写和数学的整套模考。课程课件将与练习集中在这里。</p><div class="sat-actions"><a class="button primary" href="sat.html">专题练习 <span aria-hidden="true">↗</span></a><a class="button secondary" href="mock.html">完整模考 <span aria-hidden="true">↗</span></a></div></div>
+<div class="sat-resources"><h4>学习资源 <span>RESOURCES</span></h4><div class="resource"><span><strong>阅读与语法专题</strong><small>阅读 144 题 · 语法 120 题</small></span><span class="resource-state">已上线</span></div><div class="resource"><span><strong>完整模考</strong><small>26 套 · 阅读语法＋数学</small></span><span class="resource-state">已上线</span></div><div class="resource"><span><strong>SAT 课程课件</strong><small>阅读、语法、数学</small></span><span class="pending">待上线</span></div><p class="resource-note">数学专题练习待上线；数学目前可在完整模考中练习。</p></div>
+</article>
+<div class="program-grid">
+<article class="course-card" id="act"><div class="card-top"><span class="course-number">02 / ACT</span><span class="status">待上线</span></div><h3>MG ACT Prep Lab</h3><p class="course-subtitle">阅读 · 语法 · 数学 · 科学推理</p><ul class="subject-list"><li><span>Reading</span><span>阅读</span></li><li><span>English</span><span>语法</span></li><li><span>Mathematics</span><span>数学</span></li><li><span>Science</span><span>科学推理（科推）</span></li></ul><p class="card-foot">规划内容：课程课件、专题练习与模考</p></article>
+<article class="course-card" id="ap"><div class="card-top"><span class="course-number">03 / AP</span><span class="status">待上线</span></div><h3>MG AP Prep Lab</h3><p class="course-subtitle">统计 · 初级微积分 · 微积分 BC</p><ul class="subject-list"><li><span>AP Statistics</span><span>AP 统计</span></li><li><span>AP Precalculus</span><span>AP 初级微积分</span></li><li><span>AP Calculus BC</span><span>AP 微积分 BC</span></li></ul><p class="card-foot">规划内容：按课程与章节整理课件和练习</p></article>
+<article class="course-card" id="ib"><div class="card-top"><span class="course-number">04 / IB</span><span class="status">待上线</span></div><h3>MG IB Math Lab</h3><p class="course-subtitle">两个课程方向 · 标准与高级级别</p><div class="ib-track"><div><strong>Analysis and Approaches</strong><span>分析与方法</span></div><div class="levels"><span>AA SL</span><span>AA HL</span></div></div><div class="ib-track"><div><strong>Applications and Interpretation</strong><span>应用与解释</span></div><div class="levels"><span>AI SL</span><span>AI HL</span></div></div><p class="card-foot">SL 标准级别 · HL 高级级别</p></article>
+<article class="course-card" id="alevel"><div class="card-top"><span class="course-number">05 / A LEVEL</span><span class="status">待上线</span></div><h3>MG A Level Math Lab</h3><p class="course-subtitle">Cambridge（CAIE）· 剑桥课程体系</p><details class="course-detail" open><summary>Mathematics <span>数学</span></summary><ul><li>Pure Mathematics <span>纯数学</span></li><li>Mechanics <span>力学</span></li><li>Probability &amp; Statistics <span>概率与统计</span></li></ul></details><details class="course-detail"><summary>Further Mathematics <span>进阶数学</span></summary><ul><li>Further Pure Mathematics 1 <span>进阶纯数学 1</span></li><li>Further Pure Mathematics 2 <span>进阶纯数学 2</span></li><li>Further Mechanics <span>进阶力学</span></li><li>Further Probability &amp; Statistics <span>进阶概率与统计</span></li></ul></details><p class="card-foot">先按课程分类，再按模块与章节查找课件</p></article>
+</div>
+</section>
+<section class="learning" aria-labelledby="learning-title"><div><p class="eyebrow">LEARNING RESOURCES</p><h2 id="learning-title">课件、练习、模考</h2><p>各课程的资料将在对应板块中持续整理。</p></div><ol><li><span>01</span><div><h3>课程课件</h3><p>在线查看课程讲解、例题与课堂内容。</p></div></li><li><span>02</span><div><h3>专题练习</h3><p>按考点选题，提交后核对答案与解析。</p></div></li><li><span>03</span><div><h3>完整模考</h3><p>按考试流程完成整套练习，查看结果与用时。</p></div></li></ol></section>
+</main>
+<footer class="site-footer"><div><strong>MG Test Prep Lab</strong><span>标准化考试与数学学习平台</span></div><p>独立教学与备考平台，非各考试机构官方网站。</p><a href="#main">返回顶部 ↑</a></footer>
+</body></html>
