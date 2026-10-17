@@ -1,0 +1,743 @@
+/* MG Test Prep Lab — shared design system.
+   Loaded last on every page. Exam screens (.exam-header present) keep their own
+   Bluebook-style chrome; rules here only touch shared tokens, the account bar
+   and the landing/navigation screens. */
+:root {
+  --mg-ink: #13233f;
+  --mg-ink-2: #2a3b58;
+  --mg-muted: #5c6b84;
+  --mg-faint: #8a96aa;
+  --mg-line: #e2e7ef;
+  --mg-line-2: #cfd7e4;
+  --mg-paper: #f5f7fb;
+  --mg-surface: #ffffff;
+  --mg-blue: #2b55e0;
+  --mg-blue-ink: #1d3fae;
+  --mg-blue-soft: #edf1ff;
+  --mg-gold: #d9a521;
+  --mg-radius: 14px;
+  --mg-radius-sm: 9px;
+  --mg-shadow: 0 1px 2px rgb(19 35 63 / 4%), 0 8px 24px rgb(19 35 63 / 6%);
+  --mg-shadow-lg: 0 2px 4px rgb(19 35 63 / 5%), 0 18px 44px rgb(19 35 63 / 10%);
+  --mg-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  /* Program accents — five programs, equal weight. */
+  --mg-sat: #2b55e0;
+  --mg-act: #0b8a72;
+  --mg-ap: #c43b3b;
+  --mg-ib: #6a47d6;
+  --mg-alevel: #c27c0e;
+}
+
+/* ---------- Account / sync bar (rendered by cloud.js) ---------- */
+.mg-account-bar {
+  box-sizing: border-box;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 36px;
+  padding: 7px max(24px, calc((100vw - 1320px) / 2));
+  background: var(--mg-ink);
+  color: #c9d4e8;
+  font: 13px/1.4 var(--mg-font);
+  position: relative;
+  z-index: 30;
+}
+.mg-account-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.mg-account-bar a:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--mg-gold);
+  vertical-align: 1px;
+}
+.mg-account-bar a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mg-account-bar span {
+  flex: 1;
+  min-width: 0;
+  color: #aebbd3;
+}
+.mg-account-bar button {
+  background: #fff;
+  color: var(--mg-ink);
+  border: 0;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font: 600 12px/1.4 var(--mg-font);
+}
+.in-exam > .mg-account-bar,
+.exam-mode > .mg-account-bar,
+body:has(.exam-header) > .mg-account-bar {
+  display: none;
+}
+@media (max-width: 650px) {
+  .mg-account-bar {
+    padding: 7px 16px;
+    gap: 4px 14px;
+    font-size: 12px;
+  }
+  .mg-account-bar span {
+    flex-basis: 100%;
+    order: 3;
+  }
+}
+
+/* ---------- Shared identity block ---------- */
+.mg-identity,
+.landing .identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  color: var(--mg-ink);
+  text-decoration: none;
+}
+.mg-identity .mg-mark,
+.landing .identity img {
+  width: 48px;
+  height: 38px;
+  flex-shrink: 0;
+}
+.mg-identity .mg-name,
+.landing .identity strong {
+  display: block;
+  font: 750 18px/1.25 var(--mg-font);
+  letter-spacing: -0.3px;
+  color: var(--mg-ink);
+}
+.mg-identity .mg-subtitle,
+.landing .identity small {
+  display: block;
+  margin-top: 2px;
+  font: 12.5px/1.4 var(--mg-font);
+  color: var(--mg-muted);
+}
+
+/* ---------- Practice-test landing pages (SAT mock + ACT) ---------- */
+body:not(:has(.exam-header)):has(#mock-app > .landing),
+body:not(:has(.exam-header)):has(#act-app > .landing) {
+  background: var(--mg-paper);
+}
+#mock-app > .landing,
+#act-app > .landing {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px 72px;
+  font-family: var(--mg-font);
+  color: var(--mg-ink);
+}
+#mock-app > .landing > .brand,
+#act-app > .landing > .brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--mg-line);
+}
+.lab-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+#mock-app .landing .brand a.lab-link,
+#act-app .landing .brand a.lab-link,
+.lab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--mg-ink-2);
+  font: 600 14px/1.3 var(--mg-font);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.lab-link:hover {
+  background: #fff;
+  border-color: var(--mg-line);
+  color: var(--mg-blue);
+}
+.lab-link.current {
+  background: var(--mg-ink);
+  color: #fff !important;
+}
+/* Older single back-link stays tidy */
+#act-app .landing .brand > a:not(.identity):not(.lab-link) {
+  color: var(--mg-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#mock-app > .landing .hero,
+#act-app > .landing .hero {
+  padding: 44px 0 28px;
+  max-width: 820px;
+}
+#mock-app > .landing .hero h1,
+#act-app > .landing .hero h1 {
+  font: 780 clamp(30px, 4vw, 44px)/1.15 var(--mg-font);
+  letter-spacing: -1px;
+  margin: 10px 0 14px;
+}
+#mock-app > .landing .hero p,
+#act-app > .landing .hero p {
+  margin: 0;
+  color: var(--mg-muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+#mock-app > .landing .hero .tag,
+#act-app > .landing .hero .eyebrow,
+.landing .kicker {
+  display: inline-block;
+  background: none;
+  padding: 0;
+  color: var(--mg-blue);
+  font: 700 12px/1.4 var(--mg-font);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+#act-app > .landing .hero .eyebrow {
+  color: var(--mg-act);
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px !important;
+}
+.hero-stats span {
+  background: #fff;
+  border: 1px solid var(--mg-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--mg-ink-2);
+}
+.hero-stats b {
+  color: var(--mg-ink);
+}
+
+/* Section timeline */
+.mg-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 1.6fr 1.6fr 0.9fr 1.6fr 1.6fr;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--mg-line);
+  border-radius: var(--mg-radius);
+}
+.mg-timeline li {
+  position: relative;
+  padding: 12px 14px;
+  border-radius: var(--mg-radius-sm);
+  background: var(--mg-blue-soft);
+  min-width: 0;
+}
+.mg-timeline li small {
+  display: block;
+  font: 700 11px/1.3 var(--mg-font);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--mg-blue-ink);
+}
+.mg-timeline li strong {
+  display: block;
+  font-size: 15px;
+  margin-top: 3px;
+}
+.mg-timeline li span {
+  display: block;
+  font-size: 13px;
+  color: var(--mg-muted);
+}
+.mg-timeline li.break {
+  background: #fdf6e3;
+}
+.mg-timeline li.break small {
+  color: #8a6107;
+}
+.mg-timeline li.math {
+  background: #ecf7f3;
+}
+.mg-timeline li.math small {
+  color: #0b6a58;
+}
+.mg-timeline-note {
+  margin: 12px 2px 0;
+  font-size: 13.5px;
+  color: var(--mg-muted);
+}
+
+/* Resume banner */
+#mock-app > .landing .resume,
+#act-app > .landing .resume {
+  margin: 24px 0 0;
+  padding: 18px 22px;
+  background: var(--mg-ink);
+  color: #fff;
+  border-radius: var(--mg-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+#mock-app > .landing .resume .muted,
+#act-app > .landing .resume .muted {
+  color: #b9c6dd;
+}
+#mock-app > .landing .resume .primary,
+#act-app > .landing .resume .primary {
+  background: var(--mg-gold);
+  border-color: var(--mg-gold);
+  color: var(--mg-ink);
+  font-weight: 700;
+}
+
+/* Section headings on landing */
+.landing .list-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 44px 0 16px;
+}
+.landing .list-head h2 {
+  margin: 0;
+  font: 750 22px/1.3 var(--mg-font);
+  letter-spacing: -0.3px;
+}
+.landing .list-head p {
+  margin: 0;
+  color: var(--mg-muted);
+  font-size: 14px;
+}
+
+/* SAT practice test cards */
+#mock-app > .landing .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+#mock-app > .landing .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--mg-line);
+  border-radius: var(--mg-radius);
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+#mock-app > .landing .card:hover {
+  border-color: #bccaf2;
+  box-shadow: var(--mg-shadow);
+}
+#mock-app > .landing .card .card-kicker {
+  font: 700 11px/1.3 var(--mg-font);
+  letter-spacing: 1.2px;
+  color: var(--mg-faint);
+  text-transform: uppercase;
+}
+#mock-app > .landing .card h2 {
+  margin: 4px 0 14px;
+  font: 800 32px/1.1 var(--mg-font);
+  letter-spacing: -0.8px;
+}
+#mock-app > .landing .card h2 small {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mg-muted);
+  letter-spacing: 0;
+  margin-right: 6px;
+}
+#mock-app > .landing .card .card-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 12.5px;
+  color: var(--mg-muted);
+}
+#mock-app > .landing .card .card-meta li {
+  background: var(--mg-paper);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+#mock-app > .landing .card button.primary {
+  margin-top: auto;
+  width: 100%;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 650;
+  font-size: 14.5px;
+  background: var(--mg-blue-soft);
+  border-color: transparent;
+  color: var(--mg-blue-ink);
+}
+#mock-app > .landing .card:hover button.primary,
+#mock-app > .landing .card button.primary:hover,
+#mock-app > .landing .card button.primary:focus-visible {
+  background: var(--mg-blue);
+  color: #fff;
+}
+
+/* ACT test cards */
+#act-app > .landing .test-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+#act-app > .landing .test-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--mg-line);
+  border-radius: var(--mg-radius);
+  box-shadow: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+#act-app > .landing .test-card:hover {
+  border-color: #a9d8cc;
+  box-shadow: var(--mg-shadow);
+}
+#act-app > .landing .test-card .eyebrow {
+  color: var(--mg-act);
+  font-size: 11px;
+}
+#act-app > .landing .test-card h2 {
+  margin: 6px 0 6px;
+  font: 760 22px/1.25 var(--mg-font);
+}
+#act-app > .landing .test-card p {
+  color: var(--mg-muted);
+  font-size: 14px;
+  margin: 0 0 14px;
+}
+#act-app > .landing .test-card .schedule {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 2px 0 14px;
+}
+#act-app > .landing .test-card .schedule span {
+  background: #eef8f5;
+  color: #0a5a4b;
+  border-radius: 7px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+#act-app > .landing .test-card .primary {
+  margin-top: auto;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--mg-act);
+  border-color: var(--mg-act);
+  font-weight: 650;
+}
+#act-app > .landing .test-card .primary:hover {
+  background: #076a57;
+}
+#act-app > .landing .rules {
+  background: #fff;
+  border: 1px solid var(--mg-line);
+  border-left: 4px solid var(--mg-act);
+  border-radius: var(--mg-radius);
+  padding: 18px 22px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+/* History lists */
+#mock-app > .landing .history,
+#act-app > .landing .history {
+  margin-top: 48px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--mg-line);
+  border-radius: var(--mg-radius);
+}
+#mock-app > .landing .history h2,
+#act-app > .landing .history h2 {
+  margin: 0 0 4px;
+  font: 750 20px/1.3 var(--mg-font);
+}
+#mock-app > .landing .history-item,
+#act-app > .landing .history-item {
+  align-items: center;
+  padding: 14px 0;
+  background: none;
+  border-bottom: 1px solid var(--mg-line);
+}
+#mock-app > .landing .history-item:last-child,
+#act-app > .landing .history-item:last-child {
+  border-bottom: 0;
+}
+#mock-app > .landing > p.muted:last-child,
+#act-app > .landing .footer-note {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--mg-faint);
+}
+
+@media (max-width: 900px) {
+  .mg-timeline {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mg-timeline li.break {
+    grid-column: 1 / -1;
+    order: 0;
+  }
+}
+@media (max-width: 620px) {
+  #mock-app > .landing,
+  #act-app > .landing {
+    padding: 0 16px 48px;
+  }
+  #mock-app > .landing > .brand,
+  #act-app > .landing > .brand {
+    padding: 14px 0;
+  }
+  .lab-links {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    margin: 0 -4px;
+  }
+  .lab-link {
+    white-space: nowrap;
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+  #mock-app > .landing .hero,
+  #act-app > .landing .hero {
+    padding: 28px 0 20px;
+  }
+  #mock-app > .landing .hero p,
+  #act-app > .landing .hero p {
+    font-size: 15.5px;
+  }
+  .mg-timeline {
+    padding: 12px;
+  }
+  .mg-timeline li {
+    padding: 10px 12px;
+  }
+  #mock-app > .landing .cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  #mock-app > .landing .card {
+    padding: 14px;
+  }
+  #mock-app > .landing .card h2 {
+    font-size: 25px;
+  }
+  #mock-app > .landing .card .card-meta {
+    display: none;
+  }
+  #mock-app > .landing .card button.primary {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  .landing .list-head {
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+    margin-top: 32px;
+  }
+  #mock-app > .landing .history,
+  #act-app > .landing .history {
+    padding: 18px;
+  }
+}
+
+/* ACT timeline uses the ACT accent */
+.act-timeline li {
+  background: #eef8f5;
+}
+.act-timeline li small {
+  color: #0a6a58;
+}
+.act-timeline li.math {
+  background: #f1f4fb;
+}
+.act-timeline li.math small {
+  color: var(--mg-ink-2);
+}
+#act-app > .landing > .brand,
+#mock-app > .landing > .brand {
+  margin: 0;
+}
+#act-app > .landing .hero,
+#mock-app > .landing .hero {
+  margin: 0;
+}
+@media (max-width: 800px) {
+  #act-app > .landing > .brand {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Phones: scale PDF-vector questions down to the pane width instead of
+   clipping lines and forcing sideways scrolling. Desktop sizing unchanged. */
+@media (max-width: 620px) {
+  .pane .vector.normalized-vector {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Account page ---------- */
+body.account {
+  background: var(--mg-paper);
+  color: var(--mg-ink);
+  font-family: var(--mg-font);
+}
+.account main {
+  max-width: 1240px;
+  margin: 0 auto 64px;
+  padding: 0 32px;
+}
+.account-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding: 20px 0;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--mg-line);
+}
+.account .account-brand a {
+  color: var(--mg-ink-2);
+}
+.account .kicker {
+  color: var(--mg-blue);
+  font: 700 12px/1.4 var(--mg-font);
+  letter-spacing: 1.6px;
+  margin: 0;
+}
+.account h1 {
+  font: 800 clamp(28px, 3.5vw, 38px)/1.2 var(--mg-font);
+  letter-spacing: -0.8px;
+  margin: 8px 0 20px;
+}
+.account .card {
+  border: 1px solid var(--mg-line);
+  border-radius: var(--mg-radius);
+  padding: 26px;
+  box-shadow: none;
+}
+.account .card h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+.account input,
+.account select {
+  border-color: var(--mg-line-2);
+  border-radius: 10px;
+}
+.account input:focus,
+.account select:focus {
+  outline: 3px solid var(--mg-blue-soft);
+  border-color: var(--mg-blue);
+}
+.account button {
+  border-radius: 999px;
+  border-color: var(--mg-line-2);
+  font-weight: 600;
+  padding: 9px 18px;
+}
+.account button:hover {
+  border-color: var(--mg-ink);
+}
+.account button.primary {
+  background: var(--mg-blue);
+  border-color: var(--mg-blue);
+}
+.account button.primary:hover {
+  background: var(--mg-blue-ink);
+}
+.account .stats div {
+  background: #fff;
+  border: 1px solid var(--mg-line);
+  border-top: 3px solid var(--mg-blue);
+}
+.account th {
+  background: var(--mg-paper);
+  font-weight: 650;
+  color: var(--mg-ink-2);
+}
+.account dialog {
+  border-radius: 18px;
+  box-shadow: var(--mg-shadow-lg);
+}
+@media (max-width: 650px) {
+  .account main {
+    padding: 0 16px;
+  }
+  .account-brand {
+    padding: 14px 0;
+    margin-bottom: 24px;
+  }
+  .account .card {
+    padding: 18px;
+  }
+}
+
+/* ---------- SAT topic-practice shell (sat.html) ---------- */
+aside > .mg-identity {
+  align-items: flex-start;
+}
+aside > .mg-identity .mg-mark {
+  width: 44px;
+  height: 35px;
+}
+aside > .mg-identity .mg-name {
+  font-size: 17px;
+}
+@media (max-width: 620px) {
+  .lab-links {
+    flex-wrap: wrap;
+    overflow: visible;
+    gap: 4px;
+    margin: 0;
+  }
+  .lab-link {
+    padding: 6px 11px;
+  }
+  .hero-stats {
+    gap: 6px;
+  }
+  .hero-stats span {
+    font-size: 13px;
+    padding: 4px 11px;
+  }
+  .mg-timeline li small {
+    font-size: 10px;
+    letter-spacing: 0.6px;
+  }
+}
