@@ -2,8 +2,8 @@
 
 1. Run `001_accounts.sql` in the target Supabase project's SQL editor. It is additive and repeatable. It does not migrate legacy `reading_*` data.
 2. Authentication → URL Configuration:
-   - Site URL: `https://mghalip.github.io/sat-reading-studio/account.html`
-   - Redirect URLs: `https://mghalip.github.io/sat-reading-studio/account.html`
+   - Site URL: `https://mghalip.github.io/mg-test-prep-lab/account.html`
+   - Redirect URLs: `https://mghalip.github.io/mg-test-prep-lab/account.html`
    - Keep email confirmation enabled. Configure a production SMTP provider for student registration/reset emails; the default Supabase email service has restricted recipients and low limits.
 3. Register the teacher through `account.html`, confirm their email, then replace the email placeholder in `002_teacher.sql` and run it in SQL Editor. This is an administrator-only operation. Do not commit a private teacher provisioning script containing the actual email.
 4. Log in and verify the Teacher Dashboard link. Use two student accounts to verify own-record access, and check teacher access to both. Check signup, email confirmation, password reset and logout against the real project before inviting a class.
