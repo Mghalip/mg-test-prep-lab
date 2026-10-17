@@ -1,0 +1,669 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Writing G09 · Transitions</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#8a5a1f; --acc2:#f4e8d6; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Transitions" data-foot="Digital SAT Writing · G09 · Transitions"><div class="no">LESSON G09</div><h1>Transitions</h1><div class="sub">Choose the word that shows how a sentence relates to the one before it</div><div class="cnsub">选出能正确表示前后两句关系的连接词</div><div class="goals"><div><b>COVER THE CHOICES</b>Read the sentence before and the sentence with the blank, without the transition.</div><div><b>NAME THE RELATIONSHIP</b>Contrast? Result? Example? Addition? Time order? Similarity?</div><div><b>MATCH THE CATEGORY</b>Choose the transition from that category; cut the others.</div></div></section>
+<section class="slide " data-title="Before we start · What a transition does" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Grammar You Need</div><h2>What is a transition? · 什么是过渡词（逻辑连接词）</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>A transition = a signpost 路标</h3>
+<p>A <span class="term">transition</span> is a word or phrase at the start of a sentence (or between commas) that tells the reader <b>how this sentence is related to the one before it</b>: opposite? result? example? one more point?</p>
+<p class="ex">I studied all night. <b style="color:#b3261e">However,</b> I failed the test.<span class="why">opposite of what we expect 转折</span></p>
+<p class="ex">I studied all night. <b style="color:#b3261e">As a result,</b> I passed the test.<span class="why">result 结果</span></p>
+<p class="ex no">❌ I studied all night. <b style="color:#b3261e">For example,</b> I passed the test.<span class="why">Passing is not an example of studying.</span></p>
+<p class="cn">过渡词像“路标”，告诉读者后一句和前一句是什么关系。同样两句话，换一个过渡词，逻辑就完全不同。</p></div><div class="box white"><h3>Say the relationship in your own words first 先用自己的话说关系</h3>
+<p>Before you look at the choices, cover them and fill in this frame:</p>
+<div class="box acc"><p>“Sentence 1 says ___. Sentence 2 says ___. So sentence 2 is <b>the opposite / a result / an example / one more point / the next step</b> of sentence 1.”</p></div>
+<p class="ex">S1: Wolves cannot see at two weeks. S2: Dogs can see at two weeks.<span class="why">My words: “wolves can’t, but dogs can” → opposite → by contrast</span></p>
+<p class="cn">先遮住选项，用自己的话（中文也可以）说出两句之间的关系，比如“但是”“所以”“比如”“而且”，再去选项中找同类的词。</p></div></div></section>
+<section class="slide " data-title="Before we start · Transition families 1" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Grammar You Need</div><h2>Transition families (1) · 过渡词家族（一）</h2></header>
+<table class="t sm">
+<tr><th style="width:17%">Family 关系</th><th style="width:34%">Words · 中文意思</th><th>Example</th></tr>
+<tr><td>Contrast 对比/转折</td><td>however 然而, but, by contrast / in contrast 相比之下, on the other hand 另一方面, conversely 相反地</td><td>Mia likes cities. <b style="color:#b3261e">In contrast,</b> Leo prefers villages.</td></tr>
+<tr><td>Concession 让步（出乎意料）</td><td>nevertheless / nonetheless 尽管如此, still 仍然, even so 即便如此, though 不过</td><td>The plan was risky. <b style="color:#b3261e">Nevertheless,</b> the team tried it.</td></tr>
+<tr><td>Addition 补充/递进</td><td>moreover 此外, furthermore 而且, in addition 另外, also, besides</td><td>She is smart. <b style="color:#b3261e">Moreover,</b> she is kind.</td></tr>
+<tr><td>Cause → effect 因果</td><td>therefore / thus 因此, consequently 结果, as a result 所以, accordingly 相应地, hence</td><td>It rained heavily; <b style="color:#b3261e">therefore,</b> the game was canceled.</td></tr>
+<tr><td>Example 举例</td><td>for example / for instance 例如, specifically 具体来说, to illustrate</td><td>Some fruits have vitamin C. <b style="color:#b3261e">For example,</b> oranges do.</td></tr>
+</table>
+<div class="box acc"><p><b>Contrast vs. concession:</b> contrast = two different things side by side; concession = “X is true, but the result is surprising.” <span class="cn">对比：两件事不一样（A 喜欢城市，B 喜欢乡村）。让步：按理说不会这样，但事实就是这样（计划有风险，但仍然去做）。</span></p></div></section>
+<section class="slide " data-title="Before we start · Transition families 2" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Grammar You Need</div><h2>Transition families (2) · 过渡词家族（二）</h2></header>
+<table class="t sm">
+<tr><th style="width:17%">Family 关系</th><th style="width:34%">Words · 中文意思</th><th>Example</th></tr>
+<tr><td>Similarity 类比/相似</td><td>similarly 同样地, likewise 同样, in the same way, by the same token</td><td>Cats need care. <b style="color:#b3261e">Likewise,</b> dogs need daily attention.</td></tr>
+<tr><td>Emphasis 强调/加强</td><td>in fact 事实上, indeed 确实</td><td>The test was hard. <b style="color:#b3261e">In fact,</b> it was the hardest this year.</td></tr>
+<tr><td>Replacement 替代/纠正</td><td>instead 反而/取而代之, rather 而是, on the contrary 恰恰相反</td><td>He did not walk. <b style="color:#b3261e">Instead,</b> he took the bus.</td></tr>
+<tr><td>Sequence 顺序/时间</td><td>first, next 接下来, then, finally / lastly 最后, meanwhile 与此同时, later, previously 之前</td><td><b style="color:#b3261e">First,</b> mix the flour. <b style="color:#b3261e">Next,</b> add the eggs.</td></tr>
+<tr><td>Restatement 重述/总结</td><td>in other words 换句话说, that is 也就是说, in short 简言之</td><td>The rule is flexible; <b style="color:#b3261e">in other words,</b> there are exceptions.</td></tr>
+</table>
+<div class="box acc"><p><b>Grammar reminder:</b> these words are adverbs, not conjunctions. Use “<b>. However,</b>” or “<b>; however,</b>” — never “<b>, however,</b>” between two complete sentences (G02). <span class="cn">however、therefore 等是副词，不能用逗号连接两个完整句，前面用句号或分号。</span></p></div></section>
+<section class="slide " data-title="Before we start · Five tricky transitions" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Grammar You Need</div><h2>Five tricky transitions: in fact, after all, instead, to this end, though</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>in fact · after all · instead</h3>
+<p><b>In fact</b> 事实上 = the next sentence makes the first one <b>stronger</b> or more specific.</p>
+<p class="ex ok">✅ The museum is popular. <b style="color:#b3261e">In fact,</b> a million people visited last year.</p>
+<p><b>After all</b> 毕竟 = the next sentence gives the <b>reason</b> for the first one.</p>
+<p class="ex ok">✅ Don’t be too hard on him. <b style="color:#b3261e">After all,</b> he is only five.</p>
+<p><b>Instead</b> 而是/取而代之 = replaces something <b>not</b> done. Look for a “not” before it.</p>
+<p class="ex ok">✅ The bird did <u>not</u> fly south. <b style="color:#b3261e">Instead,</b> it stayed all winter.</p>
+<p class="ex no">❌ The bird flew south. <b style="color:#b3261e">Instead,</b> it arrived in Mexico.<span class="why">Nothing was rejected, so nothing is replaced.</span></p>
+<p class="cn">in fact：加强前句；after all：给前句理由；instead：前面通常有否定，后句说“实际做了什么”。</p></div><div class="box white"><h3>to this end · though</h3>
+<p><b>To this end</b> 为此 = “to reach this goal.” The first sentence states a <b>goal</b>; the next states an <b>action</b> taken for it.</p>
+<p class="ex ok">✅ The city wants cleaner air. <b style="color:#b3261e">To this end,</b> it banned old cars.</p>
+<p class="ex no">❌ The city has clean air. <b style="color:#b3261e">To this end,</b> it is popular.<span class="why">No goal is stated.</span></p>
+<p><b>Though</b> has two uses:</p>
+<p class="ex ok">✅ I was tired. I finished the homework, <b style="color:#b3261e">though</b>.<span class="why">adverb ≈ however (end or middle of a sentence)</span></p>
+<p class="ex ok">✅ <b style="color:#b3261e">Though</b> I was tired, I finished the homework.<span class="why">conjunction ≈ although</span></p>
+<p class="ex no">❌ <b style="color:#b3261e">Though</b> she studied, <u>but</u> she failed.<span class="why">Never use though + but together.</span></p>
+<p class="cn">to this end：前句是目标，后句是为此采取的行动。though 作副词≈however，作连词≈although；不能和 but 连用。</p></div></div></section>
+<section class="slide " data-title="Before we start · Easily confused pairs" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Grammar You Need</div><h2>Easily confused pairs · 易混淆的关系</h2></header>
+<table class="t sm">
+<tr><th style="width:24%">Pair</th><th style="width:38%">How to tell them apart</th><th>Mini example</th></tr>
+<tr><td>for example vs. in addition</td><td>Is S2 <b>one case of</b> S1 (example), or a <b>new, separate point</b> (addition)? 举例 vs. 补充</td><td>Many birds migrate. <b>For example,</b> swallows fly south. / Birds migrate. <b>In addition,</b> some change color.</td></tr>
+<tr><td>therefore vs. after all</td><td>Direction! therefore: S1 is the cause → S2 the result. after all: S2 is the cause of S1. 方向相反</td><td>It rained. <b>Therefore,</b> we stayed in. / We stayed in. <b>After all,</b> it was raining.</td></tr>
+<tr><td>however vs. nevertheless</td><td>Both turn. nevertheless stresses “even so, against expectation.” 让步更强调“出乎意料”</td><td>The price was high. <b>Nevertheless,</b> many bought it.</td></tr>
+<tr><td>as a result vs. next</td><td>as a result needs a cause; next only needs time order. 因果 vs. 顺序</td><td><b>First,</b> boil water. <b>Next,</b> add tea.</td></tr>
+<tr><td>similarly vs. in contrast</td><td>Same pattern in a new place → similarly; opposite → in contrast. 相同 vs. 相反</td><td>Ants live in colonies. <b>Similarly,</b> bees do.</td></tr>
+</table>
+<p class="cn">SAT 的错误选项常常是“相邻类别”：举例和补充、因果和顺序、对比和相似。判断方向和类别，而不是凭感觉。</p></section>
+<section class="slide " data-title="Quick check 1 · Name the relationship" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Quick Check</div><h2>Quick check 1 · Name the relationship<span class="cn">先用自己的话说关系，再说出一个过渡词</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The test was easy. ___ most students finished early.</summary><div class="a">Cause → effect: <b>As a result,</b> / <b>Therefore,</b></div></details><details class="qc"><summary><span class="q">2.</span>Some metals are liquid at room temperature. ___ mercury is.</summary><div class="a">Example: <b>For example,</b></div></details><details class="qc"><summary><span class="q">3.</span>The road was icy. ___ the bus arrived on time.</summary><div class="a">Concession (surprising): <b>Nevertheless,</b> / <b>Still,</b></div></details><details class="qc"><summary><span class="q">4.</span>Lions hunt in groups. ___ wolves hunt in packs.</summary><div class="a">Similarity: <b>Similarly,</b> / <b>Likewise,</b></div></details><details class="qc"><summary><span class="q">5.</span>He did not take a taxi. ___ he walked home.</summary><div class="a">Replacement: <b>Instead,</b></div></details><details class="qc"><summary><span class="q">6.</span>The book sold well. ___ it was the best-selling book of the year.</summary><div class="a">Emphasis: <b>In fact,</b></div></details><details class="qc"><summary><span class="q">7.</span>The school wants students to read more. ___ it opened a new library.</summary><div class="a">Goal → action: <b>To this end,</b></div></details><details class="qc"><summary><span class="q">8.</span>Wolves avoid people. ___ dogs approach them.</summary><div class="a">Contrast: <b>By contrast,</b> / <b>In contrast,</b></div></details></div></section>
+<section class="slide " data-title="Quick check 2 · Right or wrong transition?" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Quick Check</div><h2>Quick check 2 · Right or wrong transition?<span class="cn">判断加粗的过渡词是否符合前后逻辑</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>Plants need light. <b>For instance,</b> they also need water.</summary><div class="a">✗ Water is a new point, not an example. → <b>In addition,</b></div></details><details class="qc"><summary><span class="q">2.</span>The museum was closed. <b>Therefore,</b> we went to the park.</summary><div class="a">✓ The closing caused our choice.</div></details><details class="qc"><summary><span class="q">3.</span>We went to the park. <b>After all,</b> the museum was closed.</summary><div class="a">✓ S2 gives the reason for S1.</div></details><details class="qc"><summary><span class="q">4.</span>The experiment failed. <b>Similarly,</b> the team learned a lot.</summary><div class="a">✗ Learning a lot is surprising after failure. → <b>Nevertheless,</b></div></details><details class="qc"><summary><span class="q">5.</span>First, read the goal. <b>As a result,</b> check each choice.</summary><div class="a">✗ Steps in order, not a result. → <b>Next,</b></div></details><details class="qc"><summary><span class="q">6.</span>She did not quit. <b>Instead,</b> she practiced harder.</summary><div class="a">✓ “not quit” is replaced by “practiced harder.”</div></details><details class="qc"><summary><span class="q">7.</span>The town is small. <b>In other words,</b> it has a famous museum.</summary><div class="a">✗ S2 does not restate S1. → <b>Still,</b> / <b>However,</b></div></details><details class="qc"><summary><span class="q">8.</span>Bees help farmers. <b>In fact,</b> a third of our food depends on them.</summary><div class="a">✓ S2 makes S1 stronger.</div></details></div></section>
+<section class="slide " data-title="What is a Transitions question?" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">What is it?</div><h2>What is a Transitions question?</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Definition</h3><p>A blank sits at the start of a sentence (or inside it, between commas). The four choices are transition words. You choose the one that shows the <b>logical relationship</b> between this sentence and the previous one.</p>
+  <p class="ex" style="font-size:17px;margin-top:8px">Which choice completes the text with the most logical transition?</p>
+  <p class="cn">每套 4–6 题。考的是逻辑关系，不是语法。</p></div>
+ <div class="box white"><h3>One idea is enough</h3><p>Usually only <b>one</b> choice belongs to the right category. Once you name the relationship correctly, the other three are clearly wrong.</p>
+  <p class="cn">一般只有一个选项属于正确的逻辑类别。关键是先判断关系。</p>
+  <h3 style="margin-top:12px">Read the sentence before</h3><p>The transition connects the blank sentence to the <b>previous</b> sentence (sometimes to an earlier one). Always read both.</p></div>
+</div></section>
+<section class="slide " data-title="Transition categories" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Categories</div><h2>Transition categories</h2></header>
+<table class="t sm">
+<tr><th style="width:19%">Relationship</th><th style="width:46%">Transitions</th><th>Question to ask</th></tr>
+<tr><td>Contrast 转折对比</td><td>however, but, yet, still, nevertheless, nonetheless, by contrast, in contrast, on the other hand, conversely, though</td><td>Does the new sentence go against the previous one or against what we would expect?</td></tr>
+<tr><td>Cause → result 因果</td><td>therefore, thus, so, as a result, consequently, accordingly, hence, for this reason, in turn</td><td>Is the new sentence caused by the previous one?</td></tr>
+<tr><td>Example 举例</td><td>for example, for instance, specifically, to illustrate</td><td>Is it one case of a general statement?</td></tr>
+<tr><td>Addition 递进</td><td>in addition, furthermore, moreover, additionally, also, besides, in fact (stronger)</td><td>Is it one more point of the same kind?</td></tr>
+<tr><td>Similarity 相似</td><td>similarly, likewise, in the same way</td><td>Does it show the same thing happening elsewhere?</td></tr>
+<tr><td>Time / sequence 顺序</td><td>first, second, next, then, finally, later, meanwhile, previously, today, currently</td><td>Is it the next step or a different time?</td></tr>
+<tr><td>Restatement 换言之</td><td>in other words, that is</td><td>Does it say the same thing again more simply?</td></tr>
+<tr><td>Replacement / alternative 替代</td><td>alternatively, instead</td><td>Is it another option?</td></tr>
+</table></section>
+<section class="slide " data-title="Four steps for Transitions" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">How to approach it</div><h2>Four steps for Transitions</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Cover the choices; read the previous sentence and the blank sentence</h3><p>Understand what each sentence says. <span class="cn">先不看选项，读前一句和空格所在句。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Summarize each in a few words</h3><p>“wolves: can’t see or hear at two weeks” / “dogs: can see, hear, smell at two weeks.” <span class="cn">各用几个词概括。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Name the relationship</h3><p>Same or different? Cause or result? General or example? Earlier or later? <span class="cn">判断关系：相同/相反/因果/举例/顺序。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Pick the choice in that category</h3><p>Then read the sentence with it to confirm. <span class="cn">选对应类别的词，代入确认。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T1-2-28" data-lab="Form 1 · Module 2 · Question 28 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The blank starts the last sentence: “___ spiders are able to cling to and climb almost any surface.” How does it relate to the sentence before?</p><p class="cn">最后一句与前一句是什么关系？</p></div></div><div class="right fitq"><div class="qimg" data-q="T1-2-28"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T1-2-28" data-hl="3-6" data-lab="Form 1 · Module 2 · Question 28 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Previous sentence</h3><p>The spatulae on spiders’ legs <b>temporarily bond</b> with the atoms of whatever they touch.</p></div></div><div class="step"><div class="n">2</div><div><h3>Blank sentence</h3><p>Spiders <b>can cling to and climb almost any surface</b>.</p></div></div><div class="step"><div class="n">3</div><div><h3>Relationship</h3><p>Because the spatulae bond with surfaces, spiders can climb them → <b>cause → result</b>.</p></div></div><div class="step"><div class="n">4</div><div><h3>Match</h3><p>Choose the result transition.</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T1-2-28"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r">“For instance” would make the climbing an example of bonding; it is a result of bonding.</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r">“However” signals contrast, but the two sentences agree.</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">“Similarly” signals another case of the same thing, but this is a consequence.</div></div><div class="vd keep hidden-v"><div class="L">D</div><div class="v">KEEP ✓</div><div class="r">“As a result” shows that climbing is the result of the bonding described before.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: D.</b> Name the relationship before looking at the choices: here, cause → result. <span class="cn">先判断关系（因果），再找对应的连接词。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 3 · Module 1 · Question 27" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Worked Example 2</div><h2>Form 3 · Module 1 · Question 27<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T3-1-27" data-hl="3-6" data-lab="Form 3 · Module 1 · Question 27 · the text"></div><div class="qimg" data-q="T3-1-27"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p><i>for instance / nevertheless / meanwhile / in addition</i> → all transitions from different families. This is a logic question, not grammar. <span class="cn">四个选项是不同类别的过渡词 → 考逻辑关系。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Summarize sentence 1 · 概括前句</h3><p>Cover the choices. The sentence before says: “<b>Not all</b> conifer species are evergreen.” = a <b>general statement</b>. <span class="cn">前一句：并非所有针叶树都常绿（一个总的说法）。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Summarize sentence 2 · 概括空格句</h3><p>“Larch trees ___ lose their needles every fall.” = one particular conifer that is <b>not</b> evergreen. <span class="cn">空格句：落叶松每年秋天掉针叶——一种不常绿的针叶树。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Name the relationship · 判断关系</h3><p>In my own words: “Not all conifers are evergreen — <b>for example</b>, larches.” S2 is one case of S1 → Example family → A <b>for instance</b>. <span class="cn">后句是前句的一个具体例子 → 举例。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ “nevertheless” signals contrast, but larches support the previous statement.<br><b>C</b> ✗ “meanwhile” signals time, not an example.<br><b>D</b> ✗ “in addition” signals a new, separate point, not an example of the one just made.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> General statement: “not all conifer species are evergreen.” Then: “Larch trees … lose their needles every fall” = <b>one case</b> of that statement → <b>for instance</b>. <span class="cn">落叶松是“并非所有针叶树都常绿”的一个例子。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 1 · Module 1 · Question 30" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Worked Example 3</div><h2>Form 1 · Module 1 · Question 30<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T1-1-30" data-hl="1-6" data-lab="Form 1 · Module 1 · Question 30 · the text"></div><div class="qimg" data-q="T1-1-30"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p><i>in other words / for instance / by contrast / accordingly</i> → restatement, example, contrast, result. <span class="cn">重述、举例、对比、因果四类。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Summarize sentence 1 · 概括前句</h3><p>Wolves at two weeks: can smell, but <b>cannot</b> see or hear. <span class="cn">两周大的狼：能闻，但看不见、听不见。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Summarize sentence 2 · 概括空格句</h3><p>Dogs at two weeks: <b>can</b> see, hear, and smell. Same age, different animal, opposite abilities. <span class="cn">两周大的狗：能看、能听、能闻。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Name the relationship · 判断关系</h3><p>My words: “wolves can’t, <b>but</b> dogs can.” Two different things side by side → Contrast family → C <b>by contrast</b>. <span class="cn">两种动物同一时间点情况相反 → 对比。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ “in other words” would mean the dogs’ sentence restates the wolves’ sentence.<br><b>B</b> ✗ “for instance” would make dogs an example of wolves’ limits.<br><b>D</b> ✗ “accordingly” would mean the dogs’ abilities result from the wolves’ limits.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: C.</b> Wolves at two weeks: can smell but <b>cannot</b> see or hear. Dogs at two weeks: <b>can</b> see, hear, and smell. Opposite facts about two animals → <b>by contrast</b>. <span class="cn">狼和狗在同一时间点的感官相反 → 对比。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 5 · Module 2 · Question 26" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Worked Example 4</div><h2>Form 5 · Module 2 · Question 26<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T5-2-26" data-hl="2-5" data-lab="Form 5 · Module 2 · Question 26 · the text"></div><div class="qimg" data-q="T5-2-26"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p><i>For example / Next / Similarly / In contrast</i> → example, sequence, similarity, contrast. <span class="cn">举例、顺序、相似、对比四类。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the signal words · 找信号词</h3><p>Read before <b>and after</b> the blank: “it <b>first</b> scraped off the top layer … ___ it sprayed water … <b>Lastly</b>, it smoothed over the ice.” <span class="cn">前后有 first … lastly，说明在讲步骤。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Summarize the blank sentence · 概括空格句</h3><p>Spraying water is the <b>second step</b> of the machine’s work, between “first” and “lastly.” <span class="cn">喷水是机器工作的第二步。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Name the relationship · 判断关系</h3><p>Steps in time order → Sequence family → B <b>Next</b>. (first → next → lastly) <span class="cn">时间顺序 → 选 Next。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ “For example” does not continue a sequence of steps.<br><b>C</b> ✗ “Similarly” suggests the same action again, not the next step.<br><b>D</b> ✗ “In contrast” signals opposition; spraying water is the next step, not an opposite.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> The text lists steps: the machine “<b>first</b> scraped off the top layer,” “___ it sprayed water,” “<b>Lastly</b>…”. The middle step → <b>Next</b>. <span class="cn">first … next … lastly：顺序。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 6-1-29" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Practice 1 of 4</div><h2>Form 6 · Module 1 · Question 29</h2></header><div class="work"><div class="pv" data-p="T6-1-29" data-lab="Form 6 · Module 1 · Question 29 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-29"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-4" data-hint="1-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The previous sentence: quipus recorded countable information. What does the blank sentence add?</div><div class="fb"></div><template class="why">Sentence 1: quipus recorded <b>countable</b> information. Sentence 2: they may also have recorded <b>more complex</b> information like stories. One more use → <b>In addition</b>. <span class="cn">另一种用途 → 递进。</span></template><template class="wrong" data-l="A">“As a result” would mean recording stories was caused by recording numbers.</template><template class="wrong" data-l="B">“In other words” would mean stories are the same as countable data.</template><template class="wrong" data-l="D">“For example” would make stories an example of countable information.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 4-1-28" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Practice 2 of 4</div><h2>Form 4 · Module 1 · Question 28</h2></header><div class="work"><div class="pv" data-p="T4-1-28" data-lab="Form 4 · Module 1 · Question 28 · the text"></div><div class="right"><div class="qimg" data-q="T4-1-28"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-5" data-hint="1-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What have geoscientists long considered? What does the 2020 study say?</div><div class="fb"></div><template class="why">Long-held view: Mauna Loa is Earth’s <b>largest</b> shield volcano. 2020 study: (another volcano, Pūhāhonu, is larger). A new finding <b>against</b> the old view → <b>However</b>. <span class="cn">旧观点 vs. 新研究的不同结论 → 转折。</span></template><template class="wrong" data-l="A">“Secondly” signals a second point in a list.</template><template class="wrong" data-l="B">“Consequently” would mean the new finding is caused by the old view.</template><template class="wrong" data-l="C">“Moreover” would add support for the old view, but the study disagrees with it.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 1-2-29" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Practice 3 of 4</div><h2>Form 1 · Module 2 · Question 29</h2></header><div class="work"><div class="pv" data-p="T1-2-29" data-lab="Form 1 · Module 2 · Question 29 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-29"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-8" data-hint="1-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Paris seemed ideal for her. What did Sher-Gil long for? Is that what we would expect?</div><div class="fb"></div><template class="why">Paris seemed “the ideal city” and she was succeeding there. Yet she “longed to <b>return to India</b>.” This goes against what we would expect → contrast: <b>Still</b> (= even so). <span class="cn">巴黎看似理想，她却想回印度 → 出乎意料的转折。</span></template><template class="wrong" data-l="B">“Therefore” would mean her success in Paris caused her wish to leave.</template><template class="wrong" data-l="C">“Indeed” would emphasize and confirm the previous point.</template><template class="wrong" data-l="D">“Furthermore” would add another point in the same direction.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 6-2-28" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Practice 4 of 4</div><h2>Form 6 · Module 2 · Question 28</h2></header><div class="work"><div class="pv" data-p="T6-2-28" data-lab="Form 6 · Module 2 · Question 28 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-28"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What generates the electrical currents? What do the currents then do?</div><div class="fb"></div><template class="why">Chain: circulation of metals → generates electrical currents → these currents create a protective barrier. Each step leads to the next → <b>in turn</b> (= as the next result). <span class="cn">环环相扣的因果：in turn。</span></template><template class="wrong" data-l="B">“likewise” signals a similar case, not the next effect.</template><template class="wrong" data-l="C">“nevertheless” signals contrast; the barrier follows from the currents.</template><template class="wrong" data-l="D">“in reality” corrects a false belief; nothing false was stated.</template></div></div></div></section>
+<section class="slide " data-title="Common traps in Transitions questions" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">Wrong answers</div><h2>Common traps in Transitions questions</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Unexpected contrast</h3><p><i>Still, nevertheless, however</i> can contrast with what we would <b>expect</b>, not only with a stated fact (Sher-Gil in Paris).</p><p class="cn">转折可以针对“预期”，不一定针对字面的事实。</p></div>
+ <div class="box white"><h3>Example vs. addition</h3><p>Is the new sentence <b>one case</b> of the previous general statement (for example), or a <b>new point</b> (in addition)?</p><p class="cn">举例和递进容易混。</p></div>
+ <div class="box white"><h3>Result vs. sequence</h3><p>“As a result” needs a cause; “next / finally” only needs time order.</p><p class="cn">因果与时间顺序要区分。</p></div>
+ <div class="box white"><h3>Read beyond the blank sentence</h3><p>Sometimes the relationship is with an earlier sentence, or the following sentence helps (e.g., “first … next … lastly”).</p><p class="cn">有时要看更前或更后的句子。</p></div>
+</div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Writing · G09 · Transitions" data-title="What to remember about Transitions"><header><div class="kk">Summary</div><h2>What to remember about Transitions<span class="cn">逻辑衔接要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 识别题干</h3><div class="summary-copy">Stem: <i>Which choice completes the text with the most logical transition?</i> 4–6 per test.</div></article><article class="summary-card"><h3 class="summary-label">02 · 先概括句意</h3><div class="summary-copy">Cover the choices. Summarize the previous sentence and the blank sentence in a few words.</div></article><article class="summary-card"><h3 class="summary-label">03 · 确定逻辑关系</h3><div class="summary-copy">Name the relationship: contrast, result, example, addition, similarity, sequence, restatement, alternative.</div></article><article class="summary-card"><h3 class="summary-label">04 · 匹配连接词</h3><div class="summary-copy">Choose the transition in that category; usually only one choice fits.</div></article><article class="summary-card"><h3 class="summary-label">05 · 易混关系</h3><div class="summary-copy">Watch for contrast with an expectation (still), example vs. addition, and result vs. time order.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">More Practice</div><h2>5 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 2-2-27" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">More Practice 1 of 5</div><h2>Form 2 · Module 2 · Question 27</h2></header><div class="work"><div class="pv" data-p="T2-2-27" data-lab="Form 2 · Module 2 · Question 27 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-27"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Ifemelu goes to the United States. What does Obinze do, and at what time?</div><div class="fb"></div><template class="why">Ifemelu moves to the US to attend university. ___ Obinze travels to London. Two events happening <b>at the same time</b> to two characters → <b>Meanwhile</b>. <span class="cn">同一时期两个人各自的经历 → 与此同时。</span></template><template class="wrong" data-l="B">“Nevertheless” signals contrast with an expectation, which is not present.</template><template class="wrong" data-l="C">“Secondly” signals the second item in a list of points.</template><template class="wrong" data-l="D">“In fact” emphasizes or corrects the previous statement.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 5-1-28" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">More Practice 2 of 5</div><h2>Form 5 · Module 1 · Question 28</h2></header><div class="work"><div class="pv" data-p="T5-1-28" data-lab="Form 5 · Module 1 · Question 28 · the text"></div><div class="right"><div class="qimg" data-q="T5-1-28"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-5" data-hint="1-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Historians agree Morton exaggerated. What can no one deny?</div><div class="fb"></div><template class="why">Sentence 1: Morton exaggerated (negative). Sentence 2: no one can deny his compositions helped shape jazz (positive). A contrast with the previous point → <b>though</b>. <span class="cn">先说他夸大，再说他的贡献不可否认 → 转折。</span></template><template class="wrong" data-l="A">“therefore” would mean his importance follows from his exaggeration.</template><template class="wrong" data-l="B">“in the second place” adds a second reason in a list.</template><template class="wrong" data-l="C">“in other words” restates; the second sentence says something different.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 6-2-29" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">More Practice 3 of 5</div><h2>Form 6 · Module 2 · Question 29</h2></header><div class="work"><div class="pv" data-p="T6-2-29" data-lab="Form 6 · Module 2 · Question 29 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-29"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The differences are “extreme.” How does the blank sentence relate: does it go further in the same direction?</div><div class="fb"></div><template class="why">The differences between the two editions are <b>extreme</b>; <b>in fact</b>, some critics consider them two different novels. The second clause <b>intensifies</b> the first. <span class="cn">in fact 用来加强：差别大到被视为两部小说。</span></template><template class="wrong" data-l="A">“by contrast” signals opposition; the second clause agrees with the first.</template><template class="wrong" data-l="C">“nevertheless” signals contrast.</template><template class="wrong" data-l="D">“in other words” restates; the second clause goes further.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 4-2-28" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">More Practice 4 of 5</div><h2>Form 4 · Module 2 · Question 28</h2></header><div class="work"><div class="pv" data-p="T4-2-28" data-lab="Form 4 · Module 2 · Question 28 · the text"></div><div class="right"><div class="qimg" data-q="T4-2-28"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-5" data-hint="1-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The first sentence gives one way to deal with contaminated soil. What does the blank sentence give?</div><div class="fb"></div><template class="why">Option 1: remove the soil and put it in a landfill. Option 2: detoxify it with plants (phytoremediation). Another option → <b>Alternatively</b>. <span class="cn">另一种处理方法 → 替代。</span></template><template class="wrong" data-l="B">“Specifically” gives a detail of the same method.</template><template class="wrong" data-l="C">“For example” would make phytoremediation an example of landfilling.</template><template class="wrong" data-l="D">“As a result” would mean detoxifying is caused by landfilling.</template></div></div></div></section>
+<section class="slide " data-title="Practice 5: 5-2-29" data-foot="Digital SAT Writing · G09 · Transitions"><header><div class="kk">More Practice 5 of 5</div><h2>Form 5 · Module 2 · Question 29</h2></header><div class="work"><div class="pv" data-p="T5-2-29" data-lab="Form 5 · Module 2 · Question 29 · the text"></div><div class="right"><div class="qimg" data-q="T5-2-29"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What is the lesson of the Human Genome Project? What do researchers now do because of it?</div><div class="fb"></div><template class="why">Lesson: a gene is affected by many factors, including interactions with other genes. → therefore, efforts now look beyond just the genome. The second sentence is a <b>consequence</b> of the lesson → <b>Accordingly</b>. <span class="cn">根据这一教训，研究方向随之改变 → 因果。</span></template><template class="wrong" data-l="A">“In other words” restates; the second sentence is a response, not a restatement.</template><template class="wrong" data-l="B">“That said” introduces a contrast or limit.</template><template class="wrong" data-l="C">“For example” would make the new research focus an example of the lesson.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-2-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Small, flat structures called spatulae are found at the </span> <span data-line=\"2\">tips of the hairs on a spider’s leg. These spatulae </span> <span data-line=\"3\">temporarily bond with the atoms of whatever they </span> <span data-line=\"4\">touch. _______ spiders are able to cling to and climb </span> <span data-line=\"5\">almost any surface. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Most conifers (trees belonging to the phylum </span> <span data-line=\"2\">Coniferophyta) are evergreen. That is, they keep their </span> <span data-line=\"3\">green leaves or needles year-round. However, not all </span> <span data-line=\"4\">conifer species are evergreen. Larch trees, </span> <span data-line=\"5\">_______ lose their needles every fall. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-30":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">At two weeks old, the time their critical socialization </span> <span data-line=\"2\">period begins, wolves can smell but cannot yet see or </span> <span data-line=\"3\">hear. Domesticated dogs, _______ can see, hear, and </span> <span data-line=\"4\">smell by the end of two weeks. This relative lack of </span> <span data-line=\"5\">sensory input may help explain why wolves behave </span> <span data-line=\"6\">so differently around humans than dogs do: from a </span> <span data-line=\"7\">very young age, wolves are more wary and less </span> <span data-line=\"8\">exploratory. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1949, Frank Zamboni developed an ice rink </span> <span data-line=\"2\">resurfacing machine. As Zamboni’s machine moved </span> <span data-line=\"3\">along the rink’s surface, it first scraped off the top </span> <span data-line=\"4\">layer of ice. _______ it sprayed water into the deep </span> <span data-line=\"5\">grooves left behind by customers’ skates. Lastly, it </span> <span data-line=\"6\">smoothed over the newly formed ice. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The Inca of South America used intricately knotted </span> <span data-line=\"2\">string devices called quipus to record countable </span> <span data-line=\"3\">information, like population data and payments. </span> <span data-line=\"4\">_______ they may have used quipus to record more </span> <span data-line=\"5\">complex information, like stories and myths, </span> <span data-line=\"6\">according to researchers. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Geoscientists have long considered Hawaii’s Mauna </span> <span data-line=\"2\">Loa volcano to be Earth’s largest shield volcano by </span> <span data-line=\"3\">volume, measuring approximately 74,000 cubic </span> <span data-line=\"4\">kilometers. _______ according to a 2020 study by </span> <span data-line=\"5\">local geoscientist Michael Garcia, Hawaii’s </span> <span data-line=\"6\">Pūhāhonu shield volcano is significantly larger, </span> <span data-line=\"7\">boasting a volume of about 148,000 cubic kilometers. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In November 1934, Amrita Sher-Gil was living in </span> <span data-line=\"2\">what must have seemed like the ideal city for a </span> <span data-line=\"3\">young artist: Paris. She was studying firsthand the </span> <span data-line=\"4\">color-saturated style of France’s modernist masters </span> <span data-line=\"5\">and beginning to make a name for herself as a </span> <span data-line=\"6\">painter. _______ Sher-Gil longed to return to her </span> <span data-line=\"7\">childhood home of India; only there, she believed, </span> <span data-line=\"8\">could her art truly flourish. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The liquid metals in Earth’s core circulate constantly, </span> <span data-line=\"2\">and this circulation generates electrical currents that </span> <span data-line=\"3\">flow between Earth’s North and South magnetic </span> <span data-line=\"4\">poles. These electrical currents, _______ create a </span> <span data-line=\"5\">barrier around Earth that protects us from radiation </span> <span data-line=\"6\">and charged particles coming from space. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Chimamanda Ngozi Adichie’s 2013 novel </span> <span data-line=\"2\"><i>A</i><i>m</i><i>e</i><i>r</i><i>i</i><i>c</i><i>a</i><i>n</i><i>a</i><i>h</i><i> </i>chronicles the divergent experiences of </span> <span data-line=\"3\">Ifemelu and Obinze, a young Nigerian couple, after </span> <span data-line=\"4\">high school. Ifemelu moves to the United States to </span> <span data-line=\"5\">attend a prestigious university. ______ Obinze </span> <span data-line=\"6\">travels to London, hoping to start a career there. </span> <span data-line=\"7\">However, frustrated with the lack of opportunities, </span> <span data-line=\"8\">he soon returns to Nigeria. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Historians agree that the jazz pianist Jelly Roll </span> <span data-line=\"2\">Morton was exaggerating when he claimed to have </span> <span data-line=\"3\">invented jazz music. No one can deny, _______ that </span> <span data-line=\"4\">Morton’s innovative compositions and remarkable </span> <span data-line=\"5\">improvisational skills helped shape jazz as a genre </span> <span data-line=\"6\">during its early years. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Biographer Michael Gorra notes that the novelist </span> <span data-line=\"2\">Henry James “lived in a world of second thoughts,” </span> <span data-line=\"3\">frequently tinkering with his novels and stories after </span> <span data-line=\"4\">their initial publication. However, the differences </span> <span data-line=\"5\">between the 1881 first edition and the 1908 edition of </span> <span data-line=\"6\">his novel A Portrait of a Lady are extreme, even by </span> <span data-line=\"7\">James’s standards; _______ some critics regard the </span> <span data-line=\"8\">two editions as two different novels altogether. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">When soil becomes contaminated by toxic metals, it </span> <span data-line=\"2\">can be removed from the ground and disposed of </span> <span data-line=\"3\">in a landfill. _______ contaminated soil can be </span> <span data-line=\"4\">detoxified via phytoremediation: plants that can </span> <span data-line=\"5\">withstand high concentrations of metals absorb the </span> <span data-line=\"6\">pollutants and store them in their shoots, which are </span> <span data-line=\"7\">then cut off and safely disposed of, preserving the </span> <span data-line=\"8\">health of the plants. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In retrospect, one of the lessons of the 2003 Human </span> <span data-line=\"2\">Genome Project is that a gene is affected by many </span> <span data-line=\"3\">factors, not the least of which is its interactions with </span> <span data-line=\"4\">the protein products of other genes. _______ rather </span> <span data-line=\"5\">than just focusing on the human genome, efforts to </span> <span data-line=\"6\">better understand gene mutations related to disease </span> <span data-line=\"7\">have begun to consider the human proteome, the </span> <span data-line=\"8\">complete set of proteins expressed by human genes. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-2-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) For instance, </span></p><p><span data-line=\"4\">B) However, </span></p><p><span data-line=\"5\">C) Similarly, </span></p><p><span data-line=\"6\">D) As a result,</span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) for instance, </span></p><p><span data-line=\"4\">B) nevertheless, </span></p><p><span data-line=\"5\">C) meanwhile, </span></p><p><span data-line=\"6\">D) in addition, </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-30":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) in other words, </span></p><p><span data-line=\"4\">B) for instance, </span></p><p><span data-line=\"5\">C) by contrast, </span></p><p><span data-line=\"6\">D) accordingly, </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) For example, </span></p><p><span data-line=\"4\">B) Next, </span></p><p><span data-line=\"5\">C) Similarly, </span></p><p><span data-line=\"6\">D) In contrast, </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) As a result, </span></p><p><span data-line=\"4\">B) In other words, </span></p><p><span data-line=\"5\">C) In addition, </span></p><p><span data-line=\"6\">D) For example, </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) Secondly, </span></p><p><span data-line=\"4\">B) Consequently, </span></p><p><span data-line=\"5\">C) Moreover, </span></p><p><span data-line=\"6\">D) However, </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) Still, </span></p><p><span data-line=\"4\">B) Therefore, </span></p><p><span data-line=\"5\">C) Indeed, </span></p><p><span data-line=\"6\">D) Furthermore, </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) in turn, </span></p><p><span data-line=\"4\">B) likewise, </span></p><p><span data-line=\"5\">C) nevertheless, </span></p><p><span data-line=\"6\">D) in reality, </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) Meanwhile, </span></p><p><span data-line=\"4\">B) Nevertheless, </span></p><p><span data-line=\"5\">C) Secondly, </span></p><p><span data-line=\"6\">D) In fact, </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) therefore, </span></p><p><span data-line=\"4\">B) in the second place, </span></p><p><span data-line=\"5\">C) in other words, </span></p><p><span data-line=\"6\">D) though, </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) by contrast, </span></p><p><span data-line=\"4\">B) in fact, </span></p><p><span data-line=\"5\">C) nevertheless, </span></p><p><span data-line=\"6\">D) in other words, </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) Alternatively, </span></p><p><span data-line=\"4\">B) Specifically, </span></p><p><span data-line=\"5\">C) For example, </span></p><p><span data-line=\"6\">D) As a result, </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-29":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text with the most </span> <span data-line=\"2\">logical transition? </span></p><p><span data-line=\"3\">A) In other words, </span></p><p><span data-line=\"4\">B) That said, </span></p><p><span data-line=\"5\">C) For example, </span></p><p><span data-line=\"6\">D) Accordingly, </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

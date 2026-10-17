@@ -1,0 +1,692 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Writing G06 · Verb Forms</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#3d5a8a; --acc2:#dfe6f3; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Verb Forms" data-foot="Digital SAT Writing · G06 · Verb Forms"><div class="no">LESSON G06</div><h1>Verb Forms</h1><div class="sub">Does the sentence need a main verb? If so, which tense?</div><div class="cnsub">这个位置需要谓语还是非谓语？如果是谓语，用什么时态？</div><div class="goals"><div><b>FINITE OR NOT</b>Every clause needs exactly one finite verb; extra actions become -ing, -ed, or to + verb.</div><div><b>PARTICIPLES</b>-ing = active (the noun does it); -ed = passive (the noun receives it).</div><div><b>TENSE</b>Match the time words and the other verbs in the text.</div></div></section>
+<section class="slide " data-title="Before we start · One verb, many forms" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>One verb, many forms · 一个动词的各种形式</h2></header>
+<table class="t sm">
+<tr><th style="width:16%">Base 原形</th><th style="width:14%">-s form</th><th style="width:16%">Past 过去式</th><th style="width:20%">Past participle 过去分词 (-ed / -en)</th><th style="width:16%">-ing form</th><th>to + verb 不定式</th></tr>
+<tr><td>use</td><td>uses</td><td>used</td><td>used</td><td>using</td><td>to use</td></tr>
+<tr><td>provide</td><td>provides</td><td>provided</td><td>provided</td><td>providing</td><td>to provide</td></tr>
+<tr><td>write</td><td>writes</td><td>wrote</td><td>written</td><td>writing</td><td>to write</td></tr>
+<tr><td>begin</td><td>begins</td><td>began</td><td>begun</td><td>beginning</td><td>to begin</td></tr>
+<tr><td>be</td><td>is / am / are</td><td>was / were</td><td>been</td><td>being</td><td>to be</td></tr>
+</table>
+<div class="grid g2" style="flex:1"><div class="box white"><h3>Why this matters</h3><p>On the SAT, the four choices are often <b>four forms of the same verb</b>: <i>used / to use / using / to have used</i>. You must decide which form the sentence needs.</p></div><div class="box white"><h3>中文说明</h3><p class="cn" style="margin-top:0!important">SAT 动词题的四个选项常常是同一个动词的不同形式。先认识这些形式：原形、三单、过去式、过去分词、-ing、to do。规则动词过去式和过去分词都加 -ed；不规则动词要记（write – wrote – written）。</p></div></div></section>
+<section class="slide " data-title="Before we start · Main verbs and helper forms" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>Finite (main) verbs vs nonfinite forms · 谓语和非谓语</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Finite verb = the main verb 谓语动词</h3>
+<p>A <span class="term">finite verb</span> shows <b>time</b> (past, present, future) and goes with a subject. It can be one word or a group: <i>uses, used, will use, is using, has used, was used</i>.</p>
+<p class="ex ok">✅ <b class="s">Land</b> <b class="v">used</b> his technology.<span class="why">past time → a real main verb</span></p>
+<p class="ex ok">✅ <b class="s">The fish</b> <b class="v">enter</b> a dormant state.</p>
+<p class="ex ok">✅ <b class="s">The bridge</b> <b class="v">was built</b> in 1890.</p>
+<p class="cn">谓语动词（finite verb）= 能表示时间、跟主语搭配的动词，可以是一个词，也可以是一组词（has used、was built）。</p></div><div class="box white"><h3>Nonfinite form = cannot be the main verb 非谓语</h3>
+<p>A <span class="term">nonfinite</span> form shows <b>no time</b>: <b>-ing</b>, <b>to + verb</b>, and <b>-ed/-en</b> without <i>is / was / has</i>. Alone, it cannot make a sentence.</p>
+<p class="ex no">❌ <b class="s">Land</b> <u>using</u> his technology.<span class="why">no main verb → not a sentence</span></p>
+<p class="ex no">❌ <b class="s">The fish</b> <u>to enter</u> a dormant state.</p>
+<p class="ex no">❌ <b class="s">The bridge</b> <u>built</u> in 1890.<span class="why">here “built” only describes the bridge</span></p>
+<p class="cn">非谓语 = doing / to do / done，没有时间，不能单独做谓语，只能修饰或补充。看起来像动词，其实不是“主动词”。</p></div></div></section>
+<section class="slide " data-title="Before we start · Count the verbs" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>Count the verbs: one clause = one main verb · 数谓语</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Rule 规则</h3>
+<p>A <span class="term">clause</span> = a subject + its verb. Every clause needs <b>exactly one</b> finite verb (two are fine only with <i>and / but / or</i>).</p>
+<ol><li>Find the subject.</li><li>Look for a finite verb that goes with it.</li>
+<li><b>None yet</b> → the blank needs a finite verb.<br><b>Already one</b> → the blank needs a nonfinite form (-ing / -ed / to).</li></ol>
+<p>Clauses starting with <b>which, that, who, because, when…</b> also need their <b>own</b> finite verb.</p>
+<p class="cn">每个分句（主句或 which/that/because 从句）都要有且只有一个谓语。还没有谓语 → 空格填谓语；已经有了 → 空格填非谓语。</p></div><div class="box white"><h3>Examples 例句</h3>
+<p class="ex"><b class="s">The birds</b> ___ south every winter.<span class="why">no main verb yet → fly (finite)</span></p>
+<p class="ex ok">✅ <b class="s">The birds</b> <b class="v">fly</b> south, <u>traveling</u> thousands of miles.<span class="why">“fly” is the main verb → the extra action is -ing</span></p>
+<p class="ex no">❌ <b class="s">The birds</b> <b class="v">fly</b> south, <b class="v">travel</b> thousands of miles.<span class="why">two main verbs with only a comma</span></p>
+<p class="ex ok">✅ the handbook, which <b class="v">provided</b> guidance<span class="why">which-clause gets its own finite verb</span></p>
+<p class="ex no">❌ the handbook, which <u>providing</u> guidance<span class="why">the which-clause has no verb</span></p>
+<p class="cn">“which providing” 错：which 从句缺谓语。</p></div></div></section>
+<section class="slide " data-title="Before we start · -ing, -ed, or to + verb?" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>Which nonfinite form? -ing, -ed, or to + verb</h2></header>
+<table class="t sm">
+<tr><th style="width:18%">Form</th><th style="width:30%">Meaning · 含义</th><th>✅ Examples</th></tr>
+<tr><td><b>-ing</b> (present participle 现在分词)</td><td><b>active</b>: the noun <b>does</b> the action 主动、正在</td><td>the girl <b>sitting</b> by the window (she sits) · Snow covered the food, <b>forcing</b> the monkeys to hunt. (result)</td></tr>
+<tr><td><b>-ed / -en</b> (past participle 过去分词)</td><td><b>passive</b>: the noun <b>receives</b> the action 被动、已完成</td><td>a letter <b>written</b> in 1850 (someone wrote it) · <b>Built</b> in 1890, the bridge is still used.</td></tr>
+<tr><td><b>to + verb</b> (infinitive 不定式)</td><td><b>purpose</b>: in order to 目的</td><td>Land used his technology <b>to invent</b> a camera. · <b>To survive</b>, the eggs pause.</td></tr>
+</table>
+<div class="grid g2" style="flex:1"><div class="box white"><h3>Test: do or receive?</h3><p class="ex no">❌ a letter <b>writing</b> in 1850<span class="why">a letter cannot write → written</span></p><p class="ex no">❌ the girl <b>sat</b> by the window smiled<span class="why">two finite verbs → sitting</span></p></div><div class="box white"><h3>中文说明</h3><p class="cn" style="margin-top:0!important">问自己：这个名词是“做”这个动作（用 -ing），还是“被”做（用 -ed）？如果表示“为了……”，用 to do。信不能自己写，所以是 a letter written。</p></div></div></section>
+<section class="slide " data-title="Before we start · The tense table" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>Tense = time + shape · 时态表</h2></header>
+<table class="t sm">
+<tr><th style="width:18%"></th><th style="width:27%">Past 过去</th><th style="width:27%">Present 现在</th><th>Future 将来</th></tr>
+<tr><td><b>Simple</b> 一般</td><td>studied</td><td>study / studies</td><td>will study</td></tr>
+<tr><td><b>Progressive</b> 进行 (be + -ing)</td><td>was / were studying</td><td>am / is / are studying</td><td>will be studying</td></tr>
+<tr><td><b>Perfect</b> 完成 (have + -ed)</td><td><b>had studied</b></td><td><b>has / have studied</b></td><td>will have studied</td></tr>
+<tr><td><b>Perfect progressive</b> 完成进行</td><td>had been studying</td><td>has / have been studying</td><td>will have been studying</td></tr>
+</table>
+<div class="grid g2" style="flex:1"><div class="box white"><h3>Most tested on the SAT</h3><p><b>simple present</b> (facts, habits, describing a book), <b>simple past</b> (finished past event), <b>present perfect</b> (past → now), <b>past perfect</b> (earlier past).</p></div><div class="box white"><h3>中文说明</h3><p class="cn" style="margin-top:0!important">时态 = 时间（过去/现在/将来）+ 形态（一般/进行/完成/完成进行），共 12 种。SAT 最常考：一般现在、一般过去、现在完成、过去完成。根据时间线选，不要凭语感。</p></div></div></section>
+<section class="slide " data-title="Before we start · Past, has done, had done" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>Past, present perfect, past perfect on a timeline</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>The timeline 时间线</h3><div style="position:relative;height:84px;margin:4px 10px;font-size:14px"><div style="position:absolute;left:0;right:0;top:48px;border-top:3px solid #7a8290"></div><div style="position:absolute;left:60%;width:30%;top:43px;height:13px;background:#9fd0b0;border-radius:7px"></div><div style="position:absolute;left:58%;top:62px;white-space:nowrap"><b>has grown</b> (past → now)</div><div style="position:absolute;left:10%;top:0;width:110px;margin-left:-55px;text-align:center;line-height:1.2"><b>had left</b><br>earlier past</div><div style="position:absolute;left:10%;top:42px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#b3261e"></div><div style="position:absolute;left:35%;top:0;width:110px;margin-left:-55px;text-align:center;line-height:1.2"><b>arrived</b><br>past point</div><div style="position:absolute;left:35%;top:42px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#1d5fa8"></div><div style="position:absolute;left:90%;top:0;width:110px;margin-left:-55px;text-align:center;line-height:1.2"><b>NOW</b><br></div><div style="position:absolute;left:90%;top:42px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#1d7f52"></div></div>
+<p class="ex ok">✅ The museum <b class="v">opened</b> in 1920.<span class="why">finished past time → simple past</span></p>
+<p class="ex no">❌ The museum <b class="v">has opened</b> in 1920.<span class="why">has + done does not go with “in 1920”</span></p>
+<p class="ex ok">✅ Since 2010, the city <b class="v">has grown</b>.<span class="why">since → from the past up to now</span></p>
+<p class="ex ok">✅ When we arrived, the train <b class="v">had left</b>.<span class="why">left happened before arrived</span></p></div><div class="box white"><h3>Clue words 时间线索</h3>
+<table class="t sm">
+<tr><th>Clue</th><th>Tense</th></tr>
+<tr><td>in 1920, ago, last year, a decade later</td><td>simple past</td></tr>
+<tr><td>since, for (up to now), so far, before (now), recently</td><td>has / have + done</td></tr>
+<tr><td>by [past time], before [past event], already (in a past story)</td><td>had + done</td></tr>
+<tr><td>today, now, currently; facts; describing a book</td><td>simple present</td></tr>
+</table>
+<p>Also: keep the tense <b>consistent</b> with the other verbs in the text.</p>
+<p class="cn">had done = “过去的过去”，必须有另一个过去时间点作参照；has done = 从过去延续/影响到现在，不能和 in 1920 这种明确过去时间连用。</p></div></div></section>
+<section class="slide " data-title="Before we start · Active and passive voice" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Grammar You Need</div><h2>Voice: does the subject do the action or receive it? · 语态</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Active 主动 vs Passive 被动</h3>
+<p><span class="term">Active voice</span>: the subject <b>does</b> the action. <span class="term">Passive voice</span>: the subject <b>receives</b> the action. Passive = <b>be + past participle</b>.</p>
+<p class="ex ok">✅ <b class="s">The committee</b> <b class="v">reviewed</b> the proposal.<span class="why">active: the committee did it</span></p>
+<p class="ex ok">✅ <b class="s">The proposal</b> <b class="v">was reviewed</b> by the committee.<span class="why">passive: the proposal received it</span></p>
+<p class="ex no">❌ <b class="s">The experiment</b> <b class="v">conducted</b> the scientists.<span class="why">an experiment cannot conduct anyone</span></p>
+<p><b>Test:</b> Can the subject perform this action?</p>
+<p class="cn">主动：主语做动作；被动：主语承受动作（be + done）。检验：主语能不能自己做这个动作？</p></div><div class="box white"><h3>Passive in every tense 被动的时态</h3>
+<table class="t sm">
+<tr><th>Tense</th><th>Passive form</th></tr>
+<tr><td>present</td><td>is / are <b>built</b></td></tr>
+<tr><td>past</td><td>was / were <b>built</b></td></tr>
+<tr><td>present perfect</td><td>has / have been <b>built</b></td></tr>
+<tr><td>past perfect</td><td>had been <b>built</b></td></tr>
+<tr><td>future</td><td>will be <b>built</b></td></tr>
+<tr><td>after can / must</td><td>can be <b>built</b></td></tr>
+</table>
+<p class="cn">被动的时态体现在 be 的形式上，后面的过去分词不变。行动者未知或不重要时，被动语态是正确、自然的。</p></div></div></section>
+<section class="slide " data-title="Quick check 1 · Main verb or not?" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Quick Check</div><h2>Quick check 1 · Main verb or not?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>Every spring, the river ___ its banks. (flooding / floods)</summary><div class="a"><b>floods</b> — the clause has no main verb yet.</div></details><details class="qc"><summary><span class="q">2.</span>The river floods every spring, ___ the nearby farms. (covers / covering)</summary><div class="a"><b>covering</b> — “floods” is already the main verb; the extra action is -ing.</div></details><details class="qc"><summary><span class="q">3.</span>She saved money ___ a new bike. (to buy / buys)</summary><div class="a"><b>to buy</b> — purpose: in order to buy.</div></details><details class="qc"><summary><span class="q">4.</span>The book, ___ in 1925, is still popular. (written / writing)</summary><div class="a"><b>written</b> — the book was written (passive).</div></details><details class="qc"><summary><span class="q">5.</span>The scientist ___ the results last year. (to publish / published)</summary><div class="a"><b>published</b> — no main verb yet; “last year” → past.</div></details><details class="qc"><summary><span class="q">6.</span>a tool that ___ farmers (helps / helping)</summary><div class="a"><b>helps</b> — a that-clause needs its own finite verb.</div></details><details class="qc"><summary><span class="q">7.</span>The girl ___ next to me is my cousin. (sitting / sits)</summary><div class="a"><b>sitting</b> — “is” is the main verb; she sits → active -ing.</div></details><details class="qc"><summary><span class="q">8.</span>___ in the desert, the plant needs little water. (Growing / Grows)</summary><div class="a"><b>Growing</b> — an opening phrase; the main verb is “needs”.</div></details></div></section>
+<section class="slide " data-title="Quick check 2 · Tense and voice" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Quick Check</div><h2>Quick check 2 · Tense and voice<span class="cn">先找时间线索，再问主语是做还是被做</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>In 1969, astronauts ___ on the Moon. (have landed / landed)</summary><div class="a"><b>landed</b> — “In 1969” = finished past time.</div></details><details class="qc"><summary><span class="q">2.</span>Since 2015, the town ___ two new schools. (built / has built)</summary><div class="a"><b>has built</b> — since → up to now.</div></details><details class="qc"><summary><span class="q">3.</span>By the time help arrived, the fire ___ out. (has burned / had burned)</summary><div class="a"><b>had burned</b> — before another past event.</div></details><details class="qc"><summary><span class="q">4.</span>Water ___ at 100°C. (boiled / boils)</summary><div class="a"><b>boils</b> — a general fact → simple present.</div></details><details class="qc"><summary><span class="q">5.</span>The bridge ___ in 1890. (built / was built)</summary><div class="a"><b>was built</b> — the bridge received the action.</div></details><details class="qc"><summary><span class="q">6.</span>Today, the painting ___ in Paris. (is displayed / displayed)</summary><div class="a"><b>is displayed</b> — “Today” + passive.</div></details></div></section>
+<section class="slide " data-title="Finite and nonfinite verbs" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Finite and nonfinite</div><h2>Finite and nonfinite verbs</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Finite verb = main verb with a time 谓语动词</h3><p>Shows tense and goes with a subject: <i>claim, claims, claimed, will claim, has claimed</i>.</p><p>Every clause (main clause, or a clause after <i>which / that / because…</i>) needs <b>one</b>.</p>
+  <p class="ex" style="font-size:16px">Some historians <b>claim</b> that…</p><p class="ex" style="font-size:16px">…the Handbook, which <b>provided</b> detailed guidance…</p></div>
+ <div class="box white"><h3>Nonfinite form = no time, not the main verb 非谓语</h3><p>No tense; cannot be the main verb: <i>to claim</i> (infinitive), <i>claiming</i> (present participle), <i>having claimed</i>, <i>claimed</i> (past participle used as a description).</p>
+  <p class="ex" style="font-size:16px">✗ Some historians <b>claiming</b> that… (no main verb)</p>
+  <p>Use a nonfinite verb when the clause <b>already has</b> its main verb and you are adding another action.</p></div>
+</div>
+<div class="box acc"><p><b>Count the verbs.</b> If the clause has no finite verb yet, the blank needs one. If it already has one (and no conjunction joins a second), the blank needs a nonfinite form. <span class="cn">数动词：从句中还没有谓语 → 填谓语；已有谓语 → 填非谓语。</span></p></div></section>
+<section class="slide " data-title="Choosing among -ing, -ed, and to + verb" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Which nonfinite form?</div><h2>Choosing among -ing, -ed, and to + verb</h2></header>
+<table class="t sm">
+<tr><th>Form</th><th>Meaning</th><th>SAT example</th></tr>
+<tr><td><b>-ing</b> (present participle)</td><td>the noun <b>does</b> the action; often a result or added action</td><td>snow and ice cover the food sources, <b>forcing</b> the monkeys to hunt for marine animals (1-2-21)</td></tr>
+<tr><td><b>-ed</b> (past participle)</td><td>the noun <b>receives</b> the action (passive)</td><td><b>Created</b> by businessman William A.G. Brown, the saloon was known… (6-1-19): the saloon was created</td></tr>
+<tr><td><b>to + verb</b> (infinitive)</td><td><b>purpose</b>: in order to</td><td>re-created and reprogrammed the “genetic scissors” … <b>to forge</b> a tool… (4-2-24)</td></tr>
+</table>
+<div class="box white"><p><b>Ask:</b> does the noun do the action or receive it? Is the second action a result, or a purpose? <span class="cn">主动用 -ing，被动用 -ed，目的用 to do。</span></p></div></section>
+<section class="slide " data-title="Choosing the tense" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Tense</div><h2>Choosing the tense</h2></header>
+<table class="t sm">
+<tr><th>Clue in the text</th><th>Tense</th><th>Example</th></tr>
+<tr><td>general facts, habits, how things work; describing a book or artwork</td><td>simple present</td><td>the wood frog <b>survives</b> by producing glucose · Linda <b>experiences</b> a form of synesthesia</td></tr>
+<tr><td>“Today,” “now”</td><td>present</td><td>Today, Paik <b>is</b> considered the first video artist.</td></tr>
+<tr><td>a finished past event, a past date</td><td>simple past</td><td>A decade later, Land <b>used</b> his technology…</td></tr>
+<tr><td>“By [a past time]”: completed before that past time</td><td>past perfect (had + -ed)</td><td>By the end of the 1990s, the organization <b>had doubled</b> its membership.</td></tr>
+<tr><td>from the past up to now; “before” (until now)</td><td>present perfect (has / have + -ed)</td><td>her writing <b>has been</b> honored before</td></tr>
+</table>
+<p class="cn">看时间词和上下文其他动词的时态，保持一致。描述文学作品用一般现在时。</p></section>
+<section class="slide " data-title="Four steps for verb forms" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">How to approach it</div><h2>Four steps for verb forms</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Look at the choices</h3><p>Different forms (to / -ing / -ed / finite)? → finite or not. Different tenses? → tense. <span class="cn">选项是形式不同，还是时态不同？</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Find the subject and count the finite verbs in the clause</h3><p>No finite verb yet → the blank needs one. Already has one → nonfinite. <span class="cn">找主语，数谓语。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>For nonfinite: active, passive, or purpose?</h3><p>-ing, -ed, or to + verb. <span class="cn">主动、被动还是目的？</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>For tense: find the time clue</h3><p>Dates, “today,” “by…,” and the tense of nearby verbs. <span class="cn">找时间线索。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T1-1-23" data-lab="Form 1 · Module 1 · Question 23 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The choices are four forms of <i>claim</i>: <i>claiming / claim / having claimed / to claim</i>. Only one is a finite verb.</p><p class="cn">四个选项中只有 claim 是谓语形式。</p></div></div><div class="right fitq"><div class="qimg" data-q="T1-1-23"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T1-1-23" data-hl="4-7" data-lab="Form 1 · Module 1 · Question 23 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Find the subject</h3><p>“<b>Some historians</b> ___ that this ‘tulip mania’ was the first … asset bubble.”</p></div></div><div class="step"><div class="n">2</div><div><h3>Count the finite verbs</h3><p>In the clause “Some historians ___ that…,” there is <b>no</b> finite verb yet. (“was” belongs to the that-clause; “occurs” to the which-clause.)</p></div></div><div class="step"><div class="n">3</div><div><h3>So</h3><p>The blank must be the main (finite) verb of the sentence.</p></div></div><div class="step"><div class="n">4</div><div><h3>Tense</h3><p>Historians make this claim now → present: <b>claim</b> (plural subject).</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T1-1-23"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r">“claiming” is nonfinite; the sentence would have no main verb.</div></div><div class="vd keep hidden-v"><div class="L">B</div><div class="v">KEEP ✓</div><div class="r">“claim” is a finite present-tense verb that agrees with “historians.”</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">“having claimed” is nonfinite; no main verb.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">“to claim” is nonfinite; no main verb.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: B.</b> Count the finite verbs in the clause. If there is none, the blank must supply it. <span class="cn">句子还没有谓语 → 空格填谓语。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 2 · Module 1 · Question 20" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Worked Example 2</div><h2>Form 2 · Module 1 · Question 20<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T2-1-20" data-hl="1-3" data-lab="Form 2 · Module 1 · Question 20 · the text"></div><div class="qimg" data-q="T2-1-20"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“enter / to enter / having entered / entering”: one finite verb and three nonfinite forms. → Does the sentence still need its main verb? <span class="cn">一个谓语、三个非谓语 → 考谓语还是非谓语。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the subject · 找主语</h3><p>“<i class="x">To survive when water is scarce,</i> <b class="s">embryos</b> <i class="x">inside African turquoise killifish eggs</i> ___ a dormant state.” The opening to-phrase is purpose. Subject = <b>embryos</b>. <span class="cn">句首 to survive 表目的，划掉；主语是 embryos。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Count the verbs · 数谓语</h3><p>“is scarce” belongs to the when-clause. The main clause “embryos ___ a dormant state” has <b>no finite verb</b> yet. <span class="cn">is 属于 when 从句；主句还没有谓语。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>No main verb → the blank needs a finite verb: <b>enter</b> (plural embryos, present like “is paused”). <span class="cn">主句缺谓语 → enter。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ “to enter” is nonfinite: no main verb.<br><b>C</b> ✗ “having entered” is nonfinite.<br><b>D</b> ✗ “entering” is nonfinite.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> “To survive when water is scarce” is an introductory phrase. Main clause: “<b>embryos</b> inside … eggs ___ a dormant state.” No finite verb yet → <b>enter</b> (present, plural). <span class="cn">主句还没有谓语，填 enter。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 5 · Module 1 · Question 21" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Worked Example 3</div><h2>Form 5 · Module 1 · Question 21<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T5-1-21" data-hl="3-5" data-lab="Form 5 · Module 1 · Question 21 · the text"></div><div class="qimg" data-q="T5-1-21"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“used / to have used / to use / using”: one finite, three nonfinite. <span class="cn">一个谓语、三个非谓语。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the subject · 找主语</h3><p>“<i class="x">A decade later,</i> <b class="s">Land</b> ___ his technology <i class="x">to invent the world’s first instant camera</i>.” Subject = <b>Land</b>. <span class="cn">主语是 Land。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Count the verbs · 数谓语</h3><p>“to invent” is nonfinite (purpose). So the clause has <b>no finite verb</b> yet; the blank must supply it. <span class="cn">to invent 是非谓语（目的），句子还缺谓语。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Choose the tense · 时态</h3><p>“A decade later” than 1929 → a finished past event → simple past <b>used</b>. <span class="cn">1929 年之后十年 → 过去时 used。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ “to have used” is nonfinite.<br><b>C</b> ✗ “to use” is nonfinite.<br><b>D</b> ✗ “using” is nonfinite.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> Subject: <b>Land</b>; no finite verb yet. Time: “A decade later” than 1929 → past → <b>used</b>. “to invent” is already the purpose. <span class="cn">主句缺谓语，过去时间 → used。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 3 · Module 1 · Question 20" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Worked Example 4</div><h2>Form 3 · Module 1 · Question 20<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T3-1-20" data-hl="1-5" data-lab="Form 3 · Module 1 · Question 20 · the text"></div><div class="qimg" data-q="T3-1-20"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“provided / having provided / to provide / providing”: one finite, three nonfinite. <span class="cn">一个谓语、三个非谓语。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the structure · 分析结构</h3><p>Main clause: “<b class="s">Mary Golda Ross</b> <b class="v">is</b> renowned for…” — it already has its verb. But the blank is inside a <b>new clause</b>: “…Handbook, <b>which</b> ___ detailed guidance.” <span class="cn">主句已有谓语 is，但空格在 which 从句里。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Count the verbs · 数谓语</h3><p>A which-clause needs its <b>own</b> finite verb. “which ___ guidance” has none yet. <span class="cn">which 从句需要自己的谓语，现在还没有。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Finite verb → <b>provided</b> — the only finite choice. Simple past fits: the handbook gave this guidance in the past.. <span class="cn">从句缺谓语 → provided。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ “having provided” is nonfinite: the which-clause would have no verb.<br><b>C</b> ✗ “to provide” is nonfinite.<br><b>D</b> ✗ “providing” is nonfinite.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> “…NASA’s Planetary Flight Handbook, <b>which</b> ___ detailed mathematical guidance.” A clause starting with <i>which</i> needs its own finite verb → <b>provided</b>. <span class="cn">which 引导的从句也需要谓语。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 6-1-19" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Practice 1 of 4</div><h2>Form 6 · Module 1 · Question 19</h2></header><div class="work"><div class="pv" data-p="T6-1-19" data-lab="Form 6 · Module 1 · Question 19 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-19"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The main clause is “the saloon was known to offer….” Did the saloon create, or was it created?</div><div class="fb"></div><template class="why">The main clause already has its verb (“was known”). The blank begins an introductory phrase describing <b>the saloon</b>, which <b>was created</b> by Brown → passive → past participle <b>Created</b>. <span class="cn">酒馆是“被创建”的，用过去分词。</span></template><template class="wrong" data-l="B">“Creates” is finite; two finite verbs with no conjunction.</template><template class="wrong" data-l="C">“Creating” would mean the saloon created something.</template><template class="wrong" data-l="D">“Create” is a finite (or command) form.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 1-2-21" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Practice 2 of 4</div><h2>Form 1 · Module 2 · Question 21</h2></header><div class="work"><div class="pv" data-p="T1-2-21" data-lab="Form 1 · Module 2 · Question 21 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-21"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="4-8" data-hint="4-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The clause “those food sources may become unavailable…” already has a verb. What does the blank add?</div><div class="fb"></div><template class="why">Main clause: “those food sources <b>may become</b> unavailable because of extensive snow and ice cover.” The blank adds the <b>result</b>: this forces the monkeys to hunt for marine animals → participial phrase: <b>forcing</b>. <span class="cn">已有谓语；表示结果的伴随动作用 -ing。</span></template><template class="wrong" data-l="A">“forces” is finite: a comma cannot join a second verb with no subject or conjunction.</template><template class="wrong" data-l="B">“to force” suggests purpose (the snow intends to force), which makes no sense.</template><template class="wrong" data-l="D">“forced” would describe the snow cover as having been forced.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 4-1-20" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Practice 3 of 4</div><h2>Form 4 · Module 1 · Question 20</h2></header><div class="work"><div class="pv" data-p="T4-1-20" data-lab="Form 4 · Module 1 · Question 20 · the text"></div><div class="right"><div class="qimg" data-q="T4-1-20"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is the text describing one past event, or how the wood frog always survives?</div><div class="fb"></div><template class="why">The text describes a <b>general fact</b> about the species (“is unable to generate its own heat”) → simple present → <b>survives</b>. <span class="cn">描述物种的普遍特征，用一般现在时。</span></template><template class="wrong" data-l="A">“had survived” (past perfect) suggests a completed past event before another.</template><template class="wrong" data-l="B">“survived” suggests a single past event.</template><template class="wrong" data-l="C">“would survive” suggests a hypothetical situation.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 2-1-21" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">Practice 4 of 4</div><h2>Form 2 · Module 1 · Question 21</h2></header><div class="work"><div class="pv" data-p="T2-1-21" data-lab="Form 2 · Module 1 · Question 21 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-21"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="5-7" data-hint="5-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find the time clue “By the end of the 1990s.” Is that past or present?</div><div class="fb"></div><template class="why">“<b>By</b> the end of the 1990s” (a past time) → the doubling was <b>completed before</b> that past point → past perfect: <b>had doubled</b>. <span class="cn">By + 过去时间 → 过去完成时。</span></template><template class="wrong" data-l="A">“has doubled” connects to the present, but the time point is in the past.</template><template class="wrong" data-l="C">“doubles” is present.</template><template class="wrong" data-l="D">“will double” is future.</template></div></div></div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Writing · G06 · Verb Forms" data-title="What to remember about verb forms"><header><div class="kk">Summary</div><h2>What to remember about verb forms<span class="cn">动词形式要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 限定动词</h3><div class="summary-copy">Every clause (including which / that clauses) needs <b>one finite verb</b>. No finite verb yet → the blank needs one.</div></article><article class="summary-card"><h3 class="summary-label">02 · 非限定动词</h3><div class="summary-copy">Clause already has its verb → the extra action is nonfinite: <b>-ing</b> (active / result), <b>-ed</b> (passive), <b>to + verb</b> (purpose).</div></article><article class="summary-card"><h3 class="summary-label">03 · 主动与被动</h3><div class="summary-copy">Introductory participle: does the subject do the action (-ing) or receive it (-ed)?</div></article><article class="summary-card"><h3 class="summary-label">04 · 时态线索</h3><div class="summary-copy">Tense: general facts and literary works → present; “Today” → present; past dates → past; “By [past time]” → past perfect.</div></article><article class="summary-card"><h3 class="summary-label">05 · 时态一致</h3><div class="summary-copy">Make the tense consistent with the other verbs in the text.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">More Practice</div><h2>5 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 3-2-18" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">More Practice 1 of 5</div><h2>Form 3 · Module 2 · Question 18</h2></header><div class="work"><div class="pv" data-p="T3-2-18" data-lab="Form 3 · Module 2 · Question 18 · the text"></div><div class="right"><div class="qimg" data-q="T3-2-18"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="1-4" data-hint="1-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What tense are the other verbs (“travel,” “are diverted”)?</div><div class="fb"></div><template class="why">The text describes how a synchrotron <b>always</b> works: atoms “travel” and “are diverted” (present). Consistent → <b>reach</b> (present, plural). <span class="cn">与 travel、are diverted 保持一般现在时。</span></template><template class="wrong" data-l="A">“will reach” is future, inconsistent with the other verbs.</template><template class="wrong" data-l="C">“had reached” is past perfect.</template><template class="wrong" data-l="D">“are reaching” suggests something happening right now, not a general process.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 5-2-18" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">More Practice 2 of 5</div><h2>Form 5 · Module 2 · Question 18</h2></header><div class="work"><div class="pv" data-p="T5-2-18" data-lab="Form 5 · Module 2 · Question 18 · the text"></div><div class="right"><div class="qimg" data-q="T5-2-18"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="4-7" data-hint="4-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>“In January 2023, Nery and her colleagues ___ a study…” Is there a main verb?</div><div class="fb"></div><template class="why">Subject: “Nery and her colleagues”; no finite verb yet. Past date (January 2023) → <b>published</b>. <span class="cn">缺谓语，过去时间 → published。</span></template><template class="wrong" data-l="B">“publishing” is nonfinite.</template><template class="wrong" data-l="C">“having published” is nonfinite.</template><template class="wrong" data-l="D">“to publish” is nonfinite.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 1-2-23" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">More Practice 3 of 5</div><h2>Form 1 · Module 2 · Question 23</h2></header><div class="work"><div class="pv" data-p="T1-2-23" data-lab="Form 1 · Module 2 · Question 23 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-23"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="4-5" data-hint="4-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find the time word at the start of the sentence.</div><div class="fb"></div><template class="why">“<b>Today</b>, Paik ___ considered the first video artist.” → present → <b>is</b>. <span class="cn">Today → 一般现在时。</span></template><template class="wrong" data-l="A">“will be” is future.</template><template class="wrong" data-l="B">“had been” is past perfect.</template><template class="wrong" data-l="C">“was” is past, but the text says “Today.”</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 2-1-23" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">More Practice 4 of 5</div><h2>Form 2 · Module 1 · Question 23</h2></header><div class="work"><div class="pv" data-p="T2-1-23" data-lab="Form 2 · Module 1 · Question 23 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-23"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-7" data-hint="1-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What tense are the other verbs used to describe Truong’s novels?</div><div class="fb"></div><template class="why">The text describes novels in the present: Bình “connects,” “he prepares.” Literary works are discussed in the present → <b>experiences</b>. <span class="cn">描述小说内容用一般现在时。</span></template><template class="wrong" data-l="A">“experienced” is past, inconsistent with “connects.”</template><template class="wrong" data-l="B">“had experienced” is past perfect.</template><template class="wrong" data-l="D">“will be experiencing” is future.</template></div></div></div></section>
+<section class="slide " data-title="Practice 5: 4-2-24" data-foot="Digital SAT Writing · G06 · Verb Forms"><header><div class="kk">More Practice 5 of 5</div><h2>Form 4 · Module 2 · Question 24</h2></header><div class="work"><div class="pv" data-p="T4-2-24" data-lab="Form 4 · Module 2 · Question 24 · the text"></div><div class="right"><div class="qimg" data-q="T4-2-24"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-7" data-hint="1-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The main clause already has its verbs (“re-created and then reprogrammed”). Why did they do it?</div><div class="fb"></div><template class="why">Main clause: the chemists “<b>re-created and then reprogrammed</b>” the genetic scissors. The blank tells the <b>purpose</b>: in order to forge a tool → <b>to forge</b>. <span class="cn">已有谓语；表示目的用 to do。</span></template><template class="wrong" data-l="B">“forging” without a comma reads as describing the bacteria.</template><template class="wrong" data-l="C">“forged” could be read as a third main verb with no conjunction, or as describing the bacteria.</template><template class="wrong" data-l="D">“and forging” joins a participle to finite verbs: not parallel.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-1-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1637, the price of tulips skyrocketed in </span> <span data-line=\"2\">Amsterdam, with single bulbs of rare varieties </span> <span data-line=\"3\">selling for up to the equivalent of $200,000 in today’s </span> <span data-line=\"4\">US dollars. Some historians _______ that this “tulip </span> <span data-line=\"5\">mania” was the first historical instance of an asset </span> <span data-line=\"6\">bubble, which occurs when investors drive prices to </span> <span data-line=\"7\">highs not supported by actual demand. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">To survive when water is scarce, embryos </span> <span data-line=\"2\">inside African turquoise killifish eggs ______ a </span> <span data-line=\"3\">dormant state known as diapause. In this state, </span> <span data-line=\"4\">embryonic development is paused for as long as two </span> <span data-line=\"5\">years—longer than the life span of an adult killifish. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1929, Edwin Herbert Land invented a polarizing </span> <span data-line=\"2\">filter that was featured in a number of products, from </span> <span data-line=\"3\">sunglasses to 3D movies. A decade later, Land </span> <span data-line=\"4\">_______ his technology to invent the world’s first </span> <span data-line=\"5\">instant camera, the Polaroid Land camera. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">A member of the Cherokee Nation, Mary Golda Ross </span> <span data-line=\"2\">is renowned for her contributions to NASA’s </span> <span data-line=\"3\">Planetary Flight Handbook, which _______ detailed </span> <span data-line=\"4\">mathematical guidance for missions to Mars and </span> <span data-line=\"5\">Venus. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-19":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The Boston Saloon was one of the most popular </span> <span data-line=\"2\">African American–owned establishments in </span> <span data-line=\"3\">nineteenth-century Nevada. _______ by </span> <span data-line=\"4\">businessman William A.G. Brown, the saloon was </span> <span data-line=\"5\">known to offer elegant accommodations and an </span> <span data-line=\"6\">inclusive environment. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In winter, the diets of Japanese macaques, also </span> <span data-line=\"2\">known as snow monkeys, are influenced more </span> <span data-line=\"3\">by food availability than by food preference. </span> <span data-line=\"4\">Although the monkeys prefer to eat vegetation and </span> <span data-line=\"5\">land-dwelling invertebrates, those food sources may </span> <span data-line=\"6\">become unavailable because of extensive snow and </span> <span data-line=\"7\">ice cover, _______ the monkeys to hunt for marine </span> <span data-line=\"8\">animals in any streams that have not frozen over. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Like other amphibians, the wood frog (<i>R</i><i>a</i><i>n</i><i>a</i><i> </i></span> <span data-line=\"2\"><i>s</i><i>y</i><i>l</i><i>v</i><i>a</i><i>t</i><i>i</i><i>c</i><i>a</i>) is unable to generate its own heat, so </span> <span data-line=\"3\">during periods of subfreezing temperatures, it </span> <span data-line=\"4\">_______ by producing large amounts of glucose, a </span> <span data-line=\"5\">sugar that helps prevent damaging ice from forming </span> <span data-line=\"6\">inside its cells. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Formed in 1967 to foster political and economic </span> <span data-line=\"2\">stability within the Asia-Pacific region, the </span> <span data-line=\"3\">Association of Southeast Asian Nations was </span> <span data-line=\"4\">originally made up of five members: Thailand, the </span> <span data-line=\"5\">Philippines, Singapore, Malaysia, and Indonesia. By </span> <span data-line=\"6\">the end of the 1990s, the organization ______ its </span> <span data-line=\"7\">initial membership. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-18":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Atoms in a synchrotron, a type of circular particle </span> <span data-line=\"2\">accelerator, travel faster and faster until they ______ </span> <span data-line=\"3\">a desired energy level, at which point they are </span> <span data-line=\"4\">diverted to collide with a target, smashing the atoms. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-18":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">How did whales, once no bigger than seals, evolve </span> <span data-line=\"2\">to become the largest animals on Earth? Brazilian </span> <span data-line=\"3\">biologist Mariana Nery believes the answer might be </span> <span data-line=\"4\">found in whales’ DNA. In January 2023, Nery and </span> <span data-line=\"5\">her colleagues _______ a study showing changes </span> <span data-line=\"6\">over time in four whale genes associated with </span> <span data-line=\"7\">body size. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In his 1963 exhibition <i>E</i><i>x</i><i>p</i><i>o</i><i>s</i><i>i</i><i>t</i><i>i</i><i>o</i><i>n</i><i> </i><i>o</i><i>f</i><i> </i><i>M</i><i>u</i><i>s</i><i>i</i><i>c</i><i>—</i><i> </i></span> <span data-line=\"2\"><i>E</i><i>l</i><i>e</i><i>c</i><i>t</i><i>r</i><i>o</i><i>n</i><i>i</i><i>c</i><i> </i><i>T</i><i>e</i><i>l</i><i>e</i><i>v</i><i>i</i><i>s</i><i>i</i><i>o</i><i>n</i>, Korean American artist </span> <span data-line=\"3\">Nam June Paik showed how television images could </span> <span data-line=\"4\">be manipulated to express an artist’s perspective. </span> <span data-line=\"5\">Today, Paik _______ considered the first video artist. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Food and the sensation of taste are central to </span> <span data-line=\"2\">Monique Truong’s novels. In <i>T</i><i>h</i><i>e</i><i> </i><i>B</i><i>o</i><i>o</i><i>k</i><i> </i><i>o</i><i>f</i><i> </i><i>S</i><i>a</i><i>l</i><i>t</i>, for </span> <span data-line=\"3\">example, the exiled character of Bình connects to his </span> <span data-line=\"4\">native Saigon through the food he prepares, while in </span> <span data-line=\"5\"><i>B</i><i>i</i><i>t</i><i>t</i><i>e</i><i>r</i><i> </i><i>i</i><i>n</i><i> </i><i>t</i><i>h</i><i>e</i><i> </i><i>M</i><i>o</i><i>u</i><i>t</i><i>h</i>, the character of Linda ______ a </span> <span data-line=\"6\">form of synesthesia whereby the words she hears </span> <span data-line=\"7\">evoke tastes. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Working from an earlier discovery of Charpentier’s, </span> <span data-line=\"2\">chemists Emmanuelle Charpentier and Jennifer </span> <span data-line=\"3\">Doudna—winners of the 2020 Nobel Prize in </span> <span data-line=\"4\">Chemistry—re-created and then reprogrammed </span> <span data-line=\"5\">the so-called “genetic scissors” of a species of </span> <span data-line=\"6\">DNA-cleaving bacteria _______ a tool that is </span> <span data-line=\"7\">revolutionizing the field of gene technology. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-1-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) claiming </span></p><p><span data-line=\"4\">B) claim </span></p><p><span data-line=\"5\">C) having claimed </span></p><p><span data-line=\"6\">D) to claim </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) enter </span></p><p><span data-line=\"4\">B) to enter </span></p><p><span data-line=\"5\">C) having entered </span></p><p><span data-line=\"6\">D) entering </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) used </span></p><p><span data-line=\"4\">B) to have used </span></p><p><span data-line=\"5\">C) to use </span></p><p><span data-line=\"6\">D) using </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) provided </span></p><p><span data-line=\"4\">B) having provided </span></p><p><span data-line=\"5\">C) to provide </span></p><p><span data-line=\"6\">D) providing </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-19":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Created </span></p><p><span data-line=\"4\">B) Creates </span></p><p><span data-line=\"5\">C) Creating </span></p><p><span data-line=\"6\">D) Create </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) forces </span></p><p><span data-line=\"4\">B) to force </span></p><p><span data-line=\"5\">C) forcing </span></p><p><span data-line=\"6\">D) forced </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) had survived </span></p><p><span data-line=\"4\">B) survived </span></p><p><span data-line=\"5\">C) would survive </span></p><p><span data-line=\"6\">D) survives </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) has doubled </span></p><p><span data-line=\"4\">B) had doubled </span></p><p><span data-line=\"5\">C) doubles </span></p><p><span data-line=\"6\">D) will double </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-18":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) will reach</span></p><p><span data-line=\"4\">B) reach</span></p><p><span data-line=\"5\">C) had reached</span></p><p><span data-line=\"6\">D) are reaching</span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-18":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) published </span></p><p><span data-line=\"4\">B) publishing </span></p><p><span data-line=\"5\">C) having published </span></p><p><span data-line=\"6\">D) to publish </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) will be </span></p><p><span data-line=\"4\">B) had been </span></p><p><span data-line=\"5\">C) was </span></p><p><span data-line=\"6\">D) is </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) experienced </span></p><p><span data-line=\"4\">B) had experienced </span></p><p><span data-line=\"5\">C) experiences </span></p><p><span data-line=\"6\">D) will be experiencing </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) to forge </span></p><p><span data-line=\"4\">B) forging </span></p><p><span data-line=\"5\">C) forged </span></p><p><span data-line=\"6\">D) and forging </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

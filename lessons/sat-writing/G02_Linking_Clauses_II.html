@@ -1,0 +1,677 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Writing G02 · Linking Clauses II</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#2d5f3f; --acc2:#dcefe2; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Linking Clauses II" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><div class="no">LESSON G02</div><h1>Linking Clauses II</h1><div class="sub">Dependent clauses, phrases, and words like however: where the punctuation goes</div><div class="cnsub">从句、短语和 however 一类连接副词：标点该放在哪里</div><div class="goals"><div><b>DEPENDENT CLAUSES</b>A because / while / when clause cannot stand alone: no period or semicolon before or after it.</div><div><b>PHRASES</b>A phrase (positing…, producing…, the stitching…) attaches to a main clause with a comma.</div><div><b>HOWEVER-TYPE WORDS</b>however, rather, though are not conjunctions: find the sentence boundary, then place the semicolon or colon.</div></div></section>
+<section class="slide " data-title="Before we start · Sentence, clause, phrase" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Grammar You Need</div><h2>Recap: three kinds of word groups</h2></header><div class="grid g3" style="flex:1"><div class="box white"><h3>Independent clause 独立句</h3>
+<p><b>subject + verb with tense + complete thought</b>. It can be a sentence alone.</p>
+<p class="ex ok">✅ <b class="s">The rain</b> <b class="v">stopped</b>.</p>
+<p class="ex ok">✅ <b class="s">Others</b> <b class="v">look</b> to the past.</p>
+<p class="cn">独立句（主句）：有主语、有时态的谓语，意思完整，可以单独成句。</p></div><div class="box white"><h3>Dependent clause 从句</h3>
+<p>Has a subject + verb, but a <b>linking word</b> in front makes it “hang”.</p>
+<p class="ex no">❌ <u>When</u> <b class="s">the rain</b> <b class="v">stopped</b>.<span class="why">When… what happened? Unfinished.</span></p>
+<p class="ex ok">✅ <u>When</u> <b class="s">the rain</b> <b class="v">stopped</b>, <b class="s">we</b> <b class="v">went</b> out.</p>
+<p class="cn">从句：有主谓，但开头有 when、because 等词，必须挂在主句上。</p></div><div class="box white"><h3>Phrase 短语</h3>
+<p><b>No</b> subject + verb pair. Often starts with <i>-ing</i>, <i>-ed</i>, <i>to</i>, or a preposition.</p>
+<p class="ex no">❌ Hoping for sunshine.<span class="why">no subject, no real verb</span></p>
+<p class="ex ok">✅ Hoping for sunshine, <b class="s">we</b> <b class="v">waited</b>.</p>
+<p class="cn">短语：没有“主语 + 谓语”，永远不能单独成句。</p></div></div><div class="box acc"><p><b>Today’s question:</b> when a sentence has a main clause <b>plus</b> a dependent clause or a phrase, what punctuation goes between them? <span class="cn">本课核心：主句 + 从句 / 短语之间用什么标点？（G01 讲的是两个独立句怎么连。）</span></p></div></section>
+<section class="slide " data-title="Before we start · Subordinating conjunctions" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Grammar You Need</div><h2>Subordinating conjunctions: words that make a clause “depend”</h2></header>
+<p>A <span class="term">subordinating conjunction</span> 从属连词 is a joining word that turns a complete sentence into a <b>dependent clause</b>. Add one to the front, and the sentence can no longer stand alone.</p>
+<table class="t sm">
+<tr><th style="width:17%">Meaning</th><th style="width:36%">Words · 中文</th><th>Example (dependent clause underlined)</th></tr>
+<tr><td>time 时间</td><td>when 当…时, whenever 每当, while 在…期间, before, after, until 直到, as soon as</td><td><u>Whenever it rains</u>, the road floods.</td></tr>
+<tr><td>reason 原因</td><td>because 因为, since 因为/自从, as 因为</td><td>She stayed home <u>because she was sick</u>.</td></tr>
+<tr><td>contrast 让步/对比</td><td>although / though / even though 虽然, while / whereas 而</td><td><u>Although the test was hard</u>, she passed.</td></tr>
+<tr><td>condition 条件</td><td>if 如果, unless 除非, once 一旦</td><td><u>If you study</u>, you will improve.</td></tr>
+</table>
+<div class="grid g2" style="flex:1"><div class="box white"><h3>Watch the change</h3><p class="ex ok">✅ <b class="s">The test</b> <b class="v">was</b> hard.<span class="why">a complete sentence</span></p><p class="ex no">❌ <u>Although</u> <b class="s">the test</b> <b class="v">was</b> hard.<span class="why">now a dependent clause: fragment</span></p></div><div class="box white"><h3>中文说明</h3><p class="cn" style="margin-top:0!important">从属连词放在一个完整句前面，这个句子就变成了从句，不能再单独成句。注意 while 有两个意思：“当……时”和“而（对比）”。SAT 中 while 常表示对比。</p></div></div></section>
+<section class="slide " data-title="Before we start · Where the dependent clause sits" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Grammar You Need</div><h2>Dependent clause first or last? · 从句在前还是在后</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Dependent clause FIRST → comma</h3>
+<p>Pattern: <b>Because S V<span style="color:var(--acc)">,</span> S V.</b> The comma marks where the main clause starts.</p>
+<p class="ex ok">✅ <u>When the bell rang</u><b>,</b> <b class="s">students</b> <b class="v">left</b>.</p>
+<p class="ex ok">✅ <u>While many creators want lifelike graphics</u><b>,</b> <b class="s">others</b> <b class="v">look</b> to the past.</p>
+<p class="ex no">❌ <u>When the bell rang</u><b>.</b> Students left.<span class="why">period → “When the bell rang.” is a fragment</span></p>
+<p class="ex no">❌ <u>When the bell rang</u><b>;</b> students left.<span class="why">semicolon needs complete sentences on both sides</span></p>
+<p class="cn">从句在前：从句结束处用逗号。不能用句号或分号。</p></div><div class="box white"><h3>Dependent clause LAST → usually nothing</h3>
+<p>Pattern: <b>S V because S V.</b> Time, reason, and condition words: <b>no comma</b>.</p>
+<p class="ex ok">✅ <b class="s">Students</b> <b class="v">left</b> <u>when the bell rang</u>.</p>
+<p class="ex ok">✅ <b class="s">A leap second</b> <b class="v">is added</b> <u>whenever time lags</u>.</p>
+<p><b>Contrast words</b> (<i>while, whereas, although</i>) after the main clause usually take a <b>comma</b>:</p>
+<p class="ex ok">✅ <b class="s">Some rockfish</b> <b class="v">live</b> ten years<b>,</b> <u>while others live two centuries</u>.</p>
+<p class="ex no">❌ <b class="s">Students</b> <b class="v">left</b><b>.</b> <u>When the bell rang</u>.<span class="why">fragment</span></p>
+<p class="cn">从句在后：时间、原因、条件从句一般不加逗号；表示对比的 while / whereas / although 前面常加逗号。</p></div></div></section>
+<section class="slide " data-title="Before we start · Phrases attached with a comma" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Grammar You Need</div><h2>Phrases hang on the main clause with a comma</h2></header>
+<table class="t sm">
+<tr><th style="width:24%">Kind of phrase</th><th style="width:38%">✅ Attached with a comma</th><th>❌ Cut off with . or ;</th></tr>
+<tr><td><i>-ing</i> phrase 现在分词短语<br><span class="cn">adds a result or what else happened</span></td><td>The storm hit the coast<b>,</b> <u>destroying many homes</u>.</td><td>The storm hit the coast<b>.</b> Destroying many homes.</td></tr>
+<tr><td><i>-ed</i> phrase 过去分词短语<br><span class="cn">describes a noun, passive meaning</span></td><td><u>Built in 1890</u><b>,</b> the bridge is still in use.</td><td>Built in 1890<b>;</b> the bridge is still in use.</td></tr>
+<tr><td>noun phrase 名词短语 (renames)</td><td>She met Ada Lovelace<b>,</b> <u>a pioneer of computing</u>.</td><td>She met Ada Lovelace<b>.</b> A pioneer of computing.</td></tr>
+<tr><td>noun + <i>-ing/-ed</i> (“absolute phrase” 独立主格)</td><td>The quilts look like paintings<b>,</b> <u>the stitching barely visible</u>.</td><td>…like paintings<b>;</b> the stitching barely visible.</td></tr>
+</table>
+<div class="box acc"><p><b>Rule:</b> a phrase has no subject + verb pair, so it can never sit alone after a period or semicolon. Join it to the main clause with a <b>comma</b> (or no mark if it is short and closely tied). <span class="cn">短语没有主谓，不能放在句号或分号后面单独成句；用逗号把它挂在主句上。独立主格 = 名词 + doing/done，看起来像句子，但没有真正的谓语（visible 只是形容词，没有 is）。</span></p></div></section>
+<section class="slide " data-title="Before we start · Conjunctive adverbs" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Grammar You Need</div><h2>However-type words are adverbs, not conjunctions</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>What they are 连接副词</h3>
+<p>These words show the <b>logic</b> between two ideas, but they <b>cannot join</b> two sentences. Grammatically they are adverbs, so they can move around.</p>
+<table class="t sm">
+<tr><td>however 然而</td><td>therefore / thus 因此</td></tr>
+<tr><td>moreover 此外</td><td>consequently 结果</td></tr>
+<tr><td>instead 相反/取而代之</td><td>rather 而是</td></tr>
+<tr><td>nevertheless 尽管如此</td><td>meanwhile 与此同时</td></tr>
+<tr><td>for example 例如</td><td>in fact 事实上</td></tr>
+</table>
+<p class="cn">连接副词只表示逻辑关系（转折、因果、递进），不是连词，不能用逗号连接两个句子。</p></div><div class="box white"><h3>Three patterns 三种用法</h3>
+<p class="ex ok">✅ I studied all night<b>; however,</b> I failed the test.<span class="why">between two sentences: ; + word + ,</span></p>
+<p class="ex ok">✅ I studied all night<b>. However,</b> I failed the test.<span class="why">or period + word + ,</span></p>
+<p class="ex ok">✅ The researchers<b>, however,</b> continued.<span class="why">inside ONE sentence: commas on both sides</span></p>
+<p class="ex no">❌ I studied all night<b>, however,</b> I failed the test.<span class="why">comma splice: two sentences + only commas</span></p>
+<p class="ex ok">✅ I studied all night<b>, but</b> I failed the test.<span class="why">compare: but IS a conjunction (FANBOYS)</span></p>
+<p class="cn">两个句子之间：分号/句号 + however + 逗号。只在一个句子里插入：两边逗号。</p></div></div></section>
+<section class="slide " data-title="Before we start · Two kinds of “though”" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Grammar You Need</div><h2>“Though” has two jobs · though 的两种用法</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Conjunction ≈ although 连词</h3>
+<p>Starts a dependent clause. Followed by a subject + verb.</p>
+<p class="ex ok">✅ <u>Though I was tired</u><b>,</b> <b class="s">I</b> <b class="v">finished</b> the homework.</p>
+<p class="ex ok">✅ <b class="s">I</b> <b class="v">finished</b> the homework<b>,</b> <u>though I was tired</u>.</p>
+<p class="ex no">❌ <u>Though I was tired</u><b>.</b> I finished the homework.<span class="why">fragment</span></p>
+<p class="cn">连词 though = although（虽然），引导从句，后面跟主谓。</p></div><div class="box white"><h3>Adverb ≈ however 副词</h3>
+<p>Stands alone between commas, often at the <b>end</b> of a sentence. Nothing follows it in its clause.</p>
+<p class="ex ok">✅ I was tired. I finished the homework<b>, though</b>.</p>
+<p class="ex ok">✅ The plan was risky<b>; it worked, though</b>.</p>
+<p class="ex no">❌ The plan was risky<b>, it worked, though</b>.<span class="why">two sentences joined by commas only</span></p>
+<p class="cn">副词 though = however（不过），常放句末，用逗号隔开；它不能连接两个句子。</p></div></div></section>
+<section class="slide " data-title="Quick check · Clause, phrase, or adverb?" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Quick Check</div><h2>Quick check · Clause, phrase, or adverb?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>Because the museum was crowded<b>.</b> We left early.</summary><div class="a">✗ “Because the museum was crowded” is a dependent clause. Fix: crowded<b>,</b> we left early.</div></details><details class="qc"><summary><span class="q">2.</span>We left early because the museum was crowded.</summary><div class="a">✓ main clause + reason clause at the end: no comma.</div></details><details class="qc"><summary><span class="q">3.</span>The volcano erupted<b>;</b> sending ash across the sky.</summary><div class="a">✗ “sending ash…” is a phrase. Fix: erupted<b>,</b> sending ash…</div></details><details class="qc"><summary><span class="q">4.</span>The volcano erupted<b>,</b> however<b>,</b> no one was hurt.</summary><div class="a">✗ comma splice. Fix: erupted<b>; however,</b> no one…</div></details><details class="qc"><summary><span class="q">5.</span>Some birds migrate thousands of miles<b>,</b> whereas others never leave home.</summary><div class="a">✓ main clause + contrast clause (whereas): comma.</div></details><details class="qc"><summary><span class="q">6.</span>The scientist<b>,</b> however<b>,</b> disagreed.</summary><div class="a">✓ one sentence; “however” interrupts it, so commas on both sides.</div></details><details class="qc"><summary><span class="q">7.</span>Though the data were limited<b>;</b> the results were useful.</summary><div class="a">✗ “Though…” is a dependent clause. Fix: limited<b>,</b> the results…</div></details><details class="qc"><summary><span class="q">8.</span>If the plan works<b>,</b> the city will save money.</summary><div class="a">✓ dependent clause first → comma.</div></details></div></section>
+<section class="slide " data-title="Only an independent clause can stand alone" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Review</div><h2>Only an independent clause can stand alone</h2></header>
+<div class="grid g3" style="flex:1">
+ <div class="box white"><h3>Independent clause</h3><p class="ex" style="font-size:16px">others look to the past</p><p>Can be a sentence by itself.</p><p class="cn">独立句：可以单独成句。</p></div>
+ <div class="box white"><h3>Dependent clause</h3><p class="ex" style="font-size:16px"><b>While</b> many video game creators strive to make their graphics lifelike</p><p>Has a subject and verb but starts with a subordinating word: <i>because, while, when, whenever, although, if, since, as</i>.</p><p class="cn">从句：有主谓，但由从属连词引导，不能单独成句。</p></div>
+ <div class="box white"><h3>Phrase</h3><p class="ex" style="font-size:16px"><b>positing</b> that all life’s virtues derived from this absence</p><p>No subject + real (tensed) verb pair: <i>-ing / -ed</i> phrases, noun phrases, prepositional phrases.</p><p class="cn">短语：没有主谓结构。</p></div>
+</div>
+<div class="box acc"><p><b>Key consequence:</b> a period or semicolon must have a complete sentence on <b>both</b> sides. If one side is a dependent clause or a phrase, a period or semicolon creates a <b>fragment</b>. <span class="cn">句号、分号两边都必须是完整句，否则会产生残句（fragment）。</span></p></div></section>
+<section class="slide " data-title="Dependent clauses and phrases: the rules" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Rules</div><h2>Dependent clauses and phrases: the rules</h2></header>
+<table class="t sm">
+<tr><th>Pattern</th><th>Punctuation</th><th>Example</th></tr>
+<tr><td>Dependent clause, Main clause</td><td><b>comma</b></td><td><i>While many creators strive to make their graphics ever more lifelike<b>,</b> others look to the past.</i> (2-2-19)</td></tr>
+<tr><td>Main clause + dependent clause</td><td>usually <b>nothing</b>; a <b>comma</b> before contrast words (<i>while, whereas, although</i>)</td><td><i>an extra leap second is added whenever time … lags</i> (3-1-23) · <i>…a little over a decade<b>,</b> while the rougheye rockfish…</i> (3-2-21)</td></tr>
+<tr><td>Main clause + -ing / -ed phrase</td><td><b>comma</b></td><td><i>Epicurus defined pleasure as “…the soul<b>,</b>” positing that…</i> (1-1-20)</td></tr>
+<tr><td>Main clause + noun + description (absolute phrase 独立主格)</td><td><b>comma</b></td><td><i>the portraits reveal themselves to be quilts<b>,</b> the stitching barely visible…</i> (3-1-26)</td></tr>
+<tr><td>Any of these with ; or . or : between</td><td><b>✗ fragment</b></td><td><i>…the soul.” Positing that…</i> → “Positing…” is not a sentence.</td></tr>
+</table></section>
+<section class="slide " data-title="however, rather, though, therefore: conjunctive adverbs" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">However-type words</div><h2>however, rather, though, therefore: conjunctive adverbs</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>They are not conjunctions</h3><p><i>however, rather, though, therefore, thus, instead, moreover, consequently</i> can move around inside a sentence. They cannot join two sentences with a comma.</p>
+  <p class="ex" style="font-size:16px">✗ Okinaka doesn’t make such decisions single-handedly<b>, however,</b> all designations must be approved…</p><p class="cn">连接副词不是连词，“, however,” 夹在两个句子之间仍是逗号粘连。</p></div>
+ <div class="box white"><h3>How to place the punctuation</h3><ol><li>Find the <b>two</b> clauses.</li><li>Decide which clause the adverb belongs to by <b>meaning</b>: does it react to the sentence before (“doesn’t decide single-handedly, however”) or start the next one (“; rather, the spider seems to wait…”)?</li><li>Put the <b>semicolon / period / colon</b> at the boundary, and a <b>comma</b> on the other side of the adverb.</li></ol>
+  <p class="ex" style="font-size:16px">…single-handedly<b>, however;</b> all designations…<br>…to capture its prey<b>; rather,</b> the spider seems to wait…</p><p class="cn">先找句子边界放分号/冒号，副词另一侧用逗号。副词属于哪一句看意思。</p></div>
+</div></section>
+<section class="slide " data-title="Four steps" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">How to approach it</div><h2>Four steps</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Compare the choices</h3><p>What punctuation changes? Is there a however-type word? <span class="cn">比较选项。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Label both sides of the blank</h3><p>Independent clause, dependent clause, or phrase? <span class="cn">判断空格两侧各是什么结构。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Apply the rule</h3><p>Main + phrase or main + dependent → comma (or nothing). Two main clauses → period / semicolon / comma + FANBOYS. <span class="cn">按规则选择标点。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>For however-type words, find the boundary by meaning</h3><p>The strong mark (; or : or .) goes at the clause boundary; a comma goes on the other side. <span class="cn">连接副词：按意思找句子边界。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T1-1-20" data-lab="Form 1 · Module 1 · Question 20 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The choices differ in the punctuation between <i>soul”</i> and <i>positing</i>. What kind of structure is “positing that all life’s virtues derived from this absence”?</p><p class="cn">positing… 是什么结构？</p></div></div><div class="right fitq"><div class="qimg" data-q="T1-1-20"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T1-1-20" data-hl="3-6" data-lab="Form 1 · Module 1 · Question 20 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Left side</h3><p>“Epicurus <b>defined</b> pleasure as ‘the absence of pain in the body and of trouble in the soul’” → a complete main clause.</p></div></div><div class="step"><div class="n">2</div><div><h3>Right side</h3><p>“<b>positing</b> that all life’s virtues derived from this absence” → begins with an -ing word; there is no subject for <i>positing</i>. It is a <b>participial phrase</b>, not a sentence.</p></div></div><div class="step"><div class="n">3</div><div><h3>Rule</h3><p>Main clause + phrase → <b>comma</b>. A period, semicolon, or colon would leave “positing…” as a fragment.</p></div></div><div class="step"><div class="n">4</div><div><h3>Note</h3><p>In American English, the comma goes <b>inside</b> the closing quotation mark: <i>soul,”</i></p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T1-1-20"></div></div><div class="right"><div class="verdicts"><div class="vd keep hidden-v"><div class="L">A</div><div class="v">KEEP ✓</div><div class="r">Comma joins the main clause and the participial phrase that tells more about how Epicurus defined pleasure.</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r">A colon must be followed by an explanation that completes the idea; here it cuts off a phrase that belongs to the sentence. Not conventional with a participial phrase.</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">A semicolon needs complete sentences on both sides; “positing that…” is not a sentence.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">A period makes “Positing that … absence.” a fragment.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: A.</b> Ask whether the right side can stand alone. A participial phrase cannot, so it attaches with a comma. <span class="cn">分词短语不能独立，用逗号连接。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 2 · Module 2 · Question 19" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Worked Example 2</div><h2>Form 2 · Module 2 · Question 19<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T2-2-19" data-hl="1-3" data-lab="Form 2 · Module 2 · Question 19 · the text"></div><div class="qimg" data-q="T2-2-19"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“lifelike but / lifelike / lifelike, / lifelike, but”: only a comma and “but” change. → What structures meet at the blank? <span class="cn">选项只差逗号和 but → 考句子结构。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Label the left side · 左边</h3><p>“<u>While</u> many video game creators strive to make their graphics ever more lifelike”. It starts with <b>while</b>, a subordinating conjunction → a <b>dependent clause</b>. <span class="cn">左边以 while 开头，是从句，不能单独成句。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Label the right side · 右边</h3><p>“<b class="s">others</b> <b class="v">look</b> to the past, developing titles…” Subject <b>others</b> + verb <b>look</b> → the <b>main clause</b>. (“developing titles…” is an -ing phrase attached to it.) <span class="cn">右边 others look… 是主句。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Dependent clause first, main clause second → one comma between them, and no extra conjunction. Adding “but” would leave the sentence with no main clause. <span class="cn">从句在前 + 主句 → 逗号；不能再加 but。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ “lifelike but others…”: “but” turns the second part into another dependent piece, so the sentence has no main clause.<br><b>B</b> ✗ No comma between an introductory dependent clause and the main clause.<br><b>D</b> ✗ “, but” also leaves the sentence without a main clause: While… but… .</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: C.</b> “<b>While</b> many video game creators strive to make their graphics ever more lifelike” = dependent clause. “others look to the past” = main clause. Dependent clause first → <b>comma</b>. <span class="cn">While 从句在前，主句在后，中间用逗号。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 3 · Module 2 · Question 21" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Worked Example 3</div><h2>Form 3 · Module 2 · Question 21<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T3-2-21" data-hl="2-5" data-lab="Form 3 · Module 2 · Question 21 · the text"></div><div class="qimg" data-q="T3-2-21"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“decade: while / decade. While / decade; while / decade, while”: the word <i>while</i> stays; only the mark before it changes. <span class="cn">while 不变，只换标点。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Label the left side · 左边</h3><p>“<b class="s">the colorful calico rockfish</b> <i class="x">(Sebastes dallii)</i> <b class="v">can survive</b> for a little over a decade” → a <b>main clause</b> (complete). <span class="cn">左边主谓完整，是主句。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Label the right side · 右边</h3><p>“<u>while</u> the rougheye rockfish … boasts a maximum life span of about two centuries”. It starts with <b>while</b> → a <b>dependent clause</b> of contrast (而). <span class="cn">右边 while 引导对比从句，不能单独成句。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Period, semicolon, and colon all need a complete sentence after them (or make a fragment). Main clause + contrast clause (while) → <b>comma</b>. <span class="cn">主句 + while 对比从句 → 逗号。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ A colon cannot introduce a dependent clause in this way.<br><b>B</b> ✗ A period leaves “While the rougheye rockfish … two centuries.” as a fragment.<br><b>C</b> ✗ A semicolon needs a complete sentence after it; the while-clause is dependent.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> Main clause: “the colorful calico rockfish … can survive for a little over a decade.” Then “<b>while</b> the rougheye rockfish … boasts a maximum life span of about two centuries” = dependent clause of <b>contrast</b>. Main + contrasting dependent clause → <b>comma</b>. <span class="cn">主句 + while 对比从句，用逗号。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 3 · Module 1 · Question 23" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Worked Example 4</div><h2>Form 3 · Module 1 · Question 23<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T3-1-23" data-hl="5-8" data-lab="Form 3 · Module 1 · Question 23 · the text"></div><div class="qimg" data-q="T3-1-23"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“added, whenever / added; whenever / added. Whenever / added whenever”: comma, semicolon, period, or nothing before <i>whenever</i>. <span class="cn">比较 whenever 前的标点。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Label the left side · 左边</h3><p>“<b class="s">an extra leap second</b> <i class="x">(the 86,401st second of the day)</i> <b class="v">is added</b>” → a <b>main clause</b>. <span class="cn">去掉括号，主句是 a leap second is added。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Label the right side · 右边</h3><p>“<u>whenever</u> time based on the planet’s rotation lags … behind time kept by atomic clocks” → a <b>dependent clause</b> that tells <b>when</b> (每当). <span class="cn">右边 whenever 引导时间从句。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Main clause first, then a time clause → <b>no punctuation</b>. A semicolon or period would leave “Whenever…” as a fragment; the comma is unnecessary. <span class="cn">主句在前 + 时间从句在后 → 不加标点。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ An unnecessary comma separates the verb from the clause that completes its meaning.<br><b>B</b> ✗ A semicolon needs a complete sentence after it; “whenever…” is dependent.<br><b>C</b> ✗ A period makes “Whenever time … clocks.” a fragment.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> “an extra leap second … <b>is added</b>” + “<b>whenever</b> time based on the planet’s rotation lags…” = main clause + dependent clause that tells <b>when</b>. A dependent clause after the main clause needs <b>no punctuation</b>. <span class="cn">主句 + 时间状语从句（whenever…），中间不加标点。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 3-1-26" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Practice 1 of 4</div><h2>Form 3 · Module 1 · Question 26</h2></header><div class="work"><div class="pv" data-p="T3-1-26" data-lab="Form 3 · Module 1 · Question 26 · the text"></div><div class="right"><div class="qimg" data-q="T3-1-26"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="5-8" data-hint="5-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is “the stitching barely visible among the thousands of pieces…” a complete sentence? Look for a finite verb.</div><div class="fb"></div><template class="why">Main clause: “the portraits reveal themselves to be quilts.” Then “the stitching <b>barely visible</b> among…” has <b>no finite verb</b> (no “is”): it is a noun phrase that adds description (an absolute phrase). Main clause + phrase → <b>comma</b>. <span class="cn">the stitching barely visible… 没有谓语动词，是独立主格短语，用逗号。</span></template><template class="wrong" data-l="A">“, and” must join two main clauses; the second part is only a phrase.</template><template class="wrong" data-l="C">A semicolon needs a complete sentence after it.</template><template class="wrong" data-l="D">A period makes “The stitching barely visible…” a fragment.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 2-1-26" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Practice 2 of 4</div><h2>Form 2 · Module 1 · Question 26</h2></header><div class="work"><div class="pv" data-p="T2-1-26" data-lab="Form 2 · Module 1 · Question 26 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-26"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-5" data-hint="1-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Where is the boundary between the two clauses? Does <i>rather</i> react to the first clause or begin the second?</div><div class="fb"></div><template class="why">Clause 1: “it does not appear that the spider uses camouflage to capture its prey.” Clause 2: “the brightly colored arachnid seems to wait conspicuously.” <i>Rather</i> introduces the <b>second</b> clause (= instead, it waits openly). → boundary before “rather”: <b>prey; rather,</b> <span class="cn">rather 引出后一句（相反地…），分号放在 rather 前。</span></template><template class="wrong" data-l="A">“prey, rather,” uses only commas between two main clauses: comma splice.</template><template class="wrong" data-l="B">“prey rather,” runs the clauses together with no boundary.</template><template class="wrong" data-l="C">“prey, rather;” puts the boundary after “rather,” attaching it to the first clause, which does not fit the meaning.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 4-1-26" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Practice 3 of 4</div><h2>Form 4 · Module 1 · Question 26</h2></header><div class="work"><div class="pv" data-p="T4-1-26" data-lab="Form 4 · Module 1 · Question 26 · the text"></div><div class="right"><div class="qimg" data-q="T4-1-26"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="4-8" data-hint="4-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Does <i>however</i> belong to “Okinaka doesn’t make such decisions single-handedly” or to “all historical designations must be approved…”?</div><div class="fb"></div><template class="why">Clause 1: “Okinaka doesn’t make such decisions single-handedly, <b>however</b>” (= he is on the board, but not alone). Clause 2: “all historical designations must be approved by a group of nine other experts” explains why. <i>However</i> contrasts clause 1 with the sentence before it, so it belongs to clause 1. → <b>single-handedly, however;</b> <span class="cn">however 是对前文的转折，属于第一句；分号放在 however 后。</span></template><template class="wrong" data-l="B">“; however,” attaches however to the second clause, which wrongly contrasts it with the first; the second clause actually explains the first.</template><template class="wrong" data-l="C">Only commas between two main clauses: comma splice.</template><template class="wrong" data-l="D">No punctuation at all: run-on, and however is not set off.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 6-2-24" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">Practice 4 of 4</div><h2>Form 6 · Module 2 · Question 24</h2></header><div class="work"><div class="pv" data-p="T6-2-24" data-lab="Form 6 · Module 2 · Question 24 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-24"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="2-6" data-hint="2-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>After the blank comes a list of five dances. Which mark introduces a list after a complete clause? Where does <i>however</i> belong?</div><div class="fb"></div><template class="why">“Only five of these dances are included in international ballroom dance competitions, <b>however</b>” (contrast with “dozens, if not hundreds” before). Then a <b>list</b>: rumba, samba… → a complete clause + list = <b>colon</b>. Place it after <i>however</i>, which belongs to the first part. → <b>competitions, however:</b> <span class="cn">完整句后接列举用冒号；however 属于前句。</span></template><template class="wrong" data-l="B">Only a comma before the list: the list is not properly introduced, and the sentence becomes unclear.</template><template class="wrong" data-l="C">A semicolon needs a complete sentence after it; a list is not a sentence.</template><template class="wrong" data-l="D">“; however,” attaches however to the list and uses a semicolon before a non-sentence.</template></div></div></div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Writing · G02 · Linking Clauses II" data-title="What to remember about dependent clauses, phrases, and however-type words"><header><div class="kk">Summary</div><h2>What to remember about dependent clauses, phrases, and however-type words<span class="cn">从句、短语与连接副词要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 避免残句</h3><div class="summary-copy">Period and semicolon need complete sentences on both sides; otherwise you create a <b>fragment</b>.</div></article><article class="summary-card"><h3 class="summary-label">02 · 从句顺序</h3><div class="summary-copy">Dependent clause first → comma. Main clause first → usually nothing (comma before <i>while / whereas / although</i>).</div></article><article class="summary-card"><h3 class="summary-label">03 · 附加短语</h3><div class="summary-copy">Main clause + -ing / -ed phrase or absolute phrase → <b>comma</b>.</div></article><article class="summary-card"><h3 class="summary-label">04 · 连接副词</h3><div class="summary-copy"><i>however, rather, though, therefore</i> are adverbs, not conjunctions: a comma alone cannot join two clauses with them.</div></article><article class="summary-card"><h3 class="summary-label">05 · 定位句子边界</h3><div class="summary-copy">Find the clause boundary by meaning; put ; or : (or .) there and a comma on the other side of the adverb.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">More Practice</div><h2>3 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 2-2-21" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">More Practice 1 of 3</div><h2>Form 2 · Module 2 · Question 21</h2></header><div class="work"><div class="pv" data-p="T2-2-21" data-lab="Form 2 · Module 2 · Question 21 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-21"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="3-7" data-hint="3-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>“the study of fungi” renames mycology. What kind of structure is “producing more than 350 paintings…”?</div><div class="fb"></div><template class="why">Main clause: “she also dedicated herself to mycology, the study of fungi.” Then “<b>producing</b> more than 350 paintings … and submitting her research…” = a participial phrase that tells how she did this. → <b>comma</b>. <span class="cn">producing… 分词短语，用逗号连接。</span></template><template class="wrong" data-l="A">A semicolon needs a complete sentence after it; “producing…” is a phrase.</template><template class="wrong" data-l="B">A period leaves “Producing…” as a fragment.</template><template class="wrong" data-l="C">No comma makes it look as if the fungi were producing the paintings.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 3-1-25" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">More Practice 2 of 3</div><h2>Form 3 · Module 1 · Question 25</h2></header><div class="work"><div class="pv" data-p="T3-1-25" data-lab="Form 3 · Module 1 · Question 25 · the text"></div><div class="right"><div class="qimg" data-q="T3-1-25"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="3-7" data-hint="3-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What comes after <i>however</i>? Is “feeling that it didn’t encapsulate…” a sentence?</div><div class="fb"></div><template class="why">Main clause: “Scott-Heron himself resisted the godfather nickname, <b>however</b>.” Then “<b>feeling</b> that it didn’t encapsulate…” = participial phrase (not a sentence). → commas on <b>both</b> sides of however: <b>nickname, however,</b> <span class="cn">however 两边都用逗号；后面是分词短语，不能用分号。</span></template><template class="wrong" data-l="A">No comma after however: the participial phrase is not separated from the adverb.</template><template class="wrong" data-l="B">A semicolon needs a complete sentence after it; “feeling that…” is a phrase.</template><template class="wrong" data-l="D">A semicolon before however needs a complete sentence after it; “however, feeling…” is not one.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 1-1-27" data-foot="Digital SAT Writing · G02 · Linking Clauses II"><header><div class="kk">More Practice 3 of 3</div><h2>Form 1 · Module 1 · Question 27</h2></header><div class="work"><div class="pv" data-p="T1-1-27" data-lab="Form 1 · Module 1 · Question 27 · the text"></div><div class="right"><div class="qimg" data-q="T1-1-27"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="4-7" data-hint="4-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is “as a pioneering computer programmer, Hopper would help usher in the digital age” complete? What does it do for the first clause?</div><div class="fb"></div><template class="why">Clause 1: “Hopper’s subsequent career would involve more than just equations, <b>though</b>.” Clause 2: “as a pioneering computer programmer, Hopper would help usher in the digital age” → complete, and it <b>explains</b> what “more than just equations” means. Explanation after a complete clause → <b>colon</b>, after “though”. <span class="cn">第二句解释第一句，用冒号；though 属于第一句。</span></template><template class="wrong" data-l="B">Only commas between two main clauses: comma splice.</template><template class="wrong" data-l="C">A period makes “Though, as a pioneering…” start the second sentence with “though,” which does not fit the meaning.</template><template class="wrong" data-l="D">No punctuation: run-on.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In ancient Greece, an Epicurean was a follower of </span> <span data-line=\"2\">Epicurus, a philosopher whose beliefs revolved </span> <span data-line=\"3\">around the pursuit of pleasure. Epicurus defined </span> <span data-line=\"4\">pleasure as “the absence of pain in the body and of </span> <span data-line=\"5\">trouble in the _______ that all life’s virtues derived </span> <span data-line=\"6\">from this absence. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-19":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">While many video game creators strive to make their </span> <span data-line=\"2\">graphics ever more ______ others look to the past, </span> <span data-line=\"3\">developing titles with visuals inspired by the “8-bit” </span> <span data-line=\"4\">games of the 1980s and 1990s. (The term “8-bit” </span> <span data-line=\"5\">refers to a console whose processor could only </span> <span data-line=\"6\">handle eight bits of data at once.) </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The life spans of rockfish vary greatly by species. For </span> <span data-line=\"2\">instance, the colorful calico rockfish (<i>Sebastes dallii</i>)</span> <span data-line=\"3\">can survive for a little over a ______ the rougheye </span> <span data-line=\"4\">rockfish (<i>S</i><i>e</i><i>b</i><i>a</i><i>s</i><i>t</i><i>e</i><i>s</i><i> </i><i>a</i><i>l</i><i>e</i><i>u</i><i>t</i><i>i</i><i>a</i><i>n</i><i>u</i><i>s</i>) boasts a maximum life </span> <span data-line=\"5\">span of about two centuries. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">As British scientist Peter Whibberley has observed, </span> <span data-line=\"2\">“the Earth is not a very good timekeeper.” Earth’s </span> <span data-line=\"3\">slightly irregular rotation rate means that </span> <span data-line=\"4\">measurements of time must be periodically adjusted. </span> <span data-line=\"5\">Specifically, an extra “leap second” (the 86,401st </span> <span data-line=\"6\">second of the day) is _______ time based on the </span> <span data-line=\"7\">planet’s rotation lags a full nine-tenths of a second </span> <span data-line=\"8\">behind time kept by precise atomic clocks. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">From afar, African American fiber artist Bisa Butler’s </span> <span data-line=\"2\">portraits look like paintings, their depictions of </span> <span data-line=\"3\">human faces, bodies, and clothing so intricate that it </span> <span data-line=\"4\">seems only a fine brush could have rendered them. </span> <span data-line=\"5\">When viewed up close, however, the portraits reveal </span> <span data-line=\"6\">themselves to be _______ stitching barely visible </span> <span data-line=\"7\">among the thousands of pieces of printed, microcut </span> <span data-line=\"8\">fabric. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">To humans, it does not appear that the golden </span> <span data-line=\"2\">orb-weaver spider uses camouflage to capture its </span> <span data-line=\"3\">______ the brightly colored arachnid seems to wait </span> <span data-line=\"4\">conspicuously in the center of its large circular web </span> <span data-line=\"5\">for insects to approach. Researcher Po Peng of the </span> <span data-line=\"6\">University of Melbourne has explained that the </span> <span data-line=\"7\">spider’s distinctive coloration may in fact be part of </span> <span data-line=\"8\">its appeal. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Sociologist Alton Okinaka sits on the review board </span> <span data-line=\"2\">tasked with adding new sites to the Hawai‘i Register </span> <span data-line=\"3\">of Historic Places, which includes Pi‘ilanihale </span> <span data-line=\"4\">Heiau and the ‘Ōpaeka‘a Road Bridge. Okinaka </span> <span data-line=\"5\">doesn’t make such decisions _______ all historical </span> <span data-line=\"6\">designations must be approved by a group of nine </span> <span data-line=\"7\">other experts from the fields of architecture, </span> <span data-line=\"8\">archaeology, history, and Hawaiian culture. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Latin America is known to have dozens, if not </span> <span data-line=\"2\">hundreds, of popular dance forms. Only five of these </span> <span data-line=\"3\">dances are included in international ballroom dance </span> <span data-line=\"4\">_______ rumba, samba, cha-cha-cha, paso doble, </span> <span data-line=\"5\">and jive—the last of which is grouped with the other </span> <span data-line=\"6\">Latin dances despite not having Latin roots. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Beatrix Potter is perhaps best known for writing </span> <span data-line=\"2\">and illustrating children’s books such as <i>T</i><i>h</i><i>e</i><i> </i><i>T</i><i>a</i><i>l</i><i>e</i><i> </i><i>o</i><i>f</i><i> </i></span> <span data-line=\"3\"><i>P</i><i>e</i><i>t</i><i>e</i><i>r</i><i> </i><i>R</i><i>a</i><i>b</i><i>b</i><i>i</i><i>t</i><i> </i>(1902), but she also dedicated herself </span> <span data-line=\"4\">to mycology, the study of ______ more than </span> <span data-line=\"5\">350 paintings of the fungal species she observed in </span> <span data-line=\"6\">nature and submitting her research on spore </span> <span data-line=\"7\">germination to the Linnean Society of London. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Journalists have dubbed Gil Scott-Heron the </span> <span data-line=\"2\">“godfather of rap,” a title that has appeared in </span> <span data-line=\"3\">hundreds of articles about him since the 1990s. Scott-</span> <span data-line=\"4\">Heron himself resisted the godfather _______ feeling </span> <span data-line=\"5\">that it didn’t encapsulate his devotion to the broader </span> <span data-line=\"6\">African American blues music tradition as well as </span> <span data-line=\"7\">“bluesologist,” the moniker he preferred. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1943, in the midst of World War II, mathematics </span> <span data-line=\"2\">professor Grace Hopper was recruited by the </span> <span data-line=\"3\">US military to help the war effort by solving complex </span> <span data-line=\"4\">equations. Hopper’s subsequent career would involve </span> <span data-line=\"5\">more than just _______ as a pioneering computer </span> <span data-line=\"6\">programmer, Hopper would help usher in the digital </span> <span data-line=\"7\">age. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) soul,” positing </span></p><p><span data-line=\"4\">B) soul”: positing </span></p><p><span data-line=\"5\">C) soul”; positing </span></p><p><span data-line=\"6\">D) soul.” Positing </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-19":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) lifelike but </span></p><p><span data-line=\"4\">B) lifelike </span></p><p><span data-line=\"5\">C) lifelike, </span></p><p><span data-line=\"6\">D) lifelike, but </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) decade: while</span></p><p><span data-line=\"4\">B) decade. While</span></p><p><span data-line=\"5\">C) decade; while</span></p><p><span data-line=\"6\">D) decade, while</span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) added, whenever </span></p><p><span data-line=\"4\">B) added; whenever </span></p><p><span data-line=\"5\">C) added. Whenever </span></p><p><span data-line=\"6\">D) added whenever </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) quilts, and the </span></p><p><span data-line=\"4\">B) quilts, the </span></p><p><span data-line=\"5\">C) quilts; the </span></p><p><span data-line=\"6\">D) quilts. The </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) prey, rather, </span></p><p><span data-line=\"4\">B) prey rather, </span></p><p><span data-line=\"5\">C) prey, rather; </span></p><p><span data-line=\"6\">D) prey; rather, </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) single-handedly, however; </span></p><p><span data-line=\"4\">B) single-handedly; however, </span></p><p><span data-line=\"5\">C) single-handedly, however, </span></p><p><span data-line=\"6\">D) single-handedly however </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) competitions, however: </span></p><p><span data-line=\"4\">B) competitions, however, </span></p><p><span data-line=\"5\">C) competitions, however; </span></p><p><span data-line=\"6\">D) competitions; however, </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) fungi; producing </span></p><p><span data-line=\"4\">B) fungi. Producing </span></p><p><span data-line=\"5\">C) fungi producing </span></p><p><span data-line=\"6\">D) fungi, producing </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) nickname, however </span></p><p><span data-line=\"4\">B) nickname, however; </span></p><p><span data-line=\"5\">C) nickname, however, </span></p><p><span data-line=\"6\">D) nickname; however, </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) equations, though: </span></p><p><span data-line=\"4\">B) equations, though, </span></p><p><span data-line=\"5\">C) equations. Though, </span></p><p><span data-line=\"6\">D) equations though </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

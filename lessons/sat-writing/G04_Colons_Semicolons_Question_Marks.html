@@ -1,0 +1,661 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Writing G04 · Colons, Semicolons in Lists, Question Marks</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#2d5f3f; --acc2:#dcefe2; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Colons, Semicolons in Lists, Question Marks" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><div class="no">LESSON G04</div><h1>Colons, Semicolons in Lists, Question Marks</h1><div class="sub">Three special marks: the colon, the semicolon in a complex list, and the question mark</div><div class="cnsub">三种特殊标点：冒号、复杂列举中的分号、问号</div><div class="goals"><div><b>COLON</b>A complete sentence before it; an explanation, example, or list after it.</div><div><b>LIST SEMICOLON</b>When list items already contain commas, separate the items with semicolons.</div><div><b>QUESTION MARK</b>Direct question → ? with question word order; indirect question → . with statement order.</div></div></section>
+<section class="slide " data-title="Before we start · The colon" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Grammar You Need</div><h2>The colon ( : ) = “here is what I mean” · 冒号</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>The two-part rule</h3>
+<p><b>1. Before</b> the colon: a <b>complete sentence</b> (subject + verb + complete thought).</p>
+<p><b>2. After</b> the colon: something that <b>explains, names, or lists</b> what came before. It can be a full sentence, a phrase, a single word, or a list.</p>
+<p class="ex ok">✅ He had one goal<b>:</b> to win the game.<span class="why">after = a phrase that names the goal</span></p>
+<p class="ex ok">✅ She brought everything<b>:</b> a pen, a notebook, and a ruler.<span class="why">after = a list</span></p>
+<p class="ex ok">✅ The research is clear<b>:</b> sleep improves memory.<span class="why">after = a full sentence that explains</span></p>
+<p><b>Test:</b> read the colon as “<b>namely</b> / 也就是 / 具体来说”. If that makes sense, the colon works.</p>
+<p class="cn">冒号前必须是完整句；冒号后解释、说明或列举前面的内容，可以是句子、短语、单词或列表。</p></div><div class="box white"><h3>Wrong colons ❌</h3>
+<p class="ex no">❌ He bought<b>:</b> a pen and a notebook.<span class="why">“He bought” is not complete: bought what?</span></p>
+<p class="ex ok">✅ He bought two things<b>:</b> a pen and a notebook.<span class="why">now the left side is complete</span></p>
+<p class="ex no">❌ The team members include<b>:</b> Ana, Ben, and Li.<span class="why">never right after a verb</span></p>
+<p class="ex no">❌ We spoke about<b>:</b> history and art.<span class="why">never right after a preposition</span></p>
+<p class="ex no">❌ She likes fruits such as<b>:</b> apples and pears.<span class="why">never after “such as / including”</span></p>
+<p class="ex no">❌ I was late<b>:</b> however, the class waited.<span class="why">the second part does not explain the first; it contrasts → use “;”</span></p>
+<p class="cn">冒号不能直接放在动词、介词、such as、including 后面；后半句要“解释”前半句，不是转折。</p></div></div></section>
+<section class="slide " data-title="Before we start · Colon, semicolon, dash, comma" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Grammar You Need</div><h2>Four marks side by side · 四种标点对比</h2></header>
+<table class="t sm">
+<tr><th style="width:14%">Mark</th><th style="width:28%">Left side</th><th style="width:28%">Right side</th><th>Example</th></tr>
+<tr><td>; semicolon</td><td>complete sentence</td><td>complete sentence (related)</td><td>She was tired<b>;</b> she went to bed.</td></tr>
+<tr><td>: colon</td><td>complete sentence</td><td>anything that <b>explains / lists</b></td><td>She was tired for one reason<b>:</b> no sleep.</td></tr>
+<tr><td>— single dash</td><td>complete sentence</td><td>explanation (same as a colon)</td><td>He had one dream<b>—</b>to become a pilot.</td></tr>
+<tr><td>, comma</td><td colspan="2">cannot join two complete sentences alone (comma splice ✗)</td><td>She was tired<b>,</b> she went to bed. ❌</td></tr>
+</table>
+<div class="grid g2" style="flex:1"><div class="box white"><h3>Semicolon vs colon</h3><p class="ex ok">✅ The data were clear<b>;</b> the team published them.<span class="why">two related sentences: ; is fine</span></p><p class="ex ok">✅ The data were clear<b>:</b> the drug lowered blood pressure.<span class="why">the second part says WHAT was clear: : is best</span></p><p class="ex no">❌ The data were clear<b>;</b> the drug.<span class="why">after ; you need a full sentence</span></p></div><div class="box white"><h3>中文说明</h3><p class="cn" style="margin-top:0!important">分号 = 句号，两边都必须是完整句，只表示“两句关系紧密”。冒号左边必须完整，右边可以不完整，但必须是对左边的解释或列举。单个破折号的作用和冒号一样。逗号不能单独连接两个完整句。</p></div></div></section>
+<section class="slide " data-title="Before we start · Lists" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Grammar You Need</div><h2>Lists: commas for simple items, semicolons for complex items</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Simple list → commas</h3>
+<p>Items are single words or short phrases: <b>A, B, and C</b>.</p>
+<p class="ex ok">✅ She bought apples<b>,</b> bananas<b>,</b> and oranges.</p>
+<p class="ex ok">✅ We visited Paris<b>,</b> Rome<b>,</b> and Madrid.</p>
+<p class="ex no">❌ We visited Paris<b>;</b> Rome<b>;</b> and Madrid.<span class="why">no commas inside the items, so no semicolons needed</span></p>
+<p class="cn">普通列举：A, B, and C，用逗号隔开。</p></div><div class="box white"><h3>Complex list → semicolons</h3>
+<p>When an item <b>already has a comma inside it</b> (e.g., a name + description, a city + country), commas between items would be confusing. So use <b>semicolons between items</b>, commas inside items.</p>
+<p class="ex ok">✅ We visited Paris<b>,</b> France<b>;</b> Rome<b>,</b> Italy<b>;</b> and Madrid<b>,</b> Spain.</p>
+<p class="ex ok">✅ The guests were Amy<b>,</b> my friend<b>;</b> John<b>,</b> her brother<b>;</b> and Lisa<b>,</b> their cousin.</p>
+<p class="ex no">❌ The guests were Amy, my friend, John, her brother, and Lisa, their cousin.<span class="why">how many guests? 3 or 6? unclear</span></p>
+<p class="ex no">❌ We visited Paris, France; Rome, Italy, and Madrid, Spain.<span class="why">once you use ; between items, use it between ALL items</span></p>
+<p class="cn">复杂列举：项内部有逗号时，项与项之间用分号（最后一项前写 “; and”）。一旦用了分号，所有项之间都要用分号。</p></div></div></section>
+<section class="slide " data-title="Before we start · Direct vs indirect questions" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Grammar You Need</div><h2>Question order vs statement order · 疑问语序与陈述语序</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Direct question 直接疑问句 → ?</h3>
+<p>The sentence itself <b>asks</b>. Word order: helping verb (<i>do, does, did, is, are, can, could, will, have</i>) comes <b>before</b> the subject.</p>
+<p class="ex ok">✅ <b class="v">Is</b> <b class="s">she</b> ready<b>?</b></p>
+<p class="ex ok">✅ Why <b class="v">did</b> <b class="s">the experiment</b> fail<b>?</b></p>
+<p class="ex ok">✅ <b class="v">Could</b> <b class="s">the blueberries</b> thrive in salty soil<b>?</b></p>
+<p class="ex no">❌ Why <b class="s">the experiment</b> <b class="v">failed</b><b>?</b><span class="why">statement order + ? → mismatch</span></p>
+<p class="cn">直接疑问句：助动词/be 动词放在主语前面，句末用问号。</p></div><div class="box white"><h3>Indirect question 间接疑问句 → .</h3>
+<p>A <b>statement</b> that reports a question, usually after verbs like <i>ask, wonder, investigate, explore, examine, question</i> + <i>how / why / what / whether / if</i>. Normal order: subject <b>before</b> verb.</p>
+<p class="ex ok">✅ I wonder whether <b class="s">she</b> <b class="v">is</b> ready<b>.</b></p>
+<p class="ex ok">✅ Scientists asked why <b class="s">the experiment</b> <b class="v">failed</b><b>.</b></p>
+<p class="ex no">❌ Scientists asked why <b class="v">did</b> <b class="s">the experiment</b> fail<b>.</b><span class="why">question order inside a statement</span></p>
+<p class="ex no">❌ Scientists asked why <b class="s">the experiment</b> <b class="v">failed</b><b>?</b><span class="why">the whole sentence is a statement → period</span></p>
+<p class="cn">间接疑问句：问题被放进陈述句里，用陈述语序（主语在前），句末用句号。</p></div></div></section>
+<section class="slide " data-title="Quick check · Colon, semicolon, or question mark?" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Quick Check</div><h2>Quick check · Colon, semicolon, or question mark?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The recipe needs three things<b>:</b> flour, eggs, and sugar.</summary><div class="a">✓ complete sentence + list that names the “three things”.</div></details><details class="qc"><summary><span class="q">2.</span>The recipe needs<b>:</b> flour, eggs, and sugar.</summary><div class="a">✗ “The recipe needs” is not complete. Remove the colon.</div></details><details class="qc"><summary><span class="q">3.</span>The town had one problem<b>:</b> water.</summary><div class="a">✓ the single word explains “one problem”.</div></details><details class="qc"><summary><span class="q">4.</span>She was tired<b>;</b> because she had worked all night.</summary><div class="a">✗ after “;” you need a complete sentence. Fix: tired because…</div></details><details class="qc"><summary><span class="q">5.</span>The team included Ana, a chemist<b>;</b> Ben, a physicist<b>;</b> and Li, a biologist.</summary><div class="a">✓ complex list: items contain commas, so semicolons go between them.</div></details><details class="qc"><summary><span class="q">6.</span>Researchers investigated how bees find flowers<b>?</b></summary><div class="a">✗ indirect question → period.</div></details><details class="qc"><summary><span class="q">7.</span>How do bees find flowers<b>?</b></summary><div class="a">✓ direct question: helping verb “do” before the subject “bees”.</div></details><details class="qc"><summary><span class="q">8.</span>The study asks whether do sleep habits affect grades.</summary><div class="a">✗ question order inside a statement. Fix: whether sleep habits affect grades.</div></details></div></section>
+<section class="slide " data-title="The colon: complete sentence + explanation" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Colons</div><h2>The colon: complete sentence + explanation</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>The rule</h3><p>What comes <b>before</b> a colon must be a complete sentence. What comes <b>after</b> explains, specifies, or lists what came before. (After it may be a complete sentence or not.)</p>
+  <p class="ex" style="font-size:16px">There are three types of muscle in the body<b>:</b> cardiac, smooth, and skeletal.</p>
+  <p class="ex" style="font-size:16px">The research is conclusive<b>:</b> climate change is a reality.</p>
+  <p class="cn">冒号前必须是完整句；冒号后是解释、具体说明或列举。</p></div>
+ <div class="box white"><h3>Wrong colons</h3><p class="ex" style="font-size:16px">✗ On our trip, we visited<b>:</b> museums, palaces, and monuments.</p><p>“we visited” is not complete without its object. → ✓ we visited these attractions<b>:</b> museums…</p>
+  <p style="margin-top:8px">A colon may also introduce a quotation after a complete sentence: Thoreau ends his essay with a metaphor<b>:</b> “Time is but the stream I go a-fishing in.”</p>
+  <p class="cn">动词或介词后面不能直接接冒号。</p></div>
+</div>
+<div class="box acc"><p><b>Colon vs. semicolon:</b> a semicolon simply joins two sentences; a colon promises that the second part <b>explains</b> the first. A dash can do the same job as a colon. <span class="cn">分号只是连接；冒号表示“下面解释前面”。破折号也可以起冒号的作用。</span></p></div></section>
+<section class="slide " data-title="Semicolons in complex lists" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">List semicolons</div><h2>Semicolons in complex lists</h2></header>
+<p class="lead">Normally list items are separated by commas. But when the items <b>already contain commas</b>, use <b>semicolons</b> between the items so the reader can see where each item ends.</p>
+<div class="ex">The team needed to bring uniforms, helmets, and gloves<b>;</b> oranges, almonds, and water<b>;</b> and hockey sticks, pucks, and skates.</div>
+<table class="t sm">
+<tr><th>Step</th><th>Example (2-2-26)</th></tr>
+<tr><td>1. Look <b>after</b> the blank: is there a semicolon later in the sentence?</td><td>“…in Nigeria<b>;</b> and Head Above Water, her autobiography.”</td></tr>
+<tr><td>2. If yes, this is a complex list. Mark each item.</td><td>① The Joys of Motherhood, a novel about … Lagos ② A Kind of Marriage, a television play … Nigeria ③ Head Above Water, her autobiography</td></tr>
+<tr><td>3. Put semicolons <b>between</b> items and commas <b>inside</b> items.</td><td>…Lagos<b>;</b> A Kind of Marriage<b>,</b> a television play…</td></tr>
+</table>
+<p class="cn">看后文是否已有分号；有的话就是复杂列举：项与项之间用分号，项内部用逗号。</p></section>
+<section class="slide " data-title="Direct and indirect questions" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Question marks</div><h2>Direct and indirect questions</h2></header>
+<table class="t sm">
+<tr><th></th><th>Direct question</th><th>Indirect question</th></tr>
+<tr><td>What it is</td><td>the sentence itself asks</td><td>a statement that reports a question</td></tr>
+<tr><td>Word order</td><td>question order: <b>could the blueberries thrive</b> / <b>do they affect</b></td><td>statement order: <b>how people perceive</b> acts of kindness</td></tr>
+<tr><td>End mark</td><td><b>?</b></td><td><b>.</b></td></tr>
+<tr><td>SAT example</td><td>If these plants were grown…, <b>could the blueberries thrive?</b> (1-2-22)</td><td>Researchers … investigated <b>how people perceive acts of kindness.</b> (6-1-22)</td></tr>
+</table>
+<div class="box acc"><p><b>Two things must match:</b> question order goes with “?”, statement order goes with “.”. So “do people perceive….” and “people perceive…?” are both wrong. <span class="cn">语序和标点要一致：疑问语序配问号，陈述语序配句号。</span></p></div></section>
+<section class="slide " data-title="Steps for these questions" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">How to approach it</div><h2>Steps for these questions</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Colon or something else?</h3><p>Is the part before the blank a complete sentence? Does the part after it explain or list? If both yes → colon. <span class="cn">前面完整、后面解释 → 冒号。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Look ahead for semicolons</h3><p>A semicolon later in the sentence (often “; and”) signals a complex list. <span class="cn">后文有分号 → 复杂列举。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Question choices: check order and mark together</h3><p>Is the sentence asking, or reporting a question (<i>investigated how…, wondered whether…</i>)? <span class="cn">直接问句还是间接问句？</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Eliminate</h3><p>Colon after an incomplete clause ✗; comma splice ✗; mixed list marks ✗; mismatched order and mark ✗. <span class="cn">逐项排除。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T1-1-24" data-lab="Form 1 · Module 1 · Question 24 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The choices: <i>food:</i> / <i>food,</i> / <i>food while</i> / <i>food</i>. What is the relationship between the first part and “in the Northern Hemisphere, the magnetic field points down…”?</p><p class="cn">后半句和前半句是什么关系？</p></div></div><div class="right fitq"><div class="qimg" data-q="T1-1-24"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T1-1-24" data-hl="1-8" data-lab="Form 1 · Module 1 · Question 24 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Before the blank</h3><p>“Researchers … have determined <b>why</b> some … roundworms in the Southern Hemisphere move in the opposite direction … when searching for food” → complete sentence.</p></div></div><div class="step"><div class="n">2</div><div><h3>After the blank</h3><p>“in the Northern Hemisphere, the magnetic field points down…, but in the Southern Hemisphere, it points up, … away from worms’ food sources” → complete sentence that <b>explains why</b>.</p></div></div><div class="step"><div class="n">3</div><div><h3>Rule</h3><p>Complete sentence + explanation → <b>colon</b>.</p></div></div><div class="step"><div class="n">4</div><div><h3>Check</h3><p>A comma would create a comma splice; nothing would create a run-on.</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T1-1-24"></div></div><div class="right"><div class="verdicts"><div class="vd keep hidden-v"><div class="L">A</div><div class="v">KEEP ✓</div><div class="r">The colon introduces the explanation of “why”: the field points up in the south, away from food.</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r">Comma splice: two complete sentences joined by a comma alone.</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">“while” turns the explanation into a contrast and leaves an awkward structure; it does not show that the second part explains the first.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">Run-on: no punctuation between two complete sentences.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: A.</b> The first sentence promises a reason (“determined why”), and the second gives it. That “promise → delivery” relationship is what a colon shows. <span class="cn">前句提出“为什么”，后句解释，用冒号。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 2 · Module 2 · Question 25" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Worked Example 2</div><h2>Form 2 · Module 2 · Question 25<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T2-2-25" data-hl="3-6" data-lab="Form 2 · Module 2 · Question 25 · the text"></div><div class="qimg" data-q="T2-2-25"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“varied: / varied, / varied, while / varied while”: colon, comma, or a “while” clause? → What is on each side of the blank? <span class="cn">比较冒号、逗号、while。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Test the left side · 左边</h3><p>“<b class="s">The number</b> <i class="x">of jams available for tasting</i> <b class="v">varied</b>” → subject + verb, a complete sentence. <span class="cn">左边 The number … varied，完整句。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Test the right side · 右边</h3><p>“some shoppers had twenty-four different options, others only six” → also a complete sentence, and it tells <b>how</b> the number varied (24 vs 6). <span class="cn">右边是完整句，并且具体说明“怎么不同”。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Complete sentence + an explanation of it → <b>colon</b> (read it as “namely”). A comma alone would be a comma splice. <span class="cn">完整句 + 解释 → 冒号；只用逗号是逗号粘连。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ Comma splice: two complete sentences joined by a comma.<br><b>C</b> ✗ “, while” makes the explanation a contrast and the structure unclear.<br><b>D</b> ✗ “varied while” runs the ideas together without showing the explanation.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> “The number of jams available for tasting <b>varied</b>” is complete. “some shoppers had twenty-four different options, others only six” <b>explains how</b> it varied. → <b>colon</b>. <span class="cn">后半句具体说明如何不同，用冒号。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 4 · Module 2 · Question 26" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Worked Example 3</div><h2>Form 4 · Module 2 · Question 26<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T4-2-26" data-hl="1-7" data-lab="Form 4 · Module 2 · Question 26 · the text"></div><div class="qimg" data-q="T4-2-26"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“continents geological / continents: geological / continents; geological / continents. Geological”: nothing, colon, semicolon, or period. <span class="cn">四种标点。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Test the left side · 左边</h3><p>“<b class="s">A study</b> <i class="x">published by … Ming Tang in 2019</i> <b class="v">offers</b> a new explanation for the origin of Earth’s continents” → complete sentence. <span class="cn">左边主谓宾完整。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Test the right side · 右边</h3><p>“geological structures called arcs, towering ridges that form when…” → no main verb for “structures”: it is a long <b>noun phrase</b>, not a sentence. It names the new explanation: continents come from arcs. <span class="cn">右边是名词短语，没有谓语；它说明“新解释”是什么。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Complete sentence + a phrase that explains → <b>colon</b>. A semicolon or period needs a full sentence after it; no mark runs the nouns together. <span class="cn">冒号后可以是短语，只要它解释前文。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ No punctuation runs “continents geological structures” together.<br><b>C</b> ✗ A semicolon needs a complete sentence after it; “geological structures called arcs…” is a phrase.<br><b>D</b> ✗ A period makes “Geological structures called arcs…” a fragment.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> “A study … offers a new explanation for the origin of Earth’s <b>continents</b>” is complete. “geological structures called arcs, towering ridges that form when…” is a phrase that <b>explains</b> the new explanation (what the origin is). → <b>colon</b>. <span class="cn">冒号后可以是短语，只要它解释前文。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 5 · Module 2 · Question 22" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Worked Example 4</div><h2>Form 5 · Module 2 · Question 22<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T5-2-22" data-hl="5-7" data-lab="Form 5 · Module 2 · Question 22 · the text"></div><div class="qimg" data-q="T5-2-22"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>Two marks change: one before “in part due to its sheer size” and one after it. <span class="cn">两处标点：短语前、短语后。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the extra phrase · 找补充短语</h3><p>“The vessel took six days to dislodge<i class="x">, in part due to its sheer size</i>”. The phrase gives a reason and can be removed, so set it off with a comma before it. Do not split “in part due to” itself. <span class="cn">in part due to its sheer size 是补充原因的短语，前面用逗号；短语内部不加逗号。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Test what comes after · 后面</h3><p>“it’s as heavy as two thousand blue whales when fully loaded” → subject <b>it</b> + verb <b>’s (is)</b>: a complete sentence. And it explains <b>how big</b> “its sheer size” is. <span class="cn">it’s… 是完整句，解释“体积有多大”。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Complete sentence + a complete sentence that explains → <b>colon</b> after “size”. A comma there would be a comma splice. → “dislodge, in part due to its sheer size:” <span class="cn">短语后接解释性完整句 → 冒号。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ No comma before the phrase and a comma after it: “size, it’s…” is a comma splice.<br><b>C</b> ✗ Comma splice before “it’s as heavy…”.<br><b>D</b> ✗ Run-on before “it’s,” and the extra commas around “in part” break the phrase.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> “The vessel took six days to dislodge” + extra phrase “in part due to its sheer size” (set off by a comma). Then “it’s as heavy as two thousand blue whales” <b>explains</b> its sheer size. → comma before the phrase, <b>colon</b> after it. <span class="cn">逗号隔开补充短语，冒号引出解释。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 2-2-23" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Practice 1 of 4</div><h2>Form 2 · Module 2 · Question 23</h2></header><div class="work"><div class="pv" data-p="T2-2-23" data-lab="Form 2 · Module 2 · Question 23 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-23"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Look ahead: is there a semicolon later in the sentence? How many items are in the list?</div><div class="fb"></div><template class="why">Later: “Chickasaw TV, in 2010<b>;</b> and a Rosetta Stone language course…, in 2015.” → a complex list. Items: ① the first instructional app, Chickasaw Basic, in 2009 ② an online television network, Chickasaw TV, in 2010 ③ a Rosetta Stone course, in 2015. Semicolon <b>between</b> items, commas inside: <b>Basic, in 2009; an online television network,</b> <span class="cn">复杂列举：项之间分号，项内逗号。</span></template><template class="wrong" data-l="A">Puts the semicolon after “Basic,” splitting the first item, and adds another semicolon inside the second item.</template><template class="wrong" data-l="B">Semicolon after “Basic” splits the first item from its date.</template><template class="wrong" data-l="D">Only commas: the reader cannot tell where the first item ends.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 4-1-25" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Practice 2 of 4</div><h2>Form 4 · Module 1 · Question 25</h2></header><div class="work"><div class="pv" data-p="T4-1-25" data-lab="Form 4 · Module 1 · Question 25 · the text"></div><div class="right"><div class="qimg" data-q="T4-1-25"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find the later semicolon. What are the three things the gardens are dedicated to?</div><div class="fb"></div><template class="why">Items: ① growing diverse plant species, both native and nonnative ② fostering scientific research ③ educating the public. Item ① contains a comma, and later there is “research<b>;</b> and educating.” → semicolon after item ①: <b>species, both native and nonnative;</b> <span class="cn">第一项内部有逗号，项与项之间用分号。</span></template><template class="wrong" data-l="A">A comma after “nonnative” does not match the later semicolon.</template><template class="wrong" data-l="C">The semicolon splits item ① (“species; both native and nonnative”).</template><template class="wrong" data-l="D">No comma before “both native and nonnative,” and a comma instead of a semicolon between items.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 1-2-22" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Practice 3 of 4</div><h2>Form 1 · Module 2 · Question 22</h2></header><div class="work"><div class="pv" data-p="T1-2-22" data-lab="Form 1 · Module 2 · Question 22 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-22"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="4-7" data-hint="4-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Does the sentence ask a question itself? What does “Michel was determined to find out” refer to?</div><div class="fb"></div><template class="why">“If these plants were grown … with grasses…, <b>could the blueberries thrive?</b>” The sentence asks a <b>direct</b> question, and the next sentence says Michel wanted to find out the answer. Direct question → question word order + <b>?</b> <span class="cn">直接问句：疑问语序 + 问号。</span></template><template class="wrong" data-l="A">Question word order with a period: the order and the mark do not match.</template><template class="wrong" data-l="B">Statement with a period: it no longer asks the question that Michel wanted to answer.</template><template class="wrong" data-l="C">Statement word order with a question mark: the order and the mark do not match.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 6-1-22" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">Practice 4 of 4</div><h2>Form 6 · Module 1 · Question 22</h2></header><div class="work"><div class="pv" data-p="T6-1-22" data-lab="Form 6 · Module 1 · Question 22 · the text"></div><div class="right"><div class="qimg" data-q="T6-1-22"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="1-2" data-hint="1-2"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Who is asking? Is the question part of a statement (“investigated how…”)?</div><div class="fb"></div><template class="why">“Researchers … <b>investigated how</b> people perceive acts of kindness.” The question is <b>indirect</b>: the sentence reports what they studied. → statement word order + <b>period</b>. <span class="cn">间接问句：陈述语序 + 句号。</span></template><template class="wrong" data-l="A">Question word order (“do people perceive”) inside a statement.</template><template class="wrong" data-l="B">The whole sentence is a statement, not a direct question.</template><template class="wrong" data-l="C">Statement word order with a question mark: mismatch.</template></div></div></div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks" data-title="What to remember about colons, list semicolons, and question marks"><header><div class="kk">Summary</div><h2>What to remember about colons, list semicolons, and question marks<span class="cn">冒号、分号与问号要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 冒号前后</h3><div class="summary-copy">Colon: <b>complete sentence before</b>; explanation, example, list, or quotation after.</div></article><article class="summary-card"><h3 class="summary-label">02 · 冒号禁区</h3><div class="summary-copy">No colon right after a verb or preposition (“we visited:” ✗).</div></article><article class="summary-card"><h3 class="summary-label">03 · 复杂列表</h3><div class="summary-copy">If the list items contain commas, separate items with <b>semicolons</b>. Look ahead for “; and”.</div></article><article class="summary-card"><h3 class="summary-label">04 · 直接与间接问句</h3><div class="summary-copy">Direct question → question word order + <b>?</b>. Indirect question → statement order + <b>.</b></div></article><article class="summary-card"><h3 class="summary-label">05 · 破折号与分号</h3><div class="summary-copy">A dash can do a colon’s job; a semicolon only joins two complete sentences.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">More Practice</div><h2>4 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 6-2-25" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">More Practice 1 of 4</div><h2>Form 6 · Module 2 · Question 25</h2></header><div class="work"><div class="pv" data-p="T6-2-25" data-lab="Form 6 · Module 2 · Question 25 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-25"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is “goats are notoriously indiscriminate” complete? What does the next clause do?</div><div class="fb"></div><template class="why">“When it comes to their diets, goats are notoriously indiscriminate” is complete. “they will devour all kinds of shrubs and weeds…” <b>explains</b> what indiscriminate means here. → <b>colon</b>. <span class="cn">后句解释前句，用冒号。</span></template><template class="wrong" data-l="A">“and” without a comma between two main clauses, and it hides the explanation.</template><template class="wrong" data-l="B">Comma splice.</template><template class="wrong" data-l="C">Run-on.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 2-2-26" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">More Practice 2 of 4</div><h2>Form 2 · Module 2 · Question 26</h2></header><div class="work"><div class="pv" data-p="T2-2-26" data-lab="Form 2 · Module 2 · Question 26 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-26"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="1-6" data-hint="1-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find the later semicolon. What are the three works in the list?</div><div class="fb"></div><template class="why">Later: “…in Nigeria<b>;</b> and Head Above Water, her autobiography.” Items: ① The Joys of Motherhood, a novel … Lagos ② A Kind of Marriage, a television play … Nigeria ③ Head Above Water. → <b>Lagos; A Kind of Marriage,</b> <span class="cn">项之间分号，项内逗号。</span></template><template class="wrong" data-l="A">Only commas between items; does not match the later semicolon.</template><template class="wrong" data-l="C">A colon inside the second item is wrong.</template><template class="wrong" data-l="D">No comma between the title and its description “a television play…”.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 6-2-23" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">More Practice 3 of 4</div><h2>Form 6 · Module 2 · Question 23</h2></header><div class="work"><div class="pv" data-p="T6-2-23" data-lab="Form 6 · Module 2 · Question 23 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-23"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="1-3" data-hint="1-3"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Look ahead for semicolons. What are the three kinds of materials?</div><div class="fb"></div><template class="why">Later: “…plastic bags<b>;</b> and more traditional art supplies, such as tree glue.” Items: ① natural debris, such as dried leaves ② man-made trash, such as plastic bags ③ traditional art supplies. → <b>leaves; man-made trash,</b> <span class="cn">复杂列举：分号分项。</span></template><template class="wrong" data-l="A">A colon after “trash” does not separate list items.</template><template class="wrong" data-l="C">Only commas between items.</template><template class="wrong" data-l="D">A semicolon after “trash” splits the second item.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 6-2-19" data-foot="Digital SAT Writing · G04 · Colons, Semicolons in Lists, Question Marks"><header><div class="kk">More Practice 4 of 4</div><h2>Form 6 · Module 2 · Question 19</h2></header><div class="work"><div class="pv" data-p="T6-2-19" data-lab="Form 6 · Module 2 · Question 19 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-19"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-4" data-hint="1-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The sentence begins “What are atmospheric rivers, and how…”. Is it a direct question?</div><div class="fb"></div><template class="why">“What are atmospheric rivers, and how <b>do they affect</b> our weather<b>?</b>” Both parts ask directly. → question word order + <b>?</b> <span class="cn">两个并列直接问句：疑问语序 + 问号。</span></template><template class="wrong" data-l="A">Question order with a period.</template><template class="wrong" data-l="B">Statement order and a period: the sentence no longer asks.</template><template class="wrong" data-l="D">Statement order with a question mark.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-1-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Researchers studying magnetosensation have </span> <span data-line=\"2\">determined why some soil-dwelling roundworms in </span> <span data-line=\"3\">the Southern Hemisphere move in the opposite </span> <span data-line=\"4\">direction of Earth’s magnetic field when searching </span> <span data-line=\"5\">for _______ in the Northern Hemisphere, the </span> <span data-line=\"6\">magnetic field points down, into the ground, but in </span> <span data-line=\"7\">the Southern Hemisphere, it points up, toward the </span> <span data-line=\"8\">surface and away from worms’ food sources. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Over twenty years ago, in a landmark experiment in </span> <span data-line=\"2\">the psychology of choice, professor Sheena Iyengar </span> <span data-line=\"3\">set up a jam-tasting booth at a grocery store. The </span> <span data-line=\"4\">number of jams available for tasting ______ some </span> <span data-line=\"5\">shoppers had twenty-four different options, others </span> <span data-line=\"6\">only six. Interestingly, the shoppers with fewer jams </span> <span data-line=\"7\">to choose from purchased more jam. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">A study published by Rice University geoscientist </span> <span data-line=\"2\">Ming Tang in 2019 offers a new explanation for the </span> <span data-line=\"3\">origin of Earth’s _______ structures called arcs, </span> <span data-line=\"4\">towering ridges that form when a dense oceanic plate </span> <span data-line=\"5\">subducts under a less dense continental plate, melts </span> <span data-line=\"6\">in the mantle below, and then rises and bursts </span> <span data-line=\"7\">through the continental crust above. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">On March 23, 2021, a gust of wind wreaked havoc on </span> <span data-line=\"2\">global trade. Ever Given, an international shipping </span> <span data-line=\"3\">container vessel, became lodged in Egypt’s Suez </span> <span data-line=\"4\">Canal, a major shipping route between Europe and </span> <span data-line=\"5\">Asia. The vessel took six days to _______ it’s as </span> <span data-line=\"6\">heavy as two thousand blue whales when fully </span> <span data-line=\"7\">loaded. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Joshua Hinson, director of the language revitalization </span> <span data-line=\"2\">program of the Chickasaw Nation in Oklahoma, </span> <span data-line=\"3\">helped produce the world’s first Indigenous-language </span> <span data-line=\"4\">instructional app, Chickasaw ______ Chickasaw TV, </span> <span data-line=\"5\">in 2010; and a Rosetta Stone language course in </span> <span data-line=\"6\">Chickasaw, in 2015. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The Arctic-Alpine Botanic Garden in Norway and </span> <span data-line=\"2\">the Jardim Botânico of Rio de Janeiro in Brazil are </span> <span data-line=\"3\">two of many botanical gardens around the world </span> <span data-line=\"4\">dedicated to growing diverse plant _______ </span> <span data-line=\"5\">fostering scientific research; and educating the public </span> <span data-line=\"6\">about plant conservation. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Lucía Michel of the University of Chile observed that </span> <span data-line=\"2\">alkaline soils contain an insoluble form of iron that </span> <span data-line=\"3\">blueberry plants cannot absorb, thus inhibiting </span> <span data-line=\"4\">blueberry growth. If these plants were grown in </span> <span data-line=\"5\">alkaline soil alongside grasses that aid in iron </span> <span data-line=\"6\">solubilization, _______ Michel was determined to </span> <span data-line=\"7\">find out. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Researchers Amit Kumar and Nicholas Epley </span> <span data-line=\"2\">investigated how _______ In a series of experiments </span> <span data-line=\"3\">conducted in 2022, they found that people </span> <span data-line=\"4\">performing small acts of kindness underestimated </span> <span data-line=\"5\">the positive effect their actions had on others. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">For thousands of years, humans have used </span> <span data-line=\"2\">domesticated goats (Capra hircus) to clear land of </span> <span data-line=\"3\">unwanted vegetation. When it comes to their diets, </span> <span data-line=\"4\">goats are notoriously _______ they will devour all </span> <span data-line=\"5\">kinds of shrubs and weeds, leaving virtually no part </span> <span data-line=\"6\">of any plant unconsumed. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Nigerian author Buchi Emecheta’s celebrated literary </span> <span data-line=\"2\">oeuvre includes <i>T</i><i>h</i><i>e</i><i> </i><i>J</i><i>o</i><i>y</i><i>s</i><i> </i><i>o</i><i>f</i><i> </i><i>M</i><i>o</i><i>t</i><i>h</i><i>e</i><i>r</i><i>h</i><i>o</i><i>o</i><i>d</i>, a novel </span> <span data-line=\"3\">about the changing roles of women in 1950s ______ </span> <span data-line=\"4\">a television play about the private struggles of a </span> <span data-line=\"5\">newlywed couple in Nigeria; and <i>H</i><i>e</i><i>a</i><i>d</i><i> </i><i>A</i><i>b</i><i>o</i><i>v</i><i>e</i><i> </i><i>W</i><i>a</i><i>t</i><i>e</i><i>r</i>, </span> <span data-line=\"6\">her autobiography. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Using natural debris, such as dried _______ such as </span> <span data-line=\"2\">plastic bags; and more traditional art supplies, such </span> <span data-line=\"3\">as tree glue, Ghanaian artist Ed Franklin Gavua </span> <span data-line=\"4\">creates his striking Yiiiiikakaii African masks, which </span> <span data-line=\"5\">he hopes can help viewers rethink how waste is used </span> <span data-line=\"6\">in their communities. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-19":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In forecasting weather events, meteorologists </span> <span data-line=\"2\">sometimes discuss the role of atmospheric rivers. </span> <span data-line=\"3\">What are atmospheric rivers, and how _______ </span> <span data-line=\"4\">Part of the water cycle, atmospheric rivers are </span> <span data-line=\"5\">narrow channels of moisture moving through the </span> <span data-line=\"6\">atmosphere. In certain conditions, these “rivers” can </span> <span data-line=\"7\">release some of their moisture as precipitation. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-1-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) food: </span></p><p><span data-line=\"4\">B) food, </span></p><p><span data-line=\"5\">C) food while </span></p><p><span data-line=\"6\">D) food </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) varied: </span></p><p><span data-line=\"4\">B) varied, </span></p><p><span data-line=\"5\">C) varied, while </span></p><p><span data-line=\"6\">D) varied while </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) continents geological </span></p><p><span data-line=\"4\">B) continents: geological </span></p><p><span data-line=\"5\">C) continents; geological </span></p><p><span data-line=\"6\">D) continents. Geological </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) dislodge in part due to its sheer size, </span></p><p><span data-line=\"4\">B) dislodge, in part due to its sheer size: </span></p><p><span data-line=\"5\">C) dislodge, in part due to its sheer size, </span></p><p><span data-line=\"6\">D) dislodge, in part, due to its sheer size </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Basic; in 2009, an online television network; </span></p><p><span data-line=\"4\">B) Basic; in 2009, an online television network, </span></p><p><span data-line=\"5\">C) Basic, in 2009; an online television network, </span></p><p><span data-line=\"6\">D) Basic, in 2009, an online television network, </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) species, both native and nonnative, </span></p><p><span data-line=\"4\">B) species, both native and nonnative; </span></p><p><span data-line=\"5\">C) species; both native and nonnative, </span></p><p><span data-line=\"6\">D) species both native and nonnative, </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) could the blueberries thrive. </span></p><p><span data-line=\"4\">B) the blueberries could thrive. </span></p><p><span data-line=\"5\">C) the blueberries could thrive? </span></p><p><span data-line=\"6\">D) could the blueberries thrive? </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) do people perceive acts of kindness. </span></p><p><span data-line=\"4\">B) do people perceive acts of kindness? </span></p><p><span data-line=\"5\">C) people perceive acts of kindness? </span></p><p><span data-line=\"6\">D) people perceive acts of kindness. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) indiscriminate and </span></p><p><span data-line=\"4\">B) indiscriminate, </span></p><p><span data-line=\"5\">C) indiscriminate </span></p><p><span data-line=\"6\">D) indiscriminate: </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Lagos, <i>A</i><i> </i><i>K</i><i>i</i><i>n</i><i>d</i><i> </i><i>o</i><i>f</i><i> </i><i>M</i><i>a</i><i>r</i><i>r</i><i>i</i><i>a</i><i>g</i><i>e</i>, </span></p><p><span data-line=\"4\">B) Lagos; <i>A</i><i> </i><i>K</i><i>i</i><i>n</i><i>d</i><i> </i><i>o</i><i>f</i><i> </i><i>M</i><i>a</i><i>r</i><i>r</i><i>i</i><i>a</i><i>g</i><i>e</i>, </span></p><p><span data-line=\"5\">C) Lagos, <i>A</i><i> </i><i>K</i><i>i</i><i>n</i><i>d</i><i> </i><i>o</i><i>f</i><i> </i><i>M</i><i>a</i><i>r</i><i>r</i><i>i</i><i>a</i><i>g</i><i>e</i>: </span></p><p><span data-line=\"6\">D) Lagos; <i>A</i><i> </i><i>K</i><i>i</i><i>n</i><i>d</i><i> </i><i>o</i><i>f</i><i> </i><i>M</i><i>a</i><i>r</i><i>r</i><i>i</i><i>a</i><i>g</i><i>e</i><i> </i></span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) leaves, man-made trash: </span></p><p><span data-line=\"4\">B) leaves; man-made trash, </span></p><p><span data-line=\"5\">C) leaves, man-made trash, </span></p><p><span data-line=\"6\">D) leaves; man-made trash; </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-19":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) do they affect our weather. </span></p><p><span data-line=\"4\">B) they do affect our weather. </span></p><p><span data-line=\"5\">C) do they affect our weather? </span></p><p><span data-line=\"6\">D) they do affect our weather? </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

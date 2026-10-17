@@ -1,0 +1,672 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Writing G03 · Supplements</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#2d5f3f; --acc2:#dcefe2; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Supplements" data-foot="Digital SAT Writing · G03 · Supplements"><div class="no">LESSON G03</div><h1>Supplements</h1><div class="sub">Essential and nonessential information, and the places where punctuation never goes</div><div class="cnsub">限定与非限定信息，以及“不该加标点”的位置</div><div class="goals"><div><b>ESSENTIAL OR NOT</b>Can the words be removed without changing who or what we mean?</div><div><b>MATCHING MARKS</b>Nonessential parts are set off by two commas, two dashes, or two parentheses.</div><div><b>NO PUNCTUATION</b>Never between subject and verb, verb and object, preposition and object, title and name.</div></div></section>
+<section class="slide " data-title="Before we start · What is a supplement?" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Grammar You Need</div><h2>A supplement = extra information inside a sentence</h2></header>
+<p>A <span class="term">supplement</span> 补充成分 / 插入语 is a word group that adds extra detail. If you remove it, the <b>core</b> (subject + verb + object) is still a complete, correct sentence.</p>
+<table class="t sm">
+<tr><th style="width:28%">Kind · 种类</th><th>Example (supplement crossed out)</th></tr>
+<tr><td>Appositive 同位语<br><span class="cn">a noun that renames the noun before it</span></td><td><b class="s">My brother</b>, <i class="x">a civil engineer</i>, <b class="v">lives</b> in Boston.</td></tr>
+<tr><td>which / who clause 非限定定语从句</td><td><b class="s">The library</b>, <i class="x">which opened in 1902</i>, <b class="v">was renovated</b>.</td></tr>
+<tr><td>-ed / -ing phrase 分词短语</td><td><b class="s">The book</b>, <i class="x">written by my mom</i>, <b class="v">became</b> a bestseller.</td></tr>
+<tr><td>however-type word 连接副词</td><td><b class="s">This theory</b>, <i class="x">however</i>, <b class="v">is</b> difficult to prove.</td></tr>
+<tr><td>dates, translations, notes</td><td><b class="s">Louise Bennett</b> <i class="x">(1919–2006)</i> <b class="v">was</b> a Jamaican poet.</td></tr>
+</table>
+<div class="box acc"><p><b>Cross-out test:</b> cross out the part. Is what is left still a complete sentence that means the same thing? Yes → it is a supplement and needs punctuation on <b>both</b> sides. <span class="cn">划掉测试：删去这部分后，剩下的句子仍然完整、意思不变 → 它是插入语，两边都要加标点。</span></p></div></section>
+<section class="slide " data-title="Before we start · Essential or nonessential?" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Grammar You Need</div><h2>Essential (限定) or nonessential (非限定)?</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Essential → NO commas</h3>
+<p>It tells us <b>which one</b>. Without it, we do not know who or what the sentence means. Pattern: <b>big group → smaller group</b>.</p>
+<p class="ex ok">✅ The students <u>who studied</u> passed the test.<span class="why">only the students who studied, not all students</span></p>
+<p class="ex ok">✅ The books <u>that were damaged</u> were replaced.</p>
+<p class="ex no">❌ The students<b>,</b> who studied<b>,</b> passed the test.<span class="why">now it says ALL the students studied: meaning changes</span></p>
+<p class="cn">限定信息：说明“哪一个/哪一些”，删掉后指代不清或意思改变，不加逗号。大范围 → 小范围。</p></div><div class="box white"><h3>Nonessential → a PAIR of marks</h3>
+<p>The noun is already clear (a name, “my mother”, “the Eiffel Tower”). The part just adds a fact.</p>
+<p class="ex ok">✅ Dr. Li<b>,</b> <u>who studies coastal ecosystems</u><b>,</b> will speak tonight.</p>
+<p class="ex ok">✅ Jack Chen<b>,</b> <u>a Beijing-born artist</u><b>,</b> won the prize.</p>
+<p class="ex no">❌ Dr. Li <u>who studies coastal ecosystems</u> will speak tonight.<span class="why">Dr. Li is already one specific person: the clause is extra</span></p>
+<p class="cn">非限定信息：名词已经很明确（人名、地名），后面只是补充，两边用成对的逗号。</p></div></div><div class="box acc"><p><b>that vs which:</b> <i>that</i> = essential, <b>never</b> with commas. <i>which</i> after a comma = nonessential. ❌ “The book<b>, that</b> I borrowed, was useful.” ✅ “The book<b>, which</b> I borrowed yesterday<b>,</b> was useful.” <span class="cn">that 引导的从句前面永远不加逗号；非限定从句用 which / who。</span></p></div></section>
+<section class="slide " data-title="Before we start · Paired punctuation" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Grammar You Need</div><h2>Supplements come in pairs: open + close · 成对出现</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Three ways to set off extra info</h3>
+<p class="ex ok">✅ The library<b>,</b> established in 1902<b>,</b> is historic.<span class="why">commas: normal</span></p>
+<p class="ex ok">✅ The library<b>—</b>established in 1902<b>—</b>is historic.<span class="why">dashes: stronger, more emphasis</span></p>
+<p class="ex ok">✅ The library <b>(</b>established in 1902<b>)</b> is historic.<span class="why">parentheses: weaker, a side note</span></p>
+<p>All three mean the same. The SAT tests only that the <b>two marks match</b>.</p>
+<p class="cn">逗号、破折号、括号都可以夹住插入语，作用相同；关键是“开头用什么，结尾就用什么”。</p></div><div class="box white"><h3>Three common mistakes</h3>
+<p class="ex no">❌ The library<b>,</b> established in 1902<b>—</b>is historic.<span class="why">mixed marks: comma … dash</span></p>
+<p class="ex no">❌ The library<b>,</b> established in 1902 is historic.<span class="why">only one comma: the supplement never closes</span></p>
+<p class="ex no">❌ The library<b>,</b> established<b>,</b> in 1902, is historic.<span class="why">the closing mark is in the wrong place: it must come right where the extra part ends</span></p>
+<p><b>How to fix:</b> find where the extra part <b>starts</b> (look at the mark already there), find where it <b>ends</b> (just before the main verb returns), and use the <b>same</b> mark.</p>
+<p class="cn">找插入语的开头（看已有的标点），再找结尾（主干动词回来之前），结尾用同样的标点。</p></div></div></section>
+<section class="slide " data-title="Before we start · Titles and names" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Grammar You Need</div><h2>Title + name: comma or no comma? · 头衔 + 人名</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>No commas: the name tells WHICH one</h3>
+<p>A job title or general noun <b>without</b> “the/a” right before a name works like one long name.</p>
+<p class="ex ok">✅ <b class="s">biologist Yuree Lee</b> <b class="v">showed</b> that…</p>
+<p class="ex ok">✅ <b class="s">her 2019 novel Gingerbread</b> <b class="v">offers</b> a twist<span class="why">which novel? Gingerbread → essential</span></p>
+<p class="ex ok">✅ <b class="s">the chemical aluminum oxide</b> <b class="v">is</b> hard.</p>
+<p class="ex no">❌ biologist<b>,</b> Yuree Lee showed that…<span class="why">one comma splits a single noun</span></p>
+<p class="ex no">❌ biologist<b>,</b> Yuree Lee<b>,</b> showed that…<span class="why">cross out the name → “biologist showed…” is broken (no the/a)</span></p>
+<p class="cn">头衔（前面没有 the/a）+ 人名、作品类型 + 作品名：名字说明“是哪一个”，整体当作一个名词，不加逗号。</p></div><div class="box white"><h3>Commas: name first, then a description</h3>
+<p>When the <b>name</b> comes first, the description after it (often starting with <i>a / an / the</i>) is an appositive: extra information.</p>
+<p class="ex ok">✅ <b class="s">Yuree Lee</b><b>,</b> <i class="x">a plant cell biologist</i><b>,</b> <b class="v">showed</b> that…</p>
+<p class="ex ok">✅ <b class="s">Louise Bennett</b><b>,</b> <i class="x">an influential Jamaican poet</i><b>,</b> <b class="v">wrote</b> in Creole.</p>
+<p class="ex no">❌ Louise Bennett<b>,</b> an influential Jamaican poet wrote in Creole.<span class="why">the second comma is missing</span></p>
+<p class="cn">人名在前、描述在后（常以 a / an / the 开头）：描述是同位语补充，两边加逗号。</p></div></div></section>
+<section class="slide " data-title="Before we start · No-comma zones" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Grammar You Need</div><h2>Inside the core: no punctuation · 主干内部不加标点</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Never split these pairs</h3>
+<p class="ex no">❌ <b class="s">The students in the back row</b><b>,</b> <b class="v">laughed</b>.<span class="why">subject | verb — even when the subject is long</span></p>
+<p class="ex no">❌ She <b class="v">likes</b><b>,</b> pizza.<span class="why">verb | object</span></p>
+<p class="ex no">❌ She put the book on<b>,</b> the table.<span class="why">preposition | its object</span></p>
+<p class="ex no">❌ He said<b>,</b> that he was tired.<span class="why">verb | that-clause</span></p>
+<p class="ex no">❌ The themes of<b>:</b> healing and memory<span class="why">colon after an incomplete part</span></p>
+<p class="cn">主语和谓语之间、动词和宾语之间、介词和宾语之间、that 前后，都不能加标点（除非是成对插入语）。</p></div><div class="box white"><h3>Introductory phrase: one comma at its END</h3>
+<p>A phrase or clause <b>before</b> the subject is followed by <b>one</b> comma, right where the main clause begins.</p>
+<p class="ex ok">✅ After the lecture<b>,</b> <b class="s">we</b> <b class="v">left</b>.</p>
+<p class="ex ok">✅ Powered by solar energy during the day<b>,</b> <b class="s">the lights</b> <b class="v">glow</b> at night.</p>
+<p class="ex no">❌ Powered by solar energy<b>,</b> during the day the lights glow at night.<span class="why">comma inside the phrase, none at its end</span></p>
+<p class="cn">句首短语/从句：只在它结束、主句开始的地方加一个逗号，不要在短语内部加。</p></div></div></section>
+<section class="slide " data-title="Quick check · Pair, none, or one?" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Quick Check</div><h2>Quick check · Pair, none, or one?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>Novelist<b>,</b> Toni Morrison won the Nobel Prize in 1993.</summary><div class="a">✗ title + name = one noun. Fix: Novelist Toni Morrison won…</div></details><details class="qc"><summary><span class="q">2.</span>Toni Morrison<b>,</b> a novelist from Ohio<b>,</b> won the Nobel Prize.</summary><div class="a">✓ name first, then an appositive in a pair of commas.</div></details><details class="qc"><summary><span class="q">3.</span>The city<b>—</b>founded in 1820<b>,</b> grew quickly.</summary><div class="a">✗ mixed marks. Fix: 1820<b>—</b>grew</div></details><details class="qc"><summary><span class="q">4.</span>Students <b>who arrive late</b> must sign in.</summary><div class="a">✓ essential: tells which students. No commas.</div></details><details class="qc"><summary><span class="q">5.</span>The Amazon River<b>,</b> which flows through Brazil<b>,</b> is very long.</summary><div class="a">✓ the river is already named: the which-clause is extra.</div></details><details class="qc"><summary><span class="q">6.</span>The report<b>,</b> that the team wrote<b>,</b> was long.</summary><div class="a">✗ “that” never takes commas. Fix: The report that the team wrote was long.</div></details><details class="qc"><summary><span class="q">7.</span>The results of the long study<b>,</b> surprised everyone.</summary><div class="a">✗ comma between subject (results) and verb (surprised).</div></details><details class="qc"><summary><span class="q">8.</span>Her poems explored themes of<b>,</b> loss and hope.</summary><div class="a">✗ comma after the preposition “of”. Fix: themes of loss and hope.</div></details></div></section>
+<section class="slide " data-title="Essential and nonessential elements" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Two kinds of information</div><h2>Essential and nonessential elements</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>Essential (restrictive 限定) · no punctuation</h3><p>Identifies <b>which one</b> we mean. Removing it changes the meaning or leaves the sentence unclear.</p>
+  <p class="ex" style="font-size:16px">Books <b>that have won awards</b> are often more popular.</p><p class="ex" style="font-size:16px">plant cell biologist <b>Yuree Lee</b> showed that…</p>
+  <p class="cn">限定信息：说明“是哪一个”，不能删，不加标点。</p></div>
+ <div class="box white"><h3>Nonessential (非限定) · set off on both sides</h3><p>Adds extra information about something already identified. The sentence still works without it.</p>
+  <p class="ex" style="font-size:16px">Our town’s library<b>,</b> established in the 1900s<b>,</b> is a historic building.</p><p class="ex" style="font-size:16px">Our town’s library <b>—</b>established in the 1900s<b>—</b> is…</p><p class="ex" style="font-size:16px">Our town’s library <b>(</b>established in the 1900s<b>)</b> is…</p>
+  <p class="cn">非限定信息：可以删掉，两边用成对的逗号、破折号或括号。</p></div>
+</div>
+<div class="box acc"><p><b>Test:</b> cover the part. Does the sentence still say <b>the same thing about the same person or thing</b>? Yes → nonessential, set it off. No → essential, no punctuation. <b>Never mix marks</b>: comma … dash ✗. <span class="cn">遮住测试；成对标点不能混用。</span></p></div></section>
+<section class="slide " data-title="Titles and names: the most common SAT pattern" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Titles and names</div><h2>Titles and names: the most common SAT pattern</h2></header>
+<table class="t sm">
+<tr><th>Pattern</th><th>Punctuation</th><th>Example</th></tr>
+<tr><td>title (no <i>the / a</i>) + name</td><td><b>none</b></td><td>critic Stina Chyn claims · plant cell biologist Yuree Lee showed · portrait artist Marie-Denise Villers</td></tr>
+<tr><td>the + general noun + specific name</td><td><b>none</b> when the name identifies which one</td><td>the chemical compound aluminum oxide · the character Tamatoa the crab</td></tr>
+<tr><td>name, + description,</td><td><b>commas</b> (the description is extra)</td><td>Louise Bennett<b>,</b> an influential Jamaican poet<b>,</b> …</td></tr>
+</table>
+<div class="grid g2">
+ <div class="box white"><h3>Why no commas?</h3><p>“critic Stina Chyn”: without the name we do not know <b>which</b> critic. The name is essential. Treat “critic Stina Chyn” as one noun.</p><p class="cn">头衔 + 人名：人名说明是哪一位评论家，是限定信息，不加逗号。</p></div>
+ <div class="box white"><h3>A single comma is always wrong</h3><p>“critic, Stina Chyn claims” has only one comma. If the name were extra, it would need commas on <b>both</b> sides; but here it is essential, so it needs <b>none</b>.</p><p class="cn">只有一个逗号的“半拉插入语”一定错。</p></div>
+</div></section>
+<section class="slide " data-title="Where punctuation never goes" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">No punctuation zones</div><h2>Where punctuation never goes</h2></header>
+<table class="t sm">
+<tr><th>Between…</th><th>Wrong</th><th>Right</th></tr>
+<tr><td>subject and verb</td><td>her 2019 novel Gingerbread<b>,</b> offers a delicious twist</td><td>her 2019 novel Gingerbread offers…</td></tr>
+<tr><td>verb and object</td><td>Her innovative poems popularized<b>;</b> the use of Jamaican Creole</td><td>…popularized the use of…</td></tr>
+<tr><td>preposition and its object</td><td>explored themes of<b>,</b> healing, self-discovery…</td><td>themes of healing…</td></tr>
+<tr><td>noun and an essential clause</td><td>a book packaging company<b>,</b> that specializes in…</td><td>a book packaging company that specializes in…</td></tr>
+<tr><td>verb and a quotation that is part of the sentence</td><td>Stina Chyn claims<b>,</b> “expanded the range…”</td><td>Stina Chyn claims “expanded…”</td></tr>
+</table>
+<div class="box acc"><p><b>Rule of thumb from your Grammar notes:</b> no comma between subject and verb even when the subject is very long; no comma before or after a preposition; no comma before or after <i>that</i>. <span class="cn">主谓之间、动宾之间、介词前后、that 前后，都不加逗号。</span></p></div></section>
+<section class="slide " data-title="Four steps for supplements" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">How to approach it</div><h2>Four steps for supplements</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Find the core: subject, verb, object</h3><p>Cross out what might be extra. <span class="cn">先找主干。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Is the blank inside the core?</h3><p>Between subject and verb, verb and object, preposition and object, title and name → <b>no punctuation</b>. <span class="cn">空格在主干内部 → 不加标点。</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Is there an extra element?</h3><p>Find where it starts. It must end with the <b>same mark</b>: comma…comma, dash…dash. <span class="cn">有插入成分 → 找它的开头，结尾用同样的标点。</span></p></div></div>
+ <div class="step"><div class="n">4</div><div><h3>Introductory phrase?</h3><p>A phrase before the main clause (“Powered with energy … during the day”) ends with <b>one comma</b>, at its end, not inside it. <span class="cn">句首短语：只在结尾加一个逗号。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T1-1-22" data-lab="Form 1 · Module 1 · Question 22 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The choices differ only in commas around <i>Stina Chyn</i> and after <i>claims</i>. We must decide whether the name is essential and whether anything belongs between <i>claims</i> and the quotation.</p><p class="cn">逗号考点：人名是否限定？claims 和引语之间要不要逗号？</p></div></div><div class="right fitq"><div class="qimg" data-q="T1-1-22"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T1-1-22" data-hl="4-6" data-lab="Form 1 · Module 1 · Question 22 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>Title + name</h3><p>“critic Stina Chyn”: a title without “the” followed by a name. The name tells us <b>which</b> critic → essential → no commas.</p></div></div><div class="step"><div class="n">2</div><div><h3>Verb + quotation</h3><p>“claims ‘expanded the range of possibilities…’”: the quotation completes the clause “a film that critic Stina Chyn claims expanded…” It is part of the sentence, so <b>no comma</b> after “claims.”</p></div></div><div class="step"><div class="n">3</div><div><h3>Choose</h3><p>No punctuation anywhere: “critic Stina Chyn claims”.</p></div></div><div class="step"><div class="n">4</div><div><h3>Check the others</h3><p>Each wrong choice adds a comma that separates parts that belong together.</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T1-1-22"></div></div><div class="right"><div class="verdicts"><div class="vd cut hidden-v"><div class="L">A</div><div class="v">CUT ✗</div><div class="r">Commas around the name treat it as extra, but the name is needed to identify the critic.</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r">Adds the wrong commas around the name and a comma between “claims” and the words that complete it.</div></div><div class="vd keep hidden-v"><div class="L">C</div><div class="v">KEEP ✓</div><div class="r">No punctuation: title + name is one unit, and “claims” runs straight into the quoted words.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">A single comma after the name separates the subject from its verb “claims.”</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: C.</b> Title + name with no article = essential, no commas. And nothing goes between a verb and the words that complete it. <span class="cn">头衔 + 人名不加逗号；动词和其后的成分之间也不加。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 6 · Module 1 · Question 20" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Worked Example 2</div><h2>Form 6 · Module 1 · Question 20<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T6-1-20" data-hl="3-4" data-lab="Form 6 · Module 1 · Question 20 · the text"></div><div class="qimg" data-q="T6-1-20"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“popularized; / popularized, / popularized / popularized:”: the word is the same; only the mark after it changes. <span class="cn">只差动词后的标点。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the core · 找主干</h3><p>“<b class="s">Her innovative poems</b> <b class="v">popularized</b> <b>the use</b> of Jamaican Creole…” Subject = poems, verb = popularized, object = the use. <span class="cn">主语 poems，谓语 popularized，宾语 the use。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Where is the blank? · 空格位置</h3><p>The blank sits between the <b>verb</b> (popularized) and its <b>object</b> (the use). There is no extra part here to set off. <span class="cn">空格在动词和宾语之间，这里没有插入语。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Verb | object is a no-punctuation zone. A colon also needs a complete sentence before it, and “Her poems popularized” is not complete → <b>no punctuation</b>. <span class="cn">动宾之间不加任何标点。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ A semicolon between verb and object splits one clause in two.<br><b>B</b> ✗ A comma separates the verb from its object.<br><b>D</b> ✗ A colon must follow a complete clause; “Her innovative poems popularized” is not complete without its object.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: C.</b> “Her innovative poems (S) <b>popularized</b> (V) the use of Jamaican Creole (O).” The blank is between the verb and its object → <b>no punctuation</b>. <span class="cn">动宾之间不加标点。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 4 · Module 2 · Question 20" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Worked Example 3</div><h2>Form 4 · Module 2 · Question 20<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T4-2-20" data-hl="2-4" data-lab="Form 4 · Module 2 · Question 20 · the text"></div><div class="qimg" data-q="T4-2-20"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“of / of, / of— / of:”: what, if anything, goes after the word <i>of</i>? <span class="cn">考 of 后面加不加标点。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the core · 找主干</h3><p><i class="x">In her two major series…,</i> “<b class="s">painter Howardena Pindell</b> <b class="v">explored</b> <b>themes</b> of healing, self-discovery, and memory…” <span class="cn">主干：Pindell explored themes。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Where is the blank? · 空格位置</h3><p><i>of</i> is a <b>preposition</b> 介词; its object is the list “healing, self-discovery, and memory”. The blank is between the preposition and its object. <span class="cn">空格在介词 of 和它的宾语之间。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Never put a comma, dash, or colon right after a preposition. “explored themes of” is not a complete sentence, so a colon is also impossible → <b>no punctuation</b>. <span class="cn">介词后不加标点。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ A comma after a preposition separates it from its object.<br><b>C</b> ✗ A dash after a preposition breaks the phrase.<br><b>D</b> ✗ A colon needs a complete clause before it; “explored themes of” is not complete.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> “explored themes <b>of</b> healing, self-discovery, and memory”: <i>of</i> is a preposition and “healing, self-discovery, and memory” is its object. → <b>no punctuation</b> after “of.” <span class="cn">介词和宾语之间不加标点。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 2 · Module 1 · Question 28" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Worked Example 4</div><h2>Form 2 · Module 1 · Question 28<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T2-1-28" data-hl="6-8" data-lab="Form 2 · Module 1 · Question 28 · the text"></div><div class="qimg" data-q="T2-1-28"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>“Gingerbread— / Gingerbread, / Gingerbread / Gingerbread:”: which mark, if any, comes after the title? <span class="cn">考书名后的标点。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the core · 找主干</h3><p>“while <b class="s">her 2019 novel Gingerbread</b> <b class="v">offers</b> a delicious twist…” The subject is <b>her 2019 novel Gingerbread</b>; the verb is <b>offers</b>. <span class="cn">主语 novel Gingerbread，谓语 offers。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Essential or extra? · 限定还是补充</h3><p>“her 2019 novel” + the title: the title tells <b>which</b> novel, so it is essential, like title + name. And there is no opening comma or dash before “Gingerbread” to pair with. <span class="cn">书名说明“哪一本”，是限定信息；前面也没有逗号/破折号需要配对。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>The blank is between the subject and its verb → <b>no punctuation</b>. One comma or one dash would split subject from verb. <span class="cn">主谓之间不加标点。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ A single dash separates the subject from its verb.<br><b>B</b> ✗ A single comma separates the subject from its verb.<br><b>D</b> ✗ A colon cannot follow an incomplete clause.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: C.</b> Subject: “her 2019 novel <b>Gingerbread</b>” (title + name = one unit). Verb: “offers.” Nothing may come between the subject and its verb → <b>no punctuation</b>. <span class="cn">主谓之间不加标点。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 1-2-27" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Practice 1 of 4</div><h2>Form 1 · Module 2 · Question 27</h2></header><div class="work"><div class="pv" data-p="T1-2-27" data-lab="Form 1 · Module 2 · Question 27 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-27"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is “Yuree Lee” extra information, or does it tell us which biologist?</div><div class="fb"></div><template class="why">“plant cell biologist <b>Yuree Lee</b>”: a title without “the” + a name. The name is essential → no commas. It is also the subject of “showed,” so no comma before the verb. <span class="cn">头衔 + 人名，限定；同时是 showed 的主语。</span></template><template class="wrong" data-l="A">A single comma separates the title from the name it belongs with.</template><template class="wrong" data-l="B">A comma after the name separates the subject from its verb “showed.”</template><template class="wrong" data-l="D">Commas around the name treat it as extra and then separate the subject from the verb.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 5-1-25" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Practice 2 of 4</div><h2>Form 5 · Module 1 · Question 25</h2></header><div class="work"><div class="pv" data-p="T5-1-25" data-lab="Form 5 · Module 1 · Question 25 · the text"></div><div class="right"><div class="qimg" data-q="T5-1-25"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="5-8" data-hint="5-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What kind of noun is “little-known French portrait artist”? Is the name essential?</div><div class="fb"></div><template class="why">“little-known French portrait <b>artist Marie-Denise Villers</b>”: a descriptive title + a name, with no article. The name identifies the artist → essential → <b>no punctuation</b>. <span class="cn">描述性头衔 + 人名，不加标点。</span></template><template class="wrong" data-l="A">A single dash separates the title from the name it identifies.</template><template class="wrong" data-l="C">A colon needs a complete clause before it and does not fit here.</template><template class="wrong" data-l="D">A single comma separates the title from the name.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 3-2-22" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Practice 3 of 4</div><h2>Form 3 · Module 2 · Question 22</h2></header><div class="work"><div class="pv" data-p="T3-2-22" data-lab="Form 3 · Module 2 · Question 22 · the text"></div><div class="right"><div class="qimg" data-q="T3-2-22"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="4-6" data-hint="4-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>The sentence begins with “Powered with energy collected by solar panels during the day.” Where does this introductory phrase end?</div><div class="fb"></div><template class="why">“Powered with energy collected by solar panels during the day” is <b>one</b> introductory phrase describing the LEDs. It ends before the main clause “the blinking LEDs keep lions away.” → one comma at its <b>end</b>: “…during the day<b>,</b>” <span class="cn">句首分词短语整体在前，结尾一个逗号，内部不加。</span></template><template class="wrong" data-l="A">Commas inside the phrase break up “collected by solar panels,” which is essential to describe the energy; and the phrase is not separated from the main clause.</template><template class="wrong" data-l="B">No comma at the end of the introductory phrase.</template><template class="wrong" data-l="D">The comma after “energy” wrongly treats “collected by solar panels” as extra.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 2-1-25" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">Practice 4 of 4</div><h2>Form 2 · Module 1 · Question 25</h2></header><div class="work"><div class="pv" data-p="T2-1-25" data-lab="Form 2 · Module 1 · Question 25 · the text"></div><div class="right"><div class="qimg" data-q="T2-1-25"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="1-8" data-hint="1-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is “an apt assessment” part of the quotation? What does it describe?</div><div class="fb"></div><template class="why">The main clause ends with the quotation: “…consumed by the appetite of a soulless materialism.” Then “<b>an apt assessment</b> given that…” is an extra noun phrase that comments on Waid’s observation. Main clause + nonessential noun phrase → <b>comma</b> (inside the quotation mark). <span class="cn">an apt assessment 是对前文的补充评价，用逗号隔开。</span></template><template class="wrong" data-l="A">A semicolon with “and” cannot join a clause to a phrase.</template><template class="wrong" data-l="B">“and” makes “an apt assessment” sound like part of what the society is consumed by.</template><template class="wrong" data-l="D">No punctuation runs the quotation into the comment that follows it.</template></div></div></div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Writing · G03 · Supplements" data-title="What to remember about supplements"><header><div class="kk">Summary</div><h2>What to remember about supplements<span class="cn">插入成分要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 必要与非必要</h3><div class="summary-copy">Essential information (which one?) → no punctuation. Nonessential information → set off on <b>both</b> sides.</div></article><article class="summary-card"><h3 class="summary-label">02 · 成对标点</h3><div class="summary-copy">Use matching marks: two commas, two dashes, or two parentheses. Never one comma alone; never mix.</div></article><article class="summary-card"><h3 class="summary-label">03 · 头衔与姓名</h3><div class="summary-copy">Title (no article) + name = one unit → no commas: <i>critic Stina Chyn</i>.</div></article><article class="summary-card"><h3 class="summary-label">04 · 不可断开的位置</h3><div class="summary-copy">No punctuation between subject–verb, verb–object, preposition–object, or before an essential <i>that</i> clause.</div></article><article class="summary-card"><h3 class="summary-label">05 · 句首短语</h3><div class="summary-copy">An introductory phrase gets one comma, at its end.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section>
+<section class="slide " data-title="More practice" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">More Practice</div><h2>5 more questions for practice after class<span class="cn">课后练习</span></h2></header><div class="box white"><p>The questions on the next pages are for practice <b>after class</b>. They work like the practice questions in the lesson: choose an answer, use <b>Hint</b> if you are stuck, and read the explanation for every choice.</p><p class="cn">下面几页是课后练习，和课上练习用法一样：先自己做，卡住时看提示，做完读每个选项的解析。</p></div></section>
+<section class="slide " data-title="Practice 1: 3-2-27" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">More Practice 1 of 5</div><h2>Form 3 · Module 2 · Question 27</h2></header><div class="work"><div class="pv" data-p="T3-2-27" data-lab="Form 3 · Module 2 · Question 27 · the text"></div><div class="right"><div class="qimg" data-q="T3-2-27"></div><div class="prac" data-ans="D" data-letters="ABCD" data-ev="4-7" data-hint="4-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Is “aluminum oxide” extra, or does it tell us which chemical compound?</div><div class="fb"></div><template class="why">“the chemical compound <b>aluminum oxide</b>”: the name identifies which compound → essential → <b>no punctuation</b>. Also no comma before “to make,” which completes the verb “used.” <span class="cn">名称说明是哪种化合物，限定，不加标点。</span></template><template class="wrong" data-l="A">A single comma treats the name as extra.</template><template class="wrong" data-l="B">A comma after the name separates “used the compound” from “to make…”.</template><template class="wrong" data-l="C">Commas around the name treat essential information as extra.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 4-2-21" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">More Practice 2 of 5</div><h2>Form 4 · Module 2 · Question 21</h2></header><div class="work"><div class="pv" data-p="T4-2-21" data-lab="Form 4 · Module 2 · Question 21 · the text"></div><div class="right"><div class="qimg" data-q="T4-2-21"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="4-8" data-hint="4-8"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What follows the blank: “specializes in the creation…”? What does it need to connect to “company”?</div><div class="fb"></div><template class="why">“a book packaging company <b>that</b> specializes in…”: the clause tells what kind of company CAKE Literary is; it needs a relative pronoun and is essential → “company that,” <b>no comma</b>. <span class="cn">that 引导限定性定语从句，前面不加逗号。</span></template><template class="wrong" data-l="A">“company, specializes”: no pronoun to connect the verb to “company.”</template><template class="wrong" data-l="C">“company specializes”: same problem, the verb has no subject.</template><template class="wrong" data-l="D">A comma before “that” is not used with an essential clause.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 5-2-23" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">More Practice 3 of 5</div><h2>Form 5 · Module 2 · Question 23</h2></header><div class="work"><div class="pv" data-p="T5-2-23" data-lab="Form 5 · Module 2 · Question 23 · the text"></div><div class="right"><div class="qimg" data-q="T5-2-23"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-4" data-hint="1-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What is the subject of “belongs”? Is “Tamatoa the crab” essential?</div><div class="fb"></div><template class="why">Subject: “the deep and humorous voice behind the <b>character Tamatoa the crab</b>”; verb: “belongs.” The name tells which character → essential, and nothing may separate the subject from its verb → <b>no punctuation</b>. <span class="cn">限定性同位语 + 主谓之间，都不加标点。</span></template><template class="wrong" data-l="B">A comma separates the subject from its verb.</template><template class="wrong" data-l="C">A colon cannot interrupt a subject.</template><template class="wrong" data-l="D">A single comma treats the name as extra but never closes it.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 2-2-24" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">More Practice 4 of 5</div><h2>Form 2 · Module 2 · Question 24</h2></header><div class="work"><div class="pv" data-p="T2-2-24" data-lab="Form 2 · Module 2 · Question 24 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-24"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Find the earlier dash after “earth.” Where does the extra element end?</div><div class="fb"></div><template class="why">A dash after “earth” opens an extra element: “—in this case, the porous rocks of the hills around Hot Springs.” It must be closed with a <b>matching dash</b> before the sentence continues “to collect in a subterranean basin.” → <b>Springs—to</b> <span class="cn">前面有一个破折号，插入语结束时要用另一个破折号闭合。</span></template><template class="wrong" data-l="A">The extra element is never closed.</template><template class="wrong" data-l="B">A colon does not close a dash.</template><template class="wrong" data-l="D">A comma does not match the opening dash.</template></div></div></div></section>
+<section class="slide " data-title="Practice 5: 5-1-26" data-foot="Digital SAT Writing · G03 · Supplements"><header><div class="kk">More Practice 5 of 5</div><h2>Form 5 · Module 1 · Question 26</h2></header><div class="work"><div class="pv" data-p="T5-1-26" data-lab="Form 5 · Module 1 · Question 26 · the text"></div><div class="right"><div class="qimg" data-q="T5-1-26"></div><div class="prac" data-ans="B" data-letters="ABCD" data-ev="4-7" data-hint="4-7"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>There is already a dash after “photographs.” What does it open, and where must it close?</div><div class="fb"></div><template class="why">The dash after “photographs” opens an extra element: “—both of interviewees and the items they described, from hair to grass to sculptures.” Inside it, a comma separates the two parts. The element must close with a <b>matching dash</b> before “to powerful effect.” <span class="cn">成对破折号：开了就要关。</span></template><template class="wrong" data-l="A">The extra element opened by the dash is never closed.</template><template class="wrong" data-l="C">Puts the second dash in the wrong place and closes with a comma.</template><template class="wrong" data-l="D">A colon cannot be used inside this extra element.</template></div></div></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-1-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1937, Chinese American screen actor Anna May </span> <span data-line=\"2\">Wong, who had portrayed numerous villains and </span> <span data-line=\"3\">secondary characters but never a heroine, finally got </span> <span data-line=\"4\">a starring role in Paramount Pictures’ <i>D</i><i>a</i><i>u</i><i>g</i><i>h</i><i>t</i><i>e</i><i>r</i><i> </i><i>o</i><i>f</i><i> </i></span> <span data-line=\"5\"><i>S</i><i>h</i><i>a</i><i>n</i><i>g</i><i>h</i><i>a</i><i>i</i>, a film that _______ “expanded the range </span> <span data-line=\"6\">of possibilities for Asian images on screen.” </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Louise Bennett (1919–2006), also known as “Miss </span> <span data-line=\"2\">Lou,” was an influential Jamaican poet and folklorist. </span> <span data-line=\"3\">Her innovative poems _______ the use of Jamaican </span> <span data-line=\"4\">Creole (a spoken language) in literature. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In her two major series “Memory Test” and </span> <span data-line=\"2\">“Autobiography,” painter Howardena Pindell </span> <span data-line=\"3\">explored themes _______ healing, self-discovery, </span> <span data-line=\"4\">and memory by cutting and sewing back together </span> <span data-line=\"5\">pieces of canvas and inserting personal artifacts, such </span> <span data-line=\"6\">as postcards, into some of the paintings. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In crafting her fantasy fiction, Nigerian-born British </span> <span data-line=\"2\">author Helen Oyeyemi has drawn inspiration from </span> <span data-line=\"3\">the classic nineteenth-century fairy tales of the </span> <span data-line=\"4\">Brothers Grimm. Her 2014 novel <i>B</i><i>o</i><i>y</i><i>,</i><i> </i><i>S</i><i>n</i><i>o</i><i>w</i><i>,</i><i> </i><i>B</i><i>i</i><i>r</i><i>d</i>, </span> <span data-line=\"5\">for instance, is a complex retelling of the story of </span> <span data-line=\"6\">Snow White, while her 2019 novel ______ offers a </span> <span data-line=\"7\">delicious twist on the classic tale of Hansel and </span> <span data-line=\"8\">Gretel. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Stomata, tiny pore structures in a leaf that absorb </span> <span data-line=\"2\">gases needed for plant growth, open when guard cells </span> <span data-line=\"3\">surrounding each pore swell with water. In a pivotal </span> <span data-line=\"4\">2007 article, plant cell _______ showed that lipid </span> <span data-line=\"5\">molecules called phosphatidylinositol phosphates are </span> <span data-line=\"6\">responsible for signaling guard cells to open stomata. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Long attributed to Jacques-Louis David, the </span> <span data-line=\"2\">preeminent Neoclassical painter of his day, the 1801 </span> <span data-line=\"3\">painting <i>M</i><i>a</i><i>r</i><i>i</i><i>e</i><i> </i><i>J</i><i>o</i><i>s</i><i>é</i><i>p</i><i>h</i><i>i</i><i>n</i><i>e</i><i> </i><i>C</i><i>h</i><i>a</i><i>r</i><i>l</i><i>o</i><i>t</i><i>t</i><i>e</i><i> </i><i>d</i><i>u</i><i> </i><i>V</i><i>a</i><i>l</i><i> </i><i>d</i><i>’</i><i>O</i><i>g</i><i>n</i><i>e</i><i>s</i><i> </i></span> <span data-line=\"4\">gained fresh attention in the 1990s when art </span> <span data-line=\"5\">historians discovered that the painting—which </span> <span data-line=\"6\">depicts a solitary young woman sketching—was </span> <span data-line=\"7\">actually the work of little-known French portrait </span> <span data-line=\"8\">_______ Marie-Denise Villers (1774–1821). </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The Lion Light system, developed by Kenyan </span> <span data-line=\"2\">inventor Richard Turere, consists of LED lights </span> <span data-line=\"3\">installed around the perimeter of livestock pastures. </span> <span data-line=\"4\">Powered with ______ the blinking LEDs keep lions </span> <span data-line=\"5\">away at night, thus protecting the livestock without </span> <span data-line=\"6\">risking harm to the endangered lions. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In her analysis of Edith Wharton’s <i>T</i><i>h</i><i>e</i><i> </i><i>H</i><i>o</i><i>u</i><i>s</i><i>e</i><i> </i><i>o</i><i>f</i><i> </i></span> <span data-line=\"2\"><i>M</i><i>i</i><i>r</i><i>t</i><i>h</i><i> </i>(1905), scholar Candace Waid observes that </span> <span data-line=\"3\">the novel depicts the upper classes of New York </span> <span data-line=\"4\">society as “consumed by the appetite of a soulless </span> <span data-line=\"5\">______ an apt assessment given that <i>T</i><i>h</i><i>e</i><i> </i><i>H</i><i>o</i><i>u</i><i>s</i><i>e</i><i> </i><i>o</i><i>f</i><i> </i></span> <span data-line=\"6\"><i>M</i><i>i</i><i>r</i><i>t</i><i>h</i><i> </i>is set during the Gilded Age, a period marked </span> <span data-line=\"7\">by rapid industrialization, economic greed, and </span> <span data-line=\"8\">widening wealth disparities. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">When external forces are applied to common glass </span> <span data-line=\"2\">made from silicates, energy builds up around </span> <span data-line=\"3\">minuscule defects in the material, resulting in </span> <span data-line=\"4\">fractures. Recently, engineer Erkka Frankberg of </span> <span data-line=\"5\">Tampere University in Finland used the chemical </span> <span data-line=\"6\">______ to make a glassy solid that can withstand </span> <span data-line=\"7\">higher strain than silicate glass can before fracturing. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Both Sona Charaipotra, an Indian American, and </span> <span data-line=\"2\">Dhonielle Clayton, an African American, grew up </span> <span data-line=\"3\">frustrated by the lack of diverse characters in books </span> <span data-line=\"4\">for young people. In 2011, these two writers joined </span> <span data-line=\"5\">forces to found CAKE Literary, a book packaging </span> <span data-line=\"6\">_______ specializes in the creation and promotion </span> <span data-line=\"7\">of stories told from diverse perspectives for children </span> <span data-line=\"8\">and young adults. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Fans of the film Moana (2016) may not know that </span> <span data-line=\"2\">the deep and humorous voice behind the </span> <span data-line=\"3\">_______ belongs to comedian, actor, and musician </span> <span data-line=\"4\">Jemaine Clement. The versatile performer has </span> <span data-line=\"5\">appeared in everything from television commercials </span> <span data-line=\"6\">to action movies, but voice acting, specifically, has </span> <span data-line=\"7\">become a notable part of his career. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The forty-seven geothermal springs of Arkansas’ Hot </span> <span data-line=\"2\">Springs National Park are sourced via a process </span> <span data-line=\"3\">known as natural groundwater recharge, in which </span> <span data-line=\"4\">rainwater percolates downward through the </span> <span data-line=\"5\">earth—in this case, the porous rocks of the hills </span> <span data-line=\"6\">around Hot ______ collect in a subterranean basin. </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1986, conceptual artist Sophie Calle asked </span> <span data-line=\"2\">twenty-three people, all of whom had been born </span> <span data-line=\"3\">without sight, to describe “their image of beauty” </span> <span data-line=\"4\">in rich detail. Calle paired excerpts of these </span> <span data-line=\"5\">conversations with photographs—both of </span> <span data-line=\"6\">interviewees and the items they _______ to powerful </span> <span data-line=\"7\">effect in her exhibition <i>T</i><i>h</i><i>e</i><i> </i><i>B</i><i>l</i><i>i</i><i>n</i><i>d</i>. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-1-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) critic, Stina Chyn, claims </span></p><p><span data-line=\"4\">B) critic, Stina Chyn, claims, </span></p><p><span data-line=\"5\">C) critic Stina Chyn claims </span></p><p><span data-line=\"6\">D) critic Stina Chyn, claims, </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-1-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) popularized; </span></p><p><span data-line=\"4\">B) popularized, </span></p><p><span data-line=\"5\">C) popularized </span></p><p><span data-line=\"6\">D) popularized: </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) of </span></p><p><span data-line=\"4\">B) of, </span></p><p><span data-line=\"5\">C) of— </span></p><p><span data-line=\"6\">D) of: </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) <i>G</i><i>i</i><i>n</i><i>g</i><i>e</i><i>r</i><i>b</i><i>r</i><i>e</i><i>a</i><i>d</i>— </span></p><p><span data-line=\"4\">B) <i>G</i><i>i</i><i>n</i><i>g</i><i>e</i><i>r</i><i>b</i><i>r</i><i>e</i><i>a</i><i>d</i>, </span></p><p><span data-line=\"5\">C) <i>G</i><i>i</i><i>n</i><i>g</i><i>e</i><i>r</i><i>b</i><i>r</i><i>e</i><i>a</i><i>d</i><i> </i></span></p><p><span data-line=\"6\">D) <i>G</i><i>i</i><i>n</i><i>g</i><i>e</i><i>r</i><i>b</i><i>r</i><i>e</i><i>a</i><i>d</i>: </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) biologist, Yuree Lee </span></p><p><span data-line=\"4\">B) biologist Yuree Lee, </span></p><p><span data-line=\"5\">C) biologist Yuree Lee </span></p><p><span data-line=\"6\">D) biologist, Yuree Lee, </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) artist— </span></p><p><span data-line=\"4\">B) artist </span></p><p><span data-line=\"5\">C) artist: </span></p><p><span data-line=\"6\">D) artist, </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) energy collected, by solar panels, during the day</span></p><p><span data-line=\"4\">B) energy collected by solar panels during the day</span></p><p><span data-line=\"5\">C) energy collected by solar panels during the day,</span></p><p><span data-line=\"6\">D) energy, collected by solar panels during the day,</span></p></div>","vector":false,"segs":[],"lines":{}},"T2-1-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) materialism”; and </span></p><p><span data-line=\"4\">B) materialism” and </span></p><p><span data-line=\"5\">C) materialism,” </span></p><p><span data-line=\"6\">D) materialism” </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-27":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) compound, aluminum oxide</span></p><p><span data-line=\"4\">B) compound aluminum oxide,</span></p><p><span data-line=\"5\">C) compound, aluminum oxide,</span></p><p><span data-line=\"6\">D) compound aluminum oxide</span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) company, </span></p><p><span data-line=\"4\">B) company that </span></p><p><span data-line=\"5\">C) company </span></p><p><span data-line=\"6\">D) company, that </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-2-23":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) character Tamatoa the crab </span></p><p><span data-line=\"4\">B) character Tamatoa the crab, </span></p><p><span data-line=\"5\">C) character: Tamatoa the crab, </span></p><p><span data-line=\"6\">D) character, Tamatoa the crab </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Springs to </span></p><p><span data-line=\"4\">B) Springs: to </span></p><p><span data-line=\"5\">C) Springs—to </span></p><p><span data-line=\"6\">D) Springs, to </span></p></div>","vector":false,"segs":[],"lines":{}},"T5-1-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) described, from hair to grass to sculptures </span></p><p><span data-line=\"4\">B) described, from hair to grass to sculptures— </span></p><p><span data-line=\"5\">C) described—from hair to grass to sculptures, </span></p><p><span data-line=\"6\">D) described: from hair to grass to sculptures </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>

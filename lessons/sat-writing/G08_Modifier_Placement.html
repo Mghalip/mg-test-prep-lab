@@ -1,0 +1,658 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAT Writing G08 · Subject-Modifier Placement</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#3d5a8a; --acc2:#dfe6f3; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+/* SAT additions */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;line-height:1.3}
+.flow span.r{border-left:5px solid var(--acc)}
+.flow span.w{border-left:5px solid #b9822f}
+.flow i{color:var(--muted);font-style:normal}
+.note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.45}
+.note b.k{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;text-align:center;font-size:13px;line-height:22px;margin-right:6px}
+.ex{font-family:var(--serif);font-size:18px;line-height:1.55;background:#fff;border-left:4px solid var(--acc);padding:8px 14px;border-radius:6px}
+.ex u{text-decoration:none;background:var(--hl);padding:0 2px}
+.ex .bl{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink)}
+table.t.sm th,table.t.sm td{font-size:15px;padding:7px 10px}
+.box p + p{margin-top:6px}
+.fb .alts b{display:inline;width:auto}
+.fb .alts div > b:first-child{display:inline-block;width:20px}
+
+.lcol{display:flex;flex-direction:column;gap:10px;min-height:0}
+.lcol .pv{flex:1 1 auto}
+.lcol .ask{flex:none}
+.fitq .qimg{display:flex;flex-direction:column;align-items:center}
+.fitq .qimg img{max-height:555px;width:auto;max-width:100%}
+
+/* Selectable text edition — 1280 × 720 */
+.slide{padding:28px 42px 38px;gap:16px}.slide>header{flex:none}.slide::after{left:42px;font-size:11px}
+header h2{font-size:34px;line-height:1.12}header h2 .cn{display:inline-block;margin-top:6px}
+.slide>.grid,.slide>.steps,.slide>.stems{flex:1;min-height:0}
+.grid>.box{display:flex;flex-direction:column;justify-content:space-evenly;gap:12px}
+.grid>.box>h3{flex:none;margin:0}.grid>.box>p{margin:0}.box p,.box li{line-height:1.42}.box h3{font-size:26px}
+.slide>table.t{flex:1;min-height:0;table-layout:fixed}
+table.t td,table.t th{vertical-align:middle;white-space:normal!important;padding:12px 14px}
+.slide>.steps{justify-content:space-evenly}.step{padding:14px 18px}
+.cn{line-height:1.45}p.cn,div.cn{margin-top:16px!important}
+p>span.cn,.step p>.cn,.box p>.cn{display:block;margin-top:12px}
+.work{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.work.mw{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.work>*,.grid>*{min-width:0}.right{padding-right:0;gap:12px}
+.pv{padding:0 20px 18px;display:flex;flex-direction:column}.pvlab{position:static;margin:0 -20px 16px;padding:10px 16px;flex:none}
+.pv>.typed-text{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px}
+.typed-text{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.48;color:var(--ink)}
+.typed-text p{margin:0 0 14px}.typed-text p:last-child{margin-bottom:0}.typed-text u{text-decoration:underline;text-underline-offset:3px}
+.typed-text [data-line].evidence{background:var(--hl)}.typed-text [data-line].hint-evidence{background:#deebfa}
+.qimg{padding:18px 20px;flex:none}.fitq .qimg{display:block}.qimg>.typed-text{width:100%}
+.qcol{min-height:0;justify-content:center}.qcol .qlab{position:static;flex:none}.qcol .qimg{flex:1;min-height:0;justify-content:center;width:100%;padding:18px}
+.native-vector{display:block;width:100%;height:auto;flex:none;max-width:100%;user-select:text}.native-vector text{user-select:text;cursor:text}
+.qcol .native-vector,.pv>.native-vector{max-height:100%;min-height:0;flex:0 1 auto}
+.vd{grid-template-columns:28px 64px 1fr;gap:8px;padding:12px}.vd .r{line-height:1.4}.vd .v{font-size:11px}
+.verdicts{gap:12px;flex:1;justify-content:space-evenly}.verdicts .vd{flex:1;align-items:center}
+.right>.steps{flex:1;justify-content:space-evenly}.right>.box{flex:none}.tools{margin-top:10px}.letters{margin-bottom:10px}
+#nav{opacity:.15;transition:opacity .2s}#nav:hover,#nav:focus-within{opacity:1}
+.slide.cover{padding:45px 70px}.cover .goals{max-width:none;margin-top:44px}.cover .goals div{font-size:20px;padding:20px}
+@media print{.slide{overflow:visible}#nav{display:none}}
+.slide:has(>.steps)>.grid{flex:none}.slide:has(>.steps)>.grid>.box{justify-content:center}
+.slide.dense .typed-text{line-height:1.35}.slide.dense .typed-text p{margin-bottom:10px}
+.slide.dense .pv>.typed-text{gap:6px}.slide.dense .qimg{padding:12px 16px}
+.slide.dense .step{padding:10px 14px}.slide.dense .steps{gap:8px}
+.slide.dense .step p>.cn{margin-top:6px}.slide.dense table.t td,.slide.dense table.t th{padding:6px 12px}
+.chart-area{flex:1;min-height:220px;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.chart-area .native-vector{width:100%;height:100%;max-height:300px;flex:1}
+.pv>.chart-prose{flex:none;display:block;margin-top:12px}.chart-prose p{margin:0}
+.graph-note{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:17px;background:var(--acc2)}
+.graph-note summary{cursor:pointer;font-weight:700}.graph-note .ask{margin-top:10px;border:0;padding:8px;background:transparent}
+.graph-note:not([open])>.ask{display:none}
+.pv.graph-tall{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto 1fr;column-gap:18px;align-items:center}
+.graph-tall>.pvlab{grid-column:1/-1;margin-bottom:12px}
+.graph-tall>.chart-area{min-height:0;height:100%;padding:0}
+.graph-tall .chart-area .native-vector{max-height:100%;height:100%}
+.graph-tall>.chart-prose{margin:0;font-size:20px}
+
+/* Keep list markers inside explanation cards. */
+.pbox ul,.pbox ol{padding-left:24px}.pbox li{padding-left:2px}
+
+/* Worked examples begin at the top and reveal solutions only on click. */
+.teaching-example .right,.teaching-example .qcol,.teaching-example .qcol .qimg{justify-content:flex-start!important}
+.teaching-example .pv>.typed-text{justify-content:flex-start}
+.teaching-example .right>.steps,.teaching-example .verdicts{flex:none;justify-content:flex-start}
+.teaching-example .verdicts .vd{flex:none;align-items:start}
+.teaching-pending{visibility:hidden!important;pointer-events:none!important}
+.teaching-controls{display:flex;gap:10px;flex:none;align-items:center}
+.teaching-controls button{border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--ink);color:white;font-size:15px;font-weight:600}
+.teaching-controls button+button{background:white;color:var(--ink2)}
+.teaching-controls button:disabled{opacity:.55;cursor:default}
+.teaching-example .right{gap:8px}
+.teaching-example .vd{padding:8px 12px}
+.teaching-example .verdicts{gap:8px}
+.teaching-example.dense .pbox,.teaching-example.dense .box{padding:10px 14px}
+.teaching-example.dense p.cn,.teaching-example.dense div.cn{margin-top:8px!important}
+/* Keep grid contents within their allocated row; wrap long equations at spaces. */
+.slide>.grid{grid-auto-rows:minmax(0,1fr)}
+.grid>.box{min-height:0}
+.m{white-space:normal}
+.fr,.sq{white-space:nowrap}
+.fbox .f{min-width:0}
+.m i.ovl{border-top:0;text-decoration:overline}
+/* Exam-sized questions: stable screen size, no growth to fill empty cards. */
+.exam-size .typed-text{font-size:var(--exam-font)!important;line-height:1.5}
+.exam-size header h2{font-size:var(--exam-title)}
+.exam-size .kk,.exam-size .pvlab,.exam-size .qlab{font-size:var(--exam-label)}
+.exam-size .right,.exam-size .qcol,.exam-size .qcol .qimg,.exam-size .pv>.typed-text{justify-content:flex-start!important}
+.exam-size .pv>.typed-text{flex:none;gap:0}
+.exam-size .typed-text p{margin:0 0 .85em}
+.exam-size .right{font-size:var(--exam-font)}
+.exam-size .right p,.exam-size .right li,.exam-size .right .r,.exam-size .right h3,.exam-size .right .dpanel{font-size:var(--exam-font);line-height:1.5}
+.exam-size .letters button{font-size:var(--exam-font)}
+.exam-size .typed-text{max-width:36em}
+.exam-size .right>.steps,.exam-size .verdicts{flex:none;justify-content:flex-start}
+.exam-size .verdicts .vd{flex:none}
+
+.exam-size .qcol .qimg{align-items:flex-start}
+
+.exam-size .work .pbox,.exam-size .work .pbox p,.exam-size .work .pbox .r,.exam-size .work .pbox .cn{font-size:var(--exam-font);line-height:1.5}
+.exam-size header h2 .cn{font-size:.8em}
+
+/* Expanded solutions use the right column; the question is one click away. */
+.back-question{display:none;align-self:flex-start;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font-size:14px;flex:none}
+.solution-view>.back-question{display:block}
+.solution-view>.qimg,.solution-view .letters,.solution-view .spr,.solution-view .showans{display:none}
+.solution-view>.prac,.solution-view>.mprac{min-height:0}
+.solution-view .fb{margin-top:10px}
+.solution-view .fb .alts{font-size:var(--exam-font);line-height:1.45}
+.exam-size .ask p{font-size:var(--exam-font);line-height:1.5}
+
+/* Preserve 18px text on dense pages; reclaim padding and paragraph spacing. */
+.exam-compact{gap:10px}
+.exam-compact .typed-text{line-height:1.32}
+.exam-compact .typed-text p{margin-bottom:.55em}
+.exam-compact .qimg{padding:12px 14px}
+.exam-compact .pv{padding:0 14px 12px}
+.exam-compact .pvlab{margin:0 -14px 10px;padding:7px 12px}
+.exam-compact .right{gap:7px}
+.exam-compact .box,.exam-compact .pbox,.exam-compact .ask{padding:10px 12px}
+.exam-compact .chart-area{min-height:160px}
+.exam-compact .step,.exam-compact .st{padding:8px 12px}
+.exam-compact .step p>.cn,.exam-compact .box p>.cn{margin-top:6px}
+.exam-compact p.cn,.exam-compact div.cn{margin-top:8px!important}
+
+.review-equal .work{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.review-wide .work{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+.review-tools .letters button{height:32px}
+.review-tools .tools{margin-top:4px}
+.teaching-example.exam-compact .right>.box{padding:8px 10px}
+.teaching-example.exam-compact .right .pbox{padding:8px 10px}
+
+.exam-compact .typed-text p{line-height:1.32}
+.right,.qimg,.pv{overflow-anchor:none}
+
+/* Keep navigation inside the footer, clear of lesson content. */
+#nav{bottom:4px;padding:2px 6px}
+#nav button{width:26px;height:26px;font-size:14px}
+
+.exam-compact .graph-note{padding:6px 10px}
+.exam-compact .graph-note .ask{padding:0;margin-top:5px}
+.exam-compact .graph-note .ask p{line-height:1.32;margin:4px 0}
+
+/* Tables retain a readable screen size instead of growing to fill the slide. */
+table.t td,table.t th{font-size:var(--table-font,18px)!important;line-height:1.4;padding:9px 11px}
+table.t td p,table.t td li,table.t td span,table.t th span{font-size:inherit!important}
+
+/* Balanced bilingual hierarchy: fixed body sizes, Chinese visually subordinate. */
+.slide:not(.exam-size) .box,.slide:not(.exam-size) .pbox{font-size:var(--lesson-body,20px)}
+.slide .cn,.slide p.cn,.slide div.cn,.slide .work .pbox .cn{font-family:var(--sans);font-size:var(--cn-body,17px)!important;font-weight:400;line-height:1.5}
+.slide header h2 .cn{font-size:.68em!important;font-weight:400}
+.slide table.t .cn{font-size:.9em!important}
+.slide .cn .cn{font-size:inherit!important}
+.cover .cnsub{font-size:18px;line-height:1.5}
+
+/* Group related teaching content instead of distributing paragraphs vertically. */
+.slide:not(.exam-size)>.grid{align-content:start;grid-auto-rows:max-content}
+.slide:not(.exam-size) .grid>.box{justify-content:flex-start;gap:12px}
+.slide:not(.exam-size) .grid>.box>h3{margin:0 0 2px}
+.slide:not(.exam-size) .grid>.box>p.cn{margin-top:2px!important}
+.slide:not(.exam-size) .box p,.slide:not(.exam-size) .box li{line-height:1.4}
+.concept-list{list-style:none;padding:0!important;display:grid;gap:14px}
+.concept-list li{margin:0!important;padding:0}
+.concept-list .cn{display:block;margin-top:5px}
+
+/* Continuous sentence underline, including spaces and descenders. */
+.typed-text u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* Summary: six compact review panels, occupying the available teaching area. */
+.summary-layout .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:14px;flex:1;min-height:0}
+.summary-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
+.summary-label{font-family:var(--sans);font-size:var(--cn-body,17px);font-weight:600;color:var(--acc);line-height:1.3}
+.summary-copy{font-size:var(--lesson-body,20px);line-height:1.45;color:var(--ink2)}
+.summary-recall{background:var(--acc2);border-color:transparent}
+.summary-card p.cn{margin-top:0!important}
+.summary-layout header h2{font-size:28px;line-height:1.12}
+.summary-layout header h2 .cn{font-size:.64em!important}
+
+/* v5 teaching additions */
+.stepper{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px}
+.st h3{font-size:17px;margin-bottom:3px}.st p{font-size:17px;line-height:1.5;color:var(--ink2)}
+.st p+p{margin-top:4px}
+.st .think{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--acc);background:var(--acc2);border-radius:6px;padding:1px 8px;margin-right:6px}
+.gx-left{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.gx-left .pv{flex:none}.gx-left .qimg{flex:none}
+.ex{font-family:var(--serif);font-size:19px;line-height:1.5;background:#fff;border-left:4px solid var(--acc);padding:6px 12px;border-radius:6px;margin:6px 0}
+.ex.no{border-left-color:var(--bad)}.ex.ok{border-left-color:var(--good)}
+.ex .why{display:block;font-family:var(--sans);font-size:15px;color:var(--muted);margin-top:2px}
+.ex b.s{color:#1d5fa8}.ex b.v{color:#b3261e}.ex i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.ex .tag{font-family:var(--sans);font-size:12px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:2px}
+.tag.s{background:#e3eefb;color:#1d5fa8}.tag.v{background:#fbe4e0;color:#b3261e}.tag.o{background:#e6f4ea;color:#1d7f52}.tag.m{background:#f1ecf9;color:#6042a6}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.qc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;line-height:1.45}
+.qc summary{cursor:pointer;font-family:var(--serif);list-style:none}
+.qc summary::-webkit-details-marker{display:none}
+.qc summary .q{display:inline-block;min-width:26px;font-family:var(--sans);font-weight:700;color:var(--acc)}
+.qc .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:16px;color:var(--ink2)}
+.qc[open]{border-color:var(--acc)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.term{font-weight:700;color:var(--acc)}
+i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
+.st p .cn,.st p>span.cn{display:block;margin-top:3px!important;font-size:15px!important}
+.st{padding:8px 12px}.st h3{font-size:16px}.st p{font-size:16px!important;line-height:1.45}
+.stepper .final p{font-size:16px!important;line-height:1.45}
+.teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
+.box .ex{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Subject-Modifier Placement" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><div class="no">LESSON G08</div><h1>Subject-Modifier Placement</h1><div class="sub">An opening description must be followed immediately by the noun it describes</div><div class="cnsub">句首修饰语后面必须紧跟它所修饰的名词</div><div class="goals"><div><b>READ THE MODIFIER</b>Who or what is described by the opening phrase?</div><div><b>ASK “WHO?”</b>Who recovered? Who is one of the explorers? What was woven?</div><div><b>PUT IT FIRST</b>That noun must be the first noun after the comma, as the subject.</div></div></section>
+<section class="slide " data-title="Before we start · What is a modifier?" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Grammar You Need</div><h2>What is a modifier? · 什么是修饰语</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Core vs. modifier 主干 vs. 修饰语</h3>
+<p>Every sentence has a <span class="term">core</span>: <b>S</b> (subject 主语, who/what) + <b>V</b> (verb 谓语) + often <b>O</b> (object 宾语). A <span class="term">modifier</span> is any word or group of words that <b>describes</b> something. It adds detail, but it is not the core.</p>
+<p class="ex"><b class="s">The girl</b> <b class="v">smiled</b>.<span class="why">core only: S + V</span></p>
+<p class="ex"><u>Tired from work,</u> <b class="s">the girl</b> <b class="v">smiled</b>.<span class="why">“Tired from work” describes the girl.</span></p>
+<p class="ex"><b class="s">She</b> <b class="v">read</b> a letter <u>written in French</u>.<span class="why">“written in French” describes the letter.</span></p>
+<p class="cn">修饰语 = 用来“描述”某个人或物的词或短语，只是补充信息，不是句子主干（主语 + 谓语 + 宾语）。</p></div><div class="box white"><h3>The one rule of this lesson 本课唯一规则</h3>
+<p>A modifier must sit <b>right next to</b> the thing it describes. If it sits next to the wrong noun, the sentence says something silly.</p>
+<p class="ex ok">✅ <u>Barking loudly,</u> <b class="s">the dog</b> <b class="v">chased</b> the cat.<span class="why">The dog is barking. ✓</span></p>
+<p class="ex no">❌ <u>Barking loudly,</u> <b class="s">the cat</b> <b class="v">was chased</b> by the dog.<span class="why">Now the cat is barking!</span></p>
+<p>Pattern to remember: <b>Modifier, SVO.</b> The <b>S</b> right after the comma is the one the modifier describes.</p>
+<p class="cn">修饰语必须紧挨着它所修饰的对象。句型“修饰语, SVO.”中，逗号后的主语 S 就是修饰语描述的那个人/物。</p></div></div></section>
+<section class="slide " data-title="Before we start · Opening modifiers" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Grammar You Need</div><h2>Six kinds of opening modifiers · 句首修饰语的六种形式</h2></header>
+<table class="t sm">
+<tr><th style="width:21%">Pattern 句型</th><th style="width:30%">Meaning 含义</th><th>Example (the S after the comma does it)</th></tr>
+<tr><td><b>Doing</b>, SVO.</td><td>S is doing this (active) 主语主动在做</td><td><u>Seeing the results</u>, <b>she</b> felt relieved.</td></tr>
+<tr><td><b>Done</b>, SVO.</td><td>S had this done to it / is in this state 被动或状态</td><td><u>Tired from work</u>, <b>he</b> fell asleep. · <u>Built in 1890</u>, <b>the bridge</b> is still used.</td></tr>
+<tr><td><b>To do</b>, SVO.</td><td>S’s purpose 主语的目的</td><td><u>To finish the report</u>, <b>she</b> stayed up all night.</td></tr>
+<tr><td><b>By / After / Upon / Despite + doing</b>, SVO.</td><td>S does the action 主语做这个动作</td><td><u>After eating dinner</u>, <b>they</b> went for a walk.</td></tr>
+<tr><td><b>Noun phrase</b>, SVO.</td><td>renames S 说明主语身份</td><td><u>A teacher by profession</u>, <b>she</b> understands students well.</td></tr>
+<tr><td><b>Like / As + noun</b>, SVO.</td><td>comparison or role 比较或身份</td><td><u>As a leader</u>, <b>he</b> must make tough decisions.</td></tr>
+</table>
+<div class="box acc"><p>All six have <b>no subject of their own</b>, so they “borrow” the subject after the comma. <span class="cn">这些句首短语自己没有主语，只能“借用”逗号后面的主语。所以逗号后第一个名词必须是做这个动作、处于这个状态的人/物。</span></p></div></section>
+<section class="slide " data-title="Before we start · Dangling modifiers" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Grammar You Need</div><h2>Dangling modifiers and the “Who is doing it?” test</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Dangling modifier 悬垂修饰语 ✗</h3>
+<p>A <span class="term">dangling modifier</span> is an opening phrase whose “doer” is <b>not</b> the subject after the comma. It “dangles” (hangs) with nothing to hold on to.</p>
+<p class="ex no">❌ <u>Walking down the street,</u> <b class="s">the trees</b> <b class="v">looked</b> beautiful.<span class="why">Trees cannot walk.</span></p>
+<p class="ex ok">✅ <u>Walking down the street,</u> <b class="s">I</b> <b class="v">noticed</b> the beautiful trees.</p>
+<p class="ex no">❌ <u>After reading the article,</u> <b class="s">the main argument</b> <b class="v">seemed</b> unclear.<span class="why">An argument cannot read.</span></p>
+<p class="ex ok">✅ <u>After reading the article,</u> <b class="s">the students</b> <b class="v">found</b> the argument unclear.</p>
+<p class="cn">悬垂修饰语：句首短语的动作执行者不是逗号后的主语，意思变得荒谬。</p></div><div class="box white"><h3>The test 检验三步</h3>
+<ol><li>Read the opening phrase. Ask: <b>“Who is doing / being / trying to do this?”</b></li>
+<li>Answer from the meaning: a person? a machine? a book?</li>
+<li>The <b>first noun after the comma</b> must be that answer.</li></ol>
+<p class="ex ok">✅ <u>Born in 1907,</u> <b class="s">Frida Kahlo</b> <b class="v">painted</b> self-portraits.<span class="why">Who was born? Kahlo ✓</span></p>
+<p class="ex no">❌ <u>Born in 1907,</u> <b class="s">self-portraits</b> <b class="v">made</b> Kahlo famous.<span class="why">Portraits were not born in 1907.</span></p>
+<p class="ex ok">✅ <u>To win the race,</u> <b class="s">the runner</b> <b class="v">trained</b> daily.<span class="why">Who wants to win? the runner ✓</span></p>
+<p class="cn">问：“谁在做这个动作？”逗号前是谁做事，逗号后的主语就必须是谁。</p></div></div></section>
+<section class="slide " data-title="Before we start · Four disguises" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Grammar You Need</div><h2>Four ways a wrong choice hides the real subject</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>1 · Possessive 所有格</h3>
+<p class="ex no">❌ <u>Upon arriving,</u> <b class="s">Maya’s phone</b> <b class="v">rang</b>.<span class="why">The subject is “phone”; “Maya’s” only describes it.</span></p>
+<p class="ex ok">✅ <u>Upon arriving,</u> <b class="s">Maya</b> <b class="v">heard</b> her phone ring.</p>
+<p class="cn">Maya’s phone 的主语是 phone，不是 Maya。</p></div><div class="box white"><h3>2 · Passive voice 被动语态</h3>
+<p class="ex no">❌ <u>Using a microscope,</u> <b class="s">the cells</b> <b class="v">were studied</b> by Lin.<span class="why">The subject is “cells”; Lin is pushed to the end.</span></p>
+<p class="ex ok">✅ <u>Using a microscope,</u> <b class="s">Lin</b> <b class="v">studied</b> the cells.</p>
+<p class="cn">被动语态把真正做事的人放到 by 后面，主语变成了物。</p></div><div class="box white"><h3>3 · “there” / “it” 空主语</h3>
+<p class="ex no">❌ <u>Despite being tired,</u> <b class="s">there</b> <b class="v">was</b> a reason for Ben to keep running.<span class="why">“there” sits after the comma.</span></p>
+<p class="ex ok">✅ <u>Despite being tired,</u> <b class="s">Ben</b> <b class="v">kept</b> running.</p>
+<p class="cn">there be / it was … who 让 there、it 紧跟逗号，错误。</p></div><div class="box white"><h3>4 · Abstract noun 抽象名词</h3>
+<p class="ex no">❌ <u>By studying every night,</u> <b class="s">her improvement</b> <b class="v">was</b> fast.<span class="why">An “improvement” cannot study.</span></p>
+<p class="ex ok">✅ <u>By studying every night,</u> <b class="s">she</b> <b class="v">improved</b> fast.</p>
+<p class="cn">improvement、focus、mitigation 这类抽象名词不会“做动作”。</p></div></div></section>
+<section class="slide " data-title="Before we start · Modifiers at the end" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Grammar You Need</div><h2>Modifiers after the main clause · 句末修饰语</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>With a comma: SVO, doing / done.</h3>
+<p>After a comma, the phrase describes the <b>subject</b> or the whole action.</p>
+<p class="ex ok">✅ <b class="s">Jack</b> <b class="v">walked</b> into the room, <u>carrying a heavy bag</u>.<span class="why">Jack is carrying the bag.</span></p>
+<p class="ex ok">✅ <b class="s">He</b> <b class="v">entered</b> the hall, <u>surrounded by reporters</u>.<span class="why">He is surrounded.</span></p>
+<p class="cn">有逗号：后面的 doing / done 一般修饰前面句子的主语或整个动作。</p></div><div class="box white"><h3>No comma: SVO doing / done.</h3>
+<p>Without a comma, the phrase describes the <b>nearest noun</b>.</p>
+<p class="ex ok">✅ <b class="s">They</b> <b class="v">found</b> a letter <u>written in French</u>.<span class="why">The letter is written in French.</span></p>
+<p class="ex"><b class="s">I</b> <b class="v">saw</b> a dog <u>wearing sunglasses</u>.<span class="why">The dog wears sunglasses (funny, but that is what it says).</span></p>
+<p class="ex"><b class="s">She</b> <b class="v">served</b> cake to the children <u>on paper plates</u>.<span class="why">Better: She served the children cake on paper plates.</span></p>
+<p class="cn">无逗号：修饰最近的名词。修饰语放错位置，意思就变了。</p></div></div></section>
+<section class="slide " data-title="Quick check · Dangling or correct?" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Quick Check</div><h2>Quick check · Dangling or correct?<span class="cn">先问“谁在做这个动作？”，再看逗号后的主语</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>Running to catch the bus, my backpack fell open.</summary><div class="a">✗ Dangling — a backpack cannot run. Fix: …, <b>I</b> felt my backpack fall open.</div></details><details class="qc"><summary><span class="q">2.</span>Running to catch the bus, I dropped my backpack.</summary><div class="a">✓ I am the one running.</div></details><details class="qc"><summary><span class="q">3.</span>Painted in 1503, the <i>Mona Lisa</i> hangs in the Louvre.</summary><div class="a">✓ The painting was painted (done → passive meaning).</div></details><details class="qc"><summary><span class="q">4.</span>After finishing the experiment, the data were sent to the lab.</summary><div class="a">✗ Data cannot finish an experiment. Fix: …, <b>the scientists</b> sent the data to the lab.</div></details><details class="qc"><summary><span class="q">5.</span>A skilled pianist, Mei’s concert sold out quickly.</summary><div class="a">✗ The subject is “concert,” not Mei. Fix: …, <b>Mei</b> filled every seat at her concert.</div></details><details class="qc"><summary><span class="q">6.</span>To save money, the family cooked at home.</summary><div class="a">✓ The family wants to save money.</div></details><details class="qc"><summary><span class="q">7.</span>By planting trees, the city reduced summer heat.</summary><div class="a">✓ The city planted the trees.</div></details><details class="qc"><summary><span class="q">8.</span>Known for his speed, it was Bolt who won the race.</summary><div class="a">✗ “it” comes after the comma. Fix: …, <b>Bolt</b> won the race.</div></details></div></section>
+<section class="slide " data-title="Modifiers sit next to what they modify" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">The rule</div><h2>Modifiers sit next to what they modify</h2></header>
+<div class="grid g2" style="flex:1">
+ <div class="box white"><h3>The rule</h3><p>When a sentence <b>begins</b> with a descriptive phrase that has no subject of its own, the noun it describes must come <b>immediately after</b> the comma.</p>
+  <p class="ex" style="font-size:16px">✗ <b>Born in Mexico City in 1907</b>, self-portraits were what Frida Kahlo was best known for.</p>
+  <p>Who was born in Mexico City? Frida Kahlo, not the self-portraits.</p>
+  <p class="ex" style="font-size:16px">✓ <b>Born in Mexico City in 1907</b>, Frida Kahlo was best known for her self-portraits.</p>
+  <p class="cn">句首修饰语没有自己的主语时，逗号后第一个名词必须是它修饰的对象，否则就是“悬垂修饰语 (dangling modifier)”。</p></div>
+ <div class="box white"><h3>Opening modifiers on the SAT</h3><ul>
+  <li>-ing phrases: <i>Upon recovering two years later, …</i> · <i>By reducing the runoff, …</i> · <i>In assessing the films, …</i></li>
+  <li>-ed phrases: <i>Woven from recycled yarn, …</i> · <i>Named in 1999 as one of the greatest achievements, …</i></li>
+  <li>noun phrases: <i>One of the few African American global explorers, …</i></li>
+  <li>“Despite being cheap…,” “since uncovering fragments…”</li></ul>
+  <p class="cn">常见：-ing 短语、-ed 短语、名词短语、despite / since + doing。</p></div>
+</div></section>
+<section class="slide " data-title="Wrong choices that look acceptable" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Traps</div><h2>Wrong choices that look acceptable</h2></header>
+<table class="t sm">
+<tr><th>Wrong pattern</th><th>Why it fails</th></tr>
+<tr><td><b>Possessive</b>: <i>Henry’s reign resumed</i></td><td>The subject is “reign,” not Henry. “Henry’s” is only a describer.</td></tr>
+<tr><td><b>Passive</b>: <i>several treks … were made by Matthew Henson</i></td><td>The subject is “treks.” The person is pushed to the end.</td></tr>
+<tr><td><b>Empty subject</b>: <i>there are…, it was Henry who…</i></td><td>“there” / “it” comes right after the comma.</td></tr>
+<tr><td><b>Abstract noun</b>: <i>the focus of many critics, the argument…, the mitigation…</i></td><td>An abstraction cannot recover, assess, uncover, or reduce.</td></tr>
+</table>
+<div class="box acc"><p><b>Shortcut:</b> the right answer usually begins with the <b>person or thing</b> itself and uses an <b>active</b> verb. Read the modifier, ask “who?”, and look for the choice that begins with that answer. <span class="cn">正确选项通常以那个人/物开头，并用主动语态。所有格、被动语态、there be、抽象名词开头都要警惕。</span></p></div></section>
+<section class="slide " data-title="Three steps" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">How to approach it</div><h2>Three steps</h2></header>
+<div class="steps">
+ <div class="step"><div class="n">1</div><div><h3>Notice the pattern</h3><p>The sentence starts with a phrase and a comma, and the choices are whole clauses with different first words. <span class="cn">句首短语 + 逗号，选项是不同开头的分句。</span></p></div></div>
+ <div class="step"><div class="n">2</div><div><h3>Ask who or what the opening phrase describes</h3><p>Who recovered? Who assessed the films? What was named one of the greatest achievements? <span class="cn">问：修饰语描述的是谁？</span></p></div></div>
+ <div class="step"><div class="n">3</div><div><h3>Choose the choice that starts with that noun</h3><p>Not its possessive, not “there / it,” not a passive subject, not an abstraction. Then check that the sentence is complete. <span class="cn">选以该名词开头的选项，并检查整句完整。</span></p></div></div>
+</div></section>
+<section class="slide " data-title="Worked example · the question" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Worked Example</div><h2>Step 1 · Read the text and the question<span class="cn">先读短文，再读题目在问什么</span></h2></header><div class="work"><div class="lcol"><div class="pv" data-p="T6-2-20" data-lab="Form 6 · Module 2 · Question 20 · the text"></div><div class="ask"><h4>What is the question asking?</h4><p>The sentence begins: “One of the few African American global explorers during the turn of the 20th century, ___.” Who was one of these explorers?</p><p class="cn">句首名词短语描述的是谁？</p></div></div><div class="right fitq"><div class="qimg" data-q="T6-2-20"></div></div></div></section>
+<section class="slide " data-title="Worked example · the evidence" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Worked Example</div><h2>Step 2 · Find the evidence in the text<span class="cn">回到短文，找到依据</span></h2></header><div class="work"><div class="pv" data-p="T6-2-20" data-hl="1-2" data-lab="Form 6 · Module 2 · Question 20 · highlighted = evidence"></div><div class="right"><div class="steps"><div class="step"><div class="n">1</div><div><h3>The modifier</h3><p>“One of the few African American global explorers during the turn of the 20th century” describes a <b>person</b>.</p></div></div><div class="step"><div class="n">2</div><div><h3>Who?</h3><p>Matthew Henson.</p></div></div><div class="step"><div class="n">3</div><div><h3>Rule</h3><p>The first noun after the comma must be <b>Matthew Henson</b>.</p></div></div><div class="step"><div class="n">4</div><div><h3>Check the choices</h3><p>Only one choice begins with “Matthew Henson.”</p></div></div></div></div></div></section>
+<section class="slide " data-title="Worked example · the choices" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Worked Example</div><h2>Step 3 · Test every choice<span class="cn">逐个检验选项</span></h2></header><div class="work" style="grid-template-columns:470px 1fr"><div class="right fitq"><div class="qimg" data-q="T6-2-20"></div></div><div class="right"><div class="verdicts"><div class="vd keep hidden-v"><div class="L">A</div><div class="v">KEEP ✓</div><div class="r">“Matthew Henson made several treks…”: Henson comes right after the modifier and is the subject.</div></div><div class="vd cut hidden-v"><div class="L">B</div><div class="v">CUT ✗</div><div class="r">Says the <b>years</b> 1891 and 1909 were one of the explorers.</div></div><div class="vd cut hidden-v"><div class="L">C</div><div class="v">CUT ✗</div><div class="r">Says <b>Greenland</b> was one of the explorers.</div></div><div class="vd cut hidden-v"><div class="L">D</div><div class="v">CUT ✗</div><div class="r">Passive: says the <b>treks</b> were one of the explorers.</div></div></div><button class="reveal-all">Reveal next choice ›</button><div class="box acc" style="margin-top:4px"><p><b>Answer: A.</b> Ask who the opening phrase describes, and choose the clause that begins with that person. <span class="cn">修饰语描述谁，逗号后就是谁。</span></p></div></div></div></section>
+<section class="slide " data-title="Worked example 2 · Form 1 · Module 1 · Question 28" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Worked Example 2</div><h2>Form 1 · Module 1 · Question 28<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T1-1-28" data-hl="2-6" data-lab="Form 1 · Module 1 · Question 28 · the text"></div><div class="qimg" data-q="T1-1-28"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>Each choice begins with a different first noun: <i>Henry</i> / <i>the reign of Henry</i> / <i>Henry’s reign</i> / <i>it</i>. → A modifier question: which noun must come right after the comma? <span class="cn">选项开头的名词各不相同 → 考修饰语位置。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the pattern · 找句型</h3><p>“<u>Upon recovering two years later</u>, ____ …” = <b>Upon + doing, SVO.</b> The opening phrase has no subject of its own, so it borrows the subject after the comma. <span class="cn">句首是 Upon + doing 短语，自己没有主语，要借用逗号后的主语。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Ask “Who is doing it?” · 谁在康复？</h3><p>Who recovered? The text says King Henry VI “became unfit to rule after falling gravely ill.” So the person who recovered is <b>Henry</b>. <span class="cn">生病后康复的是亨利六世。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>The first noun after the comma must be <b>Henry</b> himself — not “the reign of Henry,” not the possessive “Henry’s reign,” not “it.” Only A: “Henry resumed his reign.” <span class="cn">逗号后必须直接是 Henry，所有格和 it 都不行。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>B</b> ✗ “the reign of Henry” makes the reign the one who recovered.<br><b>C</b> ✗ “Henry’s reign” makes the reign the subject; “Henry’s” only describes it.<br><b>D</b> ✗ “it was Henry who…” puts “it” right after the modifier.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: A.</b> “Upon <b>recovering</b> two years later”: the person who had fallen ill, <b>Henry</b> VI. → “<b>Henry</b> resumed his reign.” <span class="cn">康复的是 Henry，逗号后应是 Henry。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 3 · Form 1 · Module 2 · Question 26" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Worked Example 3</div><h2>Form 1 · Module 2 · Question 26<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T1-2-26" data-hl="1-3" data-lab="Form 1 · Module 2 · Question 26 · the text"></div><div class="qimg" data-q="T1-2-26"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>The choices start with <i>there</i> / <i>two problems</i> / <i>commercial plastics’ … problems</i> / <i>commercial plastics</i>. → Modifier question. <span class="cn">开头的主语不同 → 考修饰语。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the pattern · 找句型</h3><p>“<u>Despite being cheap, versatile, and easy to produce</u>, ____” = <b>Despite + doing, SVO.</b> The commas inside the list are part of the modifier; the last comma ends it. <span class="cn">Despite being… 是句首修饰语，里面的逗号是列举。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Ask “Who is doing it?” · 什么便宜、易生产？</h3><p>What is cheap, versatile, and easy to produce? Not “problems” and not “there.” It is <b>commercial plastics</b>. <span class="cn">便宜、多用途、易生产的是塑料本身，不是“问题”。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>The subject after the comma must be <b>commercial plastics</b>, not the possessive “commercial plastics’ problems.” → D: “commercial plastics have two associated problems:” <span class="cn">逗号后主语必须是 commercial plastics，所有格形式不算。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ “there are two problems” puts “there” after the modifier, as if the problems were cheap.<br><b>B</b> ✗ “two problems are…” says the problems are cheap and easy to produce.<br><b>C</b> ✗ “commercial plastics’ two associated problems” makes the problems the subject; the possessive only describes them.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: D.</b> “Despite being cheap, versatile, and easy to produce” describes <b>commercial plastics</b>. → “<b>commercial plastics</b> have two associated problems:” <span class="cn">便宜、易生产的是塑料本身。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Worked example 4 · Form 4 · Module 2 · Question 25" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Worked Example 4</div><h2>Form 4 · Module 2 · Question 25<span class="cn">分步引导：先思考，再点击显示下一步</span></h2></header><div class="work"><div class="gx-left"><div class="pv" data-p="T4-2-25" data-hl="4-5" data-lab="Form 4 · Module 2 · Question 25 · the text"></div><div class="qimg" data-q="T4-2-25"></div></div><div class="right"><div class="stepper"><div class="st"><div class="n">1</div><div><h3>Look at the choices · 看选项</h3><p>Four whole clauses with different subjects: <i>the mitigation</i> / <i>the bioswales</i> / <i>the bioswales’ mitigation</i> / <i>both street flooding and … pollution</i>. → Modifier question. <span class="cn">四个分句主语不同 → 考修饰语。</span></p></div></div><div class="st"><div class="n">2</div><div><h3>Find the pattern · 找句型</h3><p>“<u>By reducing the runoff flowing into city sewers</u>, ____” = <b>By + doing, SVO.</b> <span class="cn">句首是 By + doing 短语。</span></p></div></div><div class="st"><div class="n">3</div><div><h3>Ask “Who is doing it?” · 谁减少了径流？</h3><p>What reduces the runoff? The bioswales (vegetated channels that absorb stormwater). So the subject must be <b>the bioswales</b>. <span class="cn">吸收雨水、减少径流的是 bioswales（植被浅沟）。</span></p></div></div><div class="st"><div class="n">4</div><div><h3>Apply the rule · 规则</h3><p>Choose the clause that starts with <b>the bioswales</b> and uses an <b>active</b> verb: B “the bioswales have mitigated…”. A and D are passive; C uses a possessive + abstract noun. <span class="cn">主语 bioswales + 主动语态；被动、所有格、抽象名词都错。</span></p></div></div><div class="st"><div class="n">5</div><div><h3>Eliminate the other choices · 排除错误选项</h3><p><b>A</b> ✗ “the mitigation … has been achieved by bioswales”: the mitigation becomes the subject.<br><b>C</b> ✗ “the bioswales’ mitigation…” makes “mitigation” the subject.<br><b>D</b> ✗ Passive: flooding and pollution become the subject, as if they reduced the runoff.</p></div></div><button class="nextstep" hidden></button><div class="box acc final"><p><b>Answer: B.</b> “By <b>reducing</b> the runoff flowing into city sewers” describes what the <b>bioswales</b> do. → “<b>the bioswales</b> have mitigated both street flooding and…” (active). <span class="cn">减少径流的是 bioswales，用主动语态。</span></p></div></div></div></div></section>
+<section class="slide " data-title="Practice 1: 3-2-25" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Practice 1 of 4</div><h2>Form 3 · Module 2 · Question 25</h2></header><div class="work"><div class="pv" data-p="T3-2-25" data-lab="Form 3 · Module 2 · Question 25 · the text"></div><div class="right"><div class="qimg" data-q="T3-2-25"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Who uncovered the fragments of the harness?</div><div class="fb"></div><template class="why">“since <b>uncovering</b> fragments of a 2,000-year-old reindeer training harness” describes a <b>person</b>: researcher Robert Losey. → “<b>researcher Robert Losey</b> has argued that domestication may have begun much earlier.” <span class="cn">发现挽具碎片的是研究者本人。</span></template><template class="wrong" data-l="B">“Losey’s argument” makes the argument the subject, as if the argument uncovered the fragments.</template><template class="wrong" data-l="C">“domestication” comes right after the modifier.</template><template class="wrong" data-l="D">“the argument … has made” makes the argument the subject.</template></div></div></div></section>
+<section class="slide " data-title="Practice 2: 2-2-22" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Practice 2 of 4</div><h2>Form 2 · Module 2 · Question 22</h2></header><div class="work"><div class="pv" data-p="T2-2-22" data-lab="Form 2 · Module 2 · Question 22 · the text"></div><div class="right"><div class="qimg" data-q="T2-2-22"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-4" data-hint="1-4"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>Who assessed Kurosawa’s films?</div><div class="fb"></div><template class="why">“In <b>assessing</b> the films of Japanese director Akira Kurosawa” describes the <b>critics</b>. → “<b>many critics</b> have focused on Kurosawa’s use of Western literary sources but have missed…” <span class="cn">评价电影的是评论家。</span></template><template class="wrong" data-l="B">“Kurosawa’s use of Western literary sources” comes right after the modifier.</template><template class="wrong" data-l="C">“there are many critics” puts “there” first.</template><template class="wrong" data-l="D">“the focus of many critics” makes an abstraction the subject.</template></div></div></div></section>
+<section class="slide " data-title="Practice 3: 4-1-24" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Practice 3 of 4</div><h2>Form 4 · Module 1 · Question 24</h2></header><div class="work"><div class="pv" data-p="T4-1-24" data-lab="Form 4 · Module 1 · Question 24 · the text"></div><div class="right"><div class="qimg" data-q="T4-1-24"></div><div class="prac" data-ans="C" data-letters="ABCD" data-ev="3-6" data-hint="3-6"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What was named in 1999 as one of the greatest achievements by a US chemist?</div><div class="fb"></div><template class="why">“<b>Named</b> in 1999 as one of the greatest achievements by a US chemist” describes an <b>achievement</b>, not the chemist himself. The achievement was the <b>synthesis</b>. → “<b>Julian’s 1935 synthesis</b> of the alkaloid physostigmine led to…” <span class="cn">被评为“伟大成就”的是“合成”这件事，不是 Julian 本人。</span></template><template class="wrong" data-l="A">“Julian” comes first, as if Julian himself were an achievement.</template><template class="wrong" data-l="B">“in 1935 Julian…” again makes Julian the subject.</template><template class="wrong" data-l="D">“the alkaloid physostigmine” is a substance, not the achievement of synthesizing it.</template></div></div></div></section>
+<section class="slide " data-title="Practice 4: 6-2-21" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement"><header><div class="kk">Practice 4 of 4</div><h2>Form 6 · Module 2 · Question 21</h2></header><div class="work"><div class="pv" data-p="T6-2-21" data-lab="Form 6 · Module 2 · Question 21 · the text"></div><div class="right"><div class="qimg" data-q="T6-2-21"></div><div class="prac" data-ans="A" data-letters="ABCD" data-ev="1-5" data-hint="1-5"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden>What was woven from recycled yarn and hand tufted?</div><div class="fb"></div><template class="why">“<b>Woven</b> from recycled yarn and hand tufted…” describes something that was woven: the <b>tapestries</b>. → “<b>the topological tapestries</b> of Argentine textile artist Alexandra Kehayoglou are so lush…” <span class="cn">被编织的是挂毯，不是艺术家。</span></template><template class="wrong" data-l="B">“the Argentine textile artist” comes first, as if the artist were woven from yarn.</template><template class="wrong" data-l="C">“when she creates…” puts a clause (and the artist) after the modifier.</template><template class="wrong" data-l="D">“Alexandra Kehayoglou” comes first.</template></div></div></div></section>
+<section class="slide summary-layout" data-foot="Digital SAT Writing · G08 · Subject-Modifier Placement" data-title="What to remember about modifier placement"><header><div class="kk">Summary</div><h2>What to remember about modifier placement<span class="cn">修饰语位置要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 修饰对象</h3><div class="summary-copy">A sentence-opening phrase with no subject of its own describes the <b>first noun after the comma</b>.</div></article><article class="summary-card"><h3 class="summary-label">02 · 寻找动作主体</h3><div class="summary-copy">Ask who or what the phrase describes: who recovered, what was woven, what was named an achievement.</div></article><article class="summary-card"><h3 class="summary-label">03 · 匹配句子主语</h3><div class="summary-copy">Choose the clause that begins with that noun as its subject.</div></article><article class="summary-card"><h3 class="summary-label">04 · 常见干扰</h3><div class="summary-copy">Traps: possessives (<i>Henry’s reign</i>), passive voice, <i>there / it</i>, and abstract nouns (<i>the focus, the argument</i>).</div></article><article class="summary-card"><h3 class="summary-label">05 · 代回检查</h3><div class="summary-copy">Read the opening phrase together with the subject of your chosen answer. Check that the subject is the person or thing the phrase describes.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T6-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">One of the few African American global explorers </span> <span data-line=\"2\">during the turn of the 20th century, _______ </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 1453, English King Henry VI became unfit to rule </span> <span data-line=\"2\">after falling gravely ill. As a result, Parliament </span> <span data-line=\"3\">appointed Richard, Third Duke of York, who had a </span> <span data-line=\"4\">strong claim to the English throne, to rule as Lord </span> <span data-line=\"5\">Protector. Upon recovering two years later, _______ </span> <span data-line=\"6\">forcing an angered Richard from the royal court and </span> <span data-line=\"7\">precipitating a series of battles later known as the </span> <span data-line=\"8\">Wars of the Roses. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Despite being cheap, versatile, and easy to produce, </span> <span data-line=\"2\">_______ they are made from nonrenewable </span> <span data-line=\"3\">petroleum, and most do not biodegrade in landfills. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In 2016, engineer Vanessa Galvez oversaw the </span> <span data-line=\"2\">installation of 164 bioswales, vegetated channels </span> <span data-line=\"3\">designed to absorb and divert stormwater, along the </span> <span data-line=\"4\">streets of Queens, New York. By reducing the runoff </span> <span data-line=\"5\">flowing into city sewers, _______ </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Based on genetic evidence, archaeologists have </span> <span data-line=\"2\">generally agreed that reindeer domestication began </span> <span data-line=\"3\">in the eleventh century CE. However, since </span> <span data-line=\"4\">uncovering fragments of a 2,000-year-old reindeer </span> <span data-line=\"5\">training harness in northern Siberia, ______ may </span> <span data-line=\"6\">have begun much earlier. </span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">In assessing the films of Japanese director </span> <span data-line=\"2\">Akira Kurosawa, ______ have missed his equally </span> <span data-line=\"3\">deep engagement with Japanese artistic traditions </span> <span data-line=\"4\">such as Noh theater. </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">African American Percy Julian was a scientist and </span> <span data-line=\"2\">entrepreneur whose work helped people around the </span> <span data-line=\"3\">world to see. Named in 1999 as one of the greatest </span> <span data-line=\"4\">achievements by a US chemist in the past hundred </span> <span data-line=\"5\">years, _______ led to the first mass-produced </span> <span data-line=\"6\">treatment for glaucoma. </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Woven from recycled yarn and hand tufted using a </span> <span data-line=\"2\">carpet weaving technique passed down by the artist’s </span> <span data-line=\"3\">Turkish grandmother, _______ so lush and tactilely </span> <span data-line=\"4\">inviting that you are tempted to reach out and touch </span> <span data-line=\"5\">them. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T6-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Matthew Henson made several treks across </span> <span data-line=\"4\">Greenland between 1891 and 1909. </span></p><p><span data-line=\"5\">B) 1891 and 1909 were the years between which </span> <span data-line=\"6\">Matthew Henson made several treks across </span> <span data-line=\"7\">Greenland. </span></p><p><span data-line=\"8\">C) Greenland was where Matthew Henson made </span> <span data-line=\"9\">several treks between 1891 and 1909. </span></p><p><span data-line=\"10\">D) several treks across Greenland were made by </span> <span data-line=\"11\">Matthew Henson between 1891 and 1909. </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-1-28":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Henry resumed his reign, </span></p><p><span data-line=\"4\">B) the reign of Henry resumed, </span></p><p><span data-line=\"5\">C) Henry’s reign resumed, </span></p><p><span data-line=\"6\">D) it was Henry who resumed his reign, </span></p></div>","vector":false,"segs":[],"lines":{}},"T1-2-26":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) there are two problems associated with </span> <span data-line=\"4\">commercial plastics: </span></p><p><span data-line=\"5\">B) two problems are associated with commercial </span> <span data-line=\"6\">plastics: </span></p><p><span data-line=\"7\">C) commercial plastics’ two associated problems are </span> <span data-line=\"8\">that </span></p><p><span data-line=\"9\">D) commercial plastics have two associated </span> <span data-line=\"10\">problems: </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) the mitigation of both street flooding and the </span> <span data-line=\"4\">resulting pollution of nearby waterways has been </span> <span data-line=\"5\">achieved by bioswales. </span></p><p><span data-line=\"6\">B) the bioswales have mitigated both street flooding </span> <span data-line=\"7\">and the resulting pollution of nearby waterways. </span></p><p><span data-line=\"8\">C) the bioswales’ mitigation of both street flooding </span> <span data-line=\"9\">and the resulting pollution of nearby waterways </span> <span data-line=\"10\">has been achieved. </span></p><p><span data-line=\"11\">D) both street flooding and the resulting pollution </span> <span data-line=\"12\">of nearby waterways have been mitigated by </span> <span data-line=\"13\">bioswales. </span></p></div>","vector":false,"segs":[],"lines":{}},"T3-2-25":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) researcher Robert Losey has argued that</span> <span data-line=\"4\">domestication</span></p><p><span data-line=\"5\">B) researcher Robert Losey’s argument is that</span> <span data-line=\"6\">domestication</span></p><p><span data-line=\"7\">C) domestication, researcher Robert Losey has</span> <span data-line=\"8\">argued,</span></p><p><span data-line=\"9\">D) the argument researcher Robert Losey has made</span> <span data-line=\"10\">is that domestication</span></p></div>","vector":false,"segs":[],"lines":{}},"T2-2-22":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) many critics have focused on Kurosawa’s use of </span> <span data-line=\"4\">Western literary sources but </span></p><p><span data-line=\"5\">B) Kurosawa’s use of Western literary sources has </span> <span data-line=\"6\">been the focus of many critics, who </span></p><p><span data-line=\"7\">C) there are many critics who have focused on </span> <span data-line=\"8\">Kurosawa’s use of Western literary sources, but </span> <span data-line=\"9\">they </span></p><p><span data-line=\"10\">D) the focus of many critics has been on Kurosawa’s </span> <span data-line=\"11\">use of Western literary sources; they </span></p></div>","vector":false,"segs":[],"lines":{}},"T4-1-24":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) Julian synthesized the alkaloid physostigmine in </span> <span data-line=\"4\">1935; it </span></p><p><span data-line=\"5\">B) in 1935 Julian synthesized the alkaloid </span> <span data-line=\"6\">physostigmine, which </span></p><p><span data-line=\"7\">C) Julian’s 1935 synthesis of the alkaloid </span> <span data-line=\"8\">physostigmine </span></p><p><span data-line=\"9\">D) the alkaloid physostigmine was synthesized by </span> <span data-line=\"10\">Julian in 1935 and </span></p></div>","vector":false,"segs":[],"lines":{}},"T6-2-21":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) the topological tapestries of Argentine textile </span> <span data-line=\"4\">artist Alexandra Kehayoglou are </span></p><p><span data-line=\"5\">B) the Argentine textile artist Alexandra </span> <span data-line=\"6\">Kehayoglou creates topological tapestries </span> <span data-line=\"7\">that are </span></p><p><span data-line=\"8\">C) when she creates her topological tapestries, </span> <span data-line=\"9\">Argentine textile artist Alexandra Kehayoglou </span> <span data-line=\"10\">makes them </span></p><p><span data-line=\"11\">D) Alexandra Kehayoglou is an Argentine textile </span> <span data-line=\"12\">artist whose topological tapestries are </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+var D=window.DATA;
+var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
+var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
+function fit(){var s=Math.min(innerWidth/1280,innerHeight/720)*0.99;deck.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+
+/* ---------- passage / excerpt viewers ---------- */
+function buildViewer(el,data){
+  el.innerHTML='';
+  if(el.getAttribute('data-lab')){var lab=document.createElement('div');lab.className='pvlab';lab.textContent=el.getAttribute('data-lab');el.appendChild(lab);}
+  el._segs=data.segs.map(function(s){var d=document.createElement('div');d.className='seg';var im=document.createElement('img');im.src=s.src;im.alt='passage';d.appendChild(im);el.appendChild(d);return d;});
+  el._lines=data.lines;
+  el.refocus=function(){var f=el._first;if(!f||!el.clientHeight)return;var seg=f.parentNode;el.scrollTop=Math.max(0,seg.offsetTop+f.offsetTop-el.clientHeight*0.3);};
+  el.mark=function(nums,cls){
+    [].forEach.call(el.querySelectorAll('.hlb'+(cls?'.'+cls:':not(.hint)')),function(x){x.remove();});
+    var first=null;
+    // merge consecutive lines in same seg
+    var boxes=[];nums.forEach(function(n){var L=data.lines[n];if(!L)return;var b=boxes[boxes.length-1];
+      if(b&&b.si===L[0]&&Math.abs(b.top+b.h-L[1])<1.2){b.h=L[1]+L[2]-b.top;}else boxes.push({si:L[0],top:L[1],h:L[2]});});
+    boxes.forEach(function(b){var x=document.createElement('div');x.className='hlb'+(cls?' '+cls:'');x.style.top=b.top+'%';x.style.height=b.h+'%';el._segs[b.si].appendChild(x);if(!first)first=x;});
+    if(first){ el._first=first; setTimeout(function(){el.refocus();},60); }
+  };
+  if(el.getAttribute('data-hl')) el.mark(ranges(el.getAttribute('data-hl')));
+}
+[].forEach.call(document.querySelectorAll('.pv[data-p]'),function(el){buildViewer(el,D.P[el.getAttribute('data-p')]);});
+[].forEach.call(document.querySelectorAll('.pv[data-ex]'),function(el){buildViewer(el,D.EX[el.getAttribute('data-ex')]);});
+[].forEach.call(document.querySelectorAll('.qimg[data-q]'),function(el){D.Q[el.getAttribute('data-q')].segs.forEach(function(s){var im=document.createElement('img');im.src=s.src;im.alt='question';el.appendChild(im);});});
+
+/* ---------- practice ---------- */
+[].forEach.call(document.querySelectorAll('.prac'),function(w){
+  var ans=w.getAttribute('data-ans'), letters=w.getAttribute('data-letters').split(''), ev=ranges(w.getAttribute('data-ev'));
+  var pv=w.closest('.slide').querySelector('.pv');
+  var fb=w.querySelector('.fb'), why=w.querySelector('template.why').innerHTML;
+  var wrong={};[].forEach.call(w.querySelectorAll('template.wrong'),function(t){wrong[t.getAttribute('data-l')]=t.innerHTML;});
+  var lb=w.querySelector('.letters');
+  letters.forEach(function(L){var b=document.createElement('button');b.textContent=L;b.onclick=function(){pick(L,b);};lb.appendChild(b);});
+  var done=false; w.resetPractice=function(){done=false;};
+  function pick(L,b){
+    if(done) return;
+    if(L===ans){ b.className='ok'; show(true); }
+    else{ b.className='no'; fb.innerHTML='<div class="res no">✗ '+L+' is not correct.</div><div class="wrong">'+(wrong[L]||'')+'</div><div class="cn">回到原文找证据,再试一次。</div>'; }
+  }
+  function show(correct){
+    done=true;
+    [].forEach.call(lb.children,function(b){ if(b.textContent===ans) b.className='ok'; });
+    var alts=letters.filter(function(x){return x!==ans;}).map(function(x){return '<div><b>'+x+'</b>'+(wrong[x]||'')+'</div>';}).join('');
+    fb.innerHTML='<div class="res ok">'+(correct?'✓ Correct — ':'Answer: ')+ans+'</div><div class="why">'+why+'</div><div class="alts"><div class="cn">Why the other choices are wrong:</div>'+alts+'</div>';
+    if(pv&&pv.mark) pv.mark(ev);
+    var rc=w.closest('.right'); if(rc) setTimeout(function(){rc.scrollTop=0;},80);
+  }
+  var hb=w.querySelector('.hintbtn'), hx=w.querySelector('.hintbox');
+  if(hb) hb.onclick=function(){hx.hidden=!hx.hidden; if(pv&&pv.mark&&!hx.hidden){var h=ranges(w.getAttribute('data-hint'));if(h.length)pv.mark(h,'hint');}};
+  var sa=w.querySelector('.showans'); if(sa) sa.onclick=function(){show(false);};
+});
+
+/* ---------- demo verdict reveal ---------- */
+[].forEach.call(document.querySelectorAll('.reveal-all'),function(b){
+  var box=b.closest('.slide'); b.onclick=function(){
+    var hid=box.querySelectorAll('.vd.hidden-v');
+    if(hid.length){ hid[0].classList.remove('hidden-v'); if(hid.length===1) b.textContent='All shown'; }
+  };
+});
+
+/* ---------- nav ---------- */
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');pg.textContent=(cur+1)+' / '+slides.length;[].forEach.call(slides[cur].querySelectorAll('.pv'),function(p){if(p.refocus)p.refocus();});try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+function buildMenu(){var h='<h2 style="font-family:Georgia;font-size:26px;margin-bottom:12px">Contents</h2>';slides.forEach(function(s,i){h+='<button data-i="'+i+'" class="'+(i===cur?'cur':'')+'">'+(i+1)+'. '+(s.getAttribute('data-title')||'')+'</button>';});menu.innerHTML=h;[].forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){show(+b.getAttribute('data-i'));menu.hidden=true;};});}
+document.getElementById('prev').onclick=function(){show(cur-1);};
+document.getElementById('next').onclick=function(){show(cur+1);};
+document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;};
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
+  else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
+var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+})();
+</script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
+let vectorInstance=0;
+function fill(el,data){
+ const label=el.querySelector('.pvlab');let markup=data.html.replace(/<svg\b[\s\S]*?<\/svg>/g,svg=>{const prefix='v'+(++vectorInstance)+'_';const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);for(const id of ids){svg=svg.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')')}return svg});el.innerHTML=(label?label.outerHTML:'')+markup;
+ if(data.vector)el.classList.add('vector-content');
+ if(data.graphSplit){el.classList.add('graph-split');const svg=el.querySelector('.chart-area svg');if(svg&&svg.viewBox.baseVal.width/svg.viewBox.baseVal.height<.9)el.classList.add('graph-tall');const col=el.closest('.lcol');if(col){const ask=col.querySelector('.ask'),right=el.closest('.work').querySelector('.right');if(ask&&right){const details=document.createElement('details');details.className='graph-note';details.innerHTML='<summary>Question focus · 题目分析</summary>';details.appendChild(ask);right.appendChild(details)}}}
+ el.refocus=function(){el.scrollTop=0};
+ el.mark=function(nums,cls){const c=cls?'hint-evidence':'evidence';el.querySelectorAll('.'+c).forEach(x=>x.classList.remove(c));nums.forEach(n=>el.querySelectorAll('[data-line="'+n+'"]').forEach(x=>x.classList.add(c)));};
+ if(el.dataset.hl){let nums=[];el.dataset.hl.split(',').forEach(s=>{let [a,b]=s.split('-').map(Number);for(let n=a;n<=(b||a);n++)nums.push(n)});el.mark(nums)}
+}
+document.querySelectorAll('.pv[data-p]').forEach(el=>fill(el,DATA.P[el.dataset.p]));
+document.querySelectorAll('.qimg[data-q]').forEach(el=>fill(el,DATA.Q[el.dataset.q]));
+document.querySelectorAll('.vd.hidden-v').forEach(x=>x.classList.remove('hidden-v'));
+document.querySelectorAll('.reveal-all').forEach(x=>x.remove());
+document.querySelectorAll('.stepper .hid').forEach(x=>x.classList.remove('hid'));
+document.querySelectorAll('.nextstep').forEach(x=>x.remove());
+// Teaching mode: question stays visible; explanation is revealed deliberately.
+document.querySelectorAll('.slide').forEach(sl=>{
+ if(!/^Worked example/i.test(sl.dataset.title||''))return;
+ sl.classList.add('teaching-example');
+ sl.querySelectorAll('.native-vector').forEach(svg=>svg.setAttribute('preserveAspectRatio','xMinYMin'));
+ const work=sl.querySelector('.work');if(!work)return;
+ const right=work.lastElementChild;
+ let units=[];
+ if(right.querySelector('.stepper'))units=[...right.querySelectorAll('.stepper .st,.stepper .final')];
+ else if(right.querySelector('.verdicts'))units=[...right.querySelectorAll('.vd'),...[...right.children].filter(e=>!e.matches('.verdicts,button'))];
+ else if(/check|choices|evidence/i.test(sl.dataset.title||''))units=right.querySelector('.steps')?[...right.querySelectorAll('.steps>.step')]:[...right.children];
+ else units=[...right.children].filter(e=>!e.matches('.qimg,button'));
+ const annotations=[...work.querySelectorAll('.ask')].filter(e=>!units.some(u=>u.contains(e)));
+ units=[...annotations,...units];
+ if(!units.length)return;
+ // Desmos demonstrations on the left also contain answers, so reveal them first.
+ const left=work.firstElementChild;
+ if(left!==right&&left.querySelector('.dpanel'))units=[...left.querySelectorAll('.dpanel>.dexp,.dpanel>p,.dpanel>.dgraph'),...units];
+ sl._revealUnits=units;
+ const evidence=[...sl.querySelectorAll('.evidence')];
+ const bar=document.createElement('div');bar.className='teaching-controls';
+ const next=document.createElement('button'),reset=document.createElement('button');reset.textContent='重新隐藏';
+ bar.append(next,reset);right.prepend(bar);
+ let shown=0;
+ function label(){
+  next.disabled=shown>=units.length;
+  next.textContent=shown>=units.length?'已全部显示':units[shown].matches('.final')?'显示最终答案':right.querySelector('.stepper')?'显示下一步':'显示下一项解析';
+ }
+ sl.resetReveal=function(){shown=0;evidence.forEach(e=>e.classList.remove('evidence'));units.forEach(e=>{e.classList.add('teaching-pending');e.setAttribute('aria-hidden','true')});label()};
+ next.onclick=()=>{if(shown===0)evidence.forEach(e=>e.classList.add('evidence'));if(shown<units.length){let e=units[shown++];e.classList.remove('teaching-pending');e.removeAttribute('aria-hidden');const details=e.closest('details');if(details)details.open=true;label()}};
+ reset.onclick=sl.resetReveal;sl.resetReveal();
+});
+
+// Keep practice solutions in their own right-hand view, with a deliberate return.
+document.querySelectorAll('.prac,.mprac').forEach(w=>{
+ const sl=w.closest('.slide'),right=w.closest('.right');if(!right)return;
+ const back=document.createElement('button');back.className='back-question';back.textContent='返回题目 · 隐藏解析';right.prepend(back);
+ const reset=()=>{if(w.resetPractice)w.resetPractice();w.querySelector('.fb').replaceChildren();w.querySelectorAll('.hintbox,.desbox').forEach(e=>e.hidden=true);w.querySelectorAll('.ok,.no').forEach(e=>e.classList.remove('ok','no'));sl.querySelectorAll('.evidence,.hint-evidence').forEach(e=>e.classList.remove('evidence','hint-evidence'));right.classList.remove('solution-view');right.scrollTop=0;};
+ back.onclick=reset;sl.resetPracticeView=reset;
+ new MutationObserver(()=>{if(w.querySelector('.res.ok'))right.classList.add('solution-view');}).observe(w.querySelector('.fb'),{childList:true});
+});
+
+function overflowing(sl){
+ const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let bottom=sl.getBoundingClientRect().top+681*scale;
+ if([...sl.querySelectorAll('header,.box,p,.step,.st,.stem,.qimg,.vd,table,.check,.ask,.pbox,.dpanel')].filter(e=>e.getClientRects().length&&!e.closest('svg')).some(e=>e.getBoundingClientRect().bottom>bottom+2*scale))return true;
+ for(const e of sl.querySelectorAll('.grid,.right,.pv,.qcol,.box,.steps,.stems,.stepper,.qimg'))if(e.clientHeight&&e.scrollHeight>e.clientHeight+3)return true;
+ for(const e of sl.querySelectorAll('p,h2,h3,td,th,.r,.typed-text,.fbox .f'))if(e.clientWidth&&e.scrollWidth>e.clientWidth+3)return true;
+ return false;
+}
+function questionFont(sl){
+ const work=sl.querySelector('.work');if(!work)return null;
+ const left=work.firstElementChild;if(!left)return null;
+ const typed=left.querySelector('.typed-text');
+ if(typed)return parseFloat(getComputedStyle(typed).fontSize);
+ const canvasScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ let sizes=[];
+ left.querySelectorAll('.native-vector').forEach(svg=>{
+  const bounds=svg.getBoundingClientRect();
+  svg.querySelectorAll('text tspan').forEach(t=>{
+   const r=t.getBoundingClientRect(),m=t.getScreenCTM();
+   if(!m||r.right<=bounds.left||r.left>=bounds.right||r.bottom<=bounds.top||r.top>=bounds.bottom)return;
+   const size=parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b)/canvasScale;
+   if(size>5) sizes.push({size,weight:Math.max(1,t.textContent.replace(/\s/g,'').length)});
+  });
+ });
+ if(!sizes.length)return null;
+ sizes.sort((a,b)=>a.size-b.size);let half=sizes.reduce((n,x)=>n+x.weight,0)/2,total=0;
+ for(const x of sizes){total+=x.weight;if(total>=half)return x.size}
+}
+function resetCaps(sl){
+ if(!sl._caps)return;
+ for(const [e,v] of sl._caps){if(v.size)e.style.setProperty('font-size',v.size,v.priority);else e.style.removeProperty('font-size')}
+ sl._caps.clear();
+}
+function capExplanation(sl){
+ const size=questionFont(sl);if(!size)return;
+ const cap=size*.96,work=sl.querySelector('.work');if(!sl._caps)sl._caps=new Map();
+ sl.dataset.questionFont=size.toFixed(2);sl.dataset.explanationCap=cap.toFixed(2);
+ [...work.children].slice(1).forEach(col=>{
+  [col,...col.querySelectorAll('*')].forEach(e=>{
+   if(e.closest('svg,template')||['BUTTON','INPUT'].includes(e.tagName))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>cap){if(!sl._caps.has(e))sl._caps.set(e,{size:e.style.getPropertyValue('font-size'),priority:e.style.getPropertyPriority('font-size')});e.style.setProperty('font-size',cap.toFixed(2)+'px','important');}
+  });
+ });
+}
+function fit(sl){
+ const tableScale=document.getElementById('deck').getBoundingClientRect().width/1280;
+ sl.style.setProperty('--table-font',(18/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--lesson-body',(20/Math.max(tableScale,.99))+'px');
+ sl.style.setProperty('--cn-body',((sl.querySelector('.work')?16:17)/Math.max(tableScale,.99))+'px');
+ if(sl.querySelector('.work')){
+  const scale=document.getElementById('deck').getBoundingClientRect().width/1280;
+  if(sl._examScale===scale)return;
+  sl._examScale=scale;
+  sl.classList.add('exam-size');
+  sl.style.setProperty('--exam-font',(18/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-title',(26/Math.max(scale,.99))+'px');
+  sl.style.setProperty('--exam-label',(12/Math.max(scale,.99))+'px');
+  resetCaps(sl);
+  sl.querySelectorAll('.qimg>.native-vector').forEach(svg=>{
+   svg.style.width='100%';
+   const size=questionFont(sl);
+   if(size){const width=svg.getBoundingClientRect().width/scale;svg.style.width=Math.min(width,width*18/Math.max(scale,.99)/size)+'px';}
+   svg.setAttribute('preserveAspectRatio','xMinYMin');
+  });
+  capExplanation(sl);sl.dataset.fitted='1';sl.dataset.fitScale='fixed-screen-18';return;
+ }
+ if(sl._lessonScale===tableScale)return; sl._lessonScale=tableScale;
+ const selector='.box p,.box li,.box h3,.lead,.step p,.step h3,.st p,.st h3,table.t td,table.t th,.check li,.stem .t,.stem .note,.note,.ex,.ask p,.typed-text,.vd .r,.pbox p,.pbox li,.dpanel,.fbox .f div';
+ const work=sl.querySelector('.work:not(.mw)'), pv=sl.querySelector('.pv .typed-text'), q=sl.querySelector('.qimg .typed-text');
+ if(work&&pv&&q){let a=pv.textContent.length,b=q.textContent.length;if(b>a*1.5&&b>800)work.style.gridTemplateColumns='minmax(0,.72fr) minmax(0,1.28fr)';else if(a>b*1.5&&a>900)work.style.gridTemplateColumns='minmax(0,1.17fr) minmax(0,.83fr)';}
+ const els=[...sl.querySelectorAll(selector)].filter(e=>!e.closest('template')&&!e.closest('svg')&&!e.closest('table.t')&&!e.classList.contains('cn'));
+ const values=els.map(e=>({e,base:(e.matches('h3')?24:20)/Math.max(tableScale,.99)}));
+ const apply=n=>{resetCaps(sl);values.forEach(({e,base})=>e.style.setProperty('font-size',(base*n).toFixed(2)+'px','important'));capExplanation(sl)};
+ apply(.9);if(overflowing(sl))sl.classList.add('dense');
+ let lo=.78,hi=1;
+ for(let i=0;i<9;i++){let m=(lo+hi)/2;apply(m);if(overflowing(sl))hi=m;else lo=m;}
+ lo=Math.max(.78,lo-.01);apply(lo);sl.dataset.fitScale=lo.toFixed(3);sl.dataset.fitted='1';
+ sl.querySelectorAll('.right').forEach(e=>{if(!sl.classList.contains('teaching-example')&&e.scrollHeight<=e.clientHeight+2)e.style.justifyContent='space-evenly'});
+ for(let i=0;i<12&&overflowing(sl)&&lo>.78;i++){lo=Math.max(.78,lo-.015);apply(lo)}sl.dataset.fitScale=lo.toFixed(3);
+}
+let lastActive=null;
+function active(){let sl=document.querySelector('.slide.active');if(sl){if(sl!==lastActive){lastActive=sl;if(sl.resetPracticeView)sl.resetPracticeView();if(sl.resetReveal)sl.resetReveal()}fit(sl);capExplanation(sl);if(sl.querySelector('.work')&&overflowing(sl)&&!sl.classList.contains('exam-compact'))sl.classList.add('exam-compact')}}
+new MutationObserver(active).observe(document.getElementById('deck'),{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+active();window.fitCourseSlide=fit;window.courseOverflow=overflowing;
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=document.querySelector('.slide.active');if(s)fit(s)}));
+})();
+</script><script>/* v5 reveal scroll */
+document.addEventListener('click',function(e){var b=e.target.closest('.teaching-controls button');if(!b)return;
+ setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
+ var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
+ if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
+</script></body></html>
