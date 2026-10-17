@@ -47,3 +47,5 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
 @media(max-width:620px){.workspace.split-question{display:block;overflow:auto}.workspace.split-question .pane{overflow:visible}.workspace.split-question .question-pane{border-right:0;border-bottom:1px solid #aaa}}
 
 .total-prediction{margin:0 0 20px;background:#172a48;color:#fff}.total-prediction strong{font-size:52px}.score strong small{font-size:16px;font-weight:400}.total-prediction p{margin:8px 0 0}
+
+.math-typeset math,.choice math{font-size:1em;font-family:math;white-space:nowrap}.math-typeset p{margin:0 0 1.2em}.choice:has(math){min-height:76px}
