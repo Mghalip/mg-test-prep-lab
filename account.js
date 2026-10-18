@@ -2,6 +2,7 @@
   'use strict';
   const el=document.getElementById('account-content'), esc=MG.escape, size=50;
   let profiles=[], loaded=[], page=0, teacherView=false, requestId=0;
+  const reviewStates=new Map();
   const labels={'sat-topic':'SAT 专题','sat-mock':'SAT 模考','act-mock':'ACT 模考'};
   const topicNames=r=>[...new Set((r.items||[]).filter(x=>x&&x.topic).map(x=>x.topic))];
   const examName=r=>r.kind==='sat-mock'?String(r.exam??'').replace(/^A(\d+)$/, 'Practice$1'):r.kind==='sat-topic'?(topicNames(r).join('、')||r.exam):r.exam;
@@ -27,7 +28,9 @@
   async function dashboard(){
     teacherView=MG.teacher&&new URLSearchParams(location.search).get('view')==='teacher';
     await loadProfiles();
-    el.innerHTML=`<div class="actions"><a href="account.html">我的成绩</a>${MG.teacher?'<a href="account.html?view=teacher">教师后台</a>':''}<a href="sat.html">SAT 专题</a><a href="mock.html">SAT 模考</a><a href="act.html">ACT 模考</a><button id="signout">退出登录</button></div><h2>${teacherView?'教师后台 · 学生练习表现':'我的学习记录'}</h2><p class="muted">${teacherView?'可按学生、练习类型和日期筛选，查看逐题作答与用时。':'这里显示当前账号已同步的记录；同一账号可在其他设备查看。'}成绩为网站练习记录，不是官方成绩；作答与计时来自学生浏览器。</p><p id="account-message" class="message" role="status"></p><section class="card"><div class="filters">${teacherView?`<label>学生<select id="filter-student"><option value="">全部学生</option>${profiles.map(p=>`<option value="${esc(p.id)}">${esc(p.display_name)} · ${esc(p.id.slice(0,8))}</option>`).join('')}</select></label>`:''}<label>练习类型<select id="filter-kind"><option value="">全部练习</option>${Object.entries(labels).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><label>开始日期<input id="filter-from" type="date"></label><label>结束日期<input id="filter-to" type="date"></label></div><div class="actions"><button id="refresh" class="primary">筛选 / 刷新</button><button id="export">导出筛选结果 CSV</button></div></section><div id="stats" class="stats"></div><section class="card"><div id="records">正在加载…</div><div class="actions"><button id="previous">上一页</button><span id="page-label"></span><button id="next">下一页</button></div></section><form id="profile" class="card"><h2>学习昵称</h2><label>姓名 / 昵称<input name="display_name" maxlength="80" required value="${esc(name(MG.user.id))}"></label><button>保存昵称</button></form>`;
+    document.querySelector('main > h1').textContent=teacherView?'教师工作台':'我的学习空间';
+    document.querySelector('main > .kicker').textContent=teacherView?'TEACHER WORKSPACE':'MY LEARNING';
+    el.innerHTML=`<div class="actions account-tabs"><a href="account.html">我的成绩</a>${MG.teacher?'<a href="account.html?view=teacher">教师后台</a>':''}<a href="sat.html">SAT 专题</a><a href="mock.html">SAT 模考</a><a href="act.html">ACT 模考</a><button id="signout">退出登录</button></div>${teacherView?'':`<section class="learning-shortcuts" aria-label="练习入口"><a href="sat.html"><strong>SAT 专题</strong><span>按考点练习 →</span></a><a href="mock.html"><strong>SAT 模考</strong><span>${MG.read('sat-mock-v1',null)?.phase&&MG.read('sat-mock-v1',null).phase!=='done'?'继续未完成的模考':'选择套卷'} →</span></a><a href="act.html"><strong>ACT 模考</strong><span>${MG.read('mg-act-draft-v1',null)?.phase&&MG.read('mg-act-draft-v1',null).phase!=='done'?'继续未完成的模考':'选择套卷'} →</span></a></section>`}<section class="card review-workspace" aria-label="复盘进度"><h2>${teacherView?'待处理与反馈':'我的错题复盘'}</h2><p class="muted">当前筛选页的模考记录 · 按最新提交的分析判断反馈状态</p><div id="review-queue" aria-live="polite">正在读取…</div></section><h2>${teacherView?'学生练习与反馈':'我的学习记录'}</h2><p class="muted">${teacherView?'可按学生、练习类型和日期筛选，查看逐题作答与用时。':'这里显示当前账号已同步的记录；同一账号可在其他设备查看。'}成绩为网站练习记录，不是官方成绩；作答与计时来自学生浏览器。</p><p id="account-message" class="message" role="status"></p><section class="card"><div class="filters">${teacherView?`<label>学生<select id="filter-student"><option value="">全部学生</option>${profiles.map(p=>`<option value="${esc(p.id)}">${esc(p.display_name)} · ${esc(p.id.slice(0,8))}</option>`).join('')}</select></label>`:''}<label>练习类型<select id="filter-kind"><option value="">全部练习</option>${Object.entries(labels).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><label>开始日期<input id="filter-from" type="date"></label><label>结束日期<input id="filter-to" type="date"></label></div><div class="actions"><button id="refresh" class="primary">筛选 / 刷新</button><button id="export">导出筛选结果 CSV</button></div></section><div id="stats" class="stats"></div><section class="card"><div id="records">正在加载…</div><div class="actions"><button id="previous">上一页</button><span id="page-label"></span><button id="next">下一页</button></div></section><form id="profile" class="card"><h2>学习昵称</h2><label>姓名 / 昵称<input name="display_name" maxlength="80" required value="${esc(name(MG.user.id))}"></label><button>保存昵称</button></form>`;
     document.getElementById('signout').onclick=async()=>{await MG.sync();const {error}=await MG.client.auth.signOut({scope:'local'});if(error)message('退出失败，请重试。');else location.reload()};
     document.getElementById('refresh').onclick=()=>{page=0;loadRecords()};
     document.getElementById('previous').onclick=()=>{page--;loadRecords()};
@@ -38,32 +41,59 @@
   }
   function score(r){const s=r.summary||{};if(r.kind==='act-mock')return `Composite ${s.composite??'—'} · ${(Array.isArray(s.sections)?s.sections:[]).filter(x=>x&&typeof x==='object').map(x=>`${x.title} ${x.scale??'—'}`).join(' / ')}`;if(r.kind==='sat-mock'){const p=SatScore.fromModules(s.modules);return p?`预测总分 ${p.total.center}（${p.total.low}–${p.total.high}） · RW ${p.rw.center} · Math ${p.math.center}`:`RW ${s.rw??0}/54 · Math ${s.math??0}/44（缺少模块数据，暂无预测分）`;}return `${s.correct??0}/${s.total??r.items?.length??0} 正确`}
   async function loadRecords(){
-    const current=++requestId;document.getElementById('records').textContent='正在加载…';document.getElementById('previous').disabled=true;document.getElementById('next').disabled=true;
+    const current=++requestId;reviewStates.clear();document.getElementById('records').textContent='正在加载…';document.getElementById('previous').disabled=true;document.getElementById('next').disabled=true;
     try{const f=filters();if(f.from&&f.to&&f.from>f.to)throw Error('结束日期不能早于开始日期。');const {data,error,count}=await query('id,student_id,kind,exam,started,submitted,mode,summary,items',true).range(page*size,(page+1)*size-1);if(current!==requestId)return;if(error)throw error;loaded=data;
       document.getElementById('stats').innerHTML=`<div><strong>${count??"—"}</strong>筛选范围内练习次数</div>${teacherView?`<div><strong>${profiles.length}</strong>已建立学习档案的账号</div>`:''}`;
-      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th><th>错题分析</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${practiceLabel(r)}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td><td>${r.kind==='sat-topic'?`<div class="analysis-progress"><strong>0/${wrongItems(r).length}</strong><span class="muted">暂未提交</span></div>`:`<div class="analysis-progress"><strong data-progress="${i}">正在读取…</strong><button data-wrong="${i}" disabled>查看错题分析</button></div>`}</td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
+      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th><th>错题分析</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td data-label="学生">${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td data-label="练习">${practiceLabel(r)}</td><td data-label="提交时间">${esc(date(r.submitted))}</td><td data-label="成绩">${compactScore(r)}</td><td data-label="详情"><button data-row="${i}">查看逐题记录</button></td><td data-label="错题分析">${r.kind==='sat-topic'? `<div class="analysis-progress"><strong>0/${wrongItems(r).length}</strong><span class="muted">暂未提交</span></div>`:`<div class="analysis-progress"><strong data-progress="${i}">正在读取…</strong><button data-wrong="${i}" disabled>查看错题分析</button></div>`}</td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
+      document.querySelectorAll('#records td[data-label]').forEach(td=>{const value=document.createElement('div');value.className='record-value';while(td.firstChild)value.append(td.firstChild);td.append(value)});
       document.querySelectorAll('[data-row]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.row)]));
       document.querySelectorAll('[data-wrong]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.wrong)],true));
-      data.forEach((r,i)=>{if(r.kind!=='sat-topic')updateProgress(r,i,current)});
+      data.forEach((r,i)=>{if(r.kind!=='sat-topic')updateProgress(r,i,current)});renderReviewQueue();
       document.getElementById('page-label').textContent=`第 ${page+1} / ${Math.max(1,Math.ceil((count??data.length)/size))} 页`;
       document.getElementById('previous').disabled=page===0;document.getElementById('next').disabled=count===null?data.length<size:(page+1)*size>=count;message('');
     }catch(e){if(current!==requestId)return;message(e.message);document.getElementById('records').textContent='加载失败，请点击刷新重试。'}
+  }
+  function compactScore(r){
+    if(r.kind==='sat-topic')return esc(score(r));
+    const prediction=r.kind==='sat-mock'?SatScore.fromModules(r.summary?.modules):null;
+    const title=r.kind==='act-mock'?`Composite ${r.summary?.composite??'—'}`:prediction?`预测总分 ${prediction.total.center} / 1600`:'分科成绩';
+    return `<strong>${esc(title)}</strong><details class="score-details"><summary>分科成绩</summary><p>${esc(score(r))}</p></details>`;
+  }
+  function renderReviewQueue(){
+    const host=document.getElementById('review-queue');if(!host)return;
+    const entries=loaded.map((r,i)=>({r,i})).filter(({r})=>r.kind!=='sat-topic');
+    host.innerHTML=entries.length?entries.map(({r,i})=>{
+      const st=reviewStates.get(i);
+      let text='正在读取…',tone='';
+      if(st?.failed)text='读取失败，请刷新重试';
+      else if(st){text=st.total===0?'没有错题':`${st.total-st.done} 题未提交`;if(st.feedbackFailed)text+=' · 反馈状态读取失败';else if(st.total){text+=` · ${st.done-st.reviewed} 题待反馈 · ${st.reviewed} 题已反馈`;tone=st.done>st.reviewed?'pending':st.reviewed?'reviewed':''}}
+      return `<div class="review-queue-row"><div><strong>${teacherView?esc(name(r.student_id))+' · ':''}${esc(examName(r))}</strong><p class="review-state ${tone}">${esc(text)}</p></div><button data-queue="${i}" ${!st||st.failed||(teacherView&&!st.done)?'disabled':''}>${teacherView?(st&&!st.done?'暂无提交':'查看分析'):'查看 / 写分析'}</button></div>`;
+    }).join(''):'<p class="muted">当前页暂无模考记录。完成模考后，可在这里跟进错题分析与反馈。</p>';
+    host.querySelectorAll('[data-queue]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.queue)],teacherView));
   }
   const wrongItems=r=>(Array.isArray(r.items)?r.items:[]).filter(x=>x&&typeof x==='object'&&x.correct===false&&x.scored!==false);
   async function updateProgress(row,index,current){
     const wrong=new Set(wrongItems(row).map(x=>x.id));
     try{
-      const done=new Set();
+      const done=new Set(),revisions=new Map();
       for(let offset=0;;offset+=500){
-        const {data,error}=await MG.client.from('mg_reflections').select('question_id').eq('student_id',row.student_id).eq('attempt_id',row.id).range(offset,offset+499);
+        const {data,error}=await MG.client.from('mg_reflections').select('question_id,revision').eq('student_id',row.student_id).eq('attempt_id',row.id).range(offset,offset+499);
         if(error)throw error;
-        for(const r of data||[])if(wrong.has(r.question_id))done.add(r.question_id);
+        for(const r of data||[])if(wrong.has(r.question_id)){done.add(r.question_id);revisions.set(r.question_id,r.revision)}
         if((data||[]).length<500)break;
       }
+      let feedbackFailed=false;const reviewed=new Set();
+      try{for(let offset=0;;offset+=500){
+        const result=await MG.client.from('mg_feedback').select('question_id,revision').eq('student_id',row.student_id).eq('attempt_id',row.id).range(offset,offset+499);
+        if(result.error)throw result.error;
+        for(const f of result.data||[])if(revisions.has(f.question_id)&&revisions.get(f.question_id)===f.revision)reviewed.add(f.question_id);
+        if((result.data||[]).length<500)break;
+      }}catch{feedbackFailed=true}
       if(current!==requestId)return;
+      reviewStates.set(index,{total:wrong.size,done:done.size,reviewed:reviewed.size,feedbackFailed});renderReviewQueue();
       const target=document.querySelector(`[data-progress="${index}"]`);if(target)target.textContent=`${done.size}/${wrong.size}`;
       const button=document.querySelector(`[data-wrong="${index}"]`);if(button){button.disabled=done.size===0;button.textContent=done.size?'查看错题分析':'暂未提交';}
-    }catch{if(current===requestId){const target=document.querySelector(`[data-progress="${index}"]`);if(target)target.textContent='进度读取失败';}}
+    }catch{if(current===requestId){reviewStates.set(index,{failed:true});renderReviewQueue();const target=document.querySelector(`[data-progress="${index}"]`);if(target)target.textContent='进度读取失败';}}
   }
   async function detail(row,wrongOnly=false){
     const dialog=document.getElementById('attempt-detail');dialog.innerHTML='<p>正在读取逐题记录…</p><button onclick="this.closest(\'dialog\').close()">关闭</button>';dialog.showModal();

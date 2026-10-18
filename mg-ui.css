@@ -741,3 +741,44 @@ aside > .mg-identity .mg-name {
     letter-spacing: 0.6px;
   }
 }
+
+/* Learning workspace: shared rhythm, clear actions, and readable small screens. */
+:root{--mg-control-height:42px;--mg-space:16px}
+.account .account-tabs{align-items:center;gap:8px;margin-bottom:24px}
+.account .account-tabs a{padding:8px 12px;border-radius:10px;text-decoration:none;background:var(--mg-paper);font-weight:600;font-size:14px}
+.account .account-tabs #signout{margin-left:auto;font-size:14px}
+.account button,.account select{min-height:var(--mg-control-height)}
+.account h2{font-size:22px;line-height:1.4;letter-spacing:-.3px}
+.account .muted{font-size:14px;line-height:1.7}
+.account .learning-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0 32px}
+.account .learning-shortcuts a{display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--mg-line);border-radius:14px;text-decoration:none;background:white;color:var(--mg-ink)}
+.account .learning-shortcuts a:hover{border-color:var(--mg-blue);background:var(--mg-blue-soft)}
+.account .learning-shortcuts span{font-size:14px;color:var(--mg-blue)}
+.account .review-workspace{border-top:3px solid var(--mg-blue)}
+.account .review-queue-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid var(--mg-line)}
+.account .review-queue-row>div{min-width:0;overflow-wrap:anywhere}
+.account .review-queue-row button{flex-shrink:0}
+.account .review-state{font-size:14px;margin:6px 0 0;color:var(--mg-muted)}
+.account .review-state.pending{color:#8a570c}.account .review-state.reviewed{color:#176a46}
+.account #records td{vertical-align:middle;font-size:14px;line-height:1.65}
+.account .score-details{font-size:13px;color:var(--mg-muted);margin-top:4px;max-width:290px}
+.account .score-details summary{cursor:pointer}.account .score-details p{white-space:normal}
+.account #records .analysis-progress{gap:12px}
+.account .filters{gap:16px}.account .filters label{font-size:14px;font-weight:600}
+.account :is(button,a,input,select,summary):focus-visible{outline:3px solid #9eb7ff;outline-offset:3px}
+@media(max-width:700px){
+ .account .learning-shortcuts{grid-template-columns:1fr;gap:10px;margin:16px 0 24px}
+ .account .learning-shortcuts a{flex-direction:row;align-items:center;justify-content:space-between;padding:16px}
+ .account .review-queue-row{align-items:flex-start;flex-wrap:wrap}
+ .account #records table,.account #records tbody{display:block;min-width:0;width:100%}
+ .account #records thead{display:none}
+ .account #records tr{display:block;border:1px solid var(--mg-line);border-radius:12px;padding:12px;margin-bottom:14px;background:white}
+ .account #records td{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;border:0;padding:8px 0;min-width:0!important;overflow-wrap:anywhere}
+ .account #records td::before{content:attr(data-label);font-size:13px;font-weight:600;color:var(--mg-muted);grid-column:1;grid-row:1}
+ .account #records td>br{display:none}
+ .account #records td>*{grid-column:2;min-width:0}
+ .account #records .analysis-progress{flex-wrap:wrap}
+ .account #records td button{justify-self:start}
+ .account .stats{flex-wrap:wrap}.account .stats div{min-width:130px}
+ .account .detail-top{flex-wrap:wrap}.account .detail-top h2{width:100%;font-size:20px}
+}

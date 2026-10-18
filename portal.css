@@ -902,3 +902,7 @@ dialog::backdrop {
  .course-card .lab-name{min-height:21px}
  .course-card .card-subjects{border-left:0;border-top:1px dashed var(--mg-line-2);margin:16px 0 0;padding:16px 0 0}
 }
+/* Keep future courses visible without stretching empty cards. */
+#ib.course-card,#alevel.course-card{align-self:start}
+#ib .card-links,#alevel .card-links{margin-top:16px}
+.course-card :is(a,button):focus-visible{outline:3px solid #9eb7ff;outline-offset:3px}

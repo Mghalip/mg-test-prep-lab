@@ -62,5 +62,16 @@ await tp.click('#refresh');await tp.waitForFunction(()=>document.querySelector('
 await tp.locator('[data-wrong="0"]').click();await tp.waitForFunction(()=>document.querySelector('#attempt-detail')?.textContent.includes('已提交错题分析 · 1 道'));
 assert.equal(await tp.locator('#attempt-detail [data-reasoning]').count(),1);
 console.log('PASS wrong analysis progress 1/5 excludes correct/unscored questions; submitted-only wrong analysis entry');
+await tp.locator('#attempt-detail').evaluate(e=>e.close());
+await tp.waitForFunction(()=>document.getElementById('review-queue')?.textContent.includes('4 题未提交 · 1 题待反馈 · 0 题已反馈'));
+assert.ok((await tp.locator('#review-queue').innerText()).includes('1 题待反馈'));
+await tp.setViewportSize({width:390,height:844});
+assert.ok(await tp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+await tp.waitForFunction(()=>{const table=document.querySelector('#records table');return table&&getComputedStyle(table).display==='block'});
+await tp.screenshot({path:require('node:path').join(process.env.MG_TEST_OUTPUT||require('node:os').tmpdir(),'workspace-teacher-mobile.png'),fullPage:true});
+await tp.setViewportSize({width:1440,height:1000});await tp.screenshot({path:require('node:path').join(process.env.MG_TEST_OUTPUT||require('node:os').tmpdir(),'workspace-teacher-desktop.png'),fullPage:true});
+await tp.goto(ROOT+'account.html');await tp.locator('.learning-shortcuts').waitFor();
+assert.equal(await tp.locator('.learning-shortcuts a').count(),3);
+console.log('PASS review workspace status, mobile record cards, student shortcuts');
 assert.deepEqual(errors,[]);console.log('PASS no browser JavaScript errors');await Promise.all(browser.contexts().map(c=>c.close()));await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
