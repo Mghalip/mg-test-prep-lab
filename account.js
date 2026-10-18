@@ -39,7 +39,7 @@
     document.getElementById('profile').onsubmit=e=>{e.preventDefault();const f=e.target;action(f,async()=>{const value=f.display_name.value.trim();if(!value)throw Error('请输入昵称。');const {error}=await MG.client.from('mg_profiles').update({display_name:value}).eq('id',MG.user.id);if(error)throw error;message('昵称已更新。');await loadProfiles()})};
     await loadRecords();
   }
-  function score(r){const s=r.summary||{};if(r.kind==='act-mock')return `Composite ${s.composite??'—'} · ${(Array.isArray(s.sections)?s.sections:[]).filter(x=>x&&typeof x==='object').map(x=>`${x.title} ${x.scale??'—'}`).join(' / ')}`;if(r.kind==='sat-mock'){const p=SatScore.fromModules(s.modules);return p?`预测总分 ${p.total.center}（${p.total.low}–${p.total.high}） · RW ${p.rw.center} · Math ${p.math.center}`:`RW ${s.rw??0}/54 · Math ${s.math??0}/44（缺少模块数据，暂无预测分）`;}return `${s.correct??0}/${s.total??r.items?.length??0} 正确`}
+  function score(r){const s=r.summary||{};if(r.kind==='act-mock')return `${['reading','english','math'].map(id=>`${id==='reading'?'Reading':id==='english'?'English':'Math'} ${(s.sections||[]).find(x=>x.id===id)?.scale??'—'}`).join(' · ')} · 总分 ${s.composite??'—'}`;if(r.kind==='sat-mock'){const p=SatScore.fromModules(s.modules);return p?`Verbal ${p.rw.center} · Math ${p.math.center} · 预测总分 ${p.total.center}（${p.total.low}–${p.total.high}）`:`Verbal ${s.rw??0}/54 · Math ${s.math??0}/44（缺少模块数据，暂无预测分）`;}return `${s.correct??0}/${s.total??r.items?.length??0} 正确`}
   async function loadRecords(){
     const current=++requestId;reviewStates.clear();document.getElementById('records').textContent='正在加载…';document.getElementById('previous').disabled=true;document.getElementById('next').disabled=true;
     try{const f=filters();if(f.from&&f.to&&f.from>f.to)throw Error('结束日期不能早于开始日期。');const {data,error,count}=await query('id,student_id,kind,exam,started,submitted,mode,summary,items',true).range(page*size,(page+1)*size-1);if(current!==requestId)return;if(error)throw error;loaded=data;
@@ -55,9 +55,11 @@
   }
   function compactScore(r){
     if(r.kind==='sat-topic')return esc(score(r));
-    const prediction=r.kind==='sat-mock'?SatScore.fromModules(r.summary?.modules):null;
-    const title=r.kind==='act-mock'?`Composite ${r.summary?.composite??'—'}`:prediction?`预测总分 ${prediction.total.center} / 1600`:'分科成绩';
-    return `<strong>${esc(title)}</strong><details class="score-details"><summary>分科成绩</summary><p>${esc(score(r))}</p></details>`;
+    const p=r.kind==='sat-mock'?SatScore.fromModules(r.summary?.modules):null;
+    let values;
+    if(r.kind==='sat-mock')values=[['Verbal',p?.rw.center??'—'],['Math',p?.math.center??'—'],['总分',p?.total.center??'—']];
+    else {const sections=r.summary?.sections||[];values=['reading','english','math'].map(id=>[id==='math'?'Math':id==='reading'?'Reading':'English',sections.find(s=>s.id===id)?.scale??'—']);values.push(['总分',r.summary?.composite??'—']);}
+    return `<div class="result-score-strip">${values.map(([label,value],i)=>`<span class="${i===values.length-1?'score-total':''}"><small>${label}</small><strong>${esc(value)}</strong></span>`).join('')}</div>${r.kind==='sat-mock'?'<small class="muted">练习预测分</small>':(r.summary?.sections||[]).filter(s=>s.id==='science').map(s=>`<small class="muted">Science ${esc(s.scale??'—')}（单独计分）</small>`).join('')}`;
   }
   function renderReviewQueue(){
     const host=document.getElementById('review-queue');if(!host)return;

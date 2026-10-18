@@ -906,3 +906,7 @@ dialog::backdrop {
 #ib.course-card,#alevel.course-card{align-self:start}
 #ib .card-links,#alevel .card-links{margin-top:16px}
 .course-card :is(a,button):focus-visible{outline:3px solid #9eb7ff;outline-offset:3px}
+/* Full-width shell with centered groups for comfortable scanning. */
+main,.header-inner,.footer-inner{max-width:none;padding-left:clamp(16px,3vw,64px);padding-right:clamp(16px,3vw,64px)}
+.hero{max-width:1600px;margin-inline:auto}
+.program-grid,.section-title,.learning{max-width:1800px;margin-left:auto;margin-right:auto}
