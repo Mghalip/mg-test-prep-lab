@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>ACT Reading · Introduction</title><style>:root{
+  --ink:#1b2333; --ink2:#3d475c; --muted:#6f7789; --paper:#fffefb; --bg:#f5f2ea; --line:#e3ddcf;
+  --acc:#22344f; --acc2:#dfe6f0; --good:#1d7f52; --goodbg:#dff3e8; --bad:#c23a2e; --badbg:#fbe4e0; --hl:rgba(255,206,64,.45);
+  --serif:Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{height:100%;background:#20283a;overflow:hidden;font-family:var(--sans);color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1280px;height:720px;flex:none;background:var(--paper);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:30px 48px 40px;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.slide::after{content:attr(data-foot);position:absolute;left:48px;bottom:12px;font-size:12px;color:#a59e8f;letter-spacing:.04em}
+header .kk{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+header h2{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1.15;color:var(--ink)}
+header h2 .cn{font-family:var(--sans);font-size:20px;font-weight:400;color:var(--muted);margin-left:10px}
+.cn{color:var(--muted);font-size:.86em}
+p.cn,div.cn{margin-top:4px}
+.lead{font-size:21px;line-height:1.55;color:var(--ink2);max-width:1100px}
+b,strong{font-weight:700}
+em{font-style:italic}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.box h3{font-family:var(--serif);font-size:22px;margin-bottom:8px;color:var(--ink)}
+.box p,.box li{font-size:18px;line-height:1.55;color:var(--ink2)}
+.box ul,.box ol{padding-left:22px}.box li{margin-bottom:4px}
+.box.acc{background:var(--acc2);border-color:transparent}
+.box.white{background:#fff}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--acc2);color:var(--acc)}
+.mono{font-family:Menlo,Consolas,monospace}
+/* cover */
+.cover{background:var(--acc);color:#fff;justify-content:center;padding:0 90px}
+.cover::after{color:rgba(255,255,255,.55)}
+.cover .no{font-size:15px;letter-spacing:.3em;font-weight:700;opacity:.85;margin-bottom:16px}
+.cover h1{font-family:var(--serif);font-size:72px;line-height:1.05;font-weight:700;margin-bottom:12px}
+.cover .sub{font-size:24px;opacity:.92}
+.cover .cnsub{font-size:20px;opacity:.75;margin-top:6px}
+.cover .goals{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px}
+.cover .goals div{background:rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16.5px;line-height:1.5}
+.cover .goals b{display:block;font-size:13px;letter-spacing:.12em;opacity:.8;margin-bottom:4px}
+/* stems */
+.stems{display:flex;flex-direction:column;gap:9px}
+.stem{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;background:#fff;border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 16px}
+.stem .src{font-size:12.5px;color:var(--muted);font-weight:700}
+.stem .t{font-family:var(--serif);font-size:19px;line-height:1.45}
+.stem .t mark{background:var(--hl);padding:0 2px;border-radius:2px}
+.stem .note{grid-column:2;font-size:14px;color:var(--muted)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.step .n{width:46px;height:46px;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--serif);font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;margin-bottom:3px}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2)}
+/* table */
+table.t{border-collapse:collapse;width:100%}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;font-size:16.5px;line-height:1.45;vertical-align:top}
+table.t th{background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+table.t td:first-child{font-weight:700;white-space:nowrap}
+/* passage viewer */
+.work{display:grid;grid-template-columns:575px 1fr;gap:20px;flex:1;min-height:0}
+.pv{position:relative;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:0}
+.pv .seg{position:relative;width:100%}
+.pv .seg img{display:block;width:100%;height:auto}
+.pv .seg + .seg{border-top:1px dashed #d8d2c4}
+.pv .hlb{position:absolute;left:0;right:0;background:var(--hl);mix-blend-mode:multiply;border-radius:3px;pointer-events:none;transition:opacity .3s}
+.pv .hlb.hint{background:rgba(47,93,140,.12);mix-blend-mode:multiply}
+.pvlab{position:sticky;top:0;z-index:2;background:rgba(255,254,251,.95);border-bottom:1px solid var(--line);padding:6px 12px;font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.right{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:4px}
+.qimg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.qimg img{display:block;width:100%;height:auto}
+.letters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.letters button{height:42px;border-radius:10px;border:2px solid var(--line);background:#fff;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.letters button:hover{border-color:var(--acc)}
+.letters button.ok{background:var(--good);border-color:var(--good);color:#fff}
+.letters button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:13.5px;font-weight:700;color:var(--ink2)}
+.tools button:hover{border-color:var(--acc);color:var(--acc)}
+.fb{display:flex;flex-direction:column;gap:8px}
+.fb .res{font-size:17px;font-weight:700}
+.fb .res.ok{color:var(--good)}.fb .res.no{color:var(--bad)}
+.fb .why{background:var(--goodbg);border-radius:10px;padding:9px 13px;font-size:15px;line-height:1.5}
+.fb .why .cn{display:block;margin-top:4px;font-size:14.5px}
+.fb .wrong{background:var(--badbg);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+.fb .alts{font-size:13.5px;line-height:1.5;display:flex;flex-direction:column;gap:3px;color:var(--ink2)}
+.fb .alts b{display:inline-block;width:20px}
+.hintbox{background:var(--acc2);border-radius:10px;padding:9px 14px;font-size:15.5px;line-height:1.5}
+/* demo */
+.ask{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ask h4,.panel h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ask p{font-size:17px;line-height:1.55}
+.verdicts{display:flex;flex-direction:column;gap:8px}
+.vd{display:grid;grid-template-columns:40px 92px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.vd .L{font-family:var(--serif);font-size:22px;font-weight:700}
+.vd .v{font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px;text-align:center}
+.vd.keep .v{background:var(--goodbg);color:var(--good)}.vd.cut .v{background:var(--badbg);color:var(--bad)}
+.vd.keep{border-color:var(--good)}
+.reveal-all{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:700}
+.vd.hidden-v .v,.vd.hidden-v .r{visibility:hidden}
+/* summary */
+.check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check li{font-size:19px;line-height:1.5;padding-left:38px;position:relative}
+.check li::before{content:"✓";position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* nav */
+#nav{position:fixed;right:14px;bottom:12px;display:flex;gap:6px;align-items:center;z-index:5;background:rgba(27,35,51,.88);padding:5px 8px;border-radius:999px}
+#nav button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px}
+#nav button:hover{background:rgba(255,255,255,.3)}
+#pg{color:rgba(255,255,255,.8);font-size:13px;min-width:60px;text-align:center}
+#menu{position:fixed;inset:0;background:rgba(15,20,32,.96);color:#fff;padding:40px 56px;overflow:auto;z-index:20}
+#menu button{display:block;width:100%;text-align:left;font-size:16px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:9px 6px}
+#menu button:hover,#menu button.cur{background:rgba(255,255,255,.1)}
+@media print{html,body{overflow:visible;background:#fff}#nav,#menu{display:none!important}#stage{position:static;display:block}#deck{transform:none!important;box-shadow:none}.slide{position:relative;display:flex!important;page-break-after:always;height:720px}}
+
+/* Selectable, native text transcriptions. */
+.typed-page{position:relative;width:100%;container-type:inline-size;overflow:hidden;color:#171717;background:white}.typed-inner{position:absolute;left:0;top:0;transform-origin:0 0;font-family:"Times New Roman",Times,serif}.typed-line{position:absolute;display:block;white-space:pre;line-height:1;transform-origin:left center;user-select:text}.typed-rule{position:absolute;border-top:1px solid #333;pointer-events:none}
+</style><style>/* ===== Classroom kit v1 (2026-10-18) ===== */
+:root{--k-warm:#d9962b;--k-warm2:#fdf1dc;--k-you:#24476b;--k-you2:#e2eaf3;--k-trap:#b23a48;--k-trap2:#fbe5e8;--k-exit:#1d7f52;--k-exit2:#dff3e8;--k-act:#7a5a12;}
+/* type band + chip */
+.slide[data-ktype]:not(.cover)::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--kband,var(--acc));z-index:1}
+.k-chip{position:absolute;top:12px;right:22px;z-index:4;display:flex;align-items:center;gap:6px;font:700 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:var(--kchipbg,var(--acc2));color:var(--kband,var(--acc));white-space:nowrap}
+.k-chip .m{font-weight:600;letter-spacing:0;text-transform:none;opacity:.8;border-left:1px solid currentColor;padding-left:6px}
+.slide[data-ktype=warm]{--kband:var(--k-warm);--kchipbg:var(--k-warm2)}
+.slide[data-ktype=activity],.slide[data-ktype=quick]{--kband:var(--k-warm);--kchipbg:var(--k-warm2)}
+.slide[data-ktype=practice],.slide[data-ktype=homework]{--kband:var(--k-you);--kchipbg:var(--k-you2)}
+.slide[data-ktype=trap]{--kband:var(--k-trap);--kchipbg:var(--k-trap2)}
+.slide[data-ktype=exit]{--kband:var(--k-exit);--kchipbg:var(--k-exit2)}
+.slide[data-ktype=plan],.slide[data-ktype=next]{--kband:var(--ink);--kchipbg:#eceae4}
+.slide.k-new header{padding-right:260px}
+.slide header{padding-right:230px}
+/* buttons */
+.k-btn{font:600 13.5px/1 var(--sans);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink2);cursor:pointer;white-space:nowrap}
+.k-btn:hover{border-color:var(--acc);color:var(--acc)}
+.k-btn.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.k-btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.k-btn.warm{background:var(--k-warm);border-color:var(--k-warm);color:#fff}
+.k-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* poll */
+.k-poll{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:var(--k-warm2);border:1px dashed var(--k-warm);border-radius:10px;padding:6px 8px;font:13px/1.2 var(--sans)}
+.k-poll .lab{font-weight:700;color:var(--k-act);margin-right:2px}
+.k-poll .pb{position:relative;min-width:44px;height:30px;border-radius:8px;border:1px solid #e3c48c;background:#fff;font:700 14px/1 var(--sans);color:var(--ink);cursor:pointer;padding:0 8px;overflow:hidden}
+.k-poll .pb .c{font-weight:600;color:var(--muted);margin-left:4px}
+.k-poll .pb .bar{position:absolute;left:0;bottom:0;height:4px;background:var(--k-warm);transition:width .3s}
+.k-poll .pb.right{border-color:var(--good);background:var(--goodbg)}
+.k-poll .pct{display:none;font-weight:600;color:var(--k-act);margin-left:3px}
+.k-poll.show .pct{display:inline}
+.k-poll .tiny{border:0;background:transparent;color:var(--muted);font:12px var(--sans);cursor:pointer;text-decoration:underline}
+/* ask prompts inside worked examples */
+.k-ask{border:2px dashed var(--k-warm);background:var(--k-warm2);border-radius:12px;padding:9px 13px;font:15.5px/1.45 var(--sans);color:var(--ink)}
+.k-ask b.q{display:block;color:var(--k-act);font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.k-ask .l{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
+/* clue finder */
+.k-cluebar{position:sticky;top:0;z-index:5;display:flex;justify-content:flex-end;gap:5px;padding:6px 0 4px;margin:0 -8px 0 0;pointer-events:none}
+.k-cluebar{flex-wrap:nowrap}
+.k-cluebar .k-btn{pointer-events:auto;flex:none;font-size:12.5px;padding:5px 10px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.k-cluemsg{pointer-events:auto;align-self:center;font:600 12.5px var(--sans);color:var(--good);background:var(--goodbg);border-radius:999px;padding:4px 10px}
+.pv.k-cluemode .typed-text{cursor:pointer}
+.pv.k-cluemode .k-w:hover{background:rgba(255,206,64,.25);border-radius:3px}
+.k-w.k-mark{background:#ffe08a;border-radius:3px;box-shadow:0 0 0 1px #e8b93a}
+.k-w.k-hit{background:#bfe8cf;box-shadow:0 0 0 1px var(--good);border-radius:3px}
+.k-w.k-miss{background:#f3d7d3;text-decoration:line-through;text-decoration-color:var(--bad);border-radius:3px}
+/* quick check tools */
+.k-qctools{display:flex;gap:6px;margin:-4px 0 2px}
+details.qc.k-pick{outline:3px solid var(--k-warm);outline-offset:2px;animation:kpulse 1s ease 2}
+@keyframes kpulse{50%{outline-color:transparent}}
+/* MCQ */
+.k-mcq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.k-mcq .k-text{font-family:var(--serif);font-size:19px;line-height:1.55;color:var(--ink);background:var(--bg);border-left:4px solid var(--acc);padding:9px 14px;border-radius:0 8px 8px 0}
+.k-mcq .k-stem{font-size:17.5px;font-weight:700;line-height:1.4;color:var(--ink)}
+.k-opts{display:flex;flex-direction:column;gap:5px}
+.k-opt{text-align:left;font:16.5px/1.4 var(--sans);color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 12px;cursor:pointer}
+.k-opt:hover{border-color:var(--acc)}
+.k-opt b{color:var(--acc);margin-right:6px}
+.k-opt.ok{background:var(--goodbg);border-color:var(--good);color:var(--ink)}
+.k-opt.no{background:var(--badbg);border-color:var(--bad)}
+.k-opt .fbx{display:block;font-size:14px;color:var(--bad);margin-top:3px}
+.k-out{font:15.5px/1.5 var(--sans);color:var(--ink2)}
+.k-out .res{font-weight:700;color:var(--good);margin-bottom:2px}
+.k-mcq.compact .k-text{font-size:17.5px;padding:8px 12px}
+.k-mcq.compact .k-stem{font-size:16.5px}
+.k-mcq.compact .k-opt{font-size:16px;padding:6px 10px}
+.k-mcq.compact .k-out{font-size:14.5px}
+table.k-tab{border-collapse:collapse;font:15px/1.3 var(--sans);margin:2px 0}
+table.k-tab th,table.k-tab td{border:1px solid var(--line);padding:4px 10px;text-align:center}
+table.k-tab th{background:var(--acc2);color:var(--ink)}
+/* sort activity */
+.k-sort{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0;align-content:start}
+.k-sort.one{grid-template-columns:1fr}
+.k-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 13px;display:flex;flex-direction:column;gap:7px}
+.k-item .k-snip{font:16px/1.45 var(--sans);color:var(--ink)}
+.k-item .k-snip .n{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font:700 12px/22px var(--sans);text-align:center;margin-right:6px}
+.k-cats{display:flex;flex-wrap:wrap;gap:5px}
+.k-cats button{font:600 12.5px/1 var(--sans);padding:6px 9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);cursor:pointer}
+.k-cats button:hover{border-color:var(--k-trap)}
+.k-cats button.ok{background:var(--goodbg);border-color:var(--good);color:var(--good)}
+.k-cats button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.k-item .k-fb{font:14px/1.45 var(--sans);color:var(--ink2)}
+.k-item.done{border-color:var(--good)}
+.k-src{background:var(--bg);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:10px;padding:9px 14px;font:16.5px/1.5 var(--serif);color:var(--ink)}
+.k-src .q{display:block;font:700 13px/1.3 var(--sans);color:var(--acc);letter-spacing:.04em;margin-top:4px}
+.k-score{font:700 14px var(--sans);color:var(--good);background:var(--goodbg);border-radius:999px;padding:5px 12px}
+/* flip cards (common mistakes) */
+.k-flips{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0;align-content:start}
+.k-flip{min-height:170px}
+.k-flip{position:relative;border-radius:14px;border:1px solid var(--line);background:#fff;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s}
+.k-flip:hover{box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.k-flip .f{font:20px/1.45 var(--sans);color:var(--ink)}
+.k-flip .f::before{content:"✗ 常见错误";display:block;font:700 12px/1 var(--sans);letter-spacing:.08em;color:var(--bad);margin-bottom:6px}
+.k-flip .b{font:19px/1.45 var(--sans);color:var(--ink);border-top:1px dashed var(--line);padding-top:8px;display:none}
+.k-flip .b::before{content:"✓ 正确做法";display:block;font:700 12px/1 var(--sans);letter-spacing:.08em;color:var(--good);margin-bottom:6px}
+.k-flip.open .b{display:block}
+.k-flip .hint{font:12.5px var(--sans);color:var(--muted);margin-top:auto}
+.k-flip.open .hint{display:none}
+.k-flip.open{border-color:var(--good)}
+/* agenda */
+.k-agenda{display:flex;flex-direction:column;gap:7px;flex:1;min-height:0}
+.k-ag{display:grid;grid-template-columns:62px 34px 1fr auto;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 14px;cursor:pointer;font:17px/1.3 var(--sans);color:var(--ink)}
+.k-ag:hover{border-color:var(--acc)}
+.k-ag .t{font:700 14px var(--sans);text-align:center;border-radius:7px;padding:5px 0;background:var(--kb,var(--acc2));color:var(--kc,var(--acc))}
+.k-ag .i{font-size:20px;text-align:center}
+.k-ag .cn{font-size:14.5px;margin-left:8px}
+.k-ag .p{font:13px var(--sans);color:var(--muted)}
+.k-ag.warm{--kb:var(--k-warm2);--kc:var(--k-act)}.k-ag.you{--kb:var(--k-you2);--kc:var(--k-you)}.k-ag.trap{--kb:var(--k-trap2);--kc:var(--k-trap)}.k-ag.exit{--kb:var(--k-exit2);--kc:var(--k-exit)}
+.k-legend{display:flex;flex-wrap:wrap;gap:8px;font:13.5px var(--sans);color:var(--muted)}
+.k-legend span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+/* confidence */
+.k-conf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:14.5px var(--sans);color:var(--ink2);background:var(--bg);border-radius:10px;padding:8px 12px}
+.k-conf button{font:14px var(--sans);border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.k-conf button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+/* intro big text */
+.k-lead{font:19px/1.55 var(--sans);color:var(--ink2)}
+.k-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0;align-items:start}
+.k-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;font:17px/1.5 var(--sans);color:var(--ink2)}
+.k-card h3{font-family:var(--serif);font-size:21px;color:var(--ink);margin-bottom:6px}
+.k-hw{background:var(--k-you2);border-radius:12px;padding:12px 16px;font:16px/1.5 var(--sans);color:var(--ink)}
+/* timer */
+#k-timer{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:30;background:rgba(27,35,51,.94);color:#fff;border-radius:16px;padding:8px 12px;display:flex;align-items:center;gap:8px;font:600 14px var(--sans);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+#k-timer .d{font:700 30px/1 "SF Mono",Menlo,Consolas,monospace;min-width:92px;text-align:center;letter-spacing:.02em}
+#k-timer button{border:0;border-radius:8px;background:rgba(255,255,255,.14);color:#fff;font:600 13px var(--sans);padding:6px 9px;cursor:pointer}
+#k-timer button:hover{background:rgba(255,255,255,.28)}
+#k-timer.end{background:#b23a48;animation:kblink .8s ease infinite}
+#k-timer.warn .d{color:#ffd166}
+@keyframes kblink{50%{opacity:.75}}
+/* pen */
+#k-pen{position:absolute;inset:0;z-index:15;pointer-events:none}
+#k-pen.on{pointer-events:auto;cursor:crosshair}
+#k-pentools{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;display:flex;gap:6px;align-items:center;background:rgba(27,35,51,.92);padding:6px 10px;border-radius:999px}
+#k-pentools button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;font:13px var(--sans);color:#fff;background:rgba(255,255,255,.15)}
+#k-pentools button.on{border-color:#fff}
+#nav .k-nb{font-size:15px}
+#nav .k-nb.on{background:var(--acc)}
+/* help overlay */
+#k-help{position:fixed;inset:0;z-index:40;background:rgba(15,20,32,.9);color:#fff;display:flex;align-items:center;justify-content:center}
+#k-help .in{background:#1f2738;border-radius:16px;padding:26px 32px;max-width:720px;font:16px/1.7 var(--sans)}
+#k-help h3{font:700 22px var(--serif);margin-bottom:8px}
+#k-help kbd{background:#fff;color:#1b2333;border-radius:5px;padding:1px 7px;font:700 13px var(--sans)}
+@media print{.k-chip,.k-poll,.k-cluebar,#k-timer,#k-pentools,#k-pen{display:none!important}.k-flip .b{display:block}}
+
+.k-mcq.big .k-text{font-size:22px;padding:12px 18px}.k-mcq.big .k-stem{font-size:20px}.k-mcq.big .k-opt{font-size:19px;padding:9px 14px}.k-mcq.big .k-out{font-size:17px}
+.slide[data-ktype=next] .k-grid2{flex:0 0 auto}
+.k-src{font-size:18px}
+
+.k-hide{display:none!important}
+</style>
+<style id="act-clarity-20261018">
+.slide[data-ktype="next"] .k-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.slide[data-ktype="next"] .k-card{height:auto;align-self:stretch}
+.slide .cn,.slide .cn b,.slide .cn strong,.slide .zh-plain{font-weight:400!important}
+.slide .grid.act-align{display:grid;grid-auto-flow:row;align-items:stretch}
+.slide .grid.act-align>.box{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:10px;align-content:start}
+.slide .grid.act-align>.box>.cn{margin:0!important;align-self:start}
+.slide .grid.act-align>.box>.act-card-body{min-width:0;display:block}
+.slide .act-card-body>p,.slide .act-card-body>ul{margin:0 0 9px}
+.slide .act-card-body>p:last-child{margin-bottom:0}
+.slide .t{table-layout:fixed;width:100%}
+.slide .t td,.slide .t th{overflow-wrap:break-word}
+.slide .vocab-english{font-weight:700}
+.slide .vocab-chinese{font-weight:400!important;white-space:nowrap}
+.slide .summary-card .cn{font-size:16px!important;line-height:1.4;margin-top:8px}
+.slide .summary-card h3{font-size:17px}
+.slide .lesson-example{border-left:4px solid var(--acc);background:#f5f7f5;padding:10px 13px;margin:10px 0;font:18px/1.5 var(--sans)}
+.slide .pattern-part{background:#fff0bf;padding:0 2px;font-weight:700}
+.slide .mini-note{font:400 16px/1.4 var(--sans);color:var(--muted);display:block;margin-top:7px}
+.slide .concept-table td{vertical-align:top}
+.slide .concept-table .cn{display:block;font-size:16px;margin-top:4px;line-height:1.4}
+.slide .logic-diagram{display:flex;gap:9px;align-items:center;justify-content:center;margin:12px 0}
+.slide .logic-node{border:1px solid var(--line);border-radius:9px;padding:10px;background:#fff;flex:1;font-size:17px}
+.slide .logic-node .cn{font-size:16px;display:block}
+.classroom .full-reading{padding:16px 14px 24px 6px!important}
+.classroom .full-reading p{margin:0 0 14px!important}
+.classroom .full-reading .reading-source-line{display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:11px;margin:0;line-height:1.5!important;scroll-margin-top:65px}
+.classroom .full-reading .reading-line-number{font:600 var(--act-line-font,14px)/calc(var(--act-reading-font,17.5px)*1.5) Arial,sans-serif!important;color:#536275!important;text-align:right;padding-right:8px;border-right:1px solid #cbd3dc;background:#f2f5f8;margin:0!important;user-select:none;align-self:stretch}
+.classroom .full-reading .reading-line-number.line-anchor{font-weight:800!important;color:#18283c!important}
+.classroom .full-reading .reading-line-words{font:var(--act-reading-font,17.5px)/1.5 Arial,sans-serif;overflow-wrap:break-word;min-width:0}
+.classroom .full-reading .source-metadata .reading-line-words{font-size:15px;line-height:1.45;color:#4c5666}
+.classroom .full-reading .passage-heading{margin:10px 0 8px}
+.classroom .full-reading .passage-heading .reading-line-words{font-size:19px;font-weight:700!important;color:var(--acc)}
+.classroom .full-reading .reading-evidence{background:transparent}
+.classroom .full-reading .reading-evidence .reading-line-words{background:#ffe4a3}
+.classroom .full-reading .reading-hint .reading-line-words{background:#e0eafa}
+.classroom .full-reading .line-located .reading-line-words{outline:2px solid #43748a;outline-offset:1px}
+.classroom .full-reading-toolbar{display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:5;background:#f1f4f7!important;font-size:13px!important;padding:7px 10px}
+.full-reading-toolbar button{font:13px Arial;padding:4px 8px;border:1px solid #b8c2cd;border-radius:5px;background:white;color:#22374e;cursor:pointer}
+.full-reading-toolbar input{width:58px;font:13px Arial;padding:4px;border:1px solid #b8c2cd;border-radius:4px}
+.classroom .pv.reading-expanded{position:absolute!important;inset:75px 24px 20px!important;z-index:30;background:white;border:2px solid #c0cad3;border-radius:10px;box-shadow:0 8px 24px #0003}
+.classroom .pv.reading-expanded .full-reading{max-width:900px;margin:0 auto}
+</style>
+<style id="act-content-detail-20261018">
+ .slide.act-revised .grid{flex:none!important;align-content:start}
+ .slide.act-revised .box h3{font-size:23px;line-height:1.2}
+ .slide.act-revised .box p{font-size:19px;line-height:1.42}
+ .slide.act-revised .box .cn{font-size:16px;line-height:1.4}
+ .slide.act-revised .lesson-example{font-size:18px;line-height:1.5}
+ .slide.act-revised .t td,.slide.act-revised .t th{font-size:17px;line-height:1.38;padding:10px 12px}
+ .slide.act-revised .box.acc{padding:12px 17px}
+ .slide.act-revised .box.acc p{font-size:17px;line-height:1.4}
+ .slide.act-revised .logic-diagram{margin:9px 0}
+ .slide.act-revised .logic-node{padding:8px;font-size:16px}
+ .slide[data-ktype="recap"] .summary-card{padding:13px 16px}
+ .slide[data-ktype="recap"] .summary-card p{font-size:18px;line-height:1.4}
+ </style><style id="plain-question-font">.slide .mono{font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif!important;letter-spacing:normal}</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-foot="ACT Reading · Introduction" data-ktype="cover" data-title="Welcome to ACT Reading"><div class="no">ACT READING</div><h1>Welcome to ACT Reading</h1><div class="sub">What the test looks like, what it measures, and how this course works</div><div class="cnsub">ACT 阅读入门:考试长什么样、考什么、这门课怎么学</div><div class="goals"><div><b>THE TEST</b>The format of the enhanced ACT Reading section.</div><div><b>THE SKILLS</b>Three reporting categories and ten question types.</div><div><b>THE METHOD</b>How to read a passage and how to answer any question.</div></div></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-ktype="plan" data-title="Today's plan"><header><div class="kk">Today's plan · 课堂安排</div><h2>Today's plan</h2></header><div class="k-agenda"><div class="k-ag warm" data-go="3"><span class="t">5′</span><span class="i">🔥</span><span>Warm-up<span class="cn">热身</span></span><span class="p">p.3</span></div><div class="k-ag" data-go="4"><span class="t">20′</span><span class="i">📘</span><span>Learn the question type<span class="cn">题型与方法</span></span><span class="p">p.4–13</span></div><div class="k-ag trap" data-go="14"><span class="t">5′</span><span class="i">🪤</span><span>Trap clinic<span class="cn">陷阱诊所</span></span><span class="p">p.14–15</span></div><div class="k-ag warm" data-go="16"><span class="t">6′</span><span class="i">🛠</span><span>Skill builders &amp; quick check<span class="cn">技能训练与抢答</span></span><span class="p">p.16</span></div><div class="k-ag you" data-go="17"><span class="t">4′</span><span class="i">✍️</span><span>Practice (you do) · 60 s each<span class="cn">独立练习 · 每题 60 秒</span></span><span class="p">p.17</span></div><div class="k-ag trap" data-go="18"><span class="t">12′</span><span class="i">🪤</span><span>Trap clinic<span class="cn">陷阱诊所</span></span><span class="p">p.18–20</span></div><div class="k-ag exit" data-go="21"><span class="t">6′</span><span class="i">🎟</span><span>Exit ticket<span class="cn">离堂小测</span></span><span class="p">p.21</span></div><div class="k-ag you" data-go="22"><span class="t">—</span><span class="i">🏠</span><span>Homework &amp; next lesson<span class="cn">课后练习与下节预告</span></span><span class="p">p.22</span></div></div><div class="k-legend"><span>🙋 黄色虚线框 = 先提问再揭晓</span><span>🔍 找证据</span><span>⏱ T 计时</span><span>✎ P 画笔</span><span>? H 快捷键</span><span>点击任一行可跳转</span></div></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-kmin="5" data-ktype="warm" data-title="Warm-up · How well do you know ACT Reading?"><header><div class="kk">Warm-up · 热身</div><h2>How well do you know ACT Reading?<span class="cn">先猜，再看答案</span></h2></header><p class="k-lead">Answer first, then reveal. 先作答，再揭晓。</p><div class="k-grid2"><div class="k-mcq" data-ans="B"><div class="k-stem">How many questions are in the ACT Reading section?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>27</button><button class="k-opt" data-l="B"><b>B</b>36</button><button class="k-opt" data-l="C"><b>C</b>40</button><button class="k-opt" data-l="D"><b>D</b>44</button></div><template class="k-why">36 questions (27 scored) in 40 minutes: 4 passages × 9 questions.</template><div class="k-out"></div></div><div class="k-mcq" data-ans="C"><div class="k-stem">About how much time do you have for each passage?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>5 minutes</button><button class="k-opt" data-l="B"><b>B</b>8 minutes</button><button class="k-opt" data-l="C"><b>C</b>10 minutes</button><button class="k-opt" data-l="D"><b>D</b>15 minutes</button></div><template class="k-why">40 minutes ÷ 4 passages ≈ 10 minutes: about 3 to read, 7 for the questions.</template><div class="k-out"></div></div></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="The ACT at a glance"><header><div class="kk">The ACT</div><h2>The ACT at a glance</h2></header>
+<table class="t"><colgroup><col style="width:22%"/><col style="width:22%"/><col style="width:16%"/><col style="width:40%"/></colgroup>
+<tr><th>Section</th><th>Questions</th><th>Time</th><th>Notes</th></tr>
+<tr><td>English</td><td>50 (40 scored)</td><td>35 min</td><td>grammar, punctuation, writing skills</td></tr>
+<tr><td>Mathematics</td><td>45 (41 scored)</td><td>50 min</td><td></td></tr>
+<tr><td>Reading</td><td><b>36 (27 scored)</b></td><td><b>40 min</b></td><td><b>this course</b></td></tr>
+<tr><td>Science</td><td>40 (34 scored)</td><td>40 min</td><td>optional</td></tr>
+<tr><td>Writing</td><td>1 essay</td><td>40 min</td><td>optional</td></tr>
+</table>
+<div class="box acc"><p><b>Scored vs. field-test questions:</b> each section includes some unscored “field test” questions that ACT is trying out. They are <b>not labeled</b>, so you cannot tell which ones count. Treat every question as scored. <span class="cn">每部分都有不计分的试测题,但没有标注,所以每题都要认真做。</span></p></div>
+<p class="cn">Source: ACT, <i>Preparing for the ACT</i> (2025).</p></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="The Reading section"><header><div class="kk">The Reading section</div><h2>The Reading section</h2></header>
+<div class="grid g4">
+<div class="box white" style="text-align:center"><h3 style="font-size:44px">40</h3><p>minutes</p></div>
+<div class="box white" style="text-align:center"><h3 style="font-size:44px">36</h3><p>questions (27 scored)</p></div>
+<div class="box white" style="text-align:center"><h3 style="font-size:44px">4</h3><p>passages, 9 questions each</p></div>
+<div class="box white" style="text-align:center"><h3 style="font-size:44px">≈10</h3><p>minutes per passage</p></div>
+</div>
+<div class="grid g2 act-align">
+<div class="box white"><h3>What you will see</h3><div class="act-card-body"><ul>
+<li>Each passage has a short introduction: genre, title, author.</li>
+<li>Lines are numbered every five lines so questions can refer to them.</li>
+<li>Each question has four answer choices.</li>
+<li>Three passages are scored; one is a field-test passage that looks exactly the same.</li></ul>
+</div><p class="cn">4 篇文章,每篇 9 题;其中 1 篇不计分,但看不出来。</p></div>
+<div class="box white"><h3>Good news</h3><div class="act-card-body"><ul>
+<li>Everything you need is <b>in the passage</b>. No outside knowledge is tested.</li>
+<li>There is <b>no penalty</b> for wrong answers: never leave a question blank.</li>
+<li>You can go back to the passage as often as you need.</li></ul>
+</div><p class="cn">不考背景知识;答错不扣分;可以随时回看原文。</p></div>
+</div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="Kinds of passages"><header><div class="kk">Passage types</div><h2>Kinds of passages</h2></header>
+<div class="grid g2 act-align">
+<div class="box white"><h3>By genre</h3><div class="act-card-body"><table class="t"><colgroup><col style="width:30%"/><col style="width:70%"/></colgroup>
+<tr><td>Literary narrative</td><td>Stories and memoirs: characters, events, feelings. One per test.</td></tr>
+<tr><td>Informational</td><td>Humanities (art, music, history of ideas), social science (economics, culture, history), natural science (biology, physics). Two per test.</td></tr></table>
+</div><p class="cn">文学叙事(小说、回忆录)和说明性文章(人文、社科、自然科学)。</p></div>
+<div class="box white"><h3>By format</h3><div class="act-card-body"><table class="t"><colgroup><col style="width:30%"/><col style="width:70%"/></colgroup>
+<tr><td>Single</td><td>One passage from one source.</td></tr>
+<tr><td>Paired</td><td>Passage A and Passage B, two shorter texts on a related topic.</td></tr>
+<tr><td>Visual (VQI)</td><td>A passage with a graph, table, or figure.</td></tr></table>
+</div><p class="cn">单篇、双篇、带图表的文章。</p></div>
+</div>
+<div class="box acc"><p>The passages come from real books and magazines, written for educated adult readers. They are usually 650–750 words. <span class="cn">文章选自真实的书籍和杂志,每篇约 650–750 词。</span></p></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="What a passage looks like"><header><div class="kk">Anatomy of a passage</div><h2>What a passage looks like</h2></header>
+<div class="work"><div class="pv" data-lab="Form G01 · Passage I" data-p="G01-0"></div>
+<div class="right"><div class="steps">
+<div class="step"><div class="n">1</div><div><h3>Passage number</h3><p>Passage I, II, III, IV.</p></div></div>
+<div class="step"><div class="n">2</div><div><h3>Introduction</h3><p>The genre (LITERARY NARRATIVE), the title, and the author. Sometimes a sentence of background. <b>Read it</b> — it tells you what kind of text this is. <span class="cn">导语要读:告诉你文体和背景。</span></p></div></div>
+<div class="step"><div class="n">3</div><div><h3>Line numbers</h3><p>Printed every five lines (5, 10, 15…). Questions use them: “lines 79–83.” <span class="cn">每五行标一次行号。</span></p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Paragraphs</h3><p>Indented. Questions often ask about “the third paragraph.”</p></div></div>
+</div></div></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="What a question looks like"><header><div class="kk">Anatomy of a question</div><h2>What a question looks like</h2></header>
+<div class="work"><div class="pv" data-excerpt="[[71, 93]]" data-lab="Form G01 · Question 9 · Context excerpt / 上下文节选" data-p="G01-0"></div>
+<div class="right"><div class="qimg" data-q="G01-9"></div><div class="box acc"><p class="cn">ACT 选项字母交替:奇数题 A B C D,偶数题 F G H J。</p></div><div class="steps">
+<div class="step"><div class="n">1</div><div><h3>The stem</h3><p>The question itself. It tells you <b>what kind</b> of question this is (“can reasonably be inferred” → inference).</p></div></div>
+<div class="step"><div class="n">2</div><div><h3>A location</h3><p>Line numbers, a paragraph, or a key word tell you <b>where</b> to look.</p></div></div>
+<div class="step"><div class="n">3</div><div><h3>Four choices</h3><p>Odd-numbered questions use A–D; even-numbered use F–J. Only one is fully supported by the passage.</p></div></div>
+<div class="step"><div class="n">4</div><div><h3>“Best” answer</h3><p>Words like <i>best</i>, <i>most nearly</i>, <i>most strongly</i> mean: pick the choice the passage supports most clearly.</p></div></div>
+</div></div></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="What the Reading section measures"><header><div class="kk">What it measures</div><h2>What the Reading section measures</h2></header>
+<div class="grid g3 act-align" style="flex:1">
+<div class="box white"><h3>Key Ideas &amp; Details</h3><div class="act-card-body"><p><b>44–52%</b> of scored questions</p><p style="margin-top:6px">Read closely; find central ideas; summarize; draw inferences; understand sequence, comparison, and cause-effect.</p></div><p class="cn">关键信息与细节:主旨、概括、细节、推断、逻辑关系。</p></div>
+<div class="box white"><h3>Craft &amp; Structure</h3><div class="act-card-body"><p><b>26–33%</b></p><p style="margin-top:6px">Word and phrase meanings; word choice; text structure; the author’s purpose and perspective; characters’ points of view.</p></div><p class="cn">写作技巧与结构:词义、结构、目的、视角。</p></div>
+<div class="box white"><h3>Integration of Knowledge &amp; Ideas</h3><div class="act-card-body"><p><b>19–26%</b></p><p style="margin-top:6px">Authors’ claims; facts vs. opinions; evidence; connections between related texts; graphics.</p></div><p class="cn">知识与观点整合:论点论据、事实观点、双篇、图表。</p></div>
+</div>
+<p class="cn">Source: ACT, <i>Preparing for the ACT</i> (2025).</p></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="Ten question types = ten lessons"><header><div class="kk">Question types</div><h2>Ten question types = ten lessons</h2></header>
+<table class="t"><colgroup><col style="width:10%"/><col style="width:38%"/><col style="width:52%"/></colgroup><tr><th>Lesson</th><th>Question type</th><th>What it asks</th></tr><tr><td>01</td><td>Main Idea</td><td style="font-weight:400">The main point or purpose of the whole passage</td></tr><tr><td>02</td><td>Paragraph Main Point &amp; Summary</td><td style="font-weight:400">What one paragraph or section says</td></tr><tr><td>03</td><td>Detail</td><td style="font-weight:400">Information stated directly</td></tr><tr><td>04</td><td>Inference</td><td style="font-weight:400">What the passage suggests</td></tr><tr><td>05</td><td>Relationships</td><td style="font-weight:400">Cause-effect, comparison, sequence</td></tr><tr><td>06</td><td>Words &amp; Phrases in Context</td><td style="font-weight:400">Meaning of a word, phrase, or image</td></tr><tr><td>07</td><td>Purpose &amp; Function</td><td style="font-weight:400">Why a part is included</td></tr><tr><td>08</td><td>Point of View &amp; Tone</td><td style="font-weight:400">Narrator, attitudes, characters</td></tr><tr><td>09</td><td>Paired Passages</td><td style="font-weight:400">Comparing Passage A and Passage B</td></tr><tr><td>10</td><td>Claims, Evidence, Fact/Opinion</td><td style="font-weight:400">How ideas are supported</td></tr></table>
+<p class="cn">Use this map to identify the skill a question asks for. The distribution of these classroom labels is not an official test blueprint.</p></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="How to read an ACT passage"><header><div class="kk">How to read a passage</div><h2>How to read an ACT passage</h2></header>
+<div class="grid g2 act-align" style="flex:1">
+<div class="box white"><h3>Read for structure, not for memory</h3><div class="act-card-body"><ul>
+<li>Read the introduction line first.</li>
+<li>Read the first paragraph carefully: what is the topic, the situation, the question?</li>
+<li>For each paragraph, ask: <b>what is this paragraph doing?</b> Write 3–5 words in the margin.</li>
+<li>Read the last paragraph carefully: conclusion or ending.</li>
+<li>Do not try to memorize details. You can always go back.</li></ul>
+</div><p class="cn">读结构而不是背细节:读导语、首段、每段写几个字的笔记、细读末段。</p></div>
+<div class="box white"><h3>What to mark</h3><div class="act-card-body"><ul>
+<li><b>Names</b> and new terms</li>
+<li><b>Numbers and dates</b></li>
+<li><b>Opinion words</b>: <i>remarkable, dumbest, sadly</i></li>
+<li><b>Turns</b>: <i>but, however, yet, in fact</i></li>
+<li><b>Absolute words</b>: <i>only, never, all</i></li>
+<li>Quotations, dashes, parentheses</li></ul>
+</div><p class="cn">标记:名字、数字、态度词、转折词、绝对词、引号/破折号/括号。</p></div>
+</div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="Example: paragraph notes for a literary passage"><header><div class="kk">Paragraph notes</div><h2>Example: paragraph notes for a literary passage</h2></header>
+<div class="work"><div class="pv" data-lab="Form G01 · Passage I — scroll" data-p="G01-0"></div>
+<div class="right"><table class="t"><colgroup><col style="width:30%"/><col style="width:70%"/></colgroup><tr><th>Lines</th><th>Note (what happens / what it does)</th></tr><tr><td>1–8</td><td style="font-weight:400">A memory: the restaurant; the narrator as a young woman</td></tr><tr><td>9–26</td><td style="font-weight:400">Cold, lonely winter → violin music → “I had arrived in America”</td></tr><tr><td>27–34</td><td style="font-weight:400">First sight of Tian, carrying a violin case</td></tr><tr><td>35–42</td><td style="font-weight:400">He speaks confident English; well dressed</td></tr><tr><td>43–49</td><td style="font-weight:400">She serves him tea: “For the first time, I felt warm”</td></tr><tr><td>50–58</td><td style="font-weight:400">Mother’s warnings vs. the myth of fate</td></tr><tr><td>59–64</td><td style="font-weight:400">He eats quickly, leaves, forgets his hat</td></tr><tr><td>65–70</td><td style="font-weight:400">She keeps the hat</td></tr><tr><td>71–93</td><td style="font-weight:400">He returns; she hesitates; gives back the hat — he will be part of her life</td></tr></table>
+<div class="box acc"><p><b>One-sentence summary:</b> A lonely young immigrant meets Tian in a restaurant and, when she returns his forgotten hat, feels that he will become part of her life. <span class="cn">笔记写“这段在干什么”,不抄原文。</span></p></div></div></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="A process for every question"><header><div class="kk">How to answer</div><h2>A process for every question</h2></header>
+<div class="steps">
+<div class="step"><div class="n">1</div><div><h3>Read the question and identify its type</h3><p>Detail? Inference? Purpose? The wording tells you what kind of thinking is needed. <span class="cn">先判断题型。</span></p></div></div>
+<div class="step"><div class="n">2</div><div><h3>Go back to the passage</h3><p>Use line numbers, paragraph numbers, or key words. Read a little before and after. <span class="cn">回到原文定位。</span></p></div></div>
+<div class="step"><div class="n">3</div><div><h3>Answer in your own words first</h3><p>Before reading the choices, say what the answer should be. <span class="cn">先自己说出答案。</span></p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Eliminate and choose</h3><p>Cross out choices with a clear problem. The answer you keep must be supported by specific words in the passage. <span class="cn">排除有明确问题的选项;留下的答案必须有原文支持。</span></p></div></div>
+</div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="3" data-ktype="trap" data-title="How wrong answers are usually built"><header><div class="kk">Wrong answers</div><h2>How wrong answers are usually built</h2></header>
+<div class="grid g3">
+<div class="box white"><h3>Opposite</h3><p>Says the reverse of the passage.</p></div>
+<div class="box white"><h3>Too strong</h3><p><i>always, only, proves, revolutionized</i> — more than the passage says.</p></div>
+<div class="box white"><h3>Not in the passage</h3><p>Sounds reasonable, but the text never says it. This is the most common trap.</p></div>
+<div class="box white"><h3>Wrong place / person</h3><p>A real detail, attached to the wrong person, time, paragraph, or passage.</p></div>
+<div class="box white"><h3>True but not the answer</h3><p>Accurate, but it does not answer this question (often too narrow).</p></div>
+<div class="box white"><h3>One wrong word</h3><p>Mostly right; one word makes it false.</p></div>
+</div>
+<p class="cn">反向、过度、无中生有、张冠李戴、答非所问、一词之差。各课会结合具体题型再讲。Sources: Kaplan, Magoosh, APGuru ACT Reading guides.</p></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="Pacing and guessing"><header><div class="kk">Pacing</div><h2>Pacing and guessing</h2></header>
+<div class="grid g2 act-align" style="flex:1">
+<div class="box white"><h3>About 10 minutes per passage</h3><div class="act-card-body"><ul>
+<li>About 3 minutes to read and make notes.</li>
+<li>About 7 minutes for the nine questions.</li>
+<li>Check the time once per passage, not after every question.</li>
+<li>Start with the passage type you find easiest, if you like.</li></ul>
+</div><p class="cn">每篇约 10 分钟:读 3 分钟,做题 7 分钟。</p></div>
+<div class="box white"><h3>When you are stuck</h3><div class="act-card-body"><ul>
+<li>If you cannot find a detail in about 30 seconds, mark it and move on.</li>
+<li>Never leave a question blank: there is no penalty for guessing.</li>
+<li>Eliminate one or two choices first, then guess.</li></ul>
+</div><p class="cn">卡住就先跳过;不留空,先排除再猜。</p></div>
+</div>
+<p class="cn">Pacing suggestions: Magoosh and Princeton Review guides to the enhanced ACT.</p></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-kmin="6" data-ktype="activity" data-title="Name the question type"><header><div class="kk">Skill drill · 技能训练</div><h2>Name the question type<span class="cn">看题干，说题型</span></h2></header><p class="k-lead">The wording of the question tells you which skill it tests. 题干的措辞决定题型。</p><div class="k-sort" data-cats="Main idea|Detail|Inference|Words in context|Purpose / function|Tone / point of view"><div class="k-item" data-cat="Main idea"><div class="k-snip"><span class="n">1</span>“The main idea of the passage is that:”</div><template class="k-why">Whole passage → Lesson 01.</template></div><div class="k-item" data-cat="Detail"><div class="k-snip"><span class="n">2</span>“According to the passage, the first tunnel was completed in:”</div><template class="k-why">“According to the passage” → stated directly (Lesson 03).</template></div><div class="k-item" data-cat="Inference"><div class="k-snip"><span class="n">3</span>“The passage most strongly suggests that the narrator’s father:”</div><template class="k-why">“suggests” → Lesson 04.</template></div><div class="k-item" data-cat="Words in context"><div class="k-snip"><span class="n">4</span>“As it is used in line 42, the word <i>sound</i> most nearly means:”</div><template class="k-why">Lesson 06.</template></div><div class="k-item" data-cat="Purpose / function"><div class="k-snip"><span class="n">5</span>“The author most likely includes the anecdote in lines 15–22 in order to:”</div><template class="k-why">“in order to” → why a part is there (Lesson 07).</template></div><div class="k-item" data-cat="Tone / point of view"><div class="k-snip"><span class="n">6</span>“The narrator’s attitude toward the city can best be described as:”</div><template class="k-why">Attitude → Lesson 08.</template></div></div><div class="k-row"><button class="k-btn dark k-revealall">全部揭晓</button><button class="k-btn k-resetall">重置</button></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="4" data-ktype="practice" data-title="Practice 1: G01 Q3"><header><div class="kk">Try one</div><h2>Form G01 · Passage I · Question 3</h2></header><div class="work"><div class="pv" data-excerpt="[[27, 70]]" data-lab="Form G01 · Question 3 · Context excerpt / 上下文节选" data-p="G01-0"></div><div class="right"><div class="qimg" data-q="G01-3"></div><div class="prac" data-ans="C" data-ev="59-64" data-hint="59-64" data-letters="ABCD"><div class="letters"></div><div class="tools"><button class="hintbtn">Hint · 提示</button><button class="showans">Show answer</button></div><div class="hintbox" hidden="">Look at what Tian does in lines 59–64. Put his actions together.</div><div class="fb"></div><template class="why">Tian “drank it quickly,” “glanced at his watch,” “flung down a dollar, seized his coat and violin, and walked out the door” (lines 59–64). His visit was <b>hurried</b>. <span class="cn">把动作连起来看:匆忙。</span></template><template class="wrong" data-l="A">Not in the passage: nothing shows he enjoyed it.</template><template class="wrong" data-l="B">Not in the passage: nothing complicated happens.</template><template class="wrong" data-l="D">Not in the passage: nothing entertains him.</template></div></div></div></section>
+<section class="slide" data-foot="ACT Reading · Introduction" data-kmin="2" data-ktype="learn" data-title="The lessons in this course"><header><div class="kk">Course map</div><h2>The lessons in this course</h2></header>
+<table class="t"><colgroup><col style="width:12%"/><col style="width:88%"/></colgroup>
+<tr><th>Lesson</th><th>Topic</th></tr>
+<tr><td>01</td><td>Main Idea Questions · 主旨题</td></tr>
+<tr><td>02</td><td>Paragraph Main Point &amp; Summary · 段落主旨与概括</td></tr>
+<tr><td>03</td><td>Detail Questions · 细节题</td></tr>
+<tr><td>04</td><td>Inference Questions · 推断题</td></tr>
+<tr><td>05</td><td>Relationships: Cause, Comparison, Sequence · 逻辑关系</td></tr>
+<tr><td>06</td><td>Words &amp; Phrases in Context · 词义与句意</td></tr>
+<tr><td>07</td><td>Purpose &amp; Function · 目的与功能</td></tr>
+<tr><td>08</td><td>Point of View, Tone &amp; Characterization · 视角与态度</td></tr>
+<tr><td>09</td><td>Paired Passages · 双篇</td></tr>
+<tr><td>10</td><td>Claims, Evidence &amp; Fact vs. Opinion · 论点论据</td></tr>
+</table>
+<p class="cn">Each lesson: what the question type is → what it looks like → how to approach it → a worked example → practice with the real passage beside each question.</p></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-kmin="6" data-ktype="trap" data-title="Trap lab"><header><div class="kk">Trap clinic · 陷阱诊所</div><h2>Trap lab · 给错误选项贴标签<span class="cn">每个选项都是错的：它属于哪一类陷阱？</span></h2></header><p class="k-lead">Correct: <i>a gold medal from the King of Denmark</i> (and her election to the Academy). Why is each choice below wrong?</p><div class="k-src">Maria Mitchell (1818–1889) discovered a comet in 1847 using a small telescope on the roof of her family’s house on Nantucket. The discovery won her a gold medal from the King of Denmark and helped make her the first woman elected to the American Academy of Arts and Sciences. Later, as a professor at Vassar College, she urged her students to make their own observations rather than memorize textbooks.<span class="q">According to the passage, Mitchell’s discovery of the comet led directly to which of the following?</span></div><div class="k-sort" data-cats="Opposite|Too strong|Not in the passage|Wrong place / person|True but not the answer|One wrong word"><div class="k-item" data-cat="Not in the passage"><div class="k-snip"><span class="n">1</span>Her appointment as the first female professor in the United States</div><template class="k-why">The passage never says she was the first female professor.</template></div><div class="k-item" data-cat="One wrong word"><div class="k-snip"><span class="n">2</span>A gold medal from the King of Sweden</div><template class="k-why">Denmark, not Sweden.</template></div><div class="k-item" data-cat="Opposite"><div class="k-snip"><span class="n">3</span>Her decision to stop observing the sky</div><template class="k-why">She kept observing and taught observation.</template></div><div class="k-item" data-cat="Too strong"><div class="k-snip"><span class="n">4</span>A complete change in how every American college taught science</div><template class="k-why">Nothing about every college.</template></div><div class="k-item" data-cat="Wrong place / person"><div class="k-snip"><span class="n">5</span>Her students’ habit of making their own observations</div><template class="k-why">That came later, from her teaching, not from the comet.</template></div><div class="k-item" data-cat="True but not the answer"><div class="k-snip"><span class="n">6</span>Her use of a small telescope on the roof</div><template class="k-why">True, but it is how she found the comet, not a result of it.</template></div></div><div class="k-row"><button class="k-btn dark k-revealall">全部揭晓</button><button class="k-btn k-resetall">重置</button></div></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-kmin="4" data-ktype="trap" data-title="Common mistakes"><header><div class="kk">Common mistakes · 常见错误</div><h2>Common mistakes<span class="cn">这节课最容易犯的错</span></h2></header><div class="k-flips"><div class="k-flip"><div class="f">Reading the passage word by word, very slowly.</div><div class="b">About <b>3 minutes</b> per passage: read for the main point and make short paragraph notes.</div><div class="hint">点击翻面 · click to flip</div></div><div class="k-flip"><div class="f">Answering from memory.</div><div class="b"><b>Go back</b> to the lines every time; read a little before and after.</div><div class="hint">点击翻面 · click to flip</div></div><div class="k-flip"><div class="f">Leaving questions blank.</div><div class="b">There is <b>no penalty</b> for wrong answers: eliminate, then guess.</div><div class="hint">点击翻面 · click to flip</div></div><div class="k-flip"><div class="f">Choosing the answer that “sounds right”.</div><div class="b">Choose the answer you can <b>point to</b> in the passage.</div><div class="hint">点击翻面 · click to flip</div></div></div><div class="k-row"><span class="k-lead" style="font-size:15px;margin-right:auto">先让学生说“为什么错”，再翻面。</span><button class="k-btn dark k-revealall">全部揭晓</button><button class="k-btn k-resetall">重置</button></div></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-kmin="6" data-ktype="exit" data-title="Exit ticket"><header><div class="kk">Exit ticket · 离堂小测</div><h2>Exit ticket 🎟️<span class="cn">独立完成，先不讨论</span></h2></header><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;min-height:0;align-items:start"><div class="k-mcq compact" data-ans="C"><div class="k-stem">Is there a penalty for wrong answers on ACT Reading?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>Yes, a quarter point</button><button class="k-opt" data-l="B"><b>B</b>Yes, a full point</button><button class="k-opt" data-l="C"><b>C</b>No</button><button class="k-opt" data-l="D"><b>D</b>Only on the scored passages</button></div><template class="k-why">No penalty: never leave a blank.</template><div class="k-out"></div></div><div class="k-mcq compact" data-ans="C"><div class="k-stem">A choice is accurate but does not answer the question. Which trap is it?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>Opposite</button><button class="k-opt" data-l="B"><b>B</b>Too strong</button><button class="k-opt" data-l="C"><b>C</b>True but not the answer</button><button class="k-opt" data-l="D"><b>D</b>One wrong word</button></div><template class="k-why">True, but it answers a different question.</template><div class="k-out"></div></div><div class="k-mcq compact" data-ans="B"><div class="k-stem">About how long should you spend reading one passage before the questions?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>1 minute</button><button class="k-opt" data-l="B"><b>B</b>3 minutes</button><button class="k-opt" data-l="C"><b>C</b>6 minutes</button><button class="k-opt" data-l="D"><b>D</b>10 minutes</button></div><template class="k-why">≈3 minutes reading, ≈7 minutes on 9 questions.</template><div class="k-out"></div></div></div><div class="k-row"><span class="k-score"></span><div class="k-conf" style="margin-left:auto">今天这类题我：<button>😕 还不会</button><button>🙂 基本会</button><button>😎 能讲给别人听</button></div><button class="k-btn warm" data-timer="300">⏱ 5:00</button></div></section>
+<section class="slide k-new" data-foot="ACT Reading · Introduction" data-ktype="next" data-title="Next lesson"><header><div class="kk">Next · 下节预告</div><h2>Next: Main Idea Questions<span class="cn">主旨题</span></h2></header><div class="k-grid2"><div class="k-card"><h3>Next lesson · Main Idea Questions</h3><p>What the whole passage is mainly about: topic + point, and how wrong answers are built.</p><p class="cn" style="margin-top:6px">主旨题：话题 + 观点。</p></div><div class="k-card"><h3>Think about it · <span class="zh-plain">预习问题</span></h3><p>Write one sentence that summarizes a news article you read this week: topic + point.</p></div></div><div class="k-hw"><b>🏠 Homework · <span class="zh-plain">课后</span></b><br/>Take one ACT passage, set a 10-minute timer, and note which question types appear.</div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div hidden="" id="menu"></div><style id="classroom-style">/* Fixed classroom type. Only the whole slide scales down on smaller screens. */
+[hidden]{display:none!important}
+.classroom .work,.classroom .mwork{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:stretch;gap:0;border:1px solid #d7dce1;border-top:4px solid #00172e;overflow:hidden;background:white}
+.classroom .right,.classroom .mq,.classroom .pv{min-width:0;min-height:0;overflow:auto;scrollbar-gutter:stable;border:0;border-radius:0;background:white;align-self:stretch}
+.classroom .pv,.classroom .mq{border-right:1px solid #d7dce1}
+.classroom .right{padding:12px 16px;justify-content:flex-start;gap:12px}
+.classroom .right>*{flex-shrink:0}
+.classroom .qimg{border:0;padding:0;border-radius:0;background:white;flex-shrink:0}
+.classroom .mq .qimg{padding:12px 14px}
+.classroom .pvlab{font:12px/1.4 Arial,sans-serif;background:#f4f6f8;padding:6px 12px;letter-spacing:0}
+.classroom .course-question-stem{font:18px/1.5 Arial,sans-serif;margin:0 0 12px}
+.classroom .letters{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+.classroom .letters button{display:flex;align-items:flex-start;gap:8px;padding:8px;min-height:38px;height:auto;font:18px/1.45 Arial,sans-serif;text-align:left;border:1px solid transparent;border-radius:3px;color:#222;background:white;font-weight:400;flex-shrink:0}
+.classroom .letters button::before,.classroom .letters button::after{content:none}
+.circle,.classroom .vd .L::before{width:14px;height:14px;border:1px solid #aab3be;border-radius:50%;background:#f2f3f5;flex:none;display:inline-block;margin-top:5px}
+.option-letter{flex:none;min-width:16px}.option-text{min-width:0}
+.classroom .letters button.selected{background:#edf3f8;border-color:#9bb5cf}.selected .circle{background:#315e89;box-shadow:inset 0 0 0 3px white}
+.classroom .verdicts .vd{display:grid;grid-template-columns:38px minmax(0,1fr);gap:4px 8px;font:18px/1.45 Arial,sans-serif;border:1px solid transparent;border-radius:3px;padding:8px;background:white}
+.classroom .verdicts .vd .L{font:18px/1.45 Arial,sans-serif;display:flex;gap:8px;grid-row:1;grid-column:1}.classroom .vd .L::before{content:''}
+.classroom .verdicts .vd .choice-text{font:18px/1.45 Arial,sans-serif;grid-row:1;grid-column:2}
+.classroom .verdicts .vd .v{grid-row:2;grid-column:2;font-size:12px;justify-self:start}
+.classroom .verdicts .vd .r{grid-row:3;grid-column:2;font:17px/1.5 Arial,sans-serif}
+.classroom .vd.hidden-v .v,.classroom .vd.hidden-v .r{display:none!important}
+.classroom .vd.keep:not(.hidden-v){background:#edf7f0;border-color:#b3d1be}.classroom .vd.cut:not(.hidden-v){background:#fff5f3;border-color:#edcdc7}
+.classroom .ask p,.classroom .box p,.classroom .box li,.classroom .step p,.classroom .step h3,.classroom .fb,.classroom .fb .why,.classroom .fb .wrong,.classroom .fb .res,.classroom .fml{font-size:17px!important;line-height:1.5}
+.classroom .fb .alts,.classroom .hintbox{font-size:16px;line-height:1.5}
+.classroom .step{padding:10px 12px;grid-template-columns:32px minmax(0,1fr);gap:10px}.classroom .step .n{width:30px;height:30px;font-size:18px}
+.classroom .box,.classroom .ask{padding:12px 14px;border-radius:4px}.classroom .steps{gap:8px}
+.classroom .tools,.teaching-controls{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 10px}
+.classroom .tools button,.teaching-controls button{font:600 13px/1.4 Arial,sans-serif;background:#f2f3f5;border:1px solid #ccd2d8;color:#253546;padding:6px 10px;border-radius:3px}
+.teaching-controls button:disabled{opacity:.55}
+.classroom .cn{line-height:1.55}.classroom span.cn{margin-left:.45em}.classroom p.cn,.classroom div.cn{margin-top:7px}
+header h2 .cn{display:inline-block;margin-top:5px;margin-left:12px;line-height:1.4}
+table.t th,table.t td{font-size:18px;line-height:1.4;white-space:normal}
+.typed-page{position:relative;overflow:hidden;width:100%;flex:none}.typed-line{position:absolute;white-space:pre;transform-origin:left top;line-height:1;display:block}.typed-rule{position:absolute;display:block;border-top:1px solid #222}
+.math-native svg{display:block;width:min(100%,var(--native-width));height:auto;overflow:hidden;user-select:text}
+.math-native svg text{user-select:text}
+.classroom .mq .qimg{overflow:visible}
+.slide:not(.cover)>header{flex-shrink:0}
+.slide:not(.cover)>:is(.grid,.steps,.stems,table,.check){min-height:0;overflow:auto}
+#nav{bottom:4px}
+.math-native .selectable-layer text{fill:transparent!important;stroke:none!important;user-select:text;cursor:text}
+.math-native .selectable-layer text::selection{fill:#fff;background:#346da5}
+.slide>.stems{gap:6px}.slide>.stems .stem{padding:7px 12px;gap:6px 12px}.slide>.stems .stem .t{font-size:18px;line-height:1.4}.slide>.stems .stem .note{font-size:13px}
+</style><script>window.DATA={"P":{"G01-0":{"segs":[{"w":600,"h":1151,"html":"<span class=\"typed-line\" data-width=\"104\" style=\"left:19px;top:10.96px;font-size:22px;font-weight:700;font-family:Arial,sans-serif\">Passage I</span><span class=\"typed-line\" data-width=\"525\" style=\"left:52px;top:58.24px;font-size:18px;font-weight:400;font-family:Arial,sans-serif\">LITERARY NARRATIVE: This passage is adapted from the</span><span class=\"typed-line\" data-width=\"526\" style=\"left:50px;top:78.24px;font-size:18px;font-weight:400;font-family:Arial,sans-serif\">title story of the collection Hunger by Lan Samantha Chang</span><span class=\"typed-line\" data-width=\"283\" style=\"left:52px;top:98.24px;font-size:18px;font-weight:400;font-family:Arial,sans-serif\">(©1998 by Lan Samantha Chang).</span><span class=\"typed-line\" data-width=\"479\" style=\"left:98px;top:138.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">I often dream about the restaurant where I first</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:161.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">met Tian. Late at night, the memory flickers up before</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:184.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">me, dim and silent, never changing. I see the simple</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:206.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">neon sign that reads “Vermilion Palace.” The drifting</span><span class=\"typed-line\" data-width=\"524\" style=\"left:52px;top:228.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">snow blows up against the scarlet double doors. I see</span><span class=\"typed-line\" data-width=\"9\" style=\"left:31px;top:233.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">5</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:250.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">myself walking toward those doors—a slight, brown</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:273.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">girl with hair like an inkbrush, tilted eyes, and a wary</span><span class=\"typed-line\" data-width=\"63\" style=\"left:51px;top:294.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">mouth.</span><span class=\"typed-line\" data-width=\"478\" style=\"left:98px;top:339.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">For my first few months in New York City, I</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:361.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">could not stay warm. I wore a heavy coat and wound</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:366.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">10</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:384.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">myself in woolen scarves, but the chill went deep</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:406.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">beneath my skin, and the winter wind found every</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:428.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">crevice as I walked to the restaurant on numb feet, past</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:450.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">the subway stop, the university, and the music school,</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:473.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">my gaze fixed on the icy pavement to keep myself from</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:478.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">15</span><span class=\"typed-line\" data-width=\"527\" style=\"left:51px;top:495.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">falling. I could not taste my food or feel the softness of</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:517.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">my narrow bed. I had been in the city for two months</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:538.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">before I even noticed the music school. And then one</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:561.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">evening I heard a student practicing. Walking past a</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:584.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">basement window, I caught the thread of a violin</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:589.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">20</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:606.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">melody, high and sweet. The sound rose up through a</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:628.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">crack in the window and between the safety bars; it</span><span class=\"typed-line\" data-width=\"525\" style=\"left:52px;top:650.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">shimmered through me, a wave of color, blooming past</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:673.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">the gray tenements and toward the narrow sky. I drew</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:695.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">one cold, sweet breath of air and truly understood that I</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:700.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">25</span><span class=\"typed-line\" data-width=\"220\" style=\"left:51px;top:716.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">had arrived in America.</span><span class=\"typed-line\" data-width=\"478\" style=\"left:98px;top:761.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">A few days later, I saw Tian. He might have been</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:782.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">to the restaurant a dozen times before, but I do not</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:806.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">remember seeing him until after the music. I noticed</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:828.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">him on a stormy evening near the end of winter. I was</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:833.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">30</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:850.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">standing at the window, watching the falling snow</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:873.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">make bright flecks in the headlamps of the taxicabs,</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:895.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">when a man appeared in the doorway, carrying a violin</span><span class=\"typed-line\" data-width=\"44\" style=\"left:51px;top:916.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">case.</span><span class=\"typed-line\" data-width=\"479\" style=\"left:98px;top:961.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">“One person,” he said, in confident English. At</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:966.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">35</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:984.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">that time, in 1967, many new Chinese had come to live</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:1006.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">on Manhattan’s Upper West Side. Most of them turned</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:1028.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">up at the restaurant, sooner or later. But not many</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:1050.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">spoke English with such ease. He wore a brown felt</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:1071.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">hat, and his overcoat seemed cut to fit his shoulders;</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:1076.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">40</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:1094.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">most of the other men seemed content to wear whatever</span><span class=\"typed-line\" data-width=\"147\" style=\"left:51px;top:1116.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">would make do.</span>"},{"w":611,"h":1155,"html":"<span class=\"typed-line\" data-width=\"380\" style=\"left:109px;top:10.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">“Come with me,” I replied, in Mandarin.</span><span class=\"typed-line\" data-width=\"479\" style=\"left:109px;top:55.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">I seated him and poured his tea, looking down at</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:76.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">the swirl of leaves in the water. I felt the heat of the</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:81.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">45</span><span class=\"typed-line\" data-width=\"525\" style=\"left:63px;top:99.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">steam in my face, the warm steel handle in my hands; I</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:121.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">watched the tea leaves drift and slide against the blue</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:144.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">and white cup. He thanked me in Chinese. His dark</span><span class=\"typed-line\" data-width=\"457\" style=\"left:62px;top:166.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">eyes followed me. For the first time, I felt warm.</span><span class=\"typed-line\" data-width=\"478\" style=\"left:109px;top:210.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">Before I left Taiwan, my mother had said,</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:215.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">50</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:233.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">“Beware a man whose cheekbones are too high or low.</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:255.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">Watch out for one who smiles too much.” Her warnings</span><span class=\"typed-line\" data-width=\"527\" style=\"left:62px;top:277.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">implied that I had a choice; that these things lay under</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:299.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">my control. But when I was a child she had often talked</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:321.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">about the Chinese myth that every man and every</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:326.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">55</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:344.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">woman was joined at birth to their mate by an invisible,</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:366.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">enchanted thread. With this story, she said that there</span><span class=\"typed-line\" data-width=\"265\" style=\"left:62px;top:388.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">could be no controlling fate.</span><span class=\"typed-line\" data-width=\"479\" style=\"left:109px;top:433.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">The man ordered beef noodle soup and drank it</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:455.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">quickly. He had placed his violin case in the opposite</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:460.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">60</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:477.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">chair, upright and facing him. Then he glanced at his</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:503.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">watch. He flung down a dollar, seized his coat and</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:519.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">violin, and walked out the door. I looked twice to make</span><span class=\"typed-line\" data-width=\"499\" style=\"left:63px;top:544.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">sure it was true: he had forgotten his hat on the chair.</span><span class=\"typed-line\" data-width=\"478\" style=\"left:109px;top:592.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">To this day I don’t know why I kept Tian’s hat.</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:597.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">65</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:610.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">Perhaps his solitude gave me strength. I looked around</span><span class=\"typed-line\" data-width=\"527\" style=\"left:62px;top:637.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">to make sure no one watched me. Then I slipped over</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:655.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">to his table and picked up the hat, brought it back</span><span class=\"typed-line\" data-width=\"525\" style=\"left:62px;top:677.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">behind my counter. He had printed his name inside:</span><span class=\"typed-line\" data-width=\"100\" style=\"left:62px;top:699.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">Tian Sung.</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:704.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">70</span><span class=\"typed-line\" data-width=\"478\" style=\"left:109px;top:744.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">Late that night, the man reappeared in the door-</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:766.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">way. I still remember his bare, wet head and sodden</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:786.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">trench coat, creased with snow. He walked over and</span><span class=\"typed-line\" data-width=\"154\" style=\"left:63px;top:809.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">stood before me.</span><span class=\"typed-line\" data-width=\"479\" style=\"left:109px;top:855.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">“You might have something of mine,” he said, in</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:860.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">75</span><span class=\"typed-line\" data-width=\"183\" style=\"left:62px;top:876.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">Mandarin this time.</span><span class=\"typed-line\" data-width=\"168\" style=\"left:109px;top:920.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">“I don’t think so.”</span><span class=\"typed-line\" data-width=\"306\" style=\"left:109px;top:966.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">“Would you please take a look?”</span><span class=\"typed-line\" data-width=\"479\" style=\"left:109px;top:1009.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">I bent and looked under the counter. There was the</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:1033.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">hat, where I had put it. I knelt and took it into my</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:1038.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">80</span><span class=\"typed-line\" data-width=\"217\" style=\"left:62px;top:1055.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">hands. Seconds passed.</span><span class=\"typed-line\" data-width=\"478\" style=\"left:109px;top:1099.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">I could not give him the hat. My hands grew cold;</span><span class=\"typed-line\" data-width=\"526\" style=\"left:62px;top:1120.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">I could not breathe. I looked at him. The storm had</span>"},{"w":600,"h":245,"html":"<span class=\"typed-line\" data-width=\"525\" style=\"left:52px;top:11.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">streaked his hair into his eyes—surely the blackest eyes</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:33.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">of any man I’d ever met, the eyelashes laid flat with</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:38.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">85</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:55.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">melting snow. They held an expression of deep and</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:78.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">painful privacy. And at that moment I believed I knew</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:102.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">what would come to be. When I returned the hat, I</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:122.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">would exchange it for the man who wore it. My senses</span><span class=\"typed-line\" data-width=\"525\" style=\"left:51px;top:144.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">opened; I grew large. I believed I heard, in the howling</span><span class=\"typed-line\" data-width=\"18\" style=\"left:22px;top:149.88px;font-size:16px;font-weight:400;font-family:Arial,sans-serif\">90</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:169.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">wind, a voice of admonition, but in the end I listened to</span><span class=\"typed-line\" data-width=\"526\" style=\"left:51px;top:189.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">the plunge and whistle of my blood. I put the hat into</span><span class=\"typed-line\" data-width=\"322\" style=\"left:51px;top:211.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">his beautiful, long-fingered hands.</span>"}],"lines":{"1":[0,11.888,2.509],"2":[0,13.818,2.509],"3":[0,15.748,2.509],"4":[0,17.678,2.509],"5":[0,19.609,2.509],"6":[0,21.539,2.509],"7":[0,23.469,2.509],"8":[0,25.399,2.509],"9":[0,29.259,2.509],"10":[0,31.19,2.509],"11":[0,33.12,2.509],"12":[0,35.05,2.509],"13":[0,36.98,2.509],"14":[0,38.91,2.509],"15":[0,40.84,2.509],"16":[0,42.771,2.509],"17":[0,44.701,2.509],"18":[0,46.631,2.509],"19":[0,48.561,2.509],"20":[0,50.491,2.509],"21":[0,52.421,2.509],"22":[0,54.352,2.509],"23":[0,56.282,2.509],"24":[0,58.212,2.509],"25":[0,60.142,2.509],"26":[0,62.072,2.509],"27":[0,65.933,2.509],"28":[0,67.863,2.509],"29":[0,69.793,2.509],"30":[0,71.723,2.509],"31":[0,73.653,2.509],"32":[0,75.583,2.509],"33":[0,77.514,2.509],"34":[0,79.444,2.509],"35":[0,83.304,2.509],"36":[0,85.234,2.509],"37":[0,87.164,2.509],"38":[0,89.095,2.509],"39":[0,91.025,2.509],"40":[0,92.955,2.509],"41":[0,94.885,2.509],"42":[0,96.815,2.509],"43":[1,0.673,2.5],"44":[1,4.519,2.5],"45":[1,6.442,2.5],"46":[1,8.365,2.5],"47":[1,10.288,2.5],"48":[1,12.212,2.5],"49":[1,14.135,2.5],"50":[1,17.981,2.5],"51":[1,19.904,2.5],"52":[1,21.827,2.5],"53":[1,23.75,2.5],"54":[1,25.673,2.5],"55":[1,27.596,2.5],"56":[1,29.519,2.5],"57":[1,31.442,2.5],"58":[1,33.365,2.5],"59":[1,37.212,2.5],"60":[1,39.135,2.5],"61":[1,41.058,2.5],"62":[1,42.981,2.5],"63":[1,44.904,2.5],"64":[1,46.827,2.5],"65":[1,50.673,2.5],"66":[1,52.596,2.5],"67":[1,54.519,2.5],"68":[1,56.442,2.5],"69":[1,58.365,2.5],"70":[1,60.288,2.5],"71":[1,64.135,2.5],"72":[1,66.058,2.5],"73":[1,67.981,2.5],"74":[1,69.904,2.5],"75":[1,73.75,2.5],"76":[1,75.673,2.5],"77":[1,79.519,2.5],"78":[1,83.365,2.5],"79":[1,87.212,2.5],"80":[1,89.135,2.5],"81":[1,91.058,2.5],"82":[1,94.904,2.5],"83":[1,96.827,2.5],"84":[2,3.182,11.818],"85":[2,12.273,11.818],"86":[2,21.364,11.818],"87":[2,30.455,11.818],"88":[2,39.545,11.818],"89":[2,48.636,11.818],"90":[2,57.727,11.818],"91":[2,66.818,11.818],"92":[2,75.909,11.818],"93":[2,85.0,11.818]}}},"Q":{"G01-9":{"segs":[{"w":611,"h":189,"html":"<span class=\"typed-line\" data-width=\"550\" style=\"left:38px;top:12.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">9. It can reasonably be inferred from lines 79-83 (ending</span><span class=\"typed-line\" data-width=\"518\" style=\"left:69px;top:34.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">with the word breathe) that at that moment, the narra-</span><span class=\"typed-line\" data-width=\"68\" style=\"left:69px;top:56.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">tor felt:</span><span class=\"typed-line\" data-width=\"135\" style=\"left:69px;top:88.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">A. analytical.</span><span class=\"typed-line\" data-width=\"116\" style=\"left:69px;top:109.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">B. anxious.</span><span class=\"typed-line\" data-width=\"122\" style=\"left:69px;top:132.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">C. annoyed.</span><span class=\"typed-line\" data-width=\"125\" style=\"left:69px;top:154.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">D. assertive.</span>"}]},"G01-3":{"segs":[{"w":600,"h":185,"html":"<span class=\"typed-line\" data-width=\"549\" style=\"left:27px;top:9.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">3. In describing the first time she remembers seeing Tian</span><span class=\"typed-line\" data-width=\"519\" style=\"left:58px;top:31.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">at the restaurant, the narrator most nearly implies that</span><span class=\"typed-line\" data-width=\"205\" style=\"left:57px;top:51.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">for him, the visit was:</span><span class=\"typed-line\" data-width=\"135\" style=\"left:57px;top:84.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">A. enjoyable.</span><span class=\"typed-line\" data-width=\"159\" style=\"left:57px;top:107.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">B. complicated.</span><span class=\"typed-line\" data-width=\"111\" style=\"left:58px;top:129.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">C. hurried.</span><span class=\"typed-line\" data-width=\"157\" style=\"left:57px;top:151.96px;font-size:22px;font-weight:400;font-family:&quot;Times New Roman&quot;,Times,serif\">D. entertaining.</span>"}]}},"EX":{}};</script><script id="classroom-runtime">(function(){
+'use strict';
+const D=window.DATA,deck=document.getElementById('deck'),slides=[...document.querySelectorAll('.slide')];if(!D||!deck)return;
+const math=!!document.querySelector('.mwork');let current=-1,svgId=0;
+function range(s){return(s||'').split(',').flatMap(x=>{let[a,b]=x.split('-').map(Number);return a?Array.from({length:(b||a)-a+1},(_,i)=>a+i):[]})}
+function svgMarkup(s){let prefix='act'+(++svgId)+'_';let ids=[...s.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);for(let id of ids)s=s.split('id="'+id+'"').join('id="'+prefix+id+'"').split('#'+id+'"').join('#'+prefix+id+'"').split('#'+id+')').join('#'+prefix+id+')');return s}
+function typed(data){
+ const page=document.createElement('div');page.className='reading-prose full-reading';
+ let para=null,last=null;
+ for(let si=0;si<data.segs.length;si++){
+  const s=data.segs[si],raw=document.createElement('div');raw.innerHTML=s.html;
+  const lines=[...raw.querySelectorAll('.typed-line')].map(e=>({e,t:e.textContent,x:parseFloat(e.style.left)||0,y:parseFloat(e.style.top)||0,size:parseFloat(e.style.fontSize)||22}));
+  const body=lines.filter(l=>!(/^\d+$/.test(l.t.trim())&&l.x<45));
+  const baseX=Math.min(...body.filter(l=>l.x>=45).map(l=>l.x));
+  const refs=Object.entries(data.lines||{}).filter(([n,r])=>r[0]===si);
+  for(const l of body){
+   const mid=(l.y+l.size/2)/s.h*100;l.indent=l.x-baseX;
+   const ranked=refs.map(([n,r])=>({n:+n,r,d:Math.abs(mid-(r[1]+r[2]/2))})).sort((a,b)=>a.d-b.d);
+   const hit=ranked[0],n=hit&&hit.d<hit.r[2]*.48?hit.n:null;
+   const heading=/^Passage [ABIVX]+(?: by|$)/.test(l.t.trim());
+   const start=!para||heading||(!n&&last?.n)|| (n&&!last?.n) || (n&&last?.n&&(l.indent-(last.indent||0)>20||(si===last.si&&l.y-last.y>l.size*1.65)));
+   if(start){para=document.createElement('p');para.className=n?'source-paragraph':'source-metadata';page.append(para)}
+   const row=document.createElement('span');row.className='reading-source-line';row.dataset.segment=si;
+   row.dataset.sourceTop=l.y/s.h*100;row.dataset.sourceBottom=(l.y+l.size)/s.h*100;
+   if(n!==null)row.dataset.originalLine=n;
+   const num=document.createElement('span');num.className='reading-line-number';num.textContent=n===null?'':n;
+   if(n!==null){num.setAttribute('aria-label','原卷第 '+n+' 行');if(n%5===0)num.classList.add('line-anchor')}
+   const words=document.createElement('span');words.className='reading-line-words';words.innerHTML=l.e.innerHTML;
+   words.style.fontWeight=l.e.style.fontWeight||'400';words.style.fontStyle=l.e.style.fontStyle||'normal';
+   if(heading)row.classList.add('passage-heading');
+   row.append(num,words);para.append(row);last={...l,n,si};
+  }
+ }
+ return page;
+}
+function fillPassage(el){
+ let key=el.dataset.p;if(!key&&el.dataset.ex)key=Object.keys(D.P).find(k=>el.dataset.ex.startsWith(k+'-'));
+ const data=D.P[key];if(!data)return;
+ el.dataset.p=key;el.removeAttribute('data-ex');el.removeAttribute('data-excerpt');el.innerHTML='';
+ const label=document.createElement('div');label.className='pvlab full-reading-toolbar';
+ const title=document.createElement('span');title.textContent='全文 · 原卷行号 · 向下滚动阅读';label.append(title);
+ const expand=document.createElement('button');expand.type='button';expand.className='reading-expand';expand.textContent='放大全文';
+ expand.onclick=()=>{const open=el.classList.toggle('reading-expanded');expand.textContent=open?'返回题目':'放大全文';expand.setAttribute('aria-expanded',String(open))};
+ const jump=document.createElement('input');jump.type='number';jump.min='1';jump.max=Math.max(...Object.keys(data.lines).map(Number));jump.placeholder='行号';jump.setAttribute('aria-label','跳转到原卷行号');
+ const go=document.createElement('button');go.type='button';go.textContent='定位';go.onclick=()=>{el.querySelectorAll('.line-located').forEach(x=>x.classList.remove('line-located'));const r=el.querySelector('[data-original-line="'+Number(jump.value)+'"]');if(r){r.classList.add('line-located');el.scrollTop+=(r.getBoundingClientRect().top-el.getBoundingClientRect().top)/(el.getBoundingClientRect().width/el.offsetWidth)-label.offsetHeight-12}};
+ jump.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();go.click()}});
+ label.append(expand,jump,go);el.append(label,typed(data));
+ el.mark=(ns,cls)=>{el.clear();let first=null;for(const n of ns){const row=el.querySelector('[data-original-line="'+n+'"]');if(row){row.classList.add(cls==='hint'?'reading-hint':'reading-evidence');first=first||row}}if(first)el.scrollTop+=(first.getBoundingClientRect().top-el.getBoundingClientRect().top)/(el.getBoundingClientRect().width/el.offsetWidth)-label.offsetHeight-12};
+ el.clear=()=>el.querySelectorAll('.reading-evidence,.reading-hint').forEach(e=>e.classList.remove('reading-evidence','reading-hint'));
+ el.resetExcerpt=()=>{el.classList.remove('reading-expanded');expand.textContent='放大全文';expand.setAttribute('aria-expanded','false');el.querySelectorAll('.line-located').forEach(x=>x.classList.remove('line-located'))};
+}
+document.querySelectorAll('.pv').forEach(fillPassage);
+function parse(q){
+ let stem='',stemHTML='',opts=[];
+ function lineHTML(e,skip){const c=e.cloneNode(true);let left=skip,w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);while(w.nextNode()&&left){let n=w.currentNode,k=Math.min(left,n.textContent.length);n.textContent=n.textContent.slice(k);left-=k}let h=c.innerHTML;if(e.style.fontStyle==='italic')h='<i>'+h+'</i>';if(e.style.textDecoration.includes('underline'))h='<u>'+h+'</u>';return h}
+ for(const seg of q.segs){let d=document.createElement('div');d.innerHTML=seg.html;for(const e of d.querySelectorAll('.typed-line')){let t=e.textContent;if(/www\.|crackab|actexam|GO ON TO|PLEASE DO NOT/i.test(t))continue;let skip=0;if(!stem&&!opts.length){const number=t.match(/^\d+[.,]\s*/);if(number){skip=number[0].length;t=t.slice(skip)}}let m=t.match(/^([A-HJ])\.\s*(.*)$/);if(m&&(opts.length?m[1]===({A:'B',B:'C',C:'D',F:'G',G:'H',H:'J'}[opts.at(-1).letter]):/[AF]/.test(m[1]))){opts.push({letter:m[1],text:m[2],html:lineHTML(e,skip+t.length-m[2].length)})}else if(opts.length){let o=opts.at(-1);o.text=o.text.endsWith('-')?o.text.slice(0,-1)+t:o.text+' '+t;o.html=/-((?:<\/[^>]+>)*)$/.test(o.html)?o.html.replace(/-((?:<\/[^>]+>)*)$/,'$1')+lineHTML(e,skip):o.html+' '+lineHTML(e,skip)}else{stem=stem.endsWith('-')?stem.slice(0,-1)+t:stem+(stem?' ':'')+t;stemHTML=/-((?:<\/[^>]+>)*)$/.test(stemHTML)?stemHTML.replace(/-((?:<\/[^>]+>)*)$/,'$1')+lineHTML(e,skip):stemHTML+(stemHTML?' ':'')+lineHTML(e,skip)}}}
+ return{stem,stemHTML,opts}
+}
+function choice(letter,text){let b=document.createElement('button');b.type='button';b.className='option';b.dataset.letter=letter;b.innerHTML='<span class="circle"></span><span class="option-letter"></span><span class="option-text"></span>';b.querySelector('.option-letter').textContent=letter;b.querySelector('.option-text').textContent=text;b.setAttribute('aria-pressed','false');return b}
+function button(label,fn){let b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=fn;return b}
+for(const sl of slides){
+ let work=sl.querySelector('.work,.mwork'),q=sl.querySelector('.qimg[data-q]');if(!work)continue;
+ sl.classList.add('classroom');let right=work.querySelector(':scope>.right'),parsed;
+ if(q){q.replaceChildren();if(math){let item=D.Q[q.dataset.q];q.innerHTML=svgMarkup(item.native);q.classList.add('math-native');q.style.setProperty('--native-width',(item.width||504)+'px')}else{parsed=parse(D.Q[q.dataset.q]);if(parsed.stem){let stem=document.createElement('p');stem.className='course-question-stem';stem.innerHTML=parsed.stemHTML||parsed.stem;q.append(stem)}let cards=sl.querySelectorAll('.vd');if(cards.length){for(let card of cards){let L=card.querySelector('.L').textContent.trim(),o=parsed.opts.find(x=>x.letter===L);let text=document.createElement('div');text.className='choice-text';text.innerHTML=o?.html||o?.text||'';card.querySelector('.L').after(text)}}else if(!sl.querySelector('.prac')){let choices=document.createElement('div');choices.className='letters';parsed.opts.forEach(o=>{let b=choice(o.letter,o.text);if(o.html)b.querySelector('.option-text').innerHTML=o.html;b.onclick=()=>{choices.querySelectorAll('button').forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')})};choices.append(b)});q.append(choices)}}}
+ const prac=sl.querySelector('.prac');if(prac){
+  const letters=prac.dataset.letters.split(''),ans=prac.dataset.ans,lb=prac.querySelector('.letters'),fb=prac.querySelector('.fb'),hint=prac.querySelector('.hintbox');let selected=null;lb.replaceChildren();fb.hidden=true;
+  letters.forEach(L=>{let o=parsed?.opts.find(o=>o.letter===L);let b=choice(L,o?.text||(math?'选择 '+L:''));if(o?.html)b.querySelector('.option-text').innerHTML=o.html;b.onclick=()=>{selected=L;lb.querySelectorAll('button').forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')});};lb.append(b)});
+  const tools=prac.querySelector('.tools');tools.replaceChildren();let back=button('返回题目／隐藏解析',reset),again=button('重新作答',reset);back.hidden=again.hidden=true;
+  let show=button('显示答案与解析',()=>{fb.replaceChildren();let head=document.createElement('div');head.className='res';head.textContent=(selected?(selected===ans?'回答正确。':'本次选择 '+selected+'。 '):'')+'答案：'+ans;let why=document.createElement('div');why.className='why';why.innerHTML=prac.querySelector('template.why').innerHTML;fb.append(head,why);let wrongs=document.createElement('div');wrongs.className='alts';for(let t of prac.querySelectorAll('template.wrong')){let e=document.createElement('div');e.innerHTML='<b>'+t.dataset.l+'</b> '+t.innerHTML;wrongs.append(e)}fb.append(wrongs);fb.hidden=false;back.hidden=again.hidden=false;sl.querySelectorAll('.pv').forEach(p=>p.mark(range(prac.dataset.ev)));show.hidden=true;});
+  tools.append(show,back,again);if(hint){hint.hidden=true;tools.append(button('提示／隐藏提示',()=>{hint.hidden=!hint.hidden;sl.querySelectorAll('.pv').forEach(p=>hint.hidden?p.clear():p.mark(range(prac.dataset.hint),'hint'))}))}
+  function reset(){selected=null;lb.querySelectorAll('button').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false')});fb.replaceChildren();fb.hidden=true;if(hint)hint.hidden=true;back.hidden=again.hidden=true;show.hidden=false;sl.querySelectorAll('.pv').forEach(p=>p.clear());right.scrollTop=0}
+  sl.resetPractice=reset;
+ }else if(/worked example|example \d|^example:|What a question looks like/i.test(sl.dataset.title||'')||sl.querySelector('.verdicts,.pv[data-hl],.reveal-steps')){
+  sl.querySelectorAll('.reveal-all,.reveal-steps').forEach(e=>e.remove());let units=[];
+  for(let child of [...right.children]){if(child.matches('.qimg'))continue;if(child.matches('.verdicts')){child.querySelectorAll('.vd').forEach(card=>{card.classList.add('hidden-v');units.push({show:()=>card.classList.remove('hidden-v'),hide:()=>card.classList.add('hidden-v')})})}else if(child.matches('.steps')){for(let step of child.children){step.classList.remove('hidden-s');units.push({show:()=>step.hidden=false,hide:()=>step.hidden=true})}}else units.push({show:()=>child.hidden=false,hide:()=>child.hidden=true})}
+  let evidence=[...sl.querySelectorAll('.pv[data-hl]')];if(evidence.length)units.unshift({show:()=>evidence.forEach(p=>p.mark(range(p.dataset.hl))),hide:()=>evidence.forEach(p=>p.clear())});
+  let n=0,bar=document.createElement('div');bar.className='teaching-controls';let next=button('显示下一步',()=>{if(n<units.length)units[n++].show();label()}),hide=button('重新隐藏',reset);bar.append(next,hide);right.insertBefore(bar,right.querySelector('.qimg')?.nextSibling||right.firstChild);
+  function label(){next.textContent=n>=units.length?'已全部显示':'显示下一步 ('+(n+1)+'/'+units.length+')';next.disabled=n>=units.length}
+  function reset(){n=0;units.forEach(u=>u.hide());sl.querySelectorAll('.selected').forEach(e=>e.classList.remove('selected'));label();right.scrollTop=0}sl.resetReveal=reset;reset();
+ }
+}
+function fit(){const scale=Math.min(innerWidth/1280,innerHeight/720)*.99;deck.style.transform='scale('+scale+')';deck.style.setProperty('--act-reading-font',(17.5/Math.max(scale,.99))+'px');deck.style.setProperty('--act-line-font',(14/Math.max(scale,.99))+'px')}
+function show(i){i=Math.max(0,Math.min(slides.length-1,i));if(current>=0)slides[current].classList.remove('active');current=i;let sl=slides[i];sl.classList.add('active');sl.querySelectorAll('.pv').forEach(p=>p.resetExcerpt?.());sl.resetPractice?.();sl.resetReveal?.();sl.querySelectorAll('.pv,.right,.mq').forEach(e=>e.scrollTop=0);document.getElementById('pg').textContent=(i+1)+' / '+slides.length;history.replaceState(null,'','#'+(i+1))}
+const menu=document.getElementById('menu');function menuToggle(){menu.hidden=!menu.hidden;if(!menu.hidden){menu.replaceChildren();slides.forEach((s,i)=>menu.append(button((i+1)+'. '+s.dataset.title,()=>{show(i);menu.hidden=true})))} }
+document.getElementById('prev').onclick=()=>show(current-1);document.getElementById('next').onclick=()=>show(current+1);document.getElementById('mbtn').onclick=menuToggle;
+document.addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();show(current+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(current-1)}else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);else if(e.key.toLowerCase()==='m')menuToggle();else if(e.key==='Escape')menu.hidden=true});
+window.courseShow=show;addEventListener('resize',fit);fit();show((parseInt(location.hash.slice(1))||1)-1);
+})();
+</script><style id="reading-font-unified">
+:root{--sans:Arial,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.classroom .reading-prose,.classroom .course-question-stem,.classroom .option,.classroom .choice-text,.classroom .option-letter,.classroom .L{font-family:Arial,"Helvetica Neue",sans-serif!important;font-size:18px!important;letter-spacing:normal!important;transform:none!important;font-weight:400;line-height:1.6!important}
+.fb .alts b{display:inline;width:auto}.reading-prose{padding:20px 22px 28px;overflow-wrap:break-word}.reading-prose p{margin:0 0 18px;white-space:normal}.reading-line-number{font:10px Arial,sans-serif;color:#687382;margin:0 5px 0 0;user-select:none}.reading-evidence{background:#ffe4a3}.reading-hint{background:#e0eafa}.reading-source-line{box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.classroom .course-question-stem{margin:0 0 20px}.stem .t{font-family:Arial,sans-serif!important}.classroom .why,.classroom .alts,.classroom .ask,.classroom .vd .desc,.classroom .vd .why{font-family:Arial,sans-serif;font-size:16px;line-height:1.55}
+</style><script id="reading-context-excerpts">/* Full passages are now the default; source line numbers remain fixed. */</script><style>.excerpt-omitted{display:none!important}.pv .context-toggle{margin-left:12px;font:12px Arial,sans-serif;padding:3px 7px;cursor:pointer}.pv .pvlab{white-space:normal}.pv.context-excerpt .seg{border-top:0}.pv.context-excerpt .reading-prose{padding-top:12px;padding-bottom:0}.context-gap{font:14px Arial,sans-serif;color:#718096;margin:12px 0}.reading-source-line{scroll-margin-top:50px}</style><style id="act-final-layout">
+/* ACT classroom refinement: fixed type hierarchy; never fill whitespace by enlarging type. */
+:root{--sans:Arial,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.slide:not(.cover){gap:12px}.slide:not(.cover)>header{flex:none}
+.slide>.grid{align-content:start;align-items:start;grid-auto-rows:max-content;flex:0 1 auto!important}
+.box{display:block;min-width:0;height:auto;align-self:start}.box p,.box li,.lead{font-size:20px;line-height:1.45}
+.box p+p{margin-top:9px}.box ul,.box ol{padding-left:24px}.box h3{font-size:22px;line-height:1.25;margin-bottom:10px}
+.slide:not(.classroom) .step p{font-size:20px;line-height:1.45}.slide:not(.classroom) .step h3{font-size:21px}
+.cn,.box p.cn,.box li.cn,.lead.cn,.step p.cn,.classroom .box p.cn,.classroom .ask p.cn{font-size:16.5px!important;font-weight:400!important;line-height:1.45!important}
+.box p .cn,.step p .cn,.classroom .cn,.cn-inline{font-size:16.5px!important;font-weight:400!important;line-height:1.45!important}
+span.cn{display:inline-block;margin-top:5px}.cnsub{font-size:20px!important;font-weight:400}
+header h2{line-height:1.18}header h2 .cn{font-size:18px!important;font-weight:400;line-height:1.35}
+table.t{table-layout:fixed;width:100%}table.t th,table.t td{font-size:18px;line-height:1.4;padding:8px 10px;overflow-wrap:break-word;white-space:normal!important}table.t th{font-size:17px}
+table.t td:first-child{font-weight:600}.slide>table.t{display:table;flex:0 1 auto}
+.classroom .reading-prose,.classroom .english-prose,.classroom .course-question-stem,.classroom .option,.classroom .choice-text,.classroom .option-letter,.classroom .L{font-size:18px!important;line-height:1.45!important}
+.reading-prose p,.english-prose p{margin-bottom:13px}.reading-prose,.english-prose{padding:17px 20px 22px}
+.classroom .right{align-items:stretch;justify-content:flex-start}.classroom .ask p,.classroom .box p,.classroom .box li,.classroom .step p,.classroom .step h3,.classroom .fb .why,.classroom .fb .wrong,.classroom .fml{font-size:17px!important;line-height:1.45!important}
+.classroom .fb .alts,.classroom .hintbox{font-size:16px;line-height:1.45}.classroom .box,.classroom .ask{height:auto;align-self:stretch}
+u,.question-target{text-decoration:underline;text-decoration-skip-ink:none;text-decoration-thickness:1px;text-underline-offset:3px;display:inline;white-space:normal}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;align-content:start;min-height:0;overflow:auto}
+.summary-card{border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:7px;background:#fff;padding:12px 16px;min-width:0}
+.summary-card h3{font:700 19px/1.25 var(--sans);color:var(--acc);margin:0 0 7px}.summary-card p{font:18px/1.45 var(--sans);color:var(--ink2);margin:0}
+.summary-card.self-check{background:var(--acc2)}.summary-resources{font:14px/1.4 var(--sans);color:var(--muted);flex:none}
+.summary-grid.seven{grid-template-columns:repeat(3,1fr)}.summary-grid.seven .summary-card:last-child{grid-column:span 3}
+.summary-grid.seven .summary-card p{font-size:17px}.summary-grid.seven .summary-card{padding:10px 14px}
+#nav{bottom:4px}.fml{line-height:1.45;max-width:100%;overflow-wrap:anywhere}
+.teacher-replacement{font-size:17px!important;line-height:1.45}.reading-prose span[style*="italic"]{font-style:italic}
+</style><script>window.KIT={"pace": 60, "prompts": {}};</script><script>/* ===== Classroom kit v1 (2026-10-18) ===== */
+(function(){
+var K=window.KIT||{};
+var deck=document.getElementById('deck');
+var slides=[].slice.call(deck.querySelectorAll('.slide'));
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+function go(i){if(!window.goSlide&&window.courseShow)window.goSlide=window.courseShow;if(window.goSlide)window.goSlide(i);}
+if(!window.goSlide&&window.courseShow)window.goSlide=window.courseShow;
+function cur(){return $('.slide.active',deck);}
+
+/* ---------- 1. type chips ---------- */
+var LABEL={plan:['🗓','Plan','课堂安排'],warm:['🔥','Warm-up','热身'],learn:['📘','Learn','讲解'],skill:['🛠','Skill builder','技能训练'],quick:['⚡','Quick check','抢答'],example:['👥','We do','师生共做'],practice:['✍️','You do','独立完成'],activity:['🎯','Activity','课堂活动'],trap:['🪤','Trap clinic','陷阱诊所'],recap:['📌','Recap','小结'],vocab:['🔤','Vocabulary','词汇'],exit:['🎟','Exit ticket','离堂小测'],homework:['🏠','Homework','课后练习'],next:['➡️','Next','下节预告']};
+slides.forEach(function(sl){var t=sl.dataset.ktype;if(!t||t==='cover'||!LABEL[t])return;var L=LABEL[t];
+  var c=el('div','k-chip','<span>'+L[0]+' '+L[1]+' · '+L[2]+'</span>'+(sl.dataset.kmin?'<span class="m">'+sl.dataset.kmin+'′</span>':''));sl.appendChild(c);});
+
+/* ---------- 2. poll ---------- */
+function makePoll(){var placeholder=document.createDocumentFragment();placeholder.markRight=function(){};return placeholder;}
+
+/* ---------- 3. timer ---------- */
+var T={left:0,total:0,run:false,iv:null,box:null};
+function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
+function timerBox(){
+  if(T.box)return T.box;
+  var b=el('div','', '<span>⏱</span><span class="d">0:00</span><button data-a="go">▶︎</button><button data-a="rs">↺</button><button data-s="30">0:30</button><button data-s="71">1:11</button><button data-s="180">3:00</button><button data-s="300">5:00</button><button data-s="600">10:00</button><button data-a="x">✕</button>');
+  b.id='k-timer';b.hidden=true;document.body.appendChild(b);
+  b.onclick=function(e){var t=e.target.closest('button');if(!t)return;
+    if(t.dataset.s){setT(+t.dataset.s,true);} else if(t.dataset.a==='go'){T.run?pauseT():startT();} else if(t.dataset.a==='rs'){setT(T.total,false);} else if(t.dataset.a==='x'){pauseT();b.hidden=true;}};
+  T.box=b;return b;
+}
+function draw(){var b=timerBox();b.querySelector('.d').textContent=fmt(T.left);b.classList.toggle('end',T.total>0&&T.left<=0);b.classList.toggle('warn',T.left>0&&T.left<=10);b.querySelector('[data-a=go]').textContent=T.run?'❚❚':'▶︎';}
+function startT(){if(T.left<=0)return;T.run=true;clearInterval(T.iv);var last=Date.now();T.iv=setInterval(function(){var n=Date.now();T.left-=(n-last)/1000;last=n;if(T.left<=0){T.left=0;pauseT();}draw();},200);draw();}
+function pauseT(){T.run=false;clearInterval(T.iv);draw();}
+function setT(s,start){pauseT();T.total=s;T.left=s;timerBox().hidden=false;draw();if(start)startT();}
+window.kTimer=setT;
+
+/* ---------- 4. pen ---------- */
+var pen={on:false,color:'#d63a3a',w:4,alpha:1,strokes:new Map(),cv:null,ctx:null};
+function penInit(){
+  var cv=el('canvas');cv.id='k-pen';cv.width=1280;cv.height=720;deck.appendChild(cv);pen.cv=cv;pen.ctx=cv.getContext('2d');
+  var tools=el('div','', '<button data-c="#d63a3a" style="background:#d63a3a"></button><button data-c="#1f5fbf" style="background:#1f5fbf"></button><button data-c="#1d7f52" style="background:#1d7f52"></button><button data-c="#ffd23f" data-h="1" style="background:#ffd23f" title="荧光笔"></button><button data-a="undo" title="撤销">↶</button><button data-a="clear" title="清除本页">🗑</button><button data-a="x" title="关闭 (P)">✕</button>');
+  tools.id='k-pentools';tools.hidden=true;document.body.appendChild(tools);
+  tools.onclick=function(e){var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.c){pen.color=b.dataset.c;pen.w=b.dataset.h?18:4;pen.alpha=b.dataset.h?.35:1;$$('button',tools).forEach(function(x){x.classList.toggle('on',x===b);});}
+    else if(b.dataset.a==='undo'){var a=pen.strokes.get(cur());if(a&&a.length){a.pop();redraw();}}
+    else if(b.dataset.a==='clear'){pen.strokes.set(cur(),[]);redraw();}
+    else togglePen(false);};
+  tools.querySelector('button').classList.add('on');
+  var drawing=null;
+  function pt(e){var r=deck.getBoundingClientRect();return [(e.clientX-r.left)*1280/r.width,(e.clientY-r.top)*720/r.height];}
+  cv.addEventListener('pointerdown',function(e){if(!pen.on)return;cv.setPointerCapture(e.pointerId);drawing={c:pen.color,w:pen.w,a:pen.alpha,p:[pt(e)]};var a=pen.strokes.get(cur())||[];a.push(drawing);pen.strokes.set(cur(),a);});
+  cv.addEventListener('pointermove',function(e){if(!drawing)return;drawing.p.push(pt(e));redraw();});
+  cv.addEventListener('pointerup',function(){drawing=null;});
+  var last=null;setInterval(function(){var c=cur();if(c!==last){last=c;redraw();setTimeout(function(){grow(c);},120);}},250);
+}
+/* enlarge exam text to use empty space (projector readability) */
+function grow(sl){if(!sl||sl._kgrown||!sl.querySelector('.work'))return;sl._kgrown=true;
+  function ok(els){return els.every(function(b){return !b||!b.clientHeight||b.scrollHeight<=b.clientHeight+1;});}
+  function fitOne(t,boxes,max){var start=parseFloat(getComputedStyle(t).fontSize)||18;var best=null;for(var f=max;f>start;f--){t.style.setProperty('font-size',f+'px','important');if(ok(boxes)){best=f;break;}}if(best==null)t.style.removeProperty('font-size');}
+  $$('.pv',sl).forEach(function(pv){if(pv.closest('.right')||pv.classList.contains('graph-split')||pv.classList.contains('vector-content')||pv.querySelector('svg,table'))return;var t=$('.typed-text',pv);if(!t)return;
+    var col=pv.parentNode,work=pv.closest('.work');var boxes=[pv,col,work].concat($$('.qimg,.right',sl));fitOne(t,boxes,col.querySelector('.qimg')?21:24);});
+}
+function redraw(){var c=pen.ctx;if(!c)return;c.clearRect(0,0,1280,720);(pen.strokes.get(cur())||[]).forEach(function(s){c.globalAlpha=s.a;c.strokeStyle=s.c;c.lineWidth=s.w;c.lineCap='round';c.lineJoin='round';c.beginPath();s.p.forEach(function(p,i){i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]);});c.stroke();});c.globalAlpha=1;}
+function togglePen(v){pen.on=(v==null)?!pen.on:v;pen.cv.classList.toggle('on',pen.on);$('#k-pentools').hidden=!pen.on;var nb=$('#k-penbtn');if(nb)nb.classList.toggle('on',pen.on);}
+penInit();
+
+/* ---------- 5. nav buttons + keys + help ---------- */
+var nav=$('#nav');
+if(nav){
+  var hb=el('button','k-nb','⌂');hb.title='课堂安排 (A)';hb.onclick=function(){var p=slides.findIndex(function(s){return s.dataset.ktype==='plan';});go(p<0?0:p);};
+  var tb=el('button','k-nb','⏱');tb.title='计时器 (T)';tb.onclick=function(){var b=timerBox();b.hidden=!b.hidden;draw();};
+  var pb=el('button','k-nb','✎');pb.id='k-penbtn';pb.title='画笔 (P)';pb.onclick=function(){togglePen();};
+  var qb=el('button','k-nb','?');qb.title='快捷键 (H)';qb.onclick=function(){help();};
+  nav.insertBefore(qb,nav.firstChild);nav.insertBefore(pb,nav.firstChild);nav.insertBefore(tb,nav.firstChild);nav.insertBefore(hb,nav.firstChild);
+}
+function help(){var h=$('#k-help');if(h){h.remove();return;}h=el('div','', '<div class="in"><h3>上课工具 · Classroom tools</h3>'+
+ '<div><kbd>← →</kbd> 翻页 · <kbd>M</kbd> 目录 · <kbd>A</kbd> 课堂安排</div>'+
+ '<div><kbd>T</kbd> 计时器（SAT 每题约 71 秒，按 1:11）</div>'+
+ '<div><kbd>P</kbd> 画笔：在任意页面上圈画；每页笔迹单独保存，可撤销</div>'+
+ '<div>🔍 <b>找证据</b>：点原文里的词标黄，再点“核对”看是否命中证据句</div>'+
+ '<div>🙋 <b>黄色虚线框</b>：先问学生，再点“显示下一步”</div>'+
+ '<div>🎲 <b>随机点题</b>：抢答页随机抽一题</div><div style="margin-top:10px;opacity:.7">点击任意处关闭</div></div>');
+ h.id='k-help';h.onclick=function(){h.remove();};document.body.appendChild(h);}
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;if(/INPUT|TEXTAREA/.test((e.target||{}).tagName||''))return;var k=e.key.toLowerCase();
+  if(k==='t'){var b=timerBox();b.hidden=!b.hidden;draw();}else if(k==='p'){togglePen();}else if(k==='h'||k==='?'){help();}else if(k==='a'){var p=slides.findIndex(function(s){return s.dataset.ktype==='plan';});go(p<0?0:p);}});
+
+/* ---------- 6. clue finder ---------- */
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+function wrapWords(root){if(root._kw)return;root._kw=true;
+  var tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
+  nodes.forEach(function(n){if(!n.nodeValue.trim()||(n.parentNode.closest&&n.parentNode.closest('.reading-line-number,.pvlab,.k-cluebar,button')))return;var frag=document.createDocumentFragment();n.nodeValue.split(/(\s+)/).forEach(function(p){if(!p)return;if(/^\s+$/.test(p))frag.appendChild(document.createTextNode(p));else{var s=el('span','k-w');s.textContent=p;frag.appendChild(s);}});n.parentNode.replaceChild(frag,n);});}
+$$('.pv').forEach(function(pv){
+  var tt=$('.typed-text',pv)||$('.reading-prose',pv)&&pv;if(!tt)return;
+  var sl=pv.closest('.slide');var prac=$('.prac',sl);
+  var ev=prac?ranges(prac.dataset.ev):ranges(pv.dataset.hl);
+  var bar=el('div','k-cluebar');var b1=el('button','k-btn',K.clueLabel||'🔍 找证据'),b2=el('button','k-btn','✓ 核对'),b3=el('button','k-btn','↺'),msg=el('span','k-cluemsg');
+  msg.hidden=true;b2.hidden=true;b3.hidden=true;
+  bar.appendChild(msg);bar.appendChild(b1);bar.appendChild(b2);bar.appendChild(b3);
+  var lab=$('.pvlab',pv);
+  if(pv.classList.contains('graph-split')||pv.classList.contains('vector-content')){bar.style.position='absolute';bar.style.top='4px';bar.style.right='10px';bar.style.margin='0';pv.style.position='relative';pv.appendChild(bar);}
+  else if(lab&&lab.nextSibling)pv.insertBefore(bar,lab.nextSibling);else pv.insertBefore(bar,pv.firstChild);
+  function clear(){$$('.k-w',pv).forEach(function(w){w.classList.remove('k-mark','k-hit','k-miss');});msg.hidden=true;}
+  b1.onclick=function(){wrapWords(tt);var on=!pv.classList.contains('k-cluemode');pv.classList.toggle('k-cluemode',on);b1.classList.toggle('on',on);b2.hidden=!on||!ev.length;b3.hidden=!on;if(!on)clear();};
+  tt.addEventListener('click',function(e){if(!pv.classList.contains('k-cluemode'))return;var w=e.target.closest('.k-w');if(!w)return;w.classList.remove('k-hit','k-miss');w.classList.toggle('k-mark');});
+  b3.onclick=clear;
+  b2.onclick=function(){var marked=$$('.k-w.k-mark,.k-w.k-hit,.k-w.k-miss',pv),hit=0;
+    if(pv.mark)pv.mark(ev);
+    marked.forEach(function(w){var ln=w.closest('[data-line]');var ok=(ln&&ev.indexOf(+ln.dataset.line)>=0)||!!w.closest('.evidence,.reading-evidence');w.classList.remove('k-mark');w.classList.add(ok?'k-hit':'k-miss');if(ok)hit++;});
+    msg.hidden=false;msg.textContent=marked.length?('命中 '+hit+' / '+marked.length+' 个词 · 证据已高亮'):'证据已高亮';};
+});
+
+/* ---------- 7. practice: poll + timer ---------- */
+$$('.prac,.mprac').forEach(function(w){
+  var letters=(w.dataset.letters||'ABCD').split('');var hw=(w.closest('.slide')||{}).dataset.ktype==='homework';var spr=w.dataset.type==='spr';
+  var poll=(hw||spr)?{markRight:function(){}}:makePoll(letters);var lb=$('.letters',w)||$('.spr',w);if(!hw&&!spr&&lb)w.insertBefore(poll,lb);
+  var pace=K.pace||71;
+  var tools=$('.tools',w);if(tools){var tb=el('button','','⏱ '+pace+'s');tb.className=(tools.querySelector('button')||{}).className||'';tb.classList.remove('hintbtn','showans','desbtn');tb.onclick=function(){setT(pace,true);};tools.appendChild(tb);}
+  new MutationObserver(function(){if($('.res.ok',w))poll.markRight(w.dataset.ans);}).observe($('.fb',w),{childList:true});
+});
+
+/* ---------- 8. worked examples: ask prompts + poll ---------- */
+var P=K.prompts||{};
+var DEF={read:{ask:'先别看分析：这道题在问什么？请一位同学用自己的话说。',listen:'能说出题型和空格/划线处要填的内容'},
+ locate:{ask:'证据在哪里？请学生先在原文里指出来（可用 🔍 找证据）。',listen:'能指出具体的词或句子，而不是“大概在中间”'},
+ predict:{ask:'看选项之前，每人先说出自己的预测答案。',listen:'预测要简单、具体，可以用中文'},
+ compare:{ask:'哪个选项最接近你的预测？请说明依据。',listen:'请指出对应的原文证据'},
+ eliminate:{ask:'挑一个错误选项，说出它错在哪一类陷阱。',listen:'太强 / 相反 / 原文没有 / 只对一半 …'}};
+function prompt(key){var p=P[key]||DEF[key];if(!p)return null;var labels=Object.assign({read:'Ask · 读题',locate:'Ask · 找证据',predict:'Ask · 先预测',compare:'Check · 核对',eliminate:'Ask · 排错'},K.labels||{});
+  return el('div','k-ask','<b class="q">🙋 '+labels[key]+'</b>'+p.ask+(p.listen?'<span class="l">👂 听什么：'+p.listen+'</span>':''));}
+function keyOf(txt){txt=(txt||'').toLowerCase();var km=K.keymap||[];for(var i=0;i<km.length;i++){if(new RegExp(km[i][0],'i').test(txt))return km[i][1];}if(/read the question|读题/.test(txt))return 'read';if(/locate|找|定位/.test(txt))return 'locate';if(/predict|预测/.test(txt))return 'predict';if(/compare|对比|对照/.test(txt))return 'compare';if(/eliminate|排除/.test(txt))return 'eliminate';return null;}
+slides.forEach(function(sl){
+  var units=sl._revealUnits;if(!units||!sl.resetReveal)return;
+  var title=(sl.dataset.title||'').toLowerCase();
+  var ins=[];
+  if(units.some(function(u){return u.matches('.st');})){
+    units.slice().forEach(function(u){if(!u.matches('.st'))return;var k=keyOf(($('h3',u)||{}).textContent);var p=k&&prompt(k);if(p)ins.push([u,p]);});
+  } else if(/the question/.test(title)){var p=prompt('read');if(p)ins.push([units[0],p]);}
+  else if(/the evidence/.test(title)){var p2=prompt('locate'),u2=units.find(function(u){return /clue|claim|locate|facts|key|find|data/i.test(($('h3',u)||{}).textContent||'');})||units[0];if(p2)ins.push([u2,p2]);var u3=units.find(function(u){return /predict/i.test(($('h3',u)||{}).textContent||'');});if(u3){var p3=prompt('predict');if(p3)ins.push([u3,p3]);}}
+  else if(/the choices/.test(title)){var p4=prompt('compare');if(p4)ins.push([units[0],p4]);}
+  ins.forEach(function(x){x[0].parentNode.insertBefore(x[1],x[0]);var i=units.indexOf(x[0]);units.splice(i,0,x[1]);});
+  if(ins.length)sl.resetReveal();
+  // poll when the choices are visible on this slide
+  if($('.qimg',sl)&&!/the question/.test(title)){var bar=$('.teaching-controls',sl);if(bar){var pl=makePoll(['A','B','C','D']);bar.parentNode.insertBefore(pl,bar.nextSibling);}}
+});
+
+/* ---------- 9. quick check tools ---------- */
+slides.forEach(function(sl){var g=$('.qc-grid',sl);if(!g)return;var bar=el('div','k-qctools');
+  var r=el('button','k-btn warm','🎲 随机点题'),o=el('button','k-btn','全部展开'),c=el('button','k-btn','全部收起');bar.appendChild(r);bar.appendChild(o);bar.appendChild(c);g.parentNode.insertBefore(bar,g);
+  r.onclick=function(){var ds=$$('details.qc',g),closed=ds.filter(function(d){return !d.open;});var pool=closed.length?closed:ds;ds.forEach(function(d){d.classList.remove('k-pick');});var d=pool[Math.floor(Math.random()*pool.length)];void d.offsetWidth;d.classList.add('k-pick');};
+  o.onclick=function(){$$('details.qc',g).forEach(function(d){d.open=true;});};c.onclick=function(){$$('details.qc',g).forEach(function(d){d.open=false;d.classList.remove('k-pick');});};});
+
+/* ---------- 10. MCQ ---------- */
+$$('.k-mcq').forEach(function(q){
+  var ans=q.dataset.ans,opts=$$('.k-opt',q),out=$('.k-out',q)||q.appendChild(el('div','k-out'));
+  var why=($('template.k-why',q)||{}).innerHTML||'';var wrong={};$$('template.k-wrong',q).forEach(function(t){wrong[t.dataset.l]=t.innerHTML;});
+  var first=null;
+  function reveal(){opts.forEach(function(o){if(o.dataset.l===ans)o.classList.add('ok');});out.innerHTML='<div class="res">✓ Answer: '+ans+'</div>'+why;if(poll)poll.markRight(ans);score();}
+  opts.forEach(function(o){o.onclick=function(){var L=o.dataset.l;if(first==null){first=(L===ans);q.dataset.first=first?'y':'n';}
+    if(L===ans){reveal();}else{o.classList.add('no');if(!$('.fbx',o)&&wrong[L])o.appendChild(el('span','fbx',wrong[L]));score();}};});
+  var poll=null;
+  if(!q.classList.contains('compact')){poll=makePoll(opts.map(function(o){return o.dataset.l;}));q.insertBefore(poll,$('.k-opts',q));}
+  var tools=el('div','k-row');var rv=el('button','k-btn dark','显示答案'),rs=el('button','k-btn','重置');tools.appendChild(rv);tools.appendChild(rs);q.insertBefore(tools,out);
+  rv.onclick=reveal;rs.onclick=function(){first=null;delete q.dataset.first;opts.forEach(function(o){o.classList.remove('ok','no');var f=$('.fbx',o);if(f)f.remove();});out.innerHTML='';score();};
+});
+function score(){slides.forEach(function(sl){var s=$('.k-score',sl);if(!s)return;var qs=$$('.k-mcq',sl),ok=qs.filter(function(q){return q.dataset.first==='y';}).length,done=qs.filter(function(q){return q.dataset.first;}).length;s.textContent='首次答对 '+ok+' / '+qs.length+(done<qs.length?'（还剩 '+(qs.length-done)+' 题）':'');});}
+score();
+
+/* ---------- 11. sort activities ---------- */
+$$('.k-sort').forEach(function(s){
+  var cats=(s.dataset.cats||'').split('|');
+  $$('.k-item',s).forEach(function(it){var box=el('div','k-cats'),fb=el('div','k-fb');var why=($('template.k-why',it)||{}).innerHTML||'';
+    cats.forEach(function(c){var b=el('button','',c);b.onclick=function(){if(it.classList.contains('done'))return;if(c===it.dataset.cat){b.classList.add('ok');it.classList.add('done');fb.innerHTML='✓ '+why;}else{b.classList.add('no');fb.innerHTML='再想想 · Try again';}};box.appendChild(b);});
+    it.appendChild(box);it.appendChild(fb);
+    it.reveal=function(){$$('button',box).forEach(function(b){if(b.textContent===it.dataset.cat)b.classList.add('ok');});it.classList.add('done');fb.innerHTML='✓ '+why;};
+    it.reset=function(){$$('button',box).forEach(function(b){b.className='';});it.classList.remove('done');fb.innerHTML='';};});
+});
+$$('.k-revealall').forEach(function(b){var sl=b.closest('.slide');b.onclick=function(){$$('.k-item',sl).forEach(function(i){i.reveal();});$$('.k-flip',sl).forEach(function(f){f.classList.add('open');});};});
+$$('.k-resetall').forEach(function(b){var sl=b.closest('.slide');b.onclick=function(){$$('.k-item',sl).forEach(function(i){i.reset();});$$('.k-flip',sl).forEach(function(f){f.classList.remove('open');});};});
+
+/* ---------- 12. flips, agenda, confidence ---------- */
+$$('.k-flip').forEach(function(f){f.onclick=function(){f.classList.toggle('open');};});
+$$('.k-ag[data-go]').forEach(function(a){a.onclick=function(){go(+a.dataset.go-1);};});
+$$('.k-conf').forEach(function(c){$$('button',c).forEach(function(b){b.onclick=function(){$$('button',c).forEach(function(x){x.classList.toggle('on',x===b);});};});});
+$$('[data-timer]').forEach(function(b){b.onclick=function(){setT(+b.dataset.timer,true);};});
+
+/* ---------- 13. step-by-step reveal on teaching slides ---------- */
+slides.forEach(function(sl){var t=sl.dataset.ktype;if(['learn','skill','recap','trap'].indexOf(t)<0||sl.classList.contains('k-new'))return;
+  var items=$$('.steps>.step',sl);if(items.length<3)items=$$('.grid>.box',sl);if(items.length<3)items=$$('.summary-grid>.summary-card',sl);if(items.length<3)return;
+  var bar=el('div','k-row');bar.style.cssText='position:absolute;right:22px;top:44px;z-index:4';var b=el('button','k-btn','▶ 逐条讲解');bar.appendChild(b);sl.appendChild(bar);
+  var on=false,n=0;
+  function apply(){items.forEach(function(x,i){x.style.visibility=(on&&i>=n)?'hidden':'';});b.textContent=!on?'▶ 逐条讲解':(n<items.length?'下一条 ('+n+'/'+items.length+')':'↺ 全部显示');b.classList.toggle('on',on);}
+  b.onclick=function(){if(!on){on=true;n=1;}else if(n<items.length){n++;}else{on=false;}apply();};
+});
+
+/* ---------- 14. math examples: step-by-step solution with prompts ---------- */
+var MP=Object.assign({idea:{ask:'先别看解析：这题问什么？你打算怎么做？请一位同学说思路。',listen:'说出已知、所求和方法'},
+ step:{ask:'第一步做什么？请学生先说，再揭晓。',listen:'每一步都要说出“为什么这样做”'},
+ desmos:{ask:'能不能用 Desmos 验证？输入什么？',listen:'图像交点 / 表格 / 代入检验'},
+ answer:{ask:'每人先写下最终答案，再揭晓。',listen:'答的是题目问的量吗？单位对吗？'}},K.mathPrompts||{});
+function mprompt(k){var p=MP[k];var L={idea:'Ask · 思路',step:'Ask · 下一步',desmos:'Ask · Desmos',answer:'Ask · 答案'}[k];return el('div','k-ask','<b class="q">🙋 '+L+'</b>'+p.ask+(p.listen?'<span class="l">👂 听什么：'+p.listen+'</span>':''));}
+$$('.solwrap').forEach(function(sw){
+  var sl=sw.closest('.slide'),right=sw.closest('.right'),btn=$('.solbtn',right);if(!btn)return;
+  var units=[];
+  [].slice.call(sw.children).forEach(function(c){
+    if(c.matches('.box.white')){var grp=null;[].slice.call(c.children).forEach(function(d){
+      if(d.matches('ol,ul')&&d.children.length>1){grp=null;[].slice.call(d.children).forEach(function(li){units.push([li]);});}
+      else if(d.tagName==='H3'||!grp){grp=[d];units.push(grp);}else grp.push(d);});}
+    else units.push([c]);});
+  if(units.length<2)return;
+  function first(g){return g[0];}
+  var ins=[];var firstLi=units.find(function(u){return u[0].tagName==='LI';});var dp=units.find(function(u){return u[0].matches('.dpanel');});var acc=units.find(function(u){return u[0].matches('.box.acc');});
+  ins.push([units[0],mprompt('idea')]);if(firstLi)ins.push([firstLi,mprompt('step')]);if(dp)ins.push([dp,mprompt('desmos')]);if(acc)ins.push([acc,mprompt('answer')]);
+  ins.forEach(function(x){var p=x[1],t=x[0][0];if(t.tagName==='LI'){t=t.parentNode;}t.parentNode.insertBefore(p,t);units.splice(units.indexOf(x[0]),0,[p]);});
+  var bar=el('div','k-row');var nx=el('button','k-btn dark','显示下一步'),all=el('button','k-btn','全部显示'),rs=el('button','k-btn','重新隐藏');
+  var tm=el('button','k-btn warm','⏱ 2:00');tm.onclick=function(){setT(120,true);};
+  bar.appendChild(nx);bar.appendChild(all);bar.appendChild(rs);bar.appendChild(tm);
+  btn.hidden=true;btn.parentNode.insertBefore(bar,btn);
+  var accTxt=acc?acc[0].textContent:'';var m=accTxt.match(/Answer:\s*\(?([A-D])\b/);
+  if(m){var pl=makePoll(['A','B','C','D']);btn.parentNode.insertBefore(pl,btn);sw._poll=pl;sw._ans=m[1];}
+  var n=0;
+  function apply(){units.forEach(function(g,i){g.forEach(function(u){u.classList.toggle('k-hide',i>=n);});});sw.hidden=n===0;nx.disabled=n>=units.length;nx.textContent=n>=units.length?'已全部显示':(units[n]&&units[n][0].matches('.box.acc')?'显示答案':'显示下一步');if(n>=units.length&&sw._poll)sw._poll.markRight(sw._ans);
+    var last=units[n-1]&&units[n-1][units[n-1].length-1];if(last&&right){setTimeout(function(){var r=last.getBoundingClientRect(),c=right.getBoundingClientRect();if(r.bottom>c.bottom)right.scrollTop+=r.bottom-c.bottom+12;},30);}}
+  nx.onclick=function(){if(n<units.length)n++;apply();};all.onclick=function(){n=units.length;apply();};rs.onclick=function(){n=0;apply();if(right)right.scrollTop=0;};
+  apply();
+});
+
+/* ---------- 15. polls on worked-example slides of decks without exposed reveal units ---------- */
+slides.forEach(function(sl){if(sl._revealUnits)return;var bar=$('.teaching-controls',sl);if(!bar||!$('.qimg',sl)||/the question/i.test(sl.dataset.title||'')||$('.k-poll',sl))return;
+  var L=$$('.vd .L',sl).map(function(e){return e.textContent.trim();});if(L.length<2)L=['A','B','C','D'];var pl=makePoll(L);bar.parentNode.insertBefore(pl,bar.nextSibling);});
+})();
+</script></body></html>
