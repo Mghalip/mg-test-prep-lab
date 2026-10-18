@@ -5,12 +5,10 @@
   const labels={'sat-topic':'SAT 专题','sat-mock':'SAT 模考','act-mock':'ACT 模考'};
   const topicNames=r=>[...new Set((r.items||[]).filter(x=>x&&x.topic).map(x=>x.topic))];
   const examName=r=>r.kind==='sat-mock'?String(r.exam??'').replace(/^A(\d+)$/, 'Practice$1'):r.kind==='sat-topic'?(topicNames(r).join('、')||r.exam):r.exam;
-  function topicInfo(r){
-    if(r.kind!=='sat-topic')return '';
-    const items=(r.items||[]).filter(x=>x&&typeof x==='object');
-    const sections=[...new Set(items.map(x=>x.section==='Reading'?'阅读':x.section==='Writing'?'语法':x.section).filter(Boolean))];
-    const groups=new Map();for(const x of items){const label=x.topic||'未记录专题';if(!groups.has(label))groups.set(label,[]);groups.get(label).push(x.number||x.id)}
-    return `<br><small>${esc(sections.join(' / '))} · ${items.length} 题</small><details><summary>查看本次练习题目</summary>${[...groups].map(([name,ids])=>`<p><strong>${esc(name)}</strong><br>${ids.map(esc).join('、')}</p>`).join('')}</details>`;
+  function practiceLabel(r){
+    if(r.kind!=='sat-topic')return `${labels[r.kind]}<br>${esc(examName(r))}`;
+    const sections=[...new Set((r.items||[]).filter(x=>x&&typeof x==='object').map(x=>x.section==='Reading'?'阅读':x.section==='Writing'?'语法':x.section).filter(Boolean))];
+    return `SAT 专题<br>${esc(sections.join(' / ')||'科目未记录')}<br>${esc(examName(r))}`;
   }
   const date=value=>new Date(value).toLocaleString('zh-CN');
   const name=id=>profiles.find(p=>p.id===id)?.display_name || id;
@@ -43,7 +41,7 @@
     const current=++requestId;document.getElementById('records').textContent='正在加载…';document.getElementById('previous').disabled=true;document.getElementById('next').disabled=true;
     try{const f=filters();if(f.from&&f.to&&f.from>f.to)throw Error('结束日期不能早于开始日期。');const {data,error,count}=await query('id,student_id,kind,exam,started,submitted,mode,summary,items',true).range(page*size,(page+1)*size-1);if(current!==requestId)return;if(error)throw error;loaded=data;
       document.getElementById('stats').innerHTML=`<div><strong>${count??"—"}</strong>筛选范围内练习次数</div>${teacherView?`<div><strong>${profiles.length}</strong>已建立学习档案的账号</div>`:''}`;
-      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th><th>错题分析</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${labels[r.kind]}<br>${esc(examName(r))}${topicInfo(r)}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td><td>${r.kind==='sat-topic'?`<div class="analysis-progress"><strong>0/${wrongItems(r).length}</strong><span class="muted">暂未提交</span></div>`:`<div class="analysis-progress"><strong data-progress="${i}">正在读取…</strong><button data-wrong="${i}" disabled>查看错题分析</button></div>`}</td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
+      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th><th>错题分析</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${practiceLabel(r)}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td><td>${r.kind==='sat-topic'?`<div class="analysis-progress"><strong>0/${wrongItems(r).length}</strong><span class="muted">暂未提交</span></div>`:`<div class="analysis-progress"><strong data-progress="${i}">正在读取…</strong><button data-wrong="${i}" disabled>查看错题分析</button></div>`}</td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
       document.querySelectorAll('[data-row]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.row)]));
       document.querySelectorAll('[data-wrong]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.wrong)],true));
       data.forEach((r,i)=>{if(r.kind!=='sat-topic')updateProgress(r,i,current)});
