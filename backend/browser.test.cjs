@@ -59,8 +59,8 @@ const progressRow={...rows.find(r=>r.kind==='sat-mock'),id:crypto.randomUUID(),s
 progressRow.items=progressRow.items.slice(0,7).map((x,i)=>({...x,correct:i===5,scored:i!==6}));rows.unshift(progressRow);
 for(const i of [0,5,6])reflections.push({student_id:progressRow.student_id,attempt_id:progressRow.id,question_id:progressRow.items[i].id,revision:1,reasoning:'Submitted'});
 await tp.click('#refresh');await tp.waitForFunction(()=>document.querySelector('[data-progress="0"]')?.textContent==='1/5');
-await tp.locator('[data-wrong="0"]').click();await tp.waitForFunction(()=>document.querySelector('#attempt-detail')?.textContent.includes('共 5 道错题'));
-assert.equal(await tp.locator('#attempt-detail [data-reasoning]').count(),5);
-console.log('PASS wrong analysis progress 1/5 excludes correct/unscored questions; wrong-only entry');
+await tp.locator('[data-wrong="0"]').click();await tp.waitForFunction(()=>document.querySelector('#attempt-detail')?.textContent.includes('已提交错题分析 · 1 道'));
+assert.equal(await tp.locator('#attempt-detail [data-reasoning]').count(),1);
+console.log('PASS wrong analysis progress 1/5 excludes correct/unscored questions; submitted-only wrong analysis entry');
 assert.deepEqual(errors,[]);console.log('PASS no browser JavaScript errors');await Promise.all(browser.contexts().map(c=>c.close()));await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
