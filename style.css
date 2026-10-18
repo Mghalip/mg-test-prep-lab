@@ -62,3 +62,9 @@ header{flex-wrap:wrap;gap:8px}h1{font-size:28px}.grid,.grammar-grid{grid-templat
 }
 
 .subject-modules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0}.subject-module{display:flex;flex-direction:column;gap:14px;background:white;border:1px solid #d5def0;border-radius:16px;padding:28px;color:#182641;text-decoration:none}.subject-module h2{font-size:28px;margin:0}.subject-module p{line-height:1.7;flex:1}.subject-module strong{color:#234dcc}.subject-module:hover,.subject-module:focus-visible{border-color:#234dcc;background:#f4f7ff}.subject-links a[aria-current=page]{background:#234dcc;color:white}@media(max-width:800px){.subject-modules{grid-template-columns:1fr}}
+
+/* Reading and grammar topic cards share the same tracks and dimensions. */
+#app > .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,245px),1fr));grid-auto-rows:minmax(300px,auto)}
+#app > .grid > .card{height:100%;overflow-wrap:anywhere}
+@media(max-width:900px){#app > .grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#app > .grid{grid-template-columns:1fr;grid-auto-rows:minmax(300px,auto)}}
