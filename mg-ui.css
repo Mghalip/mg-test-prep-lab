@@ -802,3 +802,8 @@ aside > .mg-identity .mg-name {
 #act-app .total-score small{color:#dbe5f5}
 #act-app .science-score{max-width:1200px;margin:0 auto 24px}
 @media(max-width:650px){#mock-app .ordered-sat-scores{grid-template-columns:1fr}#act-app .ordered-act-scores{grid-template-columns:repeat(2,minmax(0,1fr))}.account .result-score-strip{gap:10px}.account .result-score-strip .score-total{padding-left:10px}}
+.performance-breakdown{display:grid;gap:10px;margin:12px 0;font-size:13px;line-height:1.6}
+.performance-breakdown>div{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--mg-line);padding-top:8px}
+.performance-breakdown strong{font-size:13px;color:var(--mg-ink)}
+.performance-breakdown span,.performance-breakdown small{color:var(--mg-muted);font-size:13px}
+.module-performance{overflow-x:auto;margin:20px 0}.module-performance table{min-width:500px}

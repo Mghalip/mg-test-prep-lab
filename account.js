@@ -53,13 +53,23 @@
       document.getElementById('previous').disabled=page===0;document.getElementById('next').disabled=count===null?data.length<size:(page+1)*size>=count;message('');
     }catch(e){if(current!==requestId)return;message(e.message);document.getElementById('records').textContent='加载失败，请点击刷新重试。'}
   }
+  function performanceBreakdown(r){
+    if(r.kind==='sat-topic')return '';
+    const groups=new Map();
+    for(const x of r.items||[]){if(!x||typeof x!=='object')continue;const label=String(x.section||'未分类').replace(/^RW\b/,'Verbal').replace(/^Reading and Writing/,'Verbal');if(!groups.has(label))groups.set(label,[]);groups.get(label).push(x)}
+    return `<div class="performance-breakdown">${[...groups].map(([label,items])=>{
+      const correct=items.filter(x=>x.correct===true).length,blank=items.filter(x=>x.answer==null||String(x.answer).trim()==='').length;
+      const scored=items.filter(x=>x.scored!==false),scoredCorrect=scored.filter(x=>x.correct===true).length;
+      return `<div><strong>${esc(label)}</strong><span>答对 ${correct}/${items.length} · 错 ${items.length-correct} 题${blank?`（含未作答 ${blank} 题）`:''}</span>${scored.length!==items.length?`<small>计分题答对 ${scoredCorrect}/${scored.length}</small>`:''}</div>`;
+    }).join('')}</div>`;
+  }
   function compactScore(r){
     if(r.kind==='sat-topic')return esc(score(r));
     const p=r.kind==='sat-mock'?SatScore.fromModules(r.summary?.modules):null;
     let values;
     if(r.kind==='sat-mock')values=[['Verbal',p?.rw.center??'—'],['Math',p?.math.center??'—'],['总分',p?.total.center??'—']];
     else {const sections=r.summary?.sections||[];values=['reading','english','math'].map(id=>[id==='math'?'Math':id==='reading'?'Reading':'English',sections.find(s=>s.id===id)?.scale??'—']);values.push(['总分',r.summary?.composite??'—']);}
-    return `<div class="result-score-strip">${values.map(([label,value],i)=>`<span class="${i===values.length-1?'score-total':''}"><small>${label}</small><strong>${esc(value)}</strong></span>`).join('')}</div>${r.kind==='sat-mock'?'<small class="muted">练习预测分</small>':(r.summary?.sections||[]).filter(s=>s.id==='science').map(s=>`<small class="muted">Science ${esc(s.scale??'—')}（单独计分）</small>`).join('')}`;
+    return `<div class="result-score-strip">${values.map(([label,value],i)=>`<span class="${i===values.length-1?'score-total':''}"><small>${label}</small><strong>${esc(value)}</strong></span>`).join('')}</div>${r.kind==='sat-mock'?'<small class="muted">练习预测分</small>':(r.summary?.sections||[]).filter(s=>s.id==='science').map(s=>`<small class="muted">Science ${esc(s.scale??'—')}（单独计分）</small>`).join('')}${performanceBreakdown(r)}`;
   }
   function renderReviewQueue(){
     const host=document.getElementById('review-queue');if(!host)return;
@@ -106,7 +116,7 @@
         if(analysisError)throw analysisError;
         const submitted=new Set((analyses||[]).map(x=>x.question_id));detailItems=wrongItems(r).filter(x=>submitted.has(x.id));
       }
-      dialog.innerHTML=`<div class="detail-top"><h2>${esc(name(r.student_id))} · ${esc(examName(r))}</h2><button onclick="this.closest('dialog').close()">关闭</button></div><p>${esc(score(r))} · ${esc(date(r.submitted))}</p>${wrongOnly?`<p>已提交错题分析 · ${detailItems.length} 道${detailItems.length?'':' · 暂未提交'}</p>`:''}<div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>答案</th><th>结果</th><th>用时</th><th>思路与反馈</th></tr></thead><tbody>${detailItems.map((x,i)=>`<tr><td>${esc(r.kind==='sat-topic'?[x.section==='Reading'?'阅读':x.section==='Writing'?'语法':x.section,x.topic].filter(Boolean).join(' · '):(x.section||x.topic||''))} · ${esc(x.number||x.id)}${x.scored===false?'（不计分）':''}</td><td>${esc(x.answer||'未作答')}</td><td>${esc(x.expected||'—')}</td><td class="${x.correct?'good':'bad'}">${x.correct?'正确':'错误'}</td><td>${Math.round(Number(x.seconds)||0)} 秒</td><td>${r.kind!=='sat-topic'?`<button data-reasoning="${i}">${teacherView?'查看思路 / 反馈':'写分析 / 看反馈'}</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`;
+      dialog.innerHTML=`<div class="detail-top"><h2>${esc(name(r.student_id))} · ${esc(examName(r))}</h2><button onclick="this.closest('dialog').close()">关闭</button></div><p>${esc(score(r))} · ${esc(date(r.submitted))}</p>${performanceBreakdown(r)}${wrongOnly?`<p>已提交错题分析 · ${detailItems.length} 道${detailItems.length?'':' · 暂未提交'}</p>`:''}<div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>答案</th><th>结果</th><th>用时</th><th>思路与反馈</th></tr></thead><tbody>${detailItems.map((x,i)=>`<tr><td>${esc(r.kind==='sat-topic'?[x.section==='Reading'?'阅读':x.section==='Writing'?'语法':x.section,x.topic].filter(Boolean).join(' · '):(x.section||x.topic||''))} · ${esc(x.number||x.id)}${x.scored===false?'（不计分）':''}</td><td>${esc(x.answer||'未作答')}</td><td>${esc(x.expected||'—')}</td><td class="${x.correct?'good':'bad'}">${x.correct?'正确':'错误'}</td><td>${Math.round(Number(x.seconds)||0)} 秒</td><td>${r.kind!=='sat-topic'?`<button data-reasoning="${i}">${teacherView?'查看思路 / 反馈':'写分析 / 看反馈'}</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`;
       dialog.querySelectorAll('[data-reasoning]').forEach(button=>button.onclick=()=>reasoning(r,detailItems[Number(button.dataset.reasoning)],wrongOnly));
       if(r.kind!=='sat-topic'){
         const buttons=[...dialog.querySelectorAll('[data-reasoning]')],items=detailItems;

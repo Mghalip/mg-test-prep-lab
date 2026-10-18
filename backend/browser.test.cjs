@@ -73,5 +73,12 @@ await tp.setViewportSize({width:1440,height:1000});await tp.screenshot({path:req
 await tp.goto(ROOT+'account.html');await tp.locator('.learning-shortcuts').waitFor();
 assert.equal(await tp.locator('.learning-shortcuts a').count(),3);
 console.log('PASS review workspace status, mobile record cards, student shortcuts');
+// The result page can be reopened from saved history after reasoning review.
+await mp.evaluate(()=>Mock.history(0));await mp.locator('.module-performance').waitFor();
+const moduleRows=await mp.locator('.module-performance tbody tr').evaluateAll(es=>es.map(e=>[...e.cells].map(c=>c.textContent.trim())));
+assert.equal(moduleRows.length,4);
+for(const cells of moduleRows){const [correct,total]=cells[1].split('/').map(Number);assert.equal(correct+Number(cells[2]),total);assert.ok(Number(cells[3])<=Number(cells[2]));}
+await tp.goto(ROOT+'account.html?view=teacher');await tp.locator('.performance-breakdown').first().waitFor();assert.ok((await tp.locator('#account-content').innerText()).includes('答对'));
+console.log('PASS per-module correct/total, wrong and unanswered counts');
 assert.deepEqual(errors,[]);console.log('PASS no browser JavaScript errors');await Promise.all(browser.contexts().map(c=>c.close()));await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
