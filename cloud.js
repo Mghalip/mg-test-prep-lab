@@ -16,8 +16,13 @@ window.MG = (() => {
     const bar = document.getElementById('mg-account-bar');
     if (!bar) return;
     const pending = user ? read('mg-pending', []).length : 0;
-    bar.innerHTML = `<a href="account.html">${user ? escape(user.user_metadata?.display_name || user.email) : '登录 / 注册 · Sign in'}</a><span>${escape(error || (!available ? 'Cloud setup pending · 试做保存在本机' : user ? (pending ? `${pending} result(s) awaiting sync` : 'Cloud connected') : 'Guest · 本机体验'))}</span>${user ? '<a href="account.html">我的成绩</a>' : ''}${teacher ? '<a href="account.html?view=teacher">教师后台</a>' : ''}${pending ? '<button type="button" id="mg-retry">Retry sync</button>' : ''}`;
+    bar.innerHTML = `<a href="account.html">${user ? escape(user.user_metadata?.display_name || user.email) : '登录 / 注册 · Sign in'}</a><span>${escape(error || (!available ? 'Cloud setup pending · 试做保存在本机' : user ? (pending ? `${pending} result(s) awaiting sync` : 'Cloud connected') : 'Guest · 本机体验'))}</span>${user ? '<a href="account.html">我的成绩</a>' : ''}${teacher ? '<a href="account.html?view=teacher">教师后台</a>' : ''}${pending ? '<button type="button" id="mg-retry">Retry sync</button>' : ''}${user ? '<button type="button" id="mg-signout">退出登录</button>' : ''}`;
     document.getElementById('mg-retry')?.addEventListener('click', sync);
+    document.getElementById('mg-signout')?.addEventListener('click', async event => {
+      event.currentTarget.disabled = true;
+      try { await sync(); const result = await client.auth.signOut({scope:'local'}); if (result.error) throw result.error; location.reload(); }
+      catch { error = '退出失败，请重试。'; status(); }
+    });
   }
   function mount() { if (!document.getElementById('mg-account-bar')) { const bar = document.createElement('div'); bar.id = 'mg-account-bar'; bar.className = 'mg-account-bar'; bar.setAttribute('aria-label', 'Account and sync status'); document.body.prepend(bar); } status(); }
   async function ensureProfile() {
