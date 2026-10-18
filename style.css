@@ -68,3 +68,12 @@ header{flex-wrap:wrap;gap:8px}h1{font-size:28px}.grid,.grammar-grid{grid-templat
 #app > .grid > .card{height:100%;overflow-wrap:anywhere}
 @media(max-width:900px){#app > .grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){#app > .grid{grid-template-columns:1fr;grid-auto-rows:minmax(300px,auto)}}
+
+/* Expandable practice navigation. */
+aside{overflow-y:auto}.side-bottom{position:static;margin-top:28px}
+.topic-nav summary{cursor:pointer;padding:12px;border-radius:10px;font-size:15px;font-weight:600;list-style:none}
+.topic-nav summary::after{content:'▸';float:right;margin-left:12px}.topic-nav[open]>summary::after,.topic-nav details[open]>summary::after{content:'▾'}
+.topic-nav summary.active{background:#eaf0ff;color:#234dcc}
+#topic-nav-items{padding:6px 0 6px 14px}#topic-nav-items details{border-left:1px solid #dce3ef;padding-left:8px}
+#topic-nav-items button{display:block;width:100%;white-space:normal;text-align:left;font-size:14px;padding:8px 12px;line-height:1.5}
+@media(max-width:900px){aside>nav{flex-wrap:wrap}.topic-nav{flex:1 0 100%;min-width:0}.topic-nav>summary{max-width:100%}#topic-nav-items{max-height:50vh;overflow-y:auto}}
