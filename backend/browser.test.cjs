@@ -54,5 +54,13 @@ await mp.locator('textarea[name="reasoning"]').fill('A revised explanation with 
 assert.equal(await tp.locator('[data-export]').count(),0);assert.equal(await tp.getByRole('button',{name:'刷新分析与反馈'}).count(),1);assert.ok(await tp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
 await tp.locator('#attempt-detail').evaluate(e=>e.scrollTop=0);await tp.screenshot({path:require('node:path').join(process.env.MG_TEST_OUTPUT||require('node:os').tmpdir(),'mg-reflection-mobile.png'),fullPage:false});await tp.setViewportSize({width:1440,height:1000});await tp.locator('#attempt-detail').evaluate(e=>e.scrollTop=0);await tp.screenshot({path:require('node:path').join(process.env.MG_TEST_OUTPUT||require('node:os').tmpdir(),'mg-reflection-desktop.png'),fullPage:false});
 console.log('PASS SAT/ACT reflection submission, offline preservation, per-question drafts, escaped student text, teacher publication, student feedback, old-version label, simplified feedback UI, mobile width');
+await tp.locator('#attempt-detail').evaluate(e=>e.close());
+const progressRow={...rows.find(r=>r.kind==='sat-mock'),id:crypto.randomUUID(),submitted:new Date(Date.now()+10000).toISOString()};
+progressRow.items=progressRow.items.slice(0,7).map((x,i)=>({...x,correct:i===5,scored:i!==6}));rows.unshift(progressRow);
+for(const i of [0,5,6])reflections.push({student_id:progressRow.student_id,attempt_id:progressRow.id,question_id:progressRow.items[i].id,revision:1,reasoning:'Submitted'});
+await tp.click('#refresh');await tp.waitForFunction(()=>document.querySelector('[data-progress="0"]')?.textContent==='1/5');
+await tp.locator('[data-wrong="0"]').click();await tp.waitForFunction(()=>document.querySelector('#attempt-detail')?.textContent.includes('共 5 道错题'));
+assert.equal(await tp.locator('#attempt-detail [data-reasoning]').count(),5);
+console.log('PASS wrong analysis progress 1/5 excludes correct/unscored questions; wrong-only entry');
 assert.deepEqual(errors,[]);console.log('PASS no browser JavaScript errors');await Promise.all(browser.contexts().map(c=>c.close()));await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});

@@ -33,21 +33,39 @@
   function score(r){const s=r.summary||{};if(r.kind==='act-mock')return `Composite ${s.composite??'—'} · ${(Array.isArray(s.sections)?s.sections:[]).filter(x=>x&&typeof x==='object').map(x=>`${x.title} ${x.scale??'—'}`).join(' / ')}`;if(r.kind==='sat-mock'){const p=SatScore.fromModules(s.modules);return p?`预测总分 ${p.total.center}（${p.total.low}–${p.total.high}） · RW ${p.rw.center} · Math ${p.math.center}`:`RW ${s.rw??0}/54 · Math ${s.math??0}/44（缺少模块数据，暂无预测分）`;}return `${s.correct??0}/${s.total??r.items?.length??0} 正确`}
   async function loadRecords(){
     const current=++requestId;document.getElementById('records').textContent='正在加载…';document.getElementById('previous').disabled=true;document.getElementById('next').disabled=true;
-    try{const f=filters();if(f.from&&f.to&&f.from>f.to)throw Error('结束日期不能早于开始日期。');const {data,error,count}=await query('id,student_id,kind,exam,started,submitted,mode,summary',true).range(page*size,(page+1)*size-1);if(current!==requestId)return;if(error)throw error;loaded=data;
+    try{const f=filters();if(f.from&&f.to&&f.from>f.to)throw Error('结束日期不能早于开始日期。');const {data,error,count}=await query('id,student_id,kind,exam,started,submitted,mode,summary,items',true).range(page*size,(page+1)*size-1);if(current!==requestId)return;if(error)throw error;loaded=data;
       document.getElementById('stats').innerHTML=`<div><strong>${count??"—"}</strong>筛选范围内练习次数</div>${teacherView?`<div><strong>${profiles.length}</strong>已建立学习档案的账号</div>`:''}`;
-      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${labels[r.kind]}<br>${esc(examName(r))}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
+      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th><th>错题分析</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${labels[r.kind]}<br>${esc(examName(r))}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td><td>${r.kind==='sat-topic'?'<span class="muted">暂未支持</span>':`<strong data-progress="${i}">正在读取…</strong><br><button data-wrong="${i}">查看错题分析</button>`}</td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
       document.querySelectorAll('[data-row]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.row)]));
+      document.querySelectorAll('[data-wrong]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.wrong)],true));
+      data.forEach((r,i)=>{if(r.kind!=='sat-topic')updateProgress(r,i,current)});
       document.getElementById('page-label').textContent=`第 ${page+1} / ${Math.max(1,Math.ceil((count??data.length)/size))} 页`;
       document.getElementById('previous').disabled=page===0;document.getElementById('next').disabled=count===null?data.length<size:(page+1)*size>=count;message('');
     }catch(e){if(current!==requestId)return;message(e.message);document.getElementById('records').textContent='加载失败，请点击刷新重试。'}
   }
-  async function detail(row){
+  const wrongItems=r=>(Array.isArray(r.items)?r.items:[]).filter(x=>x&&typeof x==='object'&&x.correct===false&&x.scored!==false);
+  async function updateProgress(row,index,current){
+    const wrong=new Set(wrongItems(row).map(x=>x.id));
+    try{
+      const done=new Set();
+      for(let offset=0;;offset+=500){
+        const {data,error}=await MG.client.from('mg_reflections').select('question_id').eq('student_id',row.student_id).eq('attempt_id',row.id).range(offset,offset+499);
+        if(error)throw error;
+        for(const r of data||[])if(wrong.has(r.question_id))done.add(r.question_id);
+        if((data||[]).length<500)break;
+      }
+      if(current!==requestId)return;
+      const target=document.querySelector(`[data-progress="${index}"]`);if(target)target.textContent=`${done.size}/${wrong.size}`;
+    }catch{if(current===requestId){const target=document.querySelector(`[data-progress="${index}"]`);if(target)target.textContent='进度读取失败';}}
+  }
+  async function detail(row,wrongOnly=false){
     const dialog=document.getElementById('attempt-detail');dialog.innerHTML='<p>正在读取逐题记录…</p><button onclick="this.closest(\'dialog\').close()">关闭</button>';dialog.showModal();
     try{const {data:r,error}=await MG.client.from('mg_attempts').select('*').eq('id',row.id).eq('student_id',row.student_id).single();if(error)throw error;
-      dialog.innerHTML=`<div class="detail-top"><h2>${esc(name(r.student_id))} · ${esc(examName(r))}</h2><button onclick="this.closest('dialog').close()">关闭</button></div><p>${esc(score(r))} · ${esc(date(r.submitted))}</p><div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>答案</th><th>结果</th><th>用时</th><th>思路与反馈</th></tr></thead><tbody>${r.items.filter(x=>x&&typeof x==='object').map((x,i)=>`<tr><td>${esc(x.section||x.topic||'')} · ${esc(x.number||x.id)}${x.scored===false?'（不计分）':''}</td><td>${esc(x.answer||'未作答')}</td><td>${esc(x.expected||'—')}</td><td class="${x.correct?'good':'bad'}">${x.correct?'正确':'错误'}</td><td>${Math.round(Number(x.seconds)||0)} 秒</td><td>${r.kind!=='sat-topic'?`<button data-reasoning="${i}">${teacherView?'查看思路 / 反馈':'写分析 / 看反馈'}</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`;
-      dialog.querySelectorAll('[data-reasoning]').forEach(button=>button.onclick=()=>reasoning(r,r.items.filter(x=>x&&typeof x==='object')[Number(button.dataset.reasoning)]));
+      const detailItems=wrongOnly?wrongItems(r):r.items.filter(x=>x&&typeof x==='object');
+      dialog.innerHTML=`<div class="detail-top"><h2>${esc(name(r.student_id))} · ${esc(examName(r))}</h2><button onclick="this.closest('dialog').close()">关闭</button></div><p>${esc(score(r))} · ${esc(date(r.submitted))}</p>${wrongOnly?`<p>错题分析 · 共 ${detailItems.length} 道错题（含未作答，不含不计分题）</p>`:''}<div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>答案</th><th>结果</th><th>用时</th><th>思路与反馈</th></tr></thead><tbody>${detailItems.map((x,i)=>`<tr><td>${esc(x.section||x.topic||'')} · ${esc(x.number||x.id)}${x.scored===false?'（不计分）':''}</td><td>${esc(x.answer||'未作答')}</td><td>${esc(x.expected||'—')}</td><td class="${x.correct?'good':'bad'}">${x.correct?'正确':'错误'}</td><td>${Math.round(Number(x.seconds)||0)} 秒</td><td>${r.kind!=='sat-topic'?`<button data-reasoning="${i}">${teacherView?'查看思路 / 反馈':'写分析 / 看反馈'}</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`;
+      dialog.querySelectorAll('[data-reasoning]').forEach(button=>button.onclick=()=>reasoning(r,detailItems[Number(button.dataset.reasoning)],wrongOnly));
       if(r.kind!=='sat-topic'){
-        const buttons=[...dialog.querySelectorAll('[data-reasoning]')],items=r.items.filter(x=>x&&typeof x==='object');
+        const buttons=[...dialog.querySelectorAll('[data-reasoning]')],items=detailItems;
         MG.client.from('mg_reflections').select('question_id,revision').eq('student_id',r.student_id).eq('attempt_id',r.id).then(({data,error})=>{
           if(error)return;const submitted=new Map((data||[]).map(x=>[x.question_id,x.revision]));
           buttons.forEach(b=>{if(b.isConnected){const rev=submitted.get(items[Number(b.dataset.reasoning)].id);b.textContent=(rev?'已提交第 '+rev+' 版 · ':'未提交 · ')+(teacherView?'查看 / 反馈':'写分析 / 看反馈')}});
@@ -55,15 +73,16 @@
       }
     }catch{dialog.innerHTML='<p>无法读取记录，请关闭后重试。</p><button onclick="this.closest(\'dialog\').close()">关闭</button>'}
   }
-  async function reasoning(row,item){
+  async function reasoning(row,item,wrongOnly=false){
     const dialog=document.getElementById('attempt-detail');
     dialog.innerHTML=`<div class="detail-top"><h2>${esc(examName(row))} · ${esc(item.section||'')} · ${esc(item.number||item.id)}</h2><button id="back-attempt">返回逐题记录</button><button id="close-reasoning">关闭</button></div><p>学生答案：${esc(item.answer||'未作答')} · 参考答案：${esc(item.expected||'—')}</p><div class="reasoning-layout"><section class="reasoning-question" aria-label="原题"></section><section class="reasoning-editor"></section></div>`;
-    document.getElementById('back-attempt').onclick=()=>{dialog.close();detail(row)};
+    document.getElementById('back-attempt').onclick=()=>{dialog.close();detail(row,wrongOnly)};
     document.getElementById('close-reasoning').onclick=()=>dialog.close();
     const host=dialog.querySelector('.reasoning-question');
     MGReflection.question(host,row,item).catch(()=>{if(host.isConnected)host.textContent='原题加载失败，请返回逐题记录后重试。'});
     await MGReflection.mount(dialog.querySelector('.reasoning-editor'),{student:row.student_id,attempt:row.id,row,item,teacher:teacherView});
   }
   async function exportRows(){const button=document.getElementById('export');button.disabled=true;try{const all=[];for(let offset=0;;offset+=500){const {data,error}=await query().range(offset,offset+499);if(error)throw error;all.push(...data);if(data.length<500)break}const lines=[['Student','Student ID','Type','Test','Submitted','Mode','Section','Question','Answer','Expected','Correct','Seconds','Scored','Score summary'],...all.flatMap(r=>r.items.filter(x=>x&&typeof x==='object').map(x=>[name(r.student_id),r.student_id,labels[r.kind],r.exam,r.submitted,r.mode,x.section||x.topic||'',x.number||x.id,x.answer||'',x.expected||'',x.correct?1:0,x.seconds,x.scored===false?0:1,score(r)]))];const csv='\uFEFF'+lines.map(row=>row.map(v=>'"'+String(v??'').replace(/^[\s]*[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"').join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='MG-practice-records.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message(`已导出 ${all.length} 次练习的逐题记录。`)}catch(e){message(e.message)}finally{button.disabled=false}}
+  document.getElementById('attempt-detail').addEventListener('close',()=>{if(document.getElementById('records'))loadRecords()});
   MG.ready.then(async()=>{if(!MG.available){el.innerHTML=`<div class="card"><h2>云端学习空间正在配置</h2><p>${esc(MG.error||'数据库尚未启用。')}</p><p>现有专题练习和模考仍可使用，体验记录保存在本机。</p><button onclick="location.reload()">重新连接</button></div>`;return}if(MG.recovery&&MG.user)return passwordForm();if(!MG.user)return authForms();try{await dashboard()}catch(e){el.textContent='无法加载账号：'+e.message}});
 })();
