@@ -892,4 +892,12 @@ dialog::backdrop {
   font-size: 18px;
 }
 
-.course-card h3.math-program-title{font-size:clamp(23px,2vw,30px);letter-spacing:-.6px;line-height:1.25}
+/* Equal title and brand slots keep all five program cards aligned. */
+.course-card h3,.course-card h3.math-program-title{font-size:28px;line-height:1.25;letter-spacing:-.6px;min-height:70px;margin:18px 0 2px;overflow-wrap:normal}
+.course-card .lab-name{min-height:42px;font-size:14px;line-height:1.5}
+@media(max-width:520px){
+ .course-card{display:flex;flex-direction:column}
+ .course-card h3,.course-card h3.math-program-title{min-height:35px;margin-top:12px}
+ .course-card .lab-name{min-height:21px}
+ .course-card .card-subjects{border-left:0;border-top:1px dashed var(--mg-line-2);margin:16px 0 0;padding:16px 0 0}
+}
