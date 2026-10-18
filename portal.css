@@ -891,3 +891,5 @@ dialog::backdrop {
   border-color: var(--mg-ink);
   font-size: 18px;
 }
+
+.course-card h3.math-program-title{font-size:clamp(23px,2vw,30px);letter-spacing:-.6px;line-height:1.25}
