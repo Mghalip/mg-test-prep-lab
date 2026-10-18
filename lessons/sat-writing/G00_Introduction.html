@@ -329,39 +329,200 @@ i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
 .stepper .final p{font-size:16px!important;line-height:1.45}
 .teaching-example .teaching-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:2px 0 6px}
 .box .ex{font-size:18px}
-</style></head><body><div id="stage"><div id="deck"><section class="slide cover" data-title="Digital SAT Writing" data-foot="Digital SAT Writing · Introduction"><div class="no">SAT WRITING</div><h1>Digital SAT Writing</h1><div class="sub">The writing questions on the Digital SAT, and the sentence grammar you need for them</div><div class="cnsub">机考写作部分考什么，以及做题需要的句子基础</div><div class="goals"><div><b>KNOW THE TYPES</b>Four groups: Boundaries, Form/Structure/Sense, Transitions, Rhetorical Synthesis.</div><div><b>KNOW THE SENTENCE</b>Subject, verb, clause, phrase: the tools for every grammar question.</div><div><b>COMPARE THE CHOICES</b>Look at what changes across the four choices to see what is being tested.</div></div></section>
-<section class="slide " data-title="The writing questions on the Digital SAT" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Two domains</div><h2>The writing questions on the Digital SAT</h2></header>
-<table class="t">
+
+/* Targeted bilingual and table consistency. */
+.slide .polish-equal {align-items:stretch!important;align-content:start!important;grid-template-columns:repeat(2,minmax(0,1fr))}
+.slide .polish-equal > * {align-self:stretch!important;height:auto!important;box-sizing:border-box}
+.slide .polish-align {grid-template-rows:repeat(3,auto);align-content:start;row-gap:12px}
+.slide .polish-align > .box {display:grid!important;grid-row:span 3;grid-template-rows:subgrid;row-gap:12px;align-content:start!important}
+.slide .polish-align > .box > * {margin-top:0!important;margin-bottom:0!important;align-self:start}
+.slide table.t td.polish-regular {font-weight:400!important}
+.slide table.t td.polish-word {font-weight:700!important}
+.slide table.t .polish-cn {font-weight:400!important;white-space:nowrap}
+
+/* Complete grammar examples: spacing within teaching cells. */
+.audit-ex {margin:6px 0;line-height:1.4}
+.audit-context {font-size:17px!important;line-height:1.4;margin:8px 0 12px}
+</style><style>/* ===== Classroom kit v1 (2026-10-18) ===== */
+:root{--k-warm:#d9962b;--k-warm2:#fdf1dc;--k-you:#24476b;--k-you2:#e2eaf3;--k-trap:#b23a48;--k-trap2:#fbe5e8;--k-exit:#1d7f52;--k-exit2:#dff3e8;--k-act:#7a5a12;}
+/* type band + chip */
+.slide[data-ktype]:not(.cover)::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--kband,var(--acc));z-index:1}
+.k-chip{position:absolute;top:12px;right:22px;z-index:4;display:flex;align-items:center;gap:6px;font:700 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:var(--kchipbg,var(--acc2));color:var(--kband,var(--acc));white-space:nowrap}
+.k-chip .m{font-weight:600;letter-spacing:0;text-transform:none;opacity:.8;border-left:1px solid currentColor;padding-left:6px}
+.slide[data-ktype=warm]{--kband:var(--k-warm);--kchipbg:var(--k-warm2)}
+.slide[data-ktype=activity],.slide[data-ktype=quick]{--kband:var(--k-warm);--kchipbg:var(--k-warm2)}
+.slide[data-ktype=practice],.slide[data-ktype=homework]{--kband:var(--k-you);--kchipbg:var(--k-you2)}
+.slide[data-ktype=trap]{--kband:var(--k-trap);--kchipbg:var(--k-trap2)}
+.slide[data-ktype=exit]{--kband:var(--k-exit);--kchipbg:var(--k-exit2)}
+.slide[data-ktype=plan],.slide[data-ktype=next]{--kband:var(--ink);--kchipbg:#eceae4}
+.slide.k-new header{padding-right:260px}
+.slide header{padding-right:230px}
+/* buttons */
+.k-btn{font:600 13.5px/1 var(--sans);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink2);cursor:pointer;white-space:nowrap}
+.k-btn:hover{border-color:var(--acc);color:var(--acc)}
+.k-btn.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.k-btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.k-btn.warm{background:var(--k-warm);border-color:var(--k-warm);color:#fff}
+.k-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* poll */
+.k-poll{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:var(--k-warm2);border:1px dashed var(--k-warm);border-radius:10px;padding:6px 8px;font:13px/1.2 var(--sans)}
+.k-poll .lab{font-weight:700;color:var(--k-act);margin-right:2px}
+.k-poll .pb{position:relative;min-width:44px;height:30px;border-radius:8px;border:1px solid #e3c48c;background:#fff;font:700 14px/1 var(--sans);color:var(--ink);cursor:pointer;padding:0 8px;overflow:hidden}
+.k-poll .pb .c{font-weight:600;color:var(--muted);margin-left:4px}
+.k-poll .pb .bar{position:absolute;left:0;bottom:0;height:4px;background:var(--k-warm);transition:width .3s}
+.k-poll .pb.right{border-color:var(--good);background:var(--goodbg)}
+.k-poll .pct{display:none;font-weight:600;color:var(--k-act);margin-left:3px}
+.k-poll.show .pct{display:inline}
+.k-poll .tiny{border:0;background:transparent;color:var(--muted);font:12px var(--sans);cursor:pointer;text-decoration:underline}
+/* ask prompts inside worked examples */
+.k-ask{border:2px dashed var(--k-warm);background:var(--k-warm2);border-radius:12px;padding:9px 13px;font:15.5px/1.45 var(--sans);color:var(--ink)}
+.k-ask b.q{display:block;color:var(--k-act);font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.k-ask .l{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
+/* clue finder */
+.k-cluebar{position:sticky;top:0;z-index:5;display:flex;justify-content:flex-end;gap:5px;padding:6px 0 4px;margin:0 -8px 0 0;pointer-events:none}
+.k-cluebar{flex-wrap:nowrap}
+.k-cluebar .k-btn{pointer-events:auto;flex:none;font-size:12.5px;padding:5px 10px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.k-cluemsg{pointer-events:auto;align-self:center;font:600 12.5px var(--sans);color:var(--good);background:var(--goodbg);border-radius:999px;padding:4px 10px}
+.pv.k-cluemode .typed-text{cursor:pointer}
+.pv.k-cluemode .k-w:hover{background:rgba(255,206,64,.25);border-radius:3px}
+.k-w.k-mark{background:#ffe08a;border-radius:3px;box-shadow:0 0 0 1px #e8b93a}
+.k-w.k-hit{background:#bfe8cf;box-shadow:0 0 0 1px var(--good);border-radius:3px}
+.k-w.k-miss{background:#f3d7d3;text-decoration:line-through;text-decoration-color:var(--bad);border-radius:3px}
+/* quick check tools */
+.k-qctools{display:flex;gap:6px;margin:-4px 0 2px}
+details.qc.k-pick{outline:3px solid var(--k-warm);outline-offset:2px;animation:kpulse 1s ease 2}
+@keyframes kpulse{50%{outline-color:transparent}}
+/* MCQ */
+.k-mcq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.k-mcq .k-text{font-family:var(--serif);font-size:19px;line-height:1.55;color:var(--ink);background:var(--bg);border-left:4px solid var(--acc);padding:9px 14px;border-radius:0 8px 8px 0}
+.k-mcq .k-stem{font-size:17.5px;font-weight:700;line-height:1.4;color:var(--ink)}
+.k-opts{display:flex;flex-direction:column;gap:5px}
+.k-opt{text-align:left;font:16.5px/1.4 var(--sans);color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 12px;cursor:pointer}
+.k-opt:hover{border-color:var(--acc)}
+.k-opt b{color:var(--acc);margin-right:6px}
+.k-opt.ok{background:var(--goodbg);border-color:var(--good);color:var(--ink)}
+.k-opt.no{background:var(--badbg);border-color:var(--bad)}
+.k-opt .fbx{display:block;font-size:14px;color:var(--bad);margin-top:3px}
+.k-out{font:15.5px/1.5 var(--sans);color:var(--ink2)}
+.k-out .res{font-weight:700;color:var(--good);margin-bottom:2px}
+.k-mcq.compact .k-text{font-size:17.5px;padding:8px 12px}
+.k-mcq.compact .k-stem{font-size:16.5px}
+.k-mcq.compact .k-opt{font-size:16px;padding:6px 10px}
+.k-mcq.compact .k-out{font-size:14.5px}
+table.k-tab{border-collapse:collapse;font:15px/1.3 var(--sans);margin:2px 0}
+table.k-tab th,table.k-tab td{border:1px solid var(--line);padding:4px 10px;text-align:center}
+table.k-tab th{background:var(--acc2);color:var(--ink)}
+/* sort activity */
+.k-sort{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0;align-content:start}
+.k-sort.one{grid-template-columns:1fr}
+.k-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 13px;display:flex;flex-direction:column;gap:7px}
+.k-item .k-snip{font:16px/1.45 var(--sans);color:var(--ink)}
+.k-item .k-snip .n{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font:700 12px/22px var(--sans);text-align:center;margin-right:6px}
+.k-cats{display:flex;flex-wrap:wrap;gap:5px}
+.k-cats button{font:600 12.5px/1 var(--sans);padding:6px 9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);cursor:pointer}
+.k-cats button:hover{border-color:var(--k-trap)}
+.k-cats button.ok{background:var(--goodbg);border-color:var(--good);color:var(--good)}
+.k-cats button.no{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.k-item .k-fb{font:14px/1.45 var(--sans);color:var(--ink2)}
+.k-item.done{border-color:var(--good)}
+.k-src{background:var(--bg);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:10px;padding:9px 14px;font:16.5px/1.5 var(--serif);color:var(--ink)}
+.k-src .q{display:block;font:700 13px/1.3 var(--sans);color:var(--acc);letter-spacing:.04em;margin-top:4px}
+.k-score{font:700 14px var(--sans);color:var(--good);background:var(--goodbg);border-radius:999px;padding:5px 12px}
+/* flip cards (common mistakes) */
+.k-flips{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0;align-content:start}
+.k-flip{min-height:170px}
+.k-flip{position:relative;border-radius:14px;border:1px solid var(--line);background:#fff;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s}
+.k-flip:hover{box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.k-flip .f{font:20px/1.45 var(--sans);color:var(--ink)}
+.k-flip .f::before{content:"✗ 常见错误";display:block;font:700 12px/1 var(--sans);letter-spacing:.08em;color:var(--bad);margin-bottom:6px}
+.k-flip .b{font:19px/1.45 var(--sans);color:var(--ink);border-top:1px dashed var(--line);padding-top:8px;display:none}
+.k-flip .b::before{content:"✓ 正确做法";display:block;font:700 12px/1 var(--sans);letter-spacing:.08em;color:var(--good);margin-bottom:6px}
+.k-flip.open .b{display:block}
+.k-flip .hint{font:12.5px var(--sans);color:var(--muted);margin-top:auto}
+.k-flip.open .hint{display:none}
+.k-flip.open{border-color:var(--good)}
+/* agenda */
+.k-agenda{display:flex;flex-direction:column;gap:7px;flex:1;min-height:0}
+.k-ag{display:grid;grid-template-columns:62px 34px 1fr auto;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 14px;cursor:pointer;font:17px/1.3 var(--sans);color:var(--ink)}
+.k-ag:hover{border-color:var(--acc)}
+.k-ag .t{font:700 14px var(--sans);text-align:center;border-radius:7px;padding:5px 0;background:var(--kb,var(--acc2));color:var(--kc,var(--acc))}
+.k-ag .i{font-size:20px;text-align:center}
+.k-ag .cn{font-size:14.5px;margin-left:8px}
+.k-ag .p{font:13px var(--sans);color:var(--muted)}
+.k-ag.warm{--kb:var(--k-warm2);--kc:var(--k-act)}.k-ag.you{--kb:var(--k-you2);--kc:var(--k-you)}.k-ag.trap{--kb:var(--k-trap2);--kc:var(--k-trap)}.k-ag.exit{--kb:var(--k-exit2);--kc:var(--k-exit)}
+.k-legend{display:flex;flex-wrap:wrap;gap:8px;font:13.5px var(--sans);color:var(--muted)}
+.k-legend span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+/* confidence */
+.k-conf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:14.5px var(--sans);color:var(--ink2);background:var(--bg);border-radius:10px;padding:8px 12px}
+.k-conf button{font:14px var(--sans);border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.k-conf button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+/* intro big text */
+.k-lead{font:19px/1.55 var(--sans);color:var(--ink2)}
+.k-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0;align-items:start}
+.k-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;font:17px/1.5 var(--sans);color:var(--ink2)}
+.k-card h3{font-family:var(--serif);font-size:21px;color:var(--ink);margin-bottom:6px}
+.k-hw{background:var(--k-you2);border-radius:12px;padding:12px 16px;font:16px/1.5 var(--sans);color:var(--ink)}
+/* timer */
+#k-timer{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:30;background:rgba(27,35,51,.94);color:#fff;border-radius:16px;padding:8px 12px;display:flex;align-items:center;gap:8px;font:600 14px var(--sans);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+#k-timer .d{font:700 30px/1 "SF Mono",Menlo,Consolas,monospace;min-width:92px;text-align:center;letter-spacing:.02em}
+#k-timer button{border:0;border-radius:8px;background:rgba(255,255,255,.14);color:#fff;font:600 13px var(--sans);padding:6px 9px;cursor:pointer}
+#k-timer button:hover{background:rgba(255,255,255,.28)}
+#k-timer.end{background:#b23a48;animation:kblink .8s ease infinite}
+#k-timer.warn .d{color:#ffd166}
+@keyframes kblink{50%{opacity:.75}}
+/* pen */
+#k-pen{position:absolute;inset:0;z-index:15;pointer-events:none}
+#k-pen.on{pointer-events:auto;cursor:crosshair}
+#k-pentools{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;display:flex;gap:6px;align-items:center;background:rgba(27,35,51,.92);padding:6px 10px;border-radius:999px}
+#k-pentools button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;font:13px var(--sans);color:#fff;background:rgba(255,255,255,.15)}
+#k-pentools button.on{border-color:#fff}
+#nav .k-nb{font-size:15px}
+#nav .k-nb.on{background:var(--acc)}
+/* help overlay */
+#k-help{position:fixed;inset:0;z-index:40;background:rgba(15,20,32,.9);color:#fff;display:flex;align-items:center;justify-content:center}
+#k-help .in{background:#1f2738;border-radius:16px;padding:26px 32px;max-width:720px;font:16px/1.7 var(--sans)}
+#k-help h3{font:700 22px var(--serif);margin-bottom:8px}
+#k-help kbd{background:#fff;color:#1b2333;border-radius:5px;padding:1px 7px;font:700 13px var(--sans)}
+@media print{.k-chip,.k-poll,.k-cluebar,#k-timer,#k-pentools,#k-pen{display:none!important}.k-flip .b{display:block}}
+
+.k-mcq.big .k-text{font-size:22px;padding:12px 18px}.k-mcq.big .k-stem{font-size:20px}.k-mcq.big .k-opt{font-size:19px;padding:9px 14px}.k-mcq.big .k-out{font-size:17px}
+.slide[data-ktype=next] .k-grid2{flex:0 0 auto}
+.k-src{font-size:18px}
+</style></head><body><div id="stage"><div id="deck"><section data-ktype="cover" class="slide cover" data-title="Digital SAT Writing" data-foot="Digital SAT Writing · Introduction"><div class="no">SAT WRITING</div><h1>Digital SAT Writing</h1><div class="sub">The writing questions on the Digital SAT, and the sentence grammar you need for them</div><div class="cnsub">机考写作部分考什么，以及做题需要的句子基础</div><div class="goals"><div><b>KNOW THE TYPES</b>Four groups: Boundaries, Form/Structure/Sense, Transitions, Rhetorical Synthesis.</div><div><b>KNOW THE SENTENCE</b>Subject, verb, clause, phrase: the tools for every grammar question.</div><div><b>COMPARE THE CHOICES</b>Look at what changes across the four choices to see what is being tested.</div></div></section>
+<section class="slide k-new" data-foot="Digital SAT Writing · Introduction" data-ktype="plan" data-title="Today's plan"><header><div class="kk">Today's plan · 课堂安排</div><h2>Today's plan</h2></header><div class="k-agenda"><div class="k-ag warm" data-go="3"><span class="t">5′</span><span class="i">🔥</span><span>Warm-up<span class="cn">热身</span></span><span class="p">p.3</span></div><div class="k-ag" data-go="4"><span class="t">26′</span><span class="i">📘</span><span>Grammar you need &amp; the rule<span class="cn">语法基础与规则</span></span><span class="p">p.4–16</span></div><div class="k-ag warm" data-go="17"><span class="t">16′</span><span class="i">🛠</span><span>Skill builders &amp; quick check<span class="cn">技能训练与抢答</span></span><span class="p">p.17–19</span></div><div class="k-ag" data-go="20"><span class="t">6′</span><span class="i">📘</span><span>Grammar you need &amp; the rule<span class="cn">语法基础与规则</span></span><span class="p">p.20–22</span></div><div class="k-ag trap" data-go="23"><span class="t">4′</span><span class="i">🪤</span><span>Trap clinic<span class="cn">陷阱诊所</span></span><span class="p">p.23</span></div><div class="k-ag" data-go="24"><span class="t">3′</span><span class="i">📌</span><span>Recap &amp; vocabulary<span class="cn">小结与词汇</span></span><span class="p">p.24</span></div><div class="k-ag exit" data-go="25"><span class="t">6′</span><span class="i">🎟</span><span>Exit ticket<span class="cn">离堂小测</span></span><span class="p">p.25</span></div><div class="k-ag you" data-go="26"><span class="t">—</span><span class="i">🏠</span><span>Homework &amp; next lesson<span class="cn">课后练习与下节预告</span></span><span class="p">p.26</span></div></div><div class="k-legend"><span>🙋 黄色虚线框 = 先提问再揭晓</span><span>🔍 找证据</span><span>⏱ T 计时</span><span>✎ P 画笔</span><span>? H 快捷键</span><span>点击任一行可跳转</span></div></section>
+<section data-ktype="warm" data-kmin="5" class="slide k-new" data-title="Warm-up · Sentence or not?" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Warm-up · 热身</div><h2>Sentence or not?<span class="cn">这是完整的句子吗？</span></h2></header><p class="k-lead">Every sentence needs a subject and a main verb, and it must be a complete thought. 句子 = 主语 + 谓语 + 意思完整。</p><div class="k-grid2"><div class="k-mcq" data-ans="C"><div class="k-stem">Which of these is a complete sentence?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>The old lighthouse on the rocky coast.</button><button class="k-opt" data-l="B"><b>B</b>Because the storm was coming.</button><button class="k-opt" data-l="C"><b>C</b>The lighthouse still works.</button><button class="k-opt" data-l="D"><b>D</b>Shining its light across the bay.</button></div><template class="k-why">Subject <b>lighthouse</b> + main verb <b>works</b>. A has no verb; B is a dependent clause; D is an -ing phrase.</template><div class="k-out"></div></div><div class="k-mcq" data-ans="C"><div class="k-text">The box of old letters in the attic belongs to my grandmother.</div><div class="k-stem">Which word is the main verb?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>letters</button><button class="k-opt" data-l="B"><b>B</b>attic</button><button class="k-opt" data-l="C"><b>C</b>belongs</button><button class="k-opt" data-l="D"><b>D</b>grandmother</button></div><template class="k-why">Who belongs? The <b>box</b> (of old letters in the attic). Main verb = <b>belongs</b>.</template><div class="k-out"></div></div></div></section>
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="The writing questions on the Digital SAT"><header><div class="kk">Two domains</div><h2>The writing questions on the Digital SAT</h2></header>
+<table class="t" style=";table-layout:fixed"><colgroup><col style="width:20%"/><col style="width:17%"/><col style="width:55%"/><col style="width:8%"/></colgroup>
 <tr><th>Domain</th><th>Questions per test</th><th>Topics</th><th>Lessons</th></tr>
-<tr><td>Standard English Conventions</td><td>11–15 (about 26%)</td><td><b>Boundaries</b>: punctuation between and inside sentences<br><b>Form, Structure, and Sense</b>: agreement, verb forms, pronouns, possessives, modifiers</td><td>G01–G04<br>G05–G08</td></tr>
-<tr><td>Expression of Ideas</td><td>8–12 (about 20%)</td><td><b>Transitions</b>: the logical link between sentences<br><b>Rhetorical Synthesis</b>: using notes to meet a writing goal</td><td>G09<br>G10–G11</td></tr>
+<tr><td>Standard English Conventions</td><td>11–15 (about 26%)</td><td><div style="margin-top:0"><b>Boundaries</b>: punctuation between and inside sentences<span style="display:block;font-size:.9em;font-weight:400;line-height:1.45;margin-top:4px">句子边界：句间及句内的标点使用。</span></div><div style="margin-top:10px"><b>Form, Structure, and Sense</b>: agreement, verb forms, pronouns, possessives, modifiers<span style="display:block;font-size:.9em;font-weight:400;line-height:1.45;margin-top:4px">形式、结构与意义：主谓一致、动词形式、代词、所有格及修饰语。</span></div></td><td>G01–G04<br/>G05–G08</td></tr>
+<tr><td>Expression of Ideas</td><td>8–12 (about 20%)</td><td><div style="margin-top:0"><b>Transitions</b>: the logical link between sentences<span style="display:block;font-size:.9em;font-weight:400;line-height:1.45;margin-top:4px">逻辑衔接：句子之间的逻辑关系。</span></div><div style="margin-top:10px"><b>Rhetorical Synthesis</b>: using notes to meet a writing goal<span style="display:block;font-size:.9em;font-weight:400;line-height:1.45;margin-top:4px">修辞综合：根据笔记信息，完成指定的写作目标。</span></div></td><td>G09<br/>G10–G11</td></tr>
 </table>
-<div class="grid g2">
- <div class="box white"><h3>Where they appear</h3><p>After the reading questions in each module: first the grammar questions, then transitions, then rhetorical synthesis (the last questions of the module).</p><p class="cn">每个模块阅读题之后：先语法，再连接词，最后是笔记题。</p></div>
- <div class="box acc"><h3>Why these points are worth it</h3><p>Grammar questions test a <b>limited set of rules</b>. Once you know them, these are the most reliable points on the test.</p><p class="cn">语法考点有限，学会规则就能稳定拿分。</p></div>
+<div class="grid g2 polish-align">
+<div class="box white"><h3>Where they appear</h3><p>After the reading questions in each module: first the grammar questions, then transitions, then rhetorical synthesis (the last questions of the module).</p><p class="cn">每个模块阅读题之后：先语法，再连接词，最后是笔记题。</p></div>
+<div class="box acc"><h3>Why these points are worth it</h3><p>Grammar questions test a <b>limited set of rules</b>. Once you know them, these are the most reliable points on the test.</p><p class="cn">语法考点有限，学会规则就能稳定拿分。</p></div>
 </div></section>
-<section class="slide " data-title="What the questions look like" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">The stems</div><h2>What the questions look like</h2></header>
-<table class="t sm">
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="What the questions look like"><header><div class="kk">The stems</div><h2>What the questions look like</h2></header>
+<table class="t sm" style="table-layout:fixed"><colgroup><col style="width:17%"/><col style="width:35%"/><col style="width:48%"/></colgroup>
 <tr><th>Type</th><th>Stem</th><th>What changes in the choices</th></tr>
-<tr><td>Boundaries</td><td><i>Which choice completes the text so that it conforms to the conventions of Standard English?</i></td><td>the same words, different <b>punctuation</b></td></tr>
-<tr><td>Form, Structure, and Sense</td><td>the same stem</td><td>different <b>forms of a word</b> (is / are; to use / using; its / it’s) or different <b>word order</b></td></tr>
-<tr><td>Transitions</td><td><i>Which choice completes the text with the most logical transition?</i></td><td>different <b>linking words</b> (However, Therefore, For example)</td></tr>
-<tr><td>Rhetorical Synthesis</td><td><i>The student wants to … Which choice most effectively uses relevant information from the notes to accomplish this goal?</i></td><td>different <b>sentences</b> built from the notes</td></tr>
+<tr><td>Boundaries</td><td><i>Which choice completes the text so that it conforms to the conventions of Standard English?</i></td><td>the same words, different <b>punctuation</b><br/><span class="cn">标点变化（选项片段）：</span><br/>study, however / study; however / study. However<br/>includes: three / includes three / includes; three</td></tr>
+<tr><td>Form, Structure, and Sense</td><td>the same stem</td><td>different <b>word forms</b> or <b>word order</b><br/><span class="cn">词形：</span>is / are · uses / used / has used · to use / using<br/><span class="cn">代词与所有格：</span>its / it’s · their / they’re<br/>✓ Walking home, <b>Maya</b> saw rain clouds.<br/>✗ Walking home, <b>the rain</b> soaked Maya.</td></tr>
+<tr><td>Transitions</td><td><i>Which choice completes the text with the most logical transition?</i></td><td>different <b>linking words</b><br/>However / Therefore / Moreover / For example<br/><span class="cn">转折 / 因果 / 递进 / 举例</span><br/>Similarly / Instead / Nevertheless <span class="cn">相似 / 替代 / 让步</span></td></tr>
+<tr><td>Rhetorical Synthesis</td><td><i>The student wants to … Which choice most effectively uses relevant information from the notes to accomplish this goal?</i></td><td>different <b>sentences</b> built from the notes<br/><span class="cn">同一组笔记可组成不同重点的句子，例如：</span><br/>Both species live in deserts. <span class="cn">强调相同点</span><br/>Unlike species A, species B is nocturnal. <span class="cn">强调不同点</span></td></tr>
 </table>
 <div class="box acc"><p><b>The first two types share one stem.</b> To know what is tested, look at the choices: if only punctuation changes, it is Boundaries; if word forms change, it is Form, Structure, and Sense. <span class="cn">前两类问法相同，看选项的差异判断考点。</span></p></div></section>
-<section class="slide " data-title="Foundations 1 · Parts of speech" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 1</div><h2>Parts of speech · 词性</h2></header>
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="Foundations 1 · Parts of speech"><header><div class="kk">Grammar Foundations 1</div><h2>Parts of speech · 词性</h2></header>
 <table class="t sm">
 <tr><th style="width:22%">Part of speech · 词性</th><th style="width:30%">What it does · 作用</th><th style="width:26%">Examples</th><th>Why it matters on the SAT</th></tr>
-<tr><td>Noun 名词</td><td>names a person, place, thing, or idea</td><td>Lucas, ocean, cable, idea</td><td>subjects and objects are nouns</td></tr>
-<tr><td>Pronoun 代词</td><td>replaces a noun</td><td>he, it, they, this, which, who</td><td>G07: must match the noun it replaces</td></tr>
-<tr><td>Verb 动词</td><td>an action or a state</td><td>enjoys, was completed, is, seem</td><td>every sentence needs one (G05, G06)</td></tr>
-<tr><td>Adjective 形容词</td><td>describes a noun</td><td>deep, ancient, translucent</td><td>part of the description, not the core</td></tr>
-<tr><td>Adverb 副词</td><td>describes a verb, adjective, or whole sentence</td><td>quickly, very, however, therefore</td><td><i>however</i> is an adverb, not a conjunction (G02)</td></tr>
-<tr><td>Preposition 介词</td><td>links a noun to the rest of the sentence</td><td>in, of, with, by, from, about</td><td>“of + noun” is never the subject (G05)</td></tr>
-<tr><td>Conjunction 连词</td><td>joins words or clauses</td><td>and, but, so · because, although</td><td>decides the punctuation (G01, G02)</td></tr>
+<tr><td>Noun 名词</td><td>names a person, place, thing, or idea</td><td><b>Lucas</b> crossed the <b>ocean</b>.</td><td>subjects and objects are nouns</td></tr>
+<tr><td>Pronoun 代词</td><td>replaces a noun</td><td>Maya arrived, and <b>she</b> sat down.</td><td>G07: must match the noun it replaces</td></tr>
+<tr><td>Verb 动词</td><td>an action or a state</td><td>The bridge <b>was completed</b> in 1866.</td><td>every sentence needs one (G05, G06)</td></tr>
+<tr><td>Adjective 形容词</td><td>describes a noun</td><td>The <b>ancient</b> bridge crosses a <b>deep</b> river.</td><td>part of the description, not the core</td></tr>
+<tr><td>Adverb 副词</td><td>describes a verb, adjective, or whole sentence</td><td>She walked <b>quickly</b>.</td><td><i>however</i> is an adverb, not a conjunction (G02)</td></tr>
+<tr><td>Preposition 介词</td><td>links a noun to the rest of the sentence</td><td>The book is <b>on the desk</b>.</td><td>“of + noun” is never the subject (G05)</td></tr>
+<tr><td>Conjunction 连词</td><td>joins words or clauses</td><td>She was tired, <b>but</b> she continued.</td><td>decides the punctuation (G01, G02)</td></tr>
 </table>
 <p class="cn">不用背定义，但要认得出：名词/代词做主语，动词做谓语，介词后面跟名词组成介词短语，连词负责把句子连起来。</p></section>
-<section class="slide " data-title="Foundations 2 · Subject and verb" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 2</div><h2>Every sentence needs a subject and a verb</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Subject 主语 + Verb 谓语</h3>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="Foundations 2 · Subject and verb" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 2</div><h2>Every sentence needs a subject and a verb</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Subject 主语 + Verb 谓语</h3>
 <p>The <span class="term">subject</span> is <b>who or what</b> the sentence is about. The <span class="term">verb</span> tells what the subject <b>does</b> or <b>is</b>.</p>
 <p class="ex"><b class="s">She</b> <b class="v">likes</b> pizza.<span class='tag s'>S</span><span class='tag v'>V</span><span class='tag o'>O</span></p>
 <p class="ex"><b class="s">The cable</b> <b class="v">was completed</b> in 1866.</p>
@@ -373,7 +534,7 @@ i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
 <p class="ex">Last year, <b class="s">the museum</b> <b class="v">opened</b> a new hall.<span class="why">Who opened? → the museum (not “last year”).</span></p>
 <p class="ex">In the deep ocean, <b class="s">pressure</b> <b class="v">can affect</b> proteins.<span class="why">What can affect? → pressure.</span></p>
 <p class="cn">先找有时态的动词，再问“谁/什么 + 这个动词？”，答案就是主语。句首的时间、地点短语不是主语。</p></div></div></section>
-<section class="slide " data-title="Foundations 2+ · Five sentence patterns" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 2</div><h2>S–V–O: five basic sentence patterns · 五种基本句型</h2></header>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="Foundations 2+ · Five sentence patterns" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 2</div><h2>S–V–O: five basic sentence patterns · 五种基本句型</h2></header>
 <p><b>S</b> = subject 主语 · <b>V</b> = verb 谓语 · <b>O</b> = object 宾语 (receives the action) · <b>C</b> = complement 补语 (says what someone/something <i>is</i> or <i>is like</i>)</p>
 <table class="t sm">
 <tr><th style="width:11%">Pattern</th><th style="width:30%">Meaning</th><th style="width:27%">Example</th><th>How to see it · 怎么看</th></tr>
@@ -384,7 +545,7 @@ i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
 <tr><td><b>SVOC</b></td><td>The complement describes the <b>object</b>.</td><td><b class="s">The news</b> <b class="v">made</b> me happy.</td><td>happy 说明宾语 me 的状态。</td></tr>
 </table>
 <div class="box acc"><p><b>How we use this on the SAT:</b> you do not need to name the pattern. In a long sentence, find <b>S + V</b> first; then decide whether the next part is an object, a complement, or an extra part you can cross out. Not every sentence has an object: “The audience left.” is a complete S + V sentence. <span class="cn">不必背句型名称。看到长句先找 S + V，再判断后面是宾语、补语，还是可以划掉的修饰成分。不是每句都有宾语。</span></p></div></section>
-<section class="slide " data-title="Foundations 3 · Verbs that work alone" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 3</div><h2>Which verb forms can be the main verb?</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Can be the main verb ✓ 可以做谓语</h3>
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="Foundations 3 · Verbs that work alone"><header><div class="kk">Grammar Foundations 3</div><h2>Which verb forms can be the main verb?</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Can be the main verb ✓ 可以做谓语</h3>
 <p>A form with a <b>tense</b>:</p>
 <p class="ex ok">✅ <b class="s">Scientists</b> <b class="v">study</b> / <b class="v">studied</b> / <b class="v">will study</b> the ocean.</p>
 <p class="ex ok">✅ <b class="s">Scientists</b> <b class="v">are studying</b> / <b class="v">have studied</b> the ocean.</p>
@@ -392,31 +553,31 @@ i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
 <p class="cn">有时态的动词形式才能做谓语：一般现在/过去/将来、进行时（be + doing）、完成时（have + done）、被动（be + done）。</p></div><div class="box white"><h3>Cannot work alone ✗ 非谓语，不能单独做谓语</h3>
 <p><b>-ing</b>, <b>to + verb</b>, and <b>-ed/-en</b> (without <i>be</i> or <i>have</i>):</p>
 <p class="ex no">❌ <b class="s">Scientists</b> studying the ocean.<span class="why">No real verb: this is not a sentence. 没有谓语。</span></p>
-<p class="ex no">❌ <b class="s">The bridge</b>, built in 1890.<span class="why">“built in 1890” only describes the bridge.</span></p>
+<p class="ex no">❌ The bridge, built in 1890.<br/>✓ The bridge, built in 1890, <b>is still in use</b>.<span class="why">“built in 1890” only describes the bridge.</span></p>
 <p class="ex ok">✅ <b class="s">Scientists</b> studying the ocean <b class="v">have found</b> new species.<span class="why">The real verb is “have found”; “studying the ocean” describes scientists.</span></p>
 <p class="cn">doing、to do、done 单独出现时只是修饰或补充，不是谓语。SAT 常在这里设陷阱：看起来像动词，其实不是。</p></div></div></section>
-<section class="slide " data-title="Foundations 4 · Phrases" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 4</div><h2>Phrases: groups of words without a subject + verb</h2></header>
-<table class="t sm">
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="Foundations 4 · Phrases"><header><div class="kk">Grammar Foundations 4</div><h2>Phrases: groups of words without a subject + verb</h2></header>
+<table class="t sm" style="table-layout:fixed"><colgroup><col style="width:22%"/><col style="width:49%"/><col style="width:29%"/></colgroup>
 <tr><th style="width:24%">Kind of phrase · 短语</th><th style="width:40%">Example</th><th>What it does</th></tr>
-<tr><td>Prepositional 介词短语</td><td><i>in the deep ocean</i>, <i>of the proteins</i>, <i>with the help of digital imaging</i></td><td>adds where / when / which one</td></tr>
-<tr><td>-ing phrase 现在分词短语</td><td><i>distorting the proteins’ shape</i>, <i>ensuring that…</i></td><td>describes a noun or adds a result</td></tr>
-<tr><td>-ed phrase 过去分词短语</td><td><i>built into the rocky outcrops</i>, <i>named in 1999</i></td><td>describes a noun (passive meaning)</td></tr>
-<tr><td>to phrase 不定式短语</td><td><i>to protect itself from predators</i></td><td>purpose (in order to)</td></tr>
-<tr><td>Appositive 同位语</td><td><i>a physicist at Berkeley</i>, <i>the author of Paradise</i></td><td>renames the noun next to it</td></tr>
+<tr><td>Prepositional 介词短语</td><td>The fish live <b>in the deep ocean</b>.</td><td>adds where / when / which one</td></tr>
+<tr><td>-ing phrase 现在分词短语</td><td>The storm struck the coast, <b>destroying several homes</b>.</td><td>describes a noun or adds a result</td></tr>
+<tr><td>-ed phrase 过去分词短语</td><td>The bridge <b>built in 1890</b> is still in use.</td><td>describes a noun (passive meaning)</td></tr>
+<tr><td>to phrase 不定式短语</td><td>The animal hides <b>to protect itself from predators</b>.</td><td>purpose (in order to)</td></tr>
+<tr><td>Appositive 同位语</td><td>Maya, <b>a physicist at the university</b>, led the study.</td><td>renames the noun next to it</td></tr>
 </table>
 <div class="box acc"><p><b>Rule:</b> a phrase is never a sentence by itself. It must be attached to an independent clause. <span class="cn">短语没有“主语 + 谓语”，永远不能单独成句，必须挂在一个完整句上。</span></p></div></section>
-<section class="slide " data-title="Foundations 5 · Clauses" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 5</div><h2>Clauses: independent and dependent</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Independent clause 独立句（主句）</h3>
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="Foundations 5 · Clauses"><header><div class="kk">Grammar Foundations 5</div><h2>Clauses: independent and dependent</h2></header><div class="grid g2" style="flex:1"><div class="box white"><h3>Independent clause 独立句（主句）</h3>
 <p>subject + verb + a <b>complete thought</b>. It can stand alone as a sentence.</p>
 <p class="ex ok">✅ <b class="s">Lucas</b> <b class="v">enjoys</b> hiking.</p>
 <p class="ex ok">✅ <b class="s">TMAO</b> <b class="v">is found</b> in deep-sea fish.</p>
 <p><b>Test:</b> put a period after it and read it aloud. If it sounds finished, it is independent.</p>
 <p class="cn">独立句 = 主语 + 谓语 + 意思完整，能单独成句。检验方法：后面加句号读一遍，听起来“说完了”就是独立句。</p></div><div class="box white"><h3>Dependent clause 从句</h3>
 <p>subject + verb, but it begins with a word that makes it <b>depend</b> on another clause.</p>
-<p class="ex no">❌ <u>because</u> <b class="s">Lucas</b> <b class="v">enjoys</b> hiking<span class="why">Because… what? The thought is unfinished.</span></p>
-<p class="ex no">❌ <u>which</u> <b class="v">is found</b> in deep-sea fish<span class="why">“which” needs a noun to describe.</span></p>
+<p class="ex no">❌ Because Lucas enjoys hiking.<br/>✓ <b>Because Lucas enjoys hiking</b>, he visits the mountains.<span class="why">Because… what? The thought is unfinished.</span></p>
+<p class="ex no">❌ Which is found in deep-sea fish.<br/>✓ This protein, <b>which is found in deep-sea fish</b>, protects their cells.<span class="why">“which” needs a noun to describe.</span></p>
 <p><b>Starting words:</b> because, although, though, when, while, if, since, after, before, unless, whereas · who, which, that, whose, where</p>
 <p class="cn">从句也有主谓，但开头有 because、although、when、which、who 等词，意思“悬着”，必须依附一个独立句。</p></div></div></section>
-<section class="slide " data-title="Foundations 6 · Fragments" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 6</div><h2>Complete sentence or fragment? · 完整句还是残句</h2></header>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="Foundations 6 · Fragments" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 6</div><h2>Complete sentence or fragment? · 完整句还是残句</h2></header>
 <table class="t sm">
 <tr><th style="width:30%">Fragment 残句 ✗</th><th style="width:28%">What is missing</th><th>Fixed ✓</th></tr>
 <tr><td>By doing homework.</td><td>only a phrase; no main clause</td><td>By doing homework, <b>she improved</b> a lot.</td></tr>
@@ -427,26 +588,26 @@ i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
 <tr><td>The scientist, a professor at Yale.</td><td>no verb (only a noun + appositive)</td><td>The scientist, a professor at Yale, <b>published</b> the study.</td></tr>
 </table>
 <div class="box acc"><p>A fragment “feels unfinished”: you keep waiting for the rest. On the SAT, a choice that leaves a fragment is always wrong. <span class="cn">读出来觉得“话没说完”就是残句。SAT 中造成残句的选项一定错。</span></p></div></section>
-<section class="slide " data-title="Foundations 7 · Three kinds of connecting words" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 7</div><h2>Three kinds of connecting words · 三类连接词</h2></header>
-<table class="t sm">
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="Foundations 7 · Three kinds of connecting words"><header><div class="kk">Grammar Foundations 7</div><h2>Three kinds of connecting words · 三类连接词</h2></header>
+<table class="t sm" style=";table-layout:fixed"><colgroup><col style="width:18%"/><col style="width:30%"/><col style="width:44%"/><col style="width:8%"/></colgroup>
 <tr><th style="width:23%">Kind</th><th style="width:27%">Words</th><th style="width:28%">Correct pattern</th><th>Lesson</th></tr>
 <tr><td>Coordinating conjunctions (FANBOYS) 并列连词</td><td>for, and, nor, but, or, yet, so</td><td>S V<b>, and</b> S V.</td><td>G01</td></tr>
 <tr><td>Subordinating conjunctions 从属连词</td><td>because, although, when, if, since, while, whereas…</td><td><b>Because</b> S V<b>,</b> S V. / S V <b>because</b> S V.</td><td>G02</td></tr>
 <tr><td>Transition words (conjunctive adverbs) 连接副词</td><td>however, therefore, moreover, thus, instead, for example</td><td>S V<b>; however,</b> S V. / S V<b>. However,</b> S V.</td><td>G02, G09</td></tr>
 </table>
 <div class="grid g2" style="flex:1"><div class="box white"><h3>The big difference</h3><p class="ex ok">✅ The test was hard<b>, but</b> she passed.</p><p class="ex no">❌ The test was hard<b>, however,</b> she passed.<span class="why">however cannot join two sentences with a comma.</span></p><p class="ex ok">✅ The test was hard<b>; however,</b> she passed.</p></div><div class="box white"><h3>中文说明</h3><p class="cn" style="margin-top:0!important">FANBOYS 和从属连词是真正的“连词”，可以把两个句子连起来；however、therefore 等是副词，只表示逻辑关系，不能连接句子，所以前面要用句号或分号。</p></div></div></section>
-<section class="slide " data-title="Foundations 8 · Punctuation map" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 8</div><h2>Punctuation map · 标点符号一览</h2></header>
-<table class="t sm">
+<section class="slide" data-foot="Digital SAT Writing · Introduction" data-kmin="2" data-ktype="learn" data-title="Foundations 8 · Punctuation map"><header><div class="kk">Grammar Foundations 8</div><h2>Punctuation map · 标点符号一览</h2></header>
+<table class="t sm" style=";table-layout:fixed"><colgroup><col style="width:18%"/><col style="width:30%"/><col style="width:44%"/><col style="width:8%"/></colgroup>
 <tr><th style="width:17%">Mark</th><th style="width:43%">Main job</th><th style="width:30%">Example</th><th>Lesson</th></tr>
 <tr><td>. period 句号</td><td>ends a complete sentence</td><td>I woke up. I ate.</td><td>G01</td></tr>
 <tr><td>, comma 逗号</td><td>with FANBOYS between sentences; after an opening phrase/clause; around extra information; in lists</td><td>When I woke up, I ate.</td><td>G01–G03</td></tr>
 <tr><td>; semicolon 分号</td><td>= a period between two complete sentences; also separates list items that contain commas</td><td>I woke up; I ate.</td><td>G01, G04</td></tr>
 <tr><td>: colon 冒号</td><td>after a <b>complete</b> sentence, introduces an explanation or a list</td><td>He had one goal: to win.</td><td>G04</td></tr>
 <tr><td>— dash 破折号</td><td>one dash = colon; two dashes = a pair of commas around extra information</td><td>My brother — always dramatic — cried.</td><td>G03, G04</td></tr>
-<tr><td>’ apostrophe 撇号</td><td>possession (Jack’s) or contraction (it’s = it is)</td><td>the students’ homework</td><td>G07</td></tr>
+<tr><td>’ apostrophe 撇号</td><td>possession (Jack’s) or contraction (it’s = it is)</td><td>The <b>students’ homework</b> is on the desk.</td><td>G07</td></tr>
 </table>
 <p class="cn">SAT 语法中的“标点题”，本质上都是在问：空格两边分别是什么结构（完整句、从句还是短语）？</p></section>
-<section class="slide " data-title="Finding the core of a long sentence" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Find the core</div><h2>Finding the core of a long sentence</h2></header>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="Finding the core of a long sentence" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Find the core</div><h2>Finding the core of a long sentence</h2></header>
 <p class="lead">SAT sentences are long. Cross out what is <b>extra</b> to find the subject and the verb.</p>
 <div class="ex">The earliest transatlantic telegraph cable <s>linking the North American and European continents</s> <u>was</u> completed in 1866.</div>
 <div class="grid g3">
@@ -454,31 +615,26 @@ i.x{color:#8a8f99;font-style:normal;text-decoration:line-through}
  <div class="box white"><h3>What remains</h3><p>The subject (<i>cable</i>) and its verb (<i>was completed</i>). Now you can check agreement, punctuation, and form.</p></div>
  <div class="box acc"><h3>中文提示</h3><p class="cn" style="font-size:16px">划掉介词短语、分词短语、定语从句和插入语，剩下的就是句子主干（SVO）。几乎每道语法题都从这一步开始。</p></div>
 </div></section>
-<section class="slide " data-title="Foundations 9 · Find the core" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 9</div><h2>Cross out the extras, keep the core · 去掉修饰，找主干</h2></header><p class="ex"><b class="s">The girl</b> <i class="x">(sitting by my side)</i> <b class="v">smiled</b>.<span class="why">subject = the girl</span></p><p class="ex"><b class="s">The book</b> <i class="x">(on the table)</i> <b class="v">is</b> mine.<span class="why">prepositional phrase crossed out</span></p><p class="ex"><b class="s">The apple</b> <i class="x">(eaten by my mom)</i> <b class="v">was</b> sweet.<span class="why">-ed phrase crossed out</span></p><p class="ex"><b class="s">The man</b> <i class="x">(who helped us yesterday)</i> <b class="v">is</b> my uncle.<span class="why">who-clause crossed out</span></p><p class="ex"><b class="s">The earliest transatlantic telegraph cable</b> <i class="x">(linking the North American and European continents)</i> <b class="v">was completed</b> in 1866.<span class="why">SAT-length sentence</span></p><div class="legend-row"><span><b class="s" style="color:#1d5fa8">blue</b> = subject 主语</span><span><b style="color:#b3261e">red</b> = verb 谓语</span><span><i class="x" style="color:#8a8f99">gray</i> = cross out 划掉</span></div><p class="cn">划掉：介词短语、doing/done 短语、who/which/that 从句、两个逗号或破折号之间的插入语。剩下的主语和谓语就是句子主干。</p></section>
-<section class="slide " data-title="Quick check 1 · Sentence or fragment?" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Quick Check</div><h2>Quick check 1 · Sentence or fragment?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The scientists who studied the coral reef.</summary><div class="a">Fragment ✗ — “who studied the coral reef” describes the scientists; there is no main verb for <i>scientists</i>. Fix: …reef <b>published</b> their results.</div></details><details class="qc"><summary><span class="q">2.</span>Although the experiment failed, the team learned a lot.</summary><div class="a">Sentence ✓ — dependent clause + independent clause (the team learned).</div></details><details class="qc"><summary><span class="q">3.</span>Built in 1890, the bridge is still in use.</summary><div class="a">Sentence ✓ — “Built in 1890” is a phrase; the core is <i>the bridge is</i>.</div></details><details class="qc"><summary><span class="q">4.</span>Hoping to find water on Mars.</summary><div class="a">Fragment ✗ — an -ing phrase only. Who is hoping?</div></details><details class="qc"><summary><span class="q">5.</span>The results surprised everyone.</summary><div class="a">Sentence ✓ — subject <i>results</i> + verb <i>surprised</i>.</div></details><details class="qc"><summary><span class="q">6.</span>Because the ocean is so deep.</summary><div class="a">Fragment ✗ — dependent clause alone.</div></details><details class="qc"><summary><span class="q">7.</span>The novel, a story about colonial East Africa.</summary><div class="a">Fragment ✗ — no verb; “a story about…” only renames the novel.</div></details><details class="qc"><summary><span class="q">8.</span>The novel tells a story about colonial East Africa.</summary><div class="a">Sentence ✓ — <i>novel</i> + <i>tells</i>.</div></details></div></section>
-<section class="slide " data-title="Quick check 2 · Find the subject and the verb" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Quick Check</div><h2>Quick check 2 · Find the subject and the verb<span class="cn">先找有时态的动词，再问“谁/什么”做了这个动作</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The proteins in the cells of deep-sea fish keep their shape.</summary><div class="a">S = <b>proteins</b>, V = <b>keep</b>. (“in the cells of deep-sea fish” is a prepositional phrase.)</div></details><details class="qc"><summary><span class="q">2.</span>Each of the paintings shows a different city.</summary><div class="a">S = <b>Each</b>, V = <b>shows</b>. (“of the paintings” is extra.)</div></details><details class="qc"><summary><span class="q">3.</span>Last summer, the students working in the lab discovered a new species.</summary><div class="a">S = <b>students</b>, V = <b>discovered</b>. (“working in the lab” describes students.)</div></details><details class="qc"><summary><span class="q">4.</span>The theory, developed by a physicist and his son, explained the extinction.</summary><div class="a">S = <b>theory</b>, V = <b>explained</b>. (“developed by…” is between commas.)</div></details><details class="qc"><summary><span class="q">5.</span>Among the club’s leaders was Josephine Ruffin.</summary><div class="a">S = <b>Josephine Ruffin</b>, V = <b>was</b> (inverted order 倒装).</div></details><details class="qc"><summary><span class="q">6.</span>To finish the project on time was difficult.</summary><div class="a">S = <b>To finish the project on time</b>, V = <b>was</b>.</div></details></div></section>
-<section class="slide " data-title="A Boundaries question" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Anatomy</div><h2>A Boundaries question</h2></header><div class="work"><div class="pv" data-p="T1-2-20" data-lab="Form 1 · Module 2 · Question 20 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-20"></div>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="Foundations 9 · Find the core" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Grammar Foundations 9</div><h2>Cross out the extras, keep the core · 去掉修饰，找主干</h2></header><p class="ex"><b class="s">The girl</b> <i class="x">(sitting by my side)</i> <b class="v">smiled</b>.<span class="why">subject = the girl</span></p><p class="ex"><b class="s">The book</b> <i class="x">(on the table)</i> <b class="v">is</b> mine.<span class="why">prepositional phrase crossed out</span></p><p class="ex"><b class="s">The apple</b> <i class="x">(eaten by my mom)</i> <b class="v">was</b> sweet.<span class="why">-ed phrase crossed out</span></p><p class="ex"><b class="s">The man</b> <i class="x">(who helped us yesterday)</i> <b class="v">is</b> my uncle.<span class="why">who-clause crossed out</span></p><p class="ex"><b class="s">The earliest transatlantic telegraph cable</b> <i class="x">(linking the North American and European continents)</i> <b class="v">was completed</b> in 1866.<span class="why">SAT-length sentence</span></p><div class="legend-row"><span><b class="s" style="color:#1d5fa8">blue</b> = subject 主语</span><span><b style="color:#b3261e">red</b> = verb 谓语</span><span><i class="x" style="color:#8a8f99">gray</i> = cross out 划掉</span></div><p class="cn">划掉：介词短语、doing/done 短语、who/which/that 从句、两个逗号或破折号之间的插入语。剩下的主语和谓语就是句子主干。</p></section>
+<section data-ktype="quick" data-kmin="5" class="slide " data-title="Quick check 1 · Sentence or fragment?" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Quick Check</div><h2>Quick check 1 · Sentence or fragment?<span class="cn">小练习：先自己判断，再点开看答案</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The scientists who studied the coral reef.</summary><div class="a">Fragment ✗ — “who studied the coral reef” describes the scientists; there is no main verb for <i>scientists</i>. Fix: …reef <b>published</b> their results.</div></details><details class="qc"><summary><span class="q">2.</span>Although the experiment failed, the team learned a lot.</summary><div class="a">Sentence ✓ — dependent clause + independent clause (the team learned).</div></details><details class="qc"><summary><span class="q">3.</span>Built in 1890, the bridge is still in use.</summary><div class="a">Sentence ✓ — “Built in 1890” is a phrase; the core is <i>the bridge is</i>.</div></details><details class="qc"><summary><span class="q">4.</span>Hoping to find water on Mars.</summary><div class="a">Fragment ✗ — an -ing phrase only. Who is hoping?</div></details><details class="qc"><summary><span class="q">5.</span>The results surprised everyone.</summary><div class="a">Sentence ✓ — subject <i>results</i> + verb <i>surprised</i>.</div></details><details class="qc"><summary><span class="q">6.</span>Because the ocean is so deep.</summary><div class="a">Fragment ✗ — dependent clause alone.</div></details><details class="qc"><summary><span class="q">7.</span>The novel, a story about colonial East Africa.</summary><div class="a">Fragment ✗ — no verb; “a story about…” only renames the novel.</div></details><details class="qc"><summary><span class="q">8.</span>The novel tells a story about colonial East Africa.</summary><div class="a">Sentence ✓ — <i>novel</i> + <i>tells</i>.</div></details></div></section>
+<section data-ktype="quick" data-kmin="5" class="slide " data-title="Quick check 2 · Find the subject and the verb" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Quick Check</div><h2>Quick check 2 · Find the subject and the verb<span class="cn">先找有时态的动词，再问“谁/什么”做了这个动作</span></h2></header><div class="qc-grid"><details class="qc"><summary><span class="q">1.</span>The proteins in the cells of deep-sea fish keep their shape.</summary><div class="a">S = <b>proteins</b>, V = <b>keep</b>. (“in the cells of deep-sea fish” is a prepositional phrase.)</div></details><details class="qc"><summary><span class="q">2.</span>Each of the paintings shows a different city.</summary><div class="a">S = <b>Each</b>, V = <b>shows</b>. (“of the paintings” is extra.)</div></details><details class="qc"><summary><span class="q">3.</span>Last summer, the students working in the lab discovered a new species.</summary><div class="a">S = <b>students</b>, V = <b>discovered</b>. (“working in the lab” describes students.)</div></details><details class="qc"><summary><span class="q">4.</span>The theory, developed by a physicist and his son, explained the extinction.</summary><div class="a">S = <b>theory</b>, V = <b>explained</b>. (“developed by…” is between commas.)</div></details><details class="qc"><summary><span class="q">5.</span>Among the club’s leaders was Josephine Ruffin.</summary><div class="a">S = <b>Josephine Ruffin</b>, V = <b>was</b> (inverted order 倒装).</div></details><details class="qc"><summary><span class="q">6.</span>To finish the project on time was difficult.</summary><div class="a">S = <b>To finish the project on time</b>, V = <b>was</b>.</div></details></div></section>
+<section data-ktype="activity" data-kmin="6" class="slide k-new" data-title="What is being tested?" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Activity · 课堂活动</div><h2>What is being tested?<span class="cn">看选项，判断考点</span></h2></header><p class="k-lead">Conventions questions all share one stem. The <b>difference between the choices</b> tells you what is tested. 选项之间的差别 = 考点。</p><div class="k-sort" data-cats="Punctuation / boundaries|Subject-verb agreement|Verb form|Pronoun|Transition"><div class="k-item" data-cat="Punctuation / boundaries"><div class="k-snip"><span class="n">1</span>A) ocean, it&nbsp; B) ocean; it&nbsp; C) ocean it&nbsp; D) ocean, while it</div><template class="k-why">Only the punctuation between two clauses changes → boundaries (G01–G02).</template></div><div class="k-item" data-cat="Subject-verb agreement"><div class="k-snip"><span class="n">2</span>A) contains&nbsp; B) contain&nbsp; C) are containing&nbsp; D) have contained</div><template class="k-why">Singular vs plural forms of one verb → agreement (G05).</template></div><div class="k-item" data-cat="Verb form"><div class="k-snip"><span class="n">3</span>A) to analyze&nbsp; B) analyzing&nbsp; C) analyzed&nbsp; D) analyzes</div><template class="k-why">to / -ing / -ed / finite → verb form (G06).</template></div><div class="k-item" data-cat="Pronoun"><div class="k-snip"><span class="n">4</span>A) its&nbsp; B) it’s&nbsp; C) their&nbsp; D) they’re</div><template class="k-why">Pronoun number and possessive vs contraction (G07).</template></div><div class="k-item" data-cat="Transition"><div class="k-snip"><span class="n">5</span>A) However,&nbsp; B) For example,&nbsp; C) Therefore,&nbsp; D) Similarly,</div><template class="k-why">Logical relationship between sentences (G09).</template></div><div class="k-item" data-cat="Punctuation / boundaries"><div class="k-snip"><span class="n">6</span>A) scientist, Maria Lopez,&nbsp; B) scientist Maria Lopez&nbsp; C) scientist, Maria Lopez&nbsp; D) scientist Maria Lopez,</div><template class="k-why">Commas around a name → supplements (G03).</template></div></div><div class="k-row"><button class="k-btn dark k-revealall">全部揭晓</button><button class="k-btn k-resetall">重置</button></div></section>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="A Boundaries question" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Anatomy</div><h2>A Boundaries question</h2></header><div class="work"><div class="pv" data-p="T1-2-20" data-lab="Form 1 · Module 2 · Question 20 · the text"></div><div class="right"><div class="qimg" data-q="T1-2-20"></div>
 <div class="note"><b class="k">1</b><b>The blank.</b> The text is one or two sentences with a blank. You choose what goes in it.</div>
 <div class="note"><b class="k">2</b><b>The choices.</b> All four have the same words (<i>out … but</i>); only the punctuation and the conjunction change. → a <b>Boundaries</b> question.</div>
 <div class="note"><b class="k">3</b><b>The question to ask.</b> Where does one clause end and the next begin? What can legally join them? <span class="cn">问自己：前后各是什么结构？用什么连接才合法？</span></div></div></div></section>
-<section class="slide " data-title="Four steps for every grammar question" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">The method</div><h2>Four steps for every grammar question</h2></header>
+<section data-ktype="learn" data-kmin="2" class="slide " data-title="Four steps for every grammar question" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">The method</div><h2>Four steps for every grammar question</h2></header>
 <div class="steps">
  <div class="step"><div class="n">1</div><div><h3>Compare the four choices</h3><p>What is the same? What changes? The difference tells you the rule being tested. <span class="cn">比较四个选项，找差异，确定考点。</span></p></div></div>
  <div class="step"><div class="n">2</div><div><h3>Read the whole sentence, and the one before it</h3><p>Many answers depend on words far from the blank: the real subject, a tense earlier in the text, an earlier dash. <span class="cn">读完整句，必要时读前一句。</span></p></div></div>
  <div class="step"><div class="n">3</div><div><h3>Analyze the structure</h3><p>Find subjects and verbs; mark clauses and phrases; cross out extra parts. <span class="cn">分析句子结构：主谓、分句、短语。</span></p></div></div>
  <div class="step"><div class="n">4</div><div><h3>Apply the rule and eliminate</h3><p>Cross out choices that break the rule. Two choices that are grammatically identical (a period and a semicolon between the same clauses) must both be wrong. <span class="cn">按规则排除；语法作用相同的两个选项一定都错。</span></p></div></div>
 </div></section>
-<section class="slide " data-title="How the grammar lessons are organized" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Using these lessons</div><h2>How the grammar lessons are organized</h2></header>
-<div class="grid g2" style="flex:1">
- <div class="box white"><h3>Lessons</h3><table class="t sm">
-  <tr><td>G01</td><td>Linking independent clauses</td></tr><tr><td>G02</td><td>Dependent clauses, phrases, and transition words</td></tr>
-  <tr><td>G03</td><td>Supplements and unnecessary punctuation</td></tr><tr><td>G04</td><td>Colons, dashes, list semicolons, question marks</td></tr>
-  <tr><td>G05</td><td>Subject-verb agreement</td></tr><tr><td>G06</td><td>Verb forms</td></tr>
-  <tr><td>G07</td><td>Pronouns and possessives</td></tr><tr><td>G08</td><td>Modifier placement</td></tr>
-  <tr><td>G09</td><td>Transitions</td></tr><tr><td>G10–G11</td><td>Rhetorical Synthesis</td></tr></table></div>
- <div class="box white"><h3>Each lesson</h3><p>Rule → real questions → steps → one worked example → seven practice questions → summary → after-class practice.</p><p style="margin-top:8px">Buttons: <b>A B C D</b> to answer, <b>Hint</b>, <b>Show answer</b>. Keys: <b>← →</b> to move, <b>M</b> for contents.</p><p class="cn">题号写法：4-1-21 = Form 4 · Module 1 · Question 21。</p></div>
-</div></section>
-<section class="slide summary-layout" data-foot="Digital SAT Writing · Introduction" data-title="What to remember"><header><div class="kk">Summary</div><h2>What to remember<span class="cn">语法导论要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 题型分类</h3><div class="summary-copy">Writing questions: <b>Boundaries</b> and <b>Form, Structure, and Sense</b> (conventions); <b>Transitions</b> and <b>Rhetorical Synthesis</b> (expression of ideas).</div></article><article class="summary-card"><h3 class="summary-label">02 · 看选项辨考点</h3><div class="summary-copy">Conventions questions share one stem; the <b>difference between the choices</b> shows what is tested.</div></article><article class="summary-card"><h3 class="summary-label">03 · 句子核心</h3><div class="summary-copy">Every sentence needs a subject and a finite verb. Only an independent clause can stand alone.</div></article><article class="summary-card"><h3 class="summary-label">04 · 去除修饰</h3><div class="summary-copy">Cross out phrases and extra clauses to find the core of the sentence.</div></article><article class="summary-card"><h3 class="summary-label">05 · 解题顺序</h3><div class="summary-copy">Method: compare choices → read the whole sentence → analyze the structure → apply the rule and eliminate.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The Alvarez theory, developed in 1980 by physicist </span> <span data-line=\"2\">Luis Walter Alvarez and his geologist son Walter </span> <span data-line=\"3\">Alvarez, maintained that the secondary effects of an </span> <span data-line=\"4\">asteroid impact caused many dinosaurs and other </span> <span data-line=\"5\">animals to die _______ it left unexplored the </span> <span data-line=\"6\">question of whether unrelated volcanic activity might </span> <span data-line=\"7\">have also contributed to the mass extinctions. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) out but </span></p><p><span data-line=\"4\">B) out, but </span></p><p><span data-line=\"5\">C) out </span></p><p><span data-line=\"6\">D) out, </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
+<section data-ktype="learn" data-kmin="2" class="slide" data-title="How the grammar lessons are organized" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Using these lessons</div><h2>How each grammar lesson works<span class="cn">每节课的流程与课堂工具</span></h2></header><div class="k-grid2"><div class="k-card"><h3>Lesson flow · 课堂流程</h3><ol style="padding-left:22px"><li>🔥 <b>Warm-up</b>: one or two quick questions</li><li>📘 <b>Grammar you need</b> + the rule</li><li>⚡ <b>Quick check</b>: random pick, answer aloud</li><li>👥 <b>We do</b>: real questions; look at the choices, analyze, state the rule</li><li>✍️ <b>You do</b>: real questions, 71 seconds each</li><li>🪤 <b>Error lab</b> and common mistakes</li><li>🎟 <b>Exit ticket</b>, then 🏠 homework</li></ol><p class="cn" style="margin-top:6px">热身 → 语法基础与规则 → 抢答 → 师生共做 → 独立练习 → 找错误类型 → 离堂小测 → 课后练习</p></div><div class="k-card"><h3>Buttons and keys · 按钮与快捷键</h3><ul style="padding-left:22px"><li><b>A B C D</b>: choose; a wrong choice explains why. <b>Hint</b> shows where to look.</li><li>🔍 <b>Mark the structure</b>: tap words, then check.</li><li><b>T</b> timer · <b>P</b> pen · <b>A</b> plan · <b>M</b> contents · <b>H</b> help</li></ul><p class="cn" style="margin-top:6px">题号写法：Form 4 · Module 1 · Question 5，简写为 4-1-5。</p></div></div></section>
+<section data-ktype="trap" data-kmin="4" class="slide k-new" data-title="Common mistakes" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Common mistakes · 常见错误</div><h2>Common mistakes<span class="cn">这节课最容易犯的错</span></h2></header><div class="k-flips"><div class="k-flip"><div class="f">Choosing what “sounds right” in speech.</div><div class="b">Name the <b>rule</b>. The SAT tests written Standard English, not spoken habits.</div><div class="hint">点击翻面 · click to flip</div></div><div class="k-flip"><div class="f">Reading only the words next to the blank.</div><div class="b">Read the <b>whole sentence</b>: the subject or the second clause may be far away.</div><div class="hint">点击翻面 · click to flip</div></div><div class="k-flip"><div class="f">Reading the sentence before looking at the choices.</div><div class="b"><b>Compare the choices first</b>: their difference tells you what is tested.</div><div class="hint">点击翻面 · click to flip</div></div><div class="k-flip"><div class="f">Adding a comma wherever you would pause.</div><div class="b">Commas follow <b>structure</b>, not breathing.</div><div class="hint">点击翻面 · click to flip</div></div></div><div class="k-row"><span class="k-lead" style="font-size:15px;margin-right:auto">先让学生说“为什么错”，再翻面。</span><button class="k-btn dark k-revealall">全部揭晓</button><button class="k-btn k-resetall">重置</button></div></section>
+<section data-ktype="recap" data-kmin="3" class="slide summary-layout" data-foot="Digital SAT Writing · Introduction" data-title="What to remember"><header><div class="kk">Summary</div><h2>What to remember<span class="cn">语法导论要点</span></h2></header><div class="summary-grid"><article class="summary-card"><h3 class="summary-label">01 · 题型分类</h3><div class="summary-copy">Writing questions: <b>Boundaries</b> and <b>Form, Structure, and Sense</b> (conventions); <b>Transitions</b> and <b>Rhetorical Synthesis</b> (expression of ideas).</div></article><article class="summary-card"><h3 class="summary-label">02 · 看选项辨考点</h3><div class="summary-copy">Conventions questions share one stem; the <b>difference between the choices</b> shows what is tested.</div></article><article class="summary-card"><h3 class="summary-label">03 · 句子核心</h3><div class="summary-copy">Every sentence needs a subject and a finite verb. Only an independent clause can stand alone.</div></article><article class="summary-card"><h3 class="summary-label">04 · 去除修饰</h3><div class="summary-copy">Cross out phrases and extra clauses to find the core of the sentence.</div></article><article class="summary-card"><h3 class="summary-label">05 · 解题顺序</h3><div class="summary-copy">Method: compare choices → read the whole sentence → analyze the structure → apply the rule and eliminate.</div></article><article class="summary-card summary-recall"><h3 class="summary-label">06 · 30 秒自检</h3><div class="summary-copy">What is tested? Which rule decides the answer? Why does one tempting choice fail?</div><p class="cn">指出考点 → 说明规则 → 解释一个易错选项。</p></article></div></section>
+<section data-ktype="exit" data-kmin="6" class="slide k-new" data-title="Exit ticket" data-foot="Digital SAT Writing · Introduction"><header><div class="kk">Exit ticket · 离堂小测</div><h2>Exit ticket 🎟️<span class="cn">独立完成，先不讨论</span></h2></header><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;min-height:0;align-items:start"><div class="k-mcq compact" data-ans="C"><div class="k-stem">Which is a <b>fragment</b>?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>The tide came in quickly.</button><button class="k-opt" data-l="B"><b>B</b>Covered in snow, the cabin looked tiny.</button><button class="k-opt" data-l="C"><b>C</b>While the guests were eating dinner.</button><button class="k-opt" data-l="D"><b>D</b>Few people noticed the change.</button></div><template class="k-why"><i>While…</i> is a dependent clause with no main clause.</template><div class="k-out"></div></div><div class="k-mcq compact" data-ans="A"><div class="k-text">Choices: A) has&nbsp; B) have&nbsp; C) having&nbsp; D) to have</div><div class="k-stem">The choices are forms of one verb. What should you check first?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>Whether the clause already has a main verb, and what its subject is</button><button class="k-opt" data-l="B"><b>B</b>Which choice is shortest</button><button class="k-opt" data-l="C"><b>C</b>Whether there is a comma nearby</button><button class="k-opt" data-l="D"><b>D</b>The meaning of the last noun</button></div><template class="k-why">Finite or not, and singular or plural: find the subject and count the main verbs.</template><div class="k-out"></div></div><div class="k-mcq compact" data-ans="A"><div class="k-text">The list of required books for the summer reading program ______ long.</div><div class="k-stem">Which choice conforms to the conventions of Standard English?</div><div class="k-opts"><button class="k-opt" data-l="A"><b>A</b>is</button><button class="k-opt" data-l="B"><b>B</b>are</button><button class="k-opt" data-l="C"><b>C</b>were</button><button class="k-opt" data-l="D"><b>D</b>have been</button></div><template class="k-why">Subject = <b>list</b> (one). Cross out “of required books for the summer reading program.”</template><div class="k-out"></div></div></div><div class="k-row"><span class="k-score"></span><div class="k-conf" style="margin-left:auto">今天这类题我：<button>😕 还不会</button><button>🙂 基本会</button><button>😎 能讲给别人听</button></div><button class="k-btn warm" data-timer="300">⏱ 5:00</button></div></section>
+<section class="slide k-new" data-foot="Digital SAT Writing · Introduction" data-ktype="next" data-title="Next lesson"><header><div class="kk">Next · 下节预告</div><h2>Next: Linking Clauses I<span class="cn">独立句连接（一）</span></h2></header><div class="k-grid2 polish-equal"><div class="k-card"><h3>Next lesson · Linking Clauses I</h3><p>Two complete sentences: the four legal ways to join them, and the two illegal ones (comma splice, run-on).</p><p class="cn" style="margin-top:6px">独立句的连接：四种正确方式，两种错误。</p></div><div class="k-card"><h3>Think about it · 预习问题</h3><p>Is this correct? “The bus was late, we walked to school.”</p></div></div><div class="k-hw"><b>🏠 Homework · 课后</b><br/>Take 10 grammar questions from any practice module. For each, write what the choices test (punctuation / agreement / verb form / pronoun / transition).</div></section></div></div><div id="nav"><button id="mbtn" title="Contents (M)">☰</button><button id="prev">‹</button><span id="pg"></span><button id="next">›</button></div><div id="menu" hidden></div><script>window.DATA={"P":{"T1-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">The Alvarez theory, developed in 1980 by physicist </span> <span data-line=\"2\">Luis Walter Alvarez and his geologist son Walter </span> <span data-line=\"3\">Alvarez, maintained that the secondary effects of an </span> <span data-line=\"4\">asteroid impact caused many dinosaurs and other </span> <span data-line=\"5\">animals to die _______ it left unexplored the </span> <span data-line=\"6\">question of whether unrelated volcanic activity might </span> <span data-line=\"7\">have also contributed to the mass extinctions. </span></p></div>","vector":false,"segs":[],"lines":{}}},"Q":{"T1-2-20":{"html":"<div class=\"typed-text\"><p><span data-line=\"1\">Which choice completes the text so that it conforms </span> <span data-line=\"2\">to the conventions of Standard English? </span></p><p><span data-line=\"3\">A) out but </span></p><p><span data-line=\"4\">B) out, but </span></p><p><span data-line=\"5\">C) out </span></p><p><span data-line=\"6\">D) out, </span></p></div>","vector":false,"segs":[],"lines":{}}},"EX":{}};</script><script>(function(){
 var D=window.DATA;
 var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide'));
 var cur=0, pg=document.getElementById('pg'), menu=document.getElementById('menu');
@@ -553,7 +709,7 @@ document.getElementById('mbtn').onclick=function(){if(menu.hidden){buildMenu();m
 document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key;
   if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();show(cur+1);}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1);}
   else if(k==='Home')show(0);else if(k==='End')show(slides.length-1);else if(k==='m'||k==='M'){if(menu.hidden){buildMenu();menu.hidden=false;}else menu.hidden=true;}else if(k==='Escape')menu.hidden=true;});
-var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
+window.goSlide=show;var h=parseInt((location.hash||'').slice(1),10);show(isNaN(h)?0:h-1);
 })();
 </script><script>[].forEach.call(document.querySelectorAll(".pv[data-top]"),function(el){el.refocus=function(){el.scrollTop=0;};el.scrollTop=0;});</script><script>(function(){
 let vectorInstance=0;
@@ -704,4 +860,218 @@ document.addEventListener('click',function(e){var b=e.target.closest('.teaching-
  setTimeout(function(){var sl=b.closest('.slide');var vis=[].slice.call(sl.querySelectorAll('.st,.final,.vd,.step,.pbox,.ask')).filter(function(x){return !x.classList.contains('teaching-pending')});
  var last=vis[vis.length-1];var col=last&&last.closest('.right');if(last&&col){var r=last.getBoundingClientRect(),c=col.getBoundingClientRect();if(r.bottom>c.bottom||r.top<c.top)col.scrollTop+=r.bottom-c.bottom+12;}
  if(b.textContent.indexOf('重新')>=0){sl.querySelectorAll('.right').forEach(function(c){c.scrollTop=0})}},60);});
-</script></body></html>
+</script><script>window.KIT={"clueLabel": "🔍 圈结构", "labels": {"read": "Ask · 看选项", "locate": "Ask · 分析结构", "predict": "Ask · 说规则", "compare": "Check · 核对", "eliminate": "Ask · 排错"}, "keymap": [["look at|看选项|空格位置|看目标|where is the blank", "read"], ["rule|规则|choose the tense|check the tense|时态|apply|逐项核对", "predict"], ["eliminate|排除", "eliminate"], [".", "locate"]], "prompts": {}};</script><script>/* ===== Classroom kit v1 (2026-10-18) ===== */
+(function(){
+var K=window.KIT||{};
+var deck=document.getElementById('deck');
+var slides=[].slice.call(deck.querySelectorAll('.slide'));
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+function go(i){if(window.goSlide)window.goSlide(i);}
+function cur(){return $('.slide.active',deck);}
+
+/* ---------- 1. type chips ---------- */
+var LABEL={plan:['🗓','Plan','课堂安排'],warm:['🔥','Warm-up','热身'],learn:['📘','Learn','讲解'],skill:['🛠','Skill builder','技能训练'],quick:['⚡','Quick check','抢答'],example:['👥','We do','师生共做'],practice:['✍️','You do','独立完成'],activity:['🎯','Activity','课堂活动'],trap:['🪤','Trap clinic','陷阱诊所'],recap:['📌','Recap','小结'],vocab:['🔤','Vocabulary','词汇'],exit:['🎟','Exit ticket','离堂小测'],homework:['🏠','Homework','课后练习'],next:['➡️','Next','下节预告']};
+slides.forEach(function(sl){var t=sl.dataset.ktype;if(!t||t==='cover'||!LABEL[t])return;var L=LABEL[t];
+  var c=el('div','k-chip','<span>'+L[0]+' '+L[1]+' · '+L[2]+'</span>'+(sl.dataset.kmin?'<span class="m">'+sl.dataset.kmin+'′</span>':''));sl.appendChild(c);});
+
+/* ---------- 2. poll ---------- */
+function makePoll(){var placeholder=document.createDocumentFragment();placeholder.markRight=function(){};return placeholder;}
+
+/* ---------- 3. timer ---------- */
+var T={left:0,total:0,run:false,iv:null,box:null};
+function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
+function timerBox(){
+  if(T.box)return T.box;
+  var b=el('div','', '<span>⏱</span><span class="d">0:00</span><button data-a="go">▶︎</button><button data-a="rs">↺</button><button data-s="30">0:30</button><button data-s="71">1:11</button><button data-s="180">3:00</button><button data-s="300">5:00</button><button data-s="600">10:00</button><button data-a="x">✕</button>');
+  b.id='k-timer';b.hidden=true;document.body.appendChild(b);
+  b.onclick=function(e){var t=e.target.closest('button');if(!t)return;
+    if(t.dataset.s){setT(+t.dataset.s,true);} else if(t.dataset.a==='go'){T.run?pauseT():startT();} else if(t.dataset.a==='rs'){setT(T.total,false);} else if(t.dataset.a==='x'){pauseT();b.hidden=true;}};
+  T.box=b;return b;
+}
+function draw(){var b=timerBox();b.querySelector('.d').textContent=fmt(T.left);b.classList.toggle('end',T.total>0&&T.left<=0);b.classList.toggle('warn',T.left>0&&T.left<=10);b.querySelector('[data-a=go]').textContent=T.run?'❚❚':'▶︎';}
+function startT(){if(T.left<=0)return;T.run=true;clearInterval(T.iv);var last=Date.now();T.iv=setInterval(function(){var n=Date.now();T.left-=(n-last)/1000;last=n;if(T.left<=0){T.left=0;pauseT();}draw();},200);draw();}
+function pauseT(){T.run=false;clearInterval(T.iv);draw();}
+function setT(s,start){pauseT();T.total=s;T.left=s;timerBox().hidden=false;draw();if(start)startT();}
+window.kTimer=setT;
+
+/* ---------- 4. pen ---------- */
+var pen={on:false,color:'#d63a3a',w:4,alpha:1,strokes:new Map(),cv:null,ctx:null};
+function penInit(){
+  var cv=el('canvas');cv.id='k-pen';cv.width=1280;cv.height=720;deck.appendChild(cv);pen.cv=cv;pen.ctx=cv.getContext('2d');
+  var tools=el('div','', '<button data-c="#d63a3a" style="background:#d63a3a"></button><button data-c="#1f5fbf" style="background:#1f5fbf"></button><button data-c="#1d7f52" style="background:#1d7f52"></button><button data-c="#ffd23f" data-h="1" style="background:#ffd23f" title="荧光笔"></button><button data-a="undo" title="撤销">↶</button><button data-a="clear" title="清除本页">🗑</button><button data-a="x" title="关闭 (P)">✕</button>');
+  tools.id='k-pentools';tools.hidden=true;document.body.appendChild(tools);
+  tools.onclick=function(e){var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.c){pen.color=b.dataset.c;pen.w=b.dataset.h?18:4;pen.alpha=b.dataset.h?.35:1;$$('button',tools).forEach(function(x){x.classList.toggle('on',x===b);});}
+    else if(b.dataset.a==='undo'){var a=pen.strokes.get(cur());if(a&&a.length){a.pop();redraw();}}
+    else if(b.dataset.a==='clear'){pen.strokes.set(cur(),[]);redraw();}
+    else togglePen(false);};
+  tools.querySelector('button').classList.add('on');
+  var drawing=null;
+  function pt(e){var r=deck.getBoundingClientRect();return [(e.clientX-r.left)*1280/r.width,(e.clientY-r.top)*720/r.height];}
+  cv.addEventListener('pointerdown',function(e){if(!pen.on)return;cv.setPointerCapture(e.pointerId);drawing={c:pen.color,w:pen.w,a:pen.alpha,p:[pt(e)]};var a=pen.strokes.get(cur())||[];a.push(drawing);pen.strokes.set(cur(),a);});
+  cv.addEventListener('pointermove',function(e){if(!drawing)return;drawing.p.push(pt(e));redraw();});
+  cv.addEventListener('pointerup',function(){drawing=null;});
+  var last=null;setInterval(function(){var c=cur();if(c!==last){last=c;redraw();setTimeout(function(){grow(c);},120);}},250);
+}
+/* enlarge exam text to use empty space (projector readability) */
+function grow(sl){if(!sl||sl._kgrown||!sl.querySelector('.work'))return;sl._kgrown=true;
+  function ok(els){return els.every(function(b){return !b||!b.clientHeight||b.scrollHeight<=b.clientHeight+1;});}
+  function fitOne(t,boxes,max){var start=parseFloat(getComputedStyle(t).fontSize)||18;var best=null;for(var f=max;f>start;f--){t.style.setProperty('font-size',f+'px','important');if(ok(boxes)){best=f;break;}}if(best==null)t.style.removeProperty('font-size');}
+  $$('.pv',sl).forEach(function(pv){if(pv.closest('.right')||pv.classList.contains('graph-split')||pv.classList.contains('vector-content')||pv.querySelector('svg,table'))return;var t=$('.typed-text',pv);if(!t)return;
+    var col=pv.parentNode,work=pv.closest('.work');var boxes=[pv,col,work].concat($$('.qimg,.right',sl));fitOne(t,boxes,col.querySelector('.qimg')?21:24);});
+}
+function redraw(){var c=pen.ctx;if(!c)return;c.clearRect(0,0,1280,720);(pen.strokes.get(cur())||[]).forEach(function(s){c.globalAlpha=s.a;c.strokeStyle=s.c;c.lineWidth=s.w;c.lineCap='round';c.lineJoin='round';c.beginPath();s.p.forEach(function(p,i){i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]);});c.stroke();});c.globalAlpha=1;}
+function togglePen(v){pen.on=(v==null)?!pen.on:v;pen.cv.classList.toggle('on',pen.on);$('#k-pentools').hidden=!pen.on;var nb=$('#k-penbtn');if(nb)nb.classList.toggle('on',pen.on);}
+penInit();
+
+/* ---------- 5. nav buttons + keys + help ---------- */
+var nav=$('#nav');
+if(nav){
+  var hb=el('button','k-nb','⌂');hb.title='课堂安排 (A)';hb.onclick=function(){var p=slides.findIndex(function(s){return s.dataset.ktype==='plan';});go(p<0?0:p);};
+  var tb=el('button','k-nb','⏱');tb.title='计时器 (T)';tb.onclick=function(){var b=timerBox();b.hidden=!b.hidden;draw();};
+  var pb=el('button','k-nb','✎');pb.id='k-penbtn';pb.title='画笔 (P)';pb.onclick=function(){togglePen();};
+  var qb=el('button','k-nb','?');qb.title='快捷键 (H)';qb.onclick=function(){help();};
+  nav.insertBefore(qb,nav.firstChild);nav.insertBefore(pb,nav.firstChild);nav.insertBefore(tb,nav.firstChild);nav.insertBefore(hb,nav.firstChild);
+}
+function help(){var h=$('#k-help');if(h){h.remove();return;}h=el('div','', '<div class="in"><h3>上课工具 · Classroom tools</h3>'+
+ '<div><kbd>← →</kbd> 翻页 · <kbd>M</kbd> 目录 · <kbd>A</kbd> 课堂安排</div>'+
+ '<div><kbd>T</kbd> 计时器（SAT 每题约 71 秒，按 1:11）</div>'+
+ '<div><kbd>P</kbd> 画笔：在任意页面上圈画；每页笔迹单独保存，可撤销</div>'+
+ '<div>🔍 <b>找证据</b>：点原文里的词标黄，再点“核对”看是否命中证据句</div>'+
+ '<div>🙋 <b>黄色虚线框</b>：先问学生，再点“显示下一步”</div>'+
+ '<div>🎲 <b>随机点题</b>：抢答页随机抽一题</div><div style="margin-top:10px;opacity:.7">点击任意处关闭</div></div>');
+ h.id='k-help';h.onclick=function(){h.remove();};document.body.appendChild(h);}
+document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;if(/INPUT|TEXTAREA/.test((e.target||{}).tagName||''))return;var k=e.key.toLowerCase();
+  if(k==='t'){var b=timerBox();b.hidden=!b.hidden;draw();}else if(k==='p'){togglePen();}else if(k==='h'||k==='?'){help();}else if(k==='a'){var p=slides.findIndex(function(s){return s.dataset.ktype==='plan';});go(p<0?0:p);}});
+
+/* ---------- 6. clue finder ---------- */
+function ranges(str){var out=[];(str||'').split(',').forEach(function(r){r=r.trim();if(!r)return;var p=r.split('-');var a=+p[0],b=+(p[1]||p[0]);for(var i=a;i<=b;i++)out.push(i);});return out;}
+function wrapWords(root){if(root._kw)return;root._kw=true;
+  var tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
+  nodes.forEach(function(n){if(!n.nodeValue.trim())return;var frag=document.createDocumentFragment();n.nodeValue.split(/(\s+)/).forEach(function(p){if(!p)return;if(/^\s+$/.test(p))frag.appendChild(document.createTextNode(p));else{var s=el('span','k-w');s.textContent=p;frag.appendChild(s);}});n.parentNode.replaceChild(frag,n);});}
+$$('.pv').forEach(function(pv){
+  var tt=$('.typed-text',pv);if(!tt)return;
+  var sl=pv.closest('.slide');var prac=$('.prac',sl);
+  var ev=prac?ranges(prac.dataset.ev):ranges(pv.dataset.hl);
+  var bar=el('div','k-cluebar');var b1=el('button','k-btn',K.clueLabel||'🔍 找证据'),b2=el('button','k-btn','✓ 核对'),b3=el('button','k-btn','↺'),msg=el('span','k-cluemsg');
+  msg.hidden=true;b2.hidden=true;b3.hidden=true;
+  bar.appendChild(msg);bar.appendChild(b1);bar.appendChild(b2);bar.appendChild(b3);
+  var lab=$('.pvlab',pv);
+  if(pv.classList.contains('graph-split')||pv.classList.contains('vector-content')){bar.style.position='absolute';bar.style.top='4px';bar.style.right='10px';bar.style.margin='0';pv.style.position='relative';pv.appendChild(bar);}
+  else if(lab&&lab.nextSibling)pv.insertBefore(bar,lab.nextSibling);else pv.insertBefore(bar,pv.firstChild);
+  function clear(){$$('.k-w',pv).forEach(function(w){w.classList.remove('k-mark','k-hit','k-miss');});msg.hidden=true;}
+  b1.onclick=function(){wrapWords(tt);var on=!pv.classList.contains('k-cluemode');pv.classList.toggle('k-cluemode',on);b1.classList.toggle('on',on);b2.hidden=!on||!ev.length;b3.hidden=!on;if(!on)clear();};
+  tt.addEventListener('click',function(e){if(!pv.classList.contains('k-cluemode'))return;var w=e.target.closest('.k-w');if(!w)return;w.classList.remove('k-hit','k-miss');w.classList.toggle('k-mark');});
+  b3.onclick=clear;
+  b2.onclick=function(){var marked=$$('.k-w.k-mark,.k-w.k-hit,.k-w.k-miss',pv),hit=0;
+    marked.forEach(function(w){var ln=w.closest('[data-line]');var n=ln?+ln.dataset.line:-1;var ok=ev.indexOf(n)>=0;w.classList.remove('k-mark');w.classList.add(ok?'k-hit':'k-miss');if(ok)hit++;});
+    if(pv.mark)pv.mark(ev);
+    msg.hidden=false;msg.textContent=marked.length?('命中 '+hit+' / '+marked.length+' 个词 · 证据已高亮'):'证据已高亮';};
+});
+
+/* ---------- 7. practice: poll + timer ---------- */
+$$('.prac').forEach(function(w){
+  var letters=(w.dataset.letters||'ABCD').split('');var hw=(w.closest('.slide')||{}).dataset.ktype==='homework';
+  var poll=hw?{markRight:function(){}}:makePoll(letters);var lb=$('.letters',w);if(!hw)w.insertBefore(poll,lb);
+  var tools=$('.tools',w);if(tools){var tb=el('button','','⏱ 71s');tb.className=(tools.querySelector('button')||{}).className||'';tb.classList.remove('hintbtn','showans');tb.onclick=function(){setT(71,true);};tools.appendChild(tb);}
+  new MutationObserver(function(){if($('.res.ok',w))poll.markRight(w.dataset.ans);}).observe($('.fb',w),{childList:true});
+});
+
+/* ---------- 8. worked examples: ask prompts + poll ---------- */
+var P=K.prompts||{};
+var DEF={read:{ask:'先别看分析：这道题在问什么？请一位同学用自己的话说。',listen:'能说出题型和空格/划线处要填的内容'},
+ locate:{ask:'证据在哪里？请学生先在原文里指出来（可用 🔍 找证据）。',listen:'能指出具体的词或句子，而不是“大概在中间”'},
+ predict:{ask:'看选项之前，每人先说出自己的预测答案。',listen:'预测要简单、具体，可以用中文'},
+ compare:{ask:'哪个选项最接近你的预测？请说明依据。',listen:'请指出对应的原文证据'},
+ eliminate:{ask:'挑一个错误选项，说出它错在哪一类陷阱。',listen:'太强 / 相反 / 原文没有 / 只对一半 …'}};
+function prompt(key){var p=P[key]||DEF[key];if(!p)return null;var labels=Object.assign({read:'Ask · 读题',locate:'Ask · 找证据',predict:'Ask · 先预测',compare:'Check · 核对',eliminate:'Ask · 排错'},K.labels||{});
+  return el('div','k-ask','<b class="q">🙋 '+labels[key]+'</b>'+p.ask+(p.listen?'<span class="l">👂 听什么：'+p.listen+'</span>':''));}
+function keyOf(txt){txt=(txt||'').toLowerCase();var km=K.keymap||[];for(var i=0;i<km.length;i++){if(new RegExp(km[i][0],'i').test(txt))return km[i][1];}if(/read the question|读题/.test(txt))return 'read';if(/locate|找|定位/.test(txt))return 'locate';if(/predict|预测/.test(txt))return 'predict';if(/compare|对比|对照/.test(txt))return 'compare';if(/eliminate|排除/.test(txt))return 'eliminate';return null;}
+slides.forEach(function(sl){
+  var units=sl._revealUnits;if(!units||!sl.resetReveal)return;
+  var title=(sl.dataset.title||'').toLowerCase();
+  var ins=[];
+  if(units.some(function(u){return u.matches('.st');})){
+    units.slice().forEach(function(u){if(!u.matches('.st'))return;var k=keyOf(($('h3',u)||{}).textContent);var p=k&&prompt(k);if(p)ins.push([u,p]);});
+  } else if(/the question/.test(title)){var p=prompt('read');if(p)ins.push([units[0],p]);}
+  else if(/the evidence/.test(title)){var p2=prompt('locate'),u2=units.find(function(u){return /clue|claim|locate|facts|key|find|data/i.test(($('h3',u)||{}).textContent||'');})||units[0];if(p2)ins.push([u2,p2]);var u3=units.find(function(u){return /predict/i.test(($('h3',u)||{}).textContent||'');});if(u3){var p3=prompt('predict');if(p3)ins.push([u3,p3]);}}
+  else if(/the choices/.test(title)){var p4=prompt('compare');if(p4)ins.push([units[0],p4]);}
+  ins.forEach(function(x){x[0].parentNode.insertBefore(x[1],x[0]);var i=units.indexOf(x[0]);units.splice(i,0,x[1]);});
+  if(ins.length)sl.resetReveal();
+  // poll when the choices are visible on this slide
+  if($('.qimg',sl)&&!/the question/.test(title)){var bar=$('.teaching-controls',sl);if(bar){var pl=makePoll(['A','B','C','D']);bar.parentNode.insertBefore(pl,bar.nextSibling);}}
+});
+
+/* ---------- 9. quick check tools ---------- */
+slides.forEach(function(sl){var g=$('.qc-grid',sl);if(!g)return;var bar=el('div','k-qctools');
+  var r=el('button','k-btn warm','🎲 随机点题'),o=el('button','k-btn','全部展开'),c=el('button','k-btn','全部收起');bar.appendChild(r);bar.appendChild(o);bar.appendChild(c);g.parentNode.insertBefore(bar,g);
+  r.onclick=function(){var ds=$$('details.qc',g),closed=ds.filter(function(d){return !d.open;});var pool=closed.length?closed:ds;ds.forEach(function(d){d.classList.remove('k-pick');});var d=pool[Math.floor(Math.random()*pool.length)];void d.offsetWidth;d.classList.add('k-pick');};
+  o.onclick=function(){$$('details.qc',g).forEach(function(d){d.open=true;});};c.onclick=function(){$$('details.qc',g).forEach(function(d){d.open=false;d.classList.remove('k-pick');});};});
+
+/* ---------- 10. MCQ ---------- */
+$$('.k-mcq').forEach(function(q){
+  var ans=q.dataset.ans,opts=$$('.k-opt',q),out=$('.k-out',q)||q.appendChild(el('div','k-out'));
+  var why=($('template.k-why',q)||{}).innerHTML||'';var wrong={};$$('template.k-wrong',q).forEach(function(t){wrong[t.dataset.l]=t.innerHTML;});
+  var first=null;
+  function reveal(){opts.forEach(function(o){if(o.dataset.l===ans)o.classList.add('ok');});out.innerHTML='<div class="res">✓ Answer: '+ans+'</div>'+why;if(poll)poll.markRight(ans);score();}
+  opts.forEach(function(o){o.onclick=function(){var L=o.dataset.l;if(first==null){first=(L===ans);q.dataset.first=first?'y':'n';}
+    if(L===ans){reveal();}else{o.classList.add('no');if(!$('.fbx',o)&&wrong[L])o.appendChild(el('span','fbx',wrong[L]));score();}};});
+  var poll=null;
+  if(!q.classList.contains('compact')){poll=makePoll(opts.map(function(o){return o.dataset.l;}));q.insertBefore(poll,$('.k-opts',q));}
+  var tools=el('div','k-row');var rv=el('button','k-btn dark','显示答案'),rs=el('button','k-btn','重置');tools.appendChild(rv);tools.appendChild(rs);q.insertBefore(tools,out);
+  rv.onclick=reveal;rs.onclick=function(){first=null;delete q.dataset.first;opts.forEach(function(o){o.classList.remove('ok','no');var f=$('.fbx',o);if(f)f.remove();});out.innerHTML='';score();};
+});
+function score(){slides.forEach(function(sl){var s=$('.k-score',sl);if(!s)return;var qs=$$('.k-mcq',sl),ok=qs.filter(function(q){return q.dataset.first==='y';}).length,done=qs.filter(function(q){return q.dataset.first;}).length;s.textContent='首次答对 '+ok+' / '+qs.length+(done<qs.length?'（还剩 '+(qs.length-done)+' 题）':'');});}
+score();
+
+/* ---------- 11. sort activities ---------- */
+$$('.k-sort').forEach(function(s){
+  var cats=(s.dataset.cats||'').split('|');
+  $$('.k-item',s).forEach(function(it){var box=el('div','k-cats'),fb=el('div','k-fb');var why=($('template.k-why',it)||{}).innerHTML||'';
+    cats.forEach(function(c){var b=el('button','',c);b.onclick=function(){if(it.classList.contains('done'))return;if(c===it.dataset.cat){b.classList.add('ok');it.classList.add('done');fb.innerHTML='✓ '+why;}else{b.classList.add('no');fb.innerHTML='再想想 · Try again';}};box.appendChild(b);});
+    it.appendChild(box);it.appendChild(fb);
+    it.reveal=function(){$$('button',box).forEach(function(b){if(b.textContent===it.dataset.cat)b.classList.add('ok');});it.classList.add('done');fb.innerHTML='✓ '+why;};
+    it.reset=function(){$$('button',box).forEach(function(b){b.className='';});it.classList.remove('done');fb.innerHTML='';};});
+});
+$$('.k-revealall').forEach(function(b){var sl=b.closest('.slide');b.onclick=function(){$$('.k-item',sl).forEach(function(i){i.reveal();});$$('.k-flip',sl).forEach(function(f){f.classList.add('open');});};});
+$$('.k-resetall').forEach(function(b){var sl=b.closest('.slide');b.onclick=function(){$$('.k-item',sl).forEach(function(i){i.reset();});$$('.k-flip',sl).forEach(function(f){f.classList.remove('open');});};});
+
+/* ---------- 12. flips, agenda, confidence ---------- */
+$$('.k-flip').forEach(function(f){f.onclick=function(){f.classList.toggle('open');};});
+$$('.k-ag[data-go]').forEach(function(a){a.onclick=function(){go(+a.dataset.go-1);};});
+$$('.k-conf').forEach(function(c){$$('button',c).forEach(function(b){b.onclick=function(){$$('button',c).forEach(function(x){x.classList.toggle('on',x===b);});};});});
+$$('[data-timer]').forEach(function(b){b.onclick=function(){setT(+b.dataset.timer,true);};});
+
+/* ---------- 13. step-by-step reveal on teaching slides ---------- */
+slides.forEach(function(sl){var t=sl.dataset.ktype;if(['learn','skill','recap','trap'].indexOf(t)<0||sl.classList.contains('k-new'))return;
+  var items=$$('.steps>.step',sl);if(items.length<3)items=$$('.grid>.box',sl);if(items.length<3)items=$$('.summary-grid>.summary-card',sl);if(items.length<3)return;
+  var bar=el('div','k-row');bar.style.cssText='position:absolute;right:22px;top:44px;z-index:4';var b=el('button','k-btn','▶ 逐条讲解');bar.appendChild(b);sl.appendChild(bar);
+  var on=false,n=0;
+  function apply(){items.forEach(function(x,i){x.style.visibility=(on&&i>=n)?'hidden':'';});b.textContent=!on?'▶ 逐条讲解':(n<items.length?'下一条 ('+n+'/'+items.length+')':'↺ 全部显示');b.classList.toggle('on',on);}
+  b.onclick=function(){if(!on){on=true;n=1;}else if(n<items.length){n++;}else{on=false;}apply();};
+});
+})();
+</script>
+
+
+<script id="question-size-reviewed-20261018">
+(()=>{
+function applyQuestionPlan(plan){let s=document.querySelector('.slide.active');if(!s)return;
+if(plan.moveAsk){const a=s.querySelector('.lcol>.ask');if(a)s.querySelector('.work>.right').append(a);}
+if(plan.moveQuestion&&!s.dataset.questionMoved){const q=s.querySelector('.gx-left>.qimg,.lcol>.qimg'),right=s.querySelector('.work>.right');if(q&&right){right.prepend(q);s.dataset.questionMoved='1';}}
+if(plan.compact){const pv=s.querySelector(".pv");if(pv){pv.style.setProperty("max-height","none","important");pv.style.setProperty("height","auto","important");pv.style.setProperty("flex","0 0 auto","important");}}
+if(plan.font){s.querySelectorAll('.work .typed-text').forEach(e=>{e.style.setProperty('font-size',plan.font+'px','important');e.style.setProperty('line-height',plan.compact?'1.32':'1.4','important');e.querySelectorAll('*').forEach(t=>{if(t.style.fontSize)t.style.setProperty('font-size','inherit','important')});e.querySelectorAll('p').forEach(t=>{t.style.setProperty('line-height',plan.compact?'1.32':'1.4','important');if(plan.compact)t.style.setProperty('margin-bottom','.5em','important')})});}
+if(plan.width){let svg=s.querySelector('.qcol .qimg>.native-vector');if(!svg)return;
+if(plan.split){let [cut,lw,rw]=plan.split,[x,y,w,h]=plan.vb.split(' ').map(Number);let right=s.querySelector('.work>.right');if(!s.dataset.vectorSplit){let clone=svg.cloneNode(true);clone.classList.add('question-continuation');clone.setAttribute('viewBox',`0 ${cut} ${w} ${h-cut}`);clone.setAttribute('height',h-cut);clone.style.setProperty('width',rw+'px','important');clone.style.setProperty('max-height','none','important');clone.style.setProperty('height','auto','important');const wrap=document.createElement('div');wrap.className='qimg split-question';wrap.style.flex='none';wrap.append(clone);right.prepend(wrap);s.dataset.vectorSplit='1';svg.setAttribute('viewBox',`0 0 ${w} ${cut}`);svg.setAttribute('height',cut);}
+svg.style.setProperty('width',lw+'px','important');svg.style.setProperty('height','auto','important');svg.style.setProperty('max-height','none','important');
+}else svg.style.setProperty('width',plan.width+'px','important');}
+};
+
+const plans={"20": {"font": 24}};
+const slides=[...document.querySelectorAll("section.slide")];let queued=false;function apply(){queued=false;const s=document.querySelector(".slide.active");const plan=plans[slides.indexOf(s)+1];if(plan)applyQuestionPlan(plan)}function schedule(){if(!queued){queued=true;requestAnimationFrame(apply)}}
+new MutationObserver(schedule).observe(document.getElementById("deck"),{subtree:true,childList:true,attributes:true,attributeFilter:["class"]});window.addEventListener("resize",schedule);schedule();
+})();
+</script>
+</body></html>
