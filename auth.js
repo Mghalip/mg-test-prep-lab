@@ -8,7 +8,7 @@ async function logout(){tick();save();await MG.sync();const {error}=await MG.cli
 const accountBaseStart=start,accountBaseFinish=finish,accountBaseGo=go;
 go=function(v){if(v==='teacher'){location.href='account.html?view=teacher';return}accountBaseGo(v)};
 start=function(cat){accountBaseStart(cat)};
-function topicPayload(a){return {id:a.id,kind:'sat-topic',exam:'SAT 专题练习',started:a.started,submitted:a.submitted,mode:'practice',summary:{correct:a.items.filter(x=>x.answer===qby(x.id).answer).length,total:a.items.length},items:a.items.map(x=>{const q=qby(x.id);return {...x,expected:q.answer,correct:x.answer===q.answer,topic:topic(q.topic)[1],section:TOPICS.slice(0,11).some(t=>t[0]===q.topic)?'Reading':'Writing',number:`T${q.test} M${q.module} Q${q.number}`}})}}
+function topicPayload(a){return {id:a.id,kind:'sat-topic',exam:[...new Set(a.items.map(x=>topic(qby(x.id).topic)[1]))].join('、'),started:a.started,submitted:a.submitted,mode:'practice',summary:{correct:a.items.filter(x=>x.answer===qby(x.id).answer).length,total:a.items.length},items:a.items.map(x=>{const q=qby(x.id);return {...x,expected:q.answer,correct:x.answer===q.answer,topic:topic(q.topic)[1],section:TOPICS.slice(0,11).some(t=>t[0]===q.topic)?'Reading':'Writing',number:`T${q.test} M${q.module} Q${q.number}`}})}}
 finish=async function(){if(!session||submitting)return;submitting=true;try{tick();if(MG.user){const a={id:session.id,started:session.started,submitted:new Date().toISOString(),items:session.ids.map(id=>({id,answer:session.answers[id]||null,seconds:Math.round(session.times[id]||0)}))};await MG.submit(topicPayload(a))}accountBaseFinish()}catch(e){alert(e.message+' 请保留页面并重试。')}finally{submitting=false}};
 MG.ready.then(async()=>{
   if(!MG.user)return;
