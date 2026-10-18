@@ -3,6 +3,7 @@
   const el=document.getElementById('account-content'), esc=MG.escape, size=50;
   let profiles=[], loaded=[], page=0, teacherView=false, requestId=0;
   const labels={'sat-topic':'SAT 专题','sat-mock':'SAT 模考','act-mock':'ACT 模考'};
+  const examName=r=>r.kind==='sat-mock'?String(r.exam??'').replace(/^A(\d+)$/, 'Practice$1'):r.exam;
   const date=value=>new Date(value).toLocaleString('zh-CN');
   const name=id=>profiles.find(p=>p.id===id)?.display_name || id;
   function message(text){const target=document.getElementById('account-message');if(target)target.textContent=text}
@@ -34,7 +35,7 @@
     const current=++requestId;document.getElementById('records').textContent='正在加载…';document.getElementById('previous').disabled=true;document.getElementById('next').disabled=true;
     try{const f=filters();if(f.from&&f.to&&f.from>f.to)throw Error('结束日期不能早于开始日期。');const {data,error,count}=await query('id,student_id,kind,exam,started,submitted,mode,summary',true).range(page*size,(page+1)*size-1);if(current!==requestId)return;if(error)throw error;loaded=data;
       document.getElementById('stats').innerHTML=`<div><strong>${count??"—"}</strong>筛选范围内练习次数</div>${teacherView?`<div><strong>${profiles.length}</strong>已建立学习档案的账号</div>`:''}`;
-      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${labels[r.kind]}<br>${esc(r.exam)}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
+      document.getElementById('records').innerHTML=data.length?`<div class="table-wrap"><table><thead><tr>${teacherView?'<th>学生</th>':''}<th>练习</th><th>提交时间</th><th>成绩</th><th>详情</th></tr></thead><tbody>${data.map((r,i)=>`<tr>${teacherView?`<td>${esc(name(r.student_id))}<br><small>${esc(r.student_id.slice(0,8))}</small></td>`:''}<td>${labels[r.kind]}<br>${esc(examName(r))}</td><td>${esc(date(r.submitted))}</td><td>${esc(score(r))}</td><td><button data-row="${i}">查看逐题记录</button></td></tr>`).join('')}</tbody></table></div>`:'<p>当前筛选范围没有已同步的练习记录。</p>';
       document.querySelectorAll('[data-row]').forEach(b=>b.onclick=()=>detail(loaded[Number(b.dataset.row)]));
       document.getElementById('page-label').textContent=`第 ${page+1} / ${Math.max(1,Math.ceil((count??data.length)/size))} 页`;
       document.getElementById('previous').disabled=page===0;document.getElementById('next').disabled=count===null?data.length<size:(page+1)*size>=count;message('');
@@ -43,7 +44,7 @@
   async function detail(row){
     const dialog=document.getElementById('attempt-detail');dialog.innerHTML='<p>正在读取逐题记录…</p><button onclick="this.closest(\'dialog\').close()">关闭</button>';dialog.showModal();
     try{const {data:r,error}=await MG.client.from('mg_attempts').select('*').eq('id',row.id).eq('student_id',row.student_id).single();if(error)throw error;
-      dialog.innerHTML=`<div class="detail-top"><h2>${esc(name(r.student_id))} · ${esc(r.exam)}</h2><button onclick="this.closest('dialog').close()">关闭</button></div><p>${esc(score(r))} · ${esc(date(r.submitted))}</p><div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>答案</th><th>结果</th><th>用时</th><th>思路与反馈</th></tr></thead><tbody>${r.items.filter(x=>x&&typeof x==='object').map((x,i)=>`<tr><td>${esc(x.section||x.topic||'')} · ${esc(x.number||x.id)}${x.scored===false?'（不计分）':''}</td><td>${esc(x.answer||'未作答')}</td><td>${esc(x.expected||'—')}</td><td class="${x.correct?'good':'bad'}">${x.correct?'正确':'错误'}</td><td>${Math.round(Number(x.seconds)||0)} 秒</td><td>${r.kind!=='sat-topic'?`<button data-reasoning="${i}">${teacherView?'查看思路 / 反馈':'写分析 / 看反馈'}</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`;
+      dialog.innerHTML=`<div class="detail-top"><h2>${esc(name(r.student_id))} · ${esc(examName(r))}</h2><button onclick="this.closest('dialog').close()">关闭</button></div><p>${esc(score(r))} · ${esc(date(r.submitted))}</p><div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>答案</th><th>结果</th><th>用时</th><th>思路与反馈</th></tr></thead><tbody>${r.items.filter(x=>x&&typeof x==='object').map((x,i)=>`<tr><td>${esc(x.section||x.topic||'')} · ${esc(x.number||x.id)}${x.scored===false?'（不计分）':''}</td><td>${esc(x.answer||'未作答')}</td><td>${esc(x.expected||'—')}</td><td class="${x.correct?'good':'bad'}">${x.correct?'正确':'错误'}</td><td>${Math.round(Number(x.seconds)||0)} 秒</td><td>${r.kind!=='sat-topic'?`<button data-reasoning="${i}">${teacherView?'查看思路 / 反馈':'写分析 / 看反馈'}</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`;
       dialog.querySelectorAll('[data-reasoning]').forEach(button=>button.onclick=()=>reasoning(r,r.items.filter(x=>x&&typeof x==='object')[Number(button.dataset.reasoning)]));
       if(r.kind!=='sat-topic'){
         const buttons=[...dialog.querySelectorAll('[data-reasoning]')],items=r.items.filter(x=>x&&typeof x==='object');
@@ -56,7 +57,7 @@
   }
   async function reasoning(row,item){
     const dialog=document.getElementById('attempt-detail');
-    dialog.innerHTML=`<div class="detail-top"><h2>${esc(row.exam)} · ${esc(item.section||'')} · ${esc(item.number||item.id)}</h2><button id="back-attempt">返回逐题记录</button><button id="close-reasoning">关闭</button></div><p>学生答案：${esc(item.answer||'未作答')} · 参考答案：${esc(item.expected||'—')}</p><div class="reasoning-layout"><section class="reasoning-question" aria-label="原题"></section><section class="reasoning-editor"></section></div>`;
+    dialog.innerHTML=`<div class="detail-top"><h2>${esc(examName(row))} · ${esc(item.section||'')} · ${esc(item.number||item.id)}</h2><button id="back-attempt">返回逐题记录</button><button id="close-reasoning">关闭</button></div><p>学生答案：${esc(item.answer||'未作答')} · 参考答案：${esc(item.expected||'—')}</p><div class="reasoning-layout"><section class="reasoning-question" aria-label="原题"></section><section class="reasoning-editor"></section></div>`;
     document.getElementById('back-attempt').onclick=()=>{dialog.close();detail(row)};
     document.getElementById('close-reasoning').onclick=()=>dialog.close();
     const host=dialog.querySelector('.reasoning-question');
