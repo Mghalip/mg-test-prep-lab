@@ -54,3 +54,12 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
 #mock-app > .landing .cards .card .card-kicker{font-size:12px;font-weight:500;letter-spacing:.2px;text-transform:none;color:#65738a}
 #mock-app > .landing .card h2.practice-name{font-size:38px;line-height:1.15;font-weight:750;letter-spacing:-.8px;margin:6px 0 20px;font-variant-numeric:tabular-nums}
 @media(max-width:620px){#mock-app > .landing .card h2.practice-name{font-size:34px;margin-bottom:16px}}
+
+/* Original mathematical options remain visible beneath full-area answer buttons. */
+.vector.source-options{position:relative}
+.vector.source-options>svg{display:block}
+.vector .source-choice{position:absolute;min-height:0;padding:0;margin:0;border:2px solid transparent;border-radius:5px;background:transparent;box-shadow:none;cursor:pointer;touch-action:manipulation}
+.vector .source-choice:hover{background:rgba(39,74,203,.06);border-color:rgba(39,74,203,.35)}
+.vector .source-choice[aria-pressed=true]{background:rgba(39,74,203,.08);border-color:#274acb}
+.vector .source-choice:focus-visible{outline:3px solid #274acb;outline-offset:2px}
+.vector .source-choice.is-excluded{background:rgba(100,110,125,.12);border-color:#aab1bc;border-style:dashed}
