@@ -12,3 +12,12 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 @media(max-width:800px){.exam-tools{flex-wrap:wrap;min-width:0}.exam-header button,.tools-menu summary{font-size:11px;padding:6px 7px}.exam-tools .zoom-controls button{min-width:26px}.exam-header .clock{min-width:60px}}
 .question-pane:has(.choice-radio)>.response-tools:focus-within{position:static;width:auto;height:auto;overflow:visible;clip-path:none}
 @media(max-width:800px){.exam-tools{flex:0 0 100%;width:100%}.exam-header .clock{order:2}}
+
+/* The complete printed choice is clickable; retain the ACT circle beside it. */
+.source-part .choice-area{transform:none;min-height:0;padding:0;margin:0;border:0;border-radius:3px;background:transparent;box-shadow:none;touch-action:manipulation}
+.source-part .choice-area::before{content:'';position:absolute;left:-21px;top:var(--radio-top);transform:translateY(-50%);width:15px;height:15px;box-sizing:border-box;border-radius:50%;border:1px solid #a9a9a9;background:linear-gradient(#fff,#d9d9d9)}
+.source-part .choice-area.selected::before{background:#245c8e;box-shadow:inset 0 0 0 3px white}
+.source-part .choice-area.eliminated::before{content:'×';background:#aaa;color:#333;font:16px/13px Arial;text-align:center}
+.source-part .choice-area.eliminated::after{content:none}
+.source-part .choice-area:hover{background:rgba(22,117,188,.07)}
+.source-part .choice-area:focus-visible{outline:2px solid #145b99;outline-offset:1px}
