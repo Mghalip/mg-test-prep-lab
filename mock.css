@@ -50,4 +50,7 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
 
 .math-typeset math,.choice math{font-size:1em;font-family:math;white-space:nowrap}.math-typeset p{margin:0 0 1.2em}.choice:has(math){min-height:76px}
 
-#mock-app > .landing .card h2.practice-name{font-size:clamp(20px,2vw,27px);letter-spacing:-.6px}
+/* Keep the exam number prominent without repeating the Practice label. */
+#mock-app > .landing .cards .card .card-kicker{font-size:12px;font-weight:500;letter-spacing:.2px;text-transform:none;color:#65738a}
+#mock-app > .landing .card h2.practice-name{font-size:38px;line-height:1.15;font-weight:750;letter-spacing:-.8px;margin:6px 0 20px;font-variant-numeric:tabular-nums}
+@media(max-width:620px){#mock-app > .landing .card h2.practice-name{font-size:34px;margin-bottom:16px}}
