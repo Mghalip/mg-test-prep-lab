@@ -709,7 +709,7 @@ function bplot(svg,n,p,o){o=o||{};const ps=dist(n,p);const mx=Math.max(...ps);
 function note(svg,x,y,t,c,a){el('text',{x,y,'text-anchor':a||'middle','font-size':15,'font-weight':800,fill:c||ROSE},svg,t);}
 
 /* warm-up */
-(function(){function draw(k){bplot($('wuSol'),5,.25,{hl:k>=3?x=>x===1:null,xlab:'X = number correct (guessing)',labels:k>=3});if(k<3){const s=$('wuSol');note(s,300,140,'(the bars appear at step 3)',MUTED);}}draw(0);onStep('wuSol',draw);})();
+(function(){function draw(){const s=$('wuSol');const revealed=s.closest('.slide').querySelector('.answ[data-i="2"]').classList.contains('open');if(!revealed){clear(s);note(s,280,135,'Make your prediction first.',MUTED);note(s,280,166,'先猜一猜，再揭示 Q3 答案。',MUTED);return;}bplot(s,5,.25,{hl:x=>x===1,xlab:'X = number correct (guessing)',labels:true});}draw();onStep('wuSol',draw);})();
 
 /* BINS check visual */
 (function(){const R=[['a Blood type',[1,1,1,1]],['b Aces (no replacement)',[1,0,1,1]],['c Until an ace',[1,1,0,1]]];
