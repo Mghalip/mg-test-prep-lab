@@ -15,3 +15,14 @@ assert.equal(score.fromModules(modules(2,6,1,3).slice(0,3)),null);
 assert.equal(score.fromModules([...modules(2,6,1,3).slice(0,3),{module:3,total:22,correct:20}]),null);
 assert.equal(score.section('rw',-1,2),null);assert.equal(score.section('math',23,0),null);
 console.log('PASS workbook calibration, full/zero results, module-distribution adjustment, range caps, incomplete/invalid records.');
+
+for(const name of ['rw','math'])for(const branch of [1,2]){
+ const start=name==='rw'?0:3,total=name==='rw'?27:22;
+ const rows=[{module:start,total,correct:total},{module:start+branch,total,correct:total}];
+ assert.equal(score.fromSectionModules(name,rows).center,800);
+ assert.equal(score.fromSectionModules(name,rows.map(r=>({...r,correct:0}))).center,200);
+ assert.equal(score.fromSectionModules(name,[rows[0],rows[0]]),null);
+ assert.equal(score.fromSectionModules(name,[rows[1],{...rows[1],module:start+3-branch}]),null);
+ assert.equal(score.fromSectionModules(name,rows.slice(0,1)),null);
+}
+console.log('PASS section-only predictions and incomplete/wrong module rejection');

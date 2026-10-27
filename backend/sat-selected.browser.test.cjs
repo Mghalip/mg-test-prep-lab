@@ -1,0 +1,51 @@
+const {chromium}=require('playwright');const assert=require('node:assert/strict');
+const ROOT=process.env.MG_TEST_ROOT||'http://127.0.0.1:8771/';
+const A='11111111-1111-4111-8111-111111111111',B='22222222-2222-4222-8222-222222222222',T='33333333-3333-4333-8333-333333333333';
+(async()=>{
+const browser=await chromium.launch({channel:'chrome',headless:true});const rows=[],reflections=[],feedback=[];let failInsert=false,failReflection=false;
+const errors=[];
+async function context(uid,mobile=false){const c=await browser.newContext(mobile?{viewport:{width:390,height:844},isMobile:true}:{});
+ if(uid)await c.addInitScript(({uid})=>{if(sessionStorage.getItem('seeded'))return;sessionStorage.setItem('seeded','1');const token=btoa(JSON.stringify({alg:'HS256',typ:'JWT'}))+'.'+btoa(JSON.stringify({sub:uid,exp:Math.floor(Date.now()/1000)+3600}))+'.test';localStorage.setItem('mg-auth-v1',JSON.stringify({access_token:token,refresh_token:'test-refresh',token_type:'bearer',expires_in:3600,expires_at:Math.floor(Date.now()/1000)+3600,user:{id:uid,email:'student@example.test',aud:'authenticated',role:'authenticated',user_metadata:{display_name:'Test Student'}}}));},{uid});
+ await c.route('https://*.supabase.co/**',async route=>{const req=route.request(),url=new URL(req.url());let data=null,status=200,headers={};
+ if(url.pathname.endsWith('/mg_backend_version'))data=1;
+ else if(url.pathname.endsWith('/mg_is_teacher'))data=uid===T;
+ else if(url.pathname.endsWith('/mg_profiles')){data=[{id:A,display_name:'Student <A>'},{id:B,display_name:'Student B'},{id:T,display_name:'Teacher'}].filter(p=>uid===T||p.id===uid);if(url.searchParams.has('id'))data=data.filter(p=>'eq.'+p.id===url.searchParams.get('id'));if(req.headers().accept?.includes('vnd.pgrst.object'))data=data[0]||null;}
+ else if(url.pathname.endsWith('/mg_save_reflection')){
+   const v=req.postDataJSON(),old=reflections.find(r=>r.student_id===uid&&r.attempt_id===v.p_attempt&&r.question_id===v.p_question);
+   if(failReflection){status=503;data={message:'test offline'}}else if((old?.revision||0)!==v.p_revision){status=400;data={message:'revision conflict'}}else{data={student_id:uid,attempt_id:v.p_attempt,question_id:v.p_question,mistake:v.p_mistake,reasoning:v.p_reasoning,revision:v.p_revision+1,updated_at:new Date().toISOString()};if(old)Object.assign(old,data);else reflections.push(data);}
+ }else if(url.pathname.endsWith('/mg_publish_feedback')){
+   const v=req.postDataJSON(),r=reflections.find(r=>r.student_id===v.p_student&&r.attempt_id===v.p_attempt&&r.question_id===v.p_question);
+   if(uid!==T||r?.revision!==v.p_revision){status=403;data={message:'denied'}}else{data={...r,id:crypto.randomUUID(),feedback:v.p_feedback,teacher_id:uid,created_at:new Date().toISOString()};feedback.unshift(data);}
+ }else if(url.pathname.endsWith('/mg_reflections')||url.pathname.endsWith('/mg_feedback')){
+   data=(url.pathname.endsWith('/mg_reflections')?reflections:feedback).filter(r=>uid===T||r.student_id===uid);
+   for(const k of ['student_id','attempt_id','question_id'])if(url.searchParams.has(k))data=data.filter(r=>'eq.'+r[k]===url.searchParams.get(k));
+   if(req.headers().accept?.includes('vnd.pgrst.object'))data=data[0]||null;
+ }else if(url.pathname.endsWith('/mg_attempts')){
+   if(req.method()==='POST'){
+     if(failInsert){status=503;data={message:'offline'};}else{const row=req.postDataJSON();if(rows.some(r=>r.id===row.id&&r.student_id===uid)){status=409;data={code:'23505',message:'duplicate'}}else{rows.push(row);data=null;status=201;}}
+   }else{data=rows.filter(r=>uid===T||r.student_id===uid);for(const name of ['id','student_id','kind'])if(url.searchParams.get(name))data=data.filter(r=>'eq.'+r[name]===url.searchParams.get(name));headers['content-range']=`0-${Math.max(0,data.length-1)}/${data.length}`;if(req.headers().accept?.includes('vnd.pgrst.object'))data=data[0]||null;}
+ }else if(url.pathname.endsWith('/logout'))data={};
+ else if(url.pathname.endsWith('/user'))data={id:uid,email:'student@example.test',user_metadata:{}};
+ else {console.log('Unhandled',req.method(),url.pathname);status=400;data={message:'unhandled'}}
+ await route.fulfill({status,headers:{'content-type':'application/json','access-control-expose-headers':'content-range',...headers},body:JSON.stringify(data)});
+ });return c;}
+async function open(c,path){const p=await c.newPage();p.on('pageerror',e=>errors.push(path+': '+e.message));await p.goto(ROOT+path);await p.waitForFunction(()=>window.MG&&!!document.getElementById('mg-account-bar'));return p;}
+
+const c=await context(A),p=await open(c,'mock.html');await p.locator('.cards .card').first().waitFor();assert.equal(await p.locator('.cards .card').count(),44);
+const expected={rw:[12,22,26,21,20,55,35,17,19,18,49,29,43,46,47],math:[52,48,49,46,36,27,53,37,30,29,32,28,35,42,34]};
+for(const scope of ['rw','math']){await p.getByRole('button',{name:scope==='rw'?'Verbal 精选15套':'Math 精选15套',exact:true}).click();assert.equal(await p.locator('.practice-stage').count(),3);assert.deepEqual(await p.locator('.practice-name').allTextContents(),expected[scope].map(String));await p.locator('.practice-stage button').first().click();assert.match(await p.locator('#modal').innerText(),scope==='rw'?/54 题，64 分钟/:/44 题，70 分钟/);await p.locator('#modal .primary').click();assert.equal(await p.locator('.center-screen h1').textContent(),scope==='rw'?'Verbal':'Math');await p.evaluate(()=>Mock.home());}
+if(process.env.MG_TEST_OUTPUT){await p.screenshot({path:process.env.MG_TEST_OUTPUT+'/catalog-desktop.png',fullPage:true});await p.setViewportSize({width:390,height:844});await p.screenshot({path:process.env.MG_TEST_OUTPUT+'/catalog-mobile.png',fullPage:true});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await p.setViewportSize({width:1440,height:1000});}
+for(const scope of ['rw','math'])for(const hard of [false,true]){
+ const id=scope==='rw'?'A12':'A52';await p.evaluate(async({scope,id})=>{await Mock.start(id,'up',scope);Mock.begin()},{scope,id});
+ if(hard)await p.evaluate(async()=>{const key=MG.key('sat-mock-v1'),st=JSON.parse(localStorage.getItem(key)),d=await(await fetch('mock-data/'+st.exam+'.json')).json();for(const q of d.modules[st.module].questions)st.answers[q.id]=q.answer.split(/\s+or\s+/)[0];localStorage.setItem(key,JSON.stringify(st));await Mock.resume()});
+ await p.evaluate(()=>Mock.next());let st=await p.evaluate(()=>MG.read('sat-mock-v1'));assert.equal(st.module,(scope==='rw'?0:3)+(hard?2:1));await p.reload();await p.locator('.resume button').click();await p.waitForFunction(()=>!!document.querySelector('.exam-header'));assert.equal(await p.evaluate(()=>MG.read('sat-mock-v1').scope),scope);await p.evaluate(()=>Mock.next());await p.locator('.ordered-sat-scores').waitFor();assert.equal(await p.locator('.ordered-sat-scores .score').count(),1);assert.equal(await p.locator('.total-prediction').count(),0);st=await p.evaluate(()=>MG.read('sat-mock-v1'));assert.equal(st.phase,'done');assert.equal(st.results.length,2);assert.equal(st[scope==='rw'?'math':'rw'],null);await p.evaluate(()=>MG.sync());const row=rows.find(r=>r.id===st.id);assert(row);assert.equal(row.summary.scope,scope);assert.equal(row.items.length,scope==='rw'?54:44);assert(!row.summary.prediction.total);
+ const downloading=p.waitForEvent('download');await p.evaluate(()=>Mock.exportResult());const download=await downloading;assert.match(download.suggestedFilename(),scope==='rw'?/-Verbal-result.csv$/:/-Math-result.csv$/);const stream=await download.createReadStream(),chunks=[];for await(const chunk of stream)chunks.push(chunk);const csv=Buffer.concat(chunks).toString('utf8');assert(csv.includes('Scope'));assert(!csv.includes('undefined'));
+ await p.evaluate(()=>Mock.review(0));await p.locator('textarea[name="reasoning"]').waitFor();await p.locator('textarea[name="mistake"]').fill('I misread the condition.');await p.locator('textarea[name="reasoning"]').fill('I will check the condition before choosing.');await p.getByRole('button',{name:'提交思路给教师'}).click();await p.waitForFunction(()=>document.querySelector('.reflection-status').textContent.includes('思路已提交'));console.log('PASS',scope,hard?'harder':'easier','completion, cloud payload, reflection');
+}
+// Timed sections must finish after two modules even when resumed after both deadlines.
+for(const scope of ['rw','math']){await p.evaluate(async scope=>{await Mock.start(scope==='rw'?'A12':'A52','down',scope);Mock.begin();const k=MG.key('sat-mock-v1'),st=JSON.parse(localStorage.getItem(k));st.moduleStarted=Date.now()-8000000;st.deadline=Date.now()-4000000;localStorage.setItem(k,JSON.stringify(st));await Mock.resume()},scope);await p.locator('.ordered-sat-scores').waitFor();assert.equal(await p.evaluate(()=>MG.read('sat-mock-v1').results.length),2);}
+// Legacy full-length state without scope retains break and four-module results.
+await p.evaluate(async()=>{await Mock.start('A26','up');Mock.begin();const k=MG.key('sat-mock-v1'),st=JSON.parse(localStorage.getItem(k));delete st.scope;localStorage.setItem(k,JSON.stringify(st));await Mock.resume();Mock.next();Mock.next()});assert.equal(await p.evaluate(()=>MG.read('sat-mock-v1').phase),'break');await p.evaluate(()=>{Mock.skipBreak();Mock.next();Mock.next()});await p.locator('.total-prediction').waitFor();assert.equal(await p.locator('.ordered-sat-scores .score').count(),3);await p.evaluate(()=>MG.sync());assert.equal(rows.find(r=>!r.summary.scope||r.summary.scope==='full').items.length,98);
+const teacher=await context(T),tp=await open(teacher,'account.html?view=teacher');await tp.locator('[data-row]').first().waitFor();const tr=tp.locator('#records tr').filter({hasText:'Math 单科'}).first();assert(await tr.count());assert(!/Verbal|总分/.test(await tr.innerText()));await tr.locator('[data-row]').click();assert.equal(await tr.locator('.result-score-strip>span').count(),1);assert.match(await tr.locator('.result-score-strip').innerText(),/Math/);await tp.locator('#attempt-detail tbody tr').first().waitFor();assert.equal(await tp.locator('#attempt-detail tbody tr').count(),44);
+assert.deepEqual(errors,[]);console.log('PASS catalog order, timed completion, legacy full test, teacher single-subject scores');await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

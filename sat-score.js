@@ -27,5 +27,12 @@ function fromModules(modules){
  const rw=section('rw',map.get(0),map.get(1)??map.get(2)),math=section('math',map.get(3),map.get(4)??map.get(5));
  return {version,rw,math,total:{low:rw.low+math.low,center:rw.center+math.center,high:rw.high+math.high}};
 }
-return Object.freeze({version,section,fromModules});
+function fromSectionModules(name,modules){
+ if(!['rw','math'].includes(name)||!Array.isArray(modules)||modules.length!==2)return null;
+ const start=name==='rw'?0:3,total=name==='rw'?27:22;
+ const first=modules.find(r=>r?.module===start),second=modules.find(r=>r?.module===start+1||r?.module===start+2);
+ if(!first||!second||modules.some(r=>r.total!==total||!Number.isInteger(r.correct)||r.correct<0||r.correct>total))return null;
+ return {version,...section(name,total-first.correct,total-second.correct)};
+}
+return Object.freeze({version,section,fromModules,fromSectionModules});
 })();
