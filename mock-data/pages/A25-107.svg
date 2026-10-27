@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="290.759 295.3184 299.87779">105</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question22</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="89.99999 100.07969 110.758998 117.83869 124.798099 128.63794 134.87779 141.11765 144.959 148.92 158.04 163.55956 170.51895 176.7588 182.99866 193.68 197.63939 206.64 210.5994 217.55879 223.79865 228.4773 234.71715 240.8367 246.35626 250.1961 257.2758 267.95899 274.19883 281.75898 291.71998 296.39863 302.63847 306.59788 316.43998 323.51966 331.8 338.87968 342.35939 353.03999 363.83998 370.0798 374.0392 380.27906 384.9577 394.08 401.15968 407.2792 415.68 421.19956 427.3191 433.55894 440.6386 447.598 458.28 463.79957 470.75895 477.71833 483.95817 488.6368 494.87666 501.83604">Anobject&#x2019;sspeedisincreasingatarateof1.1meterspersecondsquared.</tspan><tspan y="-708.65" x="90 103.200008 110.2797 116.51955 126.359 130.3184 141.72 145.6794 152.6388 156.47864 168 172.67865 178.9185 182.75835 188.9982 198.48 202.43939 215.4 226.2 230.1594 234.11879 240.35865 251.759 258.83869 265.07853 275.64 286.44 290.3994 297.4791 304.43849 308.3979 320.64 326.15959 333.11897 340.07835 346.31819 350.99684 357.23667">Whatisthisrate,inmilesperminutesquared</tspan></text>
+<path transform="matrix(1,0,0,1,215.4,135.1)" stroke-width=".72" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H148.65"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.65" x="364.08 373.68 378.35865 385.31803 392.3977 399.3571 406.31648 412.5563 425.52 429.4794 442.44 446.3994 453.3588 465.6 472.6797 478.91954 485.03907 489.7177 495.95756 501.35758">,roundedtothenearest</tspan><tspan y="-684.41006" x="90 93.959407 100.19925 107.15865 110.998508 118.0782 127.68 132.35865 142.43834 147.9579 157.559 168.12001 178.92002 182.87941 186.8388 196.44002 207.84001 214.91971 218.3994 225.3588 232.43849 242.88 253.68001 259.91984 263.87925 270.11909 274.79774 280.19776 283.67747">tenth?(Use1mile=1,609meters.)</tspan><tspan y="-660.291" x="90 100.0797 111">A.0</tspan><tspan y="-636.17007" x="90 99.3573 111 118.0797 121.55939">B.2.5</tspan><tspan y="-612.05007" x="90 99.3573 111 118.0797 125.0391 128.5188">C.29.5</tspan><tspan y="-587.81008" x="90 100.0797 111 118.0797 121.55939 128.51879 135.59848 142.55788 146.03757">D.1,462.7</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

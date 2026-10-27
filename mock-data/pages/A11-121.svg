@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="290.759 295.3184 299.87779">118</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12">Question5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-725.20999" x="89.99999 94.67864 102.83999 107.51864 117.95899 129.359 136.43869 141 148.68 160.07999 167.15969 174.11908 181.07999 191.15969 198.23938 204.47924 211.79999 215.75939 224.63999 228.59938 235.55878 245.27999 252.35968 258.47923 262.43864 269.398 279.12 286.19969 294.24 301.19999 308.99998 320.39997 327.35935 334.43904">If(x+3)&#x00b2;=30,whatisthevalueofx&#x00b2;+6x?</tspan><tspan y="-694.00997" x="89.999958 100.07965 108.23995 115.31965">A)21</tspan><tspan y="-662.80996" x="89.999958 99.357257 107.51996 114.599658">B)30</tspan><tspan y="-631.6099" x="89.999958 99.357257 107.51996 114.599658">C)39</tspan><tspan y="-600.4099" x="89.999958 100.07965 108.23995 115.31965">D)60</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-451.9699" x="89.999958 100.9168 108.7168 114.95664 120.35664 125.03529 128.99469 135.95409 147.11997">Question6</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-420.2909" x="283.19996 290.15934 298.0789 305.15858">y=5x</tspan><tspan y="-389.09089" x="275.75895 282.71833 290.63789 297.71757 304.67695 312.5965">y=2x+2</tspan><tspan y="-357.89088" x="89.99994 100.079639 107.15933 120.71994 131.51995 137.7598 144.8395 155.27994 160.7995 167.7589 171.71829 178.67769 182.51753 186.47693 193.43633 200.39572 209.39994 216.35933 223.43903 229.67888 238.55893 242.51833 249.47772 259.19993 266.1593 270.1187 277.0781 283.31794 293.7589 299.27848 306.11833 311.63789 315.5973 321.83714 336.1199 343.1996 351.2399 357.47975 364.55943 371.5188 377.75865 381.59849 385.5579 392.51728 399.47666 408.4799 415.55958 421.6791 428.7588 434.87834">Howmanysolutionsdoesthegivensystemofequationshave?</tspan><tspan y="-326.69087" x="89.99988 100.079578 108.239879 116.75943 123.83913 130.07898 136.31884 140.15868 143.99852 154.43988 161.51958 168.47898">A)Exactlyone</tspan><tspan y="-295.49085" x="89.99988 99.35718 107.51988 116.03944 123.11913 129.35898 135.47853 139.43793 143.27777 153.71988 157.67928 167.75897">B)Exactlytwo</tspan><tspan y="-264.29084" x="89.99988 99.35718 107.51988 112.19853 119.27823 123.83762 127.79703 134.75643 138.71582 142.55567 148.79552 152.63536 163.07988 173.87989 180.11974 187.19944">C)Infinitelymany</tspan><tspan y="-233.09084" x="89.99988 100.079578 108.239879 116.75943 122.999279 127.677928">D)Zero</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+</g>
+</g>
+</g>
+</svg>

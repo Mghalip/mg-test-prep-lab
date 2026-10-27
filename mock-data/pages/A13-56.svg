@@ -1,0 +1,410 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M77.2 144.4H154.6V186.25H77.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M154.55 144.4H214.85V186.25H154.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M214.8 144.4H264.5V186.25H214.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M264.45 144.4H314.2V186.25H264.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M314.15 144.4H369V186.25H314.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M368.95 144.4H418.7V186.25H368.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M418.65 144.4H468.4V186.25H418.65Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M468.35 144.4H518.1V186.25H468.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M77.2 186.3H154.6V207.45H77.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M154.55 186.3H214.85V207.45H154.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M214.8 186.3H264.5V207.45H214.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M264.45 186.3H314.2V207.45H264.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M314.15 186.3H369V207.45H314.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M368.95 186.3H418.7V207.45H368.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M418.65 186.3H468.4V207.45H418.65Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M468.35 186.3H518.1V207.45H468.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M77.2 207.5H154.6V228.65H77.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M154.55 207.5H214.85V228.65H154.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M214.8 207.5H264.5V228.65H214.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M264.45 207.5H314.2V228.65H264.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M314.15 207.5H369V228.65H314.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M368.95 207.5H418.7V228.65H368.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M418.65 207.5H468.4V228.65H418.65Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M468.35 207.5H518.1V228.65H468.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M77.2 228.7H154.6V250.4H77.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M154.55 228.7H214.85V250.4H154.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path d="M214.8 228.7H264.5V250.4H214.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_58">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_59">
+<path d="M264.45 228.7H314.2V250.4H264.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_60">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_61">
+<path d="M314.15 228.7H369V250.4H314.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_62">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_63">
+<path d="M368.95 228.7H418.7V250.4H368.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_64">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_65">
+<path d="M418.65 228.7H468.4V250.4H418.65Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_66">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_67">
+<path d="M468.35 228.7H518.1V250.4H468.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_68">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_69">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">54</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 153.47939">Question11</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.64999" x="168.959 179.0387 185.27855 192.23795 201.24 208.1994 214.43926 222.24 235.07985 238.9197 245.87909 249.71894 255.95879 263.88 272.39958 279.47926 285.7191 293.04 301.55958 307.7994 314.8791 321.11894 330 340.0797 346.31956 353.27894 363 370.8 377.87968 382.55833 387.1177 393.35755 399.59739 409.2 413.87867 420.1185">DaysperWinterThatLakesHaveSurfaceIce</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="103.8 111 116.4 122.4">Lake</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-685.85" x="164.64 171.84001 177.24 180.59941 183.95882 187.31822 193.31822 199.31822">Latitude</tspan><tspan y="-665.20999" x="162.359 166.31839 172.31839 177.59809 183.59809 187.55748 192.95748 198.23717 202.91687">(degrees)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="219.6 225.6 231.6 237.6 243.6 247.5594 253.5594">1980-81</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="269.28 275.28 281.28 287.28 293.28 297.2394 303.2394">1985-86</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="315.6 321.6 327.6 333.6 339.6 343.55943 349.55943 355.55943 361.55943">1990-1991</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="373.8 379.8 385.8 391.8 397.8 401.7594 407.7594">1995-96</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="423.48 429.48 435.48 441.48 447.48 451.43943 457.43943">2000-01</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="473.159 479.159 485.159 491.159 497.159 501.1184 507.1184">2005-06</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="78.6 87.239849 92.51955 95.878948 105.23834 110.51804 114.47745 117.836849 123.836849 127.2 132.59999 136.55939 142.55939">Kalmarinj&#x00e4;rvi</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="171.12 177.12 183.12 186.12 192.12">62.79</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="230.64 236.64 242.64">198</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="280.32 286.32 292.32">172</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="332.52 338.52 344.52">175</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="384.84 390.84 396.84">184</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="434.52 440.52 446.52">131</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-643.85" x="484.2 490.2 496.2">152</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="78.6 85.799999 91.2 97.2 105.6 114.239849 119.51955 125.51955 130.19925 133.55866 138.83835 144.83835">LakeNeusiedl</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="171.12 177.12 183.12 186.12 192.12">47.82</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="233.64 239.64">77</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="283.32 289.32">86</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="335.52 341.52">87</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="384.84 390.84 396.84">128</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="437.52 443.52">50</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-622.73" x="484.2 490.2 496.2">104</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="78.6 89.2797 92.6391 96.5985 100.55791 106.55791 113.520008 120.72 126.12 132.12">MirrorLake</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<g clip-path="url(#clip_55)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="171.12 177.12 183.12 186.12 192.12">43.94</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_56)">
+<g clip-path="url(#clip_57)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="230.64 236.64 242.64">122</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_58)">
+<g clip-path="url(#clip_59)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="280.32 286.32 292.32">129</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_60)">
+<g clip-path="url(#clip_61)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="332.52 338.52 344.52">125</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_62)">
+<g clip-path="url(#clip_63)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="384.84 390.84 396.84">136</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_64)">
+<g clip-path="url(#clip_65)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="434.52 440.52 446.52">141</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_66)">
+<g clip-path="url(#clip_67)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.491" x="484.44 490.07987 495.95957">119</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_68)">
+<path transform="matrix(1,0,0,1,76.96,144.69)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H441.33"/>
+<path transform="matrix(1,0,0,1,76.96,186.59)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H441.33"/>
+<path transform="matrix(1,0,0,1,76.96,207.79)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H441.33"/>
+<path transform="matrix(1,0,0,1,76.96,228.99)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H441.33"/>
+<path transform="matrix(1,0,0,1,76.96,250.19)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H441.33"/>
+<path transform="matrix(1,0,0,1,77.2,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,154.55,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,214.8,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,264.45,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,314.15,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,368.95,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,418.65,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,468.35,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,518.05,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-553.491" x="90 94.67865 102.84 106.7994 116.52 122.75984 129.71924 140.51924 151.31925 158.39894 169.79999 174.47864 181.55834 190.43999 195.11864 199.79729 206.03714 211.43715 218.51685 228.59654 234.8364 238.67624 244.91609 253.91999 257.8794 264.11924 271.0786 277.31846 287.03999 293.99937 300.2392 306.47904 315.35899 322.43867 331.43998 337.6798 344.6392 351.71888 358.67826 369.11997 379.67997 383.63938 389.8792 393.71907 397.67848 401.5183 408.4777 415.55738 425.99998 433.07966">Itiscommonforfreshwaterlakesnearorabovealatitudeof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-553.61007" x="445.43998 453.23997">45</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-558.65" x="461.03999">0</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-553.491" x="475.68 482.75968 489.71907 494.3977 498.23756">north</tspan><tspan y="-529.25" x="89.99997 97.079669 106.31997 110.27937 117.23878 128.15897 134.39882 141.47852 148.43791 154.67777 158.51761 165.477 169.79656 177.83997 181.79936 185.6392 192.7189 203.63997 212.15952 218.39937 225.47907 236.27997 248.75968 252.59952 259.6792 265.07923 275.99998 279.95939 291.59999 301.6797 308.75938 313.43803 323.51774 329.75758 335.9974 344.03999 347.9994 359.63999 365.87983 372.11967 378.3595 385.31889 396.11888 403.19856 407.15797 413.2775 417.2369 428.159 433.67857 440.63795 445.3166 449.99525 456.23509 462.3546 473.28 477.2394 483.47926 494.4 498.23985">oftheequator,likeLakeMjosainNorway,toaccumulatesurfaceicein</tspan><tspan y="-505.13" x="90 100.0797 104.0391 110.998508 114.95791 121.197757 125.15716 136.8 145.31955 152.39925 167.159 173.39885 184.19886 191.27855 198.35825 205.31764 217.8 224.03986 230.99925 246.6 253.5594 260.6391 265.31776 271.4373 275.3967 279.23655 286.31623 301.80003 308.8797 322.08003 326.03944 332.15898 346.92 353.9997 360.23954 367.1989 373.43876 380.39814 387.3575 401.40003 408.4797 423.959 434.759 440.99885 448.07853 463.68003 468.35868 474.5985 480.83836 484.6782 491.75788 496.43653 501.83656">winter.Theamountanddurationoficedependsonmanyfactors,</tspan><tspan y="-481.01" x="90 93.959407 100.91881 107.15865 110.998508 118.0782 125.037609 128.99701 135.9564 148.44 152.3994 159.3588 165.59865 171.8385 181.44 191.5197 197.75955 203.9994 207.83925 214.91895 221.1588 231.35901 237.59886 244.67856 251.63796 258.59736 262.55677 266.3966 270.23646 277.31614 284.2755 295.32 301.55986 312.72 322.7997 329.03956 332.99897 342.48 348.71986 359.759 363.7184 370.6778 382.559 386.5184 392.75825 399.71763 405.95747 408.477 419.52 426.59968 432.7192 439.7989 443.63874 450.7184 459.72 466.79969 473.75907 477.71849 484.67787 495.47785 501.71769">includinglocalweatherconditionsaswellasthelake'sdepth,volume,</tspan><tspan y="-456.77003" x="90 96.239849 103.31954 114.24 119.75955 126.718959 131.39762 136.07627 142.31612 148.55597 158.88 165.11986 169.79851 176.03836 182.15792 189.84001 196.79941 203.8791 211.80002 222.12003 228.35988 232.31928 236.15912 246.95912 253.19898 257.1584 267.48005 272.1587 278.39854 283.9181 290.03764 296.27748 300.95613 307.19596 314.15534 320.39518 329.04005 335.27989 339.2393 345.35884 349.31825 360.11824 369.84004 373.79945 380.75883 386.99867 394.91905 400.4386 407.39799 418.19798 428.64006 432.59947 438.719 445.79869 451.9182 461.52006 465.47947 476.52006 480.47947 487.43885 493.67869 499.0787">andsurfacearea,butaclimateresearcherclaimsthatsomelakesinthese</tspan><tspan y="-432.65003" x="90.00006 93.959468 100.19931 104.03916 107.998569 111.83842 118.79782 125.87752 131.99707 143.64006 150.71976 156.95961 163.919 176.40006 181.91962 188.15947 194.27902 207.60005 220.08005 227.15975 233.3996 239.51915 243.47855 247.31839 254.39809 266.88005 270.83946 284.04005 287.99946 294.95884 307.44004 314.3994 321.4791 326.15776 332.27729 336.2367 340.07655 347.15623 360.35905 367.43873 378.24006 382.19947 388.4393 400.91905 407.99873 414.23857 418.0784 428.1581 434.39796 440.6378 453.84004 457.79945 464.75883 477.24003 483.47987 489.7197 494.39836 498.2382">latitudeshaveseenadeclineinthedurationoficebetweentheearly</tspan><tspan y="-408.53004" x="90.00003 97.07973 104.03913 110.998538 118.07823 126.84003 133.07988 140.15958 150.60002 154.55942 161.51882 171.24002 182.04003 185.99942 193.07912 197.75777 204.71717 211.79686 218.75626 225.71566 231.23522">1980sandthemid-2000s.</tspan><tspan y="-360.17005" x="90.000019 103.20002 110.27972 114.11957 120.35941 131.15901 137.39887 144.47856 151.44002 155.39942 161.52002 171.60002 178.67972 184.91957 190.31958 198.00002 205.07971 211.31957 216.71958 222.95943 227.63808 231.47792 238.43732 244.68003 254.04003 260.99943 267.23927 271.19868 281.15904 285.11845 295.92 299.87944 306.8388 316.92 320.87944 327.11927 334.07865 337.9185 348 351.9594 358.9188 365.15864 372.84 378.35957 385.31895 392.39863 399.358 406.31739 410.99604 418.8 422.7594 429.71879 439.8 444.47865 450.71849 456.23805 462.35758 468.5974 473.27607 479.5159 486.47529 492.71513 497.39378 499.9133">Whichchoicebestdescribesdatainthetablethatsupporttheresearcher's</tspan><tspan y="-336.05006" x="89.99997 96.239818 100.19922 106.31877 110.278179 121.07817">claim?</tspan><tspan y="-311.93107" x="89.99997 100.079669 108.47997 118.55967 124.799518 128.75891 139.43862 145.67847 150.35712 154.31652 161.39621 165.23998 171.47998 176.15863 183.11803 191.87998 198.95967 205.19953 216.95897 221.63762 227.87747 237.95717 244.19702 253.67996 260.75965 266.99949 273.83934 284.27998 291.35966 300.83998 304.79939 310.9189 321.95896 325.91838 337.79997 341.75938 348.71876 359.75898 369.83869 373.7981 380.75749 384.7169 390.95674 400.43998 407.51966 416.99998 424.07966 431.03904 437.9984 445.0781 449.75675 456.71614 468.59999 472.43983 479.5195 485.63999 497.52 501.4794">A.Kalmarinj&#x00e4;rvihadfewerdaysoficeinthewinterof2005-06thanit</tspan><tspan y="-287.81007" x="90 97.0797 100.91955 111.359 115.318408 125.759 129.7184 136.6778 146.40001 156.4797 160.4391 167.3985 171.23834 177.4782 185.64002 192.59941 200.75902 207.83872 214.79811 221.7575 228.8372 233.51586 240.47525">didinthewinterof1980-81</tspan><tspan y="-263.57008" x="90.00002 99.35732 106.68002 116.75972 122.999568 126.95897 137.75897 143.99883 148.67748 152.63687 159.59627 163.44002 169.68003 174.35868 181.31807 189.00003 192.95943 202.20003 208.43988 216.24002 226.32003 233.39972 237.23957 244.19896 251.27866 257.5185 265.92 269.87944 276.11927 279.9591 283.91853 287.75837 294.71775 301.79743">B.Kalmarinj&#x00e4;rviisatahigherlatitude</tspan></text>
+<text fill="#ff0000" xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-263.57008" x="311.759 315.7184 322.6778 328.92">than</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-263.57008" x="339.72 352.1997 356.15913 360.7185 365.39717 372.359 381 384.83985 391.07969 398.15937 408.12 414.35984 421.3192 432.24 436.1994 443.03926 450.11894 454.07835 460.19789 466.4377 470.39714 474.23698 485.03999 492.11967 498.3595">Mirrorlakeandtypicallyhad</tspan><tspan y="-239.45008" x="89.99997 94.67862 100.918468 110.99816 117.23801 125.39997 132.35938 138.59923 145.55863 154.43997 161.51967 169.67998 173.63938 179.75893 189.47998 196.55968 202.79953 210.83998 220.91968 224.87908 231.83847 235.79787 242.03772 250.07999 254.03939 260.99879 267.24 277.68 290.1597 294.1191 298.6785 303.35716 310.44 318.6 322.43986 328.6797 335.75938 345.359 352.4387 356.27854 363.2379">fewerdaysoficeperwinterthanMirrorlakedid.</tspan><tspan y="-215.33107" x="90 99.3573 106.68 116.7597 122.99954 126.95895 137.75894 143.9988 148.67745 152.63684 159.59624 163.44 169.68001 174.35866 181.31806 189 192.9594 202.2 208.43985 216.23999 226.31999 233.39969 237.23954 244.19893 251.27863 257.51847 265.91999 269.8794 276.11924 279.95909 283.9185 287.75834 294.7177 301.7974">C.Kalmarinj&#x00e4;rviisatahigherlatitude</tspan></text>
+<text fill="#ff0000" xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-215.33107" x="311.75898 315.71839 322.67778 328.91999">than</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-215.33107" x="339.71998 352.19969 356.1591 360.71849 365.39714 372.35899 380.99998 384.8398 391.07966 398.15934 408.11997 414.3598 421.31919 432.23997 436.19938 443.0392 450.1189 454.0783 460.19786 466.43769 470.3971 474.23695 485.03996 492.11964 498.35948">Mirrorlakeandtypicallyhad</tspan><tspan y="-191.21007" x="89.99994 100.799938 107.87963 112.55828 122.27994 129.35964 135.47919 142.43859 151.43994 158.39934 166.55895 170.51834 176.7582 186.35895 193.43865 199.6785 207.71994 217.79964 221.75904 228.71843 232.67783 238.91768 246.95894 250.91834 257.87773 264.11994 274.67994 287.15965 290.99949 295.67814 300.35679 307.31996 315.47996 323.9995 330.23936 337.31904 346.91996 353.99964 357.83949 364.91917">moredaysoficeperwinterthanMirrorLakedid.</tspan><tspan y="-167.09107" x="89.99994 100.079639 108.35894 116.878498 123.11834 130.19805 141.23995 151.31964 157.5595 164.63919 170.0392 173.87905 180.1189 187.0783 195.71994 202.79964 209.03949 220.79994 231.59995 238.67964 243.35829 254.39995 261.35935 267.59919 274.55857 284.87995 291.95964 301.31996 305.27937 311.5192 322.43995 326.39936 338.15895 342.11836 349.07774 359.99995 370.07966 374.03907 380.99845 384.95787 391.1977 400.67994 407.7596 417.11994 424.19963 431.159 438.11839 445.19807 449.8767 456.8361 468.59996 472.4398 479.51948 485.7593 497.51997 501.47938">D.LakeNeusiedlhadmoredaysoficeinthewinterof2005-06thanit</tspan><tspan y="-142.85007" x="89.99997 97.079669 100.91952 111.35897 115.318378 125.75897 129.71837 136.67777 146.39998 156.47968 160.43907 167.39847 171.23831 177.47817 185.63999 192.59938 200.75899 207.83869 214.79808 221.75748 228.83718 233.51583 240.47522 247.43462">didinthewinterof1980-81.</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_69)">
+</g>
+</g>
+</g>
+</svg>

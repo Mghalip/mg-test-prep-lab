@@ -1,0 +1,310 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="290.759 295.3184 299.87779">110</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question12</tspan></text>
+<path d="M90 96.1H505.3V120.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="90 98.519557 105.59925 118.2 123.600009 129.83986 136.07971 139.91956 143.87895 150.1188 154.79746 161.75685 165.5967 172.67639 182.88 188.39957 195.35897 202.43866 212.51836 224.28 231.3597 237.59955 241.43939 254.04 259.55955 265.79939 275.28 285.3597 295.32 305.39973 312.4794 316.31925 322.55909 335.88 342.11985 349.19953 356.1589 361.55894 365.51835 370.91838 374.87779 386.64 393.7197 404.759 408.7184 415.6778 428.28 438.3597 444.59956 448.55897 455.51835 462.59803 466.43788">ThescatterplotshowsdatasetA,whichconsistsoftheweights</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-732.77" x="478.2">y</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="484.44 494.4 498.3594">,in</tspan></text>
+<path d="M90 120.25H505.3V144.4H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.65" x="90 97.0797 104.0391 110.998508 118.0782 125.037609 130.55716 138.35901 145.4387 154.44 165.12 173.63954 179.8794 186.95909 191.63774 197.7573 204.83699 211.79639 220.79999 225.47864 231.71849 235.67789 240.23728 244.19667 250.43653 257.3959 263.63575 272.63999 279.71968 286.67906 293.63844 300.7181 312.12 318.35984 326.63999 333.71968 339.9595 344.5189 348.4783 355.43769 362.51737 372.35899 378.59883 385.6785 391.79804 397.3176">pounds,ofaLabradorretrieverpuppyatvariousages,</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-708.65" x="405.11997">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.65" x="411.35899 419.27998 423.23939 434.63996 445.43995 452.51963 459.5993 463.43916 470.39854 475.9181 483.59996 492.1195 499.1992">,inmonths.The</tspan></text>
+<path d="M90 144.4H505.3V168.54999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-684.41" x="90 96.239849 103.31954 110.278949 116.51879 120.35864 124.31805 131.27745 144.24 151.3197 162 174.24 178.1994 182.03925 189.11894 201.35901 208.4387 219.12001 226.1997 232.31926 237.83882 247.68001 252.35866 256.31809 266.159 270.83766 277.91734 288.6 292.55943 299.5188 311.759 316.43766 322.6775 326.6369 332.75645 336.71586 340.5557 347.51509 354.59477 359.99479 367.07447 370.9143 384 387.83985 400.919 407.9987 414.23854 418.07838 430.32 435.83958 442.0794 451.2 466.55903 472.79887 479.0387 492.12004 499.1997">equationofalineofbestfitfortherelationshipindatasetAcanbe</tspan></text>
+<path d="M90 168.55H505.3V192.7H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-660.291" x="90 100.0797 104.75835 108.71775 112.5576 116.517009 122.75685 133.2 139.43985">writtenas</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-660.291" x="148.31999">y</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-660.291" x="158.04 169.43999 177.23999 184.31969 187.79938 198.23999 209.63999 216.71968 220.19937">=&#x2212;5.1+8.7</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-660.291" x="227.15898">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-660.291" x="233.39998 240.35898 250.43868 257.51838 263.7582 268.43687 278.03999 288.59999">,where2&#x003c;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-660.291" x="299.99998">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-660.291" x="309.71998 321.11997 328.07997">&#x003c;6.</tspan></text>
+<path d="M90 192.7H505.3V421.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<g transform="matrix(.7502069,0,0,.7498976,188.88,192.72003)">
+<image id="image_4" width="290" height="293" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkS
+Ew8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJ
+CQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy
+MjIyMjIyMjIyMjIyMjL/wAARCAElASIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEA
+AAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIh
+MUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6
+Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZ
+mqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx
+8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREA
+AgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAV
+YnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hp
+anN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPE
+xcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3
++iikNAGPqWunTtVSze2BSW2kmjl8zG5k5KEY44Oc59eK0bG4N5YW9y0RiMsauUJy
+VyM4rG1LTJNe1KzW4s5Le2spWkMjuuZsqV2gKT8pB5zg+1dABgAChALRRRQAUUUU
+AFFFFABRRRQAUUUUAFFFFACYpaKKACiiigAooooAKKKKACiiigAooooAKKKKACii
+igAooooAKKKKACiiigAooooA4D4meMG8LnQ1ifDTXyPKAesS/eH45rvY3WSNXQ5V
+gCCO4rlvG0UbjQC6K3/E5thyM8ZNdUBgYHSkLqLRRVLU8i2iwcf6RD/6MWmMu0UU
+UAJmlzVLUeEt8H/l4j/nVwUALRmiqWoZAtef+XhKALtFFFABmiqWoZDWnP8Ay8L/
+ACNXaACiiqWoEiawwf8Al5H/AKA1AF2igUUAGaKpXuRc6fz/AMvB/wDRb1doAKM0
+VSvc/arDnrOf/QHoAu0UUUAGaKo3n/H7Ye8rf+gNV6gAooqld5+3WPP8bf8AoJoA
+u0UUUAGaKpXXGoWPP8T/APoNXaACiiigAooooAy9Q1uKxuharbXN1P5ZmaO3VSUT
+ONxyR37DJPpUD+JrNL42xiuNiTpbSXG0eWkrgFUPOc8r2wCRzWT4j8P3d3q1ze2t
+qZ3uLEW0TrIENvIGJV+SOPm6jJ46VCfDmpg3OnNH5kF1qUN+15vXACiMspGd24tH
+xxjB6ilqJ3L/AIz+7oH/AGGrb+ZrqK4fxrpZaTRpPt18PN1m3G0TfKmSeVGOMdq6
+aDSfJTb/AGhfvznMk2T/ACpgaVUtT/49ov8Ar5h/9GLR/Z3/AE+Xf/f3/wCtVPUr
+DbbxH7XdH/SIhzJ/trQM2aKpDTv+ny7/AO/v/wBaj+zv+ny7/wC/v/1qADUvuW3/
+AF8R/wDoVXaxtQsNqW/+l3RzPGOZPerg07/p8u/+/v8A9agC7VLUelr/ANfKUf2d
+/wBPl3/39/8ArVTv7Ar9m/0u6ObhBzJQBs0VS/s7/p8u/wDv7/8AWo/s7/p8u/8A
+v7/9agA1DrZ/9fC/yNXaxr+ww1r/AKXdHNwo5k9jVz+zv+ny7/7+/wD1qALtUdQ/
+11h/18j/ANAal/s7/p8u/wDv7/8AWqnf2G2Wy/0u6ObgDmTp8rUAbNFUhp3/AE+X
+f/f3/wCtR/Z3/T5d/wDf3/61ABff8fOn/wDXyf8A0W9XaxrywxcWA+13RzcEcydP
+3b1c/s7/AKfLv/v7/wDWoAu1Svf+PvT/APruf/Rb0f2d/wBPl3/39/8ArVTvLDF1
+Yj7XdHMxHMnT5GoA2aKpf2d/0+Xf/f3/AOtR/Z3/AE+Xf/f3/wCtQAl5/wAfun/9
+dW/9Aar1Yt3YYvLEfa7o5kbkydPkNXf7O/6fLv8A7+//AFqALtUrv/j/ALH/AH2/
+9BNH9nf9Pl3/AN/f/rVTurDF7ZD7XdHLt1k6fKaANmiqX9nf9Pl3/wB/f/rUf2d/
+0+Xf/f3/AOtQAXX/ACELH/ef/wBBq7WNc2GL+yH2u6OWfnzOny/Srq2G11b7XdHB
+zgycGgC5RQKKACiiigAooooA5fxp93w//wBhq2/ma6iuX8afd8P/APYatv5muooA
+Kpan/wAe0X/XzD/6MWrtUtT/AOPaL/r5h/8ARi0AXaKKKAKWpfctv+viP/0KrtUt
+S+5bf9fEf/oVXaACqWo9LX/r5SrtUtR6Wv8A18pQBdooooApah1s/wDr4X+Rq7VL
+UOtn/wBfC/yNXaACqOof66w/6+R/6A1Xqo6h/rrD/r5H/oDUAXqKKKAKV9/x86f/
+ANfJ/wDRb1dqlff8fOn/APXyf/Rb1doAKpXv/H3p/wD13P8A6LertUr3/j70/wD6
+7n/0W9AF2iiigCje/wDH7p//AF1b/wBAar1Ub3/j90//AK6t/wCgNV6gAqld/wDH
+/Y/77f8AoJq7VK7/AOP+x/32/wDQTQBdooooApXX/IQsf95//Qau1Suv+QhY/wC8
+/wD6DV2gAooooAKKKKACiub1zWr+x1KK1tDYIhjDM14zqCS2AoI4z9ain8UTRXlz
+IIIjp9tfR2ErEneXfb8w7YBdRj60XAXxp93w/wD9hq2/ma6iuV8aMAugZI41q27+
+5rqA6EcMD+NADqpan/x7Rf8AXzD/AOjFq5uX+8PzqlqjL9mi+Yf8fMPf/potAF6i
+k3L/AHh+dG5f7w/OgCnqX3Lb/r4j/wDQqu1R1Fl2W/I/4+I+/wDtVd3L/eH50ALV
+LUelr/18pVzcv94fnVLUWXFr8w/4+E70AXqKTcv94fnRuX+8PzoAp6h1s/8Ar4X+
+Rq7VHUGXdacj/j4Xv7Gru5f7w/OgBao6h/rrD/r5H/oDVd3L/eH51R1Bl86w5H/H
+yO/+w1AF+ik3L/eH50bl/vD86AKd9/x86f8A9fJ/9FvV2qN8y/adP5H/AB8nv/0z
+eru5f7w/OgBapXv/AB96f/13P/ot6ubl/vD86pXrL9rsPmH+vPf/AKZvQBeopNy/
+3h+dG5f7w/OgCle/8fun/wDXVv8A0BqvVQvGX7bp/I/1rd/9hqvbl/vD86AFqld/
+8f8AY/77f+gmrm5f7w/OqV2y/brHkffbv/smgC9RSbl/vD86Ny/3h+dAFO6/5CFj
+/vP/AOg1dqjdMv8AaFj8w+8/f/Zq7uX1H50ALRRRQAUUUUAYmuaRe6vbz2S3UMdl
+cxCORWiJdeeSpz1x6jiqb+E2NzLGlyo06a8ivZISpLmRAvAbPQlFJ49a6eigDiPG
+ui6W0mjTNp1oZJ9Zt1lcwrlwScgnHOa6eHQtJt02Q6ZZxrnOEgUDP5Vj+NPu+H/+
+w1bfzNdRQIp/2Tp3/Phbf9+l/wAKp6lplgtvEVsrcH7REOIh0Mi1sVS1P/j2i/6+
+Yf8A0YtAxf7J07/nxtv+/S/4Uf2Tp3/Phbf9+l/wq5RQBj6hpdgqW+2ytxm4jBxG
+OmauDSdO/wCfG2/79L/hSal9y2/6+I//AEKrtAFP+ydO/wCfC2/79L/hVO/0ywX7
+NtsrcZuEBxEOlbFUtR6Wv/XylAC/2Tp3/Phbf9+l/wAKP7J07/nwtv8Av0v+FXKK
+AMe/0uwVrTbZW4zcKDiIcjBq5/ZOnf8APjbf9+l/wpNQ62f/AF8L/I1doAp/2Tp3
+/Phbf9+l/wAKp3+mWCy2IWytwGuADiIcjY1bFUdQ/wBdYf8AXyP/AEBqAHDSdO/5
+8bb/AL9L/hR/ZWnf8+Ft/wB+l/wq5SUAZF5plgtxYAWVuA1wQcRjkeW9XP7K07/n
+wtv+/S/4V5v46+KsPhnxda6SNOadbV0lnk34+8h4UfRs16fbzrc28U6Z2SIHXPoR
+mlcSaZB/ZWnf8+Ft/wB+l/wqneaXYC6sQLK3AMxBxGOfkb2rYqle/wDH3p//AF3P
+/ot6Yxf7J07/AJ8Lb/v0v+FH9k6d/wA+Ft/36X/CrlFAGNd6ZYLeWIFlbgNI2QIh
+z8hq7/ZOnf8APjbf9+l/wpt7/wAfun/9dW/9Aar1AFP+ydO/58Lb/v0v+FU7vS7A
+XtkBZW4Bdsjyhz8prYqld/8AH/Y/77f+gmgBf7J07/nxtv8Av0v+FH9k6d/z4W3/
+AH6X/CrlFAGPc6XYC/sgLK3ALPkeUOflq6ul2CMrLZW6sDkERDIpt1/yELH/AHn/
+APQau0AFFFFABRRRQAUUZpM0Acx40+74f/7DVt/M11Fcv40+74f/AOw1bfzNdRQA
+VS1P/j2i/wCvmH/0YtXapan/AMe0X/XzD/6MWgC7RRRQBS1L7lt/18R/+hVdqlqX
+3Lb/AK+I/wD0KrtABVLUelr/ANfKVdqlqPS1/wCvlKALtFFFAFLUOtn/ANfC/wAj
+V2qWodbP/r4X+Rq7QAVR1D/XWH/XyP8A0BqvVR1D/XWH/XyP/QGoAvUUCigDlfEP
+g/QNZ1rTb/UNMhnuhMELtkblCMwBAODggda6lVVVCqAABgAdqp33/Hzp/wD18n/0
+W9XaLBYKpXv/AB96f/13P/ot6u1Svf8Aj70//ruf/Rb0AXaKKKAKN7/x+6f/ANdW
+/wDQGq9VG9/4/dP/AOurf+gNV6gAqld/8f8AY/77f+gmrtUrv/j/ALH/AH2/9BNA
+F2iiigCldf8AIQsf95//AEGrtUrr/kIWP+8//oNXaACiiigAooooA5bxdr0+mWuy
+xkjSaN4mmZsHajSKmMepyfwBqrceIb5bi9vo5V+x2mqRWBg2j51bYGbPXOZMj2Fb
+Gv8Ahiy1+1MMwWJ2ZGaVYlLnaQQMkdMim/8ACL2n2wzeZIIWmS5kt1AEbyoAFbGO
+PuqcDjIFITuYvjXWdOR9Gia7QPBrNu0i8/KATnNdNBrumXKb4byN1zjI9axvGiLt
+0Dgc61bdvc11AjUdFH5UwKv9qWP/AD8pVPUtTsmt4gLhCftEJ/KRa19q+gqlqar9
+mi4H/HxD2/6aLQMd/atj/wA/KUf2pY/8/KVb2r6D8qNq+goAyNQ1OyZLfFwhxcRk
+/nVz+1bH/n5Sm6iq7Lfgf8fEf/oVXAi+g/KgCr/alj/z8pVS/wBSs2Fti4Q4uEJr
+W2r6CqWoqMWvA/4+EoAd/alj/wA/KUf2pY/8/KVb2r6CjavoKAMi/wBTsma0xcIc
+XCk/kauf2pY/8/KU3UFG604H/Hwv8jV3avoKAKh1Sxx/x8pXjPxL8ceJ9P8AGdrb
+aMzCxiCSQ7IQ4mcg5ySPcjAr3DYvoPyqhqESGewJRSRcjGR/sNSauKSuhLPWLaWy
+gknlSOZo1Z05+ViORU39qWP/AD8pVoKvoPypdq+gpjMi91OzNxYEXCYFwSfb929X
+P7Usf+flKbeqPtOn8D/j5P8A6Leru1fQUAVP7Usf+flKp3mp2RurEi4QgTkn/vhq
+19q+gqleqv2uw4H+vPb/AKZvQA7+1LH/AJ+Uo/tSx/5+Uq3tX0FG1fQUAY95qdmb
+yxIuEIEjE+3yGrv9qWP/AD8pTL1V+22HA/1rf+gNV7avoKAKn9qWP/PylVLrUrM3
+tkRcJgO2f++TWttX0FUrtV+3WPA++3b/AGTQA7+1bH/n5Sj+1LH/AJ+Uq3sX0H5U
+bV9BQBkXOp2Rv7Ii4TAZ8/8AfNXV1Kzdgq3CFicAUy6Qf2hY8D7z9v8AZq7tX0H5
+UALRRRQAUUUUAFFFFAHL+NPu+H/+w1bfzNdRXL+NPu+H/wDsNW38zXUUAFUtT/49
+ov8Ar5h/9GLV2qWp/wDHtF/18w/+jFoAu0UUUAUtS+5bf9fEf/oVXapal9y2/wCv
+iP8A9Cq7QAVS1Hpa/wDXylXapaj0tf8Ar5SgC7RRRQBS1DrZ/wDXwv8AI1dqlqHW
+z/6+F/kau0AFUdQ/11h/18j/ANAar1UdQ/11h/18j/0BqAL1FFFAFK+/4+dP/wCv
+k/8Aot6u1Svv+PnT/wDr5P8A6LertABVK9/4+9P/AOu5/wDRb1dqle/8fen/APXc
+/wDot6ALtFFFAFG9/wCP3T/+urf+gNV6qN7/AMfun/8AXVv/AEBqvUAFUrv/AI/7
+H/fb/wBBNXapXf8Ax/2P++3/AKCaALtFFFAFK6/5CFj/ALz/APoNXapXX/IQsf8A
+ef8A9Bq7QAUUUUAFFFFACZozXKeMUuYLKfUbe5vVMMQz5E+xYAGyZSgI38Z4OelZ
+cmq3kjXmqJdzmS31i3tIoRIRG0LeUCCnQlvMZskZHHpSuJuxseNPu+H/APsNW38z
+XUVxHjXUmEmjR/2fenytZtzvEY2vgn7vPOa6aLVWlXcdOvk5xh4wD/OmM0apan/x
+7Rf9fMP/AKMWj+0D/wA+V3/3wP8AGqepX5a3iH2O6H+kQnlB/wA9F96ANmiqX9oH
+/nyu/wDvgf40f2gf+fK7/wC+B/jQAal9y2/6+I//AEKrtY2oX5ZLf/Q7oYnjPKD1
++tXP7QP/AD5Xf/fA/wAaALtUtR6Wv/XylH9oH/nyu/8Avgf41Tv78sLb/Q7oYuEP
+KD/GgDZoql/aB/58rv8A74H+NH9oH/nyu/8Avgf40AGodbP/AK+F/kau1jX9+Wa1
+/wBDuhi4U8oOeD71c/tA/wDPld/98D/GgC7VHUP9dYf9fI/9Aal/tA/8+V3/AN8D
+/Gqd/fky2X+h3QxcA8oOflb3oA2aKpf2gf8Anyu/++B/jR/aB/58rv8A74H+NABf
+f8fOn/8AXyf/AEW9Xaxry/JuLA/Y7oYuCeUHP7t/ern9oH/nyu/++B/jQBdqle/8
+fen/APXc/wDot6P7QP8Az5Xf/fA/xqneX5N1Yn7HdDExOCg5+RvegDZoql/aB/58
+rv8A74H+NH9oH/nyu/8Avgf40AJe/wDH7p//AF1b/wBAar1Yt3fk3lifsd0MSNwU
+HPyn3q7/AGgf+fK7/wC+B/jQBdqld/8AH/Y/77f+gmj+0D/z5Xf/AHwP8ap3V+Te
+2R+x3Qw7cFBz8p96ANmiqX9oH/nyu/8Avgf40f2gf+fK7/74H+NABdf8hCx/3n/9
+Bq7WNc35N/Zn7HdDDPxsHPy/Wrq35Zgv2O6GTjJQYH60AXKKBRQAUUUUAZ17oena
+jMZbqBnYqEYCV1V1ByAyggMPYg0Noemtfi9NsPPDK/DsFLKMBiudpYDgEjIrRooA
+5fxoPl8P/wDYatv5muoxXL+NPu+H/wDsNW38zXUUAFUtU/49ov8Ar5h/9GLV2qWp
+/wDHtF/18w/+jFoAu0UUUAUtS+5b/wDXxH/6FV2qWpfctv8Ar4j/APQqu0AFUtR6
+Wv8A18pV2qWo9LX/AK+UoAu0hpaDQB5l4++KNp4W8RWmlNYyXDRMk87htu0HOAPU
+45r0a0uY7y0huYs+XMgdc+hGRXNeKPBega9qVhfajp6TXCSrHv3Ebl5ODg8iuqRF
+jjVEUKigBQOgFJXuJXvqOqjqH+usP+vkf+gNV6qOof66w/6+R/6A1MZeFFFFAFK+
+/wCPnT/+vk/+i3q7VK+/4+dP/wCvk/8Aot6u0AFUr3/j70//AK7n/wBFvV2qV7/x
+96f/ANdz/wCi3oAu0UUUAUb3/j90/wD66t/6A1Xqo3v/AB+6f/11b/0BqvUAFUrv
+/j/sf99v/QTV2qV3/wAf9j/vt/6CaALtFFFAFK6/5CFj/vP/AOg1dqldf8hCx/3n
+/wDQau0AFFFFABRRRQAUVBLd28Dok08UbucIruAW+nrSm5gE4gM0YmYZEZYbiPXH
+WgDnfGn3fD//AGGrb+ZrqK5fxn93QP8AsNW38zXUUAFUtT/49ov+vmH/ANGLV2qW
+p/8AHtF/18w/+jFoAu0UUUAUtS+5bf8AXxH/AOhVdqlqX3Lb/r4j/wDQqu0AFUtR
+6Wv/AF8JV2vFvizqfjW08WWEWjG7Sx2oYfs65Dy5OQ36cGk3YTdke0Zpaqac1y+n
+WrXqhboxKZVHQNjn9at0xlLUOtn/ANfC/wAjV2qWodbP/r4X+Rq7QAVR1D/XWH/X
+yP8A0BqvVR1D/XWH/XyP/QGoAvUUUUAUr7/j50//AK+T/wCi3q7VK+/4+dP/AOvk
+/wDot6u0AFUr3/j70/8A67n/ANFvV2qV7/x96f8A9dz/AOi3oAu0UUUAUb3/AI/d
+P/66t/6A1Xqo3v8Ax+6f/wBdW/8AQGq9QAVSu/8Aj/sf99v/AEE1dqld/wDH/Y/7
+7f8AoJoAu0UUUAUrr/kIWP8AvP8A+g1dqldf8hCx/wB5/wD0GrtABRRRQAUUUUAc
+f4tbR5J2s7ma2gu7iECW4lcAxQBs5AJ+8SCBj69qx5233N+Fbdqj65bPan+MwYiw
+R327N+e3WvQ5LaCZg0sEbsOMsgJp3lR7w/lpvAwG28gUrCaOJ8ay6v5mjBbWzMQ1
+m38pjO2WOTjcNnH4Zrp4JtZMebi0slfPRLhmGPxQVk+NPu+H/wDsNW38zXUUwKXm
+al/z723/AH+b/wCJqnqUmofZ4t0FsB9oi6SnrvXH8NbNUtT/AOPaL/r5h/8ARi0D
+DzNS/wCfe2/7/N/8TR5mpf8APvbf9/m/+Jq7RQBjahJqBS33QW4/fx4xKeuf92rn
+mal/z723/f5v/iaNS+5b/wDXxH/6FV2gCl5mpf8APvbf9/m/+JqnfvqH+jbre2H+
+kJjEp6/981s1S1Hpa/8AXylACeZqP/Pvbf8Af5v/AIml8zUv+fe2/wC/zf8AxNXa
+KAMa/k1HdaboLb/j4XGJj1wf9mrnmal/z723/f5v/iaNQ+9Z/wDXwv8AI1doApeZ
+qX/Pvbf9/m/+Jqlfyah5tjugtx/pAxiU9drf7NbVUdQ/11h/18j/ANAagBRJqX/P
+vbf9/m/+Jo8zUv8An3tv+/zf/E1dooAxryTUPtFhut7cH7QcYlPJ8t/9mrnmal/z
+723/AH+b/wCJovv+PnT/APr5P/ot6u0AUvM1L/n3tv8Av83/AMTVO8k1D7VY5gtg
+fOOP3x67G/2a2apXv/H3p/8A13P/AKLegA8zUv8An3tv+/zf/E0eZqX/AD723/f5
+v/iau0UAYt3JqH2yxzBb58xsYlP9w/7NXfM1L/n3tv8Av83/AMTSXv8Ax+6f/wBd
+W/8AQGq9QBS8zUv+fe2/7/N/8TVO6k1D7bZZgt872xiU/wB0/wCzWzVK7/4/7H/f
+b/0E0AHmal/z723/AH+b/wCJo8zUv+fe2/7/ADf/ABNXaKAMa5k1H7fZZt7fO58f
+vT/d/wB2rqyahvXfBbhc8kSknH/fNJdf8hCx/wB5/wD0GrtAAKKKKACiiigAoooo
+A5fxp93w/wD9hq2/ma6iuX8afd8P/wDYatv5muooAKpan/x7Rf8AXzD/AOjFq7VL
+U/8Aj2i/6+Yf/Ri0AXaKKKAKWpfctv8Ar4j/APQqu1n6pKiLahnVSbmPGTjPNXwa
+AFqlqPS1/wCvlKu1S1Hpa/8AXylAF2iiigClqHWz/wCvhf5GrtUtQ62f/Xwv8jV2
+gAqjqH+usP8Ar5H/AKA1Xqo6h/rrD/r5H/oDUAXqKKKAKV9/x86f/wBfJ/8ARb1d
+qlff8fOn/wDXyf8A0W9XaACqV7/x96f/ANdz/wCi3q7VK9/4+9P/AOu5/wDRb0AX
+aKKKAKN7/wAfun/9dW/9Aar1Ub3/AI/dP/66t/6A1XqACqV3/wAf9j/vt/6Cau1S
+u/8Aj/sf99v/AEE0AXaKKKAKV1/yELH/AHn/APQau1Suv+QhY/7z/wDoNXaACiii
+gAooooApXOqWVndW9tcXMcc9y+yKMn5mOM9PwNMfWbCPUBYNcqLksF2HPDEZCk9M
+kc4rF8VvGmoaC3lOzx36SOyRFtqBHGSQOBkisu6sbtrnUdPEMrXF1rUF7DMEO0Qj
+yiW3dBgIy4+nrSuJmt4z+74f/wCw1bfzNdRXEeNbbUTJozDUEEbazb+Wn2cfIcnB
+znnFdNFa6mq4k1JHbPUWwH9aYzRqlqf/AB7Rf9fMP/oxaPs9/wD8/wCn/fgf41T1
+KC9FvFuvVI+0Rf8ALEDnevvQBs0VS+z3/wDz/r/34H+NH2e//wCf9P8AvwP8aAPJ
+fi34O8Ua74lsLzSi0tpsSFVEwTypNx5wT3yOfavWtJguLXSbS3u5fNuI4VSST+8w
+HJqnqEF8Egzeqf38eP3IHOfrVsW9/wD8/wCv/fgf40ktbiSs7l6qWo9LX/r5Sj7P
+f/8AP+n/AH4H+NU7+C+H2bdeqf8ASEx+5HB/OmM2aKpfZ7//AJ/0/wC/A/xo+z3/
+APz/AKf9+B/jQAah1s/+vhf5GrtY1/BfBrXN6p/0hcfuRwcH3q59nv8A/n/T/vwP
+8aALtUdQ/wBdYf8AXyP/AEBqX7Pf/wDP+n/fgf41Tv4L0S2Wb1Tm4GP3I4O1vegD
+ZoqkLe//AOf9P+/A/wAaPs9//wA/6f8Afgf40AF9/wAfOn/9fJ/9FvV2sa8gvhcW
+Gb1Tm4OD5I4Plv71c+z3/wDz/p/34H+NAF2qV7/x96f/ANdz/wCi3o+z3/8Az/p/
+34H+NU7yC+F1Y5vVJMxx+5HHyN70AbNFUvs9/wD8/wCn/fgf40fZ7/8A5/0/78D/
+ABoAS9/4/dP/AOurf+gNV6sW7gvReWIN6pJkbB8kcfIferv2e/8A+f8AT/vwP8aA
+LtUrv/j/ALH/AH2/9BNH2e//AOf9P+/A/wAap3cF99tsgb1SS7YPkjj5T70AbNFU
+hb3/APz/AKf9+B/jR9nv/wDn/T/vwP8AGgAuv+QhY/7z/wDoNXaxrmC++32YN6pO
+5sHyRx8v1q6sF8GUteqyg8jyQM/rQBcopBS0AFFFFACYoxS0UAcv4z+74f8A+w1b
+fzNdRXL+NPu+H/8AsNW38zXUUAFUtT/49ov+vmH/ANGLV2qWp/8AHtF/18w/+jFo
+Au0UUUAUtS+5bf8AXxH/AOhVdqlqX3Lb/r4j/wDQqu0AFUtR6Wv/AF8pV2qWo9LX
+/r5SgC7RRRQBS1DrZ/8AXwv8jV2qWodbP/r4X+Rq7QAVR1D/AF1h/wBfI/8AQGq9
+VHUP9dYf9fI/9AagC9RRRQBSvv8Aj50//r5P/ot6u1Svv+PnT/8Ar5P/AKLertAB
+VK9/4+9P/wCu5/8ARb1dqle/8fen/wDXc/8Aot6ALtFFFAFG9/4/dP8A+urf+gNV
+6qN7/wAfun/9dW/9Aar1ABVK7/4/7H/fb/0E1dqld/8AH/Y/77f+gmgC7RRRQBSu
+v+QhY/7z/wDoNXapXX/IQsf95/8A0GrtABRRRQAUUUUAFFFJQBzHjT7vh/8A7DVt
+/M11Fcv40+7oH/Yatv5muooAKpan/wAe0X/XzD/6MWrtZeuXAt7W2JBO+8t4+PeV
+RQBqUUgpaAKWpfctv+viP/0KrtZetXC20VmSpO+8hj492ArTFAC1S1Hpa/8AXylX
+azdXmEIssgnfdxp+ZNAGlRSUtAFLUOtn/wBfC/yNXay9YuBA+nZUnzLxIxjtkNWn
+QAtUdQ/11h/18j/0BqvVl6vOsM+lggnzLwIMdvkc/wBKANSikooAp33/AB86f/18
+n/0W9XazNSmEV7pKkE+ZdlB7fupD/StOgAqle/8AH3p//Xc/+i3q5WZqdwIdQ0mM
+gkzXTID6funP9KANSiiigCje/wDH7p//AF1b/wBAar1ZepTiLU9JjIJMs7qPb92x
+/pWpQAVSu/8Aj/sf99v/AEE1drNv5gmp6YhGTJI4Ht8hNAGlRSCloApXX/IQsf8A
+ef8A9Bq7WXf3Ai1fS4ipJleQA+mEzWjJIkUbSSMFRRlmJwAKAH0VFBcwXUQlt5o5
+Yz0ZGDA/iKoTa/p8F/JYySyC6QoPKELktvzgrgfMODkjpg5oA1KKSigBa47xNpOm
+yanb5S8l1LUJPLijS+lijAVfmYhWAACjsOTj1rsayNU0mW61Kx1K1ljS6tA6gSqW
+RlcYIOOR0FITPN9Y0SxXVLPS51uhcRapaBnS+nZGjk3dAzHaw2n+ldz/AMIJo39/
+Uf8AwYz/APxdVb7wrcyyWt0siT3r6rBeXch+UeXHkBVHoB0HfmuwFFgSOZ/4QTRf
+7+pf+DGf/wCLrO1jwLpItYDE19n7VBnfqMuNvmLu6v1xn39K7c9K5Lx6LNNItp7h
+41ljvbbyy74x+/TcQM+nf0oB2SJx4E0X+9qP/gxn/wDi6P8AhBNG/v6j/wCDGf8A
++LrpEZXQMpBU8gjvTqdgsjhtZ8FaLFHagTXisbqInzdSlHyhhuxl+uPTmtIeBNFP
+8eo/+DGf/wCLpni5tLKrbXL20d9cQvFHJPIAIozje/J7cY75x710GnGE6dbfZ5TL
+D5ShJCc7lxwaQWRh/wDCCaN/f1H/AMGM/wD8XWZrHgvRYvsQE12pNyhYSanKPlzy
+Rl+v05rua5Lxqlk9jdZltUvvsjgefnLR9wvoT6jJoYWRN/wguin+PUf/AAYz/wDx
+dL/wgmjf39R/8GM//wAXW3pjb9MtH8t490KHY5yy8Dg+9W6dgsjidW8DaSgs5Fe+
+EaXKtK0moy4VcHnJfjnFaH/CCaLj7+o/+DGf/wCLrK+Jc1wuh3IktZDZJGrCQSRh
+WkLAAEFgeBz0PJHpXa20vn2sUu0rvUHaSCR+IJH5GkFkc/8A8IJo397Uv/BjP/8A
+F1lax4O0KCfTQ1xdRj7TufzdTlHy7GGRuf1K9PWu67VyHjBLNGkvZJLKW5trVmS0
+uYg/mc5wvcE4xxQwsiyPAuikZ36jj/sIz/8AxdL/AMIJov8Ae1L/AMGM/wD8XXQW
+zF7WJihQsgJQ/wAPHSpaLBY4fVfBWjw3GmP5t4kYuj5rSalKML5bjjL9dxXpzz9a
+0h4F0U9H1H/wYz//ABdZfiuSWHxBNNK0Bt49LdoYrhNyyvu+ZRz1I2j1rsrFzJY2
+7mLyi0akx/3OOn4UILIwv+EE0b+9qP8A4MZ//i6yNW8I6Bb3+mq13cR7Zy0ol1SQ
+EJ5bgEZfP3sDiu9rl/FemWF8YLdrOCS+1CRLYSugZkiXLOQT0wu78SKAshR4G0Rg
+CsmokHkEalP/APF0v/CCaL/f1H/wYz//ABddIiLGiogAVRgAdhSmmFkcPqXgrRY9
+Q00edeKDM24PqUoONjDjL56kDitP/hBNG/vaj/4MZ/8A4usHxjltavijQhU09POj
+nOGlXexxCez8Hn1K16BA2+3jcKy7lBw3Ucd6SCyOd/4QTRv72pf+DGf/AOLrMv8A
+wVoyanpqiW8AMj7w+pS7sbTjGXz1x0ruT0rgvGdpIs2o3EM9vJcXNpFDDA5PmxuH
+O0xgepI+mKGFka48CaN/e1H/AMGM/wD8XR/wgui/3tS/8GM//wAXXRwhhCgc5faN
+x96JFVo3D8KQQeccfWmFkcVd+CNIe/s5YpL1reF5PtD/ANpSny/l9S/HNWZPAmg6
+hYyrBc3zLKhUSLqMzrzx/fwfpWFGbceGdcgsnjNtHrimZI2ziDzIt34Yzn2zXT+G
+CG1XX2tip083aeQU+4W8pN+3HbP65qVqIo+FfhtpHhN1mtbi+mnH8T3DKv8A3ypA
+P45q/wD2HqD+KLfW5JbfdHvgMQBwIDyMHHLZ59O1dJRTsOwmKKWimMKMUUUAGKKK
+KACo5beGcASxJIB03qDiiigB4UKAFAAHQCloooAiltbecgzQRyEdC6g4/OpFVVUK
+oAA4AHaiigBajkgilIMkSOV6FlBxRRQBJgUUUUAMlhimXbLGki9cMMinKoVQqgAD
+oBRRQAtRvBFIys8SMy9Cy5IoooAkxRRRQAx4YpceZGr4ORuGcGn4FFFABSFFLBio
+JHQ46UUUALRRRQBG8EUjKzxIzL0LKCRUlFFABTGhiaRZGjUuvRiOR+NFFAD6QgEY
+I4NFFAEaWtvEGEcEaBvvBUAz9afHGkSBI0VFHQKMCiigB1FFFABRRRQB/9k="/>
+</g>
+<path d="M90 421.25H505.3V445.4H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-407.57" x="90 98.519557 105.59925 116.520008 123.5997 130.5591 137.5185 144.59819 156.24 166.3197 172.55956 182.759 192.8387 199.07855 203.03795 209.99735 217.07704 223.1966 234.959 241.19886 248.27855 254.3981 258.3575 270.12 276.35984 285 296.759 307.559 314.63868 321.71836 325.5582 332.63789 342.72 349.79969 353.63954 365.4 371.63984 378.7195 390.359 400.43873 406.67857 410.63798 417.59736 424.67704 430.79658 442.55903 449.6387 461.28004 468.3597 475.3191 482.27848 489.35816 496.31755 501.8371">Thepuppywasweighedagainat9monthsoldandweighed52pounds.</tspan></text>
+<path d="M90 445.4H505.3V469.55H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-383.45" x="90 100.0797 106.31954 110.278949 120.72 126.23956 132.47942 140.52 154.20001 160.43987 167.51956 174.47896 179.87897 183.83837 189.23838 193.19777 202.80002 209.87972 218.75902 224.99887 228.95827 237.12003 241.07942 248.03882 258.48005 265.55973 271.79957 275.6394 286.20005 293.15943 300.2391 304.07896 311.03834 314.99775 324.60005 328.55946 339.84004 346.9197 353.15956 356.9994 367.44004 372.9596 379.19944 386.52003 400.2 406.43986 416.159 426.2387 432.47856 436.43797 444.6 450.83985 460.55903 464.51844 471.4778 481.919 488.9987 495.23854 499.07838">DatasetBconsistsofallthedatapointsindatasetAaswellasthedata</tspan></text>
+<path d="M90 469.55H505.3V493.69999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-359.331" x="90 97.0797 104.0391 107.998508 114.95791 124.8 129.47866 136.55835 146.04001 152.9994 160.0791 164.75775 174.00002 182.51956 189.59926 201.84001 208.07987 215.03926 222.11896 228.23851 232.1979 236.03775 243.11745 256.08003 263.1597 273.72004 285.95906 289.91847 293.7583 300.83799 313.08006 320.15974 330.84007 337.79945 344.03929 349.55885 359.40007 364.0787 368.03813 377.88008 382.55873 389.5181 400.20008 407.27976 413.5196 417.35945 429.60008 435.11964 441.35948 451.20008 466.55909 472.79893 479.03877 492.1201 499.19978">point(9,52).TheequationofalineofbestfitfordatasetBcanbe</tspan></text>
+<path d="M90 493.7H505.3V517.85006H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="90 100.0797 104.75835 108.71775 112.5576 116.517009 122.75685 133.44 139.67986">writtenas</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-335.21" x="148.8">y</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="158.759">=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-335.21" x="170.40001">r</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="179.64002">+</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-335.21" x="191.40001 196.80002">sx</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="203.04001 210.24 220.3197 227.3994 233.63925 238.3179">,where</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-335.21" x="248.28">r</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="257.4 263.63984 270.7195">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-335.21" x="281.4">s</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="290.63999 296.87983 301.55848 311.52 317.75984 324.7192 331.7989 337.1989 341.15834 347.27787 354.35755 358.1974 367.31999 373.5598 380.6395 391.31999 402.11997">areconstantsand2&#x2264;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-335.21" x="413.51997">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.21" x="423.59996 434.99995 441.95893 448.4399 458.51963 464.03919 469.55876 476.51814 487.3181 491.27754 498.2369">&#x2264;9.Assuming</tspan></text>
+<path d="M90 517.85H505.3V542H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-310.97" x="90 93.959407 100.91881 110.759 116.99885 124.078548 131.03795 137.2778 141.11765 145.07704 152.03644 158.99584 168.12 175.19969 183.59999 187.43984 194.51953 204.359 208.31839 212.15824 219.23793 225.35749 234.48 241.5597 249.84 256.91969 263.15953 268.55955 276.12 280.79866 284.75807 292.32 298.55986 303.2385 313.08003 319.31986 325.5597 329.39955 335.63938 342.71907 346.5589 352.79875 356.63859 362.87843 373.55903 377.51844 388.2 392.03987 399.11955 408.959 414.47859 420.7184 431.3981 441.359 451.43873 457.67857 463.9184 471 481.0797 488.1594 491.99925 498.23908">theequationsofthelinesofbestfitarecalculatedinthesameway,which</tspan></text>
+<path d="M90 542H505.3V566.15H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-286.85" x="90 97.0797 105.12 109.07941 116.03881 125.759 130.43766 137.51735 141.3572 145.19704 152.27674 162.35643 166.19628 173.27597 183.72 187.6794 196.44 200.3994 207.3588 217.08 224.1597 230.39955 235.79956 243.24 249.47986 254.87987 258.8393 262.67915 273.47914 279.71897 283.67839 293.28 297.95866 305.03834 313.2 317.03987 324.11955 333.72 340.79969 347.03953 350.87937 357.83876 367.559 374.63868">ofthefollowingisthebestestimateforthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-286.85" x="382.8">s</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-286.85" x="388.19999">?</tspan></text>
+<path d="M90 566.15H505.3V590.30007H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-262.731" x="90 100.0797 107.04 114.1197 117.59939">A.5.9</tspan></text>
+<path d="M90 590.3H505.3V614.45H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-238.61" x="90 99.3573 106.32 113.3997 116.87939">B.8.7</tspan></text>
+<path d="M90 614.45H505.3V638.60006H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-214.37" x="90 99.3573 106.32 113.3997 120.3591 123.83879">C.13.8</tspan></text>
+<path d="M90 638.6H505.3V662.75H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-190.25" x="90 100.0797 107.04 114.1197 121.0791 124.55879">D.17.7</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_5)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

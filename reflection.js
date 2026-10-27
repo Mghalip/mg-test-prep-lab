@@ -7,7 +7,7 @@ window.MGReflection=(()=>{
  async function json(path){if(!cache.has(path))cache.set(path,fetch(path).then(r=>{if(!r.ok)throw Error('题目加载失败');return r.json()}).catch(e=>{cache.delete(path);throw e}));return cache.get(path)}
  async function source(row,item){
   if(row.kind==='sat-mock'){
-   const d=await json(`mock-data/${encodeURIComponent(row.exam)}.json?v=20261017-formula1`),q=d.modules.flatMap(m=>m.questions).find(q=>q.id===item.id);
+   const d=await json(`mock-data/${encodeURIComponent(row.exam)}.json?v=20261027-a-series`),q=d.modules.flatMap(m=>m.questions).find(q=>q.id===item.id);
    if(!q)throw Error('未找到原题');
    return {html:q.mathHtml? q.mathHtml+(q.options||[]).map(o=>`<div class="reflection-option"><span>${esc(o.letter)}.</span><div>${o.html}</div></div>`).join(''):(!q.visual?`${q.passageVisual?'':q.passage||''}<p>${q.stem||''}</p>${(q.options||[]).map(o=>`<div class="reflection-option"><span>${esc(o.letter)}.</span><div>${o.html}</div></div>`).join('')}`:''),vectors:(q.mathHtml?[]:(q.visual||q.passageVisual||[])).map(v=>({...v,file:'mock-data/'+v.file})),text:q.text||[q.passage,q.stem,...(q.options||[]).map(o=>o.letter+'. '+o.html)].join('\n')};
   }
