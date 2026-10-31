@@ -360,7 +360,18 @@ button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
 </section>
 <section class="slide" data-notes="CED 2.10.E.1。" data-title="Binomial Probability Function">
 <div class="tag">2.10 <b>· Key Concept</b><span class="ek">EK 2.10.E.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
-<h2>Binomial Probability Function <span class="zh">二项概率函数</span></h2><div class="concept pink"><div class="term">Formula<span class="zh">公式</span></div><div class="en">The probability that a binomial random variable X has exactly x successes in n independent trials, with success probability p, is <span style="font-family:var(--mono);font-weight:800;font-size:24px"><span class="notation-audit-inline" data-math-tex="P(X=x)=C(n,x)\,p^{x}(1-p)^{n-x}"></span></span> for x = 0, 1, 2, …, n. Here <span class="notation-audit-inline" data-math-tex="C(n,x)=\frac{n!}{x!(n-x)!}"></span> is the number of ways to arrange x successes among n trials.</div><div class="cn">二项随机变量恰好有 x 次成功的概率 = <span class="notation-audit-inline" data-math-tex="C(n,x)\,p^{x}(1-p)^{n-x}"></span>。C(n, x)（也写作 ₙCₓ）是在 n 次中安排 x 次成功的方法数。</div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
+<h2>Binomial Probability Function <span class="zh">二项概率函数</span></h2><div class="concept pink"><div class="term">Formula<span class="zh">公式</span></div>
+<div class="en">For <b>n independent trials</b>, each with success probability p, the probability of exactly <b>k successes</b> is</div>
+<div style="text-align:center;font-size:25px;margin:12px 0"><span class="notation-audit-inline" data-math-tex="P(X=k)=\binom{n}{k}p^{k}(1-p)^{n-k},\qquad k=0,1,\ldots,n"></span></div>
+<div class="cn" style="margin-bottom:10px"><b>n：总试验次数；k：成功次数；p：每次试验成功的概率。</b></div>
+<div class="en" style="font-size:19px">Three equivalent notations for the number of ways to choose k success positions from n trials:</div>
+<div style="display:flex;align-items:center;justify-content:space-evenly;gap:16px;margin:14px 0;font-size:28px" aria-label="Three equivalent combination notations">
+<span class="notation-audit-inline" data-math-tex="\binom{n}{k}"></span><span>=</span>
+<span class="notation-audit-inline" data-math-tex="C_n^k"></span><span>=</span>
+<span class="notation-audit-inline" data-math-tex="{}_nC_k"></span><span>=</span>
+<span class="notation-audit-inline" data-math-tex="\frac{n!}{k!(n-k)!}"></span>
+</div>
+<div class="cn">三种符号表示同一个组合数：从 n 次试验中选出 k 个成功位置的方法数，不考虑选择顺序。</div></div><div class="foot"><span>Unit 2 · Lesson 6</span><span class="pg"></span></div>
 </section>
 <section class="slide" id="pascal-combinations" data-learning-category="beyond" data-title="Optional Extension: Combinations and Pascal’s Triangle" data-notes="约5分钟选学。先让学生列出5题恰好2题正确的成功位置，不揭示图。依次点击：十种位置图；有序选择除以2!；杨辉三角和二项式联系。此页拓展推导不要求AP背诵。">
 <div class="tag learning-category-label">Optional Extension <b>· 选学拓展（超出 AP 要求）</b></div>
