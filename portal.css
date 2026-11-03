@@ -8,9 +8,9 @@ html {
 }
 body {
   margin: 0;
-  background: var(--mg-paper, #f5f7fb);
-  color: var(--mg-ink, #13233f);
-  font: 16px/1.7 var(--mg-font, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif);
+  background: var(--mg-paper, #f7f4ef);
+  color: var(--mg-ink, #1c1917);
+  font: 16px/1.7 var(--mg-font, "Source Sans 3", "Helvetica Neue", Arial, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif);
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -24,9 +24,9 @@ button {
 }
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid var(--mg-gold);
+  outline: 3px solid var(--mg-ink, #1c1917);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 2px;
 }
 .skip {
   position: fixed;
@@ -910,3 +910,111 @@ dialog::backdrop {
 main,.header-inner,.footer-inner{max-width:none;padding-left:clamp(16px,3vw,64px);padding-right:clamp(16px,3vw,64px)}
 .hero{max-width:1600px;margin-inline:auto}
 .program-grid,.section-title,.learning{max-width:1800px;margin-left:auto;margin-right:auto}
+
+/* Academic surface: serif display, one cardinal accent, quiet cards. */
+h1, h2, h3, .identity strong, .footer-brand strong {
+  font-family: var(--mg-serif, "Noto Serif", "Liberation Serif", "Songti SC", "Noto Serif SC", "WenQuanYi Micro Hei", serif);
+  font-weight: 600;
+}
+h1 { letter-spacing: -0.03em; }
+.site-header {
+  border-top: 3px solid var(--mg-accent, #8c1515);
+  background: rgb(255 252 248 / 94%);
+}
+.site-header nav {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  gap: 4px 28px;
+}
+.site-header nav a {
+  border-radius: 0;
+  padding: 10px 0;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--mg-ink-2, #3f3a34);
+  border-bottom: 1px solid transparent;
+}
+.site-header nav a:hover {
+  background: transparent;
+  box-shadow: none;
+  color: var(--mg-accent, #8c1515);
+  border-bottom-color: currentColor;
+}
+.header-action {
+  border-radius: 2px;
+  background: var(--mg-accent, #8c1515);
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+.header-action:hover { background: var(--mg-accent-ink, #641010); }
+.btn, .button, .close, .mock-entry, .soon, .hero-panel, .course-card, dialog, .learning, .learning li {
+  border-radius: 2px;
+}
+.btn-primary { background: var(--mg-accent, #8c1515); }
+.btn-primary:hover { background: var(--mg-accent-ink, #641010); }
+.btn-ghost { background: transparent; }
+.btn-ghost:hover { border-color: var(--mg-ink, #1c1917); background: transparent; }
+.hero { padding-top: 72px; padding-bottom: 64px; }
+.hero-panel { box-shadow: none; padding: 8px 8px 12px; }
+.panel-label { letter-spacing: 0.14em; text-transform: uppercase; font-size: 11px; }
+.live-dot { background: var(--mg-accent, #8c1515); box-shadow: none; border-radius: 1px; width: 7px; height: 7px; }
+.quick-list a { border-radius: 2px; border-color: transparent; border-bottom: 1px solid var(--mg-line, #e6e1d8); }
+.quick-list a:hover { background: var(--mg-accent-soft, #f8f1f0); border-color: transparent; }
+.q-tag {
+  background: transparent;
+  color: var(--mg-accent, #8c1515);
+  border: 1px solid var(--mg-line-2, #d3cdc3);
+  border-radius: 2px;
+  font-family: var(--mg-serif, "Noto Serif", serif);
+  font-weight: 600;
+  width: 48px;
+  height: 40px;
+}
+.q-user { background: transparent; }
+.course-card { box-shadow: none; }
+.course-card::before { height: 2px; }
+.course-card:hover { transform: none; box-shadow: none; border-color: var(--mg-ink, #1c1917); }
+.course-card h3, .course-card h3.math-program-title { font-weight: 600; letter-spacing: -0.03em; }
+.mock-entry { background: transparent; border: 1px solid var(--mg-line, #e6e1d8); color: var(--mg-ink, #1c1917); font-weight: 600; }
+.mock-entry:hover { background: var(--mg-accent, #8c1515); color: #fff; border-color: var(--mg-accent, #8c1515); }
+.soon { background: transparent; border: 1px dashed var(--mg-line-2, #d3cdc3); }
+.learning {
+  background: transparent;
+  color: var(--mg-ink, #1c1917);
+  border-radius: 0;
+  border-top: 1px solid var(--mg-line, #e6e1d8);
+  border-bottom: 1px solid var(--mg-line, #e6e1d8);
+  padding: 56px 0;
+  margin: 72px auto;
+}
+.learning .eyebrow { color: var(--mg-accent, #8c1515); }
+.learning h2 { color: var(--mg-ink, #1c1917); }
+.learning-intro > p:last-child { color: var(--mg-muted, #5c564e); }
+.learning li {
+  background: transparent;
+  border: 0;
+  border-top: 2px solid var(--mg-accent, #8c1515);
+  border-radius: 0;
+  padding: 18px 8px 0 0;
+}
+.learning .step { color: var(--mg-accent, #8c1515); font-family: var(--mg-serif, serif); font-size: 22px; font-weight: 600; }
+.learning h3 { color: var(--mg-ink, #1c1917); }
+.learning h3 small { color: var(--mg-muted, #5c564e); }
+.learning li p { color: var(--mg-ink-2, #3f3a34); }
+.site-footer { background: var(--mg-surface, #fffcf8); }
+.site-footer nav a:hover { color: var(--mg-accent, #8c1515); }
+.button { border-color: var(--mg-accent, #8c1515); color: var(--mg-accent, #8c1515); border-radius: 2px; }
+.button:hover { background: var(--mg-accent, #8c1515); color: #fff; }
+dialog { border-radius: 2px; }
+.close { border-radius: 2px; }
+@media (max-width: 760px) {
+  .site-header nav { gap: 0 12px; }
+  .site-header nav a { letter-spacing: 0.04em; font-size: 12px; padding: 8px 0; }
+  .hero { padding-top: 36px; padding-bottom: 28px; }
+  .learning { margin: 40px auto; padding: 32px 0; }
+  .learning li { padding: 16px 0 0; }
+}
