@@ -3,29 +3,34 @@
    Bluebook-style chrome; rules here only touch shared tokens, the account bar
    and the landing/navigation screens. */
 :root {
-  --mg-ink: #13233f;
-  --mg-ink-2: #2a3b58;
-  --mg-muted: #5c6b84;
-  --mg-faint: #8a96aa;
-  --mg-line: #e2e7ef;
-  --mg-line-2: #cfd7e4;
-  --mg-paper: #f5f7fb;
-  --mg-surface: #ffffff;
-  --mg-blue: #2b55e0;
-  --mg-blue-ink: #1d3fae;
-  --mg-blue-soft: #edf1ff;
-  --mg-gold: #d9a521;
-  --mg-radius: 14px;
-  --mg-radius-sm: 9px;
-  --mg-shadow: 0 1px 2px rgb(19 35 63 / 4%), 0 8px 24px rgb(19 35 63 / 6%);
-  --mg-shadow-lg: 0 2px 4px rgb(19 35 63 / 5%), 0 18px 44px rgb(19 35 63 / 10%);
-  --mg-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  /* Program accents — five programs, equal weight. */
-  --mg-sat: #2b55e0;
-  --mg-act: #0b8a72;
-  --mg-ap: #c43b3b;
-  --mg-ib: #6a47d6;
-  --mg-alevel: #c27c0e;
+  --mg-ink: #1c1917;
+  --mg-ink-2: #3f3a34;
+  --mg-muted: #5c564e;
+  --mg-faint: #6f675e;
+  --mg-line: #e6e1d8;
+  --mg-line-2: #d3cdc3;
+  --mg-paper: #f7f4ef;
+  --mg-surface: #fffcf8;
+  /* One deep academic accent (cardinal). Legacy token names stay so existing rules follow it. */
+  --mg-accent: #8c1515;
+  --mg-accent-ink: #641010;
+  --mg-accent-soft: #f8f1f0;
+  --mg-blue: var(--mg-accent);
+  --mg-blue-ink: var(--mg-accent-ink);
+  --mg-blue-soft: var(--mg-accent-soft);
+  --mg-gold: var(--mg-accent);
+  --mg-radius: 2px;
+  --mg-radius-sm: 2px;
+  --mg-shadow: none;
+  --mg-shadow-lg: 0 16px 40px rgb(28 25 23 / 6%);
+  --mg-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Noto Serif", "Liberation Serif", "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", serif;
+  --mg-font: "Source Sans 3", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  /* Programs share the accent. Names on the page carry the distinction. */
+  --mg-sat: var(--mg-accent);
+  --mg-act: var(--mg-accent);
+  --mg-ap: var(--mg-accent);
+  --mg-ib: var(--mg-accent);
+  --mg-alevel: var(--mg-accent);
 }
 
 /* ---------- Account / sync bar (rendered by cloud.js) ---------- */
@@ -38,7 +43,7 @@
   min-height: 36px;
   padding: 7px max(24px, calc((100vw - 1320px) / 2));
   background: var(--mg-ink);
-  color: #c9d4e8;
+  color: #e7e1d6;
   font: 13px/1.4 var(--mg-font);
   position: relative;
   z-index: 30;
@@ -54,8 +59,8 @@
   width: 7px;
   height: 7px;
   margin-right: 8px;
-  border-radius: 50%;
-  background: var(--mg-gold);
+  border-radius: 1px;
+  background: var(--mg-accent);
   vertical-align: 1px;
 }
 .mg-account-bar a:hover {
@@ -65,7 +70,7 @@
 .mg-account-bar span {
   flex: 1;
   min-width: 0;
-  color: #aebbd3;
+  color: #cfc6b8;
 }
 .mg-account-bar button {
   background: #fff;
@@ -111,8 +116,8 @@ body:has(.exam-header) > .mg-account-bar {
 .mg-identity .mg-name,
 .landing .identity strong {
   display: block;
-  font: 750 18px/1.25 var(--mg-font);
-  letter-spacing: -0.3px;
+  font: 600 18px/1.25 var(--mg-serif);
+  letter-spacing: -0.02em;
   color: var(--mg-ink);
 }
 .mg-identity .mg-subtitle,
@@ -157,21 +162,24 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
-  border-radius: 999px;
+  padding: 8px 2px;
+  border-radius: 0;
   color: var(--mg-ink-2);
-  font: 600 14px/1.3 var(--mg-font);
+  font: 500 14px/1.3 var(--mg-font);
+  letter-spacing: 0.02em;
   text-decoration: none;
-  border: 1px solid transparent;
+  border: 0;
+  border-bottom: 1px solid transparent;
 }
 .lab-link:hover {
-  background: #fff;
-  border-color: var(--mg-line);
-  color: var(--mg-blue);
+  background: transparent;
+  border-bottom-color: var(--mg-accent);
+  color: var(--mg-accent);
 }
 .lab-link.current {
-  background: var(--mg-ink);
-  color: #fff !important;
+  background: transparent;
+  color: var(--mg-accent) !important;
+  border-bottom-color: var(--mg-accent);
 }
 /* Older single back-link stays tidy */
 #act-app .landing .brand > a:not(.identity):not(.lab-link) {
@@ -187,8 +195,8 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
 }
 #mock-app > .landing .hero h1,
 #act-app > .landing .hero h1 {
-  font: 780 clamp(30px, 4vw, 44px)/1.15 var(--mg-font);
-  letter-spacing: -1px;
+  font: 600 clamp(34px, 4.2vw, 52px)/1.15 var(--mg-serif);
+  letter-spacing: -0.03em;
   margin: 10px 0 14px;
 }
 #mock-app > .landing .hero p,
@@ -246,7 +254,7 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   position: relative;
   padding: 12px 14px;
   border-radius: var(--mg-radius-sm);
-  background: var(--mg-blue-soft);
+  background: var(--mg-accent-soft);
   min-width: 0;
 }
 .mg-timeline li small {
@@ -267,16 +275,17 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   color: var(--mg-muted);
 }
 .mg-timeline li.break {
-  background: #fdf6e3;
+  background: #f3efe6;
 }
 .mg-timeline li.break small {
-  color: #8a6107;
+  color: var(--mg-ink-2);
 }
 .mg-timeline li.math {
-  background: #ecf7f3;
+  background: #fff;
+  border: 1px solid var(--mg-line);
 }
 .mg-timeline li.math small {
-  color: #0b6a58;
+  color: var(--mg-accent);
 }
 .mg-timeline-note {
   margin: 12px 2px 0;
@@ -319,8 +328,8 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
 }
 .landing .list-head h2 {
   margin: 0;
-  font: 750 22px/1.3 var(--mg-font);
-  letter-spacing: -0.3px;
+  font: 600 26px/1.3 var(--mg-serif);
+  letter-spacing: -0.02em;
 }
 .landing .list-head p {
   margin: 0;
@@ -346,8 +355,8 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 #mock-app > .landing .card:hover {
-  border-color: #bccaf2;
-  box-shadow: var(--mg-shadow);
+  border-color: var(--mg-ink);
+  box-shadow: none;
 }
 #mock-app > .landing .card .card-kicker {
   font: 700 11px/1.3 var(--mg-font);
@@ -357,8 +366,8 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
 }
 #mock-app > .landing .card h2 {
   margin: 4px 0 14px;
-  font: 800 32px/1.1 var(--mg-font);
-  letter-spacing: -0.8px;
+  font: 600 34px/1.1 var(--mg-serif);
+  letter-spacing: -0.03em;
 }
 #mock-app > .landing .card h2 small {
   font-size: 15px;
@@ -385,13 +394,13 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
 #mock-app > .landing .card button.primary {
   margin-top: auto;
   width: 100%;
-  border-radius: 999px;
+  border-radius: 2px;
   padding: 8px 14px;
-  font-weight: 650;
+  font-weight: 600;
   font-size: 14.5px;
-  background: var(--mg-blue-soft);
-  border-color: transparent;
-  color: var(--mg-blue-ink);
+  background: transparent;
+  border: 1px solid var(--mg-line-2);
+  color: var(--mg-accent);
 }
 #mock-app > .landing .card:hover button.primary,
 #mock-app > .landing .card button.primary:hover,
@@ -418,8 +427,8 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 #act-app > .landing .test-card:hover {
-  border-color: #a9d8cc;
-  box-shadow: var(--mg-shadow);
+  border-color: var(--mg-ink);
+  box-shadow: none;
 }
 #act-app > .landing .test-card .eyebrow {
   color: var(--mg-act);
@@ -427,7 +436,7 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
 }
 #act-app > .landing .test-card h2 {
   margin: 6px 0 6px;
-  font: 760 22px/1.25 var(--mg-font);
+  font: 600 24px/1.25 var(--mg-serif);
 }
 #act-app > .landing .test-card p {
   color: var(--mg-muted);
@@ -441,19 +450,19 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   margin: 2px 0 14px;
 }
 #act-app > .landing .test-card .schedule span {
-  background: #eef8f5;
-  color: #0a5a4b;
-  border-radius: 7px;
+  background: var(--mg-accent-soft);
+  color: var(--mg-accent-ink);
+  border-radius: 2px;
   padding: 6px 10px;
   font-size: 13px;
 }
 #act-app > .landing .test-card .primary {
   margin-top: auto;
   width: 100%;
-  border-radius: 999px;
-  background: var(--mg-act);
-  border-color: var(--mg-act);
-  font-weight: 650;
+  border-radius: 2px;
+  background: var(--mg-accent);
+  border-color: var(--mg-accent);
+  font-weight: 600;
 }
 #act-app > .landing .test-card .primary:hover {
   background: #076a57;
@@ -480,7 +489,7 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
 #mock-app > .landing .history h2,
 #act-app > .landing .history h2 {
   margin: 0 0 4px;
-  font: 750 20px/1.3 var(--mg-font);
+  font: 600 22px/1.3 var(--mg-serif);
 }
 #mock-app > .landing .history-item,
 #act-app > .landing .history-item {
@@ -572,18 +581,18 @@ body:not(:has(.exam-header)):has(#act-app > .landing) {
   }
 }
 
-/* ACT timeline uses the ACT accent */
+/* Section labels stay in the same accent; the break is the only quieter step. */
 .act-timeline li {
-  background: #eef8f5;
+  background: var(--mg-accent-soft);
 }
 .act-timeline li small {
-  color: #0a6a58;
+  color: var(--mg-accent-ink);
 }
 .act-timeline li.math {
-  background: #f1f4fb;
+  background: #fff;
 }
 .act-timeline li.math small {
-  color: var(--mg-ink-2);
+  color: var(--mg-accent);
 }
 #act-app > .landing > .brand,
 #mock-app > .landing > .brand {
@@ -641,8 +650,8 @@ body.account {
   margin: 0;
 }
 .account h1 {
-  font: 800 clamp(28px, 3.5vw, 38px)/1.2 var(--mg-font);
-  letter-spacing: -0.8px;
+  font: 600 clamp(32px, 4vw, 48px)/1.15 var(--mg-serif);
+  letter-spacing: -0.03em;
   margin: 8px 0 20px;
 }
 .account .card {
@@ -666,7 +675,7 @@ body.account {
   border-color: var(--mg-blue);
 }
 .account button {
-  border-radius: 999px;
+  border-radius: 2px;
   border-color: var(--mg-line-2);
   font-weight: 600;
   padding: 9px 18px;
@@ -692,7 +701,7 @@ body.account {
   color: var(--mg-ink-2);
 }
 .account dialog {
-  border-radius: 18px;
+  border-radius: 2px;
   box-shadow: var(--mg-shadow-lg);
 }
 @media (max-width: 650px) {
@@ -748,10 +757,10 @@ aside > .mg-identity .mg-name {
 .account .account-tabs a{padding:8px 12px;border-radius:10px;text-decoration:none;background:var(--mg-paper);font-weight:600;font-size:14px}
 .account .account-tabs #signout{margin-left:auto;font-size:14px}
 .account button,.account select{min-height:var(--mg-control-height)}
-.account h2{font-size:22px;line-height:1.4;letter-spacing:-.3px}
-.account .muted{font-size:14px;line-height:1.7}
+.account h2{font-family:var(--mg-serif);font-size:22px;font-weight:600;line-height:1.4;letter-spacing:-.02em}
+.account .muted{font-size:14px;line-height:1.7;color:var(--mg-muted)}
 .account .learning-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0 32px}
-.account .learning-shortcuts a{display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--mg-line);border-radius:14px;text-decoration:none;background:white;color:var(--mg-ink)}
+.account .learning-shortcuts a{display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--mg-line);border-radius:2px;text-decoration:none;background:white;color:var(--mg-ink)}
 .account .learning-shortcuts a:hover{border-color:var(--mg-blue);background:var(--mg-blue-soft)}
 .account .learning-shortcuts span{font-size:14px;color:var(--mg-blue)}
 .account .review-workspace{border-top:3px solid var(--mg-blue)}
@@ -807,3 +816,32 @@ aside > .mg-identity .mg-name {
 .performance-breakdown strong{font-size:13px;color:var(--mg-ink)}
 .performance-breakdown span,.performance-breakdown small{color:var(--mg-muted);font-size:13px}
 .module-performance{overflow-x:auto;margin:20px 0}.module-performance table{min-width:500px}
+
+/* Catalog filters and focus, shared by the practice-test landings. */
+#mock-app > .landing .catalog-tabs button {
+  border-radius: 2px;
+  border-color: var(--mg-line-2);
+  color: var(--mg-ink-2);
+  background: #fff;
+  font-weight: 600;
+}
+#mock-app > .landing .catalog-tabs button:hover {
+  border-color: var(--mg-accent);
+  color: var(--mg-accent);
+  background: #fff;
+}
+#mock-app > .landing .catalog-tabs button[aria-pressed="true"] {
+  background: var(--mg-accent);
+  border-color: var(--mg-accent);
+  color: #fff;
+}
+#mock-app > .landing .hero h1,
+#act-app > .landing .hero h1,
+.account h1,
+.landing .list-head h2 {
+  font-family: var(--mg-serif);
+}
+body:not(:has(.exam-header)):not(.exam-mode) :is(a, button, input, select, summary):focus-visible {
+  outline: 3px solid var(--mg-ink);
+  outline-offset: 3px;
+}
