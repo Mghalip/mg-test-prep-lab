@@ -29,3 +29,9 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .question-strip{gap:4px;padding:5px 3px}
 .question-strip button{flex:0 0 40px;width:40px;height:40px;min-width:40px;min-height:40px;font-size:16px;padding:4px}
 @media(min-width:801px){.review-mode .workspace{height:calc(100dvh - 174px)}}
+
+/* Scanned guidebook pages have a smaller printed type size. */
+.source-part.raster,.math .source-part.raster{width:calc(var(--pw) * 2.5px * var(--zoom));min-width:0;max-width:none}
+@media(max-width:650px){.source-part.raster,.math .source-part.raster{width:calc(var(--pw) * 2.35px * var(--zoom))}}
+
+@media(min-width:801px){.workspace:has(.raster.wide){grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.source-part.raster.wide{width:calc(100% * var(--zoom));max-width:none}}

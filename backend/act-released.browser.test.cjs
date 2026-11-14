@@ -1,7 +1,7 @@
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),out=process.env.OUTPUT_DIR||path.resolve(root,'../MG后台验证/act-j08-j01/browser');fs.mkdirSync(out,{recursive:true});
 (async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1500}}),errors=[];page.on('pageerror',e=>errors.push(String(e)));
-await page.goto((process.env.BASE_URL||'http://127.0.0.1:8771')+'/act.html');await page.waitForFunction(()=>document.querySelectorAll('.test-card').length===6);assert.equal(await page.evaluate(()=>!!MG.user),false);await page.screenshot({path:path.join(out,'home.png'),fullPage:true});
+await page.goto((process.env.BASE_URL||'http://127.0.0.1:8771')+'/act.html');await page.waitForFunction(()=>document.querySelectorAll('.test-card').length===9);assert.equal(await page.evaluate(()=>!!MG.user),false);await page.screenshot({path:path.join(out,'home.png'),fullPage:true});
 for(const id of ['act5','act6']){
  const d=JSON.parse(fs.readFileSync(path.join(root,'act-data',id+'.json'))),seen=new Set();
  assert.deepEqual(await page.evaluate(async id=>(await fetch('act-data/'+id+'.json?v=20261114-released-forms')).json(),id),d);

@@ -60,5 +60,62 @@
       30,
       34
     ]
+  },
+  {
+    "id": "act7",
+    "title": "ACT Practice Test 7",
+    "form": "25MC2",
+    "questions": 171,
+    "format": "scanned-practice",
+    "counts": [
+      50,
+      45,
+      36,
+      40
+    ],
+    "minutes": [
+      35,
+      50,
+      40,
+      40
+    ]
+  },
+  {
+    "id": "act8",
+    "title": "ACT Practice Test 8",
+    "form": "25MC3",
+    "questions": 171,
+    "format": "scanned-practice",
+    "counts": [
+      50,
+      45,
+      36,
+      40
+    ],
+    "minutes": [
+      35,
+      50,
+      40,
+      40
+    ]
+  },
+  {
+    "id": "act9",
+    "title": "ACT Practice Test 9",
+    "form": "25MC4",
+    "questions": 171,
+    "format": "scanned-practice",
+    "counts": [
+      50,
+      45,
+      36,
+      40
+    ],
+    "minutes": [
+      35,
+      50,
+      40,
+      40
+    ]
   }
 ]
