@@ -91,6 +91,10 @@ for code,secs in layout.items():
    for o in opts:
     o['box'][3]=round(min([z['box'][1]-o['box'][1] for z in opts if z['box'][1]>o['box'][1]+3 and abs(z['box'][0]-o['box'][0])<15]+[o['box'][3]]),2)
     assert o['box'][2]>0 and o['box'][3]>0,(code,sec,q['n'],opts)
+   left=min(o['box'][0] for o in opts)
+   assert 5<left-visual['box'][0]<30,(code,sec,q['n'],'label column')
+   assert all(sum(abs(o['box'][0]-v['box'][0])<12 for v in opts)>=2 for o in opts),(code,sec,q['n'],'isolated label')
+   assert sorted(opts,key=lambda o:(round((o['box'][0]-left)/30),o['anchorY']))==opts,(code,sec,q['n'],'label order')
    group=None
    if ps:
     eligible=[g for g in ps if (g['p'],g['y'])<=(p,y+10)] if sec=='english' else [g for g in ps if (g['p'],g['c'],g['y'])<=(p,c,y)]

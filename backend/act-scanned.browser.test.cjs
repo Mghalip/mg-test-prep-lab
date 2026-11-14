@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'..'),out=process.env.OUTPUT_DIR||path.resolve
 await page.goto((process.env.BASE_URL||'http://127.0.0.1:8771')+'/act.html');await page.waitForFunction(()=>document.querySelectorAll('.test-card').length===9);assert.equal(await page.evaluate(()=>!!MG.user),false);await page.screenshot({path:path.join(out,'home.png'),fullPage:true});
 for(const id of ['act7','act8','act9']){
  const d=JSON.parse(fs.readFileSync(path.join(root,'act-data',id+'.json'))),seen=new Set();
- assert.deepEqual(await page.evaluate(async id=>(await fetch('act-data/'+id+'.json?v=20261114-scanned-forms')).json(),id),d);
+ assert.deepEqual(await page.evaluate(async id=>(await fetch('act-data/'+id+'.json?v=20261114-scanned-forms2')).json(),id),d);
  await page.evaluate(async id=>{await ACTLab.start(id,'full',true,'timed');ACTLab.begin()},id);
  for(let si=0;si<4;si++){
   if(si===2){assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem(MG.key('mg-act-draft-v1'))).phase),'break');await page.evaluate(()=>ACTLab.skipBreak());assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem(MG.key('mg-act-draft-v1'))).phase),'break');await page.evaluate(async()=>{const k=MG.key('mg-act-draft-v1'),s=JSON.parse(localStorage.getItem(k));s.breakDeadline=Date.now()-1;localStorage.setItem(k,JSON.stringify(s));await ACTLab.resume()})}
