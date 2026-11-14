@@ -1,6 +1,6 @@
 'use strict';
 const ACTLab=(()=>{
-const VERSION='20261114-act3-proofread',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
+const VERSION='20261114-compact-passages',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
 const app=document.getElementById('act-app'),modal=document.getElementById('act-dialog');
 const NS='http://www.w3.org/2000/svg',cache=new Map();
 let manifest=[],exam=null,state=null,screen='home',token=0,hiddenTimer=false,zoom=1,mask=false,lineReader=false,lastTick=Date.now(),reviewSection=0,reviewPos=0,eliminator=false;
@@ -46,7 +46,7 @@ function svgCrop(source,part,unique){const doc=new DOMParser().parseFromString(s
  svg.querySelectorAll('[id]').forEach(el=>el.id=unique+el.id);svg.querySelectorAll('*').forEach(el=>[...el.attributes].forEach(a=>{if(a.value.includes('url(#'))el.setAttribute(a.name,a.value.replace(/url\(#/g,'url(#'+unique));else if((a.name==='href'||a.name==='xlink:href')&&a.value.startsWith('#'))el.setAttribute(a.name,'#'+unique+a.value.slice(1))}));
  // Suppress neighbouring question artwork when a wide passage spans both paper columns.
  for(const box of part.exclude||[]){const r=document.createElementNS(NS,'rect');['x','y','width','height'].forEach((k,i)=>r.setAttribute(k,box[i]));r.setAttribute('fill','white');svg.append(r)}return svg}
-async function hydrate(q,parts,id,scrolls){const hosts=[...document.querySelectorAll('.source-part')],all=[...parts,q.visual];await Promise.all(hosts.map(async(host,i)=>{try{const src=await svgFile(all[i].file);if(id!==token||!host.isConnected)return;const svg=svgCrop(src,all[i],`act-${id}-${i}-`);host.replaceChildren(svg);drawNotes(host,q);if(host.dataset.area==='question'){drawChoices(svg,q);if(screen==='exam')choiceRadios(host,q)}}catch(e){if(id===token)host.innerHTML=`<div class="figure-error">${esc(e.message)} <button onclick="ACTLab.render()">Retry</button></div>`}}));if(id===token){document.querySelectorAll('.pane').forEach((p,i)=>{if(scrolls?.[i]){p.scrollTop=scrolls[i].top;p.scrollLeft=scrolls[i].left}});document.querySelector('.question-strip .current')?.scrollIntoView({block:'nearest',inline:'nearest'});await document.fonts.ready;}}
+async function hydrate(q,parts,id,scrolls){const hosts=[...document.querySelectorAll('.source-part')],all=[...parts,q.visual];await Promise.all(hosts.map(async(host,i)=>{try{const src=await svgFile(all[i].file);if(id!==token||!host.isConnected)return;const part=all[i],boxes=host.dataset.area==='passage'&&part.bands?part.bands:[part.box];const svgs=boxes.map((box,j)=>svgCrop(src,{...part,box},`act-${id}-${i}-${j}-`));host.replaceChildren(...svgs);drawNotes(host,q);if(host.dataset.area==='question'){drawChoices(svgs[0],q);if(screen==='exam')choiceRadios(host,q)}}catch(e){if(id===token)host.innerHTML=`<div class="figure-error">${esc(e.message)} <button onclick="ACTLab.render()">Retry</button></div>`}}));if(id===token){document.querySelectorAll('.pane').forEach((p,i)=>{if(scrolls?.[i]){p.scrollTop=scrolls[i].top;p.scrollLeft=scrolls[i].left}});document.querySelector('.question-strip .current')?.scrollIntoView({block:'nearest',inline:'nearest'});await document.fonts.ready;}}
 function choiceRadios(host,q){
  const [x,y,w,h]=q.visual.box;host.classList.add('has-choice-radios');
  for(const o of q.options){
@@ -85,8 +85,43 @@ function fullscreen(){if(document.fullscreenElement)document.exitFullscreen?.();
 function addReader(){const r=document.createElement('div');r.className='line-reader';r.style.top='260px';document.body.append(r)}function removeReader(){document.querySelector('.line-reader')?.remove()}
 function toggleReader(){lineReader=!lineReader;render(scrollState())}
 document.addEventListener('pointermove',e=>{const r=document.querySelector('.line-reader');if(r)r.style.top=(e.clientY-26)+'px'});
-function annotate(type){if(!guard())return;const sel=window.getSelection();if(!sel?.rangeCount||sel.isCollapsed)return notify('Select text in the passage or question first.');const range=sel.getRangeAt(0);const a=range.startContainer.parentElement?.closest('.source-part'),b=range.endContainer.parentElement?.closest('.source-part');if(!a||!b||a!==b)return notify('Select text within one passage panel at a time.');const svg=a.querySelector('svg'),matrix=svg.getScreenCTM().inverse();const rects=[...range.getClientRects()].filter(r=>r.width>0&&r.height>0).map(r=>{const pt=svg.createSVGPoint();pt.x=r.x;pt.y=r.y;const p=pt.matrixTransform(matrix);pt.x=r.right;pt.y=r.bottom;const end=pt.matrixTransform(matrix);return [p.x,p.y,end.x-p.x,end.y-p.y]});const note={area:a.dataset.area,part:Number(a.dataset.part),type,rects};(state.notes[question().id]??=[]).push(note);save();sel.removeAllRanges();drawNotes(a,question())}
-function drawNotes(host,q){const svg=host.querySelector('svg');if(!svg)return;svg.querySelectorAll('.annotation-overlay').forEach(n=>n.remove());for(const note of state.notes[q.id]||[]){if(note.area!==host.dataset.area||note.part!==Number(host.dataset.part))continue;for(const [x,y,w,h] of note.rects){const el=document.createElementNS(NS,'rect');el.classList.add('annotation-overlay');el.setAttribute('x',x);el.setAttribute('y',note.type==='underline'?y+h-1:y);el.setAttribute('width',w);el.setAttribute('height',note.type==='underline'?1:h);el.setAttribute('fill',note.type==='underline'?'#2266b0':'#f5d526');el.setAttribute('fill-opacity',note.type==='underline'?'1':'.35');svg.append(el)}}}
+function annotate(type){
+ if(!guard())return;const sel=window.getSelection();if(!sel?.rangeCount||sel.isCollapsed)return notify('Select text in the passage or question first.');
+ const range=sel.getRangeAt(0),a=range.startContainer.parentElement?.closest('.source-part'),b=range.endContainer.parentElement?.closest('.source-part');
+ if(!a||!b||a!==b)return notify('Select text within one passage panel at a time.');
+ // Each compact display band retains the original PDF coordinates, including saved highlights.
+ const rects=[];
+ for(const svg of a.querySelectorAll(':scope > svg')){
+  const bounds=svg.getBoundingClientRect(),matrix=svg.getScreenCTM().inverse();
+  const selectionRects=[];
+  for(const span of svg.querySelectorAll('tspan'))for(const node of span.childNodes){
+   if(node.nodeType!==Node.TEXT_NODE||!range.intersectsNode(node))continue;
+   const selected=document.createRange();selected.selectNodeContents(node);
+   if(range.startContainer===node)selected.setStart(node,range.startOffset);
+   if(range.endContainer===node)selected.setEnd(node,range.endOffset);
+   if(!selected.collapsed)selectionRects.push(...selected.getClientRects());
+  }
+  for(const r of selectionRects){
+   const left=Math.max(r.left,bounds.left),right=Math.min(r.right,bounds.right),top=Math.max(r.top,bounds.top),bottom=Math.min(r.bottom,bounds.bottom);
+   if(right<=left||bottom<=top)continue;
+   const pt=svg.createSVGPoint();pt.x=left;pt.y=top;const p=pt.matrixTransform(matrix);pt.x=right;pt.y=bottom;const end=pt.matrixTransform(matrix);
+   rects.push([p.x,p.y,end.x-p.x,end.y-p.y]);
+  }
+ }
+ const note={area:a.dataset.area,part:Number(a.dataset.part),type,rects};(state.notes[question().id]??=[]).push(note);save();sel.removeAllRanges();drawNotes(a,question());
+}
+function drawNotes(host,q){
+ for(const svg of host.querySelectorAll(':scope > svg')){
+  svg.querySelectorAll('.annotation-overlay').forEach(n=>n.remove());
+  for(const note of state.notes[q.id]||[]){
+   if(note.area!==host.dataset.area||note.part!==Number(host.dataset.part))continue;
+   for(const [x,y,w,h] of note.rects){
+    const box=svg.viewBox.baseVal;if(y+h<box.y||y>box.y+box.height)continue;
+    const el=document.createElementNS(NS,'rect');el.classList.add('annotation-overlay');el.setAttribute('x',x);el.setAttribute('y',note.type==='underline'?y+h-1:y);el.setAttribute('width',w);el.setAttribute('height',note.type==='underline'?1:h);el.setAttribute('fill',note.type==='underline'?'#2266b0':'#f5d526');el.setAttribute('fill-opacity',note.type==='underline'?'1':'.35');svg.append(el);
+   }
+  }
+ }
+}
 function clearNotes(){if(!guard())return;state.notes[question().id]=[];save();document.querySelectorAll('.source-part').forEach(p=>drawNotes(p,question()))}
 function sectionMisses(id){const sec=exam.sections.find(s=>s.id===id);return sec?sec.questions.filter(q=>!String(state.answers[q.id]??'').trim()).length:0}
 function results(){uploadResult();document.body.classList.remove('in-exam');screen='results';token++;mask=false;removeReader();document.body.classList.remove('review-mode');const summary=score(exam,state);app.innerHTML=`<div class="landing">${brand()}<div class="eyebrow">TEST RESULTS · ${esc(state.form)}</div><h1>${esc(state.title)} · 练习成绩</h1><p class="muted">${state.mode==='timed'?'倒计时模考':'正计时训练'} · ${new Date(state.finished).toLocaleString('zh-CN')}</p><div class="score-grid ordered-act-scores">${['reading','english','math'].map(id=>summary.sections.find(s=>s.id===id)).filter(Boolean).map(s=>`<div class="score-box">${s.id==='math'?'Math':s.title}<strong>${s.scale??'—'}</strong><small>/ 36 · 计分题 ${s.raw} / ${s.scored}</small><small>答对 ${s.correct}/${s.total} · 错 ${s.total-s.correct} 题（含未作答 ${sectionMisses(s.id)} 题）</small></div>`).join('')}${state.scope==='full'?`<div class="score-box total-score">总分 · Composite<strong>${summary.composite??'—'}</strong><small>/ 36 · Reading + English + Math</small></div>`:''}</div>${summary.sections.filter(s=>s.id==='science').map(s=>`<div class="score-box science-score">Science · 科推单独计分<strong>${s.scale??'—'}</strong><small>/ 36 · 计分题 ${s.raw} / ${s.scored}</small><small>答对 ${s.correct}/${s.total} · 错 ${s.total-s.correct} 题（含未作答 ${sectionMisses(s.id)} 题）</small></div>`).join('')}<div class="notice">练习分依据本套卷的答案与换分表计算，不是官方考试成绩。不计分题仍参与练习正确率统计，但不用于换分。整科未作答时不生成该科分数；核心三科未全部作答时不生成综合分。</div><div class="actions"><button onclick="ACTLab.exportResult()">导出逐题记录 CSV</button><button class="primary" onclick="ACTLab.home()">返回模考列表</button></div><h2>分科回顾</h2><div class="table-wrap"><table><thead><tr><th>科目</th><th>答对 / 总题数</th><th>错题（含未作答）</th><th>未作答</th><th>计分题正确数</th><th>用时</th><th>回顾</th></tr></thead><tbody>${summary.sections.map((s,j)=>`<tr><td>${s.title}</td><td>${s.correct} / ${s.total}</td><td>${s.total-s.correct}</td><td>${sectionMisses(s.id)}</td><td>${s.raw} / ${s.scored}</td><td>${clock(state.results.find(r=>r.section===state.order[j])?.seconds||0)}</td><td><button onclick="ACTLab.review(${state.order[j]},0)">查看题目</button></td></tr>`).join('')}</tbody></table></div><h2>逐题记录</h2><div class="table-wrap"><table><thead><tr><th>科目 / 题号</th><th>作答</th><th>正确答案</th><th>结果</th><th>有效用时</th><th>计分状态</th></tr></thead><tbody>${state.order.flatMap(i=>exam.sections[i].questions.map((q,j)=>`<tr><td><button onclick="ACTLab.review(${i},${j})">${exam.sections[i].title} ${q.number}</button></td><td>${esc(state.answers[q.id]||'未作答')}</td><td>${q.answer}</td><td class="${state.answers[q.id]===q.answer?'correct':'incorrect'}">${state.answers[q.id]===q.answer?'正确':'错误'}</td><td>${clock(state.times[q.id]||0)}</td><td>${q.scored?'计分':'不计分题'}</td></tr>`)).join('')}</tbody></table></div><p class="footer-note">逐题用时只统计题目在当前可见页面上的时间，不含休息和后台停留。${MG.user?'成绩已加入云端同步队列，具体同步状态见页面顶部。':'访客成绩保存在当前浏览器。'}</p></div>`}

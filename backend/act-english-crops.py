@@ -10,6 +10,70 @@ import sys
 from pathlib import Path
 
 
+def compact_english_passages(data, doc):
+    """Describe whitespace-only bands to omit, keeping original PDF coordinates."""
+    changes = []
+    for key, passage in data['passages'].items():
+        if not key.startswith('english-'):
+            continue
+        for part in passage['parts']:
+            part.pop('bands', None)
+            x, y, w, h = part['box']
+            page = doc[part['page'] - 1]
+            rows, occupied = [], []
+            for block in page.get_text('dict')['blocks']:
+                for line in block.get('lines', []):
+                    b = line['bbox']
+                    if not (x <= b[0] < x+w and y <= b[1] < y+h):
+                        continue
+                    if any(s['size'] > 24 for s in line['spans']):
+                        continue
+                    occupied.append((b[1], b[3]))
+                    spans = [s for s in line['spans'] if 9 <= s['size'] <= 16]
+                    if spans:
+                        rows.append((min(s['origin'][1] for s in spans), b[0], b[1], b[3]))
+            for drawing in page.get_drawings():
+                b = drawing['rect']
+                if x <= b.x0 and b.x1 <= x+w and y <= b.y0 < y+h:
+                    occupied.append((b.y0, b.y1))
+            rows.sort()
+            if not rows:
+                continue
+            left = min(r[1] for r in rows)
+            cuts = []
+            for prev, nxt in zip(rows, rows[1:]):
+                delta = nxt[0] - prev[0]
+                if delta < 30:
+                    continue
+                # Indented new paragraphs retain a blank line; continuations use normal leading.
+                target = 40 if nxt[1] > left+8 else 20
+                intervals = sorted((max(a, prev[3]), min(b, nxt[2])) for a, b in occupied
+                                   if b > prev[3] and a < nxt[2])
+                cursor, blanks = prev[3], []
+                for a, b in intervals:
+                    if a > cursor:
+                        blanks.append((cursor, a))
+                    cursor = max(cursor, b)
+                if nxt[2] > cursor:
+                    blanks.append((cursor, nxt[2]))
+                if not blanks:
+                    continue
+                a, b = max(blanks, key=lambda gap: gap[1]-gap[0])
+                remove = min(delta-target, b-a-4)
+                if remove > 8:
+                    start = (a+b-remove)/2
+                    cuts.append((round(start, 3), round(start+remove, 3)))
+            if cuts:
+                bands, cursor = [], y
+                for start, end in cuts:
+                    bands.append([x, cursor, w, round(start-cursor, 3)])
+                    cursor = end
+                bands.append([x, cursor, w, round(y+h-cursor, 3)])
+                part['bands'] = bands
+                changes.append(f'{key} page {part["page"]}: compact {len(cuts)} paper-layout gaps')
+    return changes
+
+
 def repair_english_crops(data, doc):
     questions = next(s for s in data['sections'] if s['id'] == 'english')['questions']
     changes = []
@@ -59,7 +123,7 @@ def repair_english_crops(data, doc):
             ob = option['box']
             ob[3] = min(ob[3], round(b[1] + b[3] - ob[1], 2))
             assert ob[3] > 0, f'Invalid choice crop: {q["id"]}'
-    return changes
+    return changes + compact_english_passages(data, doc)
 
 
 if __name__ == '__main__':
