@@ -14,7 +14,7 @@ window.MGReflection=(()=>{
   if(row.kind==='act-mock'){
    const manifest=await json('act-data/manifest.json'),test=manifest.find(t=>t.form===row.exam||t.id===row.exam);if(!test)throw Error('未找到套卷');
    const d=await json(`act-data/${test.id}.json`),q=d.sections.flatMap(s=>s.questions).find(q=>q.id===item.id);if(!q)throw Error('未找到原题');
-   return {html:'',vectors:[...(q.passage?d.passages[q.passage].parts:[]),q.visual],text:''};
+   return {html:q.introduction?`<p>${esc(q.introduction)}</p>`:'',vectors:[...(q.passage?d.passages[q.passage].parts:[]),q.visual],text:''};
   }
   if(row.kind==='sat-topic'){
    if(!cache.has('topic-script'))cache.set('topic-script',new Promise((resolve,reject)=>{if(typeof QUESTIONS!=='undefined')return resolve();const s=document.createElement('script');s.src='questions.js';s.onload=resolve;s.onerror=()=>{cache.delete('topic-script');reject(Error('题目加载失败'))};document.head.append(s)}));

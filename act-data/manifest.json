@@ -22,5 +22,43 @@
     "title": "ACT Practice Test 4",
     "form": "26MC3",
     "questions": 171
+  },
+  {
+    "id": "act5",
+    "title": "ACT Practice Test 5",
+    "form": "J08",
+    "questions": 142,
+    "format": "released-scored",
+    "counts": [
+      40,
+      41,
+      27,
+      34
+    ],
+    "minutes": [
+      28,
+      45.5,
+      30,
+      34
+    ]
+  },
+  {
+    "id": "act6",
+    "title": "ACT Practice Test 6",
+    "form": "J01",
+    "questions": 142,
+    "format": "released-scored",
+    "counts": [
+      40,
+      41,
+      27,
+      34
+    ],
+    "minutes": [
+      28,
+      45.5,
+      30,
+      34
+    ]
   }
 ]
