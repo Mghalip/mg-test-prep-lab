@@ -22,3 +22,10 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .source-part .choice-area:hover{background:transparent}
 .source-part .choice-area:focus-visible{outline:none}
 .source-part .choice-area:focus-visible::before{outline:2px solid #145b99;outline-offset:3px}
+
+/* Larger question navigation in both practice and answer review. */
+.exam-footer{height:68px;min-height:68px;padding:8px 12px}
+.exam-footer>button{min-height:40px;font-size:14px;white-space:nowrap;flex-shrink:0}
+.question-strip{gap:4px;padding:5px 3px}
+.question-strip button{flex:0 0 40px;width:40px;height:40px;min-width:40px;min-height:40px;font-size:16px;padding:4px}
+@media(min-width:801px){.review-mode .workspace{height:calc(100dvh - 174px)}}
