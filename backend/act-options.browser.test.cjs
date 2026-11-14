@@ -3,6 +3,21 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
 for(const id of ['act1','act2','act3','act4']){const data=JSON.parse(fs.readFileSync(root+'/act-data/'+id+'.json'));await page.evaluate(async id=>{await ACTLab.start(id,'full',true,'practice');ACTLab.begin();ACTLab.showQuestions()},id);
 for(let sec=0;sec<4;sec++){await page.evaluate(async sec=>{const k=MG.key('mg-act-draft-v1'),s=JSON.parse(localStorage.getItem(k));s.section=sec;s.orderPos=sec;s.pos=0;s.showDirections=false;localStorage.setItem(k,JSON.stringify(s));await ACTLab.resume()},sec);
 for(let n=0;n<data.sections[sec].questions.length;n++){await page.evaluate(n=>ACTLab.jump(n),n);await page.waitForFunction(()=>document.querySelectorAll('.choice-area').length===4);const areas=await page.locator('.choice-area').evaluateAll(els=>els.map(e=>({letter:e.dataset.letter,x:parseFloat(e.style.left),y:parseFloat(e.style.top),w:parseFloat(e.style.width),h:parseFloat(e.style.height)})));for(const a of areas){assert(a.w>0&&a.h>0);for(const b of areas){if(a===b)continue;assert(Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x)<.001||Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y)<.001)}}checked++;
+// Every circle must align with its printed letter, including tall formula options.
+await page.evaluate(()=>{
+ const host=document.querySelector('.source-part[data-area="question"]');
+ for(const button of host.querySelectorAll('.choice-area')){
+  const b=button.getBoundingClientRect(),style=getComputedStyle(button,'::before');
+  const circleY=b.top+parseFloat(style.top);
+  const letter=button.dataset.letter;
+  const candidates=[...host.querySelectorAll('svg text tspan')].flatMap(span=>{
+   const t=span.textContent||'',i=t.search(/\S/);if(i<0||t.slice(i,i+2)!==letter+'.')return [];
+   const r=span.getExtentOfChar(i),point=new DOMPoint(r.x+r.width/2,r.y+r.height/2).matrixTransform(span.getScreenCTM());
+   return point.x>=b.left&&point.x<=b.left+35&&point.y>=b.top&&point.y<=b.top+80?[point]:[];
+  });
+  if(candidates.length!==1||Math.abs(circleY-candidates[0].y)>1)throw Error(document.querySelector('.question-heading').textContent+' Misaligned '+letter+': '+JSON.stringify({circleY,candidates}));
+ }
+});
 if(n===0||n===data.sections[sec].questions.length-1){for(const letter of data.sections[sec].questions[n].options.map(o=>o.letter)){const loc=page.locator(`.choice-area[data-letter=${letter}]`);const box=await loc.boundingBox();await loc.click({position:{x:box.width*.75,y:box.height*.5}});await page.waitForFunction(l=>document.querySelector(`.choice-area[data-letter=${l}]`)?.getAttribute('aria-pressed')==='true',letter)}}
 }console.log(id,sec,'passed')}
 }

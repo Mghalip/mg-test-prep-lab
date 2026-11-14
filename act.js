@@ -1,6 +1,6 @@
 'use strict';
 const ACTLab=(()=>{
-const VERSION='20261114-math-reading-crops',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
+const VERSION='20261114-option-alignment',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
 const app=document.getElementById('act-app'),modal=document.getElementById('act-dialog');
 const NS='http://www.w3.org/2000/svg',cache=new Map();
 let manifest=[],exam=null,state=null,screen='home',token=0,hiddenTimer=false,zoom=1,mask=false,lineReader=false,lastTick=Date.now(),reviewSection=0,reviewPos=0,eliminator=false;
@@ -46,7 +46,19 @@ function svgCrop(source,part,unique){const doc=new DOMParser().parseFromString(s
  svg.querySelectorAll('[id]').forEach(el=>el.id=unique+el.id);svg.querySelectorAll('*').forEach(el=>[...el.attributes].forEach(a=>{if(a.value.includes('url(#'))el.setAttribute(a.name,a.value.replace(/url\(#/g,'url(#'+unique));else if((a.name==='href'||a.name==='xlink:href')&&a.value.startsWith('#'))el.setAttribute(a.name,'#'+unique+a.value.slice(1))}));
  // Suppress neighbouring question artwork when a wide passage spans both paper columns.
  for(const box of part.exclude||[]){const r=document.createElementNS(NS,'rect');['x','y','width','height'].forEach((k,i)=>r.setAttribute(k,box[i]));r.setAttribute('fill','white');svg.append(r)}return svg}
-async function hydrate(q,parts,id,scrolls){const hosts=[...document.querySelectorAll('.source-part')],all=[...parts,q.visual];await Promise.all(hosts.map(async(host,i)=>{try{const src=await svgFile(all[i].file);if(id!==token||!host.isConnected)return;const part=all[i],boxes=host.dataset.area==='passage'&&part.bands?part.bands:[part.box];const svgs=boxes.map((box,j)=>svgCrop(src,{...part,box},`act-${id}-${i}-${j}-`));host.replaceChildren(...svgs);drawNotes(host,q);if(host.dataset.area==='question'){drawChoices(svgs[0],q);if(screen==='exam')choiceRadios(host,q)}}catch(e){if(id===token)host.innerHTML=`<div class="figure-error">${esc(e.message)} <button onclick="ACTLab.render()">Retry</button></div>`}}));if(id===token){document.querySelectorAll('.pane').forEach((p,i)=>{if(scrolls?.[i]){p.scrollTop=scrolls[i].top;p.scrollLeft=scrolls[i].left}});document.querySelector('.question-strip .current')?.scrollIntoView({block:'nearest',inline:'nearest'});await document.fonts.ready;}}
+async function hydrate(q,parts,id,scrolls){const hosts=[...document.querySelectorAll('.source-part')],all=[...parts,q.visual];await Promise.all(hosts.map(async(host,i)=>{try{const src=await svgFile(all[i].file);if(id!==token||!host.isConnected)return;const part=all[i],boxes=host.dataset.area==='passage'&&part.bands?part.bands:[part.box];const svgs=boxes.map((box,j)=>svgCrop(src,{...part,box},`act-${id}-${i}-${j}-`));host.replaceChildren(...svgs);await document.fonts.ready;if(id!==token||!host.isConnected)return;drawNotes(host,q);if(host.dataset.area==='question'){drawChoices(svgs[0],q);if(screen==='exam')choiceRadios(host,q)}}catch(e){if(id===token)host.innerHTML=`<div class="figure-error">${esc(e.message)} <button onclick="ACTLab.render()">Retry</button></div>`}}));if(id===token){document.querySelectorAll('.pane').forEach((p,i)=>{if(scrolls?.[i]){p.scrollTop=scrolls[i].top;p.scrollLeft=scrolls[i].left}});document.querySelector('.question-strip .current')?.scrollIntoView({block:'nearest',inline:'nearest'});await document.fonts.ready;}}
+// Align to the printed answer letter, not the height of its click region.
+// Tall fractions, diagrams and wrapped answers keep the same first-line anchor.
+function choiceLetterCenter(svg,o){
+ const inverse=svg.getScreenCTM().inverse();
+ for(const span of svg.querySelectorAll('text tspan')){
+  const text=span.textContent||'',index=text.search(/\S/);
+  if(index<0||text.slice(index,index+2)!==o.letter+'.')continue;
+  const rect=span.getExtentOfChar(index),point=new DOMPoint(rect.x+rect.width/2,rect.y+rect.height/2).matrixTransform(span.getScreenCTM()).matrixTransform(inverse);
+  if(point.x>=o.box[0]&&point.x<=o.box[0]+18&&point.y>=o.box[1]&&point.y<=o.box[1]+40)return point.y;
+ }
+ return o.box[1]+Math.min(o.box[3]/2,6);
+}
 function choiceRadios(host,q){
  const [x,y,w,h]=q.visual.box;host.classList.add('has-choice-radios');
  for(const o of q.options){
@@ -56,7 +68,7 @@ function choiceRadios(host,q){
   button.className='choice-radio choice-area'+(state.answers[q.id]===o.letter?' selected':'')+((state.excluded[q.id]||[]).includes(o.letter)?' eliminated':'');
   button.setAttribute('aria-label','Select answer '+o.letter);button.setAttribute('aria-pressed',String(state.answers[q.id]===o.letter));
   Object.assign(button.style,{left:((ox-x)/w*100)+'%',top:((oy-y)/h*100)+'%',width:(ow/w*100)+'%',height:((bottom-oy)/h*100)+'%'});
-  button.style.setProperty('--radio-top',(Math.min(oh/2,6)/(bottom-oy)*100)+'%');
+  button.style.setProperty('--radio-top',((choiceLetterCenter(host.querySelector('svg'),o)-oy)/(bottom-oy)*100)+'%');
   button.onclick=()=>{if(screen==='exam'&&question().id===q.id){if(eliminator)exclude(o.letter);else answer(o.letter)}};
   host.append(button);
  }
