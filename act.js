@@ -1,6 +1,6 @@
 'use strict';
 const ACTLab=(()=>{
-const VERSION='20261017-act2',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
+const VERSION='20261114-act3-proofread',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
 const app=document.getElementById('act-app'),modal=document.getElementById('act-dialog');
 const NS='http://www.w3.org/2000/svg',cache=new Map();
 let manifest=[],exam=null,state=null,screen='home',token=0,hiddenTimer=false,zoom=1,mask=false,lineReader=false,lastTick=Date.now(),reviewSection=0,reviewPos=0,eliminator=false;
@@ -61,7 +61,7 @@ function choiceRadios(host,q){
   host.append(button);
  }
 }
-function drawChoices(svg,q){svg.querySelectorAll('.answer-overlay').forEach(e=>e.remove());for(const o of q.options){const selected=state.answers[q.id]===o.letter,excluded=(state.excluded[q.id]||[]).includes(o.letter);if(!selected&&!excluded&&!mask)continue;const rect=document.createElementNS(NS,'rect');rect.classList.add('answer-overlay');['x','y','width','height'].forEach((k,i)=>rect.setAttribute(k,o.box[i]));rect.setAttribute('fill',mask?'#dce4ed':selected?'#1675bc':'#555');rect.setAttribute('fill-opacity',mask?'1':selected?'.12':'.22');rect.setAttribute('stroke',selected?'#145b99':'none');rect.setAttribute('stroke-width','.8');svg.append(rect);if(excluded){const line=document.createElementNS(NS,'line');line.classList.add('answer-overlay');line.setAttribute('x1',o.box[0]);line.setAttribute('x2',o.box[0]+o.box[2]);line.setAttribute('y1',o.box[1]+o.box[3]/2);line.setAttribute('y2',o.box[1]+o.box[3]/2);line.setAttribute('stroke','#555');line.setAttribute('stroke-width','1');svg.append(line)}}}
+function drawChoices(svg,q){svg.querySelectorAll('.answer-overlay').forEach(e=>e.remove());for(const o of q.options){const excluded=(state.excluded[q.id]||[]).includes(o.letter);if(!excluded&&!mask)continue;const rect=document.createElementNS(NS,'rect');rect.classList.add('answer-overlay');['x','y','width','height'].forEach((k,i)=>rect.setAttribute(k,o.box[i]));rect.setAttribute('fill',mask?'#dce4ed':'#555');rect.setAttribute('fill-opacity',mask?'1':'.22');rect.setAttribute('stroke','none');svg.append(rect);if(excluded){const line=document.createElementNS(NS,'line');line.classList.add('answer-overlay');line.setAttribute('x1',o.box[0]);line.setAttribute('x2',o.box[0]+o.box[2]);line.setAttribute('y1',o.box[1]+o.box[3]/2);line.setAttribute('y2',o.box[1]+o.box[3]/2);line.setAttribute('stroke','#555');line.setAttribute('stroke-width','1');svg.append(line)}}}
 function scrollState(){return [...document.querySelectorAll('.pane')].map(p=>({top:p.scrollTop,left:p.scrollLeft}))}
 function answer(letter){if(!guard()||!question().options.some(o=>o.letter===letter))return;tick();state.answers[question().id]=letter;state.excluded[question().id]=(state.excluded[question().id]||[]).filter(x=>x!==letter);save();render(scrollState())}
 function exclude(letter){if(!guard())return;const q=question(),arr=state.excluded[q.id]||[];state.excluded[q.id]=arr.includes(letter)?arr.filter(x=>x!==letter):[...arr,letter];if(state.excluded[q.id].includes(letter)&&state.answers[q.id]===letter)delete state.answers[q.id];save();render(scrollState())}

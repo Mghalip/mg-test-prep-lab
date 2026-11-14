@@ -19,5 +19,6 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .source-part .choice-area.selected::before{background:#245c8e;box-shadow:inset 0 0 0 3px white}
 .source-part .choice-area.eliminated::before{content:'×';background:#aaa;color:#333;font:16px/13px Arial;text-align:center}
 .source-part .choice-area.eliminated::after{content:none}
-.source-part .choice-area:hover{background:rgba(22,117,188,.07)}
-.source-part .choice-area:focus-visible{outline:2px solid #145b99;outline-offset:1px}
+.source-part .choice-area:hover{background:transparent}
+.source-part .choice-area:focus-visible{outline:none}
+.source-part .choice-area:focus-visible::before{outline:2px solid #145b99;outline-offset:3px}
