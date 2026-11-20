@@ -3,7 +3,8 @@ const Mock=(()=>{
 const KEY='sat-mock-v1',HISTORY='sat-mock-history-v1';
 const app=document.getElementById('mock-app'),modal=document.getElementById('modal');
 let manifest=[],exam=null,state=null,screen='home',hiddenTimer=false,renderToken=0,lastTick=Date.now(),reviewIndex=0,pendingSelection=null;
-const pageCache=new Map();
+const pageCache=new Map(),warmedFonts=new Set();
+let warming=null;
 let optionRegionsPromise,catalogView='full';
 const scopeLabel=s=>s==='rw'?'Verbal 单科':s==='math'?'Math 单科':'完整模考';
 function prediction(st){if(st.scope==='rw'||st.scope==='math'){const p=SatScore.fromSectionModules(st.scope,st.results);return p?{version:p.version,[st.scope]:p}:null}return SatScore.fromModules(st.results)}
@@ -30,11 +31,26 @@ const count=m=>m.questions.filter(q=>correct(q,state.answers[q.id])).length;
 const visitedQuestions=()=>state.visited.flatMap(i=>exam.modules[i].questions.map(q=>({...q,module:i})));
 function dialog(title,body){modal.classList.remove('zoom-dialog','reference-dialog');modal.innerHTML=`<div class="dialog-title"><h2>${title}</h2><button onclick="Mock.close()" aria-label="Close">✕</button></div>${body}`;if(!modal.open)modal.showModal()}
 function close(){modal.close();modal.classList.remove('zoom-dialog','reference-dialog')}
-async function load(id){const r=await fetch(`mock-data/${id}.json?v=20261027-a-series`);if(!r.ok)throw Error('Unable to load the test. Check your connection and try again.');const data=await r.json();if(data.modules.length!==6||data.modules.some((m,i)=>m.questions.length!==(i<3?27:22)))throw Error('Test validation failed.');const regions=await loadOptionRegions();for(const m of data.modules)for(const q of m.questions)q.optionRegions=regions[q.id]||[];return data}
-function home(){endFigureWait();document.body.classList.remove('in-exam');screen='home';calc(false);document.body.classList.remove('in-exam');const draft=read(KEY,null),history=read(HISTORY,[]);app.innerHTML=`<div class="landing" lang="zh-CN"><div class="brand"><a class="mg-identity" href="index.html"><img class="mg-mark" src="assets/mg-mark.svg" alt="MG"><span><strong class="mg-name">MG SAT Prep Lab</strong><span class="mg-subtitle">MG Test Prep Lab · SAT 学习空间</span></span></a><nav class="lab-links" aria-label="SAT 导航"><a class="lab-link" href="index.html">总站 Programs</a><a class="lab-link current" href="mock.html" aria-current="page">SAT 模考</a><a class="lab-link" href="sat.html">专题练习</a><a class="lab-link" href="account.html">我的成绩</a></nav></div><div class="hero"><span class="tag">DIGITAL SAT · PRACTICE TESTS</span><h1>SAT 模考</h1><p class="hero-stats"><span><b>${manifest.length}</b> 套完整模考</span><span>每套 <b>98</b> 题</span><span><b>2 小时 14 分钟</b> + 10 分钟休息</span><span>Module 2 自适应分流</span></p></div><ol class="mg-timeline" aria-label="考试流程"><li><small>Verbal</small><strong>Module 1 · 32 分钟</strong><span>Verbal · 27 题</span></li><li><small>Verbal</small><strong>Module 2 · 32 分钟</strong><span>Verbal · 27 题</span></li><li class="break"><small>Break</small><strong>休息 10 分钟</strong></li><li class="math"><small>Math</small><strong>Module 1 · 35 分钟</strong><span>数学 · 22 题</span></li><li class="math"><small>Math</small><strong>Module 2 · 35 分钟</strong><span>数学 · 22 题</span></li></ol><p class="mg-timeline-note">每部分完成 Module 1 后自动进入 Module 2，难度根据 Module 1 表现分配。本站为独立练习平台，非 College Board 官方考试。</p>${draft&&draft.phase!=='done'?`<div class="resume"><div><strong>${esc(practiceName(draft.exam))} · ${scopeLabel(draft.scope)} · 有未完成的练习</strong><br><span class="muted">${draft.mode==='down'?'倒计时离开页面后仍继续。':'正计时只记录在页面上作答的时间。'}</span></div><button class="primary" onclick="Mock.resume()">继续模考 →</button></div>`:''}<section id="practice-catalog"><div class="list-head"><h2>选择套卷 · Practice Tests</h2></div>${catalogMarkup()}</section><div class="history"><h2>模考记录</h2><p class="muted">${MG.user?'新成绩会同步到当前账号；点击顶部「我的成绩」查看跨设备记录。':'访客记录只保存在当前浏览器。开始前登录，可同步之后的新成绩。'}</p>${history.map((h,i)=>`<div class="history-item"><span><strong>${esc(practiceName(h.exam))}</strong> · ${new Date(h.finished).toLocaleString('zh-CN')} · ${h.mode==='down'?'倒计时模考':'正计时训练'}</span><span>${recordScore(h)}</span><button onclick="Mock.history(${i})">查看成绩</button></div>`).join('')||'<p class="muted">完成模考后，可在这里查看成绩、错题和逐题用时。</p>'}</div><p class="muted">独立备考平台，非 College Board 官方网站或 Bluebook 产品。</p></div>`}
-function setup(id,scope='full'){if(!['full','rw','math'].includes(scope))return;const draft=read(KEY,null);dialog(practiceName(id)+' · '+scopeLabel(scope),`<p>${scope==='full'?'包含 Verbal 与 Math，共 98 题。':scope==='rw'?'仅做 Verbal，共 54 题，64 分钟。':'仅做 Math，共 44 题，70 分钟。'}每科完成 Module 1 和系统分配的一个 Module 2。</p><label for="mode">计时方式</label> <select id="mode"><option value="down">倒计时 · 模拟考试 Timed Test</option><option value="up">正计时 · 自主训练 Practice</option></select><p class="notice">倒计时在切换页面、关闭或刷新后仍继续；已完成的 Module 不能返回。交卷后可查看答案。</p>${draft&&draft.phase!=='done'?'<p class="error">开始新练习会替换尚未完成的这一次。已完成的成绩不受影响。</p>':''}<div class="actions"><button onclick="Mock.close()">取消</button><button class="primary" onclick="Mock.start('${id}',document.getElementById('mode').value,'${scope}')">准备开始 →</button></div>`)}
+async function readExam(id){const r=await fetch(`mock-data/${id}.json?v=20261027-a-series`);if(!r.ok)throw Error('Unable to load the test. Check your connection and try again.');const data=await r.json();if(data.modules.length!==6||data.modules.some((m,i)=>m.questions.length!==(i<3?27:22)))throw Error('Test validation failed.');return data}
+let preparedExam;
+function load(id){
+ if(preparedExam?.id!==id){
+  const entry={id};
+  entry.data=Promise.all([readExam(id),loadOptionRegions()]).then(([data,regions])=>{
+   for(const m of data.modules)for(const q of m.questions)q.optionRegions=regions[q.id]||[];
+   return data;
+  }).catch(error=>{
+   if(preparedExam===entry)preparedExam=null;
+   throw error;
+  });
+  preparedExam=entry;
+ }
+ return preparedExam.data;
+}
+function home(){warming=null;endFigureWait();document.body.classList.remove('in-exam');screen='home';calc(false);document.body.classList.remove('in-exam');const draft=read(KEY,null),history=read(HISTORY,[]);app.innerHTML=`<div class="landing" lang="zh-CN"><div class="brand"><a class="mg-identity" href="index.html"><img class="mg-mark" src="assets/mg-mark.svg" alt="MG"><span><strong class="mg-name">MG SAT Prep Lab</strong><span class="mg-subtitle">MG Test Prep Lab · SAT 学习空间</span></span></a><nav class="lab-links" aria-label="SAT 导航"><a class="lab-link" href="index.html">总站 Programs</a><a class="lab-link current" href="mock.html" aria-current="page">SAT 模考</a><a class="lab-link" href="sat.html">专题练习</a><a class="lab-link" href="account.html">我的成绩</a></nav></div><div class="hero"><span class="tag">DIGITAL SAT · PRACTICE TESTS</span><h1>SAT 模考</h1><p class="hero-stats"><span><b>${manifest.length}</b> 套完整模考</span><span>每套 <b>98</b> 题</span><span><b>2 小时 14 分钟</b> + 10 分钟休息</span><span>Module 2 自适应分流</span></p></div><ol class="mg-timeline" aria-label="考试流程"><li><small>Verbal</small><strong>Module 1 · 32 分钟</strong><span>Verbal · 27 题</span></li><li><small>Verbal</small><strong>Module 2 · 32 分钟</strong><span>Verbal · 27 题</span></li><li class="break"><small>Break</small><strong>休息 10 分钟</strong></li><li class="math"><small>Math</small><strong>Module 1 · 35 分钟</strong><span>数学 · 22 题</span></li><li class="math"><small>Math</small><strong>Module 2 · 35 分钟</strong><span>数学 · 22 题</span></li></ol><p class="mg-timeline-note">每部分完成 Module 1 后自动进入 Module 2，难度根据 Module 1 表现分配。本站为独立练习平台，非 College Board 官方考试。</p>${draft&&draft.phase!=='done'?`<div class="resume"><div><strong>${esc(practiceName(draft.exam))} · ${scopeLabel(draft.scope)} · 有未完成的练习</strong><br><span class="muted">${draft.mode==='down'?'倒计时离开页面后仍继续。':'正计时只记录在页面上作答的时间。'}</span></div><button class="primary" onclick="Mock.resume()">继续模考 →</button></div>`:''}<section id="practice-catalog"><div class="list-head"><h2>选择套卷 · Practice Tests</h2></div>${catalogMarkup()}</section><div class="history"><h2>模考记录</h2><p class="muted">${MG.user?'新成绩会同步到当前账号；点击顶部「我的成绩」查看跨设备记录。':'访客记录只保存在当前浏览器。开始前登录，可同步之后的新成绩。'}</p>${history.map((h,i)=>`<div class="history-item"><span><strong>${esc(practiceName(h.exam))}</strong> · ${new Date(h.finished).toLocaleString('zh-CN')} · ${h.mode==='down'?'倒计时模考':'正计时训练'}</span><span>${recordScore(h)}</span><button onclick="Mock.history(${i})">查看成绩</button></div>`).join('')||'<p class="muted">完成模考后，可在这里查看成绩、错题和逐题用时。</p>'}</div><p class="muted">独立备考平台，非 College Board 官方网站或 Bluebook 产品。</p></div>`}
+function setup(id,scope='full'){if(!['full','rw','math'].includes(scope))return;load(id).then(data=>{if(preparedExam?.id===id&&modal.open)warmModule(data,scope==='math'?3:0)}).catch(()=>{});const draft=read(KEY,null);dialog(practiceName(id)+' · '+scopeLabel(scope),`<p>${scope==='full'?'包含 Verbal 与 Math，共 98 题。':scope==='rw'?'仅做 Verbal，共 54 题，64 分钟。':'仅做 Math，共 44 题，70 分钟。'}每科完成 Module 1 和系统分配的一个 Module 2。</p><label for="mode">计时方式</label> <select id="mode"><option value="down">倒计时 · 模拟考试 Timed Test</option><option value="up">正计时 · 自主训练 Practice</option></select><p class="notice">倒计时在切换页面、关闭或刷新后仍继续；已完成的 Module 不能返回。交卷后可查看答案。</p>${draft&&draft.phase!=='done'?'<p class="error">开始新练习会替换尚未完成的这一次。已完成的成绩不受影响。</p>':''}<div class="actions"><button onclick="Mock.close()">取消</button><button class="primary" onclick="Mock.start('${id}',document.getElementById('mode').value,'${scope}')">准备开始 →</button></div>`)}
 async function start(id,mode,scope='full'){if(!['full','rw','math'].includes(scope))return;await MG.ready;close();app.innerHTML='<p class="loading">Loading test…</p>';try{exam=await load(id);state={id:crypto.randomUUID(),accountId:MG.user?.id||null,version:2,routing:MockRouting.create(id),exam:id,mode,scope,phase:'ready',module:scope==='math'?3:0,pos:0,visited:[scope==='math'?3:0],answers:{},flags:{},excluded:{},notes:{},times:{},results:[],started:Date.now(),elapsed:0};save();screen='exam';ready()}catch(e){home();dialog('Unable to Load',`<p>${esc(e.message)}</p>`)}}
-function ready(){prefetchFigures(module().questions.slice(0,3));const math=state.scope==='math',full=!state.scope||state.scope==='full';document.body.classList.add('in-exam');app.innerHTML=`<div class="center-screen"><span class="tag">${esc(practiceName(state.exam))} · ${full?'FULL-LENGTH PRACTICE':'SECTION PRACTICE'}</span><h1>${math?'Math':'Verbal'}</h1><p>Module 1 · ${math?'22 questions · 35 minutes':'27 questions · 32 minutes'}</p><ul>${math?'<li>Solve each problem and select the best answer, or enter a student-produced response.</li>':'<li>Read each passage and select the best answer. You can select, highlight, and underline passage text.</li>'}<li>Within a module, you can move between questions, eliminate answer choices, and mark questions for review.</li><li>In countdown mode, the next module begins when time expires. You cannot return to a completed module.</li><li>A graphing calculator is available for Math. For student-produced responses, enter an integer, decimal, or fraction.</li></ul><div class="steps">${!math?'<span>Verbal 1</span><span>Verbal 2</span>':''}${full?'<span>10-minute break</span>':''}${full||math?'<span>Math 1</span><span>Math 2</span>':''}</div><p class="muted">${state.mode==='down'?'Timed Test':'Count-up Practice'} · Results include a predicted score and an estimated range</p><div class="actions"><button onclick="Mock.home()">Back</button><button class="primary" onclick="Mock.begin()">Begin Test</button></div></div>`}
+function ready(){warmModule(exam,state.module);const math=state.scope==='math',full=!state.scope||state.scope==='full';document.body.classList.add('in-exam');app.innerHTML=`<div class="center-screen"><span class="tag">${esc(practiceName(state.exam))} · ${full?'FULL-LENGTH PRACTICE':'SECTION PRACTICE'}</span><h1>${math?'Math':'Verbal'}</h1><p>Module 1 · ${math?'22 questions · 35 minutes':'27 questions · 32 minutes'}</p><ul>${math?'<li>Solve each problem and select the best answer, or enter a student-produced response.</li>':'<li>Read each passage and select the best answer. You can select, highlight, and underline passage text.</li>'}<li>Within a module, you can move between questions, eliminate answer choices, and mark questions for review.</li><li>In countdown mode, the next module begins when time expires. You cannot return to a completed module.</li><li>A graphing calculator is available for Math. For student-produced responses, enter an integer, decimal, or fraction.</li></ul><div class="steps">${!math?'<span>Verbal 1</span><span>Verbal 2</span>':''}${full?'<span>10-minute break</span>':''}${full||math?'<span>Math 1</span><span>Math 2</span>':''}</div><p class="muted">${state.mode==='down'?'Timed Test':'Count-up Practice'} · Results include a predicted score and an estimated range</p><div class="actions"><button onclick="Mock.home()">Back</button><button class="primary" onclick="Mock.begin()">Begin Test</button></div></div>`}
 function enterModule(index,at=Date.now()){state.phase='module';state.module=index;state.pos=0;state.moduleStarted=at;state.deadline=at+(index<3?32:35)*60000;state.elapsed=0;if(!state.visited.includes(index))state.visited.push(index);lastTick=Date.now();save()}
 function begin(){enterModule(state.scope==='math'?3:0);render()}
 async function resume(){await MG.ready;document.body.classList.add('in-exam');app.innerHTML='<p class="loading">Restoring test…</p>';try{state=read(KEY,null);if(!state)return home();exam=await load(state.exam);if(!state.routing){if(state.version!==1)throw Error('Test settings are missing. Please start a new test.');state.routing=MockRouting.legacy(state.exam)}MockRouting.validate(state.routing,state.exam);save();screen='exam';lastTick=Date.now();settle();render()}catch(e){home();dialog('Unable to Resume',`<p>${esc(e.message)}</p>`)}}
@@ -49,6 +65,14 @@ function loadFigure(path){
   const request=fetch('mock-data/'+path+'?v=20261027-a-series').then(response=>{
    if(!response.ok)throw Error('Unable to load figure');
    return response.text();
+  }).then(source=>{
+   for(const [,family] of source.matchAll(/font-family="(Source[a-f0-9]+)"/g)){
+    if(!warmedFonts.has(family)){
+     warmedFonts.add(family);
+     document.fonts.load('16px '+family).catch(()=>warmedFonts.delete(family));
+    }
+   }
+   return source;
   }).catch(error=>{pageCache.delete(path);throw error});
   pageCache.set(path,request);
  }
@@ -59,6 +83,27 @@ function prefetchFigures(questions){
   const parts=q.passageVisual||(!q.mathHtml&&q.visual)||[];
   for(const part of parts)loadFigure(part.file).catch(()=>{});
  }
+}
+function warmModule(data,index){
+ if(warming?.data===data&&warming.index===index)return;
+ const job=warming={data,index};
+ const current=data.modules[index].questions;
+ const branches=index===0||index===3?[data.modules[index+1],data.modules[index+2]]:[];
+ // Prepare both possible openings while the student is still in Module 1.
+ const ordered=[...current.slice(0,4),...branches.flatMap(m=>m.questions.slice(0,4)),...current];
+ const paths=new Set();
+ for(const q of ordered){
+  for(const part of q.passageVisual||(!q.mathHtml&&q.visual)||[])paths.add(part.file);
+ }
+ const queue=paths.values();
+ async function worker(){
+  while(warming===job){
+   const {value:path,done}=queue.next();
+   if(done)return;
+   try{await loadFigure(path)}catch{/* Foreground rendering retries failed downloads. */}
+  }
+ }
+ worker();worker();
 }
 let figureWait=null;
 function creditFigureWait(now=Date.now()){
@@ -86,7 +131,8 @@ function render(){endFigureWait();if(!state)return home();if(state.phase==='read
   if(!app.querySelector('.vector .error'))endFigureWait();
   restoreNotes();
  });
- prefetchFigures(m.questions.slice(state.pos+1,state.pos+4));}
+ prefetchFigures(m.questions.slice(state.pos+1,state.pos+4));
+ warmModule(exam,state.module);}
 function mountSourceChoices(el,path,box){
  if(screen!=='exam'||state?.phase!=='module'||module().section!=='math')return;
  const q=question();if(q.kind!=='choice'||q.mathHtml)return;
@@ -125,7 +171,7 @@ function exclude(letter){if(!guarded())return;const q=question();let xs=state.ex
 function menu(){if(!guarded())return;const qs=module().questions,n=qs.filter(q=>!state.answers[q.id]).length;dialog('Question Menu',`<p>${module().section==='rw'?'Verbal':'Math'} · Module ${module().branch==='routing'?1:2}</p><p class="muted">Blue: Answered · ⚑: Marked for Review · Yellow border: Current Question</p><div class="grid">${qs.map((q,i)=>`<button class="${state.answers[q.id]?'answered':''} ${state.flags[q.id]?'flagged':''} ${i===state.pos?'current':''}" onclick="Mock.jump(${i})">${i+1}</button>`).join('')}</div><p>${n?`You have ${n} unanswered questions.`:'You have answered all questions in this module.'}</p><div class="actions"><button onclick="Mock.close()">Continue Review</button><button class="primary" onclick="Mock.confirmNext()">End Module</button></div>`)}
 function confirmNext(){if(!guarded())return;const n=module().questions.filter(q=>!state.answers[q.id]).length;dialog('End Module?',`<p>${n?`You have ${n} unanswered questions. Unanswered questions are counted as incorrect. `:''}You cannot return to this module after submitting.</p><div class="actions"><button onclick="Mock.menu()">Continue Review</button><button class="primary" onclick="Mock.next()">Submit and Continue</button></div>`)}
 function next(){if(!guarded())return;close();finishModule();render()}
-function breakScreen(){calc(false);app.innerHTML=`<div class="center-screen"><span class="tag">${esc(practiceName(state.exam))}</span><h1>Time for a break</h1><p>You have finished Verbal. Math begins after the break. Have your scratch paper ready.</p><div class="big-clock" id="timer">${clock((state.breakDeadline-Date.now())/1000)}</div><p>Math Module 1 begins automatically when the break ends. In countdown mode, you will have 35 minutes.</p><div class="actions"><button onclick="Mock.leave()">Save and Exit</button><button class="primary" onclick="Mock.skipBreak()">Skip Break</button></div></div>`}
+function breakScreen(){warmModule(exam,3);calc(false);app.innerHTML=`<div class="center-screen"><span class="tag">${esc(practiceName(state.exam))}</span><h1>Time for a break</h1><p>You have finished Verbal. Math begins after the break. Have your scratch paper ready.</p><div class="big-clock" id="timer">${clock((state.breakDeadline-Date.now())/1000)}</div><p>Math Module 1 begins automatically when the break ends. In countdown mode, you will have 35 minutes.</p><div class="actions"><button onclick="Mock.leave()">Save and Exit</button><button class="primary" onclick="Mock.skipBreak()">Skip Break</button></div></div>`}
 function skipBreak(){if(state.phase!=='break')return;enterModule(3);render()}
 function hideTimer(){hiddenTimer=!hiddenTimer;document.getElementById('timer').classList.toggle('hidden',hiddenTimer);document.querySelector('.clock button').textContent=hiddenTimer?'Show timer':'Hide timer'}
 function leave(){dialog('Save and Exit',`<p>Your answers have been saved in this browser. ${state.mode==='down'?'The countdown will continue, and the module will end when time expires. ':'The count-up timer pauses when you leave the test. '}The break countdown continues while you are away.</p><div class="actions"><button onclick="Mock.close()">Resume Test</button><button class="primary" onclick="Mock.close();Mock.home()">Return to Test List</button></div>`)}
