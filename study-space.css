@@ -1,0 +1,33 @@
+/* Study and staff pages use the main site's ink, paper and amber palette. */
+.study-entries { display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; }
+.study-entries a, .staff-heading { background:#fffdf8; border:1px solid #ded9cc; border-radius:12px; padding:20px; color:#172a48; text-decoration:none; }
+.study-entries .study-main, .catalog-page .hero, .topic-page:not(.exam-mode) .hero { background:#172a48; color:#fffdf8; }
+.study-entries h2 { margin:8px 0; }
+.study-entries p { margin:0; }
+.study-entries small, .paper-status { font-weight:600; }
+body:has(.catalog-page), body.topic-page:not(.exam-mode), body.staff-records { background:#f5f2ea; }
+.catalog-page .hero, .topic-page:not(.exam-mode) .hero { border-radius:14px; border-left:5px solid #e8b04a; }
+.catalog-page .hero *, .topic-page:not(.exam-mode) .hero h1, .topic-page:not(.exam-mode) .hero p, .topic-page:not(.exam-mode) .hero .eyebrow { color:#fffdf8; }
+.catalog-page .hero-stats span, .catalog-page .hero .tag { background:#243c60; }
+.catalog-page .exam-outline { margin:12px 0 24px; padding:12px 16px; border-bottom:1px solid #d5d0c4; }
+.exam-outline summary { cursor:pointer; font-weight:650; }
+.catalog-page .paper-card { background:#fffdf8; border:1px solid #dcd7cc; border-radius:12px; padding:16px; display:grid; align-content:start; gap:8px; }
+#mock-app > .catalog-page .paper-card h2.practice-name { font:600 24px/1.25 Georgia,serif; color:#172a48; margin:2px 0 10px; }
+.catalog-page .paper-status { color:#445870; }
+.catalog-page .paper-card .primary, .catalog-page .catalog-tabs [aria-pressed=true], .topic-page:not(.exam-mode) button.primary { background:#172a48; color:white; }
+.topic-page:not(.exam-mode) aside { background:#172a48; }
+.topic-page:not(.exam-mode) .subject-module, .topic-page:not(.exam-mode) button.card, .topic-page:not(.exam-mode) .metric, .staff-records .card { background:#fffdf8; border:1px solid #ded9cc; border-radius:12px; }
+.topic-page:not(.exam-mode) button.card:hover, .study-entries a:hover { border-color:#aa792c; }
+.staff-heading { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:10px; margin-bottom:16px; }
+.staff-heading h1 { margin:0; }
+.staff-heading nav { display:flex; flex-wrap:wrap; gap:10px; }
+.staff-heading a { color:#233e61; text-underline-offset:3px; }
+.teacher-page section[id] { scroll-margin-top:75px; }
+@media(max-width:720px) {
+ .study-entries { grid-template-columns:1fr 1fr; }
+ .study-main { grid-column:1/-1; }
+ .staff-heading { align-items:flex-start; }
+}
+
+#mock-app > .catalog-page .hero { width:100%; max-width:none; padding:24px; }
+#mock-app > .catalog-page .hero .tag { color:#ffe3ab; }

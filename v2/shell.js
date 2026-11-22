@@ -442,6 +442,10 @@ async function viewHome() {
   const lessonsBlock = `<div class="section-head"><h2>${esc(tt.lessons)}</h2><a class="link-btn" href="${href(subject, 'lessons')}">${esc(tt.allLessons)} ›</a></div>${courseRows(st)}`;
   return `<div class="page">
     <div class="greet"><div><p class="date">${tt.date(now)}</p><h1>${esc(tt.greet(now.getHours()))}</h1></div></div>
+    ${MG.teacher?`<section class="staff-heading" aria-label="${esc(tt.teacher)}">
+      <a id="pending-feedback" href="${UP('account.html?view=teacher')}">${lang==='zh'?'查看待反馈作业':'Review student submissions'}</a>
+      <a href="${V2}teacher.html">${lang==='zh'?'课件与学生权限':'Lessons and access'}</a>
+    </section>`:''}
     ${banner()}
     <div class="top-grid">${hero()}${goalCard(list)}</div>
     <div class="section-head"><h2>${esc(tt.practice)}</h2><a class="link-btn" href="${href(subject, 'practice')}">${esc(tt.allPractice)} ›</a></div>
@@ -452,7 +456,10 @@ async function viewHome() {
 }
 function viewPractice() {
   const tt = t();
-  return `<div class="page"><div><h1 class="page-title">${esc(tt.practice)}</h1><p class="page-sub">${esc(tt.practiceSub)}</p></div>${practiceRows()}${foot()}</div>`;
+  return `<div class="page"><div><h1 class="page-title">${esc(tt.practice)}</h1><p class="page-sub">${esc(tt.practiceSub)}</p></div>${subject==='sat'?`<section class="study-entries" aria-label="${esc(tt.practice)}">
+    <a class="study-main" href="${UP('mock.html')}"><small>SAT</small><h2>${lang==='zh'?'模考选卷':'Mock exams'}</h2><p>${counts.sat} ${lang==='zh'?'套 · 完整模考与单科练习':'tests · full-length and section practice'}</p></a>
+    ${[['reading','阅读','Reading'],['grammar','语法','Grammar']].map(([key,zh,en])=>`<a href="${UP('sat.html#'+key)}"><small>${lang==='zh'?'专题练习':'Topic practice'}</small><h2>${lang==='zh'?zh:en} →</h2></a>`).join('')}
+  </section><div class="rows">${C.sat.practice.slice(2).map(p=>{const [a,b]=L(p);return rowLink(p,a,b(counts.sat));}).join('')}</div>`:practiceRows()}${foot()}</div>`;
 }
 async function viewLessons() {
   const tt = t(), st = subject === 'math' ? {} : lessonSt;
@@ -476,7 +483,48 @@ async function render() {
   else if (['plan', 'vocab', 'formulas', 'mistakes'].includes(route)) html = viewSoon(n[route]);
   else { route = 'home'; html = await viewHome(); }
   view.innerHTML = html;
+  const link = view.querySelector('#pending-feedback');
+  if (link) refreshPendingFeedback(link);
+
 }
+
+async function refreshPendingFeedback(link) {
+  const zh = lang === 'zh';
+  const workspace = UP('account.html?view=teacher');
+  link.href = workspace;
+  let count = 0, first;
+  try {
+    for (let offset = 0; link.isConnected; offset += 250) {
+      const {data, error} = await MG.client.from('mg_reflections')
+        .select('student_id,attempt_id,question_id,revision,mg_feedback(revision)')
+        .order('updated_at').order('student_id').order('attempt_id').order('question_id')
+        .range(offset, offset + 249);
+      if (error) throw error;
+      for (const row of data) {
+        if (row.mg_feedback.some(feedback => feedback.revision === row.revision)) continue;
+        count++;
+        first ??= row;
+      }
+      if (data.length < 250) break;
+    }
+    if (!link.isConnected) return;
+    if (first) {
+      const url = new URL(workspace);
+      url.searchParams.set('student', first.student_id);
+      url.searchParams.set('attempt', first.attempt_id);
+      url.searchParams.set('question', first.question_id);
+      link.href = url.href;
+    }
+    link.textContent = zh ? (count ? `待反馈 ${count} 题 · 开始批改 →` : '暂无待反馈 · 查看学生成绩')
+      : (count ? `Review pending submissions (${count}) →` : 'No pending feedback · View results');
+  } catch {
+    link.textContent = zh ? '待反馈数量读取失败 · 打开工作台' : 'Feedback count unavailable · Open workspace';
+  }
+}
+window.addEventListener('pageshow', event => {
+  const link = document.querySelector('#pending-feedback');
+  if (event.persisted && link) refreshPendingFeedback(link);
+});
 
 /* ---------- Notifications ---------- */
 let lessonSt = {};

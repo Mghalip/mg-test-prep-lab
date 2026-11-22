@@ -16,7 +16,7 @@ function weekRange(weekStart, offset = 0) {
 async function codesHtml() {
   const { data, error } = await MG.client.rpc('mg_lesson_codes');
   if (error) throw error;
-  return `<section class="page" style="gap:12px"><div class="section-head"><h2>本周密码</h2><span class="hint">每周一 0:00（北京时间）自动更换</span></div>
+  return `<section class="page" id="codes" style="gap:12px"><div class="section-head"><h2>本周密码</h2><span class="hint">每周一 0:00（北京时间）自动更换</span></div>
     <div class="code-cards">${data.map(r => {
       const name = SUBJ.find(s => s[0] === r.subject)[1], now = weekRange(r.week_start), nx = weekRange(r.week_start, 7);
       const notice = `本周 ${name} 课件密码：${fmt(r.this_week)}（${day(now.s)}–${day(now.e)} 有效）`;
@@ -31,7 +31,7 @@ async function codesHtml() {
 function studentsHtml() {
   const q = filter.trim().toLowerCase();
   const list = students.filter(s => !q || (s.display_name + ' ' + s.email).toLowerCase().includes(q));
-  return `<section class="page" style="gap:12px"><div class="section-head"><h2>批准学生</h2><input class="search" id="search" type="search" placeholder="搜索姓名或邮箱" value="${esc(filter)}" aria-label="搜索学生"></div>
+  return `<section class="page" id="students" style="gap:12px"><div class="section-head"><h2>批准学生</h2><input class="search" id="search" type="search" placeholder="搜索姓名或邮箱" value="${esc(filter)}" aria-label="搜索学生"></div>
     <p class="hint">打开开关后，这个学生登录就能直接看该科课件，不用密码。只列出已注册的账号。</p>
     <div class="table-wrap"><table class="students"><thead><tr><th>姓名</th><th>邮箱</th><th>注册时间</th>${SUBJ.map(s => `<th class="c">${s[1]}</th>`).join('')}</tr></thead><tbody>
     ${list.length ? list.map(s => `<tr><td>${esc(s.display_name)}</td><td>${esc(s.email)}</td><td>${esc(new Date(s.joined).toLocaleDateString('zh-CN'))}</td>${SUBJ.map(([k, n]) => `<td class="c"><button class="toggle" aria-pressed="${!!s[k]}" aria-label="${esc(s.display_name)} · ${n}" data-user="${s.id}" data-subj="${k}"></button></td>`).join('')}</tr>`).join('')
@@ -40,7 +40,7 @@ function studentsHtml() {
 }
 function noticesHtml() {
   const label = { all: '全部学生', sat: 'SAT', act: 'ACT', math: '数学' };
-  return `<section class="page" style="gap:12px"><div class="section-head"><h2>发布通知</h2></div>
+  return `<section class="page" id="notices" style="gap:12px"><div class="section-head"><h2>发布通知</h2></div>
     <form class="card" id="notice-form" style="display:flex;flex-direction:column;gap:12px">
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <label class="field" style="flex:0 0 180px">发给<select class="select" name="subject">${Object.entries(label).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label>
@@ -59,7 +59,7 @@ async function loadNotices() {
 }
 function uploadHtml() {
   const counts = SUBJ.map(([k, n]) => `${n} ${MGLessons.forSubject(k).length} 份`).join(' · ');
-  return `<section class="page" style="gap:12px"><div class="section-head"><h2>课件上传</h2></div>
+  return `<section class="page" id="uploads" style="gap:12px"><div class="section-head"><h2>课件上传</h2></div>
     <div class="card" style="display:flex;flex-direction:column;gap:10px">
       <p class="muted" style="margin:0">把现在网站上公开的课件复制到私有存储（${counts}）。只需要做一次；以后更新某份课件时，也可以再点一次覆盖上传。</p>
       <div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-navy" id="upload">开始上传</button><button class="btn btn-ghost" id="check">检查上传情况</button></div>
@@ -73,7 +73,7 @@ async function loadStudents() {
 async function render() {
   try {
     await Promise.all([loadStudents(), loadNotices()]);
-    view.innerHTML = `<div class="page">${await codesHtml()}${noticesHtml()}${studentsHtml()}${uploadHtml()}</div>`;
+    view.innerHTML = `<div class="page"><header class="staff-heading"><h1>教学管理</h1><nav aria-label="教师工作区"><a href="../account.html?view=teacher">学生成绩与错题反馈 ↗</a>${[['codes','本周密码'],['notices','通知'],['students','学生权限'],['uploads','课件上传']].map(([id,label])=>`<a href="#${id}">${label}</a>`).join('')}</nav></header>${await codesHtml()}${noticesHtml()}${studentsHtml()}${uploadHtml()}</div>`;
   } catch (e) {
     view.innerHTML = `<div class="page"><section class="card empty"><h2>无法读取</h2><p class="muted">${esc(e.message)}</p><p class="hint">如果提示找不到函数，请先在 Supabase 里运行 backend/004_lesson_access.sql。</p></section></div>`;
   }

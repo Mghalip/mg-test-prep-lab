@@ -35,7 +35,24 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
 .exam-header .clock{min-width:0;width:100%}.exam-header .clock output{min-width:0;width:auto}.section-heading{min-width:0}.qbar-tool{cursor:default}
 
 /* Keep HTML text and PDF vector text at the same visual size. */
-:root{--question-font-size:19px}.reading-text,.stem,.choice,.choice span{font-family:'Times New Roman',Times,serif;font-size:var(--question-font-size);line-height:1.5}.reading-text p,.stem p,.choice p{font-size:inherit}.vector.normalized-vector,.math .vector.normalized-vector{max-width:none;flex-shrink:0;margin-left:0;margin-right:0}.normalized-vector svg{width:100%;height:auto}.pane #passage{overflow-x:auto}.choice b{font-family:Arial,sans-serif;font-size:14px}@media(max-width:620px){:root{--question-font-size:18px}}
+@font-face {
+  font-family:"MG Exam Serif";
+  src:url("mock-data/fonts/noto-serif-latin-400.woff2") format("woff2");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+:root { --question-font-size:15px; }
+.workspace .reading-text, .workspace .stem, .workspace .choice, .workspace .choice span {
+  font-family:"MG Exam Serif", Georgia, serif;
+  font-size:var(--question-font-size);
+  line-height:23px;
+}
+.workspace .reading-text p, .workspace .stem p, .workspace .choice p { font-size:inherit; line-height:inherit; }
+.vector.normalized-vector, .math .vector.normalized-vector { max-width:100%; flex-shrink:0; margin-inline:0; }
+.normalized-vector svg { width:100%; height:auto; }
+.pane #passage { overflow-x:auto; }
+.choice b { font-family:Arial,sans-serif; font-size:14px; }
 
 /* Question content on the left; answer controls on the right, in exams and review. */
 .workspace.split-question{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
@@ -43,8 +60,8 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
 .workspace.split-question .question-pane{border-right:2px solid #b6b6b6}
 .workspace.split-question .answer-pane{border:0}
 .answer-instruction{margin:0 0 20px;color:#65738a;font-size:14px}
-@media(max-width:850px){.workspace.split-question .pane{padding:24px}}
-@media(max-width:620px){.workspace.split-question{display:block;overflow:auto}.workspace.split-question .pane{overflow:visible}.workspace.split-question .question-pane{border-right:0;border-bottom:1px solid #aaa}}
+@media(max-width:850px){.workspace.split-question .pane{padding:24px 40px}}
+@media(max-width:620px){.workspace.split-question{display:block;overflow:auto}.workspace.split-question .pane{padding:20px 24px;overflow:visible}.workspace.split-question .question-pane{border-right:0;border-bottom:1px solid #aaa}}
 
 .total-prediction{margin:0 0 20px;background:#172a48;color:#fff}.total-prediction strong{font-size:52px}.score strong small{font-size:16px;font-weight:400}.total-prediction p{margin:8px 0 0}
 
