@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">87</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question22</tspan></text>
+<g transform="matrix(.7502362,0,0,.74985077,202.44,96.120029)">
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="254" height="201" viewBox="0 0 500 420" style="width:254px;height:201px;display:inline" id="image_4" data-redrawn="211bc31cbe5e4e65ae0c149320acfc2f46696384523114cf1481580c75454620" aria-label="按原图重绘的图表" preserveAspectRatio="xMidYMid meet"><ns0:rect width="100%" height="100%" fill="white" /><ns0:line x1="60" y1="40" x2="60" y2="330" stroke="#111" stroke-width="3" /><ns0:line x1="60" y1="330" x2="440" y2="330" stroke="#111" stroke-width="3" /><ns0:line x1="440" y1="330" x2="60" y2="40" stroke="#111" stroke-width="3" /><ns0:line x1="80" y1="330" x2="80" y2="310" stroke="#111" stroke-width="2" /><ns0:line x1="80" y1="310" x2="60" y2="310" stroke="#111" stroke-width="2" /><ns0:text x="45" y="30" font-family="Times New Roman,serif" font-size="25" text-anchor="middle" fill="black">A</ns0:text><ns0:text x="45" y="355" font-family="Times New Roman,serif" font-size="25" text-anchor="middle" fill="black">C</ns0:text><ns0:text x="455" y="355" font-family="Times New Roman,serif" font-size="25" text-anchor="middle" fill="black">B</ns0:text><ns0:text x="32" y="195" font-family="Times New Roman,serif" font-size="25" text-anchor="middle" fill="black">19</ns0:text><ns0:text x="270" y="162" font-family="Times New Roman,serif" font-size="25" text-anchor="middle" fill="black">38</ns0:text><ns0:text x="250" y="395" font-family="Times New Roman,serif" font-size="20" text-anchor="middle" fill="black">Note: Figure not drawn to scale.</ns0:text></ns0:svg>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-572.93" x="90 99.3573 103.3167 110.27611 117.23551 124.559009 128.5184 133.19705 137.0369 143.27675 150.23615 157.31584 161.15569">Righttriangle</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-573.05" x="174.35901 183.23871 192.35825">𝐴𝐵𝐶</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-572.93" x="207.72 211.6794 220.559 226.07857 233.03797 240.11766 250.19736 257.15675 263.88 277.08003 284.1597 290.39955 297.72 301.6794 310.559 314.5184 321.47779 331.19999 338.15937 344.3992 348.3586 355.318 364.91899 371.99867">isshown.Whatisthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-573.05" x="383.63999 390.11705 394.55683 405.59999">𝑠𝑖𝑛𝐴</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-572.93" x="414.47999">?</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_5)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

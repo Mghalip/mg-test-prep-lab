@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">83</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question22</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-728.93" x="89.99999 98.51955 105.59924 115.67999 121.91984 128.99954 135.95894 146.04 149.99939 156.23925 163.19864 170.15804 174.11743 181.07683 188.64 192.5994 203.4 207.35939 214.31879 220.55864 227.51804 233.75789 239.27745 246.72 253.7997 262.32 268.55986 275.51924 282.5989 292.2 305.759 309.7184">Theedgelength,ininches,ofcubeYis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-737.21" x="325.32">3</tspan><tspan y="-721.97006" x="322.55903 328.07859">88</tspan></text>
+<path transform="matrix(1,0,0,1,322.56,108.96)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-728.93" x="341.52 345.4794 352.43879 362.63999 368.87983 375.9595 382.91889 393 396.9594 403.19926 410.15864 417.118 421.07743 428.0368 435.48 439.43943 450.359 454.31843 461.2778 467.51765 474.47703 480.71687 486.11689 493.55903 500.6387">theedgelength,ininches,of</tspan><tspan y="-700.61" x="90 96.239849 103.31954 110.278949 122.759 132.8387 142.44 150.95955 158.03925 170.64 176.15956 183.11896 187.7976 192.47626 198.59581 204.83567 217.32 223.55986 228.23851 234.47837 240.71822 250.44 254.3994 267.72 273.23957 280.19895 287.27864 293.39817 298.0768 310.559 314.5184 321.47779 327.71763 334.677 340.91685 346.4364 356.28 363.35969 374.28 380.51985 387.47923 394.5589 406.44 422.4 426.3594">cubeX.Thesurfacearea,insquareinches,ofcubeYis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-700.61" x="438.12">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-700.61" x="451.44 455.3994 459.23927 470.03926 476.27909 488.159 492.1184 499.0778">timesthe</tspan><tspan y="-676.49099" x="89.99997 95.51953 102.478939 107.157588 111.836238 118.07608 124.315929 133.91997 140.15982 144.83847 151.07833 157.31818 164.15897 168.11837 178.55896 184.07852 191.03792 198.11762 204.23717 208.91582 218.63996 222.59935 229.55875 235.7986 242.758 248.99785 254.39786 261.35896 268.43864 276.59996 282.83979 289.79917 296.87886 306.47996 316.55967 323.39997 336.47969 343.55937 349.7992 357.11997 361.07939 369.95896 373.91838 380.87776 390.59996 397.67964 403.91947 407.7593 414.7187 424.43995 431.39933">surfacearea,insquareinches,ofcubeX.Whatisthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-676.49099" x="439.55894">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-676.49099" x="446.51994">?</tspan><tspan y="-648.41" x="89.99994 100.079639">A.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-656.691" x="120.59994">9</tspan><tspan y="-641.44998" x="111.23994 116.75949 118.79924 124.318798 129.83835">7,744</tspan></text>
+<path transform="matrix(1,0,0,1,111.24,189.48)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H24.12"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-615.05" x="90 99.3573">B.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-623.33" x="117.84 123.35955">27</tspan><tspan y="-608.091" x="111.24 116.75955 118.7993 124.318859 129.83841">3,872</tspan></text>
+<path transform="matrix(1,0,0,1,111.24,222.84)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H24.12"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-581.691" x="90 99.3573">C.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-589.85" x="114">3</tspan><tspan y="-574.73098" x="111.24 116.75955">88</tspan></text>
+<path transform="matrix(1,0,0,1,111.24,256.2)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-549.53" x="90 100.0797">D.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-557.81008" x="114">9</tspan><tspan y="-542.57009" x="111.24 116.75955">44</tspan></text>
+<path transform="matrix(1,0,0,1,111.24,288.36)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

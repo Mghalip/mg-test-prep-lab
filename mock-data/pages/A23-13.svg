@@ -1,0 +1,414 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M69.3 116.8H129.95001V160.75H69.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M129.9 116.8H192.65V160.75H129.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M192.6 116.8H247.40001V160.75H192.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M247.35 116.8H303.95V160.75H247.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M303.9 116.8H360.5V160.75H303.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M360.45 116.8H416.15003V160.75H360.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M416.1 116.8H471.15V160.75H416.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M471.1 116.8H526V160.75H471.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M69.3 160.75H129.95001V202.6H69.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M129.9 160.75H192.65V202.6H129.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M192.6 160.75H247.40001V202.6H192.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M247.35 160.75H303.95V202.6H247.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M303.9 160.75H360.5V202.6H303.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M360.45 160.75H416.15003V202.6H360.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M416.1 160.75H471.15V202.6H416.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M471.1 160.75H526V202.6H471.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M69.3 202.65H129.95001V244.5H69.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M129.9 202.65H192.65V244.5H129.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M192.6 202.65H247.40001V244.5H192.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M247.35 202.65H303.95V244.5H247.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M303.9 202.65H360.5V244.5H303.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M360.45 202.65H416.15003V244.5H360.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M416.1 202.65H471.15V244.5H416.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M471.1 202.65H526V244.5H471.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M69.3 244.55H129.95001V281.6H69.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M129.9 244.55H192.65V281.6H129.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path d="M192.6 244.55H247.40001V281.6H192.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_58">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_59">
+<path d="M247.35 244.55H303.95V281.6H247.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_60">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_61">
+<path d="M303.9 244.55H360.5V281.6H303.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_62">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_63">
+<path d="M360.45 244.55H416.15003V281.6H360.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_64">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_65">
+<path d="M416.1 244.55H471.15V281.6H416.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_66">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_67">
+<path d="M471.1 244.55H526V281.6H471.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_68">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_69">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">11</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question10</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-734.57" x="179.64 188.27985 194.27985 200.27985 207.959 214.67856 219.95825 227.88 239.7597 242.99958 249.71913 253.67853 258.95826 266.88 274.91987 281.6394 287.6394 294.6 302.63987 308.63987 315.3594 320.63914 328.2 337.55943 343.55943 349.55943 357.84004 364.55958 371.2791 376.55885 380.51826 386.51826 391.79798 400.2 404.8797 410.15943">DaysperWinterThatLakesHaveSurfaceIce</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<path d="M69.45 117.2H129.79999V160.9H69.45Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="86.64 94.67984 100.67984 107.27984">Lake</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<path d="M130.05 117.2H192.5V160.9H130.05Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-712.37" x="139.2 147.23986 153.23986 157.19925 160.55866 164.51805 171.23761 177.95717">Latitude</tspan><tspan y="-691.73" x="138 141.9594 148.67896 153.95865 159.95865 165.11804 170.39774 175.67743 180.35713">(degrees)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<path d="M192.75 117.2H247.25V160.9H192.75Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="199.92 205.92 211.92 217.92 223.92 227.8794 233.8794">1980-81</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<path d="M247.5 117.2H303.8V160.9H247.5Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="255.6 261.6 267.6 273.6 279.6 283.55943 289.55943">1985-86</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<path d="M304.05 117.2H360.34999V160.9H304.05Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="312.12 318.12 324.12 330.12 336.12 340.0794 346.0794">1990-91</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<path d="M360.6 117.2H416V160.9H360.6Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="368.28 374.28 380.28 386.28 392.28 396.2394 402.2394">1995-96</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<path d="M416.25 117.2H471V160.9H416.25Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="423.6 429.6 435.6 441.6 447.6 451.55943 457.55943">2000-01</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<path d="M471.25 117.2H525.85V160.9H471.25Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-702.05" x="478.44 484.44 490.44 496.44 502.44 506.3994 512.3994">2005-06</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<path d="M69.45 161.15H129.79999V202.75H69.45Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-669.41" x="84.84 91.55955 98.279109 101.638507 106.918209 110.2776">Spirit</tspan><tspan y="-648.76998" x="86.64 94.67984 100.67984 107.27984">Lake</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="147.72 153.72 159.72 162.72 168.72">43.46</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="210.959 216.959 222.959">102</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="266.64 272.64 278.64">135</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="323.159 329.159 335.159">121</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="379.2 385.2 391.2">134</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="434.64 440.64 446.64">147</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-659.21" x="489.48 495.48 501.48">126</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<path d="M69.45 203.05H129.79999V244.65H69.45Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-627.53" x="86.64 94.67984 100.67984 107.27984">Lake</tspan><tspan y="-606.89108" x="77.64 86.87985 92.15955 98.15955 104.15955 110.87911 115.558818">Kegonsa</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="147.72 153.72 159.72 162.72 168.72">42.97</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="213.959 219.959">94</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="266.88 272.6394 278.5191">116</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="323.159 329.159 335.159">104</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="379.44 385.1994 391.0791">113</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="434.64 440.64 446.64">124</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-617.21" x="489.48 495.48 501.48">101</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<path d="M69.45 244.95H129.79999V281.2H69.45Z" fill="#f1f1f1" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-577.97" x="78.24 86.88 92.88 98.1597 104.87925 108.83865 114.118358">N&#x00e4;ckten</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<g clip-path="url(#clip_55)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="144.72 150.72 156.72 159.72 165.72 171.72">62.913</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_56)">
+<g clip-path="url(#clip_57)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="210.959 216.959 222.959">177</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_58)">
+<g clip-path="url(#clip_59)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="266.64 272.64 278.64">168</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_60)">
+<g clip-path="url(#clip_61)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="323.159 329.159 335.159">144</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_62)">
+<g clip-path="url(#clip_63)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="379.2 385.2 391.2">174</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_64)">
+<g clip-path="url(#clip_65)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="434.64 440.64 446.64">133</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_66)">
+<g clip-path="url(#clip_67)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-577.97" x="489.48 495.48 501.48">134</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_68)">
+<path transform="matrix(1,0,0,1,69.06,117.09)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H457.13"/>
+<path transform="matrix(1,0,0,1,69.06,161.04)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H457.13"/>
+<path transform="matrix(1,0,0,1,69.06,202.94)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H457.13"/>
+<path transform="matrix(1,0,0,1,69.06,244.84)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H457.13"/>
+<path transform="matrix(1,0,0,1,69.06,281.34)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H457.13"/>
+<path transform="matrix(1,0,0,1,69.3,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,129.9,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,192.6,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,247.35,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,303.9,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,360.45,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,416.1,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,471.1,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<path transform="matrix(1,0,0,1,525.95,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V164.25"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-523.13" x="90 94.67865 102.359 106.318408 115.68 121.919849 128.87924 139.67925 150.47925 157.55895 168.48 173.15865 180.23834 188.64 193.31865 197.9973 204.23715 209.63716 216.71686 226.79656 233.0364 236.87625 243.1161 251.64 255.5994 261.83924 268.7986 275.03846 284.4 291.35939 297.5992 303.83906 312.24 319.31968 327.84 334.07984 341.15953 348.1189 355.07829 365.159 375.24 379.1994 385.43925 389.27909 393.2385 397.07835 404.03773 411.1174 421.19999 428.15937 436.68 443.75968 450.72 460.2 467.2797 474.23908 478.91773 482.75758 493.55903 500.6387">Itiscommonforfreshwaterlakesnearorabovealatitudeof45&#x00b0;northof</tspan><tspan y="-499.01" x="90 93.959407 100.91881 111.72 117.95985 124.91925 131.99895 138.2388 142.07865 149.03804 153.23804 161.159 165.1184 168.95824 176.03794 186.84 195.35955 201.5994 208.6791 219.359 227.159 231.1184 237.23795 243.4778 250.5575 254.39734 258.23719 269.88 273.83943 285.359 295.43873 301.67857 306.3572 317.1572 323.39704 330.4767 336.71656 344.64 348.59944 360.12004 366.35987 372.5997 378.83955 385.79893 396.5989 403.6786 407.638 413.75755 417.71696 428.40003 433.9196 440.87898 445.55763 450.23628 456.4761 462.71595 473.40003 477.35945 483.59928 494.40003 498.35945">theequator,likeLakeStechlininGermany,toaccumulatesurfaceicein</tspan><tspan y="-474.89103" x="90.00003 100.07973 104.03913 110.998538 114.95794 121.197788 125.15719 136.80004 145.31958 152.39928 167.15903 173.39888 184.19889 191.27858 198.35828 205.31768 217.80004 224.03989 230.99929 246.60004 253.55944 260.63914 265.31779 271.43733 275.39674 279.23658 286.31626 301.80006 308.87974 322.08006 326.03947 332.159 346.92005 353.99974 360.23957 367.19895 373.43879 380.39817 387.35755 401.40007 408.47975 423.95906 434.75904 440.99888 448.07856 463.68006 468.3587 474.59855 480.83839 484.67823 491.7579 496.43656 501.83659">winter.Theamountanddurationoficedependsonmanyfactors,</tspan><tspan y="-450.65003" x="90.00003 93.959438 100.91884 107.15868 110.998538 118.07823 125.037639 128.99704 135.95644 148.44004 152.39943 159.35883 165.59868 171.71823 181.08003 191.15973 197.39958 203.63944 207.59883 214.55823 220.79808 231.00003 237.23989 244.19928 251.27898 258.23838 262.07823 266.03764 269.87748 276.83686 283.91654 294.84004 301.07987 312.00004 322.07975 328.31959 332.279 341.64 347.87986 358.80003 362.75944 369.7188 381.48 385.43943 391.55897 398.63865 404.759 408.72 419.64 426.7197 432.95954 439.9189 443.75877 450.83845 459.84004 466.7994 473.8791 477.71894 484.7986 495.4783 501.71815">includinglocalweatherconditionsaswellasthelake&#x2019;sdepth,volume,</tspan><tspan y="-426.53004" x="90.00003 96.239879 103.31957 114.84003 120.35959 127.31899 131.99765 136.6763 142.91616 149.156 159.84003 166.07988 170.75853 176.99839 183.23824 191.40003 198.35942 205.43912 213.84003 224.75904 230.99889 234.95829 238.79813 249.59813 255.83798 259.7974 270.60005 275.2787 281.51853 287.0381 293.15763 299.39747 304.0761 310.31596 317.27534 323.51518 332.75904 338.99888 342.95829 349.07783 353.03724 363.83723 373.91905 377.87846 384.83784 391.07768 399.60005 403.55946 410.51884 421.32005 428.39973 432.23957 439.31925 446.27864 452.51847 461.75904 472.68003 476.63945 482.75898 489.83866 495.959 499.80003">andsurfacearea,butaclimateresearcherclaimsthatthehigheralake&#x2019;s</tspan><tspan y="-402.41004" x="90 93.959407 100.19925 104.0391 107.998508 111.838359 118.79776 125.87746 131.99701 143.04001 146.9994 153.9588 167.759 178.559 185.6387 190.31735 204.12 211.19969 217.31925 224.27864 237.359 244.43869 250.67855 262.8 272.8797 276.8391 283.7985 287.7579 293.99775 306.12 310.0794 321.6 331.67973 335.63914 339.47898 350.88 354.83943 361.67927 368.75895 372.71836 378.9582 385.19804 389.03788 392.87773 407.52003 414.5997 420.71925 427.79893 441.48 452.28 458.51985 464.75968 470.27925 477.35893 481.9183 488.15815 495.23783 499.07768">latitude,themoredaysperwinteritwilltypicallyhavemeasurable</tspan><tspan y="-378.29106" x="90 96.239849 107.03984 114.11954 121.199237 128.15863 131.99848 140.88 147.9597 156.12001 161.63957 168.59897 173.27762 177.95627 184.19612 190.31568 200.04001 203.9994 210.11896 216.35881">amountsofsurfaceice.</tspan><tspan y="-329.93104" x="90.00001 103.20001 110.27971 114.11956 120.359409 131.04001 137.27986 144.23926 151.31896 155.1588 161.39865 171.24 178.3197 184.55956 189.95957 197.52 204.5997 210.71926 216.23882 222.47867 227.03806 230.99745 237.95685 244.1967 253.32 260.3997 266.51924 270.47865 280.32 284.27943 294.959 298.91844 305.8778 315.72 319.6794 325.91926 332.87864 336.71849 346.68 350.6394 357.5988 363.83863 371.4 376.91957 383.87895 390.95863 397.918 404.87739 409.55604 417.12 421.0794 428.0388 438 442.67866 448.9185 454.3185 460.55836 466.7982 471.47685 477.59638 484.67607 490.7956 495.959 499.80003">Whichchoicebestdescribesdatainthetablethatsupporttheresearcher&#x2019;s</tspan><tspan y="-305.81004" x="90 96.239849 100.19925 106.3188 110.278209 121.0782">claim?</tspan><tspan y="-281.69105" x="90 100.0797 111 118.799999 125.87969 129.71955 134.3982 138.23804 147.72 156.23955 162.4794 169.5591 181.2 185.1594 196.2 202.43985 211.92 223.68 230.75969 234.59954 241.67923 248.63863 254.87848 265.08 269.0394 275.15895 279.11836 282.9582 286.9176 293.87699 300.83638 312.59999 316.5594 323.51878 329.7586 342.35899 350.87855 357.11839 364.19807 375.83998 385.91969 392.15953 399.2392 406.19859 413.27827 418.67829 430.43998 436.6798 443.7595 456.23997 460.19938 467.0392 474.1189 478.0783 484.31816 490.55799 494.39784 498.23768">A.SpiritLakeisatahigherlatitudethanLakeKegonsaandtypically</tspan><tspan y="-257.45005" x="89.99997 97.079669 103.31951 113.63997 118.31862 124.558467 134.63816 140.878 149.03998 156.11968 162.35953 169.19937 178.19998 185.27968 193.43999 197.39939 203.51894 213.23999 220.19939 226.43924 234.59999 244.67969 248.63909 255.59848 259.43833 265.67817 273.84 277.7994 284.7588 290.99864 301.44 309.95957 316.1994 323.27909 332.88 342.95973 349.19956 356.27925 363.23863 370.3183 375.71833 385.44 392.39939 396.3588 403.31819">hadfewerdaysoficeperwinterthanLakeKegonsadid.</tspan><tspan y="-233.33104" x="90 99.3573 111 118.799999 125.87969 129.71955 134.3982 138.23804 145.8 154.31955 160.5594 167.5188 177.35901 184.4387 190.67856 201.24 208.3197 215.2791 225.959 233.0387 239.27855 246.1184 255.24 262.3197 270.6 274.55943 280.79927 290.64 294.59944 305.15904 309.11845 316.07783 325.92 335.99974 339.95915 346.91853 350.87794 357.11778 365.40003 372.4797 380.75904 387.8387 394.7981 401.75749 408.83717 413.5158 420.4752 431.04005 437.27989 444.35957 454.91905 461.99873 468.9581 479.64006 486.59944 492.83927 499.79866">B.SpiritLakehad102daysoficeinthewinterof1980-81and126days</tspan><tspan y="-209.21004" x="90.00006 97.07976 105.12006 109.07947 115.31931 124.92007 128.87947 139.32007 143.27947 150.23886 159.95908 170.03878 173.99817 180.95757 184.91696 191.15682 199.20008 206.27977 214.44008 221.39948 228.47917 235.43857 242.39797 247.07662 254.15631 261.1157">oficeinthewinterof2005-06.</tspan><tspan y="-185.09104" x="90.00008 99.357379 111.00008 121.08008 127.320079 133.55992 140.51932 144.47872 150.71857 161.40007 168.35947 174.59932 185.28008 192.35977 199.31917 210.00008 217.07978 223.31963 230.15947 239.40007 246.47977 254.75907 258.71849 264.9583 274.80006 278.75947 289.44007 293.39949 300.35887 310.32008 320.39979 324.3592 331.31858 335.27799 341.51783 349.80009 356.87977 365.1591 372.23878 379.19816 386.15754 393.2372 397.91587 404.87525 415.55909 421.79893 428.8786 439.4401 446.51979 453.47917 464.2801 471.35978 477.4793 484.4387 493.68009 500.75978">C.N&#x00e4;cktenhad177daysoficeinthewinterof1980-81and134daysof</tspan><tspan y="-160.85004" x="90.00006 93.959468 100.19931 109.800067 113.75947 124.200069 128.15947 135.11887 144.84006 154.91976 158.87915 165.83855 169.79795 175.9175 184.08007 191.15976 199.20006 206.27976 213.23915 220.19855 227.27825 231.9569 238.91629 245.87569">iceinthewinterof2005-06.</tspan><tspan y="-136.73104" x="90.00005 100.07975 111.00005 121.080059 127.32005 133.5599 140.5193 144.4787 150.71855 162.48006 166.43946 176.75907 182.99892 191.64006 202.80007 209.87976 213.7196 220.7993 227.7587 233.99855 243.48007 247.43947 253.55902 257.51844 261.35829 265.3177 272.27708 279.23646 290.4001 294.23994 301.3196 307.55946 319.3201 327.83967 334.0795 341.15919 352.2001 362.27983 368.51966 375.59934 382.55873 389.6384 395.03843 406.0801 412.31996 419.27934 431.15913 435.11854 441.95838 449.03807 452.99748 459.2373 465.35685 469.31626 473.1561 485.04014 492.1198 498.35966">D.N&#x00e4;cktenisatahigherlatitudethanLakeKegonsaandtypicallyhad</tspan><tspan y="-112.61003" x="90.00012 100.80012 107.879817 112.558467 122.28012 129.35982 135.47937 142.43877 151.44013 158.39952 166.55913 170.51853 176.75838 186.35913 193.43883 199.67868 207.72013 217.79982 221.75922 228.71862 232.67801 238.91786 246.95912 250.91852 257.8779 264.11775 274.6801 283.19969 289.4395 296.5192 306.12013 316.19984 322.43968 329.51936 336.47874 343.4381 348.95768 358.5591 365.6388 369.47865 376.55833">moredaysoficeperwinterthanLakeKegonsadid.</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_69)">
+</g>
+</g>
+</g>
+</svg>

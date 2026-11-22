@@ -1,0 +1,337 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M84.6 116.8H191.15V179.35H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M191.1 116.8H299.05V179.35H191.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M299 116.8H408.75V179.35H299Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M408.7 116.8H510.75V179.35H408.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M84.6 179.4H191.15V221.25H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M191.1 179.4H299.05V221.25H191.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M299 179.4H408.75V221.25H299Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M408.7 179.4H510.75V221.25H408.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M84.6 221.3H191.15V242.45H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M191.1 221.3H299.05V242.45H191.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M299 221.3H408.75V242.45H299Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M408.7 221.3H510.75V242.45H408.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M84.6 242.5H191.15V263.65H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M191.1 242.5H299.05V263.65H191.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M299 242.5H408.75V263.65H299Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M408.7 242.5H510.75V263.65H408.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M84.6 263.7H191.15V285.40003H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M191.1 263.7H299.05V285.40003H191.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M299 263.7H408.75V285.40003H299Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M408.7 263.7H510.75V285.40003H408.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">65</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question12</tspan></text>
+<path d="M90 96.1H505.3V116.8H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-734.57" x="143.28 149.99956 155.99956 161.99956 167.99956 171.35897 176.63866 179.99806 183.35747 189.35747 198.23999 203.51969 209.51969 218.63999 225.35955 231.35955 237.35955 243.35955 246.71895 251.99864 255.35805 258.71745 264.71745 273.59999 282.2398 287.51954 293.51954 298.19923 301.55863 304.91804 313.91999 319.91999 326.27998 334.9198 338.8792 342.83863 346.19804 351.47776 356.87779 365.87998 373.91984 379.91984 385.91984 391.91984 395.27925 399.23866 402.59806 407.87779 415.55897 418.91838 427.91896 433.91896 439.91896 445.91896">PopulationandPopulationDensityofAfricanCountriesin2015</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<path d="M90 137.95H185.7V158.59999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-692.81" x="116.159 124.79884 130.79885 137.5184 144.23796 148.19736 153.47705">Country</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<path d="M196.5 117.3H293.6V137.95H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-713.45" x="225.72 234.35985 239.63954 246.3591 251.0388 254.39821 258.3576">Density</tspan></text>
+<path d="M196.5 137.95H293.6V158.65H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-692.81" x="202.2 206.1594 209.5188 216.23836 222.95792 228.95792 235.5579 238.91732 242.87671 248.87671 255.59627 259.55567 264.23536 267.59477 274.3143 284.28">(inhabitants/km&#x00b2;</tspan></text>
+<path d="M196.5 158.65H293.6V179.34999H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-672.05" x="218.64 225.35956 238.32 242.99971 249.71927 256.31929 262.31929 267.4787 272.75843 279.47798">kmsquared)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<path d="M304.4 127.6H403.3V148.25H304.4Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-703.13" x="327.6 336.23985 341.39927 346.679 355.80003 359.75944 366.47898 376.44">Area(km&#x00b2;</tspan></text>
+<path d="M304.4 148.25H403.3V168.95H304.4Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-682.491" x="319.92 329.64 342.6 347.2797 353.99925 360.71879 366.71879 371.8782 377.15794 383.75794">kmsquared)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<path d="M414.1 127.6H505.3V148.25H414.1Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-703.13" x="433.68 441.71986 446.39955 450.35896 453.71836 463.5582 469.5582 473.6379 478.91764">Estimated</tspan></text>
+<path d="M414.1 148.25H505.3V168.95H414.1Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-682.491" x="432 438.71955 444.71955 451.4391 458.0391 461.3985 467.3985 471.3579 474.71733 480.71733">population</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<path d="M90 179.9H185.7V200.54999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-650.81" x="101.759 108.48 114.48 123.240009 130.31972 136.19942 146.15901 154.44002 160.44002 167.15958">S&#x00e3;oTom&#x00e9;and</tspan></text>
+<path d="M90 200.55H185.7V221.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-630.17" x="116.159 123.479 128.87999 132.12 138.83956 144.11925 147.47866 154.19821">Pr&#x00ed;ncipe</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<path d="M196.5 190.2H293.6V210.84999H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-640.491" x="231.6 237.6 243.6 249.6 252.6">189.8</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<path d="M304.4 190.2H403.3V210.84999H304.4Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-640.491" x="340.32 346.32 349.32 355.32 361.32">1,001</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<path d="M414.1 190.2H505.3V210.84999H414.1Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-640.491" x="440.159 446.159 452.159 458.159 461.159 467.159 473.159">190,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<path d="M90 221.8H185.7V242.45H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-608.93" x="115.8 123.83984 127.79925 134.51882 137.87822 143.87822 150.59778 153.83765">Ethiopia</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<path d="M196.5 221.8H293.6V242.45H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-608.93" x="234.6 240.6 246.6 249.6">88.2</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<path d="M304.4 221.8H403.3V242.45H304.4Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-608.93" x="329.88 335.88 338.88 344.88 350.88 356.88 359.88 365.88 371.88">1,127,127</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<path d="M414.1 221.8H505.3V242.45H414.1Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-608.93" x="432.72 438.72 444.72 447.72 453.72 459.72 465.72 468.72 474.72 480.72">99,391,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<path d="M90 243H185.7V263.65H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-587.691" x="108.48 119.759708 125.759708 132.47927 137.75896 141.11837 145.07776 151.07776 157.79732 161.15673">Mauritania</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<path d="M196.5 243H293.6V263.65H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-587.691" x="237.6 243.6 246.6">3.9</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<path d="M304.4 243H403.3V263.65H304.4Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-587.691" x="329.88 335.88 338.88 344.88 350.88 356.88 359.88 365.88 371.88">1,030,700</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<path d="M414.1 243H505.3V263.65H414.1Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-587.691" x="435.72 441.72 444.72 450.72 456.72 462.72 465.72 471.72 477.72">4,068,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<path d="M90 264.2H185.7V284.85H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-weight="bold"><tspan y="-566.45" x="119.52 128.15984 134.8794 140.8794 146.8794 150.2388">Angola</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<path d="M196.5 264.2H293.6V284.85H196.5Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-566.45" x="234.6 240.6 246.6 249.6">20.1</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<path d="M304.4 264.2H403.3V284.85H304.4Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-566.45" x="329.88 335.88 338.88 344.88 350.88 356.88 359.88 365.88 371.88">1,246,700</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<path d="M414.1 264.2H505.3V284.85H414.1Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-566.45" x="432.72 438.72 444.72 447.72 453.72 459.72 465.72 468.72 474.72 480.72">25,022,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<path d="M90 285.4H505.3V309.55H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,1,84.36,117.09)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,179.69)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,221.59)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,242.79)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,263.99)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,285.19)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.6,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V168.1"/>
+<path transform="matrix(1,0,0,1,191.1,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V168.1"/>
+<path transform="matrix(1,0,0,1,299,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V168.1"/>
+<path transform="matrix(1,0,0,1,408.7,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V168.1"/>
+<path transform="matrix(1,0,0,1,510.7,116.85)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V168.1"/>
+<path d="M90 309.55H505.3V333.69999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-519.291" x="90 100.0797 109.68 113.639408 120.59881 130.92 136.43956 142.67942 148.79897 155.87866 162.83806 169.79746 174.4761 185.27611 192.3558 197.87537 205.79999 212.87969 219.83908 226.79848 233.87818 237.71802 244.79772 251.75711 261.24 267.47984 274.5595 281.5189 285.35874 289.31816 296.27754 302.51737 309.47676 317.52 321.4794 332.52 336.4794 343.43879 353.759 363.8387 370.9184 375.59706 379.4369 386.51658 393.359 403.43873 408.11738 412.79603 416.75544 422.99528 433.2 443.27973 449.51957 459.12004 466.1997 473.1591 483.95909 494.40003 498.35945">Asthesecond-mostpopulouscontinentintheworld,Africawashometo</tspan></text>
+<path d="M90 333.7H505.3V357.85H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-495.17" x="90 96.239849 107.64 113.879848 119.27985 123.23925 127.0791 137.8791 144.11896 148.07836 154.3182 165.72 172.7997 176.27939 183.23879 190.19818 201.6 208.6797 212.51955 216.47895 220.31879 224.15863 231.23833 242.64002 249.59941 255.83927 262.91896 269.87834 273.71818 284.40003 288.23988 299.64 306.7197 313.67909 320.63847 327.71815 335.64 340.31867 351.72 362.4 369.35939 375.5992 382.6789 388.79844 397.919 402.59767 409.67735 418.68 429.24 434.75956 441.71894 447.95878 451.7986 458.03846 466.319 471.83857 475.6784 482.7581 489.71748 493.5573 499.79716">anestimated1.186billionpeoplein2015.Inapaperforasocialstudies</tspan></text>
+<path d="M90 357.85H505.3V382H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-471.05" x="90 96.239849 100.19925 106.3188 111.83836 117.23837 131.04001 147.6 153.11957 156.95941 164.03911 170.9985 177.23836 184.19776 198.48001 205.55971 212.5191 219.4785 225.71836 229.5582 236.6379 242.87775 246.71759 252.95745 258.35746 274.08003 281.1597 288.11909 292.0785 298.19804 314.04 317.99943 324.9588 331.19865 345.359 351.59886 358.67854 365.6379 372.5973 376.5567 381.1161 385.0755 391.31535 407.04 417.11973 421.07914 425.03855 442.32 449.3997 455.51924 460.19789 477.6 481.43986 487.6797 492.23908 499.19847">class,astudentnonethelessnotesthatcountrieswithverylarge</tspan></text>
+<path d="M90 382H505.3V406.15H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-446.81" x="90 97.0797 104.0391 110.998508 118.0782 121.91805 128.1579 131.99774 135.95714 142.91654 149.99623 159.84 170.64 176.87985 188.4 195.47969 206.159 210.1184 216.35825 221.75826 231.72 238.7997 244.91925 251.99895 257.39897 263.6388 267.47865 279 285.95939 293.03907 299.99845 306.95783 310.91725 317.15708 320.99693 327.23677 338.64 342.59944 349.5588 355.79866 367.32 373.55986 378.2385 388.919 395.15885 402.11824 409.1979 416.1573 420.1167 424.6761 428.6355 434.87535 444.72 454.7997 458.75914 462.71855 474.12 484.91999 491.99967 498.2395">populationsmaybelessdenselypopulatedthanarecountrieswithmuch</tspan></text>
+<path d="M90 406.15H505.3V430.3H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-422.691" x="90 95.51956 106.31956 112.5594 116.51881 120.35866 126.5985 134.64 141.7197 148.6791 155.63849 162.71819 166.55803 172.79788 176.63773 180.59712 187.55652 194.63622 200.03623 207 213.23986 222.24 228.47986 234.71971 245.04001 252.1197 261.84 267.35957 273.4791 279.71894 290.159 297.23869 307.68 313.91984 320.9995 331.6792 338.75889 344.99873 349.67738 353.63679 360.59617 371.03999 378.11967 385.07905 392.03843 399.1181 406.07749">smallerpopulations,ascanbeseenbycomparing______</tspan></text>
+<path d="M90 430.3H505.3V454.44999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<path d="M90 454.45H505.3V478.6H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-374.45" x="90 103.200008 110.2797 114.11955 120.3594 132.35901 138.59886 145.67856 152.63796 156.4778 162.71765 174.00002 184.80002 191.87972 197.39928 206.40003 212.63988 217.19927 221.75865 227.9985 234.11806 238.07746 241.9173 248.997 255.11655 259.07597 271.2 278.1594 283.67897 289.9188 300.359 307.4387 313.67854 317.51838 328.80003 333.47868 338.15733 345.237 361.2 365.03987 372.11955 383.40003 387.23988 393.4797 400.5594 404.39924 415.68003 419.63945 431.64 437.87986 444.95954 455.63923 462.7189 466.6783 472.91816 476.758 488.15904 492.11845 499.07783">Whichchoicemosteffectivelyusesdatafromthetabletocompletethe</tspan></text>
+<path d="M90 478.6H505.3V502.75H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-350.21" x="90 96.239849 103.31954 109.439098 120.23909 127.31879 131.27819 137.51804">example?</tspan></text>
+<path d="M90 502.75H505.3V526.9H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-326.091" x="90 100.0797 108.6 112.43985 119.51955 130.55899 137.63869 143.87854 150.83794 157.79734 162.47599 168.71584 175.67523 182.75493 186.59477 197.63999 203.15955 206.99939 213.23925 224.39998 231.47968 240.23998 250.31967 257.39936 264.35874 271.43843 275.27827 286.43998 291.11863 298.078 301.5577 308.6374 315.59678 322.67646 326.15617 333.11555 340.07493 352.08 357.59956 364.55894 371.5183 377.75816 382.4368 393.47999 400.55967 404.3995 408.35893 415.3183 426.1183 432.35813 436.31755 442.55738 447.23603 452.63606 462.24 472.3197 476.2791 480.11897 492 495.9594 499.79927">A.thegeographicsizeofAngola(1,246,700squarekilometers)withits</tspan></text>
+<path d="M90 526.9H505.3V551.05007H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-301.97" x="90 94.67865 100.918498 104.8779 110.99745 114.956859 118.79671 125.75611 131.99596 135.95536 146.4 153.35939 157.31879 164.27819 174.72 181.7997 188.7591 195.71849 202.79819 206.63803 212.87789 216.71773 220.67713 227.63652 238.08 245.1597 253.2 260.2797 267.23908 270.71879 277.79847 284.75785 291.71723 295.19694 302.2766 309.236 319.8 323.63984 330.7195 337.6789 343.91874 350.8781 354.83753 358.67738 364.9172 371.8766 375.836 381.23603">relativelyhighpopulationof25,022,000inhabitants.</tspan></text>
+<path d="M90 551.05H505.3V575.2H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-277.85" x="90 99.3573 106.8 116.8797 123.9594 130.9188 137.99849 141.83834 148.07819 156.24 166.3197 173.3994 177.23925 183.4791 195.24 202.1994 208.43926 218.64 229.559 236.6387 240.47855 247.43795 259.2 266.2797 273.23908 280.19847 287.27815 291.11799 297.35783 301.19767 305.15708 312.11647 323.75904 330.8387 340.20005 347.27973 354.2391 357.7188 364.7985 371.75788 378.71726 382.19697 389.27665 396.23603 408.00007 411.8399 418.9196 425.87898 432.1188 439.0782 443.0376 446.87745 453.11729 460.07667 464.03608 474.12007 480.3599 487.31929 499.08006">B.Angola,whichhasahighpopulationof25,022,000inhabitantsanda</tspan></text>
+<path d="M90 575.2H505.3V599.35006H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-253.61" x="90 94.67865 100.918498 104.8779 110.99745 114.956859 118.79671 125.75611 131.99596 135.95536 150.35901 154.3184 161.2778 178.92002 185.99971 192.23957 199.19896 204.59897 208.55837 212.39821 226.92002 233.99971 246.24002 253.19942 260.2791 263.75883 278.28004 282.23945 289.19883 296.1582 302.39805 309.35743 313.31684 317.15669 323.3965 330.3559 334.3153 339.71534 343.67475 349.07478 356.03416 363.11384 369.23338 373.91203 387.72004 394.7997 398.63957 402.4794 409.55909 420.35908 426.5989 430.55833 436.79817 440.99815 451.80006 461.87977 465.83918 469.79859 484.31907 492.00007 498.24006">relativelylowdensityof20.1inhabitants/squarekilometer,withS&#x00e3;o</tspan></text>
+<path d="M90 599.35H505.3V623.5H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-229.491" x="90 97.8 104.75941 115.44 127.920009 134.15985 141.23955 154.44 162.24 166.91866 170.759 177.8387 184.07855 187.9184 194.87779 201.11765 210.84 220.9197 227.99939 231.83924 238.07909 251.4 258.35939 264.5992 276.24 288.84 299.63999 306.71968 312.9595 326.159 330.1184 337.0778 347.1575 353.39735 364.32 371.3997 378.35908 385.31846 392.39814 396.23799 402.4778 406.31767 410.27708 417.23646 430.44 436.67985 443.75953 456.959 469.44 476.51969 480.35954 487.4392 494.3986 500.63844">Tom&#x00e9;andPr&#x00ed;ncipe,whichhasamuchlowerpopulationandahigher</tspan></text>
+<path d="M90 623.5H505.3V647.65H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-205.37" x="90 97.0797 103.31954 110.278949 115.678958 119.63836 123.47821 129.71805">density.</tspan></text>
+<path d="M90 647.65H505.3V671.75H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-181.25" x="90 99.3573 110.04 122.5197 128.75955 135.71895 140.3976 144.357 148.19684 154.43669 161.39609 165.35549 171.47504 182.159 192.2387 199.31839 203.15824 209.39809 223.68 230.75969 236.87924 249.48 262.91999 266.8794 273.83879 291.24 298.19938 304.4392 311.5189 316.9189 320.75877 324.71818 330.958 341.4 351.4797 355.43913 359.39854 373.559 382.07856 386.03797 392.99736 396.95677 403.91615 410.99583 414.83567 421.0755 431.759 441.8387 448.9184 452.75825 458.99809 473.159 480.23869 486.47853 499.08">C.Mauritania,whichhasalowdensity,withEthiopia,whichhasa</tspan></text>
+<path d="M90 671.75H505.3V695.9H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-157.131" x="90 95.51956 99.35941 110.15941 114.11881 118.07822 124.31806 132.35901 139.4387 145.67856 152.63796 158.03797 161.99736 165.8372 176.28002 183.35971 189.59957 194.99958 201.95897 205.91837 209.75821 219.48001 226.55971 233.5191 237.35895 247.80002 254.03987 261.11958 268.07896 275.03834 278.99775 283.6764 287.51625 293.75608 302.64 309.7197 315.95954 322.9189 326.75877 333.83845 344.28004 351.3597 355.19956 359.75895 364.31834 370.43788 375.11653 381.35636 388.31575 395.64 402.7197 408.95954 415.9189 422.8783 427.55696 433.79679 440.75617 447.83586 451.6757 461.40003 466.9196 470.75944 476.99928 483.2391 488.63914">similardensitydespitebothcountrieshavingdifferentgeographicsizes.</tspan></text>
+<path d="M90 695.9H505.3V720.05007H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-133.01" x="90 100.0797 108.24 112.1994 119.158809 130.2 137.1594 144.23909 151.19849 158.15789 162.11728 168.35713 172.19698 176.03682 183.11652 190.07592 200.28 207.3597 216.6 223.6797 230.6391 234.5985 246.24 254.04001 260.28 271.8 279.47969 286.43907 297.24 308.159 314.39884 321.47853 333.12 340.91999 345.59864 349.44 356.51969 362.75953 366.59938 373.55876 384.48 390.71986 397.79954 409.44 417.95957 421.91899 428.99867 432.8385 439.79789 446.87757 450.7174 461.64 465.59944 477.24003 484.3197 491.27909 498.23847">D.thepopulationsofbothS&#x00e3;oTom&#x00e9;andPr&#x00ed;ncipeandEthiopiain2015</tspan></text>
+<path d="M90 720.05H505.3V744.2H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-108.77" x="90 100.0797 104.0391 107.998508 118.32 122.2794 129.2388 135.47866 139.3185 147.48 154.5597 161.51909 168.47849 175.55818 179.39803 185.63788 189.47772 193.43712 200.39652 207.47621 216.359 220.31839 230.75899 237.83869 244.79808 251.75748 258.83717">withtheirpopulationsin2010.</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_45)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

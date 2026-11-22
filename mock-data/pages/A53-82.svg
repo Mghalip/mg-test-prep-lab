@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">80</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question15</tspan></text>
+<path d="M90 96.1H505.3V120.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="90 98.519557 105.59925 116.159 121.67856 127.9184 134.03795 137.99735 141.83719 148.07704 152.75569 159.71509 163.67449 170.63388 178.92 184.43956 191.39896 198.47866 208.55835 218.4 222.35939 229.31879 240 244.67865 250.9185 254.8779 260.99745 264.95686 268.7967 275.75608 282.83576 288.23579 295.31547 299.1553 310.55903 317.6387 323.87855 327.71839 337.7981 344.03794 350.27778">Thescatterplotshowstherelationshipbetween</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-732.77" x="361.68003">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="372.359 378.59886 385.67854">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-732.77" x="396.959">y</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="403.2 410.40003 424.2 428.15943 431.99928 439.07896 449.64 456.7197 465.84004 472.7994 479.03926 484.5588 492.84004 497.51869 501.35853">.Alineofbestfit</tspan></text>
+<path d="M90 120.25H505.3V144.4H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.65" x="90 93.959407 102.84 109.07984 112.91969 118.439258 128.87999 134.39955 141.35895 148.31835 158.39804 165.47774">isalsoshown.</tspan></text>
+<path d="M90 144.4H505.3V360.95H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<g transform="matrix(.75,0,0,.7498917,194.16,144.36002)">
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="276" height="277" viewBox="0 0 580 440" style="width:276px;height:277px;display:inline" id="image_4" data-redrawn="48ea07b6af06f4b280a48eae779bced4a4159c62ad10d3ba4c16c5636f4fad4d" aria-label="按原图重绘的图表" preserveAspectRatio="xMidYMid meet"><ns0:rect width="100%" height="100%" fill="white" /><ns0:line x1="85.0" y1="350.0" x2="85.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="85.0" y="373" font-family="Times New Roman,serif" font-size="18" text-anchor="middle" fill="black">0</ns0:text><ns0:line x1="171.0" y1="350.0" x2="171.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="171.0" y="373" font-family="Times New Roman,serif" font-size="18" text-anchor="middle" fill="black">1</ns0:text><ns0:line x1="257.0" y1="350.0" x2="257.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="257.0" y="373" font-family="Times New Roman,serif" font-size="18" text-anchor="middle" fill="black">2</ns0:text><ns0:line x1="343.0" y1="350.0" x2="343.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="343.0" y="373" font-family="Times New Roman,serif" font-size="18" text-anchor="middle" fill="black">3</ns0:text><ns0:line x1="429.0" y1="350.0" x2="429.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="429.0" y="373" font-family="Times New Roman,serif" font-size="18" text-anchor="middle" fill="black">4</ns0:text><ns0:line x1="515.0" y1="350.0" x2="515.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="515.0" y="373" font-family="Times New Roman,serif" font-size="18" text-anchor="middle" fill="black">5</ns0:text><ns0:line x1="85.0" y1="350.0" x2="515.0" y2="350.0" stroke="#aaa" stroke-width="1" /><ns0:text x="75" y="356.0" font-family="Times New Roman,serif" font-size="18" text-anchor="end" fill="black">0</ns0:text><ns0:line x1="85.0" y1="297.0" x2="515.0" y2="297.0" stroke="#aaa" stroke-width="1" /><ns0:text x="75" y="303.0" font-family="Times New Roman,serif" font-size="18" text-anchor="end" fill="black">1</ns0:text><ns0:line x1="85.0" y1="244.0" x2="515.0" y2="244.0" stroke="#aaa" stroke-width="1" /><ns0:text x="75" y="250.0" font-family="Times New Roman,serif" font-size="18" text-anchor="end" fill="black">2</ns0:text><ns0:line x1="85.0" y1="191.0" x2="515.0" y2="191.0" stroke="#aaa" stroke-width="1" /><ns0:text x="75" y="197.0" font-family="Times New Roman,serif" font-size="18" text-anchor="end" fill="black">3</ns0:text><ns0:line x1="85.0" y1="138.0" x2="515.0" y2="138.0" stroke="#aaa" stroke-width="1" /><ns0:text x="75" y="144.0" font-family="Times New Roman,serif" font-size="18" text-anchor="end" fill="black">4</ns0:text><ns0:line x1="85.0" y1="85.0" x2="515.0" y2="85.0" stroke="#aaa" stroke-width="1" /><ns0:text x="75" y="91.0" font-family="Times New Roman,serif" font-size="18" text-anchor="end" fill="black">5</ns0:text><ns0:line x1="85" y1="350" x2="525" y2="350" stroke="#111" stroke-width="2" /><ns0:line x1="85" y1="350" x2="85" y2="75" stroke="#111" stroke-width="2" /><ns0:text x="300" y="408" font-family="Times New Roman,serif" font-size="22" text-anchor="middle" fill="black" /><ns0:g transform="translate(30 220) rotate(-90)" /><ns0:polyline points="85.0,350.0 515.0,196.3" stroke="black" stroke-width="3" fill="none" /><ns0:circle cx="171.0" cy="331.45" r="5" fill="#111" stroke="#111" /><ns0:circle cx="257.0" cy="259.9" r="5" fill="#111" stroke="#111" /><ns0:circle cx="343.0" cy="212.2" r="5" fill="#111" stroke="#111" /><ns0:circle cx="429.0" cy="244.0" r="5" fill="#111" stroke="#111" /><ns0:circle cx="515.0" cy="212.2" r="5" fill="#111" stroke="#111" /><ns0:text x="545" y="350.0" font-family="Times New Roman,serif" font-size="22" text-anchor="middle" fill="black">x</ns0:text><ns0:text x="85.0" y="65" font-family="Times New Roman,serif" font-size="22" text-anchor="middle" fill="black">y</ns0:text></ns0:svg>
+</g>
+<path d="M90 360.95H505.3V385.1H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-467.931" x="90 103.200008 110.2797 114.11955 120.3594 133.92 140.9997 152.28 156.2394 163.19879 176.04 180.71865 187.79834 191.63819 195.59758 202.55698 212.63668 216.59607 223.55547 237.23999 241.19939 253.2 259.43983 263.39924 270.3586 275.75865 281.99848 287.51805 297.95899 301.9184 315.59999 319.43983 326.5195 339.24 344.75956 348.5994 355.67909 362.63847 375.59999 382.55937 393.83998 397.79939 404.75877 417.59999 421.5594 425.39924 432.4789 445.31999 452.39967 463.68 470.75968 476.8792 482.39878 492.84 497.51866 501.47807">Whichofthefollowingisclosesttotheslopeofthelineofbestfit</tspan></text>
+<path d="M90 385.1H505.3V409.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-443.81" x="90 95.51956 102.478969 109.55866 119.63836 126.59776">shown?</tspan></text>
+<path d="M90 409.25H505.3V433.4H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-419.57" x="90 100.0797 108.24 116.159 123.23869 126.71838 133.67778">A)&#x2212;1.84</tspan></text>
+<path d="M90 433.4H505.3V457.55H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-395.45" x="90 99.3573 107.520008 115.32001 122.399707 125.879398 132.83879">B)&#x2212;0.54</tspan></text>
+<path d="M90 457.55H505.3V481.69999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-371.331" x="90 99.3573 107.520008 114.5997 118.07939 125.038799">C)0.54</tspan></text>
+<path d="M90 481.7H505.3V505.85H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-347.21" x="90 100.0797 108.24 115.319698 118.799388 125.75879">D)1.84</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_5)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

@@ -1,0 +1,410 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M82.3 135.2H162.35V177.04999H82.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M162.3 135.2H228.4V177.04999H162.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M228.35 135.2H279.95V177.04999H228.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M279.9 135.2H331.5V177.04999H279.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M331.45 135.2H383.05003V177.04999H331.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M383 135.2H434.6V177.04999H383Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M434.55 135.2H486.15V177.04999H434.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M486.1 135.2H537.7V177.04999H486.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M82.3 177.05H162.35V198.2H82.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M162.3 177.05H228.4V198.2H162.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M228.35 177.05H279.95V198.2H228.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M279.9 177.05H331.5V198.2H279.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M331.45 177.05H383.05003V198.2H331.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M383 177.05H434.6V198.2H383Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M434.55 177.05H486.15V198.2H434.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M486.1 177.05H537.7V198.2H486.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M82.3 198.25H162.35V219.4H82.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M162.3 198.25H228.4V219.4H162.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M228.35 198.25H279.95V219.4H228.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M279.9 198.25H331.5V219.4H279.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M331.45 198.25H383.05003V219.4H331.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M383 198.25H434.6V219.4H383Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M434.55 198.25H486.15V219.4H434.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M486.1 198.25H537.7V219.4H486.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M82.3 219.45H162.35V241.15H82.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M162.3 219.45H228.4V241.15H162.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_58">
+<path d="M228.35 219.45H279.95V241.15H228.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_59">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_60">
+<path d="M279.9 219.45H331.5V241.15H279.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_61">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_62">
+<path d="M331.45 219.45H383.05003V241.15H331.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_63">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_64">
+<path d="M383 219.45H434.6V241.15H383Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_65">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_66">
+<path d="M434.55 219.45H486.15V241.15H434.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_67">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_68">
+<path d="M486.1 219.45H537.7V241.15H486.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_69">
+<path d="M71.7 133.6H548.25V242.8H71.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_70">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">57</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12">Question9</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="168.959 179.0387 185.27855 192.23795 201.24 208.1994 214.43926 222.24 235.07985 238.9197 245.87909 249.71894 255.95879 263.88 272.39958 279.47926 285.7191 293.04 301.55958 307.7994 314.8791 321.11894 330 340.0797 346.31956 353.27894 363 370.8 377.87968 382.55833 387.1177 393.35755 399.59739 409.2 413.87867 420.1185">DaysperWinterThatLakesHaveSurfaceIce</tspan><tspan y="-563.45" x="90 94.67865 102.359 106.318408 115.68 121.919849 128.87924 139.67925 150.47925 157.55895 168.48 173.15865 180.23834 188.64 193.31865 197.9973 204.23715 209.63716 216.71686 226.79656 233.0364 236.87625 243.1161 251.64 255.5994 261.83924 268.7986 275.03846 284.4 291.35939 297.5992 303.83906 312.24 319.31968 327.84 334.07984 341.15953 348.1189 355.07829 365.159 375.24 379.1994 385.43925 389.27909 393.2385 397.07835 404.03773 411.1174 421.19999 428.15937 436.68 443.75968 450.72 460.2 467.2797 474.23908 478.91773 482.75758 493.55903 500.6387">Itiscommonforfreshwaterlakesnearorabovealatitudeof45&#x00b0;northof</tspan><tspan y="-539.331" x="90 93.959407 100.91881 111.959 118.198848 125.27854 132.23795 138.4778 142.31764 149.27704 153.59659 161.88 165.8394 169.67925 176.75894 187.8 197.8797 204.9594 211.19925 218.15865 225.23834 232.19774 244.08 252.59955 258.8394 265.91908 276.959 280.91844 292.80003 302.15733 308.39717 315.35655 321.59638 328.67607 334.7956 343.2 347.15943 359.04 365.27986 371.51969 377.75953 384.7189 395.5189 402.59858 406.55799 412.67753 416.63694 427.80003 433.20005 440.27973 444.95838 449.63703 455.75657 461.9964 473.04 476.99943 483.23927 494.40003 498.23988">theequator,likeOpeongoLakeinCanada,toaccumulatesurfaceicein</tspan><tspan y="-515.21" x="90.00003 100.07973 104.03913 110.998538 114.95794 121.197788 125.15719 136.80004 145.31958 152.39928 167.15903 173.39888 184.19889 191.27858 198.35828 205.31768 217.80004 224.03989 230.99929 246.60004 253.55944 260.63914 265.31779 271.43733 275.39674 279.23658 286.31626 301.80006 308.87974 322.08006 326.03947 332.159 346.92005 353.99974 360.23957 367.19895 373.43879 380.39817 387.35755 401.40007 408.47975 423.95906 434.75904 440.99888 448.07856 463.68006 468.3587 474.59855 480.83839 484.67823 491.7579 496.43656 501.83659">winter.Theamountanddurationoficedependsonmanyfactors,</tspan><tspan y="-491.09104" x="90.00003 93.959438 100.91884 107.15868 110.998538 118.07823 125.037639 128.99704 135.95644 148.44004 152.39943 159.35883 165.59868 171.83853 181.44004 191.51973 197.75959 203.99944 207.83928 214.91898 221.15883 231.35904 237.59889 244.67859 251.63799 258.59739 262.5568 266.39665 270.23649 277.31617 284.27555 295.32005 301.55989 312.72004 322.79975 329.03959 332.999 342.48005 348.71989 359.75904 363.71846 370.67784 382.55903 386.51844 392.75828 399.71766 405.9575 408.47703 419.52003 426.5997 432.71925 439.79893 443.63877 450.71846 459.72004 466.7997 473.7591 477.7185 484.6779 495.47789 501.7177">includinglocalweatherconditionsaswellasthelake'sdepth,volume,</tspan><tspan y="-466.85005" x="90.00003 96.239879 103.31957 114.95903 120.47859 127.437999 132.11664 136.79529 143.03514 149.1547 160.20003 166.43988 171.11853 177.23809 183.47794 191.64003 198.71973 205.67913 214.32004 225.24004 231.47989 235.43929 239.27913 250.07913 256.31898 260.27839 271.32005 275.9987 282.23854 287.63856 293.8784 300.11824 304.79689 311.0367 317.9961 324.23594 333.60005 339.83988 343.67973 349.91957 353.7594 364.5594 374.88005 378.83946 385.79884 392.03868 400.55903 404.51844 411.4778 422.52003 429.5997 433.43955 440.39894 447.4786 453.71846 462.959 474 477.9594 484.19926 491.15864 497.39848 499.918">andsurfacearea,butaclimateresearcherclaimsthatthehigheralake's</tspan><tspan y="-442.73106" x="90 93.959407 100.19925 104.0391 107.998508 111.838359 118.79776 125.87746 131.99701 143.04001 146.9994 153.9588 167.759 178.559 185.6387 190.31735 204.12 211.19969 217.31925 224.27864 237.359 244.43869 250.67855 262.8 272.8797 276.8391 283.7985 287.7579 293.99775 306.12 310.0794 321.6 331.67973 335.63914 339.47898 350.88 354.83943 361.67927 368.75895 372.71836 378.9582 385.19804 389.03788 392.87773 407.52003 414.5997 420.71925 427.79893 441.48 452.28 458.51985 464.75968 470.27925 477.35893 481.9183 488.15815 495.23783 499.07768">latitude,themoredaysperwinteritwilltypicallyhavemeasurable</tspan><tspan y="-418.61006" x="90 96.239849 107.03984 114.11954 121.199237 128.15863 131.99848 140.88 147.9597 156.12001 161.63957 168.59897 173.27762 177.95627 184.19612 190.31568 200.04001 203.9994 210.11896 216.35881">amountsofsurfaceice.</tspan><tspan y="-370.25007" x="90.00001 103.20001 110.27971 114.11956 120.359409 131.15901 137.39887 144.47856 151.43796 155.2778 161.51766 171.6 178.6797 184.91956 190.31957 198 205.0797 211.31955 216.71956 222.95941 227.63806 231.4779 238.4373 244.67716 254.04001 260.9994 267.23924 271.19865 281.159 285.1184 295.91999 299.8794 306.83879 316.91999 320.8794 327.11924 334.0786 337.91847 347.99998 351.95939 358.91877 365.1586 372.83998 378.35954 385.3189 392.3986 399.35798 406.31736 410.996 418.79997 422.75938 429.71876 439.79997 444.4786 450.71846 456.238 462.35755 468.59739 473.27604 479.51588 486.47526 492.7151 497.39375 499.91328">Whichchoicebestdescribesdatainthetablethatsupporttheresearcher's</tspan><tspan y="-346.13008" x="89.99994 96.239788 100.19919 106.31874 110.278148 121.07814">claim?</tspan><tspan y="-322.01008" x="89.99994 100.079639 110.99994 121.079639 128.15933 131.99918 139.07888 142.91872 149.15857 153.83722 160.79662 169.91994 173.87934 184.55893 190.79878 200.03993 211.43993 218.51963 222.35947 229.43917 236.39856 242.63842 252.59993 256.55937 262.7992 266.63905 270.59846 274.4383 281.39768 288.47737 299.87995 303.83937 310.79875 317.03858 329.27995 341.75965 345.71907 350.27845 354.9571 362.03678 371.99995 380.5195 386.75935 393.71873 405.23994 411.47978 418.55946 430.79994 434.63978 441.59916 448.67884 452.63825 458.75779 464.99763 468.95704 472.79689 485.03993 492.1196 498.35945">A.OulujarviisatahigherlatitudethanMirrorLakeandtypicallyhad</tspan><tspan y="-297.89109" x="89.99991 94.67856 100.9184 110.9981 117.237949 125.39991 132.35932 138.59917 145.55857 154.43991 161.5196 169.67992 173.63932 179.75887 189.47992 196.55962 202.79947 210.83992 220.91962 224.87902 231.83841 235.7978 242.03766 250.07993 254.03932 260.99873 267.23857 277.67994 290.15965 294.11906 298.67845 303.3571 310.43678 318.59996 327.1195 333.35935 340.31874 350.03996 357.11964 360.95948 368.03916">fewerdaysoficeperwinterthanMirrorLakedid.</tspan><tspan y="-273.6501" x="89.99994 99.35724 110.99994 121.079639 128.15933 131.99918 139.07888 142.79994 149.03995 153.7186 160.7983 168.95896 176.03865 182.2785 193.55896 200.63866 207.59806 218.99996 225.95935 232.1992 239.1586 248.99996 256.07966 265.07997 269.03938 275.1589 285.71998 289.67939 300.95899 304.9184 311.87779 322.43998 332.51969 336.4791 343.43849 347.3979 353.63774 362.63999 369.59938 378.59999 385.67967 392.63905 399.59843 406.6781 411.35676 418.31614 429.59999 435.8398 442.9195 454.19999 461.27967 468.23905 479.63999 486.71968 492.9595 499.79936">B.Ouluj&#x00e4;rvihad194daysoficeinthewinterof1980-81and155days</tspan><tspan y="-249.53009" x="90 97.0797 105.12 109.07941 115.31925 124.920009 128.87941 139.32 143.2794 150.2388 159.95902 170.03871 173.99811 180.9575 184.9169 191.15676 199.20001 206.27971 214.44002 221.39942 228.47911 235.4385 242.3979 247.07656 254.15625 261.11564">oficeinthewinterof2005-06.</tspan><tspan y="-225.4101" x="90.000019 99.357318 111.000019 121.07971 128.15941 131.99925 139.07895 142.80002 149.04003 153.71868 160.79837 169.92003 173.87943 184.55902 190.79888 200.04003 211.44002 218.51972 222.35956 229.43926 236.39865 242.6385 252.60002 256.55946 262.7993 266.63914 270.59855 274.4384 281.39778 288.47746 299.88 303.83943 310.7988 317.03865 329.28 341.7597 345.71913 350.2785 354.95716 362.03684 372 380.51957 386.7594 393.71879 405.24 411.47984 418.5595 430.8 434.63984 441.5992 448.6789 452.6383 458.75785 464.99769 468.9571 472.79695 485.03999 492.11967 498.3595">C.Ouluj&#x00e4;rviisatahigherlatitudethanMirrorLakeandtypicallyhad</tspan><tspan y="-201.29109" x="89.99997 100.799968 107.87966 112.55831 122.27997 129.35967 135.47922 142.43862 151.43997 158.39937 166.55898 170.51837 176.75823 186.35898 193.43868 199.67853 207.71997 217.79967 221.75907 228.71846 232.67786 238.91771 246.95897 250.91837 257.87776 264.11759 274.67997 287.15968 290.9995 295.67817 300.3568 307.3162 315.47996 323.9995 330.23936 337.31904 346.91996 353.99964 357.83949 364.91917">moredaysoficeperwinterthanMirrorLakedid.</tspan><tspan y="-177.0501" x="89.99994 100.079639 110.99994 119.51949 125.75934 132.83904 143.99994 154.07964 160.31949 167.39919 172.7992 176.75859 182.87815 189.95784 198.83994 205.79933 212.03919 224.03993 231.11963 242.99994 250.07964 256.31947 263.1593 273.71995 280.79963 290.39994 294.35935 300.59919 311.75895 315.71836 327.71995 331.67936 338.63874 349.79994 359.87965 363.83906 370.79844 374.75785 380.99769 390.5999 397.6796 407.3999 414.35929 421.43898 428.39836 435.35774 440.03639 447.11607 458.9999 465.23976 472.31944 484.19993 491.2796 498.23899">D.LakeNeusiedlhad77daysoficeinthewinterof1980-81and104</tspan><tspan y="-152.93109" x="89.99991 97.079608 103.31945 110.1593 119.158908 126.2386 134.2799 138.2393 144.47916 154.07991 158.0393 168.4799 172.4393 179.3987 189.1199 199.1996 203.159 210.1184 214.07779 220.31764 228.3589 235.4386 243.5999 250.5593 257.63899 264.59837 271.55775 276.2364 283.31608 290.27546">daysoficeinthewinterof2005-06.</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<g clip-path="url(#clip_6)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="110.28 117.479999 122.88 128.88">Lake</tspan></text>
+</g>
+</g>
+</g>
+<g clip-path="url(#clip_7)">
+<g clip-path="url(#clip_8)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-694.97" x="175.32 182.52002 187.92002 191.27942 194.63883 197.99823 203.99823 209.99823">Latitude</tspan><tspan y="-674.32998" x="173.04001 176.9994 182.9994 188.2791 194.2791 198.2385 203.63849 208.91819 213.59789">(degrees)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_9)">
+<g clip-path="url(#clip_10)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="234.12 240.12 246.12 252.12 258.12 262.0794 268.0794">1980-81</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_11)">
+<g clip-path="url(#clip_12)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="285.6 291.6 297.6 303.6 309.6 313.55943 319.55943">1985-86</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_13)">
+<g clip-path="url(#clip_14)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="337.2 343.2 349.2 355.2 361.2 365.15943 371.15943">1990-91</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_15)">
+<g clip-path="url(#clip_16)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="388.8 394.8 400.8 406.8 412.8 416.7594 422.7594">1995-96</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_17)">
+<g clip-path="url(#clip_18)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="440.28 446.28 452.28 458.28 464.28 468.2394 474.2394">2000-01</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_19)">
+<g clip-path="url(#clip_20)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-684.65" x="491.88 497.88 503.88 509.88 515.88 519.83938 525.83938">2005-06</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_21)">
+<g clip-path="url(#clip_22)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="99.24 107.879848 113.879848 117.23924 123.23924 126.6 132 135.9594 141.9594">Ouluj&#x00e4;rvi</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_23)">
+<g clip-path="url(#clip_24)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="184.8 190.8 196.8 199.8">64.3</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_25)">
+<g clip-path="url(#clip_26)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="245.04 251.04 257.03999">194</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_27)">
+<g clip-path="url(#clip_28)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="296.64 302.64 308.64">184</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_29)">
+<g clip-path="url(#clip_30)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="348.24 354.24 360.24">190</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_31)">
+<g clip-path="url(#clip_32)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="399.72 405.72 411.72">192</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_33)">
+<g clip-path="url(#clip_34)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="451.32 457.32 463.32">139</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_35)">
+<g clip-path="url(#clip_36)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-653.21" x="502.8 508.8 514.8">155</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_37)">
+<g clip-path="url(#clip_38)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="88.92 96.119998 101.52 107.52 112.7997 121.5591 126.8388 132.8388 137.51851 140.87792 146.15761 152.15761">LakeNeusiedl</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_39)">
+<g clip-path="url(#clip_40)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="181.8 187.8 193.8 196.8 202.8">47.82</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_41)">
+<g clip-path="url(#clip_42)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="248.04 254.04">77</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_43)">
+<g clip-path="url(#clip_44)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="299.64 305.64">86</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_45)">
+<g clip-path="url(#clip_46)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="351.24 357.24">87</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_47)">
+<g clip-path="url(#clip_48)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="399.72 405.72 411.72">128</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_49)">
+<g clip-path="url(#clip_50)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="454.32 460.32">50</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_51)">
+<g clip-path="url(#clip_52)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-631.97" x="502.8 508.8 514.8">104</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_53)">
+<g clip-path="url(#clip_54)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="92.759 103.438709 106.7981 110.75751 114.71691 120.71691 127.8 135.00002 140.40001 146.40001">MirrorLake</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_55)">
+<g clip-path="url(#clip_56)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="181.8 187.8 193.8 196.8 202.8">43.94</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_57)">
+<g clip-path="url(#clip_58)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="245.04 251.04 257.03999">122</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_59)">
+<g clip-path="url(#clip_60)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="296.64 302.64 308.64">129</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_61)">
+<g clip-path="url(#clip_62)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="348.24 354.24 360.24">125</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_63)">
+<g clip-path="url(#clip_64)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="399.72 405.72 411.72">136</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_65)">
+<g clip-path="url(#clip_66)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="451.32 457.32 463.32">141</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_67)">
+<g clip-path="url(#clip_68)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-610.73" x="503.04 508.7994 514.67916">119</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_69)">
+<path transform="matrix(1,0,0,1,82.06,135.44)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.83"/>
+<path transform="matrix(1,0,0,1,82.06,177.34)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.83"/>
+<path transform="matrix(1,0,0,1,82.06,198.54)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.83"/>
+<path transform="matrix(1,0,0,1,82.06,219.74)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.83"/>
+<path transform="matrix(1,0,0,1,82.06,240.94)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.83"/>
+<path transform="matrix(1,0,0,1,82.3,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,162.3,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,228.35,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,279.9,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,331.45,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,383,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,434.55,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,486.1,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+<path transform="matrix(1,0,0,1,537.65,135.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V105.5"/>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_70)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

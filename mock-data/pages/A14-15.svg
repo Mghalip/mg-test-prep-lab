@@ -1,0 +1,335 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M78.35 120.25H149.1V217.3H78.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M149.05 120.25H247.75V217.3H149.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M247.7 120.25H341.95V217.3H247.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M341.9 120.25H427.25V217.3H341.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M427.2 120.25H517V217.3H427.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M78.35 217.35H149.1V241.95001H78.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M149.05 217.35H247.75V241.95001H149.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M247.7 217.35H341.95V241.95001H247.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M341.9 217.35H427.25V241.95001H341.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M427.2 217.35H517V241.95001H427.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M78.35 242H149.1V266.6H78.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M149.05 242H247.75V266.6H149.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M247.7 242H341.95V266.6H247.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M341.9 242H427.25V266.6H341.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M427.2 242H517V266.6H427.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M78.35 266.65H149.1V291.25H78.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M149.05 266.65H247.75V291.25H149.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M247.7 266.65H341.95V291.25H247.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M341.9 266.65H427.25V291.25H341.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M427.2 266.65H517V291.25H427.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M78.35 291.3H149.1V316.44999H78.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M149.05 291.3H247.75V316.44999H149.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M247.7 291.3H341.95V316.44999H247.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M341.9 291.3H427.25V316.44999H341.9Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M427.2 291.3H517V316.44999H427.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">13</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question13</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="96.24 108.719699 115.79939 122.7588 126.59865 133.67835 137.51819 147.72 155.3997 161.51926 172.31926 179.39896 185.63881 190.31746 196.55731 200.39716 207.35655 212.0352 218.27506 227.159 233.39885 240.47855 250.68 263.51985 267.35969 274.31907 284.63999 293.99729 300.23713 307.1965 311.1559 315.83457 322.79396 326.6338 337.19999 344.99998 348.95939 355.19923 361.31877 370.19999 377.27967 385.43998 393.23997 397.9186 404.878 408.8374 416.03999 423.83998 427.79939 438.24 446.03999 453.11967 459.2392 465.47904 469.43846 480.11814 486.35798 493.43766">MonthlyTemperaturesandWingCentroidSizesofFruitFlySpecimens</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-671.93" x="95.04 107.5197 114.4791 121.5588 125.39865">Month</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-684.05" x="161.04 170.27985 177.23925 183.3588 188.03745 194.2773 201.2367 210.84 217.9197 221.75954 228.83924">Averagehigh</tspan><tspan y="-659.93" x="187.68 192.23999 196.68 204.48">(&#x00ba;F)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-684.05" x="259.32 268.55989 275.51927 281.6388 286.31745 292.55729 299.51667 309.24003 313.19944 320.1588">Averagelow</tspan><tspan y="-659.93" x="284.04 288.71867 293.04 300.84">(&#x00ba;F)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.05" x="361.32 370.55989 377.51927 383.6388 388.31745 394.55729 401.51667">Average</tspan><tspan y="-684.05" x="355.2 366 372.23985 376.19926 385.919 395.99873 399.95814 406.9175">malewing</tspan><tspan y="-659.81" x="348.959 355.19886 361.4387 368.39808 372.35749 377.03614 383.9955 387.83537 398.28004 403.7996 407.63945 413.87928">centroidsize</tspan><tspan y="-635.691" x="369.00004 373.67869 384.47868 395.27867">(mm)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.05" x="448.8 458.03987 464.99925 471.11878 475.79743 482.03727 488.99665">Average</tspan><tspan y="-684.05" x="437.28 441.95866 448.1985 458.99848 465.2383 469.19773 478.8 488.8797 492.8391 499.7985">femalewing</tspan><tspan y="-659.81" x="436.44 442.67985 448.91969 455.87907 459.83848 464.51713 471.4765 475.31636 485.88 491.39958 495.2394 501.47926">centroidsize</tspan><tspan y="-635.691" x="456.48 461.15867 471.95866 482.75865">(mm)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.97" x="91.2 101.27969 107.51954 111.47894 118.43835 125.39775 131.6376">October</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.97" x="191.4 198.35939">67</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.97" x="287.759 294.83869">44</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.97" x="372.24 379.31968 382.79939 389.75877">1.98</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.97" x="459.84 466.79939 470.27909 477.35877">2.29</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-586.37" x="100.8 113.2797 119.51955">May</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-586.37" x="191.4 198.35939">73</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-586.37" x="287.759 294.83869">50</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-586.37" x="372.24 379.31968 382.79939 389.75877">1.98</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-586.37" x="459.84 466.79939 470.27909 477.35877">2.27</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-561.65" x="102 107.51956 114.478969 118.43837">July</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-561.65" x="191.4 198.35939">87</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-561.65" x="287.759 294.83869">62</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-561.65" x="372.24 379.31968 382.79939 389.75877">2.02</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-561.65" x="459.84 466.79939 470.27909 477.35877">2.31</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-537.05" x="83.759 91.559 97.79884 104.75825 108.71765 114.9575 125.63719 132.71689 138.95674">September</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-537.05" x="191.4 198.35939">80</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-537.05" x="287.759 294.83869">54</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-537.05" x="372.24 379.31968 382.79939 389.75877">1.98</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-537.05" x="459.84 466.79939 470.27909 477.35877">2.27</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<path transform="matrix(1,0,0,1,78.11,120.54)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H439.08"/>
+<path transform="matrix(1,0,0,1,78.11,217.64)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H439.08"/>
+<path transform="matrix(1,0,0,1,78.11,242.29)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H439.08"/>
+<path transform="matrix(1,0,0,1,78.11,266.94)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H439.08"/>
+<path transform="matrix(1,0,0,1,78.11,291.59)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H439.08"/>
+<path transform="matrix(1,0,0,1,78.11,316.24)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H439.08"/>
+<path transform="matrix(1,0,0,1,78.35,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V195.7"/>
+<path transform="matrix(1,0,0,1,149.05,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V195.7"/>
+<path transform="matrix(1,0,0,1,247.7,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V195.7"/>
+<path transform="matrix(1,0,0,1,341.9,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V195.7"/>
+<path transform="matrix(1,0,0,1,427.2,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V195.7"/>
+<path transform="matrix(1,0,0,1,516.95,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V195.7"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-488.21" x="90 100.0797 105.2391 112.1985 117.59851 124.557918 131.51732 138.59702 142.43686 146.2767">Drosophila</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-488.21" x="157.8 162.47866 167.1573 171.83596 178.79535 182.6352 191.04001 195.71866 199.67806 203.5179 209.75775 215.15776 224.40001 231.3594 237.59926 244.67896 255.24 262.3197 268.55955 275.51893 281.75877 286.4374 292.55696 296.51637 300.3562 307.43589 318.959 322.91844 326.75828 337.55827 343.7981 353.759 360.83869 369.959 377.0387 383.99809 388.67674 395.6361 407.15904 414.2387 420.47856 427.3184 432.83796 440.88005 446.3996 457.80006 463.3196 469.55946 475.679 481.19856 488.15794 495.2376 501.35716">(fruitflies)havegenerationtimesof10-12days,soseasonal</tspan><tspan y="-464.091" x="90.00003 96.239879 103.31957 109.439128 116.51882 123.478229 129.71808 144.12003 148.07942 164.04003 171.11972 178.07912 188.87912 192.83852 199.91822 203.75806 207.5979 223.68003 229.91988 236.87928 252.95903 260.03874 263.87858 270.83796 277.0778 290.75904 296.99888 304.07856 311.03794 314.87779 319.55644 326.5158 333.5955 344.39549 350.6353 357.715 361.55485 367.79469 380.64006 386.87989 393.95957 400.91896 407.87834 411.83775 415.67759 419.637 426.59638 433.55577 448.08006 454.3199 460.55973 476.52006 483.59974 488.27839 492.11824 499.0776">changesinhumidityandotherenvironmentalconditionscandrive</tspan><tspan y="-439.97" x="90.00006 95.51962 101.75947 107.99931 113.518878 120.47828 127.557979 133.79782 141.12006 145.7987 149.7581 156.8378 163.07765 166.9175 173.9972 180.23705 184.19644 188.03629 195.11598 202.19568 211.20006 215.15946 225.60005 231.8399 238.9196 243.59825 250.67795 261.47795 268.55763 274.07719 281.15687 291.95686 301.80006 306.4787 312.71855 318.95838 323.63703 328.31568 334.5555 341.6352 348.71488 354.9547 365.7547 371.99455 379.07423 383.03364 391.91908 395.87849 406.44007 411.95964 419.0393 425.27915 431.51899 435.35884 441.59867 450.60008 456.11964 463.1993 469.43916 479.88008 486.1199">seasonalfluctuationsinchromosomerearrangementsinspeciessuchas</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-439.97" x="495.12007 505.19978">D.</tspan><tspan y="-415.85" x="90.00006 97.07976 103.3196 108.719608 114.11961 118.07902 128.1587 131.99855 135.95795 139.79779">persimilis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-415.85" x="152.04007 158.27993 165.35962">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-415.85" x="179.15908 189.23877 199.68007 205.19963 212.15903 219.23873 226.19812 233.15752 238.67708 244.79663 251.87633 257.27635">D.subobscura</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-415.85" x="264.24006">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-415.85" x="274.55906 284.63877 289.79817 296.75755 302.15757 309.11695 316.07633 323.156 326.99586 330.8357">Drosophila</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-415.85" x="344.75907 351.83876 358.79814 365.7575 379.68006 385.19963 389.03947 395.2793 408.24006 412.9187 417.59736 424.67704 436.20005 446.27976 453.35945 457.19929 463.43913 477.24006 487.31977 491.27919 498.23857">bodysize(forwhichwing</tspan><tspan y="-391.61003" x="90.00006 96.23991 102.47975 109.439159 113.39856 118.07721 125.03661 128.87647 140.75907 146.27863 150.11847 156.35832 167.40007 172.91963 179.15949 183.83814 190.79753 197.03739 207.35907 213.59893 223.92008 235.08008 242.15978 246.83843 253.79782 260.7572 272.64009 283.44007 289.6799 295.91975 301.4393 308.51899 313.07838 319.3182 328.92008 335.1599 342.1193 346.79795 351.4766 357.71644 361.55628 367.7961 371.75553 377.87507 388.20008 398.2798 402.2392 406.1986 418.08009 422.0395 425.87934 430.55799 441.60008 447.11964 454.079 460.31886 467.27824 475.68006 485.03736 491.2772 498.23658">centroidsizeservesasaproxymeasure)correlateswithlifespan.Banu</tspan><tspan y="-367.49104" x="90.00003 97.800029 104.03987 110.999279 118.07897 124.31882 142.55904 152.64003 159.71973 166.67913 172.91898 185.04004 191.27989 198.23929 212.64005 221.99735 228.2372 235.1966 240.71616 255.12004 262.92005 266.87947 273.83885 280.07868 293.75904 303.83876 310.91844 316.31846 323.39814 337.80006 348.60005 354.83988 361.0797 366.59928 373.55867 378.2373 384.47715 398.88005 402.83946 409.79884 423.48005 433.55976 437.51918 444.47856 459.00004 464.40007 468.35948 474.5993 480.71885 493.55903 500.6387">Sebnem&#x00d6;nderandCansuFidanAksoymeasuredthewingsizesof</tspan><tspan y="-343.37004" x="90 100.799999 107.03984 117.839839 124.91953 131.15938 135.83803 146.4 153.35939 163.07999">membersofa</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-343.37004" x="174.359 184.43869 193.07999 203.15969 209.39954 213.35894 220.31833 227.27773 234.35742 241.31682 248.27622 253.79578 257.63563 263.87547">D.melanogaster</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-343.37004" x="274.32 281.3997 288.35908 295.31846 302.39814 306.23799 312.4778 316.31767 320.27708 327.23646 339.24003 343.19944 354.72004 363.59974 369.71928 375.1193 379.0787 382.91905 389.88005 396.11988 404.40003 412.67973 419.6391 424.1985 431.15788 437.3977 443.63755 452.04005 455.99946 462.95884 469.19868 478.08006 488.15977 494.3996 499.07826">populationinYesil&#x00f6;z,Turkey,thatwere</tspan><tspan y="-319.25004" x="90.00003 96.239879 103.31957 107.159427 110.999279 117.23912 123.478969 127.31882 133.55867 147.60004 158.40004 165.47974 172.55944 176.39928 183.47898 187.31882 201.48004 208.55974 214.79959 218.63944 228.71913 234.95899 241.19884 255.35904 267.83876 274.07859 288.12004 294.35987 301.43955 315.60005 325.67976 331.9196 335.879 342.83839 349.79777 356.0376 367.80006 374.87974 381.8391 388.07896 399.84007 403.79948 410.75886 415.4375 421.67735 435.00007 441.95945 448.19929 454.43913 459.11778 464.63734 474.95906 483.4786 490.5583 496.79814 500.63798">collectedmonthlybetweenMayandOctoberoverthreeyears.Their</tspan><tspan y="-295.01005" x="90.00003 94.67868 100.918529 106.43808 112.55763 118.79748 123.47613 129.71598 141.48003 146.99959 153.95899 160.91838 167.99808 174.11763 179.63719 183.47704 193.80004 197.63988 204.71958 210.95943">researchsuggeststhat</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-295.01005" x="219.60004 229.67974 234.71959 241.67899 247.079 254.03839 261.11808 268.07746 272.03688 275.8767">Drosophila</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-295.01005" x="287.64006 293.87989 300.95957 304.7994 308.63926 314.8791 321.11894 324.95878 331.1986 342.95906 346.91847 358.80006 363.4787 369.71855 373.55839 379.79823 383.63807 387.59748 394.55686 400.7967 404.63655 416.40007 426.47978 432.7196 437.39826 448.19825 454.43809 464.04005 474.84004 481.9197 488.9994 492.83924 499.9189">collectedinrelativelywarmermonths</tspan><tspan y="-270.89106" x="90.00003 95.51959 102.479 109.55869 116.5181 120.35795 131.40003 135.35942 141.59928 148.55867 159.60002 163.55942 174.60002 181.55942 187.79927 194.87897 205.08002 215.40003 219.35942 226.31882 233.39852 240.35791 246.59777 255.24002 259.19944 263.03929 267.71794 277.92 283.43959 290.39897 296.6388 303.59819 311.15904 317.39888 327.00004 330.83988 340.44004 344.39945 348.2393 352.07914 359.1588 364.55885 368.51826 373.07765 379.31748 383.2769 389.39643 400.44004 407.5197 418.55903 422.51844 429.4778 439.80003 444.47868 448.3185 455.3982 462.35758 466.19743 473.2771 484.2 488.15943 495.1188 501.35865">shouldtendtohavealongerlifespan,asisillustratedbythefindingthat</tspan><tspan y="-246.77005" x="90 97.0797 104.0391 110.998508 118.0782 125.037609">______</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_55)">
+</g>
+</g>
+</g>
+</svg>

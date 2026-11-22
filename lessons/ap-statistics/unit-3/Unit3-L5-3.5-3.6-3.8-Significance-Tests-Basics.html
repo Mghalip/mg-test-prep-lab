@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 3 · Lesson 5 — Significance Tests: The Basics</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:19px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+table.st td,table.st th{padding:5px 9px!important;font-size:15px}
+.formula{font-family:var(--serif,Georgia);font-size:24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr>span{display:block;padding:0 5px}.fr>span:first-child{border-bottom:2px solid var(--ink)}
+.sq{display:inline-block;border-top:2px solid var(--ink);padding:0 3px;margin-left:1px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}.zbox b{font-family:var(--mono);font-size:20px;display:block;color:var(--navy)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.steps4 .card{padding:10px 12px}
+.tmpl{background:#fff;border:2px dashed var(--rose-2);border-radius:12px;padding:10px 14px;font-size:17px;line-height:1.55;margin-top:8px}
+.tmpl u{text-decoration:none;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 3 第五课：显著性检验的逻辑，对应 TPS 9.1（3.5 假设、3.6 p 值、3.7.B 决策、3.8 两类错误）。具体的 z 检验计算在下一课。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 3 · Lesson 5</div><h1>Significance Tests: The Basics</h1><div class="zhT">显著性检验基础</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topics 3.5 · 3.6 · 3.8 · hypotheses · the logic of a test · p-values · significance level · Type I &amp; Type II errors</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 9.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 3 全貌。" data-title="Unit 3 roadmap">
+<div class="tag">Unit 3 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 3 <span class="zh">单元路线图</span></h2>
+<p class="sub">Inference for Categorical Data: Proportions · 15–25% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>3.1 Estimators<span class="old">TPS 7.1</span></div><div class="lesson"><span class="n">2</span>3.2 + 3.9 Sampling Distributions of p̂ and p̂₁ − p̂₂<span class="old">TPS 7.2</span></div><div class="lesson"><span class="n">3</span>3.3 + 3.4 Confidence Intervals: The Basics<span class="old">TPS 8.1</span></div><div class="lesson"><span class="n">4</span>3.3 + 3.4 Confidence Interval for p<span class="old">TPS 8.2</span></div><div class="lesson now"><span class="n">5</span>3.5 + 3.6 + 3.8 Significance Tests: The Basics<span class="old">TPS 9.1</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">6</span>3.7 + 3.8 Test for p · Power<span class="old">TPS 9.2</span></div><div class="lesson"><span class="n">7</span>3.10 + 3.11 Interval for p₁ − p₂<span class="old">TPS 8.3</span></div><div class="lesson"><span class="n">8</span>3.12 + 3.13 Test for p₁ − p₂<span class="old">TPS 9.3</span></div><div class="lesson"><span class="n">9</span>3.14 Setting Up a Chi-Square Test<span class="old">TPS 12.2</span></div><div class="lesson"><span class="n">10</span>3.15 Carrying Out a Chi-Square Test<span class="old">TPS 12.2</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lessons 3–4: <strong>estimate</strong> p with an interval. Today: <strong>test a claim</strong> about p — is the evidence strong enough to reject it? <span class="zh">从估计到检验：证据够不够强？</span></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 5 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">3.5.A–B · Skill 2.E</div><h3>Hypotheses <span class="stars">★★<span class="off">★★</span></span></h3><p>State H₀ and Hₐ about a parameter; one-sided vs. two-sided.</p><p class="zh muted small" style="margin-top:6px">写出零假设与备择假设</p></div><div class="card"><div class="k">3.6.A · Skill 4.F</div><h3>p-value <span class="stars">★★★<span class="off">★</span></span></h3><p>Interpret a p-value (simulated or from a normal model) assuming H₀ is true.</p><p class="zh muted small" style="margin-top:6px">解释 p 值</p></div><div class="card"><div class="k">3.7.B · Skill 4.G</div><h3>Decide &amp; conclude <span class="stars">★★★<span class="off">★</span></span></h3><p>Compare the p-value to α and write a conclusion in context.</p><p class="zh muted small" style="margin-top:6px">与 α 比较并下结论</p></div><div class="card"><div class="k">3.8.A · Skill 2.D</div><h3>Type I &amp; II <span class="stars">★★<span class="off">★★</span></span></h3><p>Identify Type I and Type II errors in context.</p><p class="zh muted small" style="margin-top:6px">识别两类错误</p></div><div class="card"><div class="k">3.8.B · Skill 3.C</div><h3>P(Type I) = α <span class="stars">★★<span class="off">★★</span></span></h3><p>Know that the probability of a Type I error is α.</p><p class="zh muted small" style="margin-top:6px">第一类错误概率 = α</p></div><div class="card"><div class="k">3.8.D · Skill 4.D</div><h3>Consequences <span class="stars">★★★<span class="off">★</span></span></h3><p>Describe consequences of each error and how they affect the choice of α.</p><p class="zh muted small" style="margin-top:6px">两类错误的后果</p></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 5 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">4'</div>Warm-up: “I’m an 80% free-throw shooter!”</div><div class="it"><div class="bar n" style="width:140px">10' · 3.5</div>Null &amp; alternative hypotheses · one- vs. two-sided</div><div class="it"><div class="bar n" style="width:160px">14' · 3.6 · 3.7.B</div>p-value · significance level · reject / fail to reject · conclusions</div><div class="it"><div class="bar n" style="width:130px">10' · 3.8</div>Type I &amp; Type II errors · consequences · α</div><div class="it"><div class="bar" style="width:50px">7'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Courtroom analogy · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 3.5.A.1 → 3.5.B.1–3 → 3.6.A.1–5 → 3.7.B.1–4, 6 → 3.8.A.1–2 → 3.8.B.1 → 3.8.D.1–2</p><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 5 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simFT" href="#"><span class="ic">🎮</span><span>Free-throw claim tester<small>罚球说法检验器 · simulated p-value</small></span></a></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: “I’m an 80% shooter!”">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>“I’m an 80% shooter!” <span class="zh">“我罚球命中率 80%！”</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A basketball player claims he makes 80% of his free throws. We think he might be exaggerating. He shoots 50 free throws and makes only 32 (p̂ = 0.64). <span class="zh">50 投 32 中。</span></p><div class="q"><b class="n">Q1</b>Give two possible explanations for p̂ &lt; 0.80.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">① The claim is true (p = 0.80) and he had a bad day — <b>chance variation</b>. ② The claim is false (p &lt; 0.80).</div></div><div class="q"><b class="n">Q2</b>How could we decide which explanation is more believable?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Simulate 400 sets of 50 shots by an 80% shooter (graph). Only 3 of 400 sets had 32 or fewer makes.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. An 80% shooter would almost never do this badly → <b>convincing evidence</b> that he makes fewer than 80% of his free throws.</div></div></div><div class="keyidea">🔑 Assume the claim is true, then ask: how surprising is 32/50?</div><div class="takeaway">💡 That probability (3/400 ≈ 0.0075) is called a p-value. That is the whole idea of a significance test!</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 170" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 5 · TPS 9.1</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="把观测值改成 38、40，p 值变大，证据变弱。" data-title="🎮 Simulator: Free-throw claim tester" id="simFT">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Free-throw claim tester</span><span class="zh">罚球说法检验器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.6.A.2</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Assume the claim p = 0.80 is true. Simulate sets of 50 free throws; count how often the result is as low as the observed value or lower. <span class="zh">假设 H₀ 为真，模拟。</span></p>
+<div class="slider-row"><label>Observed makes</label><input id="ftO" max="45" min="25" type="range" value="32"/><span class="v" id="ftOV"></span></div>
+<div class="btns"><button class="b" id="ft1">+1 set</button><button class="b" id="ft100">+100 sets</button><button class="b" id="ftClr">Reset</button></div><div class="zbox"><div>simulated sets<b id="ftN">0</b></div><div>simulated p-value<b id="ftP" style="color:var(--rose)">–</b></div></div><div class="note small" id="ftMsg" style="margin-top:6px"></div></div>
+<div class="col frame"><svg id="ftSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 3.5" data-sec="1" data-title="§ 3.5 Setting Up a Test">
+<div class="tag">Topic</div><div class="num">3.5</div><h1>Setting Up a Test</h1><div class="zhT">建立检验</div><div class="eks"><span>3.5.A Hypothesis test</span><span>3.5.B H₀ and Hₐ</span></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.5.A–B。假设永远关于参数（p），不是关于 p̂。在看数据之前写假设。" data-title="Null and Alternative Hypotheses">
+<div class="tag">3.5 <b>· Key Concepts</b><span class="ek">EK 3.5.A.1 · 3.5.B.1–3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Null and Alternative Hypotheses <span class="zh">零假设与备择假设</span></h2><div class="concept"><div class="term">Hypothesis test<span class="zh">假设检验</span></div><div class="en">A <strong>hypothesis (significance) test</strong> is a procedure for using sample data to make a decision about the value of a population parameter.</div><div class="cn"><b>假设检验</b>：用样本数据对总体参数的取值做出决策。</div></div><div class="concept pink"><div class="term">H₀ · Hₐ<span class="zh">零假设 · 备择假设</span></div><div class="en">The <strong>null hypothesis H₀</strong> is the status quo — assumed correct unless there is convincing evidence otherwise; it contains equality: H₀: p = p₀. The <strong>alternative hypothesis Hₐ</strong> is the claim we are seeking evidence for: p &lt; p₀, p &gt; p₀ (one-sided), or p ≠ p₀ (two-sided).</div><div class="cn"><b>零假设 H₀</b>：现状，除非有充分证据否则认为成立，含等号：p = p₀。<b>备择假设 Hₐ</b>：研究者想找证据支持的说法：p &lt; p₀、p &gt; p₀（单侧）或 p ≠ p₀（双侧）。</div></div><div class="note warn small" style="margin-top:4px">⚠️ Hypotheses are about the <b>population parameter</b> (p), never the statistic (p̂). Write them before looking at the data. Define p in context: “p = the true proportion of …”. <span class="zh">假设关于参数，不关于样本统计量；在看数据前写。</span></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Write the hypotheses">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.5.B · Skill 2.E</span></div>
+<h2>Write the hypotheses <span class="zh">写出假设</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Define the parameter and state H₀ and Hₐ.</p><div class="q"><b class="n">a</b>A website says 68% of high school students have never smoked. Taeyeon wonders whether this is different at his school.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">a. p = true proportion of all students at Taeyeon’s school who have never smoked. H₀: p = 0.68, Hₐ: p ≠ 0.68 (<b>two-sided</b>).</div></div><div class="q"><b class="n">b</b>A potato-chip producer sends a truck back if there is convincing evidence that <b>more than 8%</b> of the potatoes have blemishes.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">b. p = true proportion of potatoes in the shipment with blemishes. H₀: p = 0.08, Hₐ: p &gt; 0.08.</div></div><div class="q"><b class="n">c</b>A company claims that at most 3% of its phones are defective. A consumer group suspects the rate is higher.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">c. p = true proportion of the company’s phones that are defective. H₀: p = 0.03 (tested at the boundary), Hₐ: p &gt; 0.03.</div></div><div class="q"><b class="n">d</b>A teacher wonders if fewer than half of students eat breakfast.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">d. p = true proportion of all students at the school who eat breakfast. H₀: p = 0.5, Hₐ: p &lt; 0.5.</div></div></div><div class="keyidea">🔑 Look for “different”, “more than”, “less than”.</div></div></div><div class="col vis"><svg id="hySol" viewbox="0 0 560 240" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 5 · a, b: TPS 9.1–9.2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Spot the mistake">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.5.B · CED activity</span></div>
+<h2>Spot the mistake <span class="zh">找错误</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Each set of hypotheses has a mistake. Circle it and fix it.</p><div class="q"><b class="n">1</b>H₀: p̂ = 0.4, Hₐ: p̂ &gt; 0.4</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">1. Uses the statistic p̂ — must use the <b>parameter p</b>.</div></div><div class="q"><b class="n">2</b>H₀: p &gt; 0.25, Hₐ: p = 0.25</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">2. Reversed — equality belongs in H₀: H₀: p = 0.25, Hₐ: p &gt; 0.25.</div></div><div class="q"><b class="n">3</b>H₀: p = 0.6, Hₐ: p ≥ 0.6</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">3. Hₐ must be strict: Hₐ: p &gt; 0.6 (or ≠ / &lt;).</div></div><div class="q"><b class="n">4</b>A sample of 200 gives p̂ = 0.58, so we test H₀: p = 0.58, Hₐ: p ≠ 0.58.</div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">4. The null value must come from the <b>claim</b>, not from the data.</div></div></div><div class="keyidea">🔑 Hypotheses: parameter, equality in H₀, strict inequality in Hₐ.</div></div></div><div class="col vis"><svg id="smSol" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 5 · CED Sample Activity 3.12/3.14</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 3.6" data-sec="1" data-title="§ 3.6 p-Values &amp;amp; Decisions">
+<div class="tag">Topic</div><div class="num">3.6</div><h1>p-Values &amp; Decisions</h1><div class="zhT">p 值与决策</div><div class="eks"><span>3.6.A p-value</span><span>3.7.B Significance level α</span><span>Reject / fail to reject</span></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.6.A。解释模板：Assuming H₀ (p = p₀) is true, there is a ___ probability of getting a sample proportion of ___ or less/more just by chance in a random sample of n …" data-title="The p-Value">
+<div class="tag">3.6 <b>· Key Concepts</b><span class="ek">EK 3.6.A.1–5</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>The p-Value <span class="zh">p 值</span></h2><div class="concept"><div class="term">Null distribution<span class="zh">零分布</span></div><div class="en">Assuming H₀ is true, the test statistic has a probability distribution called the <strong>null distribution</strong> (simulated or a normal model).</div><div class="cn">假设 H₀ 为真时检验统计量的分布叫<b>零分布</b>（可模拟或用正态模型）。</div></div><div class="concept pink"><div class="term">p-value<span class="zh">p 值</span></div><div class="en">The <strong>p-value</strong> is the probability of getting a statistic <strong>as extreme as or more extreme than</strong> the observed one (in the direction of Hₐ), <strong>assuming H₀ is true</strong>. For ≠: count both tails.</div><div class="cn"><b>p 值</b>：假设 H₀ 为真，得到与观测值一样极端或更极端（按 Hₐ 方向）的统计量的概率。双侧检验算两尾。</div></div><div class="concept"><div class="term">Small vs. large<span class="zh">小与大</span></div><div class="en"><strong>Small</strong> p-value → the result would be unusual if H₀ were true → evidence for Hₐ. <strong>Not small</strong> → not unusual → no convincing evidence for Hₐ — and <strong>no evidence that H₀ is true</strong>.</div><div class="cn">p 值<b>小</b> → 若 H₀ 为真结果很少见 → 支持 Hₐ 的证据。p 值<b>不小</b> → 没有充分证据支持 Hₐ，也不是 H₀ 为真的证据。</div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Interpret the p-value">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.6.A.3</span></div>
+<h2>Interpret the p-value <span class="zh">解释 p 值</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>For the free-throw shooter (H₀: p = 0.80, Hₐ: p &lt; 0.80), the p-value is about 0.0075.</p><div class="q"><b class="n">a</b>Interpret the p-value.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">“Assuming the player really makes 80% of his free throws in the long run, there is about a 0.0075 probability of making <b>32 or fewer</b> of 50 shots just by chance.”</div></div><div class="q"><b class="n">b</b>A student writes: “There is a 0.0075 probability that the player is an 80% shooter.” What is wrong?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">The p-value is not the probability that H₀ is true. It is calculated <b>assuming</b> H₀ is true: P(data this extreme | H₀), not P(H₀ | data).</div></div></div><div class="keyidea">🔑 The p-value assumes H₀ is true.</div><div class="takeaway">💡 p-value = P(result this extreme or more | H₀ true).</div></div></div><div class="col vis"><div class="qv"><svg id="ipQ" viewbox="0 0 560 200" width="100%"></svg></div><div class="sv"><svg id="ipSol" viewbox="0 0 560 220" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Two-sided p-value">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.6.A.1.iii · 3.6.A.2.iii</span></div>
+<h2>Two-sided p-value <span class="zh">双侧 p 值</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Test H₀: p = 0.5 vs. Hₐ: p ≠ 0.5 with a random sample of 40 people. The dotplot shows p̂ for 200 simulated samples assuming p = 0.5. The observed p̂ = 0.65.</p><div class="q">Which simulated values count toward the p-value? Estimate the p-value.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. 0.65 is 0.15 above 0.5, so values ≥ 0.65 and values ≤ 0.35 are at least as extreme.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Count both tails in the simulation (pink) and divide by 200.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. p-value ≈ (count in both tails) ÷ 200 = 10/200 ≈ 0.05 — borderline, not very small.</div></div></div><div class="keyidea">🔑 ≠ → count BOTH tails: as far from 0.5 as 0.65 is.</div></div></div><div class="col vis"><div class="qv"><svg id="tsQ" viewbox="0 0 560 250" width="100%"></svg></div><div class="sv"><svg id="tsSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.7.B。" data-title="Significance Level and Decisions">
+<div class="tag">3.7.B <b>· Key Concepts</b><span class="ek">EK 3.7.B.1–4, 6</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Significance Level and Decisions <span class="zh">显著性水平与决策</span></h2><div class="concept"><div class="term">Significance level α<span class="zh">显著性水平 α</span></div><div class="en">The <strong>significance level α</strong> is the predetermined probability of rejecting H₀ when it is true (often 0.05). Set it before collecting data.</div><div class="cn"><b>显著性水平 α</b>：H₀ 为真时拒绝 H₀ 的事先设定的概率（常用 0.05），在收集数据前确定。</div></div><div class="concept pink"><div class="term">Decision<span class="zh">决策</span></div><div class="en"><strong>p-value ≤ α</strong> → reject H₀: convincing evidence for Hₐ (statistically significant). <strong>p-value &gt; α</strong> → <strong>fail to reject H₀</strong>: not convincing evidence for Hₐ. We never “accept” or “prove” H₀. Conclude in context, in terms of <strong>Hₐ</strong>.</div><div class="cn">p ≤ α → <b>拒绝 H₀</b>，有充分证据支持 Hₐ（统计显著）。p &gt; α → <b>不拒绝 H₀</b>。永远不说“接受”或“证明”H₀；结论结合语境、用 Hₐ 的语言。</div></div><div class="tmpl">“Because the p-value of <u>0.0075</u> &lt; α = <u>0.05</u>, we <u>reject H₀</u>. There is convincing evidence that <u>the true proportion of free throws the player makes is less than 0.80</u>.”</div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Reject or fail to reject?">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.7.B</span></div>
+<h2>Reject or fail to reject? <span class="zh">拒绝还是不拒绝？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Write a decision and conclusion for each.</p><div class="q"><b class="n">a</b>Potatoes: H₀: p = 0.08, Hₐ: p &gt; 0.08, α = 0.05, p-value = 0.124.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">a. 0.124 &gt; 0.05 → <b>fail to reject H₀</b>. There is not convincing evidence that more than 8% of the potatoes in the shipment have blemishes. (The truck is accepted.)</div></div><div class="q"><b class="n">b</b>Taeyeon: H₀: p = 0.68, Hₐ: p ≠ 0.68, α = 0.05, p-value = 0.036.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">b. 0.036 ≤ 0.05 → reject H₀. There is convincing evidence that the true proportion of students at Taeyeon’s school who have never smoked differs from 0.68.</div></div><div class="q"><b class="n">c</b>Same as (b) but α = 0.01.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">c. 0.036 &gt; 0.01 → <b>fail to reject H₀</b> — the same data give a different decision at a stricter α.</div></div></div><div class="keyidea">🔑 p ≤ α → reject; p &gt; α → fail to reject.</div></div></div><div class="col vis"><svg id="rjSol" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 5 · TPS 9.2</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 3.8" data-sec="1" data-title="§ 3.8 Potential Errors When Performing Tests">
+<div class="tag">Topic</div><div class="num">3.8</div><h1>Potential Errors When Performing Tests</h1><div class="zhT">检验中可能的错误</div><div class="eks">3.8.A Type I &amp; Type II<span>3.8.B P(Type I) = α</span><span>3.8.D Consequences</span></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.8.A–B。" data-title="Type I and Type II Errors">
+<div class="tag">3.8 <b>· Key Concepts</b><span class="ek">EK 3.8.A.1–2 · 3.8.B.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Type I and Type II Errors <span class="zh">第一类与第二类错误</span></h2><div class="concept pink"><div class="term">Type I error<span class="zh">第一类错误</span></div><div class="en">Finding convincing evidence that Hₐ is true (rejecting H₀) when it isn’t — a “false alarm”. P(Type I error) = α.</div><div class="cn">H₀ 实际为真却拒绝了它（“误报”）。P(第一类错误) = α。</div></div><div class="concept pink"><div class="term">Type II error<span class="zh">第二类错误</span></div><div class="en">Not finding convincing evidence that Hₐ is true (failing to reject H₀) when it is — a “missed detection”.</div><div class="cn">Hₐ 实际为真却没有拒绝 H₀（“漏报”）。</div></div><table class="tw" style="margin-top:6px;width:100%;font-size:16px"><thead><tr><th>Decision ↓ · Truth →</th><th>H₀ true</th><th>Hₐ true</th></tr></thead><tbody><tr><th class="rh">Reject H₀</th><td style="background:var(--pink-3);font-weight:800">Type I error (prob. α)</td><td>✓ correct (power)</td></tr><tr><th class="rh">Fail to reject H₀</th><td>✓ correct</td><td style="background:#FBEFD2;font-weight:800">Type II error</td></tr></tbody></table><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Potato errors">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.8.A · 3.8.D</span></div>
+<h2>Potato errors <span class="zh">土豆检验的两类错误</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Potato-chip producer: H₀: p = 0.08, Hₐ: p &gt; 0.08, where p = the true proportion of potatoes in the truckload with blemishes. If H₀ is rejected, the truck is sent back.</p><div class="q">Describe a Type I error and a Type II error in context, and give a possible consequence of each.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Type I: the true proportion is 0.08, but the producer finds convincing evidence that it is more than 0.08.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Consequence: a <b>good</b> truckload is sent back — wasted time, lost money for the supplier.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Type II: the true proportion is greater than 0.08, but the producer does not find convincing evidence of this.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. Consequence: chips are made with <b>too many blemished</b> potatoes — unhappy customers, lower sales.</div></div></div><div class="keyidea">🔑 Type I: reject a true H₀. Type II: fail to reject a false H₀.</div></div></div><div class="col vis"><div class="qv"><svg id="peQ" viewbox="0 0 560 190" width="100%"></svg></div><div class="sv"><svg id="peSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 3 · Lesson 5 · TPS 9.1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 3.8.D.1–2；样本量与第二类错误的关系在下节课（power）。" data-title="Choosing α: Consequences Matter">
+<div class="tag">3.8.D <b>· Key Concept</b><span class="ek">EK 3.8.D.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Choosing α: Consequences Matter <span class="zh">根据后果选择 α</span></h2><div class="concept pink"><div class="term">Which error is worse?<span class="zh">哪种错误更严重？</span></div><div class="en">In some studies a Type I error is more serious; in others a Type II error is. Consider the consequences before the study. If a Type I error is very costly → choose a <strong>smaller α</strong> (e.g., 0.01). If a Type II error is very costly → a larger α (e.g., 0.10) or a larger sample.</div><div class="cn">有时第一类错误更严重，有时第二类更严重。研究前考虑后果：第一类错误代价大 → 选<b>更小的 α</b>；第二类错误代价大 → 选较大的 α 或增大样本。</div></div><svg id="alSvg" viewbox="0 0 1100 150" width="100%"></svg><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: Which error is worse?">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 3.8.D · Skill 4.D</span></div>
+<h2>Which error is worse? <span class="zh">哪种错误更糟？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A new rapid test is used at an airport. H₀: the passenger does not carry a dangerous item; Hₐ: the passenger carries a dangerous item. Rejecting H₀ means the bag is searched by hand.</p><div class="q"><b class="n">a</b>Describe a Type I and a Type II error.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Type I: a safe passenger’s bag is searched (delay, annoyance). Type II: a dangerous item is not detected.</div></div><div class="q"><b class="n">b</b>Which is more serious? Should α be large or small?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. A Type II error is far more serious here.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. To make Type II errors less likely, use a <b>larger α</b> (search more bags) — accepting more false alarms.</div></div></div><div class="keyidea">🔑 Think about real-world consequences.</div></div></div><div class="col vis"><svg id="apSol" viewbox="0 0 560 200" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="" data-title="The courtroom analogy 法庭类比">
+<div class="tag">Bonus · Intuition<span class="ek">TPS 9.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>A significance test is like a trial <span class="zh">检验就像审判</span></h2>
+<table class="tw" style="width:100%;margin-top:12px;font-size:17px"><thead><tr><th>Trial ⚖️</th><th>Significance test 📊</th></tr></thead><tbody>
+<tr><td>Defendant is presumed innocent</td><td>Assume H₀ is true</td></tr><tr><td>Prosecutor tries to prove <b>guilty</b></td><td>Look for evidence for <b>Hₐ</b></td></tr>
+<tr><td>“How likely is this evidence if innocent?”</td><td><b>p-value</b> = P(data this extreme | H₀)</td></tr><tr><td>“Beyond reasonable doubt” threshold</td><td>Significance level α</td></tr>
+<tr><td>Verdict: <b>guilty</b> or <b>not guilty</b> (never “innocent”)</td><td>Reject H₀ or <b>fail to reject H₀</b> (never “accept H₀”)</td></tr>
+<tr><td>Convicting an innocent person</td><td>Type I error</td></tr><tr><td>Letting a guilty person go free</td><td>Type II error</td></tr></tbody></table>
+<p class="zh muted small" style="margin-top:8px">无罪推定 = 假设 H₀；“不能证明有罪” ≠ “证明无罪”。</p><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Meaning of the p-value">
+<div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.6.A.3</span></div>
+<h2>Meaning of the p-value</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A test of H₀: p = 0.30 vs. Hₐ: p &gt; 0.30 gives p̂ = 0.36 and a p-value of 0.04. Which is the correct interpretation of the p-value?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) There is a 4% chance that H₀ is true.</li><li>(B) There is a 4% chance that p = 0.36.</li><li>(C) Assuming p = 0.30, there is a 4% chance of getting a sample proportion of 0.36 or more by chance.</li><li>(D) There is a 96% chance that Hₐ is true.</li><li>(E) 4% of samples will give p̂ = 0.36.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">The p-value is computed <b>assuming H₀ is true</b> and refers to results <b>at least as extreme</b> as observed → (C).</p><p style="margin:3px 0">(A) and (D) treat the p-value as the probability of a hypothesis — a classic error.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 10: Fail to reject">
+<div class="exhead"><span class="badge ex">📝 AP Practice 10 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.7.B.2–4</span></div>
+<h2>Fail to reject</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A test at α = 0.05 gives a p-value of 0.21. Which conclusion is correct?</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) Accept H₀; the null hypothesis is true.</li><li>(B) Reject H₀; there is convincing evidence for Hₐ.</li><li>(C) Fail to reject H₀; there is not convincing evidence for Hₐ.</li><li>(D) Fail to reject H₀; we have proved H₀ is true.</li><li>(E) The result is statistically significant.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">p-value &gt; α → fail to reject H₀ → not convincing evidence for Hₐ → (C).</p><p style="margin:3px 0">Lack of evidence for Hₐ is not evidence for H₀ — (A) and (D) are wrong.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 11: Type I error">
+<div class="exhead"><span class="badge ex">📝 AP Practice 11 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.8.A.1</span></div>
+<h2>Type I error</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A school tests H₀: p = 0.60 vs. Hₐ: p &lt; 0.60, where p is the proportion of all students who are satisfied with lunch. A Type I error would occur if the school</div><ul class="opts" data-correct="0" data-quiet="1"><li>(A) concludes that fewer than 60% are satisfied when actually 60% are</li><li>(B) concludes that fewer than 60% are satisfied when that is true</li><li>(C) fails to conclude that fewer than 60% are satisfied when fewer than 60% are</li><li>(D) fails to conclude that fewer than 60% are satisfied when actually 60% are</li><li>(E) uses α = 0.05</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Reject H₀ (conclude p &lt; 0.60) when H₀ is true (p = 0.60) → (A).</p><p style="margin:3px 0">(C) is a Type II error; (B) and (D) are correct decisions.</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Probability of a Type I error">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 3.8.B.1</span></div>
+<h2>Probability of a Type I error</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A researcher uses α = 0.01. If H₀ is actually true, what is the probability that she makes a Type I error?</div><ul class="opts" data-correct="0" data-quiet="1"><li>(A) 0.01</li><li>(B) 0.05</li><li>(C) 0.99</li><li>(D) It depends on the sample size</li><li>(E) It equals the power</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">The significance level is defined as the probability of rejecting H₀ when it is true → 0.01 → (A).</p></div></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Null hypothesis H₀</th><td class="zh" style="text-align:left">零假设</td><td style="text-align:left">status quo; equality: p = p₀</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Alternative hypothesis Hₐ</th><td class="zh" style="text-align:left">备择假设</td><td style="text-align:left">what we seek evidence for: &lt;, &gt;, ≠</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">One-sided · two-sided</th><td class="zh" style="text-align:left">单侧 · 双侧</td><td style="text-align:left">&lt; or &gt; · ≠ (both tails)</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">p-value</th><td class="zh" style="text-align:left">p 值</td><td style="text-align:left">P(as or more extreme | H₀ true)</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Significance level α</th><td class="zh" style="text-align:left">显著性水平</td><td style="text-align:left">p ≤ α → reject H₀</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Fail to reject H₀</th><td class="zh" style="text-align:left">不拒绝 H₀</td><td style="text-align:left">not convincing evidence for Hₐ (never “accept”)</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Type I · Type II error</th><td class="zh" style="text-align:left">第一类 · 第二类错误</td><td style="text-align:left">reject true H₀ · fail to reject false H₀</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">3.5–3.8</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A coin-flipping app claims its virtual coin is fair. Mia suspects it lands heads <b>more</b> than half the time. In 200 flips she gets 114 heads; the p-value is 0.024. Use α = 0.05.</p><div class="q"><b class="n">1</b>State the hypotheses (define p).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">p = true proportion of all flips of the app’s coin that land heads. H₀: p = 0.5, Hₐ: p &gt; 0.5.</div></div><div class="q"><b class="n">2</b>Interpret the p-value, then give a decision and conclusion.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Assuming the coin is fair, there is a 0.024 probability of getting 57% or more heads in 200 flips by chance. 0.024 ≤ 0.05 → reject H₀: convincing evidence that the coin lands heads more than half the time.</div></div><div class="q"><b class="n">3</b>Which error could Mia have made? Describe it in context.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">She rejected H₀, so she could have made a Type I error: the coin is actually fair, but she found convincing evidence that it favors heads.</div></div></div><div class="keyidea">🔑 p̂ = 114/200 = 0.57.</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 200" width="100%"></svg></div></div><div class="foot"><span>Unit 3 · Lesson 5</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：3.7 + 3.8（TPS 9.2）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 6</div><h1>Carrying Out a Test for p · Power</h1><div class="zhT">比例的显著性检验 · 检验功效 · Topics 3.5.C, 3.7, 3.8</div><p class="muted" style="margin-top:26px;font-size:22px">Conditions, the z statistic, p-values from the normal model, the four-step test, tests vs. intervals, and power.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 3 shared helpers ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390',MINT='#2E8B6E';
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+(+v).toFixed(d)).toString();
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs,fmt){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,fmt?fmt(t):+t.toFixed(3));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function gauss(r){r=r||Math.random;const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function binom(n,p,r){r=r||Math.random;let c=0;for(let i=0;i<n;i++)if(r()<p)c++;return c;}
+/* histogram of values on an axis X with bins of width w starting at lo; returns counts */
+function histX(svg,X,vals,lo,w,B,H,col,hl){const cnt={};vals.forEach(v=>{const k=Math.floor((v-lo)/w+1e-9);cnt[k]=(cnt[k]||0)+1;});const mx=Math.max(1,...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c])=>{const a=lo+k*w;el('rect',{x:X(a)+0.5,y:B-c/mx*H,width:Math.max(1,X(a+w)-X(a)-1),height:c/mx*H,fill:hl&&hl(a,a+w)?ROSE:(col||NAVY)},svg);});return cnt;}
+/* stacked dots for discrete values */
+function dotsX(svg,X,vals,B,r,dy,colf){const cnt={};vals.forEach(v=>{const k=(+v).toFixed(4);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(+v),cy:B-r-1-(cnt[k]-1)*dy,r,fill:colf?colf(+v):NAVY},svg);});return cnt;}
+function normPath(svg,X,Y0,H,mu,sd,lo,hi,col,fill,a,b){const f=x=>Math.exp(-(((x-mu)/sd)**2)/2);
+  if(a!==undefined){const aa=Math.max(lo,a),bb=Math.min(hi,b);if(bb>aa){let d=`M${X(aa)},${Y0}`;for(let i=0;i<=100;i++){const x=aa+(bb-aa)*i/100;d+=`L${X(x)},${Y0-H*f(x)}`;}el('path',{d:d+`L${X(bb)},${Y0}Z`,fill:fill||'#F4C3D0'},svg);}}
+  let d='';for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;d+=`${i?'L':'M'}${X(x)},${Y0-H*f(x)}`;}el('path',{d,fill:'none',stroke:col||NAVY,'stroke-width':2.5},svg);}
+function zcrit(C){return invn(1-(1-C)/2);}
+/* ===== Unit 3 · Lesson 5 ===== */
+const FT=(function(){const r=srand(41);return [...Array(400)].map(()=>binom(50,0.8,r));})();
+function ftPlot(s,k,B){clear(s);const X=axis(s,40,540,B,25,50,5,'Makes in 50 free throws (400 simulated sets, p = 0.80)',11);dotsX(s,X,FT,B,2.6,5.2,v=>k>=2&&v<=32?ROSE:LAV);
+  vline(s,X(32),20,B,ROSE,'observed 32',true,'start',24);if(k>=2)lab(s,X(29),60,'only 3 of 400 ≤ 32',ROSE,'middle',14);}
+(function(){const s=$('wuQ');clear(s);for(let i=0;i<50;i++){const x=30+(i%25)*20,y=40+Math.floor(i/25)*40;el('circle',{cx:x,cy:y,r:8,fill:i<32?NAVY:'#fff',stroke:NAVY,'stroke-width':2},s);}lab(s,280,140,'32 makes (filled) out of 50 shots · claim: 80% = 40 of 50',INK,'middle',13,700);})();
+(function(){function draw(k){ftPlot($('wuSol'),k,195);}draw(0);onStep('wuSol',draw);})();
+
+/* free-throw sim */
+let ftD=[];
+function ftDraw(){const o=+$('ftO').value;$('ftOV').textContent=o;const s=$('ftSvg');clear(s);const X=axis(s,40,540,280,25,50,5,'Makes in 50 shots, assuming p = 0.80',11);
+  const cnt={};ftD.forEach(v=>{cnt[v]=(cnt[v]||0)+1;});const mx=Math.max(10,...Object.values(cnt));Object.entries(cnt).forEach(([v,c])=>el('rect',{x:X(+v)-7,y:280-c/mx*230,width:14,height:c/mx*230,fill:+v<=o?ROSE:LAV,rx:2},s));
+  vline(s,X(o),20,280,ROSE,'observed '+o,true,'start',24);const n=ftD.length,ext=ftD.filter(v=>v<=o).length;$('ftN').textContent=n;$('ftP').textContent=n?(ext/n).toFixed(4):'–';
+  $('ftMsg').innerHTML=n?`${ext} of ${n} simulated sets had ${o} or fewer makes → simulated p-value ≈ <b>${(ext/n).toFixed(3)}</b>. ${ext/n<0.05?'Very unusual if p = 0.80 → <b>convincing evidence</b> against the claim.':'Not unusual if p = 0.80 → <b>not convincing</b> evidence against the claim.'}`:'Click to simulate.';}
+function ftAdd(m){for(let i=0;i<m;i++)ftD.push(binom(50,0.8));ftDraw();}
+$('ftO').oninput=ftDraw;$('ft1').onclick=()=>ftAdd(1);$('ft100').onclick=()=>ftAdd(100);$('ftClr').onclick=()=>{ftD=[];ftDraw();};ftAdd(400);
+
+/* hypotheses */
+(function(){function draw(k){const s=$('hySol');clear(s);const rows=[['a','H₀: p = 0.68','Hₐ: p ≠ 0.68','two-sided'],['b','H₀: p = 0.08','Hₐ: p > 0.08','one-sided'],['c','H₀: p = 0.03','Hₐ: p > 0.03','one-sided'],['d','H₀: p = 0.5','Hₐ: p < 0.5','one-sided']];
+  rows.forEach(([l,h0,ha,t],i)=>{if(k<i+1)return;const y=14+i*55;box(s,8,y,36,36,PK,ROSE,l,ROSE,15);box(s,56,y,170,36,'#fff',NAVY,h0,NAVY,14);box(s,236,y,170,36,'rgba(200,87,123,.10)',ROSE,ha,ROSE,14);lab(s,418,y+23,t,t==='two-sided'?GOLDD:SLATE,'start',13);});
+  if(k===0)lab(s,280,120,'Hypotheses appear step by step →',MUTED,'middle',14,600);}draw(0);onStep('hySol',draw);})();
+(function(){function draw(k){const s=$('smSol');clear(s);const rows=[['1','p̂ → p (parameter!)'],['2','equality goes in H₀'],['3','Hₐ uses <, >, ≠ (strict)'],['4','p₀ comes from the claim, not the data']];
+  rows.forEach(([l,t],i)=>{if(k<i+1)return;const y=18+i*50;box(s,10,y,36,36,'rgba(226,182,79,.25)',GOLDD,l,GOLDD,15);lab(s,60,y+24,t,INK,'start',15,700);});if(k===0)lab(s,280,110,'Fixes appear step by step →',MUTED,'middle',14,600);}draw(0);onStep('smSol',draw);})();
+
+/* p-value interpretation */
+ftPlot($('ipQ'),2,155);
+(function(){function draw(k){const s=$('ipSol');clear(s);box(s,20,30,240,70,'rgba(46,139,110,.12)',MINT,'P(data this extreme | H₀ true)\n= p-value ✓',MINT,14);box(s,300,30,240,70,PK,ROSE,'P(H₀ true | data)\n✗ NOT the p-value',ROSE,14);
+  if(k>=1){lab(s,140,140,'assume p = 0.80 →',NAVY,'middle',13);lab(s,140,162,'how often 32 or fewer?',NAVY,'middle',13);}if(k>=2){lab(s,420,140,'H₀ is either true',ROSE,'middle',13);lab(s,420,162,'or not — not random',ROSE,'middle',13);}}draw(0);onStep('ipSol',draw);})();
+
+/* two-sided */
+const TS=(function(){const r=srand(9);return [...Array(200)].map(()=>binom(40,0.5,r)/40);})();
+function tsPlot(s,k){clear(s);const X=axis(s,40,540,200,0.2,0.8,0.1,'p̂ in 200 simulated samples (n = 40, p = 0.5)',11,v=>v.toFixed(1));dotsX(s,X,TS,200,3,6,v=>k>=2&&(v>=0.65-1e-9||v<=0.35+1e-9)?ROSE:LAV);
+  vline(s,X(0.65),20,200,ROSE,'0.65',true,'middle',18);if(k>=1)vline(s,X(0.35),20,200,ROSE,'0.35',true,'middle',18);
+  if(k>=3){const n=TS.filter(v=>v>=0.65-1e-9||v<=0.35+1e-9).length;lab(s,X(0.5),40,`both tails: ${n}/200 ≈ ${(n/200).toFixed(2)}`,ROSE,'middle',14);}}
+tsPlot($('tsQ'),0);(function(){function draw(k){tsPlot($('tsSol'),k);}draw(0);onStep('tsSol',draw);})();
+
+/* reject or fail */
+(function(){function draw(k){const s=$('rjSol');clear(s);const L=80,R=430,X=v=>L+v/0.15*(R-L);el('line',{x1:L,x2:R,y1:30,y2:30,stroke:INK},s);[0,0.01,0.05,0.10,0.15].forEach(v=>{el('line',{x1:X(v),x2:X(v),y1:26,y2:34,stroke:INK},s);lab(s,X(v),20,v,INK,'middle',11,600);});
+  const rows=[['a',0.124,0.05],['b',0.036,0.05],['c',0.036,0.01]];rows.forEach(([l,p,a],i)=>{if(k<i+1)return;const y=70+i*55;el('rect',{x:L,y:y-12,width:X(a)-L,height:24,fill:PK},s);lab(s,X(a)+4,y-16,'α = '+a,ROSE,'start',11);el('circle',{cx:X(p),cy:y,r:8,fill:p<=a?ROSE:NAVY},s);lab(s,30,y+5,l,INK,'middle',15);lab(s,550,y+5,p<=a?'reject H₀':'fail to reject',p<=a?ROSE:NAVY,'end',13);});}draw(0);onStep('rjSol',draw);})();
+
+/* potato errors */
+(function(){const s=$('peQ');clear(s);const r=srand(3);for(let i=0;i<60;i++){const x=30+(i%15)*34,y=30+Math.floor(i/15)*34;el('ellipse',{cx:x,cy:y,rx:14,ry:11,fill:'#D8B47A'},s);if(r()<0.1)el('circle',{cx:x+4,cy:y-2,r:4,fill:'#6B4A2B'},s);}lab(s,280,175,'H₀: p = 0.08   Hₐ: p > 0.08 (send the truck back)',INK,'middle',13,700);})();
+(function(){function draw(k){const s=$('peSol');clear(s);const cell=(x,y,w,h,f,st,t,tc)=>box(s,x,y,w,h,f,st,t,tc,13,6);
+  lab(s,330,18,'Truth about the truckload',INK,'middle',13);lab(s,250,40,'p = 0.08 (OK)',NAVY,'middle',12);lab(s,430,40,'p > 0.08 (bad)',NAVY,'middle',12);lab(s,80,90,'Send back',INK,'middle',12);lab(s,80,165,'Keep',INK,'middle',12);
+  cell(160,55,180,65,k>=1?PK:'#fff',ROSE,k>=2?'Type I: good truck\nsent back':'Type I',ROSE);cell(350,55,180,65,'#fff',GREY,'✓ correct',MUTED);cell(160,130,180,65,'#fff',GREY,'✓ correct',MUTED);cell(350,130,180,65,k>=3?'rgba(226,182,79,.25)':'#fff',GOLDD,k>=4?'Type II: bad chips\nreach customers':'Type II',GOLDD);}draw(0);onStep('peSol',draw);})();
+
+/* alpha trade-off */
+(function(){const s=$('alSvg');clear(s);const X=v=>40+(v+3.5)/9*1000;normPath(s,X,130,100,0,1,-3.5,3.5,NAVY,'rgba(200,87,123,.35)',1.645,3.5);normPath(s,X,130,100,2.5,1,-1,5.5,GOLDD,'rgba(226,182,79,.30)',-1,1.645);el('line',{x1:40,x2:1040,y1:130,y2:130,stroke:INK},s);
+  vline(s,X(1.645),20,130,ROSE,'cutoff',true,'middle',16);lab(s,X(0),30,'H₀ true',NAVY,'middle',13);lab(s,X(2.5),30,'Hₐ true',GOLDD,'middle',13);lab(s,X(2.3),118,'α',ROSE,'middle',15);lab(s,X(1.1),118,'Type II',GOLDD,'middle',13);
+  lab(s,X(4.8),70,'Move the cutoff right (smaller α) →',INK,'middle',13,700);lab(s,X(4.8),92,'fewer Type I, more Type II errors',INK,'middle',13,700);})();
+(function(){function draw(k){const s=$('apSol');clear(s);box(s,20,20,240,70,PK,ROSE,'Type I: safe bag searched\n(delay)',ROSE,13);box(s,300,20,240,70,'rgba(226,182,79,.25)',GOLDD,'Type II: dangerous item\nmissed',GOLDD,13);
+  if(k>=2){lab(s,420,120,'far more serious!',GOLDD,'middle',15);}if(k>=3){lab(s,280,165,'→ use a LARGER α: search more bags',NAVY,'middle',15);}}draw(0);onStep('apSol',draw);})();
+
+/* exit */
+(function(){function draw(k){const s=$('exSol');const o={B:170,label:'p̂ if p = 0.5 (n = 200)',lo:0.38,hi:0.62,ticks:[0.4,0.45,0.5,0.55,0.6]};if(k>=2){o.a=0.57;o.b=0.62;}const r=ncurve(s,0.5,0.0354,o);vline(s,r.X(0.57),30,170,ROSE,'p̂ = 0.57',true,'start',34);if(k>=2)lab(s,r.X(0.6),120,'0.024',ROSE,'middle',14);}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

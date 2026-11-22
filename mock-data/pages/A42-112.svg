@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="290.759 295.3184 299.87779">110</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<path d="M90 72H505.3V96.1H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question22</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-734.45" x="264.6">1</tspan><tspan y="-714.53" x="261.6 268.0797">𝑐𝑥</tspan></text>
+<path transform="matrix(1,0,0,1,261.6,114.12)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H13.8"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-723.891" x="279.359">=</tspan><tspan y="-734.45" x="297.72">𝑥</tspan><tspan y="-714.53" x="293.64 301.44">96</tspan></text>
+<path transform="matrix(1,0,0,1,293.76,114.12)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H15.48"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-723.891" x="312.24">+</tspan><tspan y="-734.45" x="325.91999">1</tspan><tspan y="-714.53" x="326.63999">𝑐</tspan></text>
+<path transform="matrix(1,0,0,1,325.92,114.12)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H7.8"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-693.17" x="90 94.67865 107.64 111.5994 118.55881 130.68 137.75969 141.59954 148.67923 154.79878 167.759 173.99886 181.07855 188.03795 194.2778 198.11765 202.07704 209.03644 215.99584">Inthegivenequation,</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-693.17" x="225.48001">c</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-693.17" x="237.72002 241.67942 253.08002 265.2 271.43986 278.51954 285.4789 290.87895 294.83836 301.0782 308.03758 311.8774 321.359 326.03767 336.72 340.6794 347.6388 359.759 365.99885 373.07853 380.0379 386.27775 390.11759 394.077 401.03639 414 421.07969 427.31953 438.6 444.83985 451.91954 458.03907 464.2789 468.2383 472.07817 485.04 492.1197 499.07908">isaconstant.Iftheequationhasexactlyone</tspan><tspan y="-669.05" x="90 95.51956 102.478969 106.43837 113.39777 117.237628 121.19703 128.15644 135.11583 142.08 152.1597 159.2394 165.47925 172.8 176.7594 185.64 189.5994 196.55879 206.28 213.3597 219.47925 223.43865 230.39804 240 247.0797">solution,whatisthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-669.05" x="255.24">c</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-669.05" x="261.48">?</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

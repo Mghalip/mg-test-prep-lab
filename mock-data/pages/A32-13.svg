@@ -1,0 +1,388 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M84.6 121.45H157.45V204.7H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M157.4 121.45H237.54999V204.7H157.4Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M237.5 121.45H292.35V204.7H237.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M292.3 121.45H353.84999V204.7H292.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M353.8 121.45H416V204.7H353.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M415.95 121.45H504.05003V204.7H415.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M84.6 204.7H157.45V246.54999H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M157.4 204.7H237.54999V246.54999H157.4Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M237.5 204.7H292.35V246.54999H237.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M292.3 204.7H353.84999V246.54999H292.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M353.8 204.7H416V246.54999H353.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M415.95 204.7H504.05003V246.54999H415.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M84.6 246.6H157.45V288.45H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M157.4 246.6H237.54999V288.45H157.4Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M237.5 246.6H292.35V288.45H237.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M292.3 246.6H353.84999V288.45H292.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M353.8 246.6H416V288.45H353.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M415.95 246.6H504.05003V288.45H415.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M84.6 288.5H157.45V330.35H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M157.4 288.5H237.54999V330.35H157.4Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M237.5 288.5H292.35V330.35H237.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M292.3 288.5H353.84999V330.35H292.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M353.8 288.5H416V330.35H353.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M415.95 288.5H504.05003V330.35H415.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M84.6 330.4H157.45V372.8H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M157.4 330.4H237.54999V372.8H157.4Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_58">
+<path d="M237.5 330.4H292.35V372.8H237.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_59">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_60">
+<path d="M292.3 330.4H353.84999V372.8H292.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_61">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_62">
+<path d="M353.8 330.4H416V372.8H353.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_63">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_64">
+<path d="M415.95 330.4H504.05003V372.8H415.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_65">
+<path d="M74 119.85H514.6V374.45H74Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_66">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">11</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 153.359">Question11</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-734.57" x="135.959 144.59885 149.87854 153.83794 159.23793 165.23793 169.91764 173.27704 179.27704 187.559 195.47856 200.87856 206.87856 212.15825 218.15825 221.51766 227.51766 234.6 239.8797 245.8797 255 263.03987 268.31959 274.31959 278.279 284.279 290.279 296.279 301.55873 304.91813 308.27754 314.27754 322.32 329.39973 333.23957 338.5193 341.8787 345.2381 352.92 358.92 366 372.71955 377.99928 381.35868 386.6384 391.91813 398.28 406.19956 409.55897 413.51838 422.64 429.35957 435.35957 440.63929 445.919 449.2784 454.55815">DefensiveBehaviorandReproductiveTraitsofSelectBirdSpecies</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-431.81" x="90.00003 94.67868 107.04003 113.27988 125.64003 131.87989 138.95958 142.79943 149.03928 155.99868 161.51824 165.35808 172.31748 183.95903 188.63768 194.87754 201.83693 205.79633 212.03618 227.52004 234.59973 244.55904 250.79889 257.87858 261.7184 267.11845 271.07786 274.9177 281.99739 294.24006 298.19947 302.0393 305.99873 312.23857 316.79795 323.03779 326.9972 333.95658 338.63523 344.87507 353.75907 362.28007 368.52006 375.59974 387.12007 394.19975 405.84007 413.64006 418.3187 424.55854 435.23823 442.3179 449.39759 461.75907 467.9989 475.07859 487.44007 494.39945 500.63929">Inanextensivereviewofexistingliterature,L&#x00e9;nadeFramondandher</tspan><tspan y="-407.691" x="90.00006 93.959468 100.19931 106.31886 125.64006 131.87992 138.11977 141.95961 148.19947 152.15886 159.11826 166.07765 172.3175 187.80007 191.63991 198.7196 213.24007 220.31977 224.99842 231.11797 238.19766 244.43752 248.27736 254.51721 261.4766 267.71644 282.35908 289.43876 302.52009 309.59977 314.2784 321.2378 328.19718 334.437 341.3964 346.07505 356.15476 360.11418 367.07356 382.55909 389.63877 393.4786 398.99818 405.95756 409.7974 416.03724 423.0001 436.9191 451.68009 458.75978 464.8793 469.55796 475.7978 482.75718 488.27674 492.11659 499.07597">teamcatalogedtheprevalenceofbroken-wingdisplay&#x2014;adefensive</tspan><tspan y="-383.57" x="90.00006 97.07976 103.3196 110.27901 116.51885 123.47826 127.31811 134.39781 146.28006 153.35976 160.31916 165.71916 171.95902 176.63767 183.59706 189.83692 204.00006 207.95946 222.24007 231.59737 238.55677 244.79662 249.47527 255.71512 262.6745 267.35316 271.193 278.27268 290.88008 296.39964 302.63948 313.31916 317.27857 324.35826 330.59809 334.43794 345.2379 351.47776 355.43717 362.51686 375.12007 379.7987 385.31828 391.5581 402.2378 406.1972 413.2769 419.51673 423.35658 434.15657 440.3964 444.3558 450.59565 464.88008 471.95976 475.7996 482.75898 489.83866 495.9582 500.63685">behaviorobservedinCharadriussemipalmatus(semipalmatedplover)</tspan><tspan y="-359.45" x="90.00006 96.23991 103.3196 116.04006 126.84006 133.07991 140.1596 153.00006 159.95946 163.91886 170.87825 177.1181 187.55907 193.07863 200.03803 206.27788 212.51773 216.35758 222.59743 228.00006 241.92006 245.87946 252.83885 257.51753 264.4769 271.55659 278.51597 285.47535 292.55503 299.5144 309.24006 313.19947 320.15885 331.44007 340.67994 347.6393 353.75886 364.91908 371.1589 375.11833 381.23786 386.75743 392.15745 401.52009 411.5998 418.67948 424.9193 431.8787 442.67869 448.91853 455.9982 459.83805 466.07789 470.0373 473.87715 480.83653 493.55909 500.63877">andmanyotherspecies&#x2014;throughouttheAvesclass.Documentationof</tspan><tspan y="-335.21003" x="90.00006 93.959468 100.91887 111.24006 118.319759 122.15961 127.67917 134.63857 138.47841 144.71826 155.88007 159.83946 171.00006 177.95946 185.03916 196.08007 201.59963 208.55902 214.79888 221.03873 224.87857 231.11843 240.72006 246.95992 253.19977 257.87843 264.8378 270.23783 279.84007 286.91975 298.08006 302.7587 308.99855 319.79853 323.75794 327.59779 331.5572 337.79704 347.40007 352.80009 359.87977 366.83915 373.79853 380.03837 385.55793 389.39778 399.00007 402.8399 409.9196 420.24006 427.31974 433.55958 440.51896 446.7588 453.71818 457.558 464.6377 473.40007 477.35948 481.1993 488.279 494.39854 498.35795">thedisplayin285speciesacross52familiessuggeststhebehaviorlikely</tspan><tspan y="-311.09104" x="90.00006 96.23991 103.3196 110.27901 114.11886 121.198558 127.31811 140.52007 144.47946 151.43886 158.51856 164.6381 171.7178 177.83736 184.91706 191.87645 198.1163 205.0757 209.0351 212.87494 226.20008 237.00008 244.07978 248.03917 251.87902 255.71886 262.79856 266.6384 279.1201 283.0795 286.91935 297.71934 303.95918 309.47874 319.20008 326.27976 330.9584 337.9178 348.71778 355.79747 359.75688 363.5967 370.5561 383.7591 387.7185 394.6779 407.1591 411.1185 417.35835 423.47789 440.64009 444.5995 457.80009 464.03993 471.1196 478.07899 483.479 487.43843 494.3978 500.63764">evolvedindependentlymultipletimes,promptingtheteamtoconsider</tspan><tspan y="-286.97004" x="90.00006 96.23991 102.47975 109.439159 113.39856 120.35796 127.31737 131.27677 137.51662 143.63617 152.28006 158.51992 165.59961 177.35906 181.31845 185.1583 189.83695 196.0768 200.75545 207.71485 211.55469 217.07425 220.9141 227.99379 232.55318 244.32006 250.5599 257.6396 263.75914 268.43778 274.6776 280.91746 284.7573 290.99714 295.67579 299.51564 305.0352 308.87504 312.83445 318.95399 329.28007 339.35978 343.31919 347.15904 358.91908 365.99876 372.8386 379.91828 386.99797 390.8378 397.91749 404.03703 409.55659 413.39643 419.63627 425.8761 437.64009 443.8799 449.39949 454.7995 461.75889 467.99873 471.95814 478.07768 482.03709 485.87693 492.9566 499.916">ecologicalandlife-historycharacteristicswithhypothesizedassociations</tspan><tspan y="-262.85005" x="90.00009 93.959499 108.95909 112.918498 119.8779 134.28009 141.35979 147.47934 154.55904 160.67859 167.75829 171.59813 178.67783 183.23722 185.75676 199.3201 205.55995 216.35996 222.59981 227.1592 234.11859 240.35845 247.31784 253.5577 259.79753 271.3201 275.2795 282.2389 288.47874 292.31858 299.39826 306.35765 310.31706 317.27644 332.4001 336.23994 340.91859 347.15843 351.11784 354.95768 368.52009 373.19874 379.43858 383.2784 389.51826 393.47767 399.5972 414.7201 418.6795 433.80009 438.47874 444.71858 451.67796 456.3566 463.31599 470.39567 477.35505 483.59489 487.43473 491.39414 498.35353">tothebehavior'semergence,includingtraitsrelatedtoreproduction</tspan><tspan y="-238.61003" x="90.00006 93.959468 100.91887 107.998569 114.11812 119.63768 123.47753 134.27753 140.51738 147.59708 154.92008 161.15993 168.11933 178.55908 183.23773 190.31743 194.15727 201.11667 205.79532 215.52008 220.19873 226.43859 233.39798 238.07663 245.15633 252.11573 259.0751 265.31495 269.27436 273.1142 280.07359 290.64009 297.59947 304.67915 308.51899 314.75883 321.7182 325.6776 329.51747 335.7573 339.60008 343.4399 350.5196 357.47898 364.43836 371.51805">investmentandfuturereproductionpotential:_____</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<g clip-path="url(#clip_6)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-688.13" x="98.04 104.75956 110.03926 113.39866 118.67836 124.67836 128.03777 131.39717 135.35657 138.71598">Scientific</tspan><tspan y="-667.491" x="108 114 119.2797 128.6391">name</tspan></text>
+</g>
+</g>
+</g>
+<g clip-path="url(#clip_7)">
+<g clip-path="url(#clip_8)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-688.13" x="175.08 183.11986 189.11986 198.47927 207.83867 213.83867">Common</tspan><tspan y="-667.491" x="184.44 190.44 195.7197 205.0791">name</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_9)">
+<g clip-path="url(#clip_10)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-708.77" x="242.88 249.59957 254.87926 258.83866 262.79808 268.79808 272.75749 282.11689">Performs</tspan><tspan y="-688.13" x="246.24 252.24 256.1994 262.1994 268.1994 273.47914 279.47914">broken-</tspan><tspan y="-667.37" x="252.84001 261.47984 264.83924 270.83924">wing</tspan><tspan y="-646.73" x="244.92002 250.92002 254.27942 258.9591 264.9591 268.3185 273.59825 279.35765">display?</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_11)">
+<g clip-path="url(#clip_12)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-698.45" x="299.52 306.72 312.12004 318.12004 324.12004 327.47944 336.47999 342.47999">Lengthof</tspan><tspan y="-677.81" x="297.71998 301.07939 307.07939 312.3591 318.3591 324.3591 329.63883 332.99824 336.35765 342.35765">incubation</tspan><tspan y="-657.05" x="308.03999 311.9994 317.9994 323.2791 329.1588 333.9588">(days)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_13)">
+<g clip-path="url(#clip_14)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-688.13" x="359.159 362.99885 369.11839 374.3981 380.3981 386.3981 391.79814 395.15754 398.51695 404.51695">Incubation</tspan><tspan y="-667.491" x="374.159 380.159 386.159 389.5184">duty</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_15)">
+<g clip-path="url(#clip_16)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-708.77" x="435 445.6797 450.9594 456.9594 460.31883 469.67823 475.67823">Maximum</tspan><tspan y="-688.13" x="435.12 441.12 447.12 456.4794 462.4794 467.75914 474.84 480.84">numberof</tspan><tspan y="-667.37" x="434.4 440.4 444.3594 450.3594 456.3594 462.3594 470.03999 476.03999 481.3197">broodsper</tspan><tspan y="-646.73" x="449.63999 455.39939 460.7994 466.19944">year</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_17)">
+<g clip-path="url(#clip_18)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-style="italic"><tspan y="-625.491" x="90 96 101.2797 104.6391 110.6391 116.6391 122.6391 128.6391 134.6391">Setophaga</tspan><tspan y="-604.85006" x="90 95.2797 101.2797 106.5594 111.239109 117.239109 120.5985 125.878208 130.5579 135.9579 141.2376 147.2376">caerulescens</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_19)">
+<g clip-path="url(#clip_20)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-625.491" x="162.84 168.84 172.1994 177.4791 182.75879 188.75879 192.71819 196.07759 202.07759 206.03699 212.03699 217.31668 220.67609 226.07608">black-throated</tspan><tspan y="-604.85006" x="167.28 173.28 176.6394 182.6394 190.92 199.55985 204.83954 208.79894 214.79894 218.15834 223.55834">bluewarbler</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_21)">
+<g clip-path="url(#clip_22)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-615.17" x="256.2 263.7594 269.03913">Yes</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_23)">
+<g clip-path="url(#clip_24)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-615.17" x="317.04 323.04">13</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_25)">
+<g clip-path="url(#clip_26)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-615.17" x="365.4 374.4 380.4 385.67973 389.63914 394.91886 400.91886">1parent</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_27)">
+<g clip-path="url(#clip_28)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-615.17" x="456.959">3</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_29)">
+<g clip-path="url(#clip_30)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-style="italic"><tspan y="-583.61" x="90 96 102 108 111.3594 117.3594 120.718799">Spatula</tspan><tspan y="-562.97" x="90 95.2797 100.5594 106.5594 112.5594 118.5594 124.5594 127.9188 133.1985 137.8782">cyanoptera</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_31)">
+<g clip-path="url(#clip_32)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="163.559 168.8387 172.1981 178.1981 184.1981 189.4778 198.8372 204.8372 213.84001 217.19942 222.47911 227.7588">cinnamonteal</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_33)">
+<g clip-path="url(#clip_34)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="257.52 266.15983">No</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_35)">
+<g clip-path="url(#clip_36)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="317.04 323.04">25</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_37)">
+<g clip-path="url(#clip_38)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="365.4 374.4 380.4 385.67973 389.63914 394.91886 400.91886">1parent</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_39)">
+<g clip-path="url(#clip_40)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="456.959">1</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_41)">
+<g clip-path="url(#clip_42)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-style="italic"><tspan y="-541.731" x="90 98.63985 104.63985 109.91955 118.559398 124.559398 127.91879 133.9188 139.9188 145.9188">Haematopus</tspan><tspan y="-521.091" x="90 96 100.6797 104.0391 108.7188 114.7188 118.0782 123.3579 129.35791 135.35791">ostralegus</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_43)">
+<g clip-path="url(#clip_44)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-541.731" x="176.4 183.72 189.72 193.6794 198.95909 203.6388 206.9982 212.2779">Eurasian</tspan><tspan y="-521.091" x="165.48 171.48 177.2394 182.0394 185.3988 190.6785 194.7582 200.03789 205.31758 208.67699 214.07698 220.07698 225.35668">oystercatcher</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_45)">
+<g clip-path="url(#clip_46)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-531.41" x="257.52 266.15983">No</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_47)">
+<g clip-path="url(#clip_48)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-531.41" x="317.04 323.04">28</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_49)">
+<g clip-path="url(#clip_50)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-531.41" x="363 372 378 383.27973 387.23915 392.63917 398.63917 401.99858">2parents</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_51)">
+<g clip-path="url(#clip_52)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-531.41" x="456.959">1</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_53)">
+<g clip-path="url(#clip_54)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman" font-style="italic"><tspan y="-499.85" x="90 96.71955 101.99925 107.99925 113.99925 117.35865 123.35865">Zenaida</tspan><tspan y="-479.21003" x="90 98.63985 104.63985 109.91955 114.359409 120.239109 126.239109 130.91881">macroura</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_55)">
+<g clip-path="url(#clip_56)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-499.85" x="174.12 183.4794 189.4794 195.4794 199.4388 205.4388 208.7982 214.7982">mourning</tspan><tspan y="-479.21003" x="185.759 191.759 197.759 203.759">dove</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_57)">
+<g clip-path="url(#clip_58)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-489.53" x="256.2 263.7594 269.03913">Yes</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_59)">
+<g clip-path="url(#clip_60)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-489.53" x="317.04 323.04">15</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_61)">
+<g clip-path="url(#clip_62)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-489.53" x="363 372 378 383.27973 387.23915 392.63917 398.63917 401.99858">2parents</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_63)">
+<g clip-path="url(#clip_64)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-489.53" x="456.959">7</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_65)">
+<path transform="matrix(1,0,0,1,84.36,121.69)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H419.88"/>
+<path transform="matrix(1,0,0,1,84.36,204.99)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H419.88"/>
+<path transform="matrix(1,0,0,1,84.36,246.89)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H419.88"/>
+<path transform="matrix(1,0,0,1,84.36,288.79)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H419.88"/>
+<path transform="matrix(1,0,0,1,84.36,330.69)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H419.88"/>
+<path transform="matrix(1,0,0,1,84.36,372.59)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H419.88"/>
+<path transform="matrix(1,0,0,1,84.6,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+<path transform="matrix(1,0,0,1,157.4,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+<path transform="matrix(1,0,0,1,237.5,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+<path transform="matrix(1,0,0,1,292.3,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+<path transform="matrix(1,0,0,1,353.8,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+<path transform="matrix(1,0,0,1,415.95,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+<path transform="matrix(1,0,0,1,504,121.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V250.9"/>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_66)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

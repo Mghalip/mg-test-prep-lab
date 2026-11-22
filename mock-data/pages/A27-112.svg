@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="290.759 295.3184 299.87779">110</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question19</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="89.99999 98.51955 105.59924 116.758998 122.99884 130.07854 137.03794 143.99733 151.07703 157.19658 164.27628 168.11612 171.95597 178.19582 187.08 191.75865 198.83835 205.79775 212.0376 215.87744 219.83684 226.79624 238.8 248.40001 252.3594 262.80003 269.8797 276.11955 280.67893 284.63835 291.59773 297.83757 309.84004 316.7994">Theexponentialfunctionfisdefinedby</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-732.64999" x="332.28004 339.959 345.84004 353.28004 362.75975 377.28004 385.08003">𝑓(𝑥)=𝑎𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-737.691" x="392.64">𝑥</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="399.959 408.48 418.55973 425.6394 431.87925 436.5579">,where</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-732.52999" x="451.2">𝑎</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="468.959 475.19886 482.27854">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-732.64999" x="497.759">𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-704.44998" x="90 96.239849 100.918498 111.24 118.319698 125.2791 130.79866 134.6385 138.47835 142.43775 149.39714 159.72 165.95986 173.03955 179.99895 185.39896 189.35836 195.5982 202.5576 206.39745 211.917 219.48 224.15865">arepositiveconstants.If</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-704.44998" x="236.51999 244.19998 249.95899 261.12 274.8 282.59999 292.07969 306.59999 314.39997 320.15898 328.19996 336.95936">𝑓(𝑛&#x2212;1)=𝑓(𝑛)+</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-712.6099" x="353.51997 359.03953">82</tspan><tspan y="-697.4909" x="350.63996 356.15953 361.67909">100</tspan></text>
+<path transform="matrix(1,0,0,1,350.76,133.44)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H16.56"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-704.45" x="372.72 380.4 386.28 400.559 414.12 421.91999">𝑓(𝑛&#x2212;1)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-704.45" x="428.4 435.95899 446.0387 453.11839 459.35823 464.03688 474.35899 485.52 489.4794 499.08">.wherenisa</tspan><tspan y="-676.13" x="89.99997 96.239818 103.31951 110.278919 115.678928 119.63833 125.878177 132.83757 136.67742 143.63997 153.71967 160.79936 167.03922 174.35897 178.31836 187.19997 191.15937 198.11876 207.83997 214.79936 221.03922 224.99861 231.95801 241.55896 248.63866">constant,whatisthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-676.13" x="256.79997">b</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-676.13" x="263.75898">?</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-531.291" x="89.99997 100.91682 108.71681 114.95666 120.35666 125.03531 128.9947 135.9541 147.11997 154.19966">Question20</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-507.05003" x="89.99996 98.519519 105.59921 117.839969 124.07981 128.75846 134.9983 147.35897 154.43866 165.23996 177.59996 182.27861 188.51847 194.75832 198.59816 204.83802 211.79741 218.8771 225.8365 229.7959 235.91545 246.71997 251.39862 257.63847 264.59785 268.55726 275.51664 288.71998 292.67939 304.19999 308.1594 315.11878 321.3586 326.03727 332.2771 338.39665 343.9162 347.75605 354.83573 367.91899 374.1588 384.24 396.59999 401.27864 407.51847 411.3583 423.71998 430.79966 441.59999 448.55937 455.63905 468.71998 474.23954 481.1989 488.1583 494.39814 499.07679">Theareaofarectangularregionisincreasingatarateof180square</tspan><tspan y="-482.93104" x="89.99997 96.239818 102.47966 109.439067 113.39847 117.23832 128.03832 134.27817 138.23757 144.47742 149.15607 159.59998 166.67967 172.91953 182.51998 189.59967 196.55907 203.51847 207.59816 215.75897 228.95897 236.03867 242.27852 251.15897 255.11837 265.55897 269.51838 276.47776 280.43717 290.87998 295.55863 301.79847 305.75788 311.8774 320.39997 324.35939 336.47996 341.9995 348.9589 355.91828 362.1581 366.83677 377.99995 388.79994 395.03977 398.99919 405.239 409.91767 420.47996 427.55964 433.67918 443.39997 454.19996 458.15937 465.23905 472.19844 476.15785">centimetersperhour.Whatisthisrate,insquaremetersperminute</tspan></text>
+<path transform="matrix(1,0,0,1,336.45,360.7)" stroke-width=".72" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H145.8"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-482.931" x="482.28 493.559 498.23765">?(1</tspan><tspan y="-458.81" x="89.99997 100.799968 107.03981 110.999217 117.23906 125.39997 136.79998 143.75937 150.83907 161.27997 167.51982 173.75968 180.71907 184.67847 188.51831 199.31832 205.55817 209.51757 215.75742 220.43607 225.83608">meter=100centimeters)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-289.731" x="89.99997 100.91682 108.71681 114.95666 120.35666 125.03531 128.9947 135.9541 147.11997 154.19997">Question21</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-264.891" x="235.19997 248.75897">&#x2212;𝑥</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-270.05" x="256.19999">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-264.891" x="265.43998 278.99998 286.55937 297.11997 310.79997 318.59996 326.27967 337.67967 352.07969">+𝑏𝑥&#x2212;169=0</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-240.29099" x="89.999958 94.678607 105.23995 109.199359 116.15876 125.999958 133.07965 136.9195 143.99919 150.11875 160.79996 167.03981 174.1195 181.0789 187.31876 191.1586 195.118 202.0774 209.03679">Inthegivenequation,</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-240.40999" x="219.59996">𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-240.29099" x="234.47997 238.43936 247.43997 253.67983 264.35899 268.3184 275.27778 279.23719 285.35673 292.4364 298.55595 302.63566 309.35899 317.87855 324.95823 334.8 341.03984 347.9992 355.0789 361.19844 365.15785 368.99769 375.95707 386.63999 393.59938 399.8392 408.84 415.91969 426.6 431.27867 437.5185 443.75834 451.2 456.71958 463.67897 467.63838 474.59776 478.4376 482.397 489.35639 496.31578 501.83534">isaninteger.Theequationhasnorealsolutions.</tspan><tspan y="-215.80998" x="90 103.200008 110.2797 116.51955 123.84 127.7994 136.68 140.63939 147.59879 157.2 161.1594 167.39925 173.5188 179.03836 186.359 193.43869 200.39809 205.91765 211.31766 215.1575 222.2372 226.07704 235.79999 242.87969 249.11954 252.95938 259.91877 269.63999 276.59938">Whatistheleastpossiblevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-215.93099" x="288.24">𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-215.80998" x="295.8">?</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

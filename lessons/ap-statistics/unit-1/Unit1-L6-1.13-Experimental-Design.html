@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 1 · Lesson 6 — Experimental Design</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:110px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:50px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}
+table.st td,table.st th{padding:6px 10px!important;font-size:16px}
+.p4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.p4 .card{padding:12px 14px}.p4 .big{font-size:34px}
+.scope td{font-size:16px;height:74px;width:44%}.scope td.on{background:var(--rose)!important;color:#fff;font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 1 最后一课：1.13，对应 TPS 4.2（实验设计）+ 4.3（推断范围；统计显著作为 Bonus）。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 1 · Lesson 6</div><h1>Experimental Design</h1><div class="zhT">实验设计</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 1.13 · Comparison · Random assignment · Replication · Control · Blocking · Matched pairs · Cause and effect</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 4.2 + 4.3</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 1 全貌。" data-title="Unit 1 roadmap">
+<div class="tag">Unit 1 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 1 <span class="zh">单元路线图</span></h2>
+<p class="sub">Exploring One-Variable Data and Collecting Data · 20–30% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">1</span>1.1–1.4 Introducing Statistics &amp; One Categorical Variable<span class="old">TPS 1.0 + 1.1</span></div><div class="lesson"><span class="n">2</span>1.5 + 1.6 Graphs for One Quantitative Variable<span class="old">TPS 1.2</span></div><div class="lesson"><span class="n">3</span>1.7 Summary Statistics<span class="old">TPS 1.3</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">4</span>1.8 + 1.9 Boxplots, Comparing &amp; z-Scores<span class="old">TPS 1.3 + 2.1</span></div><div class="lesson"><span class="n">5</span>1.10–1.12 Data Collection, Sampling &amp; Bias<span class="old">TPS 4.1</span></div><div class="lesson now"><span class="n">6</span>1.13 Experimental Design<span class="old">TPS 4.2 + 4.3</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Lesson 5: study types, sampling, bias. Today: how to design an <strong>experiment</strong> that can show cause and effect. <span class="zh">如何设计一个能得出因果结论的实验。</span></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 6 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">1.13.A · Skill 2.A</div><h3>Well-designed <span class="stars">★★<span class="off">★★</span></span></h3><p>Identify comparison, random assignment, replication, and direct control.</p><p class="zh muted small" style="margin-top:6px">好的实验的四个要素</p></div><div class="card"><div class="k">1.13.A · Skill 2.A</div><h3>Placebo &amp; blinding <span class="stars">★★<span class="off">★★</span></span></h3><p>Explain control groups, the placebo effect, and single/double blinding.</p><p class="zh muted small" style="margin-top:6px">对照组、安慰剂效应、单盲/双盲</p></div><div class="card"><div class="k">1.13.A · Skill 2.A</div><h3>Random assignment <span class="stars">★★★<span class="off">★</span></span></h3><p>Explain the purpose of random assignment; extraneous and confounding variables.</p><p class="zh muted small" style="margin-top:6px">随机分配的目的；外部变量与混杂变量</p></div><div class="card"><div class="k">1.13.B · Skill 2.A</div><h3>Designs <span class="stars">★★★<span class="off">★</span></span></h3><p>Describe completely randomized, randomized block, and matched pairs designs.</p><p class="zh muted small" style="margin-top:6px">完全随机、随机区组、配对设计</p></div><div class="card"><div class="k">1.13.C · Skill 2.B</div><h3>Justify a design <span class="stars">★★★★<span class="off"></span></span></h3><p>Justify why one design is more appropriate than another.</p><p class="zh muted small" style="margin-top:6px">说明设计的合理性</p></div><div class="card"><div class="k">1.13.D · Skill 2.B</div><h3>Conclusions <span class="stars">★★★<span class="off">★</span></span></h3><p>Justify cause-and-effect conclusions and to whom they apply.</p><p class="zh muted small" style="margin-top:6px">因果结论及其适用范围</p></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 6 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">3'</div>Warm-up: does caffeine raise your pulse?</div><div class="it"><div class="bar n" style="width:170px">14' · 1.13.A</div>4 principles · control group · placebo · blinding · random assignment</div><div class="it"><div class="bar n" style="width:150px">13' · 1.13.B–C</div>Completely randomized · randomized block · matched pairs · which design?</div><div class="it"><div class="bar n" style="width:90px">7' · 1.13.D</div>Cause and effect · scope of inference</div><div class="it"><div class="bar" style="width:60px">8'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Statistically significant? (re-randomization) · data ethics</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 1.13.A.1 → 1.13.A.2–5 → 1.13.A.6–8 → 1.13.A.9–10 → 1.13.B.1 → 1.13.B.2–3 → 1.13.B.4 → 1.13.C.1 → 1.13.D.1–2</p><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 6 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simRA" href="#"><span class="ic">🎮</span><span>Random assignment balancer<small>随机分配平衡器 · balance extraneous variables</small></span></a><a data-goto="simBlock" href="#"><span class="ic">🎮</span><span>Why block? Fertilizer on sunny &amp; shady plots<small>为什么要分区组？ · precision of block vs. CRD</small></span></a><a data-goto="simScope" href="#"><span class="ic">🎮</span><span>Scope of inference picker<small>推断范围选择器 · two switches: selection &amp; assignment</small></span></a><a data-goto="simRerand" href="#"><span class="ic">🎮</span><span>Re-randomization simulator<small>重新随机分配模拟器（Bonus） · how unusual is 0.375?</small></span></a></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Does caffeine raise your pulse?">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Does caffeine raise your pulse? <span class="zh">咖啡因会让心跳变快吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>To see whether caffeine increases pulse rate, a teacher asks 20 student volunteers to measure their pulse, drink a cola with caffeine, wait 10 minutes, and measure their pulse again. Every student’s pulse rate went up. <span class="zh">20 名学生喝含咖啡因可乐后心率都上升了。</span></p><div class="q"><b class="n">Q1</b>Can the teacher conclude that caffeine caused the increase?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">No. There is no comparison group, so other variables are confounded with caffeine.</div></div><div class="q"><b class="n">Q2</b>What other explanations are there? How could you fix the design?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Maybe the <b>sugar</b> in the cola, the <b>excitement</b> of being in an experiment, or walking to class raised pulses — we can’t separate these from caffeine.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Fix: <b>compare</b> two groups — randomly assign half to cola with caffeine and half to caffeine-free cola (same taste, same sugar), then compare the changes.</div></div></div><div class="keyidea">🔑 Students → cola with caffeine → measure pulse.</div><div class="takeaway">💡 No comparison → no way to tell what caused the change.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 170" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 230" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 1.13" data-sec="1" data-title="§ 1.13 Experimental Design">
+<div class="tag">Topic</div><div class="num">1.13</div><h1>Experimental Design</h1><div class="zhT">实验设计</div><div class="eks"><span>1.13.A Well-designed experiments</span><span>1.13.B Designs</span><span>1.13.C Justify a design</span>1.13.D Cause and effect</div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.A.1；TPS 4.2 Principles of Experimental Design。" data-title="Four principles of a well-designed experiment 好的实验的四个要素">
+<div class="tag">1.13.A <b>· Key Concepts</b><span class="ek">EK 1.13.A.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span><h2>A well-designed experiment includes… <span class="zh">设计良好的实验包括</span></h2>
+<div class="p4"><div class="card"><div class="big">⚖️</div><h3>Comparison</h3><p>At least <b>two treatment groups</b>, one of which could be a control group.</p><p class="zh muted small">至少两组处理进行比较。</p></div>
+<div class="card"><div class="big">🎲</div><h3>Random assignment</h3><p>Treatments are assigned to experimental units <b>by chance</b>.</p><p class="zh muted small">用随机方法分配处理。</p></div>
+<div class="card"><div class="big">👥</div><h3>Replication</h3><p><b>More than one</b> experimental unit gets each treatment (enough units).</p><p class="zh muted small">每种处理有多个实验单位。</p></div>
+<div class="card"><div class="big">🎛️</div><h3>Direct control</h3><p>Keep potential extraneous sources of variation the <b>same</b> for all units.</p><p class="zh muted small">控制外部变量保持一致。</p></div></div>
+<div class="note small" style="margin-top:14px">Memory aid: C-R-R-C — Compare, Randomly assign, Replicate, Control. <span class="zh">记忆：比较、随机、重复、控制。</span> ⚠️ In statistics, <b>replication</b> means “use enough units”, not “repeat the whole study”.</div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.A.2–3。" data-title="Control Group &amp;amp; the Placebo Effect">
+<div class="tag">1.13.A <b>· Key Concepts</b><span class="ek">EK 1.13.A.2–3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Control Group &amp; the Placebo Effect <span class="zh">对照组与安慰剂效应</span></h2><div class="concept pink"><div class="term">Control group<span class="zh">对照组</span></div><div class="en">A <strong>control group</strong> is a collection of experimental units created for comparison. It may get a different treatment (an active treatment, no treatment, or an inactive substance — a <strong>placebo</strong>) to determine whether the treatment of interest has an effect.</div><div class="cn"><b>对照组</b>：为了比较而设的一组实验单位。可以接受另一种处理、不处理，或接受无效成分的<b>安慰剂</b>。</div></div><div class="concept pink"><div class="term">Placebo effect<span class="zh">安慰剂效应</span></div><div class="en">The <strong>placebo effect</strong> is the difference between the average response to a placebo and the average response to no treatment — people often respond to any treatment, even a fake one.</div><div class="cn"><b>安慰剂效应</b>：接受安慰剂的平均反应与不接受处理的平均反应之差——人们常对任何“治疗”有反应，即使是假的。</div></div><svg id="plSvg" viewbox="0 0 1100 130" width="100%"></svg><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.A.4–5。目的：避免期待影响反应或测量。" data-title="Blinding">
+<div class="tag">1.13.A <b>· Key Concepts</b><span class="ek">EK 1.13.A.4–5</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Blinding <span class="zh">盲法</span></h2><div class="concept"><div class="term">Single-blind<span class="zh">单盲</span></div><div class="en">In a <strong>single-blind</strong> (single-masked) experiment, the participants don’t know which treatment they are receiving, but the research team members who interact with them do — or vice versa.</div><div class="cn"><b>单盲</b>：受试者不知道自己接受哪种处理，但与其接触的研究人员知道（或反过来）。</div></div><div class="concept pink"><div class="term">Double-blind<span class="zh">双盲</span></div><div class="en">In a <strong>double-blind</strong> (double-masked) experiment, <strong>neither</strong> the participants nor the team members who interact with them (and measure the response) know which treatment each participant is receiving.</div><div class="cn"><b>双盲</b>：受试者和与其接触（测量响应）的研究人员<b>都不知道</b>谁接受了哪种处理。</div></div><table class="tw st" style="margin-top:6px;width:100%"><thead><tr><th></th><th>Participants know?</th><th>Researchers who interact / measure know?</th></tr></thead><tbody><tr><th class="rh">Not blind</th><td>✓</td><td>✓</td></tr><tr><th class="rh">Single-blind</th><td>✗</td><td>✓ (or the other way)</td></tr><tr><th class="rh">Double-blind</th><td>✗</td><td>✗</td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Testing a new pain reliever">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.A.2–5</span></div>
+<h2>Testing a new pain reliever <span class="zh">测试新止痛药</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A company wants to know whether its new pain reliever reduces headache pain more than taking nothing. 120 adults with frequent headaches volunteer.</p><div class="q"><b class="n">a</b>Why should the control group get a <b>placebo</b> rather than nothing?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">People who believe they got medicine may report less pain anyway (<b>placebo effect</b>). With a placebo, both groups expect relief, so a difference can be credited to the drug.</div></div><div class="q"><b class="n">b</b>Explain how to make the experiment <b>double-blind</b>, and why it matters here.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Use identical-looking pills with code numbers; a third party keeps the key. Subjects don’t know their treatment, and the nurses who record pain ratings don’t either.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Double-blinding prevents subjects’ expectations and researchers’ expectations (in how they treat subjects or record pain) from affecting the response.</div></div></div><div class="keyidea">🔑 Pain is self-reported — expectations matter!</div></div></div><div class="col vis"><div class="qv"><svg id="prQ" viewbox="0 0 560 230" width="100%"></svg></div><div class="sv"><svg id="prSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.A.6–8。" data-title="Extraneous Variables &amp;amp; Random Assignment">
+<div class="tag">1.13.A <b>· Key Concepts</b><span class="ek">EK 1.13.A.6–8</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Extraneous Variables &amp; Random Assignment <span class="zh">外部变量与随机分配</span></h2><div class="concept"><div class="term">Extraneous variable<span class="zh">外部变量</span></div><div class="en">An <strong>extraneous variable</strong> (source of variation) is known or believed to affect the response but is not an explanatory variable being studied.</div><div class="cn"><b>外部变量</b>：已知或认为会影响响应，但<b>不是</b>本研究的解释变量。</div></div><div class="concept pink"><div class="term">Purpose of random assignment<span class="zh">随机分配的目的</span></div><div class="en">Random assignment creates treatment groups that are <strong>as similar as possible</strong> with respect to extraneous variables. If it is successful, the distribution of each extraneous variable is about the <strong>same</strong> in all groups.</div><div class="cn">随机分配让各处理组在外部变量上<b>尽可能相似</b>；若成功，每个外部变量在各组中的分布大致<b>相同</b>。</div></div><div class="concept pink"><div class="term">Confounding in experiments<span class="zh">实验中的混杂</span></div><div class="en">A <strong>confounding variable</strong> is related to the explanatory variable so that we can’t tell which one is influencing the response. In a well-designed experiment, the potential for confounding is reduced.</div><div class="cn"><b>混杂变量</b>与解释变量相关，以致无法分辨是谁影响了响应。设计良好的实验能<b>减少</b>混杂的可能。</div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="自选：健康的人选运动组，混杂严重；随机：两组平均健康水平差异以 0 为中心。" data-title="🎮 Simulator: Random assignment balancer" id="simRA">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Random assignment balancer</span><span class="zh">随机分配平衡器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.A.7</span>
+<div class="row"><div class="col" style="flex:.75"><p class="small">20 volunteers for an exercise program vs. no program. The number on each person is their <b>fitness level</b> (an extraneous variable). <span class="zh">每个人的数字=健康水平（外部变量）。</span></p>
+<div class="btns"><button class="b" id="raRand">🎲 Randomly assign</button><button class="b" id="raSelf">🙋 Let them choose</button></div><div class="note small" id="raMsg"></div><div class="btns"><button class="b" id="raRep">Repeat random assignment 500×</button></div></div>
+<div class="col frame"><svg id="raSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.A.9–10。" data-title="Replication &amp;amp; Direct Control">
+<div class="tag">1.13.A <b>· Key Concepts</b><span class="ek">EK 1.13.A.9–10</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Replication &amp; Direct Control <span class="zh">重复与直接控制</span></h2><div class="concept"><div class="term">Replication<span class="zh">重复</span></div><div class="en"><strong>Replication</strong> within an experiment means <strong>more than one</strong> experimental unit is assigned to each treatment — enough to tell a real treatment effect apart from chance differences.</div><div class="cn"><b>重复</b>：每种处理分配给<b>多个</b>实验单位，足以把真实效应与偶然差异区分开。</div></div><div class="concept pink"><div class="term">Direct control<span class="zh">直接控制</span></div><div class="en"><strong>Direct control</strong> means keeping the settings of certain potential extraneous variables the <strong>same</strong> from unit to unit (same cola amount, same waiting time, same room…). It reduces variability in the response and helps avoid confounding.</div><div class="cn"><b>直接控制</b>：让某些外部变量对每个实验单位都保持<b>相同</b>（同样的饮料量、等待时间、房间……），减少响应的变异，避免混杂。</div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Assigning the cola">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.A.1.ii · TPS 4.2</span></div>
+<h2>Assigning the cola <span class="zh">分配可乐</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>20 students will compare caffeinated cola and caffeine-free cola on pulse rate. Describe how to randomly assign <b>10 students to each treatment</b> using</p><div class="q"><b class="n">a</b>20 identical slips of paper</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><b>Slips:</b> write “A” on 10 slips and “B” on 10 slips; shuffle in a hat; each student draws one. A → caffeinated cola, B → caffeine-free.</div></div><div class="q"><b class="n">b</b>technology (a random number generator)</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Technology:</b> label students 1–20; generate random integers from 1 to 20, ignoring repeats, until 10 different labels are chosen → caffeinated; the other 10 → caffeine-free.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Then: same amount of cola, same 10-minute wait, same way of measuring pulse (<b>direct control</b>).</div></div></div><div class="keyidea">🔑 Random assignment → equal-sized groups.</div></div></div><div class="col vis"><div class="qv"><svg id="caQ" viewbox="0 0 560 220" width="100%"></svg></div><div class="sv"><svg id="caSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 1 · Lesson 6 · TPS 4.2</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: Cell phones and driving">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.A.1 · TPS 4.3</span></div>
+<h2>Cell phones and driving <span class="zh">开车打电话</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Researchers at the University of Utah used 48 undergraduate students. They <b>randomly assigned</b> half to drive in a <b>simulator</b> while talking on a cell phone and the other half to drive in the same simulator while talking to a passenger. The response: whether the driver stopped at a rest area specified before the simulation started.</p><div class="q">Identify how each of the four principles is (or could be) used.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. <b>Comparison:</b> cell phone vs. passenger — two treatment groups.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Random assignment:</b> chance decided who got which distraction → groups similar in driving skill, attention, etc.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. <b>Replication:</b> 24 students in each group.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Direct control:</b> same simulator, same route and rest-area instructions for everyone.</div></div></div><div class="keyidea">🔑 C-R-R-C in context.</div></div></div><div class="col vis"><svg id="cpSol" viewbox="0 0 560 230" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6 · TPS 4.3 (Strayer et al.)</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.B.1。考试中画框图（outline）。" data-title="Completely Randomized Design">
+<div class="tag">1.13.B <b>· Key Concept</b><span class="ek">EK 1.13.B.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Completely Randomized Design <span class="zh">完全随机设计</span></h2><div class="concept pink"><div class="term">Completely randomized<span class="zh">完全随机</span></div><div class="en">In a <strong>completely randomized design</strong>, treatments are assigned to experimental units <strong>completely at random</strong>. Group sizes are often equal but do not have to be.</div><div class="cn"><b>完全随机设计</b>：把处理<b>完全随机</b>地分配给实验单位；各组人数常相等，但不必相等。</div></div><svg id="crdSvg" viewbox="0 0 1100 200" width="100%"></svg><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.B.2–3。区组 vs 分层：区组用于实验，分层用于抽样。" data-title="Randomized Block Design">
+<div class="tag">1.13.B <b>· Key Concepts</b><span class="ek">EK 1.13.B.2–3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Randomized Block Design <span class="zh">随机区组设计</span></h2><div class="concept pink"><div class="term">Block<span class="zh">区组</span></div><div class="en">A <strong>blocking variable</strong> is a source of extraneous variation. Units are first grouped by similar values of the blocking variable into <strong>blocks</strong> (homogeneous). Then treatments are <strong>randomly assigned within each block</strong>, so all treatments occur in every block.</div><div class="cn"><b>区组变量</b>是外部变异的来源。先按区组变量把相似的实验单位分成<b>区组</b>，再<b>在每个区组内</b>随机分配处理。</div></div><div class="concept"><div class="term">Purpose<span class="zh">目的</span></div><div class="en">Blocking separates the variation caused by the blocking variable from the rest → <strong>more precise</strong> comparisons of the treatments.</div><div class="cn">区组把由区组变量造成的变异分离出来 → 处理之间的比较<b>更精确</b>。</div></div><svg id="rbdSvg" viewbox="0 0 1100 190" width="100%"></svg><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.B.4。" data-title="Matched Pairs Design">
+<div class="tag">1.13.B <b>· Key Concept</b><span class="ek">EK 1.13.B.4</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Matched Pairs Design <span class="zh">配对设计</span></h2><div class="concept pink"><div class="term">Matched pairs<span class="zh">配对设计</span></div><div class="en">A <strong>matched pairs design</strong> is a randomized block design with <strong>two treatments</strong> (blocks of size 2). Either ① pair <strong>similar</strong> units and randomly assign one treatment to each member, or ② each unit gets <strong>both</strong> treatments in a <strong>random order</strong>.</div><div class="cn"><b>配对设计</b>是只有<b>两种处理</b>的随机区组设计。① 把相似的两个单位配成一对，随机决定谁接受哪种处理；或 ② 每个单位<b>两种处理都接受</b>，<b>顺序随机</b>。</div></div><svg id="mpSvg" viewbox="0 0 1100 190" width="100%"></svg><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="重复 300 次：区组设计的差值分布更集中在真实效应 +3 附近（更精确）。" data-title="🎮 Simulator: Why block? Fertilizer on sunny &amp;amp; shady plots" id="simBlock">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Why block? Fertilizer on sunny &amp; shady plots</span><span class="zh">为什么要分区组？</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.B.3</span>
+<div class="row"><div class="col" style="flex:.75"><p class="small">20 garden plots: 10 sunny (grow more) and 10 <b style="color:#5A6390">shady</b>. Fertilizer B truly adds <b>+3 cm</b>. Compare a completely randomized design (CRD) with a randomized block design (block = sun). <span class="zh">日照是外部变量。</span></p>
+<div class="btns"><button class="b" id="bkC">One CRD</button><button class="b" id="bkB">One block design</button><button class="b" id="bkR">Repeat both 300×</button></div><div class="note small" id="bkMsg"></div></div>
+<div class="col frame"><svg id="bkSvg" viewbox="0 0 560 330" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Diets for men and women">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.B.2–3</span></div>
+<h2>Diets for men and women <span class="zh">男女分区组的减肥实验</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Researchers want to compare two diet programs (A and B) for weight loss. They have 30 men and 20 women. They expect men and women to respond differently to diets.</p><div class="q"><b class="n">a</b>Describe a randomized block design for this experiment.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Form two blocks: <b>men</b> (30) and <b>women</b> (20).</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Within the men block, randomly assign 15 to diet A and 15 to diet B; within the women block, randomly assign 10 to each. After the program, compare weight loss for A vs. B <b>within each block</b>, then combine.</div></div><div class="q"><b class="n">b</b>Why is blocking by sex better than a completely randomized design here?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Sex affects weight loss, so blocking removes that variation from the comparison → <b>more precise</b> estimate of the diet effect.</div></div></div><div class="keyidea">🔑 Block = sex (an extraneous variable).</div></div></div><div class="col vis"><svg id="dtSol" viewbox="0 0 560 250" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 6: Laptop or tablet?">
+<div class="exhead"><span class="badge ex">📝 Example 6 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.B.4</span></div>
+<h2>Laptop or tablet? <span class="zh">笔记本还是平板？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Do students type faster on a laptop keyboard or on a tablet screen? 30 students are available.</p><div class="q"><b class="n">a</b>Describe a matched pairs design.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Each student types the same passage on <b>both</b> devices. Flip a coin for each student: heads → laptop first, tails → tablet first. Record words per minute on each; compute the difference (laptop − tablet) for each student.</div></div><div class="q"><b class="n">b</b>Why is randomizing the order important?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Students may get faster with practice (or tired); randomizing the order keeps order effects from being confounded with the device.</div></div><div class="q"><b class="n">c</b>Why is this design better than splitting the students into two groups?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Typing skill varies a lot between students. Comparing each student with themselves removes that variation → <b>more precise</b> comparison.</div></div></div><div class="keyidea">🔑 Each student is their own pair.</div></div></div><div class="col vis"><svg id="lpSol" viewbox="0 0 560 240" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 7: Which design is better?">
+<div class="exhead"><span class="badge ex">📝 Example 7 · 例题</span><span class="stars">★★★★<span class="off"></span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.C.1 · Skill 2.B</span></div>
+<h2>Which design is better? <span class="zh">哪种设计更好？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A company wants to compare two sunscreens (X and Y) for preventing sunburn. 40 volunteers are available; their skin types range from very fair to dark.</p><div class="q"><b class="n">Design 1</b>Randomly assign 20 volunteers to sunscreen X and 20 to sunscreen Y. Each person applies it to their back and spends an hour in the sun.</div><div class="q"><b class="n">Design 2</b>Each volunteer applies X to one arm and Y to the other, with a coin flip deciding which arm gets X. Each person spends an hour in the sun.</div><div class="q">Which design is better? Justify your answer.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Skin type (and sun exposure) strongly affects sunburn and varies a lot between volunteers.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Design 2</b> (matched pairs) compares X and Y on the <b>same person</b> → skin type and time in the sun are the same for both treatments.</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. Randomizing which arm gets X balances arm differences (e.g., the arm facing the sun more).</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. So Design 2 gives a <b>more precise</b> comparison than Design 1, where differences in skin type between the groups add variability.</div></div></div><div class="keyidea">🔑 Think: what extraneous variable matters most?</div><div class="takeaway">💡 Choose the design that removes the biggest source of extraneous variation.</div></div></div><div class="col vis"><svg id="ssSol" viewbox="0 0 560 230" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 1.13.D.1–2 + TPS 4.3 Scope of Inference。" data-title="Cause and Effect: Scope of Inference">
+<div class="tag">1.13.D <b>· Key Concepts</b><span class="ek">EK 1.13.D.1–2 · TPS 4.3</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★★<span class="off">★</span></span></span>
+<h2>Cause and Effect: Scope of Inference <span class="zh">因果结论：推断范围</span></h2><div class="concept pink"><div class="term">Cause and effect<span class="zh">因果关系</span></div><div class="en">Random assignment of treatments allows cause-and-effect conclusions between the explanatory and response variables because the potential for confounding is reduced.</div><div class="cn">对实验单位<b>随机分配</b>处理，减少了混杂的可能，所以可以得出<b>因果</b>结论。</div></div><div class="concept"><div class="term">Volunteers<span class="zh">自愿者</span></div><div class="en">It may be unethical or difficult to randomly <strong>select</strong> units for an experiment. Then the units are volunteers, and the results apply to a population of units <strong>similar</strong> to those in the study.</div><div class="cn">在实验中随机<b>选取</b>个体常常不道德或很难做到，所以常用自愿者，结论只适用于与研究对象<b>相似</b>的个体。</div></div><table class="tw" style="margin-top:6px;width:100%;font-size:14px"><thead><tr><th></th><th>Random assignment ✓</th><th>No random assignment</th></tr></thead><tbody><tr><th class="rh">Random selection ✓</th><td>Cause and effect ✓<br/>Generalize to population ✓</td><td>Association only<br/>Generalize to population ✓</td></tr><tr><th class="rh">No random selection</th><td>Cause and effect ✓<br/>Only for units like these</td><td>Association only<br/>Only for units like these</td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="两个开关：随机抽取 → 推广到总体；随机分配 → 因果。" data-title="🎮 Simulator: Scope of inference picker" id="simScope">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Scope of inference picker</span><span class="zh">推断范围选择器</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.D · 1.10.E</span>
+<div class="row"><div class="col" style="flex:.8"><p class="small">Describe a study, then read what we can conclude. <span class="zh">选择研究特征，看能得出什么结论。</span></p>
+<div class="btns"><button class="b" id="scSel">Random selection? ✗</button><button class="b" id="scAsg">Random assignment? ✗</button></div><div class="note" id="scMsg" style="margin-top:6px"></div>
+<p class="small muted" style="margin-top:8px">Try the examples:</p><div class="btns"><button class="b" data-sc="0">Gallup poll</button><button class="b" data-sc="1">Drug trial with volunteers</button><button class="b" data-sc="2">Survey of my friends</button><button class="b" data-sc="3">Random sample, then random assignment</button></div><div class="small" id="scEx"></div></div>
+<div class="col"><table class="tw scope" id="scT" style="width:100%"><thead><tr><th></th><th>Random assignment ✓</th><th>No random assignment</th></tr></thead><tbody><tr><th class="rh">Random selection ✓</th><td data-c="11">Cause and effect ✓<br/>Generalize to population ✓</td><td data-c="10">Association only<br/>Generalize to population ✓</td></tr><tr><th class="rh">No random selection</th><td data-c="01">Cause and effect ✓<br/>Only for units like these</td><td data-c="00">Association only<br/>Only for units like these</td></tr></tbody></table></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 8: What can we conclude?">
+<div class="exhead"><span class="badge ex">📝 Example 8 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 1.13.D · Skill 2.B</span></div>
+<h2>What can we conclude? <span class="zh">能得出什么结论？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A researcher recruits <b>80 volunteers</b> from a local gym. She <b>randomly assigns</b> 40 to a new stretching routine and 40 to their usual routine. After 6 weeks, flexibility improved much more in the stretching group, and the difference was too large to be explained by chance.</p><div class="q"><b class="n">a</b>Can she conclude that the routine caused the improvement? Explain.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Yes — treatments were <b>randomly assigned</b>, so the groups should be similar in other variables; the difference was too big for chance → the routine caused the improvement.</div></div><div class="q"><b class="n">b</b>To whom can the results be generalized?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Only to people <b>similar</b> to these gym volunteers — they were not randomly selected from a larger population.</div></div></div><div class="keyidea">🔑 Random assignment ✓ · random selection ✗.</div></div></div><div class="col vis"><svg id="wcSol" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 9: Purpose of random assignment">
+<div class="exhead"><span class="badge ex">📝 AP Practice 9 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.A.7</span></div>
+<h2>Purpose of random assignment</h2><div class="scrollcol"><div class="problem" style="font-size:19px">In an experiment, the main purpose of randomly assigning subjects to treatments is to</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) make sure the sample represents the population</li><li>(B) create groups that are roughly equivalent with respect to extraneous variables</li><li>(C) make the experiment double-blind</li><li>(D) increase the sample size</li><li>(E) eliminate the placebo effect</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Random assignment balances extraneous variables among the treatment groups → roughly equivalent groups → <b>(B)</b>.</p><p style="margin:3px 0">(A) describes random <b>selection</b>; blinding and placebos are separate ideas.</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 10: Which kind of blinding?">
+<div class="exhead"><span class="badge ex">📝 AP Practice 10 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.A.4</span></div>
+<h2>Which kind of blinding?</h2><div class="scrollcol"><div class="problem" style="font-size:19px">In a study of a new allergy medicine, patients receive either the medicine or a placebo that looks identical. The patients do not know which they received, but the doctor who examines them does. This experiment is</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) double-blind</li><li>(B) single-blind</li><li>(C) not blind</li><li>(D) a matched pairs design</li><li>(E) an observational study</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Patients don’t know, but the doctor who interacts with them and measures the response does → <b>single-blind</b> → <b>(B)</b>.</p><p style="margin:3px 0">To be double-blind, the examining doctor must not know either.</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 11: Identify the design">
+<div class="exhead"><span class="badge ex">📝 AP Practice 11 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.B.4</span></div>
+<h2>Identify the design</h2><div class="scrollcol"><div class="problem" style="font-size:19px">To compare two brands of running shoes, 25 runners each run a 5-km course in brand A and, on another day, in brand B. A coin flip determines which brand each runner uses first. This is</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) a completely randomized design</li><li>(B) a randomized block design with 25 treatments</li><li>(C) a matched pairs design</li><li>(D) an observational study</li><li>(E) a stratified random sample</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Two treatments; each runner gets <b>both</b>; order is randomized → <b>matched pairs design</b> → (C).</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 12: Purpose of blocking">
+<div class="exhead"><span class="badge ex">📝 AP Practice 12 · AP 选择题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 1.13.B.3</span></div>
+<h2>Purpose of blocking</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A farmer tests 3 fertilizers on 30 plots on a hillside. She groups the plots into 10 blocks of 3 by elevation and randomly assigns the 3 fertilizers within each block. The main purpose of blocking is to</div><ul class="opts" data-correct="2" data-quiet="1"><li>(A) remove the need for random assignment</li><li>(B) make it possible to generalize to all farms</li><li>(C) reduce variation in yield due to elevation, so fertilizer differences are easier to detect</li><li>(D) make sure each fertilizer is used on 10 plots</li><li>(E) avoid the placebo effect</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Elevation affects yield; blocking separates that variation from the comparison of fertilizers.</p><p style="margin:3px 0">→ more precise comparisons → (C). Random assignment is still needed within each block.</p></div></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 13: Statistically significant?">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 Example 13 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">TPS 4.3 (preview of Unit 4/6)</span></div>
+<h2>Statistically significant? <span class="zh">结果统计显著吗？（Bonus）</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>In the cell-phone driving experiment: 21 of 24 passenger-talkers stopped at the rest area vs. 12 of 24 cell-phone talkers.</p><div class="q"><b class="n">a</b>Find the difference in proportions (passenger − cell phone).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">21/24 − 12/24 = 0.875 − 0.500 = 0.375.</div></div><div class="q"><b class="n">b</b>If the type of distraction made no difference, 33 “stoppers” would be split into two groups of 24 at random. Use the simulator on the next slide: how often is the difference ≥ 0.375?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">In the TPS simulation of 100 random re-assignments, a difference of 0.375 or more never occurred (try the simulator!).</div></div><div class="q"><b class="n">c</b>Is the result <b>statistically significant</b>?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">So the difference is <b>statistically significant</b>: very unlikely to happen just from the random assignment → talking on a cell phone causes fewer drivers to stop.</div></div></div><div class="keyidea">🔑 Statistically significant = too unusual to be explained by chance alone.</div></div></div><div class="col vis"><svg id="sgSol" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6 · TPS 4.3</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="大多数差值在 −0.25 到 0.25 之间；0.375 极少出现 → 统计显著。" data-title="🎮 Simulator: Re-randomization simulator" id="simRerand">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Re-randomization simulator</span><span class="zh">重新随机分配模拟器（Bonus）</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">TPS 4.3</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Assume distraction type doesn’t matter: 33 stoppers + 15 non-stoppers are randomly split into two groups of 24. Difference = p̂(passenger) − p̂(cell). <span class="zh">假设无差异，重新随机分组。</span></p>
+<div class="btns"><button class="b" id="rrOne">Re-randomize once</button><button class="b" id="rr100">+100</button><button class="b" id="rrClr">Clear</button></div><div class="note small" id="rrMsg"></div></div>
+<div class="col frame"><svg id="rrSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="TPS 4.3 Data Ethics（AP 不考）。" data-title="Data ethics 数据伦理">
+<div class="tag">Bonus <b>· Not on the AP exam</b><span class="ek">TPS 4.3</span></div><h2>Basic data ethics <span class="zh">基本数据伦理</span></h2>
+<div class="cards" style="grid-template-columns:1fr 1fr 1fr;margin-top:12px"><div class="card"><div class="k">1</div><h3>Review board</h3><p>All planned studies must be reviewed in advance by an <b>institutional review board</b> that protects the safety and well-being of subjects.</p><p class="zh muted small">伦理审查委员会事先审查。</p></div>
+<div class="card"><div class="k">2</div><h3>Informed consent</h3><p>All subjects must give their <b>informed consent</b> before data are collected.</p><p class="zh muted small">知情同意。</p></div>
+<div class="card"><div class="k">3</div><h3>Confidentiality</h3><p>Individual data must be kept <b>confidential</b>; only statistical summaries for groups may be made public.</p><p class="zh muted small">个人数据保密，只公布汇总结果。</p></div></div>
+<div class="note small" style="margin-top:12px">This is why many experiments use <b>volunteers</b> (CED 1.13.D.2): we can’t force randomly selected people into a treatment. <span class="zh">这也是实验常用自愿者的原因。</span></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Comparison · random assignment · replication · direct control</th><td class="zh" style="text-align:left">比较 · 随机分配 · 重复 · 直接控制</td><td style="text-align:left">C-R-R-C</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Control group · placebo</th><td class="zh" style="text-align:left">对照组 · 安慰剂</td><td style="text-align:left">baseline for comparison</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Placebo effect</th><td class="zh" style="text-align:left">安慰剂效应</td><td style="text-align:left">placebo response − no-treatment response</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Single-blind · double-blind</th><td class="zh" style="text-align:left">单盲 · 双盲</td><td style="text-align:left">who doesn’t know the treatment</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Extraneous variable · confounding</th><td class="zh" style="text-align:left">外部变量 · 混杂</td><td style="text-align:left">random assignment balances them</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Completely randomized design</th><td class="zh" style="text-align:left">完全随机设计</td><td style="text-align:left">assign all units at random</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Randomized block · matched pairs</th><td class="zh" style="text-align:left">随机区组 · 配对</td><td style="text-align:left">randomize within blocks; pairs = 2 treatments</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr><tr><th class="rh">Scope of inference</th><td class="zh" style="text-align:left">推断范围</td><td style="text-align:left">random selection → population; random assignment → cause</td><td><span class="stars">★★★<span class="off">★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">1.13</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>A teacher wants to know whether listening to classical music while studying improves memory test scores. 40 student volunteers: 20 from her AP class and 20 from a regular class.</p><div class="q"><b class="n">1</b>Describe a randomized block design. What is the blocking variable and why use it?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Blocks: AP class (20) and regular class (20). Within each block, randomly assign 10 to study with classical music and 10 in silence; compare mean scores within each block. AP students probably score higher anyway, so blocking removes that variation.</div></div><div class="q"><b class="n">2</b>Name one variable to control directly.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Control: same word list, same study time, same room, same test.</div></div><div class="q"><b class="n">3</b>If music students score much higher, what can she conclude, and about whom?</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">If the difference is too large to be due to chance: music caused higher scores (random assignment) — but only for students <b>similar</b> to these volunteers (no random selection).</div></div></div><div class="keyidea">🔑 Block = class (AP vs. regular).</div></div></div><div class="col vis"><svg id="exSol" viewbox="0 0 560 230" width="100%"></svg></div></div><div class="foot"><span>Unit 1 · Lesson 6</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="Unit 1 结束。下一单元：Unit 2（已完成的 v2 课件）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next · Unit 2</div><h1>Probability, Random Variables &amp; Probability Distributions</h1><div class="zhT">概率、随机变量与概率分布 · Unit 2</div><p class="muted" style="margin-top:26px;font-size:22px">Two categorical variables, simulation, probability rules, conditional probability, random variables, binomial and normal distributions, sampling distributions.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 1 · Lesson 6 ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+/* generic two-branch design: x0, units text, branches [[label,treat]], response */
+function design2(s,x0,y0,W,H,units,rnd,br,resp,o){o=o||{};const fs=o.fs||13,bw=W*0.15,mid=y0+H/2;box(s,x0,mid-28,bw,56,'#fff',NAVY,units,NAVY,fs);
+  const rx=x0+W*0.19,rw=W*0.13;box(s,rx,mid-22,rw,44,'rgba(226,182,79,.25)',GOLDD,rnd,GOLDD,fs);arrow(s,x0+bw+2,mid,rx-4,mid);
+  const gx=x0+W*0.36,gw=W*0.16,tx=x0+W*0.55,tw=W*0.18,cx=x0+W*0.76;const n=br.length;
+  br.forEach(([g,tt],i)=>{const y=y0+(i+0.5)*H/n;arrow(s,rx+rw+2,mid,gx-4,y,GOLDD,2);box(s,gx,y-20,gw,40,i?NV:PK,i?NAVY:ROSE,g,i?NAVY:ROSE,fs-1);arrow(s,gx+gw+2,y,tx-4,y,i?NAVY:ROSE,2);box(s,tx,y-22,tw,44,'#fff',i?NAVY:ROSE,tt,i?NAVY:ROSE,fs-1);arrow(s,tx+tw+2,y,cx-4,mid,MUTED,2);});
+  box(s,cx,mid-28,x0+W-cx,56,'#fff',SLATE,resp,SLATE,fs);}
+
+/* warm-up */
+(function(){const s=$('wuQ');clear(s);box(s,20,60,140,50,'#fff',NAVY,'20 students',NAVY,14);arrow(s,165,85,215,85);box(s,220,55,160,60,PK,ROSE,'Cola with\ncaffeine',ROSE,14);arrow(s,385,85,435,85);box(s,440,60,110,50,'#fff',SLATE,'Pulse ↑',SLATE,15);lab(s,280,150,'No comparison group!',GOLDD,'middle',14);})();
+(function(){function draw(k){const s=$('wuSol');clear(s);
+  if(k<3){box(s,20,90,120,46,'#fff',NAVY,'Students',NAVY,13);arrow(s,145,113,195,113);box(s,200,88,150,50,PK,ROSE,'Cola + caffeine',ROSE,13);arrow(s,355,113,405,113);box(s,410,90,130,46,'#fff',SLATE,'Pulse ↑',SLATE,14);
+    if(k>=2){['sugar?','excitement?','walking?'].forEach((t,i)=>{const x=150+i*130;box(s,x,15,110,34,'rgba(226,182,79,.25)',GOLDD,t,GOLDD,13);arrow(s,x+55,52,450,88,GOLDD,1.5);});}
+    if(k>=1)lab(s,280,185,'Caffeine is confounded with other variables',ROSE,'middle',14);}
+  else design2(s,5,10,550,210,'20\nstudents','Random\nassign',[['Group 1 (10)','Caffeinated\ncola'],['Group 2 (10)','Caffeine-free\ncola']],'Compare\npulse change',{fs:12});}
+  draw(0);onStep('wuSol',draw);})();
+
+/* placebo effect bars */
+(function(){const s=$('plSvg');clear(s);const B=115,Y=v=>B-v*1.6;[['No treatment',20,GREY],['Placebo',35,LAV],['Real drug',55,ROSE]].forEach(([n,v,c],i)=>{const x=60+i*130;el('rect',{x,y:Y(v),width:90,height:B-Y(v),fill:c,rx:4},s);lab(s,x+45,Y(v)-6,v+'%',c==='#D9D3DA'?MUTED:c,'middle',13);lab(s,x+45,B+14,n,INK,'middle',12,600);});
+  el('line',{x1:40,x2:440,y1:B,y2:B,stroke:INK},s);el('path',{d:`M 470 ${Y(20)} L 480 ${Y(20)} L 480 ${Y(35)} L 470 ${Y(35)}`,stroke:LAV,'stroke-width':2.5,fill:'none'},s);lab(s,490,(Y(20)+Y(35))/2+5,'placebo effect = 15 pts',SLATE,'start',13);
+  lab(s,880,40,'% of patients who feel better (illustrative)',INK,'middle',13,700);lab(s,880,70,'The drug’s real effect is measured against the placebo:',INK,'middle',13,600);lab(s,880,95,'55% − 35% = 20 percentage points',ROSE,'middle',14);})();
+
+/* pain reliever */
+(function(){design2($('prQ'),5,10,550,200,'120\nvolunteers','Random\nassign',[['60 adults','New pain\nreliever'],['60 adults','Placebo\n(identical pill)']],'Compare\npain rating',{fs:12});})();
+(function(){function draw(k){const s=$('prSol');clear(s);const who=[['Subjects','🙂',k>=2?'✗ don’t know':'?'],['Nurses who\nrecord pain','🩺',k>=2?'✗ don’t know':'?'],['Third party\n(keeps key)','🔑',k>=2?'✓ knows':'?']];
+  who.forEach(([n,ic,t],i)=>{const x=20+i*180;box(s,x,30,160,110,i===2?'rgba(226,182,79,.2)':'#fff',i===2?GOLDD:NAVY,undefined);lab(s,x+80,75,ic,INK,'middle',34);n.split('\n').forEach((l,j)=>lab(s,x+80,105+j*16,l,NAVY,'middle',13,700));lab(s,x+80,170,t,t.startsWith('✗')?ROSE:t.startsWith('✓')?GOLDD:MUTED,'middle',14);});
+  if(k>=1)lab(s,280,210,'Pills look identical · coded labels',SLATE,'middle',13);if(k>=3)lab(s,280,232,'Double-blind → expectations can’t bias the response',ROSE,'middle',14);}draw(0);onStep('prSol',draw);})();
+
+/* random assignment balancer */
+const RAF=(function(){const r=srand(8);return [...Array(20).keys()].map(()=>1+Math.floor(r()*10));})();
+let raGroups=null;
+function raDraw(g,mode){const s=$('raSvg');clear(s);const groups=[[],[]];g.forEach((v,i)=>groups[v].push(RAF[i]));
+  [['Exercise program',ROSE,0],['No program',NAVY,1]].forEach(([n,c,j])=>{const y=35+j*110;lab(s,10,y,n,c,'start',14);groups[j].forEach((v,i)=>{el('circle',{cx:30+i*45,cy:y+35,r:18,fill:c,opacity:.15+v*0.08},s);lab(s,30+i*45,y+41,v,v>5?'#fff':c,'middle',14);});
+    const m=groups[j].reduce((a,b)=>a+b,0)/groups[j].length;lab(s,545,y,`mean fitness ${m.toFixed(1)}`,c,'end',13);});
+  const d=mean2(groups[0])-mean2(groups[1]);$('raMsg').innerHTML=mode==='self'?`The fittest people chose exercise → difference in mean fitness = <b style="color:var(--rose)">${d.toFixed(1)}</b>. Fitness is <b>confounded</b> with the program!`:`Random assignment → difference in mean fitness = <b>${d.toFixed(1)}</b>. Groups are roughly balanced.`;return d;}
+function mean2(a){return a.reduce((x,y)=>x+y,0)/a.length;}
+$('raRand').onclick=()=>{const idx=shuffle([...Array(20).keys()]);const g=Array(20).fill(1);idx.slice(0,10).forEach(i=>g[i]=0);raDraw(g,'rand');};
+$('raSelf').onclick=()=>{const idx=[...Array(20).keys()].sort((a,b)=>RAF[b]-RAF[a]);const g=Array(20).fill(1);idx.slice(0,10).forEach(i=>g[i]=0);raDraw(g,'self');};
+$('raRep').onclick=()=>{const s=$('raSvg');clear(s);const L=40,R=540,B=270,X=v=>L+(v+6)/12*(R-L);const cnt={};const ds=[];for(let t=0;t<500;t++){const idx=shuffle([...Array(20).keys()]);const a=idx.slice(0,10).map(i=>RAF[i]),b=idx.slice(10).map(i=>RAF[i]);const d=Math.round((mean2(a)-mean2(b))*5)/5;ds.push(d);cnt[d]=(cnt[d]||0)+1;}
+  const mx=Math.max(...Object.values(cnt));Object.entries(cnt).forEach(([k,c])=>el('rect',{x:X(+k)-4,y:B-c/mx*200,width:8,height:c/mx*200,fill:NAVY},s));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);for(let v=-6;v<=6;v+=2){el('text',{x:X(v),y:B+18,'text-anchor':'middle','font-size':11,fill:INK},s,v);}lab(s,290,B+38,'Difference in mean fitness (exercise − none), 500 random assignments',INK,'middle',12,700);
+  const sd=[...Array(20).keys()].sort((a,b)=>RAF[b]-RAF[a]);const self=mean2(sd.slice(0,10).map(i=>RAF[i]))-mean2(sd.slice(10).map(i=>RAF[i]));el('line',{x1:X(self),x2:X(self),y1:40,y2:B,stroke:ROSE,'stroke-width':3,'stroke-dasharray':'6 4'},s);lab(s,X(self)-4,36,`self-selected: ${self.toFixed(1)}`,ROSE,'end',13);
+  $('raMsg').innerHTML='Random assignment differences are centered at <b>0</b> — no systematic imbalance. Letting people choose gives a huge difference.';};
+$('raRand').onclick();
+
+/* cola assignment */
+(function(){const s=$('caQ');clear(s);for(let i=0;i<20;i++){const x=40+(i%10)*52,y=60+Math.floor(i/10)*70;el('circle',{cx:x,cy:y,r:20,fill:'#fff',stroke:NAVY,'stroke-width':2},s);lab(s,x,y+5,i+1,NAVY,'middle',14);}lab(s,280,200,'20 students → 10 caffeinated, 10 caffeine-free',INK,'middle',13,700);})();
+(function(){const r=srand(12);const seq=[7,14,3,7,19,11,2,14,16,5,20,9,13];const chosen=[];seq.forEach(v=>{if(!chosen.includes(v)&&chosen.length<10)chosen.push(v);});
+  function draw(k){const s=$('caSol');clear(s);if(k===0){lab(s,280,110,'Assignment appears here →',MUTED,'middle',14,600);return;}
+    if(k===1){[...Array(20).keys()].forEach(i=>{const x=30+(i%10)*52,y=40+Math.floor(i/10)*60;el('rect',{x:x-18,y:y-22,width:36,height:44,rx:6,fill:i<10?PK:NV,stroke:i<10?ROSE:NAVY},s);lab(s,x,y+6,i<10?'A':'B',i<10?ROSE:NAVY,'middle',16);});lab(s,280,170,'Shuffle the 20 slips; each student draws one.',INK,'middle',13,700);return;}
+    lab(s,280,24,'Random integers 1–20: '+seq.join(', ')+' …',SLATE,'middle',12,700);
+    for(let i=0;i<20;i++){const x=40+(i%10)*52,y=70+Math.floor(i/10)*62;const on=chosen.includes(i+1);el('circle',{cx:x,cy:y,r:20,fill:on?ROSE:'#fff',stroke:on?ROSE:NAVY,'stroke-width':2},s);lab(s,x,y+5,i+1,on?'#fff':NAVY,'middle',14);}
+    lab(s,280,185,'pink = caffeinated (first 10 different labels) · white = caffeine-free',INK,'middle',12,700);if(k>=3)lab(s,280,215,'Same amount of cola · same 10-minute wait · same pulse method',GOLDD,'middle',13);}
+  draw(0);onStep('caSol',draw);})();
+
+/* cell phone design */
+(function(){function draw(k){const s=$('cpSol');clear(s);design2(s,5,10,550,180,'48\nstudents','Random\nassign',[['24 students','Cell phone'],['24 students','Passenger']],'Compare %\nwho stopped',{fs:12});
+  const tags=[['Comparison',372,20],['Random assignment',140,20],['Replication: 24 each',230,215],['Control: same simulator',440,215]];tags.forEach(([t,x,y],i)=>{if(k>=i+1)lab(s,x,y,'✓ '+t,[ROSE,GOLDD,NAVY,SLATE][i],'middle',12);});}draw(0);onStep('cpSol',draw);})();
+
+/* design diagrams */
+(function(){design2($('crdSvg'),20,10,1060,180,'Experimental\nunits','Random\nassignment',[['Group 1','Treatment 1'],['Group 2','Treatment 2']],'Compare the\nresponse',{fs:14});})();
+function rbd(s,x0,y0,W,units,blocks,tr,resp,fs){const n=blocks.length;const H=170;box(s,x0,y0+H/2-26,W*0.14,52,'#fff',NAVY,units,NAVY,fs);
+  blocks.forEach((b,i)=>{const y=y0+(i+0.5)*H/n;const bx=x0+W*0.19;arrow(s,x0+W*0.14+2,y0+H/2,bx-4,y,MUTED,2);box(s,bx,y-20,W*0.17,40,'rgba(138,147,184,.18)',SLATE,b,SLATE,fs);arrow(s,bx+W*0.17+2,y,bx+W*0.22-4,y,GOLDD,2);box(s,bx+W*0.22,y-16,W*0.1,32,'rgba(226,182,79,.25)',GOLDD,'Random',GOLDD,fs-1);
+    const T=Array.isArray(tr[0])?tr[i]:tr;T.forEach((t,j)=>{const tx=bx+W*0.36;arrow(s,bx+W*0.32+2,y,tx-4,y-10+j*20,GOLDD,1.5);box(s,tx,y-21+j*22,W*0.17,20,j?NV:PK,j?NAVY:ROSE,t,j?NAVY:ROSE,fs-2,5);});
+    arrow(s,x0+W*0.72,y,x0+W*0.78-4,y,MUTED,2);box(s,x0+W*0.78,y-18,W*0.22,36,'#fff',SLATE,resp,SLATE,fs-1);});}
+(function(){rbd($('rbdSvg'),20,10,1060,'Units','Block 1 (similar)\nBlock 2 (similar)'.split('\n'),['Treatment 1','Treatment 2'],'Compare within block',14);})();
+(function(){const s=$('mpSvg');clear(s);lab(s,270,20,'① Pair similar units',ROSE,'middle',15);lab(s,820,20,'② Each unit gets both treatments',NAVY,'middle',15);
+  for(let i=0;i<3;i++){const y=45+i*48;box(s,40,y,90,36,'#fff',NAVY,`Pair ${i+1}`,NAVY,13);lab(s,160,y+24,'🪙',INK,'middle',20);box(s,190,y,140,16,PK,ROSE,'unit a → T1',ROSE,11,4);box(s,190,y+20,140,16,NV,NAVY,'unit b → T2',NAVY,11,4);arrow(s,335,y+18,385,y+18,MUTED,1.5);box(s,390,y,110,36,'#fff',SLATE,'difference',SLATE,12);}
+  for(let i=0;i<3;i++){const y=45+i*48;box(s,600,y,90,36,'#fff',NAVY,`Unit ${i+1}`,NAVY,13);lab(s,720,y+24,'🪙',INK,'middle',20);const f=i%2===0;box(s,750,y+8,110,22,f?PK:NV,f?ROSE:NAVY,f?'T1 first':'T2 first',f?ROSE:NAVY,12,5);arrow(s,862,y+19,882,y+19,MUTED,1.5);box(s,885,y+8,110,22,f?NV:PK,f?NAVY:ROSE,f?'then T2':'then T1',f?NAVY:ROSE,12,5);arrow(s,998,y+19,1018,y+19,MUTED,1.5);lab(s,1050,y+24,'diff',SLATE,'middle',13);}})();
+
+/* block simulator */
+const BKbase=(function(){const r=srand(21);return [...Array(20).keys()].map(i=>(i<10?30:18)+(r()-.5)*4);})();
+function bkAssign(block){if(!block){const idx=shuffle([...Array(20).keys()]);const g=Array(20).fill(0);idx.slice(0,10).forEach(i=>g[i]=1);return g;}const g=Array(20).fill(0);[0,10].forEach(o=>{shuffle([...Array(10).keys()]).slice(0,5).forEach(i=>g[o+i]=1);});return g;}
+function bkResp(g){return BKbase.map((b,i)=>b+(g[i]?3:0));}
+function bkDiff(g){const y=bkResp(g);const B=y.filter((_,i)=>g[i]),A=y.filter((_,i)=>!g[i]);if(true)return mean2(B)-mean2(A);}
+function bkDiffBlock(g){const y=bkResp(g);let d=0;[0,10].forEach(o=>{const B=[],A=[];for(let i=o;i<o+10;i++)(g[i]?B:A).push(y[i]);d+=mean2(B)-mean2(A);});return d/2;}
+function bkShow(block){const g=bkAssign(block);const y=bkResp(g);const s=$('bkSvg');clear(s);lab(s,20,24,block?'Randomized block design (5 A + 5 B in each row)':'Completely randomized design',NAVY,'start',14);
+  for(let i=0;i<20;i++){const x=70+(i%10)*47,yy=50+Math.floor(i/10)*90;el('rect',{x,y:yy,width:44,height:70,rx:6,fill:i<10?'rgba(226,182,79,.35)':'rgba(90,99,144,.25)',stroke:g[i]?ROSE:NAVY,'stroke-width':g[i]?3:1.5},s);lab(s,x+22,yy+28,g[i]?'B':'A',g[i]?ROSE:NAVY,'middle',16);lab(s,x+22,yy+52,y[i].toFixed(0),INK,'middle',13,600);}
+  lab(s,8,90,'sunny',GOLDD,'start',13);lab(s,8,180,'shady',SLATE,'start',13);
+  const d=block?bkDiffBlock(g):bkDiff(g);const nb=g.slice(0,10).filter(x=>x).length;lab(s,280,250,`Estimated effect (B − A) = ${d.toFixed(2)} cm   (true +3)`,ROSE,'middle',15);
+  $('bkMsg').innerHTML=block?'Within each row, B and A are compared on similar plots — sunlight can’t distort the comparison.':`This time ${nb} of the 10 sunny plots got B. If B lands mostly on sunny plots, the estimate is too big; mostly shady → too small.`;}
+$('bkC').onclick=()=>bkShow(false);$('bkB').onclick=()=>bkShow(true);
+$('bkR').onclick=()=>{const s=$('bkSvg');clear(s);const L=110,R=545,X=v=>L+(v+3)/12*(R-L);[['CRD',false,NAVY,40],['Block',true,ROSE,160]].forEach(([n,b,c,y0])=>{const cnt={};for(let t=0;t<300;t++){const g=bkAssign(b);const d=Math.round((b?bkDiffBlock(g):bkDiff(g))*4)/4;cnt[d]=(cnt[d]||0)+1;}const mx=Math.max(...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c2])=>el('rect',{x:X(+k)-3,y:y0+100-c2/mx*95,width:6,height:c2/mx*95,fill:c},s));lab(s,L-10,y0+60,n,c,'end',14);el('line',{x1:L,x2:R,y1:y0+100,y2:y0+100,stroke:INK},s);});
+  for(let v=-3;v<=9;v+=3)el('text',{x:X(v),y:278,'text-anchor':'middle','font-size':11,fill:INK},s,v);el('line',{x1:X(3),x2:X(3),y1:30,y2:262,stroke:GOLDD,'stroke-width':2.5,'stroke-dasharray':'6 4'},s);lab(s,X(3)+5,26,'true effect +3',GOLDD,'start',13);lab(s,330,300,'Estimated effect (B − A) over 300 repetitions',INK,'middle',12,700);
+  $('bkMsg').innerHTML='Both designs are centered at the true effect (+3), but the <b>block design is much less variable</b> → more precise comparison.';};
+bkShow(false);
+
+/* diets, laptop, sunscreen */
+(function(){function draw(k){const s=$('dtSol');clear(s);if(k===0){lab(s,280,120,'Design diagram appears here →',MUTED,'middle',14,600);return;}
+  const n=k>=2;rbd(s,5,20,550,'50\nsubjects',['Men (30)','Women (20)'],n?[['15 → diet A','15 → diet B'],['10 → diet A','10 → diet B']]:['?','?'],'Compare A vs. B',12);
+  if(n){/* fix labels per block */}}draw(0);onStep('dtSol',draw);})();
+(function(){function draw(k){const s=$('lpSol');clear(s);for(let i=0;i<4;i++){const y=20+i*50;box(s,10,y,90,36,'#fff',NAVY,`Student ${i+1}`,NAVY,12);if(k>=1){lab(s,125,y+24,'🪙',INK,'middle',20);const f=[1,0,0,1][i];box(s,150,y+6,110,24,f?PK:NV,f?ROSE:NAVY,f?'laptop first':'tablet first',f?ROSE:NAVY,12,5);arrow(s,263,y+18,285,y+18,MUTED,1.5);box(s,288,y+6,110,24,f?NV:PK,f?NAVY:ROSE,f?'then tablet':'then laptop',f?NAVY:ROSE,12,5);arrow(s,401,y+18,423,y+18,MUTED,1.5);lab(s,490,y+24,'wpm diff',SLATE,'middle',13);}}
+  lab(s,280,232,k>=2?'Random order → practice effects balanced':(k>=3?'':' '),GOLDD,'middle',13);}draw(0);onStep('lpSol',draw);})();
+(function(){function draw(k){const s=$('ssSol');clear(s);lab(s,140,20,'Design 1: two groups',NAVY,'middle',14);lab(s,420,20,'Design 2: both arms',ROSE,'middle',14);
+  const shades=['#F6D7C3','#E8B894','#C58C5E','#8D5A3B','#5C3A24'];const r=srand(5);for(let i=0;i<10;i++){const x=30+(i%5)*44,y=50+Math.floor(i/5)*60;el('circle',{cx:x+10,cy:y+14,r:14,fill:shades[Math.floor(r()*5)]},s);lab(s,x+10,y+46,i<5?'X':'Y',i<5?ROSE:NAVY,'middle',13);}
+  el('circle',{cx:420,cy:80,r:24,fill:shades[2]},s);el('rect',{x:395,y:106,width:50,height:60,rx:10,fill:shades[2]},s);el('rect',{x:360,y:110,width:30,height:12,rx:6,fill:ROSE},s);el('rect',{x:450,y:110,width:30,height:12,rx:6,fill:NAVY},s);lab(s,350,105,'X',ROSE,'middle',13);lab(s,490,105,'Y',NAVY,'middle',13);lab(s,420,190,'🪙 decides which arm gets X',GOLDD,'middle',12);
+  if(k>=1)lab(s,140,190,'skin types differ between groups',ROSE,'middle',12,700);if(k>=4)lab(s,280,222,'Design 2 is more precise ✓',ROSE,'middle',15);}draw(0);onStep('ssSol',draw);})();
+
+/* scope picker */
+let scS=0,scA=0;const SCX=[[1,0,'Gallup randomly selects 1,000 adults and asks their opinion.'],[0,1,'Volunteers are randomly assigned to a drug or a placebo.'],[0,0,'I ask my friends whether they like the new cafeteria menu.'],[1,1,'Researchers randomly select 200 students from a district, then randomly assign them to two tutoring programs.']];
+function scDraw(){$('scSel').textContent='Random selection? '+(scS?'✓':'✗');$('scAsg').textContent='Random assignment? '+(scA?'✓':'✗');$('scSel').classList.toggle('on',!!scS);$('scAsg').classList.toggle('on',!!scA);
+  document.querySelectorAll('#scT td').forEach(td=>td.classList.toggle('on',td.dataset.c===`${scS}${scA}`));
+  $('scMsg').innerHTML=`${scA?'✅ <b>Cause and effect</b> can be concluded (random assignment).':'⚠️ Only an <b>association</b> — no cause and effect.'}<br>${scS?'✅ Generalize to the <b>population</b> the sample came from.':'⚠️ Generalize only to individuals <b>similar</b> to those in the study.'}`;}
+$('scSel').onclick=()=>{scS=1-scS;scDraw();};$('scAsg').onclick=()=>{scA=1-scA;scDraw();};document.querySelectorAll('[data-sc]').forEach(b=>b.onclick=()=>{const e=SCX[+b.dataset.sc];scS=e[0];scA=e[1];$('scEx').innerHTML='<i>'+e[2]+'</i>';scDraw();});scDraw();
+(function(){function draw(k){const s=$('wcSol');clear(s);const cells=[['Cause ✓ · population ✓',1,1],['Association · population ✓',1,0],['Cause ✓ · similar units',0,1],['Association · similar units',0,0]];
+  lab(s,230,20,'Random assignment ✓',INK,'middle',12,700);lab(s,430,20,'No random assignment',INK,'middle',12,700);lab(s,60,75,'Random selection ✓',INK,'middle',11,700);lab(s,60,155,'No random selection',INK,'middle',11,700);
+  cells.forEach(([t,sl,as],i)=>{const x=as?135:335,y=sl?35:115;const on=k>=1&&!sl&&as;box(s,x,y,190,70,on?ROSE:'#fff',on?ROSE:GREY,t,on?'#fff':MUTED,12);});if(k>=2)lab(s,280,210,'Gym volunteers + random assignment',ROSE,'middle',13);}draw(0);onStep('wcSol',draw);})();
+
+/* significance bars + re-randomization */
+(function(){function draw(k){const s=$('sgSol');clear(s);const B=170,Y=v=>B-v*140;[['Passenger',0.875,NAVY],['Cell phone',0.5,ROSE]].forEach(([n,v,c],i)=>{el('rect',{x:140+i*170,y:Y(v),width:100,height:B-Y(v),fill:c,rx:4},s);lab(s,190+i*170,Y(v)-6,(v*24).toFixed(0)+'/24 = '+v.toFixed(3),c,'middle',13);lab(s,190+i*170,B+16,n,INK,'middle',13,700);});el('line',{x1:100,x2:460,y1:B,y2:B,stroke:INK},s);
+  if(k>=1)lab(s,280,210,'difference = 0.375',GOLDD,'middle',15);}draw(0);onStep('sgSol',draw);})();
+let rrD=[];
+function rrDraw(){const s=$('rrSvg');clear(s);const L=30,R=545,B=260,X=v=>L+(v+0.5)/1*(R-L);const cnt={};rrD.forEach(d=>{const k=d.toFixed(3);cnt[k]=(cnt[k]||0)+1;});
+  Object.entries(cnt).forEach(([k,c])=>{for(let j=0;j<c;j++)el('circle',{cx:X(+k),cy:B-6-j*6.5,r:3,fill:+k>=0.374?ROSE:NAVY},s);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},s);for(let v=-0.5;v<=0.5001;v+=0.125){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+5,stroke:INK},s);el('text',{x:X(v),y:B+18,'text-anchor':'middle','font-size':10,fill:INK},s,v.toFixed(3));}
+  lab(s,290,B+38,'Simulated difference in proportions (passenger − cell)',INK,'middle',12,700);el('line',{x1:X(0.375),x2:X(0.375),y1:20,y2:B,stroke:GOLDD,'stroke-width':2.5,'stroke-dasharray':'6 4'},s);lab(s,X(0.375)-4,18,'observed 0.375',GOLDD,'end',13);
+  const n=rrD.length,ext=rrD.filter(d=>d>=0.374).length;$('rrMsg').innerHTML=n?`${n} re-randomizations: <b>${ext}</b> gave a difference ≥ 0.375 (${(100*ext/n).toFixed(1)}%).`:'Click to re-randomize.';}
+function rrOnce(){const pool=shuffle([...Array(48).keys()].map(i=>i<33?1:0));const p=pool.slice(0,24).reduce((a,b)=>a+b,0);rrD.push((2*p-33)/24);}
+$('rrOne').onclick=()=>{rrOnce();rrDraw();};$('rr100').onclick=()=>{for(let i=0;i<100;i++)rrOnce();rrDraw();};$('rrClr').onclick=()=>{rrD=[];rrDraw();};for(let i=0;i<100;i++)rrOnce();rrDraw();
+
+/* exit */
+(function(){function draw(k){const s=$('exSol');clear(s);if(k===0){lab(s,280,110,'Design diagram appears here →',MUTED,'middle',14,600);return;}rbd(s,5,20,550,'40\nvolunteers',['AP class (20)','Regular (20)'],['10 → music','10 → silence'],'Compare scores',12);
+  if(k>=3)lab(s,280,222,'Cause ✓ · only students like these volunteers',ROSE,'middle',13);}draw(0);onStep('exSol',draw);})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

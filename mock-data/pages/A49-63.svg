@@ -1,0 +1,342 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M58 103.2H537.3V138.7H58Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M58 138.7H160.8V219.2H58Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M160.75 138.7H269.55V219.2H160.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M269.5 138.7H344.55V219.2H269.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M344.5 138.7H438.3V219.2H344.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M438.25 138.7H537.3V219.2H438.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M58 219.2H160.8V247.55H58Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M160.75 219.2H269.55V247.55H160.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M269.5 219.2H344.55V247.55H269.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M344.5 219.2H438.3V247.55H344.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M438.25 219.2H537.3V247.55H438.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M58 247.55H160.8V275.9H58Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M160.75 247.55H269.55V275.9H160.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M269.5 247.55H344.55V275.9H269.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M344.5 247.55H438.3V275.9H344.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M438.25 247.55H537.3V275.9H438.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M58 275.9H160.8V304.25H58Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M160.75 275.9H269.55V304.25H160.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M269.5 275.9H344.55V304.25H269.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M344.5 275.9H438.3V304.25H344.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M438.25 275.9H537.3V304.25H438.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M58 304.25H160.8V345.3H58Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M160.75 304.25H269.55V345.3H160.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M269.5 304.25H344.55V345.3H269.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M344.5 304.25H438.3V345.3H344.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M438.25 304.25H537.3V345.3H438.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">61</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-749.33" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question13</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-715.73" x="126.48 133.91986 140.0394 142.9191 149.75896 155.99881 161.88 169.31984 176.39954 181.43939 185.51909 191.40001 197.51955 204.3594 214.559 220.9184 227.15825 230.03795 237.11765 243.9575 246.8372 253.9169 258.1169 264.23646 271.31617 280.8 287.87968 294.95899 303.23869 312.84 320.27986 327.35954 330.23924 337.07908 345.359 352.43873 361.55903 369.959 376.19886 383.0387 390.11839 400.43794 403.31764 410.15748 416.277 420.35673 423.23643 430.3161 437.03565 442.80003 449.2797 455.75938 462.23905">Value,Cost,andSeigniorageofUSCoinsbyDenomination,2023</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<path d="M58.15 139.1H160.65V219.35H58.15Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-642.05" x="75.359 83.759 89.99885 96.8387 103.9184 114.237949 117.117649 123.9575 130.07704 134.15674 137.03644 144.11614">Denomination</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-687.65" x="179.28 185.51984 192.59954 196.67923 202.79877 208.92 214.6794 220.79894 223.67864 230.5185 240 247.0797">Totalvalueof</tspan><tspan y="-667.73007" x="166.79999 173.63985 180.4797 183.3594 187.4391 195.71999 202.7997 206.9997 214.07939 221.15909 227.87863 233.39818 239.63803 250.07999 253.68 256.5597">unitsproduced(in</tspan><tspan y="-647.69107" x="187.68 197.99954 200.87924 203.75894 206.63864 209.51834 216.59804 223.4379 231.84 238.9197">millionsof</tspan><tspan y="-627.65" x="195.59999 202.67969 209.75939 212.63909 215.51879 221.63832 225.83832 230.87818">dollars)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<path d="M269.65 139.1H344.4V219.35H269.65Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-677.691" x="279.6 287.8797 292.0797 299.0391 304.07896 312.6 318.11958 325.19926 330.2391">Grosscost</tspan><tspan y="-657.64999" x="278.28 281.88 284.7597 294.84 305.15956 308.03926 310.91896 313.79866 316.79866 323.87834 330.71818">(inmillions</tspan><tspan y="-637.73" x="280.44 287.51969 294.6 301.67973 308.7594 311.6391 314.5188 320.63835 324.83836 329.8782">ofdollars)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-677.691" x="351.6 357.9594 364.19926 367.07896 374.15867 380.9985 383.8782 390.9579 395.1579 401.27745 408.35716 417.84004 421.44004 424.31974">Seigniorage(in</tspan><tspan y="-657.64999" x="363.84004 374.15959 377.03929 379.91899 382.79869 385.79869 392.87837 399.7182 408.00004 415.0797">millionsof</tspan><tspan y="-637.73" x="371.88005 378.95976 386.03944 388.91914 391.79884 397.91838 402.11839 407.15824">dollars)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-677.691" x="445.8 452.1594 458.39924 461.27894 468.35865 475.1985 478.0782 485.15788 489.35789 495.47743 502.55714 512.04 519.1197 525.3595">Seigniorageper</tspan><tspan y="-657.64999" x="462.95899 469.43867 479.159 482.0387 487.07856 492.23799 499.07783 505.31767">$1issued</tspan><tspan y="-637.73" x="466.44 470.04 477.11973 484.1994 487.0791 489.9588 496.07835 500.27836 505.3182">(dollars)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-603.291" x="75.359 84.359 91.19885 97.4387 102.2387 107.75824 113.998088 120.83794">One-cent</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.61" x="204.12 210.5997 217.0794 219.71926">41.4</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.61" x="292.8 299.27967 305.75935 312.239 314.75859">127.4</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.61" x="376.2 384.48 390.9597 397.43937 400.07923">&#x2212;86.0</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-601.61" x="472.68 480.84 487.31968 489.95954 496.4392">&#x2212;2.08</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-574.97" x="75.359 81.2387 84.1184 89.8778 96.117649 100.91765 106.43719 112.67703 119.516887">Five-cent</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="204.12 210.5997 217.0794 219.71926">70.8</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="292.8 299.27967 305.75935 312.239 314.75859">163.4</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="376.2 384.48 390.9597 397.43937 400.07923">&#x2212;92.6</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-573.291" x="472.68 480.84 487.31968 489.95954 496.4392">&#x2212;1.31</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-546.65" x="75.359 81.59885 87.83869 94.67854 99.478549 104.998088 111.23793 118.07778">Ten-cent</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-544.85" x="200.88 207.35971 213.83942 220.31912 222.95897">266.6</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-544.85" x="292.8 299.27967 305.75935 312.239 314.75859">141.1</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-544.85" x="377.04 383.51969 389.99937 396.47904 399.1189">125.5</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-544.85" x="476.759 483.23869 485.87855 492.35823">0.47</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-522.17" x="75.359 84.359 91.19885 97.3184 101.5184 105.5981 111.837947 116.03795">Quarter-</tspan><tspan y="-502.12998" x="75.359 82.4387 89.518398 92.398097 95.277797 101.39734">dollar</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-512.21" x="200.88 207.35971 213.83942 220.31912 222.95897">568.4</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-512.21" x="292.8 299.27967 305.75935 312.239 314.75859">264.4</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-512.21" x="377.04 383.51969 389.99937 396.47904 399.1189">304.0</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<g clip-path="url(#clip_55)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-512.21" x="476.759 483.23869 485.87855 492.35823">0.53</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_56)">
+<path transform="matrix(1,0,0,1,57.76,103.44)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#ffffff" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,57.76,138.94)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,57.76,219.44)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,57.76,247.79)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,57.76,276.14)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,57.76,304.49)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,57.76,344.99)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H479.73"/>
+<path transform="matrix(1,0,0,1,58,103.2)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#ffffff" d="M0 0V35.98"/>
+<path transform="matrix(1,0,0,1,537.25,103.68)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#ffffff" d="M0 0V35.5"/>
+<path transform="matrix(1,0,0,1,58,138.7)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V206.53"/>
+<path transform="matrix(1,0,0,1,160.75,138.7)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V206.05"/>
+<path transform="matrix(1,0,0,1,269.5,138.7)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V206.05"/>
+<path transform="matrix(1,0,0,1,344.5,138.7)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V206.05"/>
+<path transform="matrix(1,0,0,1,438.25,138.7)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V206.05"/>
+<path transform="matrix(1,0,0,1,537.25,139.18)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V206.05"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-465.65" x="90 94.67865 100.19821 105.59822 112.557628 116.51703 123.47643 136.92 149.52 156.5997 163.5591 169.79895 174.4776 181.437 188.3964 192.35579 196.19564 202.43549 213.6 219.83986 226.79926 230.75865 244.08 251.0394 254.9988 261.23863 265.07847 272.15815 284.04 290.9994 298.07908 303.4791 307.4385 311.27836 315.1182 322.19789 334.80003 340.31959 346.55943 350.39927 357.35865 364.43833 368.27818 375.35786 379.91725 386.15708 393.11647 399.24003 413.28004 420.3597 425.03837 431.99775 436.6764 440.51625 450.84004 457.9197 464.15956 471.11894 477.35877 482.0374 488.15696 492.11637 498.3562">Issuingaone-dollarcoinyieldspositiveseigniorage&#x2014;profitgenerated</tspan><tspan y="-441.53" x="90.00003 100.07973 107.159427 113.39927 124.92003 128.87943 135.83882 146.64003 151.31868 157.55854 163.79839 174.60004 181.55944 187.79929 191.75868 198.71808 209.52004 216.59973 225.72003 236.64003 242.87989 249.83928 253.79868 265.32005 271.55989 278.51927 284.7591 290.99894 297.23878 304.19816 314.28004 318.23945 325.19883 336.00004 342.9594 350.0391 353.87895 362.40003 368.63987 375.59925 381.1188 389.52003 396.5997 405.84004 412.7994 417.47807 424.55775 431.51713 438.4765 444.71635 448.67576 455.63514 467.15904 471.11845 474.959 489 493.67866 500.63804">whenthefacevalueofacoinexceedstheunitcostofproducingit&#x2014;for</tspan><tspan y="-417.41" x="90 97.799999 101.7594 108.7188 115.67821 121.91805 128.99776 135.95716 140.6358 146.759 150.6 162.84001 169.79941 176.8791 183.8385 190.07836 194.757 201.7164 212.5164 218.75626 225.83596 229.6758 239.88 249.9597 257.0394 260.87925 267.11909 280.80003 287.03987 293.2797 307.08003 314.1597 327.00004 334.0797 339.47975 345.71958 359.40003 363.35945 377.04005 381.7187 388.67808 395.75776 409.44004 414.9596 421.91899 428.1588 441.84004 447.3596 453.47914 458.15779 465.23747 469.0773 475.31715 481.55699 493.55903 499.79887">Singapore&#x2019;sgovernment,whichcanbeusedtofundsuchservicesas</tspan><tspan y="-393.29103" x="90 96.239849 103.31954 110.278949 116.51879 122.75864 126.59849 130.43834 137.51804 144.47743 152.04001 156.71866 162.11867 167.63823 174.59763 178.55702 185.51642 196.44 202.67986 209.75955 213.5994 220.55879 230.159 236.39885 242.6387 253.68 259.91984 263.87925 269.27928 280.32 284.99867 291.2385 296.63853 303.7182 307.55805 315.48 319.43943 330.48 337.5597 343.79954 350.7589 356.99876 360.8386 364.798 371.7574 381.959 387.47859 393.7184 397.55827 404.51765 411.59733 415.43717 422.51686 427.07624 433.31608 440.27546 446.5153 454.08003 461.1597 468.11909 478.1988 484.43864 491.5183 497.63786 501.83784">education.Issuingcoinscanalsoresultinnegativeseigniorage,however,</tspan><tspan y="-369.05003" x="90 96.239849 103.31954 116.64 120.5994 127.55881 131.39865 143.28 150.3597 157.31909 163.55895 170.51834 177.47774 188.27774 194.5176 201.59729 208.67699 222 225.9594 232.19925 244.8 254.8797 261.95939 267.3594 271.19926 275.8779 282.11775 286.07716 289.917 302.52003 306.47944 319.80003 325.31959 329.15943 336.2391 349.55903 356.6387 361.31736 368.27674 375.2361 382.3158 388.43534 392.39476 399.35414 412.80003 419.03987 425.2797 429.83909 433.7985 440.03834 443.87818 457.2 463.43986 470.51954 474.35939 481.31877 486.83833 495.959">andthisphenomenonledAustraliatostopproducingcertaincoins.A</tspan><tspan y="-344.93104" x="90 95.51956 99.35941 106.43911 113.39851 119.63836 126.59776 135.84 142.07985 146.63924 153.59864 160.55803 166.68 177.59999 181.55939 188.51879 194.75864 204.12 208.07939 217.31999 221.27939 232.2 236.03984 248.51999 252.47939 259.43879 271.08 275.75865 279.71806 286.67744 292.91728 299.87666 306.1165 309.95634 316.19618 325.559 329.5184 336.47779 340.4372 346.55674 351.23539 357.47523 362.87525 372.24 379.19938 389.4 393.23985 400.31953 411.84 421.9197 428.9994 432.83924 436.79866 443.03849 455.52 463.31999 467.2794 473.39894 477.35835 483.59819 494.4 498.3594">studentarguesthatitisinthefinancialinterestoftheUnitedStatesto</tspan><tspan y="-320.81004" x="90 94.67865 101.75835 105.5982 109.5576 116.517009 132.6 136.5594 143.5188 155.88 162.11986 169.07926 175.3191 186.11911 193.1988 197.1582 209.40001 216.3594 226.32 236.3997 243.4794 248.87941 252.8388 257.51747 263.7573 267.59715 271.43699 283.80003 293.87974 297.83915 301.679 314.75904 319.43769 325.67753 332.6369 338.87675 343.5554 356.64006 360.59947 373.55906 379.7989 386.03874 392.27857 405.35905 412.43873 423.12004 427.07945 434.03883 446.28004 450.95869 458.03837 464.99775 475.68003 481.91987 488.99955 492.8394 499.79878">followtheexampleofAustraliawithregardtoeachofthefourcoins</tspan><tspan y="-296.69105" x="90 95.51956 102.478969 109.55866 119.63836 130.08 134.0394 144.35901 148.3184 155.2778 165.00002 168.95941 175.19927 182.15866 185.9985 192.23836">showninthetable.</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_57)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

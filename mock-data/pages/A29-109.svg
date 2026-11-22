@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M290.8 781.55H304.44999V792.55H290.8Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="290.759 295.3184 299.87779">107</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.2">Question15</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-728.691" x="89.99999 98.51955 105.59924 119.99999 124.67864 131.75835 138.71775 144.9576 148.79744 152.75684 159.71623">Thefunction</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-728.81" x="178.55899 192.59999">𝑇𝑥</tspan></text>
+<path transform="matrix(1,0,0,1,189.3,109.112)" d="M0 0C0 1.599 .256 2.918 .769 3.955 1.282 4.992 2.065 5.687 3.117 6.039L2.953 6.565C1.618 6.214 .592 5.457-.125 4.294-.842 3.131-1.2 1.723-1.2 .068-1.2-1.58-.84-2.989-.122-4.156 .598-5.324 1.622-6.083 2.953-6.435L3.137-5.908C2.071-5.556 1.282-4.869 .769-3.848 .256-2.827 0-1.544 0 0" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,1,203.479,109.112)" d="M0 0C0-1.544-.255-2.827-.765-3.848-1.276-4.869-2.066-5.556-3.137-5.908L-2.953-6.435C-1.622-6.083-.597-5.324 .122-4.156 .841-2.989 1.2-1.58 1.2 .068 1.2 1.723 .842 3.131 .125 4.294-.591 5.457-1.617 6.214-2.953 6.565L-3.117 6.039C-2.064 5.687-1.281 4.992-.769 3.955-.256 2.918 0 1.599 0 0" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-728.81" x="209.759">=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-736.85" x="224.159 229.67855 235.19809 237.23784 242.75739 248.27693 253.8 261.359 266.87858 268.91835 274.44">22,000&#x2212;6.5𝑥</tspan><tspan y="-721.73" x="239.88 245.39955 247.4393 252.95885 258.47843">1,000</tspan></text>
+<path transform="matrix(1,0,0,1,224.16,109.2)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H55.68"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-728.691" x="290.04 297.1197 300.95954 308.0392 314.15876 327.84 331.7994 338.7588 353.4 359.63984 365.03987 368.99928 372.8391 383.6391 389.87895 393.83836 400.0782 415.32 421.55986 425.51927 438.359 442.31843 448.55827 459.23796 466.31764 472.55747 477.2361 483.47596 487.43537 494.39476 499.0734">givestheestimatedairtemperature</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-698.93" x="90 98.28 104.04 111.6">𝑇(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-698.81" x="117.84 125.28 129.2394 140.159 147.2387 153.47855 160.43795 165.1166 171.23615 177.476 186.84 196.1973 202.43715 206.39655 211.79656 215.6364 222.7161 232.08 236.64 242.28 251.6373 256.31596 263.759 269.27857 276.23796 280.9166 285.59526 292.55464 299.6343 306.5937 313.55308 317.51249 324.47187 335.4 345.6 352.5594 359.63908 367.44 373.67985 377.51969 386.04 393.1197 399.35954 403.19938 407.0392 414.1189 421.07829 432 438.23985 446.159 452.39884 463.319 469.55885 473.51826 477.3581 481.19795 485.15736 492.11674 499.0761">,indegreesCelsius(&#x00b0;C),surroundingahotairballoonatanaltitude</tspan><tspan y="-674.33" x="90 97.0797">of</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-674.45" x="111.84">𝑥</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-674.33" x="125.399997 136.2 142.43985 146.39925 152.6391 157.31775 162.71776 172.92 177.59865 188.88 192.8394 199.7988 212.64 218.87985 224.39942 228.23926 232.19866 242.87836 249.11821 253.0776 259.31745 273 279.23985 283.07969 294.359 298.31843 304.55827 315.23796 322.31764 328.55747 333.2361 339.47596 343.43537 350.39476 355.0734 367.919 373.43858 380.39796 385.0766 389.75526 396.71464 403.674 410.7537 417.71308 421.6725 428.63188 442.2 446.15943 453.1188 465.959 473.0387 479.99809 490.44 496.67985 500.63926">meters.Iftheestimatedairtemperaturesurroundingthehotair</tspan><tspan y="-650.21" x="90 97.0797 103.31954 107.15939 110.999248 118.07894 125.038349 138.84 142.7994 155.04 161.99939 168.959 174.6 183.9573 194.28 204.3597 211.43939 215.27924 221.51909 235.44 242.3994 253.92 257.87944 264.8388 277.8 282.47865 289.55833 293.39817 297.35758 304.31697 314.39668 318.35609 325.31547 339.12 343.0794 355.32 361.55986 365.51927 372.47865 377.87867 384.1185 389.63807 400.32 404.27943 418.08003 422.03944 428.9988 442.08003 448.31986 452.1597 456.1191 459.95896 463.91838 470.87776 477.83714 484.07698 494.40003 498.35945">balloonis16&#x00b0;C,whichofthefollowingisclosesttothealtitude,in</tspan><tspan y="-625.97006" x="90.00003 100.800029 107.03987 110.999279 117.23912 121.91777 127.31778 134.28003 141.35973 149.40003 153.35942 160.31882 170.04003 177.11972 184.07912 191.40003 197.63988 201.59928 209.64003 216.71973 222.95958 226.79943 230.63927 237.71897 244.67836 251.63776">meters,ofthehotairballoon?</tspan><tspan y="-601.85006" x="90.00002 100.07972 111.00002 118.07972">A.22</tspan><tspan y="-577.731" x="90.00002 99.35732 111.00002 118.07972 125.03912">B.923</tspan><tspan y="-553.61007" x="90.00002 99.35732 111.00002 118.07972 121.55941 128.51882 135.59851">C.1,375</tspan><tspan y="-529.37008" x="90.00002 100.07972 111.00002 118.07972 121.55941 128.51882 135.59851">D.5,846</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-384.53004" x="90.00002 100.91687 108.716869 114.95671 120.35672 125.03537 128.99477 135.95417 147.12003 154.20003">Question16</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-359.57005" x="90.00002 98.51958 105.59927 116.759029 121.437679 128.51738 135.47678 141.71663 145.55648 149.51587 156.47527">Thefunction</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-359.57005" x="168.35903">q</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-359.57005" x="180.35903 184.31842 194.75902 201.83872 208.07857 212.63796 216.59735 223.55675 229.7966 241.68003 248.75972">isdefinedby</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-359.69105" x="264.24003 271.68003 277.55903 285.00004 294.47975 309.12004 316.92 321.24003 331.92 345.48 353.28">𝑞(𝑥)=𝑎|𝑥&#x2212;9|</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-364.85005" x="357.72">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-359.69105" x="366.84 380.4 388.19999 395.99998 400.32 411 424.559 432.35899 439.6785 453.47999">&#x2212;87|𝑥&#x2212;9|+𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-359.57005" x="462.59999 470.99998 481.07969 488.15937 494.3992 499.07786">,where</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-335.21003" x="89.99997">𝑎</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.09104" x="109.79997 116.03982 122.99922">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-335.21003" x="139.43997">𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.09104" x="158.99997 165.23983 169.91847 182.03997 188.27982 195.35951 202.31891 207.71892 211.67832 217.91817 224.87757 228.7174 234.23697 243.59996 249.83982 256.9195">areconstants,and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-335.21003" x="273.35896 284.99995 299.39994 310.91993 325.19963 332.9996">𝑎&#x003e;𝑏&#x003e;87</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.09104" x="343.31993 352.79994 357.47859">.If</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-335.21003" x="371.63993 379.19883 385.07853 392.75825 400.55824 408.23796 417.71766 432.35893">𝑞(639)=&#x210e;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-335.09104" x="448.55894 454.79878 461.87846">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-335.21003" x="478.31895 485.87785 494.87995">𝑞(&#x2212;</tspan><tspan y="-310.73103" x="89.99994 97.79994 105.599948 113.27965 122.75935 137.39994">621)=𝑘</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-310.61003" x="148.79993 159.47992 169.55962 176.63932 182.87917 187.43856">,where</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-310.61003" x="200.87992">h</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-310.61003" x="215.03992 221.27977 228.35947">and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-310.61003" x="242.39992">k</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-310.61003" x="255.83992 262.07975 266.7584 280.19993 286.43977 293.39915 300.47883 305.87886 309.7187 315.95854 322.9179 326.87733 332.27735 342.95893 353.03865 360.11833 366.35816 377.39994 381.35935 393.95893 397.91835 404.87773 418.19993 425.2796 431.51945 435.35929 442.31867 455.7589 462.8386">areconstants,whatisthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-310.73103" x="478.19993 485.9999 494.8799">9(&#x2212;</tspan><tspan y="-285.41" x="89.99991 97.79991 105.599918 113.27962">639)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-290.57" x="119.03991 124.55891 131.99991">&#x210e;&#x2212;𝑘</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-285.41" x="141.23992 154.79991 162.59992 170.39992 178.07962 183.95932 191.63903">+621(9)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-290.57" x="197.39992 202.91992 210.35892">𝑘&#x2212;&#x210e;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-285.41" x="216.47992">?</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

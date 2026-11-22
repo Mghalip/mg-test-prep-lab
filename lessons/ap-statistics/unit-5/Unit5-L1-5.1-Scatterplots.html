@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Unit 5 · Lesson 1 — Scatterplots</title>
+<style>
+:root{
+  --navy:#1E2A4A; --navy-2:#34416A; --ink:#1E2A4A; --muted:#6B7290;
+  --pink:#F4C3D0; --pink-2:#FBE3EA; --pink-3:#FFF5F8; --rose:#C8577B; --rose-2:#D9849E;
+  --paper:#FFFBFC; --line:#EBD7DE; --gold:#F2C46B; --mint:#DDF1EA; --mint-ink:#1F6B55;
+  --sans:"Montserrat","Avenir Next","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --mono:"SF Mono","Menlo","Consolas",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E3E8;font-family:var(--sans);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;background:var(--paper);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(30,42,74,.18);padding:62px 72px 54px;display:none;flex-direction:column}
+.slide.active{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.tag{position:absolute;top:26px;left:72px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.tag b{color:var(--navy);font-weight:700}
+.tag .ek{background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em}
+.time{position:absolute;top:22px;right:72px;font-size:13px;font-weight:600;color:var(--muted);background:var(--pink-3);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+.time.bonus{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.foot{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:12px;color:#A3A8BE;letter-spacing:.04em}
+h1{font-size:54px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+h2 .zh{font-family:var(--zh);font-weight:600;color:var(--rose);font-size:25px;margin-left:12px;letter-spacing:0}
+h3{font-size:22px;font-weight:700;margin-bottom:8px}
+p,li{font-size:21px;line-height:1.5}
+.sub{font-size:19px;color:var(--muted);margin-bottom:16px}
+.zh{font-family:var(--zh)}
+.small{font-size:17px}
+.muted{color:var(--muted)}
+strong{font-weight:700}
+ul.clean{list-style:none}
+ul.clean li{padding-left:28px;position:relative;margin:6px 0}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:10px;height:10px;border-radius:3px;background:var(--rose-2)}
+.row{display:flex;gap:26px} .col{flex:1;min-width:0}
+.center{align-items:center}
+
+.concept{background:#fff;border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:14px;padding:16px 24px;margin:4px 0 12px}
+.concept .term{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.concept .term .zh{letter-spacing:.05em;text-transform:none;margin-left:8px}
+.concept .en{font-size:21px;line-height:1.45}
+.concept .cn{font-family:var(--zh);font-size:18px;line-height:1.6;color:#4C5375;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.concept.pink{border-left-color:var(--rose)}
+.formula{font-family:var(--mono);background:var(--pink-3);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:18px;margin-top:8px;display:inline-block}
+
+.note{background:var(--pink-2);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.note.warn{background:#FFF2DA;border-left:6px solid var(--gold)}
+.note.ok{background:var(--mint);color:var(--mint-ink)}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-right:6px;letter-spacing:.04em}
+.pill.r{background:var(--rose)} .pill.l{background:var(--pink);color:var(--navy)} .pill.g{background:var(--gold);color:var(--navy)}
+
+table.tw{border-collapse:separate;border-spacing:0;font-size:20px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+table.tw th,table.tw td{padding:8px 16px;text-align:center;border-bottom:1px solid var(--line);transition:background .25s,color .25s}
+table.tw thead th{background:var(--navy);color:#fff;font-weight:700;font-size:17px}
+table.tw thead tr.top th{background:var(--navy-2);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+table.tw th.rh{text-align:left;background:var(--pink-3);font-weight:600}
+table.tw td.tot{background:#F6F1F4;font-weight:700}
+table.tw tr.totrow td,table.tw tr.totrow th{background:#F6F1F4;font-weight:700;border-bottom:none}
+table.tw td.hl,table.tw tr.totrow td.hl{background:var(--gold);color:var(--navy);font-weight:800}
+table.tw td.hl2,table.tw tr.totrow td.hl2{background:var(--rose);color:#fff;font-weight:800}
+table.tw td.dim{color:#C8CBD8}
+table.tw input{width:74px;font-family:var(--sans);font-size:19px;text-align:center;border:2px dashed var(--rose-2);border-radius:8px;padding:3px;color:var(--navy);background:var(--pink-3)}
+table.tw input.okk{border:2px solid #7CC4AA;background:var(--mint)}
+table.tw input.bad{border:2px solid #E9A3A3;background:#FCE4E4}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+button.b{font-family:var(--sans);font-size:15px;font-weight:700;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 16px;cursor:pointer;transition:.2s}
+button.b:hover{background:var(--pink-2)}
+button.b.on{background:var(--navy);color:#fff}
+.reveal{display:none} .reveal.show{display:block;animation:in .3s ease}
+span.reveal.show{display:inline}
+button.rv{font-family:var(--sans);font-size:14px;font-weight:700;border:none;background:var(--rose);color:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;margin-top:6px}
+button.rv:hover{filter:brightness(1.08)}
+.ans{background:var(--mint);color:var(--mint-ink);border-radius:10px;padding:9px 14px;margin-top:6px;font-size:18px;line-height:1.5}
+
+.opts{list-style:none;margin-top:8px}
+.opts li{font-size:19px;padding:7px 16px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;background:#fff;cursor:pointer;transition:.2s}
+.opts li:hover{border-color:var(--rose-2)}
+.opts li.right{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink);font-weight:700}
+.opts li.wrong{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B;text-decoration:line-through}
+
+.cover{background:linear-gradient(135deg,#FFF5F8 0%,#FBE3EA 55%,#F4C3D0 100%);justify-content:center}
+.cover .kicker{font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--rose);text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:64px;max-width:900px}
+.cover .zhT{font-family:var(--zh);font-size:32px;color:var(--navy-2);margin-top:14px;font-weight:600}
+.cover .meta{margin-top:40px;display:flex;gap:12px}
+.blob{position:absolute;border-radius:50%;background:var(--navy);opacity:.06}
+.divider{background:var(--navy);color:#fff;justify-content:center}
+.divider .num{font-size:120px;font-weight:800;color:var(--pink);line-height:1}
+.divider h1{color:#fff;margin-top:10px}
+.divider .zhT{font-family:var(--zh);color:var(--pink);font-size:30px;margin-top:12px}
+.divider .tag,.divider .foot{color:var(--pink)}
+.divider .eks{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.divider .eks > span{border:1px solid rgba(244,195,208,.5);color:var(--pink);border-radius:99px;padding:5px 14px;font-size:15px}
+
+.cards{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.card .k{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--rose);text-transform:uppercase}
+.card h3{margin-top:4px}
+.card p{font-size:19px}
+.lesson{display:flex;align-items:center;gap:14px;padding:9px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:18px}
+.lesson .n{width:30px;height:30px;border-radius:50%;background:var(--pink-2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+.lesson.now{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lesson.now .n{background:var(--pink);color:var(--navy)}
+.lesson .old{margin-left:auto;font-size:14px;opacity:.7}
+.agenda{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.agenda .it{display:flex;align-items:center;gap:18px;font-size:20px}
+.agenda .bar{height:32px;border-radius:8px;background:var(--pink);display:flex;align-items:center;padding-left:12px;font-size:14px;font-weight:700;color:var(--navy);flex:none}
+.agenda .bar.n{background:var(--navy);color:#fff}
+.agenda .bar.g{background:var(--gold)}
+
+svg text{font-family:var(--sans)}
+.legend{display:flex;gap:16px;font-size:15px;margin-top:4px;flex-wrap:wrap}
+.legend > span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid rgba(30,42,74,.15)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+
+.signal{font-size:20px;line-height:1.7}
+.signal .w{background:var(--gold);padding:1px 8px;border-radius:6px;font-weight:700}
+.signal .d{border-bottom:3px solid var(--rose);font-weight:700}
+
+.claims{display:flex;flex-direction:column;gap:9px}
+.claim{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;font-size:17px;line-height:1.4}
+.claim .txt{flex:1}
+.claim button{font-family:var(--sans);font-weight:700;font-size:14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:4px 10px;cursor:pointer}
+.claim.good{border-color:#7CC4AA;background:var(--mint)}
+.claim.badd{border-color:#E9A3A3;background:#FCE4E4}
+.claim .why{display:none;font-size:15px;color:var(--muted);margin-top:3px}
+.claim.good .why,.claim.badd .why{display:block}
+.sortq{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 14px;font-size:17px}
+.sortq .txt{flex:1}
+.sortq button{font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+.sortq button.yes{background:var(--mint);border-color:#7CC4AA;color:var(--mint-ink)}
+.sortq button.no{background:#FCE4E4;border-color:#E9A3A3;color:#9B3B3B}
+.sortq .res{width:150px;font-size:15px;font-family:var(--mono);color:var(--mint-ink)}
+
+input[type=range]{width:100%;accent-color:var(--rose)}
+.bigin{font-family:var(--sans);font-size:22px;width:150px;padding:6px 10px;border:2px solid var(--navy);border-radius:10px;text-align:center}
+.score{font-size:15px;font-weight:700;color:var(--rose)}
+
+#ui{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:20;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);padding:6px 10px;border-radius:99px;box-shadow:0 6px 20px rgba(30,42,74,.12);opacity:.25;transition:.25s}
+#ui:hover{opacity:1}
+#ui button{font-family:var(--sans);border:none;background:none;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;padding:6px 10px;border-radius:99px}
+#ui button:hover{background:var(--pink-2)}
+#count{font-size:14px;color:var(--muted);min-width:64px;text-align:center}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--rose);z-index:30;transition:width .3s}
+#toc,#notes{position:fixed;z-index:40;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px rgba(30,42,74,.2);display:none}
+#toc{top:20px;left:20px;bottom:70px;width:380px;border-radius:16px;padding:18px;overflow:auto}
+#toc.show,#notes.show{display:block}
+#toc h4{font-size:13px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:10px}
+#toc a{display:block;font-size:14px;padding:6px 10px;border-radius:8px;color:var(--navy);text-decoration:none}
+#toc a:hover{background:var(--pink-3)} #toc a.cur{background:var(--navy);color:#fff}
+#toc a.sec{font-weight:800;margin-top:6px}
+#notes{right:20px;bottom:70px;width:420px;max-height:50vh;overflow:auto;border-radius:16px;padding:16px 20px;font-size:15px;line-height:1.6}
+#notes h4{font-size:12px;letter-spacing:.12em;color:var(--rose);text-transform:uppercase;margin-bottom:6px}
+
+@media print{
+  html,body{overflow:visible;background:#fff;height:auto}
+  #viewport{position:static;display:block}
+  #stage{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;box-shadow:none;border-radius:0;animation:none}
+  .reveal{display:block!important}
+  #ui,#progress,#toc,#notes{display:none!important}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+<style id="review-style">
+.slide.extension h2{font-size:32px;margin-bottom:18px}.slide.extension h2 .zh{font-size:22px}.bridge-body{display:flex;flex-direction:column;gap:12px}.bridge-body p{font-size:21px;line-height:1.42}.bridge-body .algebra{font-family:var(--sans);font-size:23px;line-height:1.5;background:#fbe3ea;padding:12px 18px;border-radius:10px;color:#1e2a4a}.bridge-body .bridge-cn{font-size:18px;color:#59607b;border-left:3px solid #c8577b;padding-left:13px}.bridge-table{border-collapse:collapse;width:100%;font-size:20px}.bridge-table td,.bridge-table th{border-bottom:1px solid #ebd7de;padding:10px;text-align:left}.bridge-table th{background:#fbe3ea}.bridge-body details{font-size:18px;padding:10px 15px;background:#ddf1ea;border-radius:8px}.bridge-body details p{font-size:18px;margin-top:8px}.bridge-body summary{cursor:pointer;font-weight:700}.review-scroll{overflow-y:auto;max-height:540px;padding-right:12px}.review-home{position:fixed;top:4px;right:8px;z-index:10000;font-size:12px;color:#6b7290;background:#fff9;padding:3px 8px;border-radius:8px;text-decoration:none}@media print{.review-home{display:none}.review-scroll{max-height:none;overflow:visible}}
+</style><link href="../assets/math/katex.min.css" rel="stylesheet"/><style>.math-inline{white-space:nowrap}.math-inline .katex{font-size:1.04em;line-height:1.25}.math-display .katex{font-size:1.08em}.math-display .katex-display{margin:.18em 0;text-align:left}.math-display .katex-display>.katex{text-align:left}.algebra.math-display{padding:10px 18px}.formula.math-display{font-family:inherit}.slide.extension .bridge-body{gap:10px}.slide.extension .bridge-body p{font-size:20px;line-height:1.48}.slide.extension .algebra{font-size:22px}.math-inline .katex .mfrac{font-size:.94em}.math-display{max-width:100%}.katex-mathml{pointer-events:none}.formula-caption{font-size:16px;line-height:1.5;margin-top:6px}.slide.extension .bridge-body details{font-size:17px;padding:8px 12px}.slide.extension .bridge-body details p{font-size:17px}</style></head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage"><style>
+.slider-row{display:flex;align-items:center;gap:12px;font-size:16px;margin:3px 0}.slider-row label{width:120px;font-weight:700}.slider-row input[type=range]{flex:1}.slider-row .v{width:64px;font-family:var(--mono);text-align:right}
+.mono{font-family:var(--mono)}.datarow{font-family:var(--mono);font-size:19px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;letter-spacing:.04em}
+table.st td,table.st th{padding:5px 9px!important;font-size:15px}
+.formula{font-family:var(--serif,Georgia);font-size:24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr>span{display:block;padding:0 5px}.fr>span:first-child{border-bottom:2px solid var(--ink)}
+.sq{display:inline-block;border-top:2px solid var(--ink);padding:0 3px;margin-left:1px}
+.zbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.zbox div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}.zbox b{font-family:var(--mono);font-size:20px;display:block;color:var(--navy)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}.steps4 .card{padding:10px 12px}
+.tmpl{background:#fff;border:2px dashed var(--rose-2);border-radius:12px;padding:10px 14px;font-size:17px;line-height:1.55;margin-top:8px}
+.tmpl u{text-decoration:none;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:700}
+</style>
+<style>
+.mx .problem{font-size:19px;padding:12px 18px;line-height:1.5}
+.mx .scrollcol{max-height:468px;overflow-y:auto;padding-right:4px}
+.answ{margin:4px 0 6px 30px}
+.answ .ab{font-family:var(--sans);font-size:13px;font-weight:800;border:2px solid #2E8B6E;background:#fff;color:#2E8B6E;border-radius:99px;padding:3px 12px;cursor:pointer}
+.answ .ab:hover{background:#E6F4EE}
+.answ.open .ab{background:#2E8B6E;color:#fff}
+.answ .abody{display:none;background:#F3FAF7;border:1px solid #CFE9DF;border-left:5px solid #2E8B6E;border-radius:10px;padding:7px 12px;margin-top:5px;font-size:16px;line-height:1.45}
+.answ.open .abody{display:block;animation:in .3s ease}
+.answ.solo{margin-left:0}
+.mxtop{display:flex;gap:8px;align-items:center;margin:2px 0 6px}
+.mxtop .stepbtn{font-size:13px;padding:5px 14px}
+.mx .keyidea{display:none;font-size:15px;color:#2E8B6E;font-weight:700;margin:2px 0 4px}
+.mx.anyopen .keyidea{display:block}
+.mx .qv{display:block}.mx .sv{display:none}.mx.anyopen .qv{display:none}.mx.anyopen .sv{display:block}
+.mx .takeaway.show{display:block}
+
+/* ---------- v2 components ---------- */
+.stars{font-size:18px;letter-spacing:2px;color:#E2A83B;white-space:nowrap}
+.stars .off{color:#E3DCE0}
+.lvl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.time+.lvl,.lvlpos{position:absolute;top:22px;right:190px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:10px;padding:6px 14px}
+.badge.ex{background:var(--gold);color:var(--navy)}
+.badge.sol{background:#2E8B6E;color:#fff}
+.badge.sim{background:var(--navy);color:var(--pink)}
+.badge.chk{background:var(--rose);color:#fff}
+/* example slide */
+.slide.ex{background:linear-gradient(180deg,#FFFDF6 0%,#FFFBFC 100%)}
+.slide.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--gold)}
+.slide.sol{background:linear-gradient(180deg,#F3FBF8 0%,#FFFBFC 100%)}
+.slide.sol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:#2E8B6E}
+.exhead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.exhead h2{margin:0}
+.problem{background:#fff;border:2.5px dashed #E2B64F;border-radius:16px;padding:18px 24px;font-size:21px;line-height:1.55}
+.problem .q{margin-top:8px}
+.problem .q b.n{display:inline-block;min-width:30px;color:var(--rose)}
+.think{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:16px;font-weight:700;color:var(--navy);background:var(--pink-2);border-radius:99px;padding:6px 14px}
+.nextsol{position:absolute;bottom:46px;right:72px;font-size:14px;font-weight:700;color:#B07B0C}
+.solq{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:8px}
+.steps .step{display:none;background:#fff;border:1px solid #CFE9DF;border-left:6px solid #2E8B6E;border-radius:12px;padding:10px 16px;margin:7px 0;font-size:19px;line-height:1.5}
+.steps .step.show{display:block;animation:in .3s ease}
+.steps .step .sn{font-weight:800;color:#2E8B6E;margin-right:6px}
+.takeaway{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;font-size:17px;margin-top:8px;display:none}
+.takeaway.show{display:block;animation:in .3s ease}
+.takeaway b{color:var(--pink)}
+button.stepbtn{font-family:var(--sans);font-size:15px;font-weight:800;border:none;background:#2E8B6E;color:#fff;border-radius:99px;padding:8px 18px;cursor:pointer}
+button.stepbtn.alt{background:#fff;color:#2E8B6E;border:2px solid #2E8B6E}
+.vis{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.vis .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+/* simulator slide */
+.slide.sim{background:#F6F4FA;padding-top:92px}
+.simband{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(90deg,var(--navy),#3A4A78);display:flex;align-items:center;padding:0 72px;gap:16px;color:#fff}
+.simband .ic{font-size:30px}
+.simband .t{font-size:15px;font-weight:800;letter-spacing:.18em;color:var(--pink)}
+.simband .h{font-size:24px;font-weight:800}
+.simband .zh{font-family:var(--zh);color:var(--pink);font-size:18px}
+.simband .try{margin-left:auto;background:var(--gold);color:var(--navy);font-weight:800;font-size:14px;border-radius:99px;padding:6px 14px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.slide.sim .tag,.slide.sim .time{display:none}
+.simlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.simlist a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--navy);font-size:18px;font-weight:700}
+.simlist a:hover{border-color:var(--navy);background:var(--pink-3)}
+.simlist a .ic{font-size:26px}
+.simlist a small{display:block;font-weight:500;color:var(--muted);font-size:14px}
+.legendrow{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;margin-top:10px}
+.legendrow > span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+.kp{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+</style>
+<section class="slide cover" data-notes="Unit 5 第一课：两个数值变量的散点图——解释变量与响应变量、描述散点图（形式、方向、强度、异常特征）、用散点图支持结论。对应 TPS 3.1。" data-title="Cover">
+<div class="blob" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+<div class="blob" style="width:260px;height:260px;right:180px;bottom:-120px;opacity:.05"></div>
+<div class="kicker">AP Statistics · Unit 5 · Lesson 1</div><h1>Scatterplots</h1><div class="zhT">散点图</div>
+<p class="muted" style="margin-top:22px;font-size:22px">Topic 5.1 · bivariate quantitative data · explanatory and response variables · form, direction, strength, unusual features · justifying claims</p><div class="meta"><span class="pill">45 min core</span><span class="pill g">+ Bonus practice</span><span class="pill r">CED 2026</span><span class="pill l">TPS 3.1</span></div>
+<div class="foot"><span>MG · AP Statistics</span><span>→ next · O contents · N notes · F fullscreen</span></div>
+</section>
+<section class="slide" data-notes="Unit 5 全貌。" data-title="Unit 5 roadmap">
+<div class="tag">Unit 5 <b>· Roadmap</b></div>
+<h2>Where we are in Unit 5 <span class="zh">单元路线图</span></h2>
+<p class="sub">Regression Analysis · 10–20% of the AP exam</p>
+<div class="row"><div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson now"><span class="n">1</span>5.1 Scatterplots<span class="old">TPS 3.1</span></div><div class="lesson"><span class="n">2</span>5.2 Correlation<span class="old">TPS 3.1</span></div></div>
+<div class="col" style="display:flex;flex-direction:column;gap:8px"><div class="lesson"><span class="n">3</span>5.3 + 5.4 Regression Models &amp; Residuals<span class="old">TPS 3.2</span></div><div class="lesson"><span class="n">4</span>5.5 Least-Squares Regression<span class="old">TPS 3.2</span></div></div></div>
+<div class="note" style="margin-top:20px">💡 Units 1–4 looked at one quantitative variable (or compared groups). Unit 5: the relationship between <strong>two quantitative variables</strong> measured on the same individuals. <span class="zh">两个数值变量之间的关系。</span></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="学习目标来自 2026 CED；星级 = 该知识点难度（1–4 星）。" data-title="Learning objectives">
+<div class="tag">Lesson 1 <b>· Learning Objectives (CED)</b></div>
+<h2>By the end of today, you can… <span class="zh">学习目标</span></h2>
+<div class="cards" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="card"><div class="k">5.1.A · Skill 3.A</div><h3>Construct <span class="stars">★★<span class="off">★★</span></span></h3><p>Make a scatterplot with the explanatory variable on the x-axis.</p><p class="zh muted small" style="margin-top:6px">画散点图</p></div><div class="card"><div class="k">5.1.A</div><h3>Variables <span class="stars">★<span class="off">★★★</span></span></h3><p>Identify explanatory and response variables.</p><p class="zh muted small" style="margin-top:6px">区分解释变量与响应变量</p></div><div class="card"><div class="k">5.1.B · Skill 4.A</div><h3>Describe <span class="stars">★★★<span class="off">★</span></span></h3><p>Describe form, direction, strength, and unusual features in context.</p><p class="zh muted small" style="margin-top:6px">描述散点图</p></div><div class="card"><div class="k">5.1.B</div><h3>Direction <span class="stars">★★<span class="off">★★</span></span></h3><p>Positive vs. negative association.</p><p class="zh muted small" style="margin-top:6px">正相关与负相关</p></div><div class="card"><div class="k">5.1.C · Skill 4.B</div><h3>Justify a claim <span class="stars">★★★<span class="off">★</span></span></h3><p>Use a scatterplot to support or refute a claim.</p><p class="zh muted small" style="margin-top:6px">用散点图论证</p></div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="核心 45 分钟；Bonus 页为加练。图例：📝 例题（下一页是解答）、✅ 解答、🎮 模拟器、★ 难度。" data-title="Agenda &amp; how to read this deck">
+<div class="tag">Lesson 1 <b>· Agenda</b></div>
+<h2>Today's plan <span class="zh">课堂安排</span></h2>
+<div class="agenda" style="margin-top:12px"><div class="it"><div class="bar" style="width:50px">5'</div>Warm-up: study time and quiz scores</div><div class="it"><div class="bar n" style="width:130px">12' · 5.1.A</div>Bivariate data · explanatory vs. response · making a scatterplot</div><div class="it"><div class="bar n" style="width:170px">20' · 5.1.B–C</div>Form · direction · strength · unusual features · justifying claims</div><div class="it"><div class="bar" style="width:50px">8'</div>AP-style MCQ + exit ticket</div><div class="it"><div class="bar g" style="width:110px">Bonus</div>Scatterplot describer · extra MCQ</div></div>
+<div class="legendrow"><span>📝 <b>Example</b> 例题 — think first!</span><span>✅ <b>Answers</b> 答案 — click 👁 under each question 点击显示</span><span>🎮 <b>Simulator</b> 模拟器</span><span><span class="stars">★<span class="off">★★★</span></span> basic → <span class="stars">★★★★<span class="off"></span></span> AP challenge</span></div>
+<p class="small muted" style="margin-top:8px">CED order: 5.1.A.1–2 → 5.1.B.1–5 → 5.1.C.1</p><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="本节所有模拟器，点击可直接跳转。" data-title="🎮 Simulators in this lesson">
+<div class="tag">Lesson 1 <b>· Simulators</b></div>
+<h2>🎮 Simulators in this lesson <span class="zh">本节模拟器</span></h2>
+<p class="sub">Look for the navy <b>🎮 SIMULATOR</b> banner. Click to jump there. <span class="zh">深蓝色横幅 = 模拟器，点击可直接跳转。</span></p>
+<div class="simlist"><a data-goto="simDesc" href="#"><span class="ic">🎮</span><span>Scatterplot describer<small>散点图描述练习 · random scatterplot → describe</small></span></a></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Warm-up: Study time and quiz scores">
+<div class="exhead"><span class="badge ex">📝 Warm-up · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">Warm-up</span></div>
+<h2>Study time and quiz scores <span class="zh">学习时间与测验成绩</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Twelve students reported how many hours they studied and their quiz score (out of 100). <span class="zh">12 名学生的学习时间与成绩。</span></p><div class="q"><b class="n">Q1</b>What do you notice about the relationship?</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Students who studied more tended to score higher; the points follow a fairly straight upward pattern.</div></div><div class="q"><b class="n">Q2</b>Which variable would you put on the x-axis? Why?</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Hours studied on the x-axis — it is the variable we use to <b>explain or predict</b> quiz score.</div></div></div><div class="keyidea">🔑 One graph shows two variables at once.</div></div></div><div class="col vis"><div class="qv"><svg id="wuQ" viewbox="0 0 560 240" width="100%"></svg></div><div class="sv"><svg id="wuSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 5 · Lesson 1 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide divider" data-notes="Topic 5.1" data-sec="1" data-title="§ 5.1 Representations of Two Quantitative Variables">
+<div class="tag">Topic</div><div class="num">5.1</div><h1>Representations of Two Quantitative Variables</h1><div class="zhT">两个数值变量的图形表示</div><div class="eks"><span>5.1.A Scatterplots</span><span>5.1.B Describe</span><span>5.1.C Justify</span></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 5.1.A。有时两个变量没有明确的解释/响应关系，任意放置均可。" data-title="Bivariate Data and Scatterplots">
+<div class="tag">5.1.A <b>· Key Concepts</b><span class="ek">EK 5.1.A.1–2</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★<span class="off">★★★</span></span></span>
+<h2>Bivariate Data and Scatterplots <span class="zh">双变量数据与散点图</span></h2><div class="concept"><div class="term">Bivariate quantitative data<span class="zh">双变量数值数据</span></div><div class="en">Ordered pairs (x, y) of two quantitative variables measured on the <strong>same individuals</strong>.</div><div class="cn">对<b>同一批个体</b>测量的两个数值变量形成的有序对 (x, y)。</div></div><div class="concept pink"><div class="term">Explanatory &amp; response<span class="zh">解释变量与响应变量</span></div><div class="en">The <strong>explanatory variable</strong> (x) is used to explain or predict the <strong>response variable</strong> (y). Put x on the horizontal axis, y on the vertical axis.</div><div class="cn"><b>解释变量</b> x 用来解释或预测<b>响应变量</b> y。x 放横轴，y 放纵轴。</div></div><div class="concept"><div class="term">Scatterplot<span class="zh">散点图</span></div><div class="en">Each individual is one point. Label both axes with the variable names and units, and use evenly spaced scales.</div><div class="cn">每个个体是一个点。两条轴都要标出变量名<b>和单位</b>，刻度均匀。</div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 2: Which is explanatory?">
+<div class="exhead"><span class="badge ex">📝 Example 2 · 例题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.1.A.2</span></div>
+<h2>Which is explanatory? <span class="zh">哪个是解释变量？</span></h2><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>Identify the explanatory and response variables.</p><div class="q"><b class="n">a</b>Amount of fertilizer (g) and tomato plant height (cm).</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">a. Explanatory: fertilizer; response: plant height.</div></div><div class="q"><b class="n">b</b>Outside temperature (°C) and daily ice-cream sales ($).</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">b. Explanatory: temperature; response: ice-cream sales.</div></div><div class="q"><b class="n">c</b>A student’s arm span and height.</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">c. Either could be explanatory — there is no natural direction. Choose based on what you want to predict.</div></div></div><div class="keyidea">🔑 Which variable helps explain or predict the other?</div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 3: Make a scatterplot">
+<div class="exhead"><span class="badge ex">📝 Example 3 · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.1.A · Skill 3.A</span></div>
+<h2>Make a scatterplot <span class="zh">画散点图</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>High school GPA and first-year college GPA for 10 students:</p><table class="tw" style="font-size:14px;margin:6px 0"><thead><tr><th style="padding:3px 7px">HS GPA</th><td style="padding:3px 7px">3.4</td><td style="padding:3px 7px">3.1</td><td style="padding:3px 7px">3.7</td><td style="padding:3px 7px">3.3</td><td style="padding:3px 7px">3.5</td><td style="padding:3px 7px">4.0</td><td style="padding:3px 7px">3.2</td><td style="padding:3px 7px">3.8</td><td style="padding:3px 7px">3.9</td><td style="padding:3px 7px">3.6</td></tr></thead><tbody><tr><th class="rh" style="padding:3px 7px">College GPA</th><td style="padding:3px 7px">3.1</td><td style="padding:3px 7px">3.0</td><td style="padding:3px 7px">3.6</td><td style="padding:3px 7px">3.6</td><td style="padding:3px 7px">3.4</td><td style="padding:3px 7px">3.9</td><td style="padding:3px 7px">3.2</td><td style="padding:3px 7px">3.7</td><td style="padding:3px 7px">3.6</td><td style="padding:3px 7px">3.3</td></tr></tbody></table><div class="q">Make a scatterplot to show how high school GPA can be used to predict college GPA.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Put HS GPA on the x-axis (3.0 to 4.0) and college GPA on the y-axis (2.9 to 4.0), with labels and units (GPA points).</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. Plot each student as one point, e.g., (3.4, 3.1), (4.0, 3.9). The plot shows a moderately strong, positive, roughly linear association.</div></div></div><div class="keyidea">🔑 x = HS GPA, y = college GPA.</div></div></div><div class="col vis"><svg id="gpSol" viewbox="0 0 560 240" width="100%"></svg></div></div><div class="foot"><span>Unit 5 · Lesson 1 · Data: class slides</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 5.1.B。口诀：DUFS / “Direction, Unusual features, Form, Strength” —— 一定要结合语境。" data-title="Describing a Scatterplot">
+<div class="tag">5.1.B <b>· Key Concepts</b><span class="ek">EK 5.1.B.1–5</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Describing a Scatterplot <span class="zh">描述散点图</span></h2><div class="concept"><div class="term">Form · Direction<span class="zh">形式 · 方向</span></div><div class="en"><strong>Linear</strong> or <strong>non-linear</strong>. Positive: as x increases, y tends to increase; <strong>negative</strong>: as x increases, y tends to decrease.</div><div class="cn"><b>线性</b>或<b>非线性</b>；<b>正</b>：x 增大 y 倾向增大；<b>负</b>：x 增大 y 倾向减小。</div></div><div class="concept"><div class="term">Strength<span class="zh">强度</span></div><div class="en">How closely the points follow the pattern: <strong>strong, moderate, weak</strong>.</div><div class="cn">点贴近模式的程度：<b>强、中等、弱</b>。</div></div><div class="concept pink"><div class="term">Unusual features<span class="zh">异常特征</span></div><div class="en"><strong>Outliers</strong> (points outside the pattern) and <strong>clusters</strong>.</div><div class="cn"><b>离群点</b>与<b>聚集群</b>。</div></div><div class="tmpl">“There is a <u>strong</u>, <u>positive</u>, <u>linear</u> association between <u>(x in context)</u> and <u>(y in context)</u>. <u>(Unusual features)</u>.”</div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 4: SAT participation">
+<div class="exhead"><span class="badge ex">📝 Example 4 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.1.B</span></div>
+<h2>SAT participation <span class="zh">SAT 参加率</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The scatterplot shows, for 50 states, the percent of high school graduates who took the SAT (x) and the state’s mean SAT Math score (y). <span class="zh">各州 SAT 参加率与平均数学分。</span></p><div class="q">Describe the relationship.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 1. Direction: negative — states where a higher percent of graduates take the SAT tend to have lower mean Math scores.</div></div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 2. <b>Form:</b> somewhat curved (non-linear).</div></div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 3. <b>Strength:</b> moderately strong.</div></div><div class="answ" data-i="3"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Step 4. <b>Unusual features:</b> two clusters (states with ≤ 25% taking the test and states with more than 40%), and one state with a much lower mean score than others with similar participation (an outlier).</div></div></div><div class="keyidea">🔑 Direction · unusual features · form · strength — in context.</div></div></div><div class="col vis"><div class="qv"><svg id="saQ" viewbox="0 0 560 250" width="100%"></svg></div><div class="sv"><svg id="saSol" viewbox="0 0 560 250" width="100%"></svg></div></div></div><div class="foot"><span>Unit 5 · Lesson 1 · TPS 3.1 (simulated data)</span><span class="pg"></span></div>
+</section>
+<section class="slide sim" data-notes="每次新图让学生先口头描述四个方面。" data-title="🎮 Simulator: Scatterplot describer" id="simDesc">
+<div class="simband"><span class="ic">🎮</span><span class="t">Simulator 模拟器</span><span class="h">Scatterplot describer</span><span class="zh">散点图描述练习</span><span class="try">Try it! 动手试试</span></div>
+<span class="ek" style="position:absolute;top:74px;right:72px;background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.1.B</span>
+<div class="row"><div class="col" style="flex:.7"><p class="small">Click <b>New plot</b>. Describe direction, form, strength, and unusual features, then click <b>Reveal</b>. <span class="zh">先描述，再揭晓。</span></p>
+<div class="btns"><button class="b" id="dsNew">New plot</button><button class="b" id="dsRev">Reveal</button></div><div class="note small" id="dsAns" style="margin-top:8px">Describe the plot first!</div></div>
+<div class="col frame"><svg id="dsSvg" viewbox="0 0 560 320" width="100%"></svg></div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="CED 5.1.C。因果关系需要随机化实验（Unit 1）。" data-title="Justifying Claims with Scatterplots">
+<div class="tag">5.1.C <b>· Key Concept</b><span class="ek">EK 5.1.C.1</span></div><span class="lvl lvlpos">Difficulty 难度 <span class="stars">★★<span class="off">★★</span></span></span>
+<h2>Justifying Claims with Scatterplots <span class="zh">用散点图支持结论</span></h2><div class="concept pink"><div class="term">Justify<span class="zh">论证</span></div><div class="en">Refer to <strong>specific features of the graph</strong> (direction, strength, particular points) and state the conclusion in context. A scatterplot shows an association — it does not show that x causes y.</div><div class="cn">引用图中的<b>具体特征</b>（方向、强度、具体点），在<b>语境</b>中下结论。散点图只显示<b>关联</b>，不能说明 x <b>导致</b> y。</div></div><div class="cards" style="grid-template-columns:1fr 1fr;margin-top:10px"><div class="card"><div class="k">Weak answer ✗</div><p>“The graph shows that the claim is true.”</p><p class="zh muted small">没有引用图中的特征。</p></div><div class="card"><div class="k">Strong answer ✓</div><p>“The claim is supported: there is a strong positive linear association — students who studied more hours tended to have higher quiz scores (e.g., 9 hours → 88 vs. 1 hour → 52).”</p><p class="zh muted small">方向 + 强度 + 具体点 + 语境。</p></div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Example 5: Is the claim supported?">
+<div class="exhead"><span class="badge ex">📝 Example 5 · 例题</span><span class="stars">★★★<span class="off">★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">EK 5.1.C · Skill 4.B</span></div>
+<h2>Is the claim supported? <span class="zh">这个说法有依据吗？</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The scatterplot shows hours of sleep (x) and reaction time in ms (y) for 20 randomly selected students. <span class="zh">睡眠与反应时间。</span></p><div class="q"><b class="n">a</b>“Students who sleep more tend to react faster.”</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Supported — there is a moderately strong <b>negative</b> association: more sleep goes with lower reaction times.</div></div><div class="q"><b class="n">b</b>“Every student who slept more than 8 hours reacted faster than every student who slept less than 6 hours.”</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported — one student who slept about 8.5 hours had a reaction time (≈ 300 ms) slower than a student who slept 5.5 hours (≈ 290 ms). The pattern is a tendency, not a rule.</div></div><div class="q"><b class="n">c</b>“Sleeping more causes faster reactions.”</div><div class="answ" data-i="2"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Not supported — this is an observational study, so it shows association, not causation.</div></div></div><div class="keyidea">🔑 Use the graph and the study design.</div></div></div><div class="col vis"><div class="qv"><svg id="jcQ" viewbox="0 0 560 240" width="100%"></svg></div><div class="sv"><svg id="jcSol" viewbox="0 0 560 240" width="100%"></svg></div></div></div><div class="foot"><span>Unit 5 · Lesson 1 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 6: Describing direction">
+<div class="exhead"><span class="badge ex">📝 AP Practice 6 · AP 选择题</span><span class="stars">★<span class="off">★★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.1.B.3</span></div>
+<h2>Describing direction</h2><div class="scrollcol"><div class="problem" style="font-size:19px">In a scatterplot of car age (years) and price ($), older cars tend to have lower prices. The association is</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) positive</li><li>(B) negative</li><li>(C) non-linear</li><li>(D) causal</li><li>(E) zero</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">As age increases, price tends to decrease → <b>negative</b> → <b>(B)</b>.</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 7: Explanatory variable">
+<div class="exhead"><span class="badge ex">📝 AP Practice 7 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.1.A.2</span></div>
+<h2>Explanatory variable</h2><div class="scrollcol"><div class="problem" style="font-size:19px">A researcher wants to predict a student’s final exam score from the number of classes the student missed. Which is correct?</div><ul class="opts" data-correct="1" data-quiet="1"><li>(A) Final exam score goes on the x-axis.</li><li>(B) Classes missed is the explanatory variable.</li><li>(C) Both variables are categorical.</li><li>(D) Classes missed is the response variable.</li><li>(E) Neither variable can be explanatory.</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">We use classes missed to predict score → classes missed is explanatory (x-axis) → <b>(B)</b>.</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生投票，再点击“显示答案”。" data-title="📝 AP Practice 8: Unusual features">
+<div class="time bonus">Bonus</div><div class="exhead"><span class="badge ex">📝 AP Practice 8 · AP 选择题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700">EK 5.1.B.1</span></div>
+<h2>Unusual features</h2><div class="scrollcol"><div class="problem" style="font-size:19px">Which is NOT part of describing a scatterplot according to the AP framework?</div><ul class="opts" data-correct="4" data-quiet="1"><li>(A) form</li><li>(B) direction</li><li>(C) strength</li><li>(D) unusual features</li><li>(E) the median of x</li></ul><div class="answ solo mcqans" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody"><p style="margin:3px 0">Form, direction, strength, unusual features → the median is not part of it → (E).</p></div></div></div><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-notes="可以让学生拍照或抄进 vocab 本。" data-sec="1" data-title="Summary &amp; vocabulary">
+<div class="tag">Wrap-up <b>· Summary</b></div>
+<h2>Key vocabulary <span class="zh">本课词汇</span></h2>
+<table class="tw" style="width:100%;margin-top:10px;font-size:17px"><thead><tr><th style="text-align:left">English</th><th style="text-align:left">中文</th><th style="text-align:left">Remember… / 记住</th><th>Level</th></tr></thead><tbody><tr><th class="rh">Bivariate data</th><td class="zh" style="text-align:left">双变量数据</td><td style="text-align:left">pairs (x, y) on the same individuals</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Explanatory variable</th><td class="zh" style="text-align:left">解释变量</td><td style="text-align:left">x-axis; explains or predicts</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Response variable</th><td class="zh" style="text-align:left">响应变量</td><td style="text-align:left">y-axis; the outcome</td><td><span class="stars">★<span class="off">★★★</span></span></td></tr><tr><th class="rh">Form · direction · strength</th><td class="zh" style="text-align:left">形式 · 方向 · 强度</td><td style="text-align:left">linear? positive/negative? strong/moderate/weak?</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr><tr><th class="rh">Unusual features</th><td class="zh" style="text-align:left">异常特征</td><td style="text-align:left">outliers, clusters</td><td><span class="stars">★★<span class="off">★★</span></span></td></tr></tbody></table><div class="foot"><span>Unit 5 · Lesson 1</span><span class="pg"></span></div>
+</section>
+<section class="slide ex mx" data-notes="先让学生独立思考，再逐问点击“显示答案”。" data-title="📝 Exit ticket: Exit ticket 🎟️">
+<div class="exhead"><span class="badge ex">📝 Exit ticket · 例题</span><span class="stars">★★<span class="off">★★</span></span><span class="ek" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em">5.1</span></div>
+<h2>Exit ticket 🎟️ <span class="zh">离堂小测</span></h2><div class="row" style="align-items:flex-start"><div class="col" style="flex:1.2"><div class="mxtop"><button class="stepbtn" data-mxall="">Show all answers · 全部显示</button><button class="stepbtn alt" data-mxhide="">Hide · 隐藏</button></div><div class="scrollcol"><div class="problem"><p>The scatterplot shows the age (years) and maximum heart rate (bpm) of 15 adults.</p><div class="q"><b class="n">1</b>Identify the explanatory and response variables.</div><div class="answ" data-i="0"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">Explanatory: age; response: maximum heart rate.</div></div><div class="q"><b class="n">2</b>Describe the relationship.</div><div class="answ" data-i="1"><button class="ab">👁 Show answer · 显示答案</button><div class="abody">There is a strong, negative, linear association between age and maximum heart rate: older adults tend to have lower maximum heart rates. One adult (age ≈ 40, ≈ 150 bpm) is somewhat below the pattern.</div></div></div><div class="keyidea">🔑 DUFS in context.</div></div></div><div class="col vis"><svg id="exQ" viewbox="0 0 560 220" width="100%"></svg></div></div><div class="foot"><span>Unit 5 · Lesson 1 · Own example</span><span class="pg"></span></div>
+</section>
+<section class="slide cover" data-notes="下节课：5.2（TPS 3.1）。" data-title="Next lesson">
+<div class="blob" style="width:420px;height:420px;right:-100px;bottom:-140px"></div>
+<div class="kicker">Next time · Lesson 2</div><h1>Correlation</h1><div class="zhT">相关系数 · Topic 5.2</div><p class="muted" style="margin-top:26px;font-size:22px">Measuring the strength and direction of a linear association with r — and what r cannot tell us.</p>
+<div class="foot"><span>MG · AP Statistics</span><span class="pg"></span></div>
+</section></div></div>
+<div id="ui">
+<button id="bToc" title="Contents (O)">☰</button>
+<button id="bPrev" title="Previous (←)">←</button>
+<span id="count"></span>
+<button id="bNext" title="Next (→)">→</button>
+<button id="bNotes" title="Teacher notes (N)">📝</button>
+<button id="bFull" title="Fullscreen (F)">⛶</button>
+</div>
+<nav id="toc"><h4>Contents · 目录</h4><div id="tocList"></div></nav>
+<aside id="notes"><h4>Teacher notes · 教师备注</h4><div class="zh" id="notesBody"></div></aside>
+<script>
+(function(){
+const NAVY='#1E2A4A', ROSE='#D9849E', BLUSH='#F4C3D0', GRID='#EBD7DE', MUTED='#6B7290', INK='#1E2A4A';
+const USECOL=[NAVY,ROSE,BLUSH], USETXT=['#fff',INK,INK];
+const NS='http://www.w3.org/2000/svg';
+const f1=x=>(x*100).toFixed(1)+'%';
+
+const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+slides.forEach((s,i)=>{const p=s.querySelector('.pg');if(p)p.textContent=(i+1)+' / '+slides.length;});
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');
+  document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#slide-'+(cur+1));
+  document.getElementById('notesBody').textContent=slides[cur].dataset.notes||'—';
+  document.querySelectorAll('#tocList a').forEach((a,i)=>a.classList.toggle('cur',i===cur));
+}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#slide-'+(i+1);a.textContent=(i+1)+'. '+(s.dataset.title||'');if(s.dataset.sec)a.className='sec';
+  a.onclick=e=>{e.preventDefault();go(i);document.getElementById('toc').classList.remove('show');};tocList.appendChild(a);});
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+document.getElementById('bToc').onclick=()=>document.getElementById('toc').classList.toggle('show');
+document.getElementById('bNotes').onclick=()=>document.getElementById('notes').classList.toggle('show');
+function full(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+document.getElementById('bFull').onclick=full;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='o'||e.key==='O')document.getElementById('toc').classList.toggle('show');
+  else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('show');
+  else if(e.key==='f'||e.key==='F')full();
+});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60&&e.target.tagName!=='INPUT')go(cur+(d<0?1:-1));tx=null;});
+const m=location.hash.match(/slide-(\d+)/);go(m?+m[1]-1:0);
+
+/* reveal & MCQ */
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>b.dataset.r.split(',').forEach(id=>document.getElementById(id).classList.toggle('show')));
+document.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>b.closest('.slide').querySelectorAll('.'+b.dataset.cls).forEach(x=>x.classList.add('show')));
+function stepper(btnId,cls){const b=document.getElementById(btnId);const items=[...b.closest('.slide').querySelectorAll('.'+cls)];let k=0;
+  b.onclick=()=>{if(k<items.length)items[k++].classList.add('show');if(k>=items.length)b.textContent='Done ✓';};}
+document.querySelectorAll('.opts').forEach(ul=>{const right=+ul.dataset.correct;
+  [...ul.children].forEach((li,i)=>li.onclick=()=>{li.classList.add(i===right?'right':'wrong');
+    if(i===right){let ex=ul.nextElementSibling;if(!(ex&&ex.classList.contains('reveal')))ex=ul.closest('.slide').querySelector('.reveal.ans:not([id])');if(ex)ex.classList.add('show');}});});
+
+
+/* v2: steps, goto, quiet mcq */
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const n=s.querySelector('.steps .step:not(.show)');if(n){n.classList.add('show');n.dispatchEvent(new Event('shown'));const i=[...s.querySelectorAll('.steps .step')].indexOf(n);s.dispatchEvent(new CustomEvent('step',{detail:i+1}));}if(!s.querySelector('.steps .step:not(.show)')){const t=s.querySelector('.takeaway');if(t)t.classList.add('show');}});
+document.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>{const s=b.closest('.slide');const all=[...s.querySelectorAll('.steps .step')];all.forEach(x=>x.classList.add('show'));s.dispatchEvent(new CustomEvent('step',{detail:all.length}));const t=s.querySelector('.takeaway');if(t)t.classList.add('show');});
+function mxSync(sl){const all=[...sl.querySelectorAll('.answ')];let k=0;all.forEach(a=>{if(a.classList.contains('open'))k=Math.max(k,+a.dataset.i+1);});sl.classList.toggle('anyopen',k>0);
+  const t=sl.querySelector('.takeaway');if(t)t.classList.toggle('show',all.length>0&&all.every(a=>a.classList.contains('open')));
+  if(sl.querySelector('.mcqans')){const ul=sl.querySelector('.opts');const on=sl.querySelector('.mcqans').classList.contains('open');if(ul&&on)ul.children[+ul.dataset.correct].classList.add('right');}
+  sl.dispatchEvent(new CustomEvent('step',{detail:k}));}
+document.querySelectorAll('.answ .ab').forEach(b=>b.onclick=e=>{e.stopPropagation();const a=b.closest('.answ');a.classList.toggle('open');b.textContent=a.classList.contains('open')?'🙈 Hide answer · 隐藏':'👁 Show answer · 显示答案';mxSync(b.closest('.slide'));});
+document.querySelectorAll('[data-mxall]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.add('open');a.querySelector('.ab').textContent='🙈 Hide answer · 隐藏';});mxSync(sl);});
+document.querySelectorAll('[data-mxhide]').forEach(b=>b.onclick=()=>{const sl=b.closest('.slide');sl.querySelectorAll('.answ').forEach(a=>{a.classList.remove('open');a.querySelector('.ab').textContent='👁 Show answer · 显示答案';});sl.querySelectorAll('.opts li').forEach(li=>li.classList.remove('right','wrong'));mxSync(sl);});
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.goto);go(slides.indexOf(t));});
+/* svg helpers */
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+function clear(s){while(s.firstChild)s.removeChild(s.firstChild);}
+function legend(id,names,cols){document.getElementById(id).innerHTML=names.map((n,i)=>`<span><i style="background:${cols[i]}"></i>${n}</span>`).join('');}
+function stacked(svg,groups,o){
+  o=o||{};clear(svg);
+  const L=o.L||60,R=o.R||540,Tp=o.T||16,B=o.B||330,fs=o.fs||15,cols=o.cols||USECOL,txt=o.txt||USETXT,H=B-Tp,W=R-L;
+  [0,25,50,75,100].forEach(v=>{const y=B-v/100*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v+'%');});
+  const tot=groups.map(g=>g.counts.reduce((a,b)=>a+b,0)),grand=tot.reduce((a,b)=>a+b,0);
+  const gap=o.mosaic?6:(o.gap||40);
+  const bw=o.mosaic?null:(W*0.86-gap*(groups.length-1))/groups.length;
+  let x=L+(o.mosaic?0:W*0.07);
+  groups.forEach((g,gi)=>{
+    const w=o.mosaic?(W-gap*(groups.length-1))*tot[gi]/grand:bw;let y=B;
+    g.counts.forEach((c,ci)=>{const h=c/tot[gi]*H;y-=h;
+      el('rect',{x,y,width:w,height:h,fill:cols[ci],stroke:'#fff','stroke-width':1.5},svg);
+      if(h>17&&w>34)el('text',{x:x+w/2,y:y+h/2+5,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:txt[ci]},svg,(c/tot[gi]*100).toFixed(1)+'%');});
+    el('text',{x:x+w/2,y:B+21,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:INK},svg,g.name);
+    if(o.mosaic)el('text',{x:x+w/2,y:B+39,'text-anchor':'middle','font-size':12,fill:MUTED},svg,'width = '+(tot[gi]/grand*100).toFixed(0)+'%');
+    x+=w+gap;});
+}
+
+/* ===== shared helpers for L5–L8 ===== */
+const $=id=>document.getElementById(id);
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function cardSet(boxId,scoreId,items,labels){
+  const box=$(boxId);let right=0;
+  items.forEach(([t,ans,why])=>{const d=document.createElement('div');d.className='claim';
+    d.innerHTML=`<div class="txt">${t}<div class="why">${why}</div></div>`+labels.map((l,i)=>`<button data-i="${i}">${l}</button>`).join('');
+    let done=false;
+    d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.classList.remove('good','badd');const ok=+b.dataset.i===ans;d.classList.add(ok?'good':'badd');
+      if(ok&&!done){done=true;right++;if(scoreId)$(scoreId).textContent=`${right} / ${items.length} ✓`;}});
+    box.appendChild(d);});
+}
+/* probability histogram */
+function bars(svg,xs,ps,o){clear(svg);o=o||{};const L=60,R=540,T=24,B=o.B||300,H=B-T;
+  const mx=o.ymax||Math.max(...ps)*1.15;const w=(R-L)/xs.length;
+  const step=o.ystep||(mx>0.5?0.1:mx>0.2?0.05:0.02);
+  for(let v=0;v<=mx+1e-9;v+=step){const y=B-v/mx*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,+v.toFixed(2));}
+  const xp=i=>L+i*w+w/2;
+  if(o.sd!==undefined&&o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]),s=o.sd/(xs[1]-xs[0]);
+    el('rect',{x:xp(0)+(i0-s)*w,y:T,width:2*s*w,height:H,fill:'#FBE3EA',opacity:.8},svg);}
+  xs.forEach((x,i)=>{const h=ps[i]/mx*H,hl=o.hl&&o.hl(x,i);
+    el('rect',{x:L+i*w+3,y:B-h,width:w-6,height:h,fill:hl?ROSE:NAVY,rx:3},svg);
+    if(o.labels!==false&&ps[i]>0)el('text',{x:xp(i),y:B-h-5,'text-anchor':'middle','font-size':w>50?12:10,'font-weight':700,fill:INK},svg,o.fmt?o.fmt(ps[i]):(+ps[i].toFixed(3)));
+    el('text',{x:xp(i),y:B+16,'text-anchor':'middle','font-size':12,fill:INK},svg,o.xfmt?o.xfmt(x):x);});
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab);
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'Probability');
+  if(o.mean!==undefined){const i0=(o.mean-xs[0])/(xs[1]-xs[0]);const x=xp(0)+i0*w;
+    el('line',{x1:x,x2:x,y1:T,y2:B,stroke:'#C8577B','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    el('polygon',{points:`${x},${B+2} ${x-9},${B+16} ${x+9},${B+16}`,fill:'#C8577B'},svg);
+    el('text',{x:x+6,y:T+12,'font-size':13,'font-weight':800,fill:'#C8577B'},svg,`μ = ${+o.mean.toFixed(3)}`);}
+}
+/* normal helpers */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function ncdf(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function npdf(z){return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);}
+function invn(p){let lo=-10,hi=10;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(ncdf(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+/* draw normal curve with shading between a and b (in x units) */
+function ncurve(svg,mu,sd,o){clear(svg);o=o||{};const L=30,R=530,T=20,B=o.B||250,H=B-T;
+  const lo=o.lo??mu-4*sd,hi=o.hi??mu+4*sd;const X=x=>L+(x-lo)/(hi-lo)*(R-L);const pk=o.peak||npdf(0)/sd;const Y=y=>B-y/pk*H*0.92;
+  const f=x=>npdf((x-mu)/sd)/sd;
+  if(o.a!==undefined||o.b!==undefined){const a=Math.max(lo,o.a??lo),b=Math.min(hi,o.b??hi);
+    if(b>a){let d=`M${X(a)},${B}`;for(let i=0;i<=120;i++){const x=a+(b-a)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}
+    if(o.a2!==undefined){const a2=Math.max(lo,o.a2),b2=Math.min(hi,o.b2??hi);if(b2>a2){let d=`M${X(a2)},${B}`;for(let i=0;i<=120;i++){const x=a2+(b2-a2)*i/120;d+=`L${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}d+=`L${X(b2)},${B}Z`;el('path',{d,fill:o.fill||'#F4C3D0'},svg);}}}
+  let d='';for(let i=0;i<=240;i++){const x=lo+(hi-lo)*i/240;d+=`${i?'L':'M'}${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`;}
+  el('path',{d,fill:'none',stroke:o.stroke||NAVY,'stroke-width':2.5},svg);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  (o.ticks||[-3,-2,-1,0,1,2,3].map(k=>mu+k*sd)).forEach(t=>{if(t<lo||t>hi)return;el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);
+    el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':12,fill:INK},svg,+t.toFixed(2));});
+  if(o.zrow){[-3,-2,-1,0,1,2,3].forEach(k=>{const t=mu+k*sd;if(t<lo||t>hi)return;el('text',{x:X(t),y:B+35,'text-anchor':'middle','font-size':11,fill:MUTED},svg,'z='+k);});}
+  if(o.label)el('text',{x:(L+R)/2,y:B+(o.zrow?52:38),'text-anchor':'middle','font-size':13,fill:INK},svg,o.label);
+  return {X,Y,f};
+}
+/* ===== v2 common ===== */
+function onStep(elId,fn){const el0=document.getElementById(elId);if(!el0)return;const s=el0.closest('.slide');s.addEventListener('step',e=>fn(e.detail));}
+function hlT(tid,num,den,keep){const t=document.getElementById(tid);if(!t)return;t.querySelectorAll('td').forEach(td=>{td.classList.remove('hl','hl2','dim');if(!keep)td.classList.remove('rg');});
+  if((num&&num.length)||(den&&den.length))t.querySelectorAll('td').forEach(td=>td.classList.add('dim'));
+  (num||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl');}});
+  (den||[]).forEach(k=>{const c=t.querySelector(`td[data-k="${k}"]`);if(c){c.classList.remove('dim');c.classList.add('hl2');}});}
+function stepHL(tid,map){onStep(tid,k=>{const m=map[k]||map[Object.keys(map).filter(x=>+x<=k).pop()];if(m)hlT(tid,m[0],m[1]);});}
+function svgLeg(svg,names,cols,x,y){let cx=x;names.forEach((n,i)=>{el('rect',{x:cx,y:y-11,width:13,height:13,rx:3,fill:cols[i]},svg);const t=el('text',{x:cx+19,y:y,'font-size':13,fill:INK},svg,n);cx+=19+n.length*7.5+22;});}
+/* seeded RNG for reproducible solution visuals */
+function srand(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* count histogram: counts = {value:count} */
+function hist(svg,counts,o){clear(svg);o=o||{};
+  const keys=Object.keys(counts).map(Number).sort((a,b)=>a-b);if(!keys.length)return;
+  const lo=o.lo??keys[0],hi=o.hi??keys[keys.length-1];const L=o.L||50,R=o.R||540,T=20,B=o.B||300,H=B-T;
+  const mx=Math.max(...Object.values(counts))*1.08;const w=(R-L)/(hi-lo+1);
+  for(let v=lo;v<=hi;v++){const c=counts[v]||0,h=c/mx*H;const hl=o.hl&&o.hl(v);
+    el('rect',{x:L+(v-lo)*w+1,y:B-h,width:Math.max(1,w-2),height:h,fill:hl?ROSE:NAVY,rx:2},svg);
+    if((v-lo)%(o.step||1)===0)el('text',{x:L+(v-lo)*w+w/2,y:B+16,'text-anchor':'middle','font-size':12,fill:MUTED},svg,v);}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK},svg);
+  el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'');
+  el('text',{x:L,y:14,'font-size':12,fill:MUTED},svg,o.ylab||'count');
+}
+/* two-dice grid inside a div */
+function diceGrid(id){const g=document.getElementById(id);if(!g)return;let h='<div></div>'+[1,2,3,4,5,6].map(c=>`<div class="h">${c}</div>`).join('');
+  for(let r=1;r<=6;r++){h+=`<div class="h">${r}</div>`;for(let c=1;c<=6;c++)h+=`<div class="c" data-d1="${r}" data-d2="${c}">${r+c}</div>`;}g.innerHTML=h;}
+function paintDice(id,f,comp){let n=0;document.querySelectorAll(`#${id} .c`).forEach(c=>{const a=+c.dataset.d1,b=+c.dataset.d2,inE=!!f&&f(a,b);c.classList.toggle('on',inE);c.classList.toggle('co',!!comp&&!inE);if(inE)n++;});return n;}
+/* running-proportion path: p = true prob; returns array */
+function runPath(p,n,rng){const a=[];let s=0;for(let i=1;i<=n;i++){s+=(rng()<p)?1:0;a.push(s/i);}return a;}
+function pathPlot(svg,paths,o){clear(svg);o=o||{};const L=56,R=540,T=20,B=o.B||290,H=B-T;
+  const maxN=Math.max(10,...paths.map(p=>p.length));const lx=n=>L+Math.log10(n)/Math.log10(maxN)*(R-L);
+  [0,.25,.5,.75,1].forEach(v=>{const y=B-v*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:GRID},svg);el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:MUTED},svg,v);});
+  if(o.target!==undefined){const y=B-o.target*H;el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:R,y:y-6,'text-anchor':'end','font-size':13,'font-weight':700,fill:ROSE},svg,o.tlab||('P = '+o.target));}
+  [1,10,100,1000,10000].filter(n=>n<=maxN).forEach(n=>el('text',{x:lx(n),y:B+18,'text-anchor':'middle','font-size':12,fill:MUTED},svg,n));
+  el('text',{x:(L+R)/2,y:B+38,'text-anchor':'middle','font-size':13,fill:INK},svg,o.xlab||'Number of trials (log scale)');
+  el('text',{x:L,y:12,'font-size':12,fill:MUTED},svg,o.ylab||'Proportion');
+  const cols=[NAVY,ROSE,'#4B5A88','#C8577B','#8A93B8'];
+  paths.forEach((p,k)=>{if(!p.length)return;const d=p.map((v,i)=>`${i?'L':'M'}${lx(i+1).toFixed(1)},${(B-v*H).toFixed(1)}`).join('');el('path',{d,fill:'none',stroke:cols[k%cols.length],'stroke-width':2},svg);});
+}
+/* simple tree diagram. levels: [[label,...],...] branches same at each level; probs optional; upto = levels shown; hl = set of leaf indices to highlight */
+function tree(svg,levels,o){clear(svg);o=o||{};const W=o.W||540,Hh=o.H||300,L=30;const nl=levels.length;const up=o.upto??nl;
+  const dx=(W-L-110)/nl;let leaves=1;levels.forEach(l=>leaves*=l.length);
+  function node(x,y,depth,idx,path,span){
+    if(depth===up||depth===nl){if(depth===nl){const lab=path.join('');const h=o.hl&&o.hl(lab,idx);
+      el('text',{x:x+20,y:y+5,'font-size':o.fs||16,'font-weight':h?800:500,fill:h?ROSE:INK},svg,(o.leaf?o.leaf(lab,path):lab));}return;}
+    const k=levels[depth].length;
+    levels[depth].forEach((b,i)=>{const ny=y-span/2+span/k*(i+.5);const nx=x+dx;
+      el('line',{x1:x,y1:y,x2:nx,y2:ny,stroke:MUTED,'stroke-width':1.5},svg);
+      el('circle',{cx:nx,cy:ny,r:13,fill:o.cols?o.cols[i]:(i?BLUSH:NAVY)},svg);
+      el('text',{x:nx,y:ny+5,'text-anchor':'middle','font-size':13,'font-weight':700,fill:i?INK:'#fff'},svg,b);
+      if(o.probs){el('text',{x:(x+nx)/2,y:(y+ny)/2-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,o.probs[depth][i]);}
+      node(nx,ny,depth+1,idx*k+i,path.concat(b),span/k);});
+  }
+  el('circle',{cx:L,cy:Hh/2,r:6,fill:INK},svg);node(L,Hh/2,0,0,[],Hh-20);
+}
+/* Venn diagram: shade = {a, ab, b, out}; lab = labels per region */
+let _vid=0;
+function venn(svg,o){clear(svg);o=o||{};const sh=o.shade||{},lab=o.lab||{},col=o.color||'#D9849E';_vid++;
+  const dis=!!o.disjoint;const A=dis?[100,118,62]:[138,118,72],B=dis?[260,118,62]:[222,118,72];
+  el('rect',{x:10,y:10,width:340,height:210,rx:14,fill:sh.out?col:'#fff',stroke:INK,'stroke-width':1.5},svg);
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:sh.a?col:'#fff'},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.b?col:'#fff'},svg);
+  if(!dis){const cp=el('clipPath',{id:'vc'+_vid},svg);el('circle',{cx:A[0],cy:A[1],r:A[2]},cp);
+    el('circle',{cx:B[0],cy:B[1],r:B[2],fill:sh.ab?(o.abcolor||col):'#fff','clip-path':`url(#vc${_vid})`},svg);}
+  el('circle',{cx:A[0],cy:A[1],r:A[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('circle',{cx:B[0],cy:B[1],r:B[2],fill:'none',stroke:INK,'stroke-width':2},svg);
+  el('text',{x:24,y:34,'font-size':16,'font-weight':700,fill:INK},svg,'S');
+  el('text',{x:A[0]-A[2]+4,y:A[1]-A[2]+14,'font-size':15,'font-weight':700,fill:INK},svg,o.nameA||'A');
+  el('text',{x:B[0]+B[2]-4,y:B[1]-B[2]+14,'font-size':15,'font-weight':700,fill:INK,'text-anchor':'end'},svg,o.nameB||'B');
+  const t=(x,y,s)=>{if(s!==undefined&&s!=='')el('text',{x,y,'font-size':o.fs||20,'font-weight':800,fill:INK,'text-anchor':'middle'},svg,s);};
+  t(dis?A[0]:A[0]-30,A[1]+7,lab.a);if(!dis)t(180,A[1]+7,lab.ab);t(dis?B[0]:B[0]+30,B[1]+7,lab.b);t(320,206,lab.out);
+}
+/* 52-card deck grid: f(rank,suit) -> 0/1/2 (2 = gold) */
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],SUITS=['♠','♥','♦','♣'];
+function deck(svg,f,o){clear(svg);o=o||{};const w=o.w||38,h=o.h||52,x0=o.x0||40,y0=o.y0||10;
+  SUITS.forEach((s,si)=>{el('text',{x:x0-12,y:y0+si*(h+8)+h/2+7,'text-anchor':'middle','font-size':22,fill:si===1||si===2?'#C0392B':INK},svg,s);
+    RANKS.forEach((r,ri)=>{const v=f?f(r,s):0;const x=x0+ri*(w+4),y=y0+si*(h+8);
+      el('rect',{x,y,width:w,height:h,rx:6,fill:v===2?'#E2B64F':v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);
+      el('text',{x:x+w/2,y:y+h/2+6,'text-anchor':'middle','font-size':16,'font-weight':700,fill:v===1?'#fff':(si===1||si===2)?'#C0392B':INK},svg,r);});});}
+/* small svg dice grid: f(a,b) -> 0/1/2 */
+function svgDice(svg,f,x0,y0,c){c=c||26;for(let a=1;a<=6;a++){el('text',{x:x0-8,y:y0+(a-1)*(c+3)+c/2+5,'text-anchor':'end','font-size':12,fill:ROSE},svg,a);
+  for(let b=1;b<=6;b++){if(a===1)el('text',{x:x0+(b-1)*(c+3)+c/2,y:y0-6,'text-anchor':'middle','font-size':12,fill:ROSE},svg,b);const v=f?f(a,b):0;const x=x0+(b-1)*(c+3),y=y0+(a-1)*(c+3);
+    el('rect',{x,y,width:c,height:c,rx:5,fill:v===2?'#E2B64F':v===3?BLUSH:v?NAVY:'#fff',stroke:v?'none':'#D9D3DA'},svg);el('text',{x:x+c/2,y:y+c/2+5,'text-anchor':'middle','font-size':12,fill:v===1?'#fff':INK},svg,a+b);}}}
+/* die faces row: sets = {face: color} */
+function faces(svg,cols,y,lab){for(let i=1;i<=6;i++){const x=20+(i-1)*84;const c=cols[i];el('rect',{x,y,width:64,height:64,rx:12,fill:c||'#fff',stroke:c?'none':'#D9D3DA','stroke-width':1.5},svg);
+  el('text',{x:x+32,y:y+42,'text-anchor':'middle','font-size':28,'font-weight':800,fill:c&&c!=='#E2B64F'&&c!==BLUSH?'#fff':INK},svg,i);}
+  if(lab)el('text',{x:20,y:y-8,'font-size':14,'font-weight':700,fill:INK},svg,lab);}
+/* simple labelled vertical bars (0..max) */
+function vbars(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const W=vb.width,Hh=vb.height;const L=o.L||40,R=W-10,T=o.T||24,B=Hh-(o.bot||40),mx=o.max||1;
+  const n=labels.length,w=(R-L)/n;el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  if(o.ref!==undefined){const y=B-o.ref/mx*(B-T);el('line',{x1:L,x2:R,y1:y,y2:y,stroke:ROSE,'stroke-dasharray':'6 4','stroke-width':2},svg);if(o.reflab)el('text',{x:R,y:y-5,'text-anchor':'end','font-size':12,'font-weight':700,fill:ROSE},svg,o.reflab);}
+  labels.forEach((lb,i)=>{const v=vals[i];if(v===null||v===undefined)return;const h=v/mx*(B-T);const x=L+i*w+w*.18;
+    el('rect',{x,y:B-h,width:w*.64,height:h,rx:4,fill:cols[i%cols.length]},svg);
+    el('text',{x:x+w*.32,y:B-h-6,'text-anchor':'middle','font-size':o.fs||15,'font-weight':800,fill:INK},svg,o.fmt?o.fmt(v):(+v.toFixed(3)));
+    String(lb).split('\n').forEach((ln,j)=>el('text',{x:x+w*.32,y:B+16+j*14,'text-anchor':'middle','font-size':12,fill:INK},svg,ln));});
+  if(o.title)el('text',{x:L,y:14,'font-size':13,'font-weight':700,fill:INK},svg,o.title);}
+/* pie chart: vals (counts), cols; o.hl index set; o.cx,o.cy,o.r */
+function pie(svg,labels,vals,cols,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const cx=o.cx||vb.width/2,cy=o.cy||vb.height/2,r=o.r||Math.min(vb.width,vb.height)/2-30;
+  const tot=vals.reduce((a,b)=>a+b,0);if(!tot)return;let a0=-Math.PI/2;
+  vals.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const big=a1-a0>Math.PI?1:0;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const d=v>=tot?`M ${cx-r} ${cy} A ${r} ${r} 0 1 1 ${cx+r} ${cy} A ${r} ${r} 0 1 1 ${cx-r} ${cy} Z`:`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${big} 1 ${x1} ${y1} Z`;
+    el('path',{d,fill:cols[i%cols.length],stroke:'#fff','stroke-width':2,opacity:o.hl&&!o.hl.includes(i)?.35:1},svg);
+    const am=(a0+a1)/2,rr=r*0.62;if(v/tot>0.04){el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)-4,'text-anchor':'middle','font-size':o.fs||13,'font-weight':700,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,labels[i]);
+      el('text',{x:cx+rr*Math.cos(am),y:cy+rr*Math.sin(am)+13,'text-anchor':'middle','font-size':(o.fs||13)-1,fill:o.txt?o.txt[i%o.txt.length]:'#fff'},svg,(o.fmt?o.fmt(v,tot):Math.round(v/tot*100)+'%'));}
+    a0=a1;});}
+const PAL=['#1E2A4A','#C8577B','#8A93B8','#E2B64F','#4B5A88','#F4C3D0'],PALTXT=['#fff','#fff','#fff','#1E2A4A','#fff','#1E2A4A'];
+/* dotplot from raw values: o.lo,o.hi,o.step(tick),o.r,o.dy,o.hl(v)->color|null,o.xlab,o.B,o.L,o.R */
+function dotplotV(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??30,R=o.R??vb.width-20,B=o.B??vb.height-40;const lo=o.lo,hi=o.hi;const X=v=>L+(v-lo)/(hi-lo)*(R-L);
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);const st=o.step||1;for(let t=lo;t<=hi+1e-9;t+=st){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':o.fs||12,fill:INK},svg,+t.toFixed(2));}
+  if(o.xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);
+  const cnt={};const r=o.r||6,dy=o.dy||(2*r+2);(o.sort===false?vals:[...vals].sort((a,b)=>a-b)).forEach(v=>{const k=o.bin?Math.round(v/o.bin)*o.bin:v;cnt[k]=(cnt[k]||0)+1;const c=o.hl?o.hl(v):null;el('circle',{cx:X(k),cy:B-r-2-(cnt[k]-1)*dy,r,fill:c||o.col||NAVY},svg);});return X;}
+/* histogram from raw values with bins [start+k*w, start+(k+1)*w) */
+function histBins(svg,vals,o){clear(svg);o=o||{};const vb=svg.viewBox.baseVal;const L=o.L??50,R=o.R??vb.width-15,T=o.T??20,B=o.B??vb.height-42;const start=o.start,w=o.w,nb=o.nb||Math.ceil((Math.max(...vals)-start+1e-9)/w);
+  const c=Array(nb).fill(0);vals.forEach(v=>{const k=Math.floor((v-start)/w+1e-9);if(k>=0&&k<nb)c[k]++;});const tot=vals.length;const ys=o.rel?c.map(x=>x/tot):c;
+  const mx=o.ymax||Math.max(...ys)*1.15||1;const bw=(R-L)/nb;const Y=v=>B-v/mx*(B-T);
+  const ystep=o.ystep||(o.rel?(mx>.4?.1:.05):Math.max(1,Math.ceil(mx/6)));for(let v=0;v<=mx+1e-9;v+=ystep){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},svg);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:MUTED},svg,o.rel?Math.round(v*100)+'%':v);}
+  ys.forEach((v,k)=>{const hl=o.hl&&o.hl(start+k*w,start+(k+1)*w);el('rect',{x:L+k*bw,y:Y(v),width:bw,height:B-Y(v),fill:hl?ROSE:(o.col||NAVY),stroke:'#fff','stroke-width':1},svg);if(o.labels&&v>0)el('text',{x:L+k*bw+bw/2,y:Y(v)-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:INK},svg,o.rel?Math.round(v*100)+'%':v);});
+  const lt=o.ltick||1;for(let k=0;k<=nb;k+=lt)el('text',{x:L+k*bw,y:B+15,'text-anchor':'middle','font-size':11,fill:INK},svg,+(start+k*w).toFixed(2));
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);if(o.xlab)el('text',{x:(L+R)/2,y:B+33,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,o.xlab);if(o.ylab)el('text',{x:L,y:T-6,'font-size':12,fill:MUTED},svg,o.ylab);return c;}
+/* stemplot HTML: vals integers; o.split (bool), o.key, o.stemW (divisor, default 10) */
+function stemHTML(vals,o){o=o||{};const d=o.div||10;const s=[...vals].sort((a,b)=>a-b);const lo=Math.floor(s[0]/d),hi=Math.floor(s[s.length-1]/d);let rows=[];
+  for(let st=lo;st<=hi;st++){if(o.split){rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d<5).map(v=>v%d)]);rows.push([st,s.filter(v=>Math.floor(v/d)===st&&v%d>=5).map(v=>v%d)]);}else rows.push([st,s.filter(v=>Math.floor(v/d)===st).map(v=>v%d)]);}
+  if(o.unsorted){rows=rows.map(([st])=>[st,vals.filter(v=>Math.floor(v/d)===st&&(!o.split||true)).map(v=>v%d)]);}
+  return '<table class="stem">'+rows.map(([st,l])=>`<tr><td class="st">${st}</td><td class="lf">${l.join(' ')}</td></tr>`).join('')+'</table>'+(o.key?`<p class="small muted" style="margin-top:4px">Key: ${o.key}</p>`:'');}
+/* ===== Unit 3 shared helpers ===== */
+const GOLD='#E2B64F',GOLDD='#B07B0C',GREY='#D9D3DA',LAV='#8A93B8',SLATE='#5A6390',MINT='#2E8B6E';
+const PK='rgba(200,87,123,.12)',NV='rgba(30,42,74,.07)';
+function lab(svg,x,y,t,c,a,fs,w){return el('text',{x,y,'text-anchor':a||'middle','font-size':fs||15,'font-weight':w||800,fill:c||ROSE},svg,t);}
+function box(svg,x,y,w,h,fill,stroke,txt,tc,fs,rx){el('rect',{x,y,width:w,height:h,rx:rx??10,fill:fill||'#fff',stroke:stroke||NAVY,'stroke-width':2},svg);if(txt!==undefined){const lines=String(txt).split('\n');lines.forEach((t,i)=>lab(svg,x+w/2,y+h/2+5+(i-(lines.length-1)/2)*(fs||14)*1.25,t,tc||NAVY,'middle',fs||14,700));}}
+function arrow(svg,x1,y1,x2,y2,col,w){col=col||NAVY;el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':w||2.5},svg);const a=Math.atan2(y2-y1,x2-x1),s=9;el('polygon',{points:`${x2},${y2} ${x2-s*Math.cos(a-0.4)},${y2-s*Math.sin(a-0.4)} ${x2-s*Math.cos(a+0.4)},${y2-s*Math.sin(a+0.4)}`,fill:col},svg);}
+function vline(svg,x,y1,y2,col,txt,dash,anchor,ty){el('line',{x1:x,x2:x,y1,y2,stroke:col,'stroke-width':2.5,'stroke-dasharray':dash?'6 4':''},svg);if(txt)lab(svg,x+(anchor==='end'?-5:anchor==='start'?5:0),ty??(y1-6),txt,col,anchor||'middle',13);}
+const nums=s=>s.trim().split(/[\s,]+/).map(Number).filter(v=>!isNaN(v));
+const srt=a=>[...a].sort((x,y)=>x-y);
+const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+const median=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;};
+const sdev=a=>{const m=mean(a);return a.length<2?0:Math.sqrt(a.reduce((t,v)=>t+(v-m)**2,0)/(a.length-1));};
+const fx=(v,d=2)=>(+(+v).toFixed(d)).toString();
+function shuffle(a,r){r=r||Math.random;a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function axis(svg,L,R,B,lo,hi,step,xlab,fs,fmt){const X=v=>L+(v-lo)/(hi-lo)*(R-L);el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},svg);
+  for(let t=lo;t<=hi+1e-9;t+=step){el('line',{x1:X(t),x2:X(t),y1:B,y2:B+5,stroke:INK},svg);el('text',{x:X(t),y:B+19,'text-anchor':'middle','font-size':fs||12,fill:INK},svg,fmt?fmt(t):+t.toFixed(3));}
+  if(xlab)el('text',{x:(L+R)/2,y:B+36,'text-anchor':'middle','font-size':13,'font-weight':700,fill:INK},svg,xlab);return X;}
+function gauss(r){r=r||Math.random;const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function binom(n,p,r){r=r||Math.random;let c=0;for(let i=0;i<n;i++)if(r()<p)c++;return c;}
+/* histogram of values on an axis X with bins of width w starting at lo; returns counts */
+function histX(svg,X,vals,lo,w,B,H,col,hl){const cnt={};vals.forEach(v=>{const k=Math.floor((v-lo)/w+1e-9);cnt[k]=(cnt[k]||0)+1;});const mx=Math.max(1,...Object.values(cnt));
+  Object.entries(cnt).forEach(([k,c])=>{const a=lo+k*w;el('rect',{x:X(a)+0.5,y:B-c/mx*H,width:Math.max(1,X(a+w)-X(a)-1),height:c/mx*H,fill:hl&&hl(a,a+w)?ROSE:(col||NAVY)},svg);});return cnt;}
+/* stacked dots for discrete values */
+function dotsX(svg,X,vals,B,r,dy,colf){const cnt={};vals.forEach(v=>{const k=(+v).toFixed(4);cnt[k]=(cnt[k]||0)+1;el('circle',{cx:X(+v),cy:B-r-1-(cnt[k]-1)*dy,r,fill:colf?colf(+v):NAVY},svg);});return cnt;}
+function normPath(svg,X,Y0,H,mu,sd,lo,hi,col,fill,a,b){const f=x=>Math.exp(-(((x-mu)/sd)**2)/2);
+  if(a!==undefined){const aa=Math.max(lo,a),bb=Math.min(hi,b);if(bb>aa){let d=`M${X(aa)},${Y0}`;for(let i=0;i<=100;i++){const x=aa+(bb-aa)*i/100;d+=`L${X(x)},${Y0-H*f(x)}`;}el('path',{d:d+`L${X(bb)},${Y0}Z`,fill:fill||'#F4C3D0'},svg);}}
+  let d='';for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;d+=`${i?'L':'M'}${X(x)},${Y0-H*f(x)}`;}el('path',{d,fill:'none',stroke:col||NAVY,'stroke-width':2.5},svg);}
+function zcrit(C){return invn(1-(1-C)/2);}
+/* ===== Unit 5 helpers ===== */
+function linreg(x,y){const mx=mean(x),my=mean(y);let sxy=0,sxx=0,syy=0;x.forEach((v,i)=>{sxy+=(v-mx)*(y[i]-my);sxx+=(v-mx)**2;syy+=(y[i]-my)**2;});const b=sxy/sxx,a=my-b*mx,r=sxy/Math.sqrt(sxx*syy);return {a,b,r,mx,my};}
+/* scatterplot: o={L,R,T,B,xlo,xhi,ylo,yhi,xs,ys,xl,yl,col,r,line:{a,b},xf,yf} returns {X,Y} */
+function scat(s,x,y,o){const L=o.L??60,R=o.R??540,T=o.T??20,B=o.B??240;const X=v=>L+(v-o.xlo)/(o.xhi-o.xlo)*(R-L),Y=v=>B-(v-o.ylo)/(o.yhi-o.ylo)*(B-T);
+  const xs=o.xs||(o.xhi-o.xlo)/5,ys=o.ys||(o.yhi-o.ylo)/5;const fx=o.xf||(v=>+v.toFixed(2)),fy=o.yf||(v=>+v.toFixed(2));
+  for(let v=o.ylo;v<=o.yhi+1e-9;v+=ys){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:GRID},s);el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':10,fill:MUTED},s,fy(v));}
+  for(let v=o.xlo;v<=o.xhi+1e-9;v+=xs){el('line',{x1:X(v),x2:X(v),y1:B,y2:B+4,stroke:INK},s);el('text',{x:X(v),y:B+16,'text-anchor':'middle','font-size':10,fill:INK},s,fx(v));}
+  el('line',{x1:L,x2:R,y1:B,y2:B,stroke:INK,'stroke-width':1.5},s);el('line',{x1:L,x2:L,y1:T,y2:B,stroke:INK,'stroke-width':1.5},s);
+  if(o.xl)lab(s,(L+R)/2,B+32,o.xl,INK,'middle',12,700);if(o.yl){const t=el('text',{x:14,y:(T+B)/2,'text-anchor':'middle','font-size':12,'font-weight':700,fill:INK,transform:`rotate(-90 14 ${(T+B)/2})`},s,o.yl);}
+  if(o.line){const {a,b}=o.line;const x1=o.xlo,x2=o.xhi;el('line',{x1:X(x1),x2:X(x2),y1:Y(a+b*x1),y2:Y(a+b*x2),stroke:o.lcol||ROSE,'stroke-width':2.5},s);}
+  x.forEach((v,i)=>el('circle',{cx:X(v),cy:Y(y[i]),r:o.r||5,fill:(o.colf?o.colf(i):o.col)||NAVY,opacity:.85},s));return {X,Y};}
+/* ===== Unit 5 · Lesson 1 ===== */
+const SH=[1,2,2,3,4,4,5,6,6,7,8,9],SQ=[52,58,61,60,68,70,71,77,74,82,85,88];
+const HS=[3.4,3.1,3.7,3.3,3.5,4.0,3.2,3.8,3.9,3.6],CG=[3.1,3.0,3.6,3.6,3.4,3.9,3.2,3.7,3.6,3.3];
+(function(){scat($('wuQ'),SH,SQ,{xlo:0,xhi:10,ylo:40,yhi:100,xs:2,ys:10,B:200,xl:'hours studied',yl:'quiz score'});})();
+(function(){function draw(k){const s=$('wuSol');clear(s);scat(s,SH,SQ,{xlo:0,xhi:10,ylo:40,yhi:100,xs:2,ys:10,B:200,xl:'hours studied (x, explanatory)',yl:'quiz score (y)',col:k>=1?ROSE:NAVY});if(k>=1)lab(s,300,30,'upward, fairly straight pattern',ROSE,'middle',13);}draw(0);onStep('wuSol',draw);})();
+(function(){function draw(k){const s=$('gpSol');clear(s);if(k<1){lab(s,280,110,'Click the answers →',MUTED,'middle',14,600);return;}scat(s,k>=2?HS:[],k>=2?CG:[],{xlo:3.0,xhi:4.0,ylo:2.9,yhi:4.0,xs:0.2,ys:0.2,B:200,xl:'high school GPA',yl:'college GPA',xf:v=>v.toFixed(1),yf:v=>v.toFixed(1)});}draw(0);onStep('gpSol',draw);})();
+/* SAT */
+const SAT=(function(){const r=srand(8);const x=[],y=[];for(let i=0;i<24;i++){const p=4+r()*21;x.push(p);y.push(610-1.6*p+gauss(r)*10);}for(let i=0;i<25;i++){const p=42+r()*50;x.push(p);y.push(555-0.9*(p-42)+0.006*(p-42)**2*1+gauss(r)*9);}x.push(10);y.push(505);return {x,y};})();
+function satPlot(s,k){clear(s);const o={xlo:0,xhi:100,ylo:440,yhi:640,xs:20,ys:40,B:210,xl:'percent of graduates taking the SAT',yl:'mean SAT Math'};if(k>=4)o.colf=i=>i===SAT.x.length-1?ROSE:(SAT.x[i]<30?NAVY:LAV);const r=scat(s,SAT.x,SAT.y,o);
+  if(k>=4){el('ellipse',{cx:r.X(15),cy:r.Y(585),rx:70,ry:35,fill:'none',stroke:NAVY,'stroke-dasharray':'5 4'},s);el('ellipse',{cx:r.X(68),cy:r.Y(525),rx:130,ry:40,fill:'none',stroke:LAV,'stroke-dasharray':'5 4'},s);lab(s,r.X(10)+12,r.Y(505)+4,'outlier',ROSE,'start',12);}}
+(function(){satPlot($('saQ'),0);})();(function(){function draw(k){satPlot($('saSol'),k);}draw(0);onStep('saSol',draw);})();
+/* describer sim */
+const DS=[['strong','positive','linear',0.97,1,0],['moderate','positive','linear',0.85,1,0],['weak','positive','linear',0.4,1,0],['strong','negative','linear',-0.95,1,0],['moderate','negative','linear',-0.75,1,0],['strong','positive','curved (non-linear)',0,2,0],['strong','negative','curved (non-linear)',0,3,0],['moderate','positive','linear, with an outlier',0.8,1,1],['no clear','no','no association',0,0,0],['moderate','positive','linear, two clusters',0.8,4,0]];
+let dsCur=null;
+function dsNew(){const k=Math.floor(Math.random()*DS.length);dsCur=DS[k];const [st,dir,form,rr,type,out]=dsCur;const x=[],y=[];
+  for(let i=0;i<40;i++){let xv=Math.random()*10,yv;const e=gauss();
+   if(type===1){const sgn=rr<0?-1:1,ar=Math.abs(rr);yv=5+sgn*(xv-5)*0.8+e*0.8*Math.sqrt(1-ar*ar)/ar*1.5;}
+   else if(type===2){yv=0.12*xv*xv+e*0.5;}else if(type===3){yv=9*Math.exp(-0.35*xv)+e*0.35;}
+   else if(type===4){xv=i<20?1+Math.random()*3:6+Math.random()*3;yv=2+0.7*xv+e*0.8;}else{yv=5+e*2;}
+   x.push(xv);y.push(yv);}
+  if(out){x.push(8);y.push(0.5);}
+  const s=$('dsSvg');clear(s);const ylo=Math.min(...y)-0.5,yhi=Math.max(...y)+0.5;scat(s,x,y,{xlo:0,xhi:10,ylo,yhi,xs:2,ys:(yhi-ylo)/5,B:280,xl:'x',yl:'y',yf:v=>v.toFixed(1)});$('dsAns').innerHTML='Describe the plot first! 先描述，再揭晓。';}
+$('dsNew').onclick=dsNew;$('dsRev').onclick=()=>{if(!dsCur)return;const [st,dir,form]=dsCur;$('dsAns').innerHTML=dir==='no'?'<b>No association</b>: the points show no clear pattern.':`<b>Direction:</b> ${dir} · <b>Form:</b> ${form} · <b>Strength:</b> ${st}`;};dsNew();
+/* sleep & reaction */
+const SL=[5.0,5.5,5.5,6.0,6.0,6.5,6.5,7.0,7.0,7.0,7.5,7.5,8.0,8.0,8.5,8.5,9.0,9.0,9.5,6.2],RT=[330,290,318,312,300,296,305,286,292,280,275,282,270,262,300,258,250,256,248,309];
+function jcPlot(s,k){clear(s);const r=scat(s,SL,RT,{xlo:4.5,xhi:10,ylo:240,yhi:340,xs:1,ys:20,B:200,xl:'hours of sleep',yl:'reaction time (ms)',xf:v=>v.toFixed(1),colf:i=>k>=2&&(i===14||i===1)?ROSE:NAVY});
+  if(k>=2){lab(s,r.X(8.5)+10,r.Y(300)-6,'8.5 h, 300 ms',ROSE,'start',11);lab(s,r.X(5.5)+10,r.Y(290)+14,'5.5 h, 290 ms',ROSE,'start',11);}}
+(function(){jcPlot($('jcQ'),0);})();(function(){function draw(k){jcPlot($('jcSol'),k);if(k>=3)lab($('jcSol'),330,30,'observational → association only',ROSE,'middle',13);}draw(0);onStep('jcSol',draw);})();
+/* exit */
+(function(){const ag=[22,25,28,31,34,37,40,43,46,49,52,55,58,61,64],hr=[198,195,192,189,186,183,170,177,174,171,168,165,162,159,156].map((v,i)=>v+[1,-2,2,0,-1,2,0,-1,1,-2,1,0,2,-1,0][i]);scat($('exQ'),ag,hr,{xlo:20,xhi:70,ylo:150,yhi:205,xs:10,ys:10,B:180,xl:'age (years)',yl:'max heart rate (bpm)'});})();
+
+})();
+</script>
+<a class="review-home" href="../index.html">课件目录</a><script src="../assets/math/katex.min.js"></script><script src="../assets/math/typeset.js"></script></body>
+</html>

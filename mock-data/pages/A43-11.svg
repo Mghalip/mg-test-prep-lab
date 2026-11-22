@@ -1,0 +1,368 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M295.35 781.55H299.9V792.55H295.35Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M84.6 120.25H152.25V169H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M152.2 120.25H212.25V169H152.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M212.2 120.25H270.1V169H212.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M270.05 120.25H376.65V169H270.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M376.6 120.25H510.75V169H376.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M84.6 169.05H152.25V193.65001H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M152.2 169.05H212.25V193.65001H152.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M212.2 169.05H270.1V193.65001H212.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M270.05 169.05H376.65V193.65001H270.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M376.6 169.05H510.75V193.65001H376.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M84.6 193.7H152.25V218.3H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M152.2 193.7H212.25V218.3H152.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M212.2 193.7H270.1V218.3H212.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M270.05 193.7H376.65V218.3H270.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M376.6 193.7H510.75V218.3H376.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M84.6 218.35H152.25V242.95001H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M152.2 218.35H212.25V242.95001H152.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M212.2 218.35H270.1V242.95001H212.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M270.05 218.35H376.65V242.95001H270.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M376.6 218.35H510.75V242.95001H376.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M84.6 243H152.25V268.15H84.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M152.2 243H212.25V268.15H152.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M212.2 243H270.1V268.15H212.2Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M270.05 243H376.65V268.15H270.05Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M376.6 243H510.75V268.15H376.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="295.32">9</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12">Question9</tspan></text>
+<path d="M90 96.1H505.3V120.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="124.8 134.03986 140.99925 147.1188 151.79746 158.03731 164.9967 174.72 184.7997 191.8794 198.83879 203.51744 212.159 224.39885 231.35825 235.91764 242.99733 249.11688 259.68 266.75968 272.8792 281.03999 288.83998 295.0798 299.75846 305.15849 312.11787 322.559 329.63868 335.8785 343.44 352.3197 358.43925 364.67909 372.84 376.7994 387.12 394.19969 401.15907 408.11845 418.68 424.91984 431.8792 442.44 449.39939 456.47908 463.43846">AverageHoursWorkedperPersonperYearin1950and2017</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-696.05" x="93.12 103.1997 110.279399 118.07939 125.87939 130.55805 136.6776">Country</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-696.05" x="168.24 175.1994 182.2791 189.2385">1950</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-696.05" x="227.04 234.11969 241.07909 248.03849">2017</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-708.05" x="292.8 302.8797 310.6797 317.75938 325.55937 332.51875 342.12 346.0794">Changein</tspan><tspan y="-684.05" x="306.24 314.03999 320.99937 328.79936 335.03919">hours</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<path d="M382 120.75H505.3V144.85H382Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-708.05" x="390.48 398.99958 405.2394 411.35896 417.4785 423.71833 431.5183 439.55903 445.79887 453.59886 460.55824 468.35823 475.4379 485.04 488.99943">Percentchangein</tspan></text>
+<path d="M382 144.85H505.3V169H382Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-684.05" x="426.48 434.28 441.35969 449.15968 455.2792">hours</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-659.33" x="90 98.519557 104.7594 110.999248">Peru</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-659.33" x="166.44 173.40001 177.00002 183.95941 191.03911">2,157</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-659.33" x="225.359 232.31999 235.79999 242.87969 249.83908">1,932</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-659.33" x="308.88 316.68 323.75968 330.71907">&#x2212;225</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-659.33" x="426.84 434.63999 441.71968 448.67906">&#x2212;10%</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-634.61" x="90 100.0797 107.15939 114.95939 121.91879 129.7188">Canada</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-634.61" x="166.44 173.5197 176.99939 183.95879 191.03849">2,209</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-634.61" x="223.559 234.12001 237.5997 244.6794 251.6388">1,696</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-634.61" x="308.88 316.68 323.75968 330.71907">&#x2212;513</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-634.61" x="426.84 434.63999 441.71968 448.67906">&#x2212;23%</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-610.01" x="90 100.0797 106.31954 114.11954 125.759387 132.83908 139.07894">Denmark</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.01" x="166.44 173.5197 176.99939 183.95879 191.03849">2,049</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.01" x="223.559 234.12001 237.5997 244.6794 251.6388">1,400</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.01" x="308.88 316.68 323.75968 330.71907">&#x2212;649</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<path d="M382 218.85H505.3V242.95001H382Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-610.01" x="426.84 434.63999 441.71968 448.67906">&#x2212;32%</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-585.41" x="90 98.519557 102.47896 110.27895 114.118808 121.1985 128.9985">Finland</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-585.41" x="166.44 173.5197 176.99939 183.95879 191.03849">2,053</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-585.41" x="223.559 234.12001 237.5997 244.6794 251.6388">1,659</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-585.41" x="308.88 316.68 323.75968 330.71907">&#x2212;394</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-585.41" x="426.84 434.63999 441.71968 448.67906">&#x2212;19%</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<path d="M90 268.15H505.3V292.3H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,1,84.36,120.54)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,169.34)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,193.99)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,218.64)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,243.29)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.36,267.94)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H426.58"/>
+<path transform="matrix(1,0,0,1,84.6,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V147.4"/>
+<path transform="matrix(1,0,0,1,152.2,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V147.4"/>
+<path transform="matrix(1,0,0,1,212.2,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V147.4"/>
+<path transform="matrix(1,0,0,1,270.05,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V147.4"/>
+<path transform="matrix(1,0,0,1,376.6,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V147.4"/>
+<path transform="matrix(1,0,0,1,510.7,120.3)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V147.4"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-560.691" x="90 99.3573 105.597148 109.55655 115.6761 122.7558 126.59565 132.8355 136.67534 140.63474 147.59413 154.55353 163.44 174.24 180.47986 191.04001 198.1197 207.84001 211.79941 218.7588 224.99866 231.95806 238.1979 244.43776 251.64002 258.7197 265.67909 275.40003 279.35945 289.80003 294.47868 301.55836 308.51774 315.4771 322.5568 326.39665 333.35603 340.4357">Calculationsmaybeinexactduetorounding.</tspan></text>
+<path d="M90 292.3H505.3V316.44999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<path d="M90 316.45H505.3V340.6H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-512.45" x="90 103.559 109.07855 112.9184 119.9981 126.957508 133.19736 140.15676 148.31999 152.27939 163.43999 169.67984 180.95899 187.19884 193.43869 200.39809 207.47779 214.43718 225.23719 229.19658 235.43643 245.159 251.39885 258.47856 265.43794 270.11659 275.5166 285.95899 289.9184 299.63999 305.87983 312.8392 319.07905 329.87904 333.83845 340.91813 344.75798 351.71736 362.99998 366.8398 373.9195 384.35899 391.43867 397.6785 403.79804 407.75746 411.5973 418.55668 428.99998 434.51954 438.35939 445.43907 451.5586 462.11997 469.19966 476.15904 483.1184 494.39997 498.35939">Astudentinaneconomicscourseisexaminingthedeclinesince1950in</tspan></text>
+<path d="M90 340.6H505.3V364.75H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-488.21" x="90 96.239849 103.31954 109.439098 114.117748 120.35759 127.31699 137.88 144.9597 151.9191 158.8785 163.55715 173.40001 183.4797 190.5594 195.23805 202.19745 208.4373 219.84001 226.91971 233.15956 242.15901 249.23871 255.47856 260.03797 265.55754 272.5169 283.80003 290.8797 297.11955 306.12004 313.0794 319.31925 325.55909 334.68003 338.63945 350.04005 356.99943 363.23927 367.9179 371.87733 378.8367 385.79609 395.64006 402.59944 408.83927 412.79869 416.63853 423.5979 430.67759 440.40007 447.47975 454.43913 465.12007 469.07948 480.35908 487.43876 494.39814 498.35755">averagehoursworkedperpersonperyearinvariousnationsduetoboth</tspan></text>
+<path d="M90 364.75H505.3V388.9H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-464.091" x="90 93.959407 100.91881 107.15865 111.8373 118.07715 124.1967 129.71627 135.95612 146.4 153.35939 158.03804 165.11774 172.07714 179.03653 185.27639 189.11623 193.07563 200.03502 203.99442 207.83426 218.28 224.51985 231.47925 242.04 245.99939 252.95879 262.559 268.79884 275.8785 282.8379 289.79728 293.75669 297.59654 304.5559 315.12 322.19969 330.24 337.31968 344.27906 348.23847 352.0783 358.31816 362.158 368.39784 377.28 381.2394 388.1988 394.43864 401.759 405.7184 409.55827 420.35826 424.31767 431.64 441.71974 448.7994 453.47807 460.43745 464.39686 471.35624">increasedproductivityandtheadoptionofpoliciesthatlimitworking</tspan></text>
+<path d="M90 388.9H505.3V413.05H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-439.97" x="90 97.0797 104.0391 110.998508 115.677158 121.19672 128.759 137.27855 144.35825 154.92 159.59865 163.55805 168.11743 173.637 181.8 185.7594 191.99925 197.39926 208.8 212.7594 224.04001 227.9994 234.9588 238.9182 248.64002 252.59941 259.5588 266.6385 272.75804 278.2776 282.11744 286.07685 293.03623 299.27607 303.1159 307.07533 314.0347 325.44 329.3994 339.24 343.1994 354.47999 361.55967 367.6792 371.6386 377.87846 382.43785 393.23783 397.19725 404.27693 414.83998 421.91966 428.87904 443.39997 447.2398 454.3195 464.87998 471.95967 478.0792 484.31904 488.27845 492.1183 499.07768">hours.Thefirsttaskinthisinvestigationistodeterminehowthedecline</tspan></text>
+<path d="M90 413.05H505.3V437.19999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-415.85" x="90 93.959407 110.04 117.84 121.7994 128.7588 132.7182 138.83776 145.91745 162 168.23986 175.31955 185.99925 193.07895 199.3188 203.99745 210.2373 224.759 228.7184 244.8 248.7594 255.7188 261.95863 275.04 278.99943 295.08003 302.1597 305.99955 313.07923 319.19877 333.00004 339.23988 346.31956 353.27894 360.2383 364.19773 368.87638 372.71623 378.95606 384.35609 396.72004 405.2396 412.31929 427.68003 433.1996 437.03944 444.1191 451.0785 457.31834 464.2777 477.24003 481.91868 485.87809 492.83747 499.79685">inFinlandcomparestothatinothercountries.Thestudentfinds</tspan></text>
+<path d="M90 437.2H505.3V461.35H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-391.61" x="90 93.959407 100.91881 107.15865 111 117.959407 125.0391 131.9985 138.9579 146.0376">that______</tspan></text>
+<path d="M90 461.35H505.3V485.5H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<path d="M90 485.5H505.3V509.65H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-343.37" x="90 103.200008 110.2797 114.11955 120.3594 132.35901 138.59886 145.67856 152.63796 156.4778 162.71765 174.00002 184.80002 191.87972 197.39928 206.40003 212.63988 217.19927 221.75865 227.9985 234.11806 238.07746 241.9173 248.997 255.11655 259.07597 271.2 278.1594 283.67897 289.9188 300.359 307.4387 313.67854 317.51838 328.80003 333.47868 338.15733 345.237 361.2 365.03987 372.11955 383.40003 387.23988 393.4797 400.5594 404.39924 415.68003 419.63945 431.64 437.87986 444.95954 455.63923 462.7189 466.6783 472.91816 476.758 488.15904 492.11845 499.07783">Whichchoicemosteffectivelyusesdatafromthetabletocompletethe</tspan></text>
+<path d="M90 509.65H505.3V533.8H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-319.25" x="90 95.51956 99.35941 106.43911 113.39851 119.63836 126.59776 130.44 134.28 143.28 149.51985 156.47925 163.55895 169.6785 173.6379 180.59729 186.11685 189.9567 196.91609 203.99579">student&#x2019;sconclusion?</tspan></text>
+<path d="M90 533.8H505.3V557.95H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-295.01" x="90 100.0797 110.64 114.5994 121.55881 132.959 140.0387 146.27855 150.83794 157.07779 163.31764 170.27704 179.4 186.47969 192.71955 198.8391 203.51775 209.7576 215.99745 221.39746 232.92 236.8794 249 256.07969 263.03907 269.99845 274.6771 285.48 295.55973 302.6394 307.31806 314.27745 320.51728 332.64 342.71974 348.95957 359.759 366.83869 371.51734 377.63688 383.8767 387.83613 393.95567 403.919 407.87843 420 427.8 431.7594 438.71879 442.6782 448.79774 455.8774 468.12 472.0794 479.0388 485.27864 497.52 501.4794">A.thepercentdecreaseinhoursworkedwasgreaterinFinlandthanit</tspan></text>
+<path d="M90 557.95H505.3V582.10006H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-270.891" x="90 100.0797 106.31954 115.2 119.1594 129.59999 139.67969 145.91954 152.99924 163.79924 170.0391 174.71775 181.79744 188.759 198.1163 204.35616 211.31555 217.5554 224.5148 230.75466 237.72 244.7997 252.84 260.63999 266.87983 271.55848 278.51786">wasinDenmark,Canada,orPeru.</tspan></text>
+<path d="M90 582.1H505.3V606.25H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-246.77" x="90 99.3573 109.8 113.75941 120.71881 127.79851 134.7579 141.7173 154.44 158.3994 165.3588 177.48 184.5597 190.67925 196.9191 200.8785 204.71834 211.67774 223.68 227.63939 240.48 247.5597 254.51909 265.3191 272.39878 278.6386 289.08 296.15968 306.59999 313.55937 320.63905 327.59843 332.27708 343.43998 353.51969 360.59938 365.278 372.2374 378.47724 391.31999 395.2794 407.99998 415.79997 419.75938 426.71876 430.67817 436.7977 443.87739 456.71998 466.79969 473.03953 484.31898 488.27839 494.51823 499.91825">B.thoughthedeclineinnumberofhoursworkedinFinlandwasless</tspan></text>
+<path d="M90 606.25H505.3V630.4H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-222.65" x="90 93.959407 100.91881 107.15865 117.6 121.5594 128.5188 134.75865 142.08 146.0394 156.48 166.5597 172.79955 179.87924 190.55895 196.7988 201.47745 212.04 218.27985 225.35955 235.79999 245.15729 251.39714 258.35655 264.59638 271.55577 277.7956 284.75898 288.71839 296.03999 306.1197 312.35954 321.24 328.31968 332.99833 339.11787 345.3577 349.3171 355.43666 363.59999 367.5594 374.51878 380.7586 391.19999 395.1594 402.11878 408.3586 415.8 419.63984 430.19999 437.99998 444.2398 448.91847 455.87785">thanthatinDenmarkandCanada,itwasgreaterthanthatinPeru.</tspan></text>
+<path d="M90 630.4H505.3V654.55007H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-198.41" x="90 99.3573 109.8 119.8797 126.9594 130.79924 134.75864 145.20001 149.15941 156.1188 166.68001 173.7597 180.7191 191.5191 198.5988 204.83866 213.84001 220.79941 229.80002 236.87972 243.83911 250.79851 255.47716 265.32 275.39973 282.4794 287.15806 294.11744 300.35728 311.64 316.31867 323.39836 328.79838 339.24003 343.19944 354.60005 362.40003 366.23988 373.31956 377.1594 383.39924 390.3586 401.64006 408.71974 414.95957 418.7994 428.87913 435.11897 441.3588 452.64006 459.71974 466.6791 473.6385 485.04005 491.27989 498.35957">C.whilethenumberofhoursworkedroseinFinlandbetween1950and</tspan></text>
+<path d="M90 654.55H505.3V678.64999H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-174.291" x="90 97.0797 104.0391 110.998508 118.0782 125.04 128.9994 136.2 143.2797 149.51955 155.6391 159.5985 163.43834 170.51804 176.63759 187.2 191.1594 201.59999 211.67969 217.91954 224.87894 235.67894 241.9188 246.59745 253.67714 260.63999 269.99729 276.23713 283.1965 289.43635 296.51603 302.63557 309.59999 315.8398 322.9195 333.35899 341.15898 347.3988 352.07746 359.03684">2017,itdeclinedinDenmark,Canada,andPeru.</tspan></text>
+<path d="M90 678.65H505.3V702.80007H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-150.17" x="90 100.0797 110.64 114.5994 121.55881 128.5182 135.5979 142.5573 153.6 157.5594 164.5188 174.84001 181.91971 188.15956 194.27912 198.23851 202.07836 209.15805 219.35901 223.3184 234.48001 241.55971 248.5191 259.3191 266.39878 272.6386 281.40003 288.3594 297.12004 304.1997 311.1591 318.11848 322.79713 332.40003 342.47975 349.55943 354.23808 361.19746 367.4373 378.60005 382.43989 393.60005 401.40003 405.23988 412.31956 416.1594 422.39924 429.3586 440.52006 450.59977 456.8396 466.44007 473.39945 478.0781 484.31794 490.55778 494.3976 500.63746">D.thoughthedeclineinnumberofhoursworkedinFinlandwasgreater</tspan></text>
+<path d="M90 702.8H505.3V726.95H90Z" fill="#ffffff" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-126.05" x="90 93.959407 100.91881 107.15865 117.6 121.5594 128.5188 134.75865 142.08 146.0394 156.48 166.5597 172.79955 179.87924 190.55895 196.7988 201.47745 212.04 218.27985 225.35955 235.79999 243.59999 249.83985 254.5185 261.47789 268.44 272.3994 279.72 289.7997 296.03956 305.04 308.99943 315.11897 320.63853 329.52003 333.47944 340.4388 346.67866 357.12004 361.07945 368.03883 374.27867 381.60005 385.55946 396.00004 405.35734 411.59718 418.55656 424.7964 431.75578 437.9956">thanthatinDenmarkandPeru,itwaslessthanthatinCanada.</tspan></text>
+<path d="M90 726.95H505.3V751.10006H90Z" fill="#ffffff" fill-rule="evenodd"/>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_55)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

@@ -1,0 +1,61 @@
+/* Lesson viewer + teacher page additions. Uses the variables from shell.css. */
+body.viewer{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+.vbar{flex:none;display:flex;align-items:center;gap:8px;height:52px;padding:0 10px;background:var(--navy);color:#fff}
+.vbar a,.vbar button{color:#fff}
+.vbar .back{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 10px;border-radius:var(--r-sm);text-decoration:none;font-size:14px;font-weight:500}
+.vbar .back:hover{background:rgba(255,255,255,.1)}
+.vbar .title{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.vbar .title strong{font:600 15px var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vbar .title small{font-size:11px;color:var(--navy-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vbar .nav{display:flex;gap:2px}
+.vbar .nav a[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.stage{flex:1;min-height:0;position:relative;background:#fff}
+.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+.stage .loading{padding:40px;text-align:center}
+.gate-wrap{position:absolute;inset:0;overflow:auto;background:var(--ground);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px}
+.gate{width:min(460px,100%);display:flex;flex-direction:column;gap:14px}
+.gate .lock{width:52px;height:52px;border-radius:26px;background:var(--navy);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.gate h1{font:600 28px/1.2 var(--serif)}
+.gate p{margin:0}
+.code-form{display:flex;gap:8px}
+.code-form input{flex:1;min-width:0;min-height:48px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--line);background:#fff;font:600 20px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.code-form input::placeholder{letter-spacing:.1em;color:#B5AE9F;font-weight:500}
+.msg{font-size:13px;min-height:1.4em}
+.msg.err{color:#A3361F}
+.msg.ok{color:var(--good)}
+.or{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* Lesson list */
+.unlock-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;border-radius:var(--r-lg);background:var(--card);border:1px solid var(--line)}
+.unlock-bar .txt{flex:1;min-width:220px}
+.unlock-bar strong{display:block;font-size:15px}
+.unlock-bar small{color:var(--ink-2);font-size:13px}
+.unlock-bar .code-form{flex:1;min-width:260px}
+.unlock-bar .code-form input{min-height:42px;font-size:17px}
+.badge-open{font-size:12px;font-weight:600;color:var(--good);background:#E3F3EA;padding:3px 10px;border-radius:10px;white-space:nowrap}
+.lesson-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lesson-list .row-link{min-height:60px;padding:10px 14px}
+.lesson-list .glyph{width:36px;height:36px;font-size:13px}
+.lock-i{color:var(--ink-3);flex:none}
+
+/* Teacher */
+.code-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.code-card{display:flex;flex-direction:column;gap:10px}
+.code-card .big{font:700 30px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.code-card .next{font:600 14px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:var(--ink-2)}
+.code-card .acts{display:flex;gap:8px;flex-wrap:wrap}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table.students{width:100%;border-collapse:collapse;font-size:14px}
+table.students th,table.students td{padding:10px 12px;text-align:left;border-top:1px solid var(--line-soft);white-space:nowrap}
+table.students th{border-top:none;font-size:12px;color:var(--ink-3);font-weight:600}
+table.students td.c{text-align:center}
+.toggle{width:44px;height:26px;border-radius:13px;border:none;background:#D9D3C6;position:relative;cursor:pointer;transition:var(--t)}
+.toggle::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:10px;background:#fff;transition:left .14s}
+.toggle[aria-pressed="true"]{background:var(--good)}
+.toggle[aria-pressed="true"]::after{left:21px}
+.search{min-height:40px;padding:0 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:#fff;font:inherit;width:min(320px,100%)}
+.log{max-height:260px;overflow:auto;font:12px/1.6 ui-monospace,Menlo,monospace;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:10px;white-space:pre-wrap}
+@media (max-width:900px){
+  .lesson-list,.code-cards{grid-template-columns:1fr}
+}

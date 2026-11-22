@@ -1,0 +1,382 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M70.15 144.4H165.3V206.95H70.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M165.25 144.4H222.9V206.95H165.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M222.85 144.4H287.75V206.95H222.85Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M287.7 144.4H345.35V206.95H287.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M345.3 144.4H446.19999V206.95H345.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M446.15 144.4H525.2V206.95H446.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M70.15 207H165.3V235.15H70.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M165.25 207H222.9V235.15H165.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M222.85 207H287.75V235.15H222.85Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M287.7 207H345.35V235.15H287.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M345.3 207H446.19999V235.15H345.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M446.15 207H525.2V235.15H446.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M70.15 235.15H165.3V277H70.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M165.25 235.15H222.9V277H165.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M222.85 235.15H287.75V277H222.85Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M287.7 235.15H345.35V277H287.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M345.3 235.15H446.19999V277H345.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M446.15 235.15H525.2V277H446.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M70.15 277.05H165.3V318.9H70.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M165.25 277.05H222.9V318.9H165.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M222.85 277.05H287.75V318.9H222.85Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M287.7 277.05H345.35V318.9H287.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M345.3 277.05H446.19999V318.9H345.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M446.15 277.05H525.2V318.9H446.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M70.15 318.95H165.3V361.35H70.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M165.25 318.95H222.9V361.35H165.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path d="M222.85 318.95H287.75V361.35H222.85Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_58">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_59">
+<path d="M287.7 318.95H345.35V361.35H287.7Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_60">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_61">
+<path d="M345.3 318.95H446.19999V361.35H345.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_62">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_63">
+<path d="M446.15 318.95H525.2V361.35H446.15Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_64">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_65">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">52</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question10</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.64999" x="195.23999 205.31969 216.59999 226.67969 233.63909 240.71878 245.39743 252.35683 258.59666 262.4365 268.67634 274.91618 278.756 283.43467 287.39408 297 304.8 311.87968 321.95939 328.19923 336.24 344.03999 347.9994 354.23924 361.1986 365.03846 372.12 379.19969 386.15907 393.11845">USHydroelectricPowerPlant,2019</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-665.21" x="105.359 112.07856 115.43796 120.71766 126.71766">Plant</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-665.21" x="182.04 188.75955 192.11896 197.39865 200.75806">State</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-665.21" x="241.2 251.8797 257.8797 263.8797">Mode</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-675.53" x="290.159 298.79884 304.07856 310.07856 315.35829 319.438 324.7177 328.07713 334.07713 338.03654">Generators</tspan><tspan y="-654.89108" x="298.32 301.6794 310.55903 316.55903 319.91844 325.19816 331.19816">inplant</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-685.85" x="359.4 367.31956 373.19926 378.47898 382.4384 387.7181 393.7181 402.12 408.12 414.12 422.75984 428.03956">Averagepower</tspan><tspan y="-665.20999" x="370.44 376.3197 381.71974 387.71974 392.99946 396.95887 402.3589 405.7183 409.0777 415.0777">generation</tspan><tspan y="-644.44998" x="371.04 374.99943 385.6791 397.07914 403.07914 406.43855 412.19795 416.27766">(MWh/yr)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-665.21" x="454.32 464.87944 470.03886 473.39826 478.67799 485.64 490.3197 496.3197 502.3197 506.2791 511.55885">Watersource</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-619.73" x="71.52 80.15984 85.439548 97.2 105.83984 111.71954 117.83909 121.79849">KawHydro</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-619.73" x="169.08 177.71985 183.71985 187.07926 192.35895 198.35895 204.35895 213.71836">Oklahoma</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-619.73" x="226.92 230.8794 236.8794 242.8794 246.83879 252.83879 256.7982 260.8779 264.8373 268.19673 274.19673 279.47645">run-of-river</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-619.73" x="313.44">1</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-619.73" x="376.2 382.2 388.2 394.2 397.2 403.2 409.2">103,163</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-619.73" x="447.84 456.47984 460.43925 466.43925 471.71897 477.71897 482.39866 487.67839 496.8 504.83985 508.19926 514.1992 519.4789">ArkansanRiver</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-595.01" x="71.52 80.15984 85.439548 91.439548 97.439548 102.719249 108.719249 114.11925 122.52 131.15984 137.03954 143.15908 147.11847">KankakeeHydro</tspan><tspan y="-574.37" x="71.52 78.12 83.520008 88.799709 92.1591 95.5185 98.8779 102.2373">Facility</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-584.81" x="177 180.83985 184.31955 187.67896 191.03836 197.03836 203.03836 206.39777">Illinois</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-584.81" x="226.92 230.8794 236.8794 242.8794 246.83879 252.83879 256.7982 260.8779 264.8373 268.19673 274.19673 279.47645">run-of-river</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-584.81" x="313.44">3</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-584.81" x="382.2 388.2 391.2 397.2 403.2">1,832</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-595.01" x="461.64 470.27986 475.55958 481.55958 487.55958 492.8393 498.8393 504.23933">Kankakee</tspan><tspan y="-574.37" x="472.319 480.35887 483.71827 489.71827 494.998">River</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-542.81" x="71.52 79.55984 82.919239 88.19894 94.19894 99.47864 103.43804 112.44 120.35954 126.48 134.51985 140.51985 145.19956 149.87926 155.15895 158.51836">RichardB.Russell</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-542.81" x="174.84 183.47985 188.75954 194.75954 198.59938 204.47908 207.83849">Georgia</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-542.81" x="235.92 242.63956 247.91925 253.19895 259.19895 262.55836 268.55836">Peaking</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-542.81" x="313.44">8</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-542.81" x="376.2 382.2 388.2 394.2 397.2 403.2 409.2">394,195</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-553.13" x="462.24 468.95954 474.23927 480.23927 485.51899 491.51899 497.51899 502.7987">Savannah</tspan><tspan y="-532.491" x="472.319 480.35887 483.71827 489.71827 494.998">River</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-500.93" x="71.52 80.15984 85.439548 90.11925 93.478649 99.478649 108.479999 115.19955 121.19955 127.19955 132.47925 135.83866">GastonShoals</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<g clip-path="url(#clip_55)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-511.25" x="180 186.71956 192.71956 198.71956 202.07897">South</tspan><tspan y="-490.61" x="173.4 181.43985 186.71955 190.67894 196.67894 200.03835 203.39775 209.39775">Carolina</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_56)">
+<g clip-path="url(#clip_57)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-500.93" x="235.92 242.63956 247.91925 253.19895 259.19895 262.55836 268.55836">Peaking</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_58)">
+<g clip-path="url(#clip_59)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-500.93" x="313.44">4</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_60)">
+<g clip-path="url(#clip_61)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-500.93" x="379.2 385.2 391.2 394.2 400.2 406.2">14,059</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_62)">
+<g clip-path="url(#clip_63)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-500.93" x="456.12 464.03956 467.99897 473.99897 479.399 488.4 496.43986 499.79927 505.79927 511.07899">BroadRiver</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_64)">
+<path transform="matrix(1,0,0,1,69.91,144.69)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.48"/>
+<path transform="matrix(1,0,0,1,69.91,207.29)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.48"/>
+<path transform="matrix(1,0,0,1,69.91,235.44)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.48"/>
+<path transform="matrix(1,0,0,1,69.91,277.34)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.48"/>
+<path transform="matrix(1,0,0,1,69.91,319.24)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.48"/>
+<path transform="matrix(1,0,0,1,69.91,361.14)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H455.48"/>
+<path transform="matrix(1,0,0,1,70.15,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<path transform="matrix(1,0,0,1,165.25,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<path transform="matrix(1,0,0,1,222.85,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<path transform="matrix(1,0,0,1,287.7,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<path transform="matrix(1,0,0,1,345.3,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<path transform="matrix(1,0,0,1,446.15,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<path transform="matrix(1,0,0,1,525.15,144.45)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V216.45"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-443.331" x="90 104.159 108.83765 115.91734 122.87675 127.5554 134.5148 139.19345 143.8721 148.55075 152.3906 159.34999 165.58985 175.08 182.1597 188.99954 196.07924 200.75789 207.71729 213.95714 217.91654 224.03609 230.27594 234.23534 238.79473 242.75412 253.8 260.7594 267.83909 277.9188 284.15864 293.52003 300.5997 304.43955 310.67939 317.63877 321.59819 329.88 336.11985 346.32 350.27943 357.2388 368.28 375.35969 381.59953 392.2792 403.44 408.95957 415.91896 422.99864 429.958 436.19786 441.59788 445.4377 450.95729 459.24 466.19938 471.71894 477.95878 488.159 492.1184 499.0778">Arun-of-riverhydroelectricpowerplant,asthenamesuggests,usesthe</tspan><tspan y="-419.21" x="89.99997 97.079669 103.31951 107.15936 114.11877 118.79742 125.03726 132.83997 137.51862 141.35846 148.43816 162.35897 169.43866 178.07996 188.15895 198.23865 204.4785 208.4379 214.67775 223.19995 228.71952 235.67891 242.7586 247.318 253.55785 263.75895 267.71836 278.63996 285.59934 291.83918 298.91886 305.0384 309.71705 315.95689 319.79673 329.99995 336.23979 340.07963 346.31947 352.5593 356.39915 361.0778 365.0372 371.15675 375.11616 378.956 389.87995 396.95964 403.919 411.71995 415.67936 425.03996 432.11964 439.079 445.31886 452.27824 456.23765 466.31895 470.27836 481.19996 486.59999 490.5594 496.79924 501.47789">naturalflowofawatersourcetogenerateelectricitybutisunabletostart</tspan><tspan y="-395.091" x="89.99994 97.079639 112.79994 118.19995 122.159358 129.11876 147.23995 151.19934 158.15874 164.39859 179.39995 184.0786 187.91844 194.99814 216.11995 220.07935 227.03874 231.71739 238.67679 245.75649 252.71588 270.83998 274.79939 278.63923 295.19996 302.15934 308.39918 315.47886 321.5984 326.27705 332.51689 336.35673 343.4364 347.3958 361.79997 366.4786 384.59996 390.83979 397.91947 404.87886 408.7187 413.39735 419.63719 425.0372 428.9966 443.63996 460.91896 467.99864 474.23847 480.358 487.43769 491.27754 498.2369">orstopthatflowthroughitsgenerator.Incontrast,apeaking</tspan><tspan y="-370.85" x="89.99994 97.079639 103.91949 110.99918 115.67783 122.75753 128.87708 132.83647 139.07633 145.19588 149.15528 153.83393 157.67377 171.83994 178.91963 185.87903 195.95873 202.19858 215.03993 221.99933 225.95873 232.19858 239.15798 251.03993 255.71858 262.79829 268.1983 274.43815 289.43995 299.51966 306.59934 312.83918 327.83995 334.91963 341.15946 351.83915 358.07899 365.15867 380.27995 384.9586 392.03828 404.63996 410.8798 414.8392 420.95875 427.19859 431.158 435.83665 439.67649 445.91633 449.75617 453.71559 468.71998 475.79966 482.0395 488.15904 495.2387 500.63874">hydroelectricpowerplant(usedwhendemandforelectricitypeaks)</tspan><tspan y="-346.73103" x="89.99997 96.239818 103.31951 110.278919 114.11877 118.79742 125.87711 129.71697 141.95897 145.91837 152.87776 166.07997 170.75862 174.71802 181.67742 198.59998 205.67967 217.19998 227.27968 233.51953 237.47893 243.71878 255.23999 259.1994 266.15879 270.83744 277.7968 284.8765 291.83589 305.759 309.7184 313.55827 325.92 332.9997 339.11924 346.1989 352.43876 356.99815 363.23799 367.1974 374.15678 378.83543 384.23545 395.04 400.55958 404.3994 410.63926 415.3179 419.15776 422.9976 430.07728 444 450.95939 458.03907 474.95899 485.0387 492.11839 498.35823">controlstheflowofwaterthroughitsgenerators:startingnowwhen</tspan><tspan y="-322.61003" x="89.99997 97.079669 103.31951 113.99921 120.23905 127.31875 142.43997 146.39937 160.07997 167.15967 170.99951 177.95891 193.19998 199.43984 206.39923 213.47893 220.43833 227.39772 234.47742 246.11998 251.63954 255.47939 262.43879 269.51847 276.47785 280.43727 287.39665 302.52 306.4794 318.47999 328.5597 335.63938 341.8792 356.99998 364.07966 370.3195 380.99919 387.239 394.3187 409.55897 413.51838 427.19996 431.0398 438.11949 453.23997 457.19938 464.15876 473.51817 485.03996 491.2798 498.35948">demandishighenough,stoppingitwhendemandistoolow,and</tspan><tspan y="-298.49104" x="89.99994 97.079639 100.91949 107.99918 114.11874 118.797389 128.87708 132.83647 138.23648 151.67993 156.35858 162.59844 169.55783 176.63753 180.47737 186.71723 190.55707 194.51647 201.47586 215.75894 219.71834 230.87995 234.83934 249.11995 256.19966 262.31919 268.55903 282.83998 289.91966 296.1595 302.27903 315.83998 325.91969 329.8791 333.71894 347.99998 354.2398 361.3195 367.43904 374.5187 381.4781 385.31794 392.3976 406.67997 412.9198 416.75965 422.99949 429.23933 433.07917 437.7578 441.71723 447.83677 451.79618 455.63603 469.91899 476.99867 483.1182 489.35804 496.4377 501.83775">otherwiseregulatingittokeeppacewithchangingelectricityneeds.</tspan><tspan y="-274.25004" x="89.99997 100.079669 104.03907 107.998477 114.95788 121.91728 128.99698 135.95638 152.63997 159.71967 165.95952 172.07907 179.15877 182.99861 189.95801 206.87998 213.95967 217.79952 224.03937 230.99877 234.95816 250.07997 257.15968 273.83998 280.91966 287.87904 301.67997 305.63938 312.47923 319.5589 323.5183 329.75816 335.8777 339.8371 343.67695 360.47996 367.55964 374.519 380.75886 385.4375 391.55705 395.51646 411.47996 417.7198 424.67918 431.75886 435.5987 439.5581 446.5175 453.47688 460.55656 467.51594 472.91596 476.87538 493.55897 499.7988">Althoughpeakingplantsdonottypicallyoperatecontinuouslyas</tspan><tspan y="-250.13103" x="89.99994 94.67859 101.758289 108.71769 113.39634 120.35574 125.03439 129.71305 134.3917 138.23154 145.31124 151.43079">run-of-river</tspan></text>
+<text fill="#ff0000" xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-250.13103" x="161.03995 168.11965 171.95949 178.19934 185.15874 189.11814 199.55895 206.63864">plantsdo</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-250.13103" x="213.59995 221.99994 229.07964 235.31949 241.43904 248.51874 252.35858 259.31797 271.43995 278.39933 282.35874 288.59858 295.55796 299.3978 309.83995 316.07978 322.3196 334.31996 341.39964 347.63948 354.59886 360.83869 365.51734 371.63688 375.59629 386.75895 397.55894 404.6386 409.31727 420.59996 431.39994 437.63978 444.71946 450.9593 461.039 467.27885 471.11869 475.0781 479.63749 486.71717 493.67655 500.63594">,peakingplantscangeneratemoremegawatt-hour</tspan><tspan y="-226.01003" x="89.99994 97.079639 105.839939 112.91963 119.879039 129.95873 136.19858 145.07994 152.15964 158.27919 167.15894 174.11833 180.35819 186.59804 195.47994 200.15859 212.63829 225.71799 232.79769 236.75708 243.59693 248.27558 257.15895 261.11836 268.07774 274.31758 285.47993 290.99949 297.95887 308.75886 319.19993 323.87858 330.95826 337.91764 342.59629 349.55567 354.2343 358.91297 363.5916 367.43147 374.51115 380.63069 389.51994 396.5996 400.43946 406.6793 413.63868 417.59809 422.9981 430.67994 438.47993 445.5596 454.31996 460.55979 467.63948 473.759 484.559 491.63868 495.59809 501.83793">ofpowerperyear(MWh/yr)thansomerun-of-riverplants.Forexample,</tspan><tspan y="-201.89102" x="89.99994 93.95934 100.91875 110.63994 117.59934 124.67904 131.63845 138.59784 145.67754 152.63694">the_______</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_65)">
+</g>
+</g>
+</g>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">97</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12">Question3</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-727.49099" x="89.99999 98.51955 105.59924 116.99999 121.67864 128.63805 135.71775 141.8373 145.79669 149.63654 156.71623">Thefunction</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-727.49099" x="168.84">f</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-727.49099" x="172.68">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-727.49099" x="177.35865">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-727.49099" x="183.59999 193.43999 206.51999 213.59969 220.55908">)=600</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-727.61" x="229.19998 235.07968 242.87969 245.63909 253.43909">(0.5)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="8.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-740.091" x="261.47999">𝑥</tspan><tspan y="-729.291" x="259.19999 263.63984">11</tspan></text>
+<path transform="matrix(1,0,0,1,259.2,104.88)" stroke-width=".66" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H8.76"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-727.491" x="279 285.95939 289.9188 296.87818 303.118 313.68 317.6394 324.5988 336 343.07969 347.75834 353.87788 360.95756 364.7974 371.03724 374.87709 381.1169 393.24 397.1994 404.15879 408.1182 414.23774 421.3174 426.71745 430.67686 434.5167 446.63999 453.71968 463.559 474.95899 482.03868 488.2785 494.39805">givesthepredictedintensityofabeam</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-703.25" x="89.99997">f</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-703.25" x="93.839969">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-703.25" x="98.518619">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-703.25" x="104.758968 109.437618 116.519969 120.47937 131.03997 138.11966 145.07906 155.87906 162.95876 169.19861 177.59996 184.55936 192.83997 199.91967 206.87906 213.83846 217.79785 224.75725 231.83695 240.83997 244.79936 255.35897 259.3184 266.27778 276.11997 283.19966 289.43949 295.55903 306.359">),innumberofphotonsinthebeam,</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-703.25" x="313.67997">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-703.25" x="323.51997 334.31996 338.27937 342.23878 346.0786 350.03804 360.7177 366.95756 370.91697 377.1568 381.83546 390.83998 397.91966 404.1595 407.99934 414.9587 428.75898 432.71839 439.67778 449.51997 455.03953 461.9989 466.67756 471.3562 477.59605 483.83589 493.67997 500.75965">millimetersbelowthesurfaceof</tspan><tspan y="-679.01" x="89.99994 99.71994 105.959789 112.19963 116.87828 120.71813 126.95798 130.79782 141.23995 152.03995 158.2798 162.2392 168.47905 173.1577 176.99755 183.2374 187.1968 193.91996 206.99965 214.07935 220.3192 227.63996 231.59935 240.59996 244.4398 251.5195 261.11997 268.19966 274.43949 279.8395 287.15898 291.11839 298.07777 302.03718 308.1567 312.83537 319.91505 324.47444 330.71427 334.67369 340.7932 344.75263 348.59248 355.67216 366.11997 373.19966">acertainmaterial.Whatisthebestinterpretationof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-679.01" x="381.23997">f</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-679.01" x="385.19996 389.8786 396.4786 403.438 411.47996 422.87995 429.95964 436.919 443.8784">(11)=300?</tspan><tspan y="-655.01" x="89.99994 100.079639 110.99994 125.03994 132.11965 138.3595 144.47905 160.19994 166.43979 175.07994 179.03934 185.99874 196.91994 202.4395 209.3989 214.07755 218.7562 224.99605 231.2359 242.03995 249.11965 258.59996 262.4398 269.51948 280.43995 291.23994 297.47978 301.43919 307.67903 312.35768 316.1975 322.43736 331.07997 338.15965 344.27919 354.47996 365.51997 372.59965 377.2783 383.39784 390.4775 394.31736 400.5572 404.39704 410.63688 422.39997 426.2398 433.3195 437.15934 443.39918 450.35856 455.8781 459.71797 463.67738 475.31898 482.39866 491.75898 498.35899">A.Abeamatthesurfaceofthematerialhasapredictedintensityof11</tspan><tspan y="-630.77" x="89.99997 97.079669 104.03907 110.998477 114.95788 121.91728 128.99698 137.75897 141.71837 152.15897 156.11837 163.07776 172.79998 179.87967 186.11952 192.23908 203.03908">photonsinthebeam.</tspan><tspan y="-606.65" x="89.99997 99.35727 110.99997 124.43997 131.51967 137.75952 143.87908 158.99997 165.23983 173.27997 177.23937 184.19876 194.63997 200.15953 207.11893 211.79758 216.47623 222.59578 228.83563 239.27997 246.35967 255.11997 259.07939 266.03877 276.35899 287.15898 293.3988 297.35823 303.59806 308.2767 312.11656 318.35639 326.39997 333.47966 339.71949 349.31999 359.63999 366.71968 371.39833 377.51786 384.59754 388.43739 394.67723 398.51707 404.7569 416.03999 419.9994 426.95878 430.7986 437.03846 443.99784 449.5174 453.35725 457.31666 468.35899 475.43867 484.19999 491.27967 498.23905">B.Abeamatthesurfaceofthematerialhasapredictedintensityof300</tspan><tspan y="-582.53" x="89.99997 97.079669 104.03907 110.998477 114.95788 121.91728 128.99698 137.75897 141.71837 152.15897 156.11837 163.07776 172.79998 179.87967 186.11952 192.23908 203.03908">photonsinthebeam.</tspan><tspan y="-558.41006" x="89.99997 99.35727 110.99997 128.15897 135.23867 141.47852 147.59807 166.31996 172.91996 187.55896 198.35897 202.31836 206.27776 210.1176 214.077 224.877 231.11685 235.07625 241.3161 245.87549 259.19996 266.27964 272.51948 276.3593 283.3187 301.19996 305.15937 312.11875 326.15895 331.6785 338.63789 343.31654 347.99519 354.23503 360.47486 374.39994 381.4796 393.83995 397.79936 404.75874 418.79994 429.5999 435.83976 439.79917 446.039 450.71766 454.5575 460.79734 472.55894 479.6386 485.87846 499.07994">C.Abeam11millimetersbelowthesurfaceofthematerialhasa</tspan><tspan y="-534.17007" x="89.99991 97.079608 101.758258 107.87781 114.957508 118.797359 125.0372 128.87705 135.1169 145.55892 149.51831 156.4777 160.4371 166.55666 173.63636 179.03636 182.99576 186.8356 197.27993 204.35962 212.39992 219.47962 226.43901 236.99993 243.95932 251.03902 257.9984 261.83827 268.91795 275.87733 284.7589 288.71833 299.1589 303.11833 310.0777 319.7999 326.75929 332.9991 339.23896 350.03895">predictedintensityof300photonsinthebeam.</tspan><tspan y="-510.05006" x="89.99989 100.07959 110.99989 127.439899 134.51959 140.75945 146.879 164.9999 171.95929 179.03899 193.0799 203.8799 207.8393 211.79869 215.63854 219.59793 230.39794 236.63779 240.59719 246.83704 251.39643 263.9999 271.0796 277.31944 281.15928 288.11866 305.3999 309.23976 316.31944 329.6399 335.15946 342.11885 346.7975 351.47615 357.59568 363.8355 377.1589 384.2386 395.9999 399.95933 406.9187 420.2399 431.0399 437.27973 441.23915 447.47898 452.15763 455.99748 462.2373 473.2799 480.3596 486.47914 499.0799">D.Abeam300millimetersbelowthesurfaceofthematerialhasa</tspan><tspan y="-485.93006" x="89.99988 97.079578 101.758228 107.87778 114.95747 118.797328 125.03717 128.87702 135.11687 145.55889 149.51828 156.47768 160.43708 166.55663 173.63632 179.03633 182.99573 186.83557 197.27989 204.35959 212.39989 219.47959 226.43898 236.9999 243.95929 251.03899 257.99839 261.83824 268.9179 275.8773 284.75889 288.7183 299.15888 303.1183 310.07768 319.79988 326.75926 332.99909 339.23893 350.0389">predictedintensityof600photonsinthebeam.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-365.21006" x="89.99986 100.91671 108.716709 114.95655 120.35655 125.0352 128.9946 135.954 147.11988">Question4</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-340.97007" x="89.99987 97.799869 104.87956 113.51987 117.47927 124.438678 134.75887 138.71826 142.5581 149.6378 155.75736 161.99721 170.63986 175.31851 182.39821 189.3576 195.59746 199.4373 203.3967 210.3561">Forthelinearfunction</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-340.97007" x="221.39987">h</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-340.97007" x="228.47988">,</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-340.97007" x="236.03987">h</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-340.97007" x="242.99988 247.67853 254.75823 263.51988 275.39988 286.55888 292.7987 299.8784">(0)=0and</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-340.97007" x="310.91987">h</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-340.97007" x="317.87986 322.5585 329.1585 336.1179 344.75886 356.75886 363.83854 371.15885 384.35887 391.43855 395.27839 401.51823 412.55885 418.79869 425.87837 432.83775 439.07759 442.91743 446.75727 453.83695 464.87986 471.95954 478.07908 482.75773 486.71714 493.6765 499.91636">(11)=5.Whichequationdefines</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-316.85008" x="89.99985">h</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-316.85008" x="96.95885">?</tspan><tspan y="-288.65007" x="89.99985 100.079547">A.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-288.65007" x="110.99985 118.79985 124.55885 131.99985 141.47956">&#x210e;(𝑥)=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-296.81007" x="158.87985">5</tspan><tspan y="-281.69108" x="156.11986 161.6394">11</tspan></text>
+<path transform="matrix(1,0,0,1,156.12,549.24)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-288.65" x="169.44">𝑥</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-256.25" x="90 99.3573">B.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-256.37" x="111 118.8 124.559009 132 141.4797">&#x210e;(𝑥)=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-264.53" x="158.88">5</tspan><tspan y="-249.41" x="156.12001 161.63956">11</tspan></text>
+<path transform="matrix(1,0,0,1,156.12,581.64)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-256.37" x="169.44 180.12 193.55985">𝑥+5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-224.20999" x="89.99999 99.35729">C.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-224.331" x="110.99999 118.799999 124.559 132 141.4797">&#x210e;(𝑥)=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-232.491" x="156.12 161.63954">11</tspan><tspan y="-217.25" x="158.87999">5</tspan></text>
+<path transform="matrix(1,0,0,1,156.12,613.68)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-224.331" x="169.44">𝑥</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-192.17" x="90 100.0797">D.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-192.291" x="111 118.8 124.559009 132 141.4797">&#x210e;(𝑥)=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-200.45" x="156.12 161.63954">11</tspan><tspan y="-185.20999" x="158.87999">5</tspan></text>
+<path transform="matrix(1,0,0,1,156.12,645.72)" stroke-width=".924" stroke-linecap="square" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H11.04"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-192.291" x="169.44 180.12 193.55985 201.35985">𝑥+11</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

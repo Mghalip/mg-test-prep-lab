@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">86</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question20</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="89.99999 98.51955 105.59924 118.55899 123.23764 130.31734 137.27674 143.51659 147.35643 151.31583 158.27523">Thefunction</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-732.52999" x="172.19998">f</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="182.87998 186.83937 199.07997 206.15967 212.39952 216.95891 220.9183 227.8777 234.11756 247.91997 254.99967">isdefinedby</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-732.64999" x="272.39997 279.95896 285.83998 293.27998 302.75968 317.1597 323.15898 333.83998 347.39997 355.19996 362.99995 368.75935 374.51997 385.19996 398.75895 406.55894 412.31834 418.07997 428.63996 442.31996 450.11994">𝑓(𝑥)=(𝑥&#x2212;10)(𝑥&#x2212;8)(𝑥&#x2212;4)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.52999" x="459.23997 469.67997 474.3586 488.15898 492.11839 499.07777">.Inthe</tspan><tspan y="-708.05" x="89.99994 97.079639 103.91949 108.59814 115.67783 119.63724 125.87708 132.83649 139.07634 146.51995 150.47934 157.43874 167.75894 174.83864 179.51729 185.63684 192.71654 203.75894 210.83864">xy-plane,thegraphof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-708.05" x="222.95894 237.83994 255.23993 263.87995 269.63996 277.07997">𝑦=𝑔(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-708.05" x="287.63996 291.59938 301.07997 305.03938 311.99876 322.19996 326.8786 333.11845 338.638 345.59739 349.43724 357.47996 364.55964 373.19996 377.15937 381.838 388.07786 395.03724 400.43727 404.39668 410.5162 414.47563 418.31547 425.39515 436.43995 440.39936 447.35874 457.67994 464.7596 469.319 475.55885 482.63853 493.67994 500.7596">istheresultoftranslatingthegraphof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-683.691" x="89.99991 104.75891 122.279918 129.95891 135.8399 143.2799">𝑦=𝑓(𝑥)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-683.57" x="152.51992 159.59961 170.03992 180.59992 187.55931 194.639 198.47885 202.43825 207.83826 214.43991 227.63991 234.7196 240.95946 248.2799 252.2393 261.1199 265.0793 272.0387 281.7589 288.8386 295.07844 298.91828 305.87767 315.5999 322.6796">up6units.Whatisthevalueof</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-683.691" x="334.19993 342.83995 348.71965 356.39936">𝑔(0)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-683.57" x="362.15895">?</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-442.01" x="89.99991 100.916759 108.71675 114.9566 120.3566 125.03525 128.99465 135.95404 147.1199 154.1999">Question21</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-417.17" x="214.79991 220.67992 231.23992 244.67977 252.59932">(𝑥+3)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-422.21003" x="258.35893">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-417.17" x="267.5999 281.1589 286.9199 297.8399 311.5199 319.3199 327.11988">+(𝑦&#x2212;18)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9.95" font-family="Sourcef5196f26fd2a2813"><tspan y="-422.21003" x="332.87989">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-417.17" x="342.83988 356.99928 364.91883 372.7188">=169</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-392.57" x="89.99988 98.51943 105.59913 117.11988 124.19958 128.87824 134.99779 142.07749 154.31989 161.39958 171.35889 175.31829 182.27768 193.79988 200.87958 204.71942 211.79912 217.91867 230.27988 236.51973 243.47913 250.55883 256.67835 260.63777 264.4776 271.55729 283.79988 287.75929 298.43989 310.0799 316.31974 320.15959 324.83824 331.07807 334.9179 346.43989 350.3993 362.75889 366.7183 373.67768">Thegraphofthegivenequationisacircleinthe</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-392.57" x="388.67988 396.11973">𝑥𝑦</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-392.57" x="405.83988 410.51853 417.4779 421.43733 427.67716 434.63655 440.87638 449.39988 457.91944 464.9991 476.51988 483.59956 490.55894 494.39878 501.47846">-plane.Thepoint</tspan><tspan y="-368.091" x="89.99988">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-368.21" x="94.67988 102.35888 108.35888">𝑎,𝑏</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-368.091" x="115.919879 124.07988 128.03929 131.87914 138.11899 146.99988 154.07958 164.51988 168.47928 175.43868 185.15888 191.39873 195.35813 199.91751 206.15737 210.11676 216.23632 222.95888 236.15888 243.23857 247.07842 253.31827 263.75889 270.83857 278.99989 282.83973 289.9194 299.51988 304.19853 311.2782 315.11805 319.07746 326.03684 336.11656 340.07597 347.03535 357.47987 361.43928 370.31986 380.03987 387.11955 394.07893 399.59849 404.9985 408.83836 415.91804 419.75788 429.47987 436.55955 442.67909 446.6385 453.59788 463.19987 467.8785 474.9582">)liesonthecircle.Whichofthefollowingisapossiblevaluefor</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Sourcef5196f26fd2a2813"><tspan y="-368.21" x="486.59986">𝑎</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-368.091" x="494.39985">?</tspan><tspan y="-343.85" x="89.99985 100.079547 110.99985 117.95885 125.03854">A.&#x2013;17</tspan><tspan y="-319.73103" x="89.99985 99.35715 110.99985 117.95885 124.6784">B.&#x2013;11</tspan><tspan y="-295.61003" x="89.99985 99.35715 110.99985 118.079547">C.13</tspan><tspan y="-271.49104" x="89.99985 100.079547 110.99985 118.079547">D.18</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">84</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-756.891" x="90 100.91685 108.71684 114.95669 120.35669 125.03534 128.99474 135.95413 147.12 154.19969">Question22</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-732.77" x="89.99999 103.91999 114.719989 120.95983 127.19968 134.27938 138.23877 145.19817 155.99999 166.79999 173.03984 180.11954 186.35939 196.31999 203.39969 208.07834 211.91819 218.87758 225.11743 232.19713 240.23999 247.31969 251.99834 255.83818 262.79759 269.0374 276.1171 284.03999 290.27983 297.3595 308.99998 315.95936 320.638 324.5974 331.5568 337.79664 349.31999 356.39967 362.6395 367.19889 371.1583 376.55833 384.59999 394.6797 401.75938 406.43803 410.27787 417.35755 428.99998 439.79997 446.0398 452.27964 456.95829 460.79814 467.03797 470.99739 482.51997 489.59965 495.71919 501.959">Amachinemakes8-inch,9-inch,and3-inchparts.Duringacertainday,</tspan><tspan y="-708.65" x="89.99997 93.95937 100.91878 111.11997 118.19967 125.15907 135.95908 143.03878 149.27863 158.03998 164.99938 173.75897 180.83867 185.51732 189.35717 196.31656 202.55641 213.59998 220.55937 226.79923 231.47788 235.31772 244.79998 248.75937 255.71877 261.9586 269.87998 273.8394 280.79878 291.11997 301.91996 308.1598 314.39964 321.4793 325.31916 332.39884 342.59999 353.39997 359.6398 366.71949 372.95933 382.43998 386.39939 395.87998 406.91899 410.8784 414.71824 425.51823 431.75807 441.24 445.1994 452.15879 462.47999 469.55967 476.51905 487.31904 494.3987 500.63856">thenumberof8-inchpartsthatthemachinemakesis4timesthenumber</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-684.41006" x="89.99997">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-684.41006" x="101.63997 108.719669 118.07997 125.15967 129.71906 133.67845 140.63785 146.8777 158.51998 165.59967 171.71923 176.39788 180.35727 185.75728 193.91999 200.15984 207.23954 218.87999 222.83939 229.79878 240.71999 247.79969 254.75908 265.55909 272.63877 278.8786 288.12 295.19969 304.44 311.51969 316.19834 320.03819 326.99757 333.2374 345 352.07969 358.31953 362.8789 366.83833 376.919 380.87843 390.959 398.0387 404.99809 413.15904 423.23875 430.31843 434.99708 438.8369 445.9166 457.55903 461.51844 468.4778 472.43724 482.40003 489.4797 495.71955 501.83909">of9-inchparts,andthenumberof3-inchpartsis30.Duringthisday,</tspan><tspan y="-660.291" x="90.00003 93.959438 100.91884 115.55903 126.359027 132.59888 138.83873 145.91843 149.75827 156.83797 171.35903 182.15903 188.39888 195.47858 201.71843 215.64003 222.71973 229.67913 245.04003 252.11972 258.35957 262.91896 266.87837 280.80003 284.75944 291.7188 295.67823 301.79777 305.75718 317.40003 330.60005 337.67973 341.51957 347.7594 363.12004 369.35987 376.43955 383.39894 389.63877 393.4786 397.43803 404.3974 419.75904 424.43769 430.67753 437.6369 442.31556 448.5554 454.07496 460.1945 467.27418 471.114 485.04005 488.99946 495.95884 499.91825">themachinemakes100partstotal.Whichequationrepresentsthis</tspan><tspan y="-636.17007" x="90.00003 95.51959 99.35944 103.31885 110.27825 116.5181 120.35795 124.31735 131.27675 138.23615">situation?</tspan><tspan y="-612.05007" x="90.00003 100.07973 111.00003 118.07973 122.75838">A.8(4</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-612.05007" x="129.60004">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-612.05007" x="136.68004 144.84004 156.24004">)+9</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-612.05007" x="163.20005">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-612.05007" x="173.64005 185.04004 192.11974 196.79839 203.75778 210.71718 218.88004 230.28003 237.35973 244.31912">+3(30)=100</tspan><tspan y="-587.81008" x="90.000019 99.357318 111.000019">B.8</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-587.81008" x="117.959018">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-587.81008" x="128.52002 139.80002">+9</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-587.81008" x="146.88002">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-587.81008" x="157.32003 168.72002">+3</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-587.81008" x="175.80002">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-587.81008" x="186.24002 197.64002 204.71971 211.67911">=100</tspan><tspan y="-563.69107" x="90.00001 99.35731 111.00001">C.4</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-563.69107" x="117.95901">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-563.69107" x="128.52 139.8 146.8797 157.32 168.72 175.7997 182.7591">+30=100</tspan><tspan y="-539.57009" x="90 100.0797 111">D.5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-style="italic"><tspan y="-539.57009" x="117.959">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-539.57009" x="128.52 139.8 146.8797 157.32 168.72 175.7997 182.7591">+30=100</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_4)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

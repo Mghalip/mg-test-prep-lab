@@ -1,0 +1,383 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="595.3" height="841.9" viewBox="0 0 595.3 841.9">
+<defs>
+<clipPath id="clip_1">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_2">
+<path d="M293.1 781.55H302.2V792.55H293.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_3">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path d="M100.95 147.5H156.5V210.05H100.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path d="M156.45 147.5H212V210.05H156.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path d="M211.95 147.5H276.8V210.05H211.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_11">
+<path d="M276.75 147.5H341.6V210.05H276.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_12">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path d="M341.55 147.5H425.3V210.05H341.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_14">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_15">
+<path d="M425.25 147.5H510.35V210.05H425.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_16">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_17">
+<path d="M100.95 210.1H156.5V251.95001H100.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_18">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_19">
+<path d="M156.45 210.1H212V251.95001H156.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_20">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path d="M211.95 210.1H276.8V251.95001H211.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path d="M276.75 210.1H341.6V251.95001H276.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path d="M341.55 210.1H425.3V251.95001H341.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path d="M425.25 210.1H510.35V251.95001H425.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path d="M100.95 252H156.5V293.85H100.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path d="M156.45 252H212V293.85H156.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path d="M211.95 252H276.8V293.85H211.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path d="M276.75 252H341.6V293.85H276.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path d="M341.55 252H425.3V293.85H341.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path d="M425.25 252H510.35V293.85H425.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path d="M100.95 293.9H156.5V335.75H100.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path d="M156.45 293.9H212V335.75H156.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path d="M211.95 293.9H276.8V335.75H211.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path d="M276.75 293.9H341.6V335.75H276.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path d="M341.55 293.9H425.3V335.75H341.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_51">
+<path d="M425.25 293.9H510.35V335.75H425.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_52">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_53">
+<path d="M100.95 335.8H156.5V357.5H100.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_54">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_55">
+<path d="M156.45 335.8H212V357.5H156.45Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_56">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_57">
+<path d="M211.95 335.8H276.8V357.5H211.95Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_58">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_59">
+<path d="M276.75 335.8H341.6V357.5H276.75Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_60">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_61">
+<path d="M341.55 335.8H425.3V357.5H341.55Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_62">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_63">
+<path d="M425.25 335.8H510.35V357.5H425.25Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_64">
+<path d="M0 0H595.3V841.9H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_65">
+<path transform="matrix(1.5874634,0,0,-1.5874634,0,718.6)" d="M0 0H375V375H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="9" font-family="Arial"><tspan y="-51.77" x="293.04 297.5994">12</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman" font-weight="bold"><tspan y="-729.65" x="85.08 95.99685 103.796848 110.03669 115.43669 120.11534 123.95519 131.0349 142.20001 149.15901">Question12</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-705.53" x="159.6 167.40001 174.4797 181.4391 188.3985 192.3579 198.59775 202.43759 206.27744 213.35713 223.80002 230.03987 236.99927 246.72002 256.7997 261.47837 267.7182 277.44 287.5197 293.75956 297.71897 307.32 311.99867 319.07835 327.12 334.91999 341.99967 348.95906 357.12 366.4773 370.4367 374.27656 378.1164 384.35624 393.24 397.1994 407.63999 414.71968 421.67906 428.63844">PopulationandAreaDataforFourCitiesin2018</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-662.091" x="118.32 126.35984 129.71924 133.07865">City</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_6)">
+<g clip-path="url(#clip_7)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-662.091" x="164.52 172.55986 178.55986 184.55986 190.55986 193.91927 197.87866">Country</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-672.41" x="235.68 244.31984">UN</tspan><tspan y="-651.76998" x="223.31999 230.64 235.3197 238.67911 242.03852 251.39792 256.67765 260.03706">Estimate</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_10)">
+<g clip-path="url(#clip_11)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-672.41" x="287.159 295.19886 300.47859 306.47859 312.47859 316.438 319.7974 325.07713">Reported</tspan><tspan y="-651.76998" x="282.95899 288.2387 291.5981 294.95753 303.95899 309.95899 313.9184 319.9184 325.9184 331.19813">cityproper</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<g clip-path="url(#clip_13)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-682.73" x="355.44 363.47987 366.83927 370.07914 375.83854 379.91825 386.03779 389.9972 395.9972 401.9972 407.27693">City-proper</tspan><tspan y="-662.091" x="354.24 359.5197 363.47914 368.87916 377.159 381.1184 385.7981 391.7981 397.7981 403.07783 407.03724">area(square</tspan><tspan y="-641.33" x="356.04 362.04 365.3994 368.75883 374.75883 384.11824 389.39796 392.75736 398.03709 401.9965 406.67619">kilometers)</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_14)">
+<g clip-path="url(#clip_15)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-672.41" x="445.8 453.83985 459.11958 465.11958 471.11958 475.07899 478.4384 483.7181">Reported</tspan><tspan y="-651.76998" x="436.44 447.1197 452.3994 455.75883 459.71824 465.71824 471.71824 477.71824 481.07765 484.43705 487.79646 493.07618">Metropolitan</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_16)">
+<g clip-path="url(#clip_17)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-620.091" x="110.4 121.079708 126.359409 132.3594 135.71881 140.9985">Mexico</tspan><tspan y="-599.45" x="118.32 126.35984 129.71924 133.07865">City</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_18)">
+<g clip-path="url(#clip_19)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-609.77" x="165.84 176.5197 181.7994 187.91893 191.27834 196.55803">Mexico</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_20)">
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-609.77" x="217.32 223.32 229.32 232.32 238.32 244.32 250.32 253.32 259.32 265.32">21,581,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_22)">
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-609.77" x="285.12 291.12 294.12 300.12 306.12 312.12 315.12 321.12 327.12">9,209,944</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_24)">
+<g clip-path="url(#clip_25)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-609.77" x="369.84 375.84 378.84 384.84 390.84">1,485</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_26)">
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-609.77" x="440.759 446.759 452.759 455.759 461.759 467.759 473.759 476.759 482.759 488.759">21,804,515</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_28)">
+<g clip-path="url(#clip_29)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-578.21" x="119.64 126.84 132.95954">Los</tspan><tspan y="-557.57" x="109.08 117.71985 123.71985 129.59955 134.99954 138.35895 143.63864">Angeles</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_30)">
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-578.21" x="167.88 176.51985 182.51985 185.87926 189.23867 194.51836">United</tspan><tspan y="-557.57" x="169.8 176.51956 179.87897 185.15866 188.51807 193.79776">States</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_32)">
+<g clip-path="url(#clip_33)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-567.891" x="217.32 223.32 229.32 232.32 238.32 244.32 250.32 253.32 259.32 265.32">12,650,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_34)">
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-567.891" x="285.12 291.12 294.12 300.12 306.12 312.12 315.12 321.12 327.12">3,990,456</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_36)">
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-567.891" x="369.84 375.84 378.84 384.84 390.84">1,214</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_38)">
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-567.891" x="440.759 446.759 452.759 455.759 461.759 467.759 473.759 476.759 482.759 488.759">13,291,486</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_40)">
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-536.331" x="119.64 126.359 131.64">S&#x00e2;o</tspan><tspan y="-515.691" x="114.959 121.67855 126.95825 132.95825 136.31766">Paulo</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_42)">
+<g clip-path="url(#clip_43)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-526.01" x="169.559 177.47856 181.43796 186.83795 192.23795 195.59735">Brazil</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_44)">
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-526.01" x="217.32 223.32 229.32 232.32 238.32 244.32 250.32 253.32 259.32 265.32">21,650,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_46)">
+<g clip-path="url(#clip_47)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-526.01" x="282.12 288.12 294.12 297.12 303.12 309.12 315.12 318.12 324.12 330.12">12,252,023</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_48)">
+<g clip-path="url(#clip_49)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-526.01" x="369.84 375.84 378.84 384.84 390.84">1,521</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_50)">
+<g clip-path="url(#clip_51)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-526.01" x="440.759 446.759 452.759 455.759 461.759 467.759 473.759 476.759 482.759 488.759">21,734,682</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_52)">
+<g clip-path="url(#clip_53)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-494.45" x="109.68 118.31985 124.31985 127.679248 133.67925 138.95894 142.31835">Kolkata</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_54)">
+<g clip-path="url(#clip_55)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-494.45" x="171.84 175.67984 181.79938 187.79938 191.15879">India</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_56)">
+<g clip-path="url(#clip_57)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-494.45" x="217.32 223.32 229.32 232.32 238.32 244.32 250.32 253.32 259.32 265.32">14,681,000</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_58)">
+<g clip-path="url(#clip_59)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-494.45" x="285.12 291.12 294.12 300.12 306.12 312.12 315.12 321.12 327.12">4,496,694</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_60)">
+<g clip-path="url(#clip_61)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-494.45" x="374.4 380.4 386.4">205</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_62)">
+<g clip-path="url(#clip_63)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="12" font-family="Times New Roman"><tspan y="-494.45" x="440.759 446.759 452.759 455.759 461.759 467.759 473.759 476.759 482.759 488.759">12,035,959</tspan></text>
+</g>
+</g>
+<g clip-path="url(#clip_64)">
+<path transform="matrix(1,0,0,1,100.71,147.79)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H409.83"/>
+<path transform="matrix(1,0,0,1,100.71,210.39)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H409.83"/>
+<path transform="matrix(1,0,0,1,100.71,252.29)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H409.83"/>
+<path transform="matrix(1,0,0,1,100.71,294.19)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H409.83"/>
+<path transform="matrix(1,0,0,1,100.71,336.09)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H409.83"/>
+<path transform="matrix(1,0,0,1,100.71,357.29)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0H409.83"/>
+<path transform="matrix(1,0,0,1,100.95,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<path transform="matrix(1,0,0,1,156.45,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<path transform="matrix(1,0,0,1,211.95,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<path transform="matrix(1,0,0,1,276.75,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<path transform="matrix(1,0,0,1,341.55,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<path transform="matrix(1,0,0,1,425.25,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<path transform="matrix(1,0,0,1,510.3,147.55)" stroke-width=".48" stroke-linecap="butt" stroke-linejoin="bevel" fill="none" stroke="#000000" d="M0 0V209.5"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 0 841.9)" font-size="14.05" font-family="Times New Roman"><tspan y="-447.17" x="85.08 92.88 99.8394 106.9191 113.8785 117.837909 123.95746 127.91686 131.75672 138.71611 149.28 153.95865 157.91805 164.87744 171.83684 176.51549 182.75534 191.759 196.43766 203.51735 211.68001 221.52 227.75986 231.71926 235.5591 246.12001 252.35987 258.5997 269.04 276.1197 282.35954 286.9189 297.6 303.00004 306.95945 313.91883 320.9985 324.83836 329.517 333.35685 339.59669 345.83653 352.7959 356.7553 360.59516 371.159 378.23869 384.47853 391.4379 397.67774 404.63713 411.5965 415.5559 422.5153 433.08 440.15968 450.59999 460.6797 467.75938 473.9992 481.43998 487.6798 492.35847 498.5983 504.83815">Populationfiguresforacitycanvarysignificantlydependingonwhatareas</tspan><tspan y="-423.05003" x="85.079959 91.3198 95.99845 106.679958 110.63936 117.59876 123.83861 127.67846 134.75817 141.71756 147.95742 159.47995 163.43935 174.83995 178.79935 185.75875 196.55895 202.7988 209.8785 216.83789 223.79729 227.75669 234.95896 248.87996 252.7198 259.7995 266.75889 271.43754 278.5172 284.63676 288.59617 292.436 297.95558 306.23997 312.4798 316.4392 322.55876 326.51817 337.31816 347.39997 351.35939 358.31877 364.5586 372.95896 380.03865 384.7173 388.55714 394.79698 406.19996 416.99995 424.07963 431.039 437.99839 444.23823 448.91688 455.87626 466.67625 472.91609 479.99577 488.39994 498.47966 502.43907 506.39848">areincludedinthecount.Ajournalistclaimsthatoftenagovernmentwill</tspan><tspan y="-398.93104" x="85.079929 89.758579 95.99842 102.957828 110.03752 114.59692 124.19993 135.95893 143.03862 149.27848 153.11832 160.07772 171.95893 175.91832 182.87772 189.11757 198.59993 202.55933 213.71993 224.51993 231.59963 237.83948 250.43993 254.39933 261.3587 271.43843 277.67826 287.99995 291.95936 298.91874 305.15858 317.75895 321.71836 328.67774 340.55894 346.79878 352.31834 356.15818 359.99803 370.798 377.03785 380.99726 392.87995 399.95964 403.79948 410.87916 416.9987 429.59996 436.67964 449.39994 453.23979 460.31947 472.07994 482.15965 489.23933 493.07917 497.03858 503.2784">reportavaluethatismuchlowerthantheestimategivenbytheUnited</tspan><tspan y="-374.81004" x="85.079929 95.15962 101.39947 105.35887 109.19872 116.15813 123.23782 132.95893 140.03862 146.27848 152.39803 158.63788 165.71758 171.11759 181.79993 185.63977 192.71947 203.27993 207.23932 213.35887 217.31827 221.15811 227.39797 236.39994 240.35933 247.31873 253.55858 257.39845 264.47813 271.4375 277.67735 287.51994 291.47935 298.43873 308.99995 315.23979 322.31947 326.1593 329.99916 334.6778 345.35896 356.15895 362.39878 366.3582 371.03684 378.11653 385.0759 392.03529 395.9947 399.83454 403.67439 409.9142 421.31996 427.55979 432.23844 438.47828 449.03996 453.7186 459.95845 463.91786 470.87724 477.11708 486.11994 490.07936 497.03874 503.27857">Nationsbecausethelatterincludestheentiremetropolitanarearatherthan</tspan><tspan y="-350.57005" x="85.079929 88.91978 95.99947 101.399478 108.719928 112.67933 119.63873 129.35892 135.59877 139.55817 143.39801 153.83992 160.91962 165.59827 172.55767 179.51706 185.75691 189.83661">justthecityproper.</tspan><tspan y="-302.33103" x="85.07992 98.15963 105.23933 109.19873 115.438579 126.95892 133.19878 140.27848 147.23787 151.07772 157.31757 167.99993 175.07962 181.31948 186.71949 195.23993 202.19933 208.43918 213.95874 220.0783 224.75695 228.71634 235.67574 241.91559 251.87993 258.95964 265.07917 269.03858 279.71995 283.67936 295.19996 299.15937 306.11875 316.91996 320.87937 327.1192 334.07859 337.91844 348.71995 352.67936 359.63874 365.87858 374.27995 379.7995 386.75889 393.83857 400.79795 407.75733 412.43598 416.27583 426.35896 430.31837 437.27775 448.07997 451.9198 458.99949 465.95887 470.6375 477.7172 483.83674 487.79615 491.636 497.15556 500.87995 504.83995">Whichchoicebestdescribesdatainthetablethatsupportsthejournalist&#x2019;s</tspan><tspan y="-278.21003" x="85.079929 91.31977 95.15962 101.39947 105.35887 116.03857">claim?</tspan><tspan y="-253.97002" x="85.079929 95.15962 106.079929 114.59948 121.67918 131.99993 136.67858 142.91843 149.87783 156.83722 161.51587 165.47527 171.59482 182.75893 188.99878 192.95818 196.79802 203.63787 208.31652 215.39621 220.07486 227.15456 234.11396 240.3538 249.11994 256.19963 263.159 270.11839 277.19807 281.0379 287.27775 291.11759 295.077 302.03639 313.19996 320.15934 329.03996 336.71995 342.95896 354.11997 361.91996 368.1598 375.11918 379.07859 390.23997 394.19938 403.67997 409.19953 413.03938 420.11906 427.07844 430.91828 435.59693 439.55635 445.67588 451.9157 458.9954 462.83525 466.67509 477.83998 481.79939 488.0392 492.47908 499.43846 505.67829">A.Thereportedcity-properpopulationofS&#x00e2;oPaoloissignificantlylarger</tspan><tspan y="-229.85002" x="85.079959 89.03936 95.998767 102.23861 112.679958 116.63936 123.59876 133.19995 137.8786 144.11846 151.07785 158.15755 162.8362 166.67604 172.9159 183.35895 189.5988 193.5582 197.39804 204.23789 208.91654 215.99623 220.67488 227.75458 234.71398 240.95383 248.99994 256.07963 263.039 269.99839 277.07807 280.9179 287.15776 290.9976 294.957 301.91639 312.47996 319.55964 327.59996 336.1195 343.1992 351.35896 361.43867 368.51835 375.47773 381.71757 385.67698 391.7965 397.31608">thanthereportedcity-properpopulationofLosAngeles.</tspan><tspan y="-205.73102" x="85.079929 94.437229 106.079929 114.59948 121.67918 131.99993 142.79993 149.03978 152.99918 157.67783 164.63722 171.71692 178.67632 182.51616 186.47556 190.3154 196.55525 207.71993 213.95978 218.63843 224.87828 235.19992 242.15932 251.03992 263.51963 269.75947 276.71885 280.5587 286.79853 297.95893 307.31623 311.27565 315.11549 326.2799 330.23933 339.7199 345.23948 349.0793 356.159 363.11839 366.95823 371.63688 375.59629 381.71583 387.95567 395.03535 398.87519 402.71504 413.8799 417.83934 424.07917 428.519 435.4784 441.71824 450.47993 454.43934 461.3987 467.63856 478.79994 485.7593 489.239 496.3187 503.27809">B.ThemetropolitanareaofMexicoCityissignificantlylargerthan1,485</tspan><tspan y="-181.61002" x="85.079929 90.59949 97.55889 104.518299 110.75814 115.43679 125.03993 132.11963 135.95948 139.91887 146.87827 157.67827 163.91812 167.87752 174.11737 178.79602 184.19603">squarekilometers.</tspan><tspan y="-157.37001" x="85.079929 94.437229 106.079929 114.59948 121.67918 132.95893 143.03862 158.39992 164.63977 170.15933 173.99918 177.95858 188.63828 194.87813 198.83753 205.07738 217.31992 225.11992 231.35892 243.59992 251.39992 257.63975 264.59913 268.55854 275.3999 279.35893 290.03993 297.1196 304.07899 311.03837 318.11805 321.9579 328.19773 332.03758 335.99699 342.95637 355.19993 359.03977 371.2799 378.3596 389.6399 396.71958 403.67897 407.15867 414.23835 421.19773 428.1571 431.6368 438.7165 445.67588 452.63526 461.3999 471.4796 478.5593 482.39915 488.63899 500.8799 504.83934">C.TheUNestimatedS&#x00e2;oPaulo&#x2019;spopulationtobe21,650,000,whichis</tspan><tspan y="-133.25002" x="85.079898 90.59946 94.43931 101.39871 108.47841 112.31826 116.99691 120.83676 127.07661 133.31645 140.27585 144.23525 148.07509 158.5199 162.4793 168.71915 173.159 180.1184 186.23795 194.3999 198.3593 205.3187 211.55855 221.99991 225.9593 232.9187 242.63991 247.31856 253.55841 260.5178 267.47718 272.15583 276.11524 282.35508 292.7999 299.75929 306.83897 313.79835 320.75773 324.71714 330.95698 334.7968 338.63667 345.71635 356.1589 360.83757 367.91725 375.9589 379.9183 386.8777 396.59989 402.83973 406.67958 410.63899 421.0799 428.15959 432.71897 439.79866 446.75804 452.99787 456.95729">significantlylargerthanthereportedpopulationforthecityproper.</tspan><tspan y="-109.13101" x="85.079898 95.15959 106.079898 116.15959 120.118999 127.439899 131.39929 138.35869 147.9589 154.19875 158.15814 161.99799 168.83783 173.51648 180.59618 185.27483 192.35453 199.31392 205.55377 213.7199 219.95975 224.6384 230.87825 237.1181 245.9999 252.23975 256.9184 266.5199 273.59959 279.83943 283.67927 290.63865 304.1999 311.27958 314.75929 321.71867 328.79835 339.2399 344.75947 351.71885 358.79853 364.91807 369.5967 379.3199 386.39958 390.2394 394.07926 401.15895 411.95893 418.19877 422.15818 428.398 432.9574 438.47697">D.Allthecity-properareasarebelow3,000squarekilometers.</tspan></text>
+</g>
+<g opacity=".25">
+<g clip-path="url(#clip_65)">
+<g transform="matrix(1.1905975,0,0,1.1905975,0,123.30121)">
+
+</g>
+</g>
+</g>
+</g>
+</svg>

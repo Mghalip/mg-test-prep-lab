@@ -1,0 +1,2 @@
+# Exclude classroom lesson pages from application language statistics.
+lessons/**/*.html linguist-documentation
