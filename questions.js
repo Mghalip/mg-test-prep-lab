@@ -1295,7 +1295,7 @@ const QUESTIONS = [
     "options": {
       "A": "despite the greater prevalence of anterior genes in sea stars’ genetic makeup, posterior genes active at the body’s perimeter are primarily responsible for the starlike layout that distinguishes sea stars’ radial symmetry from that of other echinoderms.",
       "B": "contrary to the belief that they evolved from early ancestors with the bilateral form typical of many other animals, sea stars instead originated with an atypical body layout that was neither bilaterally nor radially symmetrical.",
-      "C": "although the two species are closely related, there is only minimal correspondence in the genetic markers for head, tail, and trunk region development in P. miniata sea stars and S. kowalevskii acorn worms.",
+      "C": "although the two species are closely related, there is only minimal correspondence in the genetic markers for head, tail, and trunk region development in <i>P. miniata</i> sea stars and <i>S. kowalevskii</i> acorn worms.",
       "D": "rather than undergoing changes resulting in the eventual elimination of a head region in their radial body plan, as previously assumed, sea stars’ morphology evolved to completely lack a trunk and consist primarily of a head region."
     },
     "answer": "D",
@@ -3596,10 +3596,10 @@ const QUESTIONS = [
     "passage": "<p>Nigerian author Buchi Emecheta’s celebrated literary oeuvre includes <i>The Joys of Motherhood</i>, a novel about the changing roles of women in 1950s ______ a television play about the private struggles of a newlywed couple in Nigeria; and <i>Head Above Water</i>, her autobiography.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
-      "A": "Lagos, A Kind of Marriage,",
-      "B": "Lagos; A Kind of Marriage,",
-      "C": "Lagos, A Kind of Marriage:",
-      "D": "Lagos; A Kind of Marriage"
+      "A": "Lagos, <i>A Kind of Marriage</i>,",
+      "B": "Lagos; <i>A Kind of Marriage</i>,",
+      "C": "Lagos, <i>A Kind of Marriage</i>:",
+      "D": "Lagos; <i>A Kind of Marriage</i>"
     },
     "answer": "B",
     "explanation": "Choice B is the best answer. The convention being tested is the punctuation of items in a complex series (a series including internal punctuation). In this choice, the semicolon after “Lagos” is conventionally used to separate the first item (“The Joys…Lagos”) and the second item (“A Kind…Nigeria”) in the series. Further, the comma after “Marriage” correctly separates the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it. Choice A is incorrect because the comma after “Lagos” doesn’t match the semicolon used later in the series to separate the second item (“A Kind…Nigeria”) from the third item (“and…autobiography”). Choice C is incorrect because the comma after “Lagos” doesn’t match the semicolon used later in the series to separate the second item (“A Kind…Nigeria”) from the third item (“and… autobiography”). Additionally, a colon can’t be used in this way to separate the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it. Choice D is incorrect because it fails to use appropriate punctuation to separate the title “A Kind of Marriage” from the supplementary phrase (“a television…Nigeria”) that describes it.",
@@ -3748,7 +3748,7 @@ const QUESTIONS = [
     "passage": "<p>While researching a topic, a student has taken the following notes:</p><ul class=\"source-notes\"><li><i> Las sergas de Esplandián</i> was a novel popular in sixteenth-century Spain.</li><li>The novel featured a fictional island inhabited solely by Black women and known as California.</li><li>That same century, Spanish explorers learned of an “island” off the west coast of Mexico.</li><li>They called it California after the island in the novel.</li><li>The “island” was actually the peninsula now known as Baja California (“Lower California”), which lies to the south of the US state of California.</li></ul>",
     "stem": "The student wants to emphasize the role a misconception played in the naming of a place. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
-      "A": "The novel Las sergas de Esplandián featured a fictional island known as California.",
+      "A": "The novel <i>Las sergas de Esplandián</i> featured a fictional island known as California.",
       "B": "To the south of the US state of California lies Baja California (“Lower California”), originally called California after a fictional place.",
       "C": "In the sixteenth century, Spanish explorers learned of a peninsula off the west coast of Mexico and called it California.",
       "D": "Thinking it was an island, Spanish explorers called a peninsula California after an island in a popular novel."
