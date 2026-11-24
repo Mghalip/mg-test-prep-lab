@@ -73,14 +73,22 @@ function choiceLetterCenter(svg,o){
 }
 function choiceRadios(host,q){
  const [x,y,w,h]=q.visual.box;host.classList.add('has-choice-radios');
- for(const o of q.options){
+ const svg=host.querySelector('svg');
+ const rows=q.options.map(option=>({option,center:choiceLetterCenter(svg,option)}));
+ for(const {option:o,center} of rows){
   const [ox,oy,ow,oh]=o.box;
-  const bottom=Math.min(oy+oh,...q.options.filter(n=>n.box[1]>oy+1&&n.box[0]<ox+ow&&n.box[0]+n.box[2]>ox).map(n=>n.box[1]));
+  const neighbors=rows.filter(({option:n})=>n!==o&&n.box[0]<ox+ow&&n.box[0]+n.box[2]>ox);
+  const previous=neighbors.filter(row=>row.center<center).sort((a,b)=>b.center-a.center)[0];
+  const next=neighbors.filter(row=>row.center>center).sort((a,b)=>a.center-b.center)[0];
+  // Keep the original answer area for tall diagrams while giving both printed letters room.
+  const boundary=(original,upper,lower)=>Math.max(upper+(lower-upper)/3,Math.min(original,lower-(lower-upper)/3));
+  const top=previous?boundary(oy,previous.center,center):Math.min(oy,center-2);
+  const bottom=next?boundary(next.option.box[1],center,next.center):Math.max(oy+oh,center+2);
   const button=document.createElement('button');button.type='button';button.dataset.letter=o.letter;
   button.className='choice-radio choice-area'+(state.answers[q.id]===o.letter?' selected':'')+((state.excluded[q.id]||[]).includes(o.letter)?' eliminated':'');
   button.setAttribute('aria-label','Select answer '+o.letter);button.setAttribute('aria-pressed',String(state.answers[q.id]===o.letter));
-  Object.assign(button.style,{left:((ox-x)/w*100)+'%',top:((oy-y)/h*100)+'%',width:(ow/w*100)+'%',height:((bottom-oy)/h*100)+'%'});
-  button.style.setProperty('--radio-top',((choiceLetterCenter(host.querySelector('svg'),o)-oy)/(bottom-oy)*100)+'%');
+  Object.assign(button.style,{left:((ox-x)/w*100)+'%',top:((top-y)/h*100)+'%',width:(ow/w*100)+'%',height:((bottom-top)/h*100)+'%'});
+  button.style.setProperty('--radio-top',((center-top)/(bottom-top)*100)+'%');
   button.onclick=()=>{if(screen==='exam'&&question().id===q.id){if(eliminator)exclude(o.letter);else answer(o.letter)}};
   host.append(button);
  }
