@@ -3815,7 +3815,7 @@ const QUESTIONS = [
     "number": 22,
     "page": 13,
     "topic": "supplements",
-    "passage": "<p>Journalists have dubbed Gil Scott-Heron the “godfather of rap,” a title that has appeared in hundreds of articles about him since the 1990s. Scott- Heron himself resisted the godfather _______ feeling that it didn’t encapsulate his devotion to the broader African American blues music tradition as well as “bluesologist,” the moniker he preferred.</p>",
+    "passage": "<p>Journalists have dubbed Gil Scott-Heron the “godfather of rap,” a title that has appeared in hundreds of articles about him since the 1990s. Scott-Heron himself resisted the godfather _______ feeling that it didn’t encapsulate his devotion to the broader African American blues music tradition as well as “bluesologist,” the moniker he preferred.</p>",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
       "A": "nickname, however",
@@ -4027,10 +4027,10 @@ const QUESTIONS = [
     "passage": "<p>While researching a topic, a student has taken the following notes:</p><ul class=\"source-notes\"><li>Cecilia Vicuña is a multidisciplinary artist.</li><li>In 1971, her first solo art exhibition, <i>Pinturas, poemas y explicaciones,</i> was shown at the Museo Nacional de Bellas Artes in Santiago, Chile.</li><li>Her poetry collection <i>Precario/Precarious</i> was published in 1983 by Tanam Press.</li><li>Her poetry collection <i>Instan</i> was published in 2002 by Kelsey St. Press.</li><li>She lives part time in Chile, where she was born, and part time in New York.</li></ul>",
     "stem": "The student wants to introduce the artist’s 1983 poetry collection. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
-      "A": "Before she published the books Precario/Precarious (1983) and Instan (2002), Cecilia Vicuña exhibited visual art at the Museo Nacional de Bellas Artes in Santiago, Chile.",
+      "A": "Before she published the books <i>Precario/Precarious</i> (1983) and <i>Instan</i> (2002), Cecilia Vicuña exhibited visual art at the Museo Nacional de Bellas Artes in Santiago, Chile.",
       "B": "Cecilia Vicuña is a true multidisciplinary artist whose works include numerous poetry collections and visual art exhibitions.",
-      "C": "Published in 1983 by Tanam Press, Precario/Precarious is a collection of poetry by the multidisciplinary artist Cecilia Vicuña.",
-      "D": "In 1971, Cecilia Vicuña exhibited her first solo art exhibition, Pinturas, poemas y explicaciones, in Chile, her country of birth."
+      "C": "Published in 1983 by Tanam Press, <i>Precario/Precarious</i> is a collection of poetry by the multidisciplinary artist Cecilia Vicuña.",
+      "D": "In 1971, Cecilia Vicuña exhibited her first solo art exhibition, <i>Pinturas, poemas y explicaciones</i>, in Chile, her country of birth."
     },
     "answer": "C",
     "explanation": "Choice C is the best answer. The sentence effectively introduces the poetry collection Precario/Precarious, noting that it is a collection by Vicuña that was published in 1983 by Tanam Press. Choice A is incorrect. While the sentence mentions the 1983 poetry collection Precario/Precarious, it focuses mainly on Vicuña’s visual art. Choice B is incorrect. The sentence doesn’t introduce the 1983 poetry collection Precario/Precarious; instead, it introduces Vicuña. Choice D is incorrect. The sentence emphasizes the location of Vicuña’s 1971 exhibition Pinturas, poemas y explicaciones; it doesn’t introduce the 1983 poetry collection Precario/Precarious.",
