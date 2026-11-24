@@ -169,12 +169,12 @@ const QUESTIONS = [
     "page": 7,
     "topic": "details",
     "passage": "<p>In 2018, scientists discovered an immense aggregation of <i>Muusoctopus robustus</i> (pearl octopuses) along a hydrothermal vent 3,200 meters beneath the ocean’s surface. Water temperatures at this site—named the Octopus Garden—climb as high as 11°C, much warmer than the ambient 1.6°C typical at this depth. Based on observations made over three years, scientists concluded that temperatures at the site likely confer reproductive benefits and that the site is used exclusively for reproduction—6,000 <i>M. robustus</i> adults, hatchlings, and eggs were observed at the garden, but no juveniles were present.</p>",
-    "stem": "Which statement about M. robustus and the Octopus Garden is best supported by the text?",
+    "stem": "Which statement about <i>M. robustus</i> and the Octopus Garden is best supported by the text?",
     "options": {
-      "A": "M. robustus leave the Octopus Garden upon reaching an intermediary stage of development.",
-      "B": "The M. robustus population at the Octopus Garden remains stable despite variations in water temperature.",
-      "C": "M. robustus nests in the Octopus Garden contain on average fewer but larger eggs than nests at similar ocean depths.",
-      "D": "The Octopus Garden provides an ideal feeding ground for M. robustus hatchlings."
+      "A": "<i>M. robustus</i> leave the Octopus Garden upon reaching an intermediary stage of development.",
+      "B": "The <i>M. robustus</i> population at the Octopus Garden remains stable despite variations in water temperature.",
+      "C": "<i>M. robustus</i> nests in the Octopus Garden contain on average fewer but larger eggs than nests at similar ocean depths.",
+      "D": "The Octopus Garden provides an ideal feeding ground for <i>M. robustus</i> hatchlings."
     },
     "answer": "A",
     "explanation": "Choice A is the best answer because it most logically completes the text’s discussion of the M. robustus population at the Octopus Garden. The text states that the scientists concluded that the site is likely used only for reproduction because over three years they saw many adults, freshly hatched octopuses, and eggs but didn’t see any juveniles. This suggests that the M. robustus octopuses that hatch at the Octopus Garden leave the site when they reach an intermediary state of development, returning only as adults for reproductive purposes. Choice B is incorrect because the text never discusses the stability of the M. robustus population at the site, only that the scientists observed 6,000 adults, hatchlings, and eggs there. Further, the text presents the site’s temperatures as likely beneficial. Choice C is incorrect because the text doesn’t provide any details about the eggs at the site and makes no mention of nests; it indicates only that eggs are present along with hatchlings and adults. Choice D is incorrect because the text makes no mention of the hatchlings feeding at the Octopus Garden, indicating only that the temperatures at the site are probably beneficial and that the site is likely used for reproduction."
