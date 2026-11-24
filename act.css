@@ -70,3 +70,8 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .native-passage p { margin:0 0 1em; }
 .native-passage h3 { margin:0 0 1em; font-size:1.12em; }
 .native-passage sup { font:600 0.72em/1 system-ui,sans-serif; margin-right:.15em; }
+
+.native-passage .source-line { position:relative; padding-left:2.25em; }
+.source-line::before { content:attr(data-line); position:absolute; left:0; width:2em; text-align:right; font:0.72em/2.1 system-ui,sans-serif; color:#55637a; }
+.source-line.line-start { margin-top:0.8em; }
+.source-line + h3, .source-line + img { margin-top:1em; }
