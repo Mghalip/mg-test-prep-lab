@@ -35,3 +35,13 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 @media(max-width:650px){.source-part.raster,.math .source-part.raster{width:calc(var(--pw) * 2.35px * var(--zoom))}}
 
 @media(min-width:801px){.workspace:has(.raster.wide){grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.source-part.raster.wide{width:calc(100% * var(--zoom));max-width:none}}
+
+/* Fit the source to its pane at reset zoom, retaining room for answer circles. */
+.workspace .source-part {
+  max-width: calc(100% * var(--zoom));
+}
+.workspace .source-part.has-choice-radios {
+  margin-left: 22px;
+  max-width: calc((100% - 22px) * var(--zoom));
+}
+.workspace .pane { min-width: 0; }

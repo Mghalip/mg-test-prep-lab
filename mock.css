@@ -100,3 +100,10 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
   max-width: 62ch;
   height: auto;
 }
+
+.workspace.split-question.math { --question-font-size: clamp(17px, 1.2vw, 20px); }
+.workspace.split-question.math :is(.reading-text, .choice, .choice span) { line-height: 1.55; }
+.math-detail { display:block; max-width:100%; height:auto; }
+.choice > span { min-width:0; overflow-wrap:anywhere; }
+.math-values {border-collapse:collapse;font:inherit;color:inherit}
+.math-values td {border:1px solid currentColor;padding:.16em .55em;text-align:center}
