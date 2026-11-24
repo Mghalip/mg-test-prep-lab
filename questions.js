@@ -552,7 +552,7 @@ const QUESTIONS = [
     "number": 13,
     "page": 25,
     "topic": "quant",
-    "passage": "<p>In terms of area and population, the three smallest Arabian Peninsula countries are Bahrain, Qatar, and Kuwait.</p>",
+    "passage": "<table style=\"width:100%;border-collapse:collapse;margin-bottom:1em\"><caption>Total Areas and 2022 Populations of Smallest Arabian Peninsula Countries</caption><thead><tr><th scope=\"col\" style=\"border:1px solid;padding:.25em\">Country</th><th scope=\"col\" style=\"border:1px solid;padding:.25em\">Total area (square miles)</th><th scope=\"col\" style=\"border:1px solid;padding:.25em\">Population</th></tr></thead><tbody><tr><td style=\"border:1px solid;text-align:center\">Kuwait</td><td style=\"border:1px solid;text-align:center\">6,880</td><td style=\"border:1px solid;text-align:center\">4,268,873</td></tr><tr><td style=\"border:1px solid;text-align:center\">Bahrain</td><td style=\"border:1px solid;text-align:center\">304</td><td style=\"border:1px solid;text-align:center\">1,472,233</td></tr><tr><td style=\"border:1px solid;text-align:center\">Qatar</td><td style=\"border:1px solid;text-align:center\">4,471</td><td style=\"border:1px solid;text-align:center\">2,695,122</td></tr></tbody></table><p>In terms of area and population, the three smallest Arabian Peninsula countries are Bahrain, Qatar, and Kuwait.</p>",
     "stem": "According to the table, what is the total area of Bahrain?",
     "options": {
       "A": "4,268,873 square miles",
@@ -561,9 +561,7 @@ const QUESTIONS = [
       "D": "6,880 square miles"
     },
     "answer": "C",
-    "explanation": "Choice C is the best answer because it states the total area of Bahrain that is indicated in the table. The table presents the total area (in square miles) and population for Bahrain, Qatar, and Kuwait, and it indicates that the total area of Bahrain is 304 square miles. Choice A is incorrect because the table indicates that 4,268,873 is the population of Kuwait, not the total area of Bahrain. Choice B is incorrect because the table indicates that 4,471 square miles is the total area of Qatar, not of Bahrain. Choice D is incorrect because the table indicates that 6,880 square miles is the total area of Kuwait, not of Bahrain.",
-    "chart": "assets/chart-t7m2q13.svg?v=reading144",
-    "chartAlt": "Total Areas and 2022 Populations of Smallest Arabian Peninsula Countries Total area Country (square miles) Population Kuwait 6,880 4,268,873 Bahrain 304 1,472,233 Qatar 4,471 2,695,122"
+    "explanation": "Choice C is the best answer because it states the total area of Bahrain that is indicated in the table. The table presents the total area (in square miles) and population for Bahrain, Qatar, and Kuwait, and it indicates that the total area of Bahrain is 304 square miles. Choice A is incorrect because the table indicates that 4,268,873 is the population of Kuwait, not the total area of Bahrain. Choice B is incorrect because the table indicates that 4,471 square miles is the total area of Qatar, not of Bahrain. Choice D is incorrect because the table indicates that 6,880 square miles is the total area of Kuwait, not of Bahrain."
   },
   {
     "id": "t7m2q14",
@@ -644,7 +642,7 @@ const QUESTIONS = [
     "number": 18,
     "page": 27,
     "topic": "inference",
-    "passage": "<p>An analysis by Alain Elayi and colleagues of coins minted in Sidon in the fifth and fourth centuries BCE reveals a change in their composition over time: while a coin from circa 450 BCE contains about 98% silver and 1% copper, a coin from 367 BCE (the 74.2% end of Ba’alšillem II’s reign) contains silver 24.7% and copper, giving it a relatively yellowish appearance that traders would have noticed. Because 80% coins with a silver content below were widely considered unsuitable for trade, Elayi et al. speculate that a crisis in confidence in the currency occurred in Sidon around 367 BCE, which was likely relieved— despite Sidon’s persistent oppressive financial obligations—as a result of Ba’alšillem II’s successor Abd’aštart I’s decision to _______</p>",
+    "passage": "<p>An analysis by Alain Elayi and colleagues of coins minted in Sidon in the fifth and fourth centuries BCE reveals a change in their composition over time: while a coin from circa 450 BCE contains about 98% silver and 1% copper, a coin from 367 BCE (the end of Ba’alšillem II’s reign) contains 74.2% silver and 24.7% copper, giving it a relatively yellowish appearance that traders would have noticed. Because coins with a silver content below 80% were widely considered unsuitable for trade, Elayi et al. speculate that a crisis in confidence in the currency occurred in Sidon around 367 BCE, which was likely relieved—despite Sidon’s persistent oppressive financial obligations—as a result of Ba’alšillem II’s successor Abd’aštart I’s decision to _______</p>",
     "stem": "Which choice most logically completes the text?",
     "options": {
       "A": "proclaim that the percentage of silver in coins suitable for trade would be raised to a threshold higher than 80%.",
