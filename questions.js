@@ -3169,7 +3169,7 @@ const QUESTIONS = [
     "passage": "<p>While researching a topic, a student has taken the following notes:</p><ul class=\"source-notes\"><li>Samuel Delany is a US writer known for his science fiction.</li><li>Delany’s science fiction novel <i>Babel-17</i> was published in 1966.</li><li>The novel won a Nebula Award in 1967.</li><li>The Nebula Awards are given each year to the best works of science fiction published in the US.</li></ul>",
     "stem": "The student wants to indicate the title of a novel that won a Nebula Award. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
-      "A": "Babel-17, by Samuel Delany, won a Nebula Award in 1967.",
+      "A": "<i>Babel-17</i>, by Samuel Delany, won a Nebula Award in 1967.",
       "B": "Samuel Delany published a science fiction novel in 1966.",
       "C": "Samuel Delany is an award-winning US writer known for his science fiction.",
       "D": "One of Samuel Delany’s novels was among the best works of science fiction published in the US."
@@ -3186,11 +3186,11 @@ const QUESTIONS = [
     "page": 31,
     "topic": "synthesis",
     "passage": "<p>While researching a topic, a student has taken the following notes:</p><ul class=\"source-notes\"><li>Chiura Obata was a Japanese American artist who lived in California.</li><li><i> Yosemite Falls</i> is a notable painting by Obata.</li><li>It uses a Japanese method of black ink painting called sumi-e.</li><li>This painting was completed in 1930.</li></ul>",
-    "stem": "The student wants to indicate the year Yosemite Falls was completed. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "stem": "The student wants to indicate the year <i>Yosemite Falls</i> was completed. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
       "A": "While living in California, Obata created black ink paintings.",
       "B": "Obata, a Japanese American artist, created a notable painting.",
-      "C": "Yosemite Falls was completed in 1930.",
+      "C": "<i>Yosemite Falls</i> was completed in 1930.",
       "D": "Obata used a Japanese painting method called sumi-e."
     },
     "answer": "C",
