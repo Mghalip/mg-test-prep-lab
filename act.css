@@ -45,3 +45,23 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
   max-width: calc((100% - 22px) * var(--zoom));
 }
 .workspace .pane { min-width: 0; }
+
+.native-item { width:100%; max-width:68ch; color:#182537; font:calc(1.125rem * var(--zoom))/1.5 Georgia,serif; }
+.native-stem p,.native-stem table,.native-stem img { margin:.75em 0; }
+.native-stem img { display:block; max-width:100%; height:auto; }
+.native-stem table { border-collapse:collapse; width:auto; min-width:0; max-width:100%; font-size:.95em; }
+.native-stem :is(th,td) { padding:.2em .4em; border:1px solid #708090; text-align:center; white-space:normal; }
+.native-stem:has(table) { overflow-x:auto; }
+.native-options { display:grid; gap:.45em; margin-top:1em; }
+.native-option { display:flex; width:100%; align-items:center; justify-content:flex-start; gap:.8em; text-align:left; line-height:1.4; padding:.52em .8em; color:inherit; }
+.native-option b { flex:none; font:600 .8em/1.65 system-ui,sans-serif; text-align:center; min-width:1.8em; border:1px solid #89939d; border-radius:50%; }
+.native-option[aria-pressed=true] { background:#eaf2fc; border-color:#245c8e; }
+.native-option.eliminated span { text-decoration:line-through; opacity:.65; }
+.native-options.masked .native-option span { visibility:hidden; }
+.native-option:disabled { color:inherit; opacity:1; }
+.native-item math { font-size:1.08em; }
+::highlight(act-highlight) { background:#ffe780; }
+::highlight(act-underline) { text-decoration:underline #2266b0; }
+@media (max-width:500px) {
+  .native-stem :is(th,td) { padding:.16em .2em; }
+}
