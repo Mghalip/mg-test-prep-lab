@@ -96,7 +96,7 @@ const QUESTIONS = [
     "number": 6,
     "page": 5,
     "topic": "function",
-    "passage": "<p>The following text is from Joan Didion’s memoir <i>The Year of Magical Thinking</i>. In the text, the author discusses her home life.</p><p>[I]n California we heated our houses by building fires. We built fires even on summer evenings, because the fog came in. <u class=\"original-underline\">Fires said we were home, we had drawn the circle, we were safe through the night.</u> ©2005 by Joan Didion</p>",
+    "passage": "<p>The following text is from Joan Didion’s memoir <i>The Year of Magical Thinking</i>. In the text, the author discusses her home life.</p><p>[I]n California we heated our houses by building fires. We built fires even on summer evenings, because the fog came in. <u class=\"original-underline\">Fires said we were home, we had drawn the circle, we were safe through the night.</u></p><p style=\"text-align:right;font-size:.85em\">©2005 by Joan Didion</p>",
     "stem": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "options": {
       "A": "It illustrates that a fire provides comfort beyond physical warmth.",
@@ -186,7 +186,7 @@ const QUESTIONS = [
     "number": 11,
     "page": 8,
     "topic": "inference",
-    "passage": "<p>The following text is from Thomas Mann’s 1924 novel <i>The Magic Mountain</i>, translated by John E. Woods in 1995.</p><p>The story of Hans Castorp that we intend to tell here—not for his sake (for the reader will come to know him as a perfectly ordinary, if engaging young man), but for the sake of the story itself, which seems to us to be very much worth telling (although in Hans Castorp’s favor it should be noted that it is <i>his</i> story, and that not every story happens to everybody)—is a story that took place long ago, and is, so to speak, covered with the patina of history and must necessarily be told with verbs whose tense is that of the deepest past. ©1995 by Alfred A. Knopf, Inc.</p>",
+    "passage": "<p>The following text is from Thomas Mann’s 1924 novel <i>The Magic Mountain</i>, translated by John E. Woods in 1995.</p><p>The story of Hans Castorp that we intend to tell here—not for his sake (for the reader will come to know him as a perfectly ordinary, if engaging young man), but for the sake of the story itself, which seems to us to be very much worth telling (although in Hans Castorp’s favor it should be noted that it is <i>his</i> story, and that not every story happens to everybody)—is a story that took place long ago, and is, so to speak, covered with the patina of history and must necessarily be told with verbs whose tense is that of the deepest past.</p><p style=\"text-align:right;font-size:.85em\">©1995 by Alfred A. Knopf, Inc.</p>",
     "stem": "What does the text most strongly suggest about the story of Hans Castorp?",
     "options": {
       "A": "Though it is true that stories of even the most uninteresting people are themselves interesting because all people are unique, the reason this story is interesting is nonetheless difficult to understand because of the passage of time.",
@@ -1156,7 +1156,7 @@ const QUESTIONS = [
     "number": 10,
     "page": 21,
     "topic": "details",
-    "passage": "<p>The following text is adapted from Sylvia Acevedo’s 2018 memoir <i>Path to the Stars: My Journey from Girl Scout to Rocket Scientist</i>. The narrator is traveling by car with her family to Mexico City. Mario and Laura are her brother and sister.</p><p>Mario and I played games to see how many different license plates we could spot, and Laura liked to look for children in the back seats of the cars we passed. We were used to the forty-five- minute drive to El Paso and familiar with the six-hour ride to Chihuahua, but I wondered what the long journey to Mexico City would be like. ©2018 by Sylvia Acevedo</p>",
+    "passage": "<p>The following text is adapted from Sylvia Acevedo’s 2018 memoir <i>Path to the Stars: My Journey from Girl Scout to Rocket Scientist</i>. The narrator is traveling by car with her family to Mexico City. Mario and Laura are her brother and sister.</p><p>Mario and I played games to see how many different license plates we could spot, and Laura liked to look for children in the back seats of the cars we passed. We were used to the forty-five- minute drive to El Paso and familiar with the six-hour ride to Chihuahua, but I wondered what the long journey to Mexico City would be like.</p><p style=\"text-align:right;font-size:.85em\">©2018 by Sylvia Acevedo</p>",
     "stem": "According to the text, what did the narrator and Mario do while riding in the car?",
     "options": {
       "A": "They read books.",
@@ -1322,7 +1322,7 @@ const QUESTIONS = [
     "number": 1,
     "page": 4,
     "topic": "words",
-    "passage": "<p>The following text is adapted from Ida B. Wells’s 1970 autobiography <i>A Crusade for Justice</i>. Mr. Watts is a reference to George Frederic Watts, an English painter.</p><p>[Manchester’s] art galleries are so <u class=\"original-underline\">arranged</u> that the name of every picture is plainly seen and one has no need of a catalogue to pick out the name and the artist. This is a convenience to the general public, which other art galleries, which shall be nameless, might copy to advantage. To her treasure of art Manchester has added Mr. Watts’ latest picture, the Good Samaritan. ©1970 by the University of Chicago Press</p>",
+    "passage": "<p>The following text is adapted from Ida B. Wells’s 1970 autobiography <i>A Crusade for Justice</i>. Mr. Watts is a reference to George Frederic Watts, an English painter.</p><p>[Manchester’s] art galleries are so <u class=\"original-underline\">arranged</u> that the name of every picture is plainly seen and one has no need of a catalogue to pick out the name and the artist. This is a convenience to the general public, which other art galleries, which shall be nameless, might copy to advantage. To her treasure of art Manchester has added Mr. Watts’ latest picture, the Good Samaritan.</p><p style=\"text-align:right;font-size:.85em\">©1970 by the University of Chicago Press</p>",
     "stem": "As used in the text, what does the word “arranged” most nearly mean?",
     "options": {
       "A": "Organized",
@@ -1412,7 +1412,7 @@ const QUESTIONS = [
     "number": 6,
     "page": 5,
     "topic": "function",
-    "passage": "<p>The following text is adapted from Cynthia Kadohata’s 2004 novel <i>Kira-Kira</i>.</p><p><u class=\"original-underline\">[Uncle Katsuhisa] was as loud as my father was quiet.</u> Even when he wasn’t talking, he made a lot of noise, clearing his throat and sniffing and tapping his fingers. ©2004 by Cynthia Kadohata</p>",
+    "passage": "<p>The following text is adapted from Cynthia Kadohata’s 2004 novel <i>Kira-Kira</i>.</p><p><u class=\"original-underline\">[Uncle Katsuhisa] was as loud as my father was quiet.</u> Even when he wasn’t talking, he made a lot of noise, clearing his throat and sniffing and tapping his fingers.</p><p style=\"text-align:right;font-size:.85em\">©2004 by Cynthia Kadohata</p>",
     "stem": "Which choice best describes the function of the underlined sentence?",
     "options": {
       "A": "It lists the kinds of topics Uncle Katsuhisa enjoys discussing.",
@@ -1656,7 +1656,7 @@ const QUESTIONS = [
     "number": 1,
     "page": 18,
     "topic": "words",
-    "passage": "<p>The following text is from Anita Desai’s 2011 novella <i>Translator Translated</i>. While working on her translation of a novel written in Odia (a language of India) into English, the narrator looks out her window at night to clear her mind.</p><p>I tried to distract myself with these sights of the ordinary world, but in my mind it was the lines I had been translating and the lines that I had been writing that remained in the forefront. I longed for sleep to obliterate them but it eluded me. Perhaps everything would be normal again once I had sent off the manuscript, I thought, and looked forward to <u class=\"original-underline\">completing</u> the work. ©2011 by Anita Desai</p>",
+    "passage": "<p>The following text is from Anita Desai’s 2011 novella <i>Translator Translated</i>. While working on her translation of a novel written in Odia (a language of India) into English, the narrator looks out her window at night to clear her mind.</p><p>I tried to distract myself with these sights of the ordinary world, but in my mind it was the lines I had been translating and the lines that I had been writing that remained in the forefront. I longed for sleep to obliterate them but it eluded me. Perhaps everything would be normal again once I had sent off the manuscript, I thought, and looked forward to <u class=\"original-underline\">completing</u> the work.</p><p style=\"text-align:right;font-size:.85em\">©2011 by Anita Desai</p>",
     "stem": "As used in the text, what does the word “completing” most nearly mean?",
     "options": {
       "A": "Destroying",
@@ -2160,7 +2160,7 @@ const QUESTIONS = [
     "number": 11,
     "page": 8,
     "topic": "details",
-    "passage": "<p>The following text is from David Barclay Moore’s 2022 novel <i>Holler of the Fireflies</i>. The narrator has just arrived at summer camp, which is far away from his home.</p><p>This place was different than I thought it would be. I’d never been somewhere like this before. I did feel scared, but also excited. ©2022 by David Barclay Moore</p>",
+    "passage": "<p>The following text is from David Barclay Moore’s 2022 novel <i>Holler of the Fireflies</i>. The narrator has just arrived at summer camp, which is far away from his home.</p><p>This place was different than I thought it would be. I’d never been somewhere like this before. I did feel scared, but also excited.</p><p style=\"text-align:right;font-size:.85em\">©2022 by David Barclay Moore</p>",
     "stem": "According to the text, how does the narrator feel about being at summer camp?",
     "options": {
       "A": "He feels overjoyed.",
@@ -2414,7 +2414,7 @@ const QUESTIONS = [
     "number": 6,
     "page": 20,
     "topic": "purpose",
-    "passage": "<p>The following text is adapted from Pam Muñoz Ryan’s 2020 novel <i>Mañanaland</i>. In the village where Max lives, there is an old fortress called La Reina. Children in the village say that the fortress is haunted.</p><p>For as long as he could remember, Max had begged Papá [his father] to take him to see La Reina and the ruins up close. He’d be a hero among his friends if he was the first boy to cross the haunted gates! Just because Papá didn’t believe in ghosts didn’t mean they weren’t there. Maybe this summer Papá would finally take him. He <i>was</i> almost twelve. ©2020 by Pam Muñoz Ryan</p>",
+    "passage": "<p>The following text is adapted from Pam Muñoz Ryan’s 2020 novel <i>Mañanaland</i>. In the village where Max lives, there is an old fortress called La Reina. Children in the village say that the fortress is haunted.</p><p>For as long as he could remember, Max had begged Papá [his father] to take him to see La Reina and the ruins up close. He’d be a hero among his friends if he was the first boy to cross the haunted gates! Just because Papá didn’t believe in ghosts didn’t mean they weren’t there. Maybe this summer Papá would finally take him. He <i>was</i> almost twelve.</p><p style=\"text-align:right;font-size:.85em\">©2020 by Pam Muñoz Ryan</p>",
     "stem": "Which choice best describes the overall purpose of the text?",
     "options": {
       "A": "To portray how proud Max’s father is of Max",
