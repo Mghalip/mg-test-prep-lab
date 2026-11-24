@@ -480,7 +480,7 @@ const QUESTIONS = [
     "number": 9,
     "page": 23,
     "topic": "cross",
-    "passage": "<p>Text 1 Little is known about how plate tectonics—wherein slabs of Earth’s crust move over, under, away from, and against one another—began. <u class=\"original-underline\">Some researchers contend</u> that tectonic movements began around 3 billion years ago, often noting that computer models of Earth’s mantle temperature at the time indicate that the mantle would have been sufficiently molten to enable the plates to move.</p><p>Text 2 Ultimately, any plausible claim about the inception of tectonic movement must rest on empirical evidence from the geological record. Researcher Wriju Chowdhury and his team analyzed the geochemistry of zircon crystals to gain insight into the chemical composition of the magma from which the crystals formed and, based on the data, compellingly argue that plate tectonics may have been occurring as early as 4.2 billion years ago.</p>",
+    "passage": "<p><strong>Text 1</strong><br>Little is known about how plate tectonics—wherein slabs of Earth’s crust move over, under, away from, and against one another—began. <u class=\"original-underline\">Some researchers contend</u> that tectonic movements began around 3 billion years ago, often noting that computer models of Earth’s mantle temperature at the time indicate that the mantle would have been sufficiently molten to enable the plates to move.</p><p><strong>Text 2</strong><br>Ultimately, any plausible claim about the inception of tectonic movement must rest on empirical evidence from the geological record. Researcher Wriju Chowdhury and his team analyzed the geochemistry of zircon crystals to gain insight into the chemical composition of the magma from which the crystals formed and, based on the data, compellingly argue that plate tectonics may have been occurring as early as 4.2 billion years ago.</p>",
     "stem": "Based on the texts, how would the author of Text 2 most likely respond to what “some researchers contend” as described in Text 1?",
     "options": {
       "A": "By suggesting that the temperature of Earth’s mantle 3 billion years ago was likely insufficient to allow for the level of tectonic movement predicted by computer models",
@@ -499,7 +499,7 @@ const QUESTIONS = [
     "page": 23,
     "topic": "details",
     "passage": "<p><i>Hevea brasiliensis</i>, a tree in the Amazon rainforest, is the world’s main source of natural rubber. The tree produces a milky substance called latex that is used to make rubber. The bark of <i>Hevea brasiliensis</i> is helpful for the process of making rubber because it has a unique structure that makes it easy to collect latex. A network of tubes in the tree’s inner bark helps the latex to flow out easily when people make small cuts into the bark.</p>",
-    "stem": "What feature of Hevea brasiliensis does the text say is helpful for the process of making rubber?",
+    "stem": "What feature of <i>Hevea brasiliensis</i> does the text say is helpful for the process of making rubber?",
     "options": {
       "A": "Its latex produces rubber of an especially high quality.",
       "B": "Its bark has a unique structure that makes it easy to collect latex.",
@@ -534,7 +534,7 @@ const QUESTIONS = [
     "number": 12,
     "page": 24,
     "topic": "quant",
-    "passage": "<p>A student is researching a bus system in a large county where surface temperatures vary by area and are hot in the summer. The student claims that all areas of the county should have more bus stops with shaded shelter, noting that the highest percentage of bus stops with shaded shelter for any area is only _______</p>",
+    "passage": "<table style=\"width:100%;border-collapse:collapse;margin-bottom:1em\"><caption>Percentage of Bus Shelters with Shade in a County by Areas’ Highest Average Summer Surface Temperature</caption><thead><tr><th scope=\"col\" style=\"border:1px solid;padding:.25em\">Highest average surface temperature (Fahrenheit)</th><th scope=\"col\" style=\"border:1px solid;padding:.25em\">Percentage of bus stops with shaded shelter</th></tr></thead><tbody><tr><td style=\"border:1px solid;text-align:center\">90.2°</td><td style=\"border:1px solid;text-align:center\">15%</td></tr><tr><td style=\"border:1px solid;text-align:center\">97.7°</td><td style=\"border:1px solid;text-align:center\">22%</td></tr><tr><td style=\"border:1px solid;text-align:center\">102.7°</td><td style=\"border:1px solid;text-align:center\">24%</td></tr><tr><td style=\"border:1px solid;text-align:center\">111.2°</td><td style=\"border:1px solid;text-align:center\">28%</td></tr><tr><td style=\"border:1px solid;text-align:center\">125.6°</td><td style=\"border:1px solid;text-align:center\">29%</td></tr></tbody></table><p>A student is researching a bus system in a large county where surface temperatures vary by area and are hot in the summer. The student claims that all areas of the county should have more bus stops with shaded shelter, noting that the highest percentage of bus stops with shaded shelter for any area is only _______</p>",
     "stem": "Which choice most effectively uses data from the table to complete the student’s claim?",
     "options": {
       "A": "50%.",
@@ -543,9 +543,7 @@ const QUESTIONS = [
       "D": "29%."
     },
     "answer": "D",
-    "explanation": "Choice D is the best answer because it effectively uses data from the table to complete the student’s claim about the highest percentage of bus stops with shaded shelter in the areas represented. The table shows the highest average surface temperature of five areas and the percentage of bus stops with shaded shelter in each area, and 29% is the highest percentage listed. Choice A is incorrect because the list of percentages of bus stops with shaded shelter does not include 50%; the highest percentage in the table is 29%. Choice B is incorrect because 15% is the lowest value in the listed percentages of bus stops with shaded shelter, not the highest value. Choice C is incorrect because the list of percentages of bus stops with shaded shelter does not include 90%; the highest percentage in the table is 29%.",
-    "chart": "assets/chart-t7m2q12.svg?v=reading144",
-    "chartAlt": "Percentage of Bus Shelters with Shade in a County by Areas’ Highest Average Summer Surface Temperature Highest average surface Percentage of bus stops temperature (Fahrenheit) with shaded shelter 90.2° 15% 97.7° 22% 102.7° 24% 111.2° 28% 125.6° 29%"
+    "explanation": "Choice D is the best answer because it effectively uses data from the table to complete the student’s claim about the highest percentage of bus stops with shaded shelter in the areas represented. The table shows the highest average surface temperature of five areas and the percentage of bus stops with shaded shelter in each area, and 29% is the highest percentage listed. Choice A is incorrect because the list of percentages of bus stops with shaded shelter does not include 50%; the highest percentage in the table is 29%. Choice B is incorrect because 15% is the lowest value in the listed percentages of bus stops with shaded shelter, not the highest value. Choice C is incorrect because the list of percentages of bus stops with shaded shelter does not include 90%; the highest percentage in the table is 29%."
   },
   {
     "id": "t7m2q13",
