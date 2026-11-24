@@ -75,3 +75,10 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .source-line::before { content:attr(data-line); position:absolute; left:0; width:2em; text-align:right; font:0.72em/2.1 system-ui,sans-serif; color:#55637a; }
 .source-line.line-start { margin-top:0.8em; }
 .source-line + h3, .source-line + img { margin-top:1em; }
+
+.native-passage figure { margin:1em 0; }
+.native-passage figure img { max-width:100%; height:auto; }
+.act-table-scroll { max-width:100%; overflow-x:auto; margin:1em 0; }
+.act-table-scroll table { border-collapse:collapse; font-size:0.9em; }
+.act-table-scroll td,.act-table-scroll th { padding:.25em .45em; border:1px solid #a5aeb8; }
+.act-table-scroll caption { margin-bottom:.4em; font-weight:bold; }
