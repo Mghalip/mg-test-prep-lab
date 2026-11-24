@@ -1,6 +1,6 @@
 'use strict';
 const ACTLab=(()=>{
-const VERSION='20261125-mc34-reading-english',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
+const VERSION='20261125-mc34-final-proof',KEY='mg-act-draft-v1',HISTORY='mg-act-history-v1';
 const app=document.getElementById('act-app'),modal=document.getElementById('act-dialog');
 const NS='http://www.w3.org/2000/svg',cache=new Map();
 let manifest=[],exam=null,state=null,screen='home',token=0,hiddenTimer=false,zoom=1,mask=false,lineReader=false,lastTick=Date.now(),reviewSection=0,reviewPos=0,eliminator=false;
