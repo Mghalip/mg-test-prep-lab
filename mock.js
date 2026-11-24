@@ -48,7 +48,7 @@ const count=m=>m.questions.filter(q=>correct(q,state.answers[q.id])).length;
 const visitedQuestions=()=>state.visited.flatMap(i=>exam.modules[i].questions.map(q=>({...q,module:i})));
 function dialog(title,body){modal.classList.remove('zoom-dialog','reference-dialog');modal.innerHTML=`<div class="dialog-title"><h2>${title}</h2><button onclick="Mock.close()" aria-label="Close">✕</button></div>${body}`;if(!modal.open)modal.showModal()}
 function close(){modal.close();modal.classList.remove('zoom-dialog','reference-dialog')}
-async function readExam(id){const r=await fetch(`mock-data/${id}.json?v=20261124-proofreading2`);if(!r.ok)throw Error('Unable to load the test. Check your connection and try again.');const data=await r.json();if(data.fixedHarder){
+async function readExam(id){const r=await fetch(`mock-data/${id}.json?v=20261124-proofreading3`);if(!r.ok)throw Error('Unable to load the test. Check your connection and try again.');const data=await r.json();if(data.fixedHarder){
  const [rw,rwHard,math,mathHard]=data.modules;
  if(data.modules.length!==4||[rw,rwHard,math,mathHard].some((m,i)=>m.section!==(i<2?'rw':'math')||m.branch!==(i%2?'harder':'routing')))throw Error('Invalid fixed-route test.');
  // Keep existing attempt, scoring and review module IDs for the two harder paths.

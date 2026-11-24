@@ -107,3 +107,5 @@ body:has(.exam-header){background:#fff}body:has(.exam-header) #mock-app{height:1
 .choice > span { min-width:0; overflow-wrap:anywhere; }
 .math-values {border-collapse:collapse;font:inherit;color:inherit}
 .math-values td {border:1px solid currentColor;padding:.16em .55em;text-align:center}
+
+#passage table.math-values{width:100%;table-layout:fixed;overflow-wrap:anywhere;margin-bottom:1em}#passage table.math-values th{border:1px solid currentColor;padding:.18em .3em}#passage table.math-values caption{font-weight:bold;margin-bottom:.45em}
