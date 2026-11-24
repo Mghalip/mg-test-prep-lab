@@ -225,7 +225,7 @@ const QUESTIONS = [
     "page": 9,
     "topic": "citing",
     "passage": "<p>A student in a political science course is writing a paper on Aristotle’s <i>The Politics</i>, in which Aristotle offers his opinion on political instability and gives advice on how constitutions can be preserved. Aristotle observes that different forms of government can fall in different ways—for example, oligarchies might grant power to military leaders during wartime who refuse to relinquish that power during peacetime—but some methods of preserving order apply across all forms of government. The student claims that in particular Aristotle asserts that in a healthy state obedience to law must be as close to absolute as possible and that even minor infractions should not be ignored.</p>",
-    "stem": "Which quotation from a philosopher’s analysis of The Politics would best support the student’s claim?",
+    "stem": "Which quotation from a philosopher’s analysis of <i>The Politics</i> would best support the student’s claim?",
     "options": {
       "A": "“When constructing his argument regarding the characteristics of a well-functioning government, Aristotle asserts that ‘Transgression creeps in unperceived and at last ruins the state,’ illustrating this idea with a comparison to frequent small expenditures slowly and almost imperceptibly chipping away at a fortune until it is ultimately depleted.”",
       "B": "“When Aristotle writes on the necessity of avoiding corruption in government, he proposes that ‘every state should be so administered and so regulated by law that its magistrates cannot possibly make money.’ In particular, he thinks oligarchies are particularly susceptible to corruption through bribery.”",
@@ -2832,7 +2832,7 @@ const QUESTIONS = [
     "stem": "The student wants to indicate where the short story takes place. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
       "A": "“Raymond’s Run” takes place in Harlem.",
-      "B": "“Raymond’s Run” was published in Gorilla, My Love.",
+      "B": "“Raymond’s Run” was published in <i>Gorilla, My Love</i>.",
       "C": "“Raymond’s Run” is told from a first person perspective.",
       "D": "“Raymond’s Run” was written by Toni Cade Bambara."
     },
