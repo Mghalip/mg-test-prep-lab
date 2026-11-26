@@ -6,24 +6,24 @@ let lang = 'zh';
 try { lang = JSON.parse(localStorage.getItem('mg-v2-lang')) === 'en' ? 'en' : 'zh'; } catch {}
 const T = {
   zh: {
-    back: '课程', of: (a, b) => `第 ${a} / ${b} 讲`, prev: '上一讲', next: '下一讲',
-    lockedTitle: '输入本周密码查看课件', lockedText: s => `${s} 课件每周一 0:00 换密码，请向老师要本周的密码。输入一次，本周都能看。`,
-    codePh: '例如 7KQ-M4P', open: '查看课件', or: '或者', signedIn: '已登录？',
-    approvedText: '注册的学生由老师在后台批准后，不用密码就能看。', signIn: '登录 / 注册', waitApprove: '你已登录。老师批准后，这里不用密码就能打开。',
-    wrong: '密码不对，请检查后再试。', wait: '尝试次数太多，请 10 分钟后再试。', okMsg: '已解锁，正在打开…',
-    anon: '暂时无法验证密码（访客验证未开启），请联系老师。', net: '网络连接失败，请稍后重试。',
-    missing: '这份课件还没有上传，请告诉老师。', loadErr: '课件加载失败，请刷新重试。', notFound: '找不到这份课件。', home: '回到首页',
-    cloudOff: '学习账号服务暂时不可用，请稍后再试。'
+    back: '课件', of: (a, b) => `第 ${a} / ${b} 讲`, prev: '上一讲', next: '下一讲',
+    lockedTitle: '输入本周密码', lockedText: s => `${s} 课件每周一 0:00 更新密码，请向老师获取。输入一次本周内有效。`,
+    codePh: '例如 7KQ-M4P', open: '打开课件', or: '或', signedIn: '已有账号',
+    approvedText: '已批准的注册账号可直接打开课件。', signIn: '登录 / 注册', waitApprove: '当前账号已登录，老师批准后即可免密码查看。',
+    wrong: '密码不正确，请核对后重试。', wait: '尝试次数过多，请 10 分钟后再试。', okMsg: '已解锁，正在加载…',
+    anon: '暂时无法验证密码，请联系老师。', net: '网络连接失败，请稍后重试。',
+    missing: '该课件尚未上传，请联系老师。', loadErr: '课件加载失败，请刷新重试。', notFound: '未找到该课件。', home: '返回首页',
+    cloudOff: '账号服务暂时不可用，请稍后再试。'
   },
   en: {
     back: 'Lessons', of: (a, b) => `Lesson ${a} of ${b}`, prev: 'Previous', next: 'Next',
-    lockedTitle: 'Enter this week’s code', lockedText: s => `${s} lessons use a code that changes every Monday at 00:00 (Beijing time). Ask your teacher for this week’s code. Enter it once and it works all week.`,
+    lockedTitle: 'Enter this week’s code', lockedText: s => `${s} lesson codes rotate every Monday at 00:00 (Beijing time). Enter once for full-week access.`,
     codePh: 'e.g. 7KQ-M4P', open: 'Open lesson', or: 'or', signedIn: 'Have an account?',
-    approvedText: 'Registered students your teacher approves can open lessons without a code.', signIn: 'Sign in / Sign up', waitApprove: 'You’re signed in. Once your teacher approves you, lessons open without a code.',
-    wrong: 'That code isn’t right. Check it and try again.', wait: 'Too many tries. Please wait 10 minutes.', okMsg: 'Unlocked. Opening…',
-    anon: 'Codes can’t be checked right now (guest access is off). Please contact your teacher.', net: 'Connection failed. Please try again.',
-    missing: 'This lesson hasn’t been uploaded yet. Please tell your teacher.', loadErr: 'The lesson didn’t load. Please refresh.', notFound: 'Lesson not found.', home: 'Back to Home',
-    cloudOff: 'The account service is unavailable right now. Please try again later.'
+    approvedText: 'Approved student accounts open lessons directly.', signIn: 'Sign in / Sign up', waitApprove: 'You are signed in. Lessons unlock once your teacher approves your account.',
+    wrong: 'Incorrect code. Please check and try again.', wait: 'Too many attempts. Wait 10 minutes.', okMsg: 'Unlocked. Loading…',
+    anon: 'Code verification unavailable right now.', net: 'Network error. Please try again.',
+    missing: 'This lesson has not been uploaded yet.', loadErr: 'Failed to load lesson. Please refresh.', notFound: 'Lesson not found.', home: 'Back to Home',
+    cloudOff: 'Account service unavailable. Please try again later.'
   }
 }[lang];
 const ICON = {

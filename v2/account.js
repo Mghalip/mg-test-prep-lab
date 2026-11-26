@@ -7,30 +7,30 @@ const main = document.getElementById('view'), el = document.getElementById('acco
 const ROOT = window.MGShell?.ROOT || new URL('../', document.baseURI).href;
 const T = {
   zh: {
-    kicker: 'MY ACCOUNT', title: '学习账号', mine: '我的学习空间', mineK: 'MY LEARNING',
-    intro: 'SAT、ACT 和数学共用一个账号。注册后请先去邮箱点验证链接。',
-    signIn: '登录', email: '邮箱', password: '密码', forgot: '忘记密码', signUpT: '创建免费账号', name: '姓名 / 学习昵称',
-    namePh: '老师会看到这个名字', pw10: '密码（至少 10 位）', signUpBtn: '注册并发送验证邮件',
-    have: '账号能保存什么', rows: [['做题、模考、对答案', true], ['成绩同步到云端，换设备也能看', false], ['错题分析，老师可以看到并给反馈', false], ['老师批准后，课件不用每周输密码', false]],
-    guest: '游客', acct: '账号', guestNote: '以前用游客身份做的记录，不会自动转进新账号。',
-    busy: '正在处理…', failIn: '登录失败：请检查邮箱、密码，以及邮箱是否已经验证。', needName: '请输入姓名或学习昵称。',
-    sentUp: '验证邮件已发出。点邮件里的链接完成验证后，回到这里登录。如果这个邮箱已经注册过，请直接登录或重置密码。',
-    sentReset: '如果这个邮箱已注册，你会收到重置密码的邮件，按邮件里的链接设置新密码。', emailFirst: '请先在上面填写邮箱。',
-    resetT: '设置新密码', newPw: '新密码（至少 10 位）', again: '再输入一次', save: '保存新密码', mismatch: '两次输入的密码不一样。',
-    cloudT: '学习账号暂时连不上', cloudB: '模考和练习照常能用，记录先保存在这台设备上。', retry: '重新连接', generic: '请求失败，请稍后再试。'
+    kicker: 'ACCOUNT', title: '学习账号', mine: '我的成绩与记录', mineK: 'MY LEARNING',
+    intro: 'SAT、ACT 和数学共用一个账号。注册后请打开验证邮件完成激活。',
+    signIn: '登录', email: '邮箱', password: '密码', forgot: '忘记密码', signUpT: '注册账号', name: '姓名 / 昵称',
+    namePh: '老师后台显示的名字', pw10: '密码（至少 10 位）', signUpBtn: '注册并发送验证邮件',
+    have: '账号说明', rows: [['做题、模考、核对答案', true], ['成绩同步到云端，跨设备查看', false], ['提交错题分析并接收老师反馈', false], ['老师批准后免每周密码看课件', false]],
+    guest: '未登录', acct: '已登录', guestNote: '未登录时做的记录保存在当前浏览器，不会自动并入新注册的账号。',
+    busy: '正在处理…', failIn: '登录失败：请核对邮箱、密码及邮件验证状态。', needName: '请填写姓名或昵称。',
+    sentUp: '验证邮件已发送，点击邮件内链接激活后再回来登录。若该邮箱已注册，请直接登录或重置密码。',
+    sentReset: '若该邮箱已注册，重置密码的链接将发送至你的邮箱。', emailFirst: '请先填写邮箱地址。',
+    resetT: '设置新密码', newPw: '新密码（至少 10 位）', again: '确认密码', save: '保存新密码', mismatch: '两次输入的密码不一致。',
+    cloudT: '暂时无法连接账号服务', cloudB: '模考和练习仍可正常使用，记录暂存当前设备。', retry: '重试', generic: '操作失败，请稍后重试。'
   },
   en: {
-    kicker: 'MY ACCOUNT', title: 'Your account', mine: 'My learning', mineK: 'MY LEARNING',
-    intro: 'One account for SAT, ACT and Math. After signing up, confirm your email from the link we send.',
-    signIn: 'Sign in', email: 'Email', password: 'Password', forgot: 'Forgot password', signUpT: 'Create a free account', name: 'Name or nickname',
-    namePh: 'Your teacher will see this name', pw10: 'Password (at least 10 characters)', signUpBtn: 'Sign up and send confirmation email',
-    have: 'What an account keeps', rows: [['Practice, mocks and answer checking', true], ['Results synced to the cloud, on any device', false], ['Mistake analysis your teacher can read and reply to', false], ['Once approved, lessons open without weekly codes', false]],
-    guest: 'Guest', acct: 'Account', guestNote: 'Work you did as a guest isn’t moved into a new account automatically.',
-    busy: 'Working…', failIn: 'Sign-in failed. Check your email, password, and that your email is confirmed.', needName: 'Please enter a name or nickname.',
-    sentUp: 'Confirmation email sent. Click the link in it, then come back here to sign in. If this email is already registered, sign in or reset your password.',
-    sentReset: 'If this email is registered, you’ll get a link to set a new password.', emailFirst: 'Enter your email above first.',
-    resetT: 'Set a new password', newPw: 'New password (at least 10 characters)', again: 'Enter it again', save: 'Save new password', mismatch: 'The two passwords don’t match.',
-    cloudT: 'Can’t reach your account right now', cloudB: 'Mocks and practice still work; results are kept on this device for now.', retry: 'Try again', generic: 'Something went wrong. Please try again.'
+    kicker: 'ACCOUNT', title: 'Account', mine: 'My results', mineK: 'MY LEARNING',
+    intro: 'One account covers SAT, ACT, and Math. Confirm your email after signing up.',
+    signIn: 'Sign in', email: 'Email', password: 'Password', forgot: 'Forgot password', signUpT: 'Create account', name: 'Name or nickname',
+    namePh: 'Shown to your teacher', pw10: 'Password (10+ characters)', signUpBtn: 'Sign up and send email',
+    have: 'Guest vs. account', rows: [['Practice, mocks, and answer review', true], ['Cloud sync across devices', false], ['Submit mistake notes for teacher feedback', false], ['Approved access to lessons without weekly codes', false]],
+    guest: 'Guest', acct: 'Account', guestNote: 'Local guest records are not merged into new accounts automatically.',
+    busy: 'Working…', failIn: 'Sign-in failed. Check your email, password, and verification status.', needName: 'Please enter a name or nickname.',
+    sentUp: 'Verification email sent. Open the link inside, then sign in here.',
+    sentReset: 'If this email is registered, a password reset link will arrive shortly.', emailFirst: 'Enter your email first.',
+    resetT: 'Set new password', newPw: 'New password (10+ characters)', again: 'Confirm password', save: 'Save password', mismatch: 'Passwords do not match.',
+    cloudT: 'Account service unavailable', cloudB: 'Mocks and practice still work locally on this device.', retry: 'Retry', generic: 'Request failed. Please try again.'
   }
 };
 const lang = () => (window.MGShell?.lang === 'en' ? 'en' : 'zh');
@@ -56,7 +56,7 @@ function authForms() {
       <label class="field">${esc(tt.name)}<input name="display_name" maxlength="80" autocomplete="name" placeholder="${esc(tt.namePh)}" required></label>
       <label class="field">${esc(tt.email)}<input name="email" type="email" autocomplete="email" required></label>
       <label class="field">${esc(tt.pw10)}<input name="password" type="password" minlength="10" autocomplete="new-password" required></label>
-      <button class="btn btn-accent" type="submit">${esc(tt.signUpBtn)}</button></form>
+      <button class="btn btn-ghost" type="submit">${esc(tt.signUpBtn)}</button></form>
     <section class="card acct-compare"><h2>${esc(tt.have)}</h2>
       <div class="cmp-head"><span></span><span>${esc(tt.guest)}</span><span>${esc(tt.acct)}</span></div>
       ${tt.rows.map(([l, g]) => `<div class="cmp-row"><span>${esc(l)}</span><span class="${g ? 'yes' : 'no'}">${g ? '✓' : '—'}</span><span class="yes">✓</span></div>`).join('')}
