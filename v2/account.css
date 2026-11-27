@@ -1,5 +1,5 @@
 /* v2 account page: sign-in forms + the existing results workspace in Khan Academy styling. */
-.acct{max-width:980px;margin:0 auto;width:100%}
+.acct{max-width:1260px;margin:0 auto;width:100%}
 .acct > .kicker{margin:0 0 2px;font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--blue)}
 .acct > h1{font:700 26px/1.2 var(--sans);letter-spacing:-.015em;margin:0 0 10px;color:var(--ink)}
 .acct-intro{margin:0 0 14px;font-size:14px}
