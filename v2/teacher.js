@@ -73,7 +73,7 @@ async function loadStudents() {
 async function render() {
   try {
     await Promise.all([loadStudents(), loadNotices()]);
-    view.innerHTML = `<div class="page"><header class="staff-heading"><h1>教学管理</h1><nav aria-label="教师工作区"><a href="../account.html?view=teacher">学生成绩与错题反馈 ↗</a>${[['codes','本周密码'],['notices','通知'],['students','学生权限'],['uploads','课件上传']].map(([id,label])=>`<a href="#${id}">${label}</a>`).join('')}</nav></header>${await codesHtml()}${noticesHtml()}${studentsHtml()}${uploadHtml()}</div>`;
+    view.innerHTML = `<div class="page"><header class="staff-heading"><h1>教学管理</h1><nav aria-label="教师工作区"><a href="../account.html?view=teacher">学生成绩与错题反馈 ↗</a><a href="./#board">讨论区管理 ↗</a>${[['codes','本周密码'],['notices','通知'],['students','学生权限'],['uploads','课件上传']].map(([id,label])=>`<a href="#${id}">${label}</a>`).join('')}</nav></header>${await codesHtml()}${noticesHtml()}${studentsHtml()}${uploadHtml()}</div>`;
   } catch (e) {
     view.innerHTML = `<div class="page"><section class="card empty"><h2>无法读取</h2><p class="muted">${esc(e.message)}</p><p class="hint">如果提示找不到函数，请先在 Supabase 里运行 backend/004_lesson_access.sql。</p></section></div>`;
   }

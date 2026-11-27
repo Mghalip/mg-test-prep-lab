@@ -4,7 +4,7 @@ let toastTimer,wrongFilter='all',mockStudent='全部',currentSetup='all';window.
 if(isDemo){try{const stored=JSON.parse(localStorage.getItem(DEMO_KEY));if(stored&&Array.isArray(stored.attempts)&&stored.drafts&&typeof stored.drafts==='object'){const known=new Set(QUESTIONS.map(q=>q.id));stored.attempts=stored.attempts.filter(a=>a.student==='visitor'&&Array.isArray(a.items)&&a.items.every(x=>known.has(x.id)));for(const [id,d]of Object.entries(stored.drafts)){if(id!=='visitor'||!Array.isArray(d.ids)||!d.ids.every(q=>known.has(q)))delete stored.drafts[id]}db=stored}}catch{storageOK=false}
  save=function(){try{localStorage.setItem(DEMO_KEY,JSON.stringify(db))}catch{storageOK=false}};
  $('#nav-teacher').hidden=true;$('#account-label').textContent='访客体验';
- document.querySelector('footer').textContent='体验模式 · 试做记录只保存在此浏览器，可自行清空。登录后可同步新练习成绩。';
+ document.querySelector('footer').textContent='未登录状态下，练习记录仅保存在当前浏览器；登录后自动同步至账号。';
 }
 const coreRender=render,coreHome=home,coreGo=go,coreStart=start,coreFinish=finish;
 function notify(text){let el=$('#toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.append(el)}el.textContent=text;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3500)}
@@ -31,4 +31,10 @@ const resumeHome=home;
 home=function(){return resumeHome().replace('继续上次练习 →</button></div>','继续上次练习 →</button> <button onclick="discardDraft()">放弃这组</button></div>')};
 function discardDraft(){if(!confirm('放弃尚未提交的这组练习？已完成的成绩和文字标注会保留。'))return;delete db.drafts[student];session=null;save();render()}
 const coreJump=jump;jump=function(i){selectedMark=null;coreJump(i);if(innerWidth<760)window.scrollTo({top:0,behavior:'instant'})};
-render();
+function syncHashView(){
+ if(location.hash==='#wrong'){view='wrong';render();}
+ else if(location.hash==='#history'){view='history';render();}
+}
+window.addEventListener('hashchange',syncHashView);
+syncHashView();
+if(!location.hash||!['#wrong','#history'].includes(location.hash))render();

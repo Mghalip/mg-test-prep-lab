@@ -45,7 +45,6 @@ const P = {
   file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
   timer: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>',
   layers: '<path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/>',
-  checkSq: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/>',
   lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
   chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
   calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
@@ -60,25 +59,37 @@ const P = {
   x: '<path d="M18 6 6 18M6 6l12 12"/>',
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+  msg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'
 };
 const icon = n => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
+
+const COURSE_STYLE = {
+  reading: { cls: 'm-blue', dot: '#1865F2', ic: 'book' },
+  writing: { cls: 'm-teal', dot: '#0D923F', ic: 'edit' },
+  english: { cls: 'm-teal', dot: '#0D923F', ic: 'edit' },
+  math:    { cls: 'm-purple', dot: '#7854F7', ic: 'sigma' }
+};
 
 /* ---------- Copy ---------- */
 const T = {
   zh: {
     langBtn: 'EN', langName: '中文', subjectLabel: '当前板块', switchTitle: '切换板块', switchSub: '各科目成绩与目标分开记录。', current: '当前',
-    nav: { home: '首页', practice: '练习', lessons: '课件', results: '成绩', plan: '学习计划', vocab: '词汇', formulas: '公式', mistakes: '错题本', more: '更多' },
-    moreLabel: '工具', soon: '整理中', close: '关闭',
-    signIn: '登录', signInSync: '登录同步进度', signOut: '退出登录', account: '学习账号',
-    goal: '考试目标', edit: '修改', setDate: '设置考试日期', goalQ: '未设置考试日期',
+    nav: { home: '课程主页', practice: '练习与模考', lessons: '全部课件', board: '讨论区', results: '我的成绩', plan: '学习计划', vocab: '词汇', formulas: '公式', mistakes: '错题本', more: '更多' },
+    tab: { home: '首页', practice: '练习', lessons: '课件', board: '讨论', results: '成绩', more: '更多' },
+    moreLabel: '工具', courseDirLabel: '课程目录', soon: '整理中', close: '关闭',
+    signIn: '登录', signInSync: '登录同步成绩', signOut: '退出登录', account: '学习账号',
+    goal: '考试目标', overviewTitle: '学习概览', edit: '修改', setDate: '设置考试日期', goalQ: '未设置考试日期',
     daysLeft: '天后考试', estimated: '最近预估', target: '目标分', testDay: '今天考试', past: '日期已过，请重新设置',
     estHintSat: '完成一套完整模考后生成预估分', estHintAct: '完成三科以上模考后生成综合分',
     estFrom: d => `来自 ${d} 模考`,
     guestGoal: '未登录时目标仅在当前页面有效',
     goalTitle: '考试目标', goalDate: '考试日期', goalScore: '目标分', save: '保存', cancel: '取消',
-    practice: '练习入口', allPractice: '全部练习', lessons: '课程课件', allLessons: '全部课件',
-    recent: '最近模考', recentEmpty: '暂无模考记录', allResults: '全部成绩',
+    practice: '专项训练与工具', allPractice: '全部练习', lessons: '课程单元与课件', allLessons: '全部课件',
+    startAction: '开始', viewAll: '查看全部',
+    unitFoot: n => `共 ${n} 讲，点击任意一讲开始学习`,
+    viewAllLessons: n => `查看全部 ${n} 讲`,
+    recent: '最近模考', allResults: '全部成绩',
     week: '近 7 天', stats: ['模考', '题数', '正确率', '练习天数'],
     days: ['日', '一', '二', '三', '四', '五', '六'], today: '今天',
     practiceSub: '模考按真实考场计时；专题练习按考点选题。',
@@ -96,22 +107,25 @@ const T = {
     oldSite: '旧版首页',
     lessonsCount: n => `${n} 讲`,
     syncPending: n => `${n} 条成绩待同步`,
-    mathStatus: '讲义整理中',
-    mathCourseHeader: '课程目录'
+    mathStatus: '讲义整理中'
   },
   en: {
     langBtn: '中', langName: 'English', subjectLabel: 'Program', switchTitle: 'Switch program', switchSub: 'Scores and goals are tracked separately per program.', current: 'Current',
-    nav: { home: 'Home', practice: 'Practice', lessons: 'Lessons', results: 'Results', plan: 'Study plan', vocab: 'Vocabulary', formulas: 'Formulas', mistakes: 'Mistakes', more: 'More' },
-    moreLabel: 'Tools', soon: 'In prep', close: 'Close',
+    nav: { home: 'Course Home', practice: 'Practice & Mocks', lessons: 'All Lessons', board: 'Board', results: 'My Results', plan: 'Study plan', vocab: 'Vocabulary', formulas: 'Formulas', mistakes: 'Mistakes', more: 'More' },
+    tab: { home: 'Home', practice: 'Practice', lessons: 'Lessons', board: 'Board', results: 'Results', more: 'More' },
+    moreLabel: 'Tools', courseDirLabel: 'Courses', soon: 'In prep', close: 'Close',
     signIn: 'Sign in', signInSync: 'Sign in to sync', signOut: 'Sign out', account: 'Account',
-    goal: 'Test goal', edit: 'Edit', setDate: 'Set test date', goalQ: 'No test date set',
+    goal: 'Test goal', overviewTitle: 'Course overview', edit: 'Edit', setDate: 'Set test date', goalQ: 'No test date set',
     daysLeft: 'days left', estimated: 'Latest estimate', target: 'Target', testDay: 'Test day', past: 'Date passed — update goal',
     estHintSat: 'Complete a full mock to see a predicted score', estHintAct: 'Complete three core sections to see a composite',
     estFrom: d => `From ${d} mock`,
     guestGoal: 'Guest goals apply to this session only',
     goalTitle: 'Test goal', goalDate: 'Test date', goalScore: 'Target score', save: 'Save', cancel: 'Cancel',
-    practice: 'Practice', allPractice: 'All practice', lessons: 'Lessons', allLessons: 'All lessons',
-    recent: 'Recent mocks', recentEmpty: 'No completed mocks yet', allResults: 'All results',
+    practice: 'Practice & Tools', allPractice: 'All practice', lessons: 'Course Units & Lessons', allLessons: 'All lessons',
+    startAction: 'Start', viewAll: 'View all',
+    unitFoot: n => `${n} lessons — pick any lesson to begin`,
+    viewAllLessons: n => `See all ${n} lessons`,
+    recent: 'Recent mocks', allResults: 'All results',
     week: 'Last 7 days', stats: ['mocks', 'questions', 'accuracy', 'active days'],
     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], today: 'Today',
     practiceSub: 'Timed full-length mocks and skill-based topic drills.',
@@ -129,63 +143,68 @@ const T = {
     oldSite: 'Legacy home',
     lessonsCount: n => `${n} lessons`,
     syncPending: n => `${n} pending sync`,
-    mathStatus: 'In preparation',
-    mathCourseHeader: 'Course syllabus'
+    mathStatus: 'In preparation'
   }
 };
 
 /* ---------- Program content ---------- */
 const C = {
   sat: {
-    tile: '#EFF6FF', mark: 'SAT', short: 'SAT',
+    tile: '#1865F2', mark: 'SAT',
     name: { zh: 'SAT', en: 'SAT' },
-    pageTitle: { zh: 'SAT 备考', en: 'SAT' },
+    pageTitle: { zh: 'SAT 备考', en: 'SAT Prep' },
     desc: { zh: '数字化 SAT：阅读语法与数学', en: 'Digital SAT: Reading & Writing, Math' },
-    meta: (n, l) => lang === 'zh' ? `${n} 套模考，${l} 份课件` : `${n} mocks, ${l} lessons`,
+    meta: (n, l) => lang === 'zh' ? `${n} 套模考 · ${l} 讲课件` : `${n} mocks · ${l} lessons`,
+    facts: n => lang === 'zh'
+      ? [`${n} 套完整与单科真题模考`, '阅读与语法按考点专项刷题', '45 讲系统课程讲义']
+      : [`${n} full-length & section mocks`, 'Skill-by-skill Reading & Writing drills', '45 structured course lessons'],
     hero: {
       zh: {
         kicker: 'Digital SAT 模考系统',
-        title: 'SAT 全真模考',
+        title: 'SAT 备考课程与模考',
         desc: '98 题自适应分流，按真实考试计时，交卷后生成预估分与逐题解析。',
         cta: '进入模考',
         href: UP('mock.html'),
         chips: [
-          ['完整模考', n => `${n} 套，约 2 小时 24 分钟`],
-          ['Verbal 单科', () => '54 题，64 分钟'],
-          ['Math 单科', () => '44 题，70 分钟']
+          ['完整模考', n => `${n} 套，约 2 小时 24 分钟`, UP('mock.html')],
+          ['Verbal 单科', () => '54 题，64 分钟', UP('mock.html?view=rw')],
+          ['Math 单科', () => '44 题，70 分钟', UP('mock.html?view=math')]
         ]
       },
       en: {
         kicker: 'Digital SAT Simulator',
-        title: 'SAT Mock Exams',
+        title: 'SAT Prep & Mock Exams',
         desc: '98 adaptive questions under real timing, with predicted scores and item-by-item review.',
         cta: 'Open mock exams',
         href: UP('mock.html'),
         chips: [
-          ['Full test', n => `${n} tests, ~2h 24m with break`],
-          ['Reading & Writing', () => '54 questions, 64 min'],
-          ['Math', () => '44 questions, 70 min']
+          ['Full test', n => `${n} tests, ~2h 24m with break`, UP('mock.html')],
+          ['Reading & Writing', () => '54 questions, 64 min', UP('mock.html?view=rw')],
+          ['Math', () => '44 questions, 70 min', UP('mock.html?view=math')]
         ]
       }
     },
     goal: { score: 1500, min: 400, max: 1600, step: 10 },
     practice: [
-      { ic: 'timer', href: UP('mock.html'), zh: ['SAT 模考', n => `${n} 套完整卷与单科`], en: ['SAT Mock Exams', n => `${n} full tests and sections`] },
-      { ic: 'layers', href: UP('sat.html'), zh: ['阅读与语法专题', () => '按题型专项刷题'], en: ['Topic Practice', () => 'Reading & writing skill drills'] },
-      { ic: 'bookmark', href: UP('sat.html#wrong'), zh: ['错题重练', () => '集中复盘专题错题'], en: ['Mistake Review', () => 'Redo missed topic questions'] },
-      { ic: 'chart', href: ACCOUNT, zh: ['成绩与逐题记录', () => '查看历史模考与错题分析'], en: ['Scores & Records', () => 'Mock history and item review'] }
+      { ic: 'timer', mc: 'm-blue', href: UP('mock.html'), zh: ['SAT 模考', n => `${n} 套完整卷与单科`], en: ['SAT Mock Exams', n => `${n} full tests and sections`] },
+      { ic: 'layers', mc: 'm-teal', href: UP('sat.html'), zh: ['阅读与语法专题', () => '按题型专项刷题'], en: ['Topic Practice', () => 'Reading & writing skill drills'] },
+      { ic: 'bookmark', mc: 'm-amber', href: UP('sat.html#wrong'), zh: ['错题重练', () => '集中复盘专题错题'], en: ['Mistake Review', () => 'Redo missed topic questions'] },
+      { ic: 'chart', mc: 'm-purple', href: ACCOUNT, zh: ['成绩与逐题记录', () => '查看历史模考与错题分析'], en: ['Scores & Records', () => 'Mock history and item review'] }
     ]
   },
   act: {
-    tile: '#F0FDFA', mark: 'ACT', short: 'ACT',
+    tile: '#008A6E', mark: 'ACT',
     name: { zh: 'ACT', en: 'ACT' },
-    pageTitle: { zh: 'ACT 备考', en: 'ACT' },
+    pageTitle: { zh: 'ACT 备考', en: 'ACT Prep' },
     desc: { zh: '新版 ACT：English, Math, Reading, Science', en: 'Enhanced ACT: English, Math, Reading, Science' },
-    meta: (n, l) => lang === 'zh' ? `${n} 套模考，${l} 份课件` : `${n} mocks, ${l} lessons`,
+    meta: (n, l) => lang === 'zh' ? `${n} 套模考 · ${l} 讲课件` : `${n} mocks · ${l} lessons`,
+    facts: n => lang === 'zh'
+      ? [`${n} 套新版 ACT 全真卷`, '支持整套模考与单科计时练', '39 讲语法、阅读与数学课件']
+      : [`${n} Enhanced ACT full forms`, 'Full-length or single-section timing', '39 English, Reading & Math lessons'],
     hero: {
       zh: {
         kicker: 'Enhanced ACT 模考系统',
-        title: 'ACT 全真模考',
+        title: 'ACT 备考课程与模考',
         desc: '按新版 ACT 题量与时间作答，支持整套模考或单科计时训练。',
         cta: '进入模考',
         href: UP('act.html'),
@@ -199,7 +218,7 @@ const C = {
       },
       en: {
         kicker: 'Enhanced ACT Simulator',
-        title: 'Enhanced ACT Mocks',
+        title: 'Enhanced ACT Prep & Mocks',
         desc: 'Real question counts and timing. Take a full form or drill a single section.',
         cta: 'Open mock exams',
         href: UP('act.html'),
@@ -214,16 +233,16 @@ const C = {
     },
     goal: { score: 33, min: 1, max: 36, step: 1 },
     practice: [
-      { ic: 'timer', href: UP('act.html'), zh: ['ACT 模考', n => `${n} 套，支持单科训练`], en: ['ACT Mock Exams', n => `${n} forms, full or single section`] },
-      { ic: 'chart', href: ACCOUNT, zh: ['成绩与逐题记录', () => '查看各科分数与综合分'], en: ['Scores & Records', () => 'Section scores and composites'] }
+      { ic: 'timer', mc: 'm-teal', href: UP('act.html'), zh: ['ACT 模考', n => `${n} 套，支持单科训练`], en: ['ACT Mock Exams', n => `${n} forms, full or single section`] },
+      { ic: 'chart', mc: 'm-purple', href: ACCOUNT, zh: ['成绩与逐题记录', () => '查看各科分数与综合分'], en: ['Scores & Records', () => 'Section scores and composites'] }
     ]
   },
   math: {
-    tile: '#FFFBEB', mark: 'Σ', short: '数学',
+    tile: '#C75000', mark: 'Σ',
     name: { zh: '数学', en: 'Math' },
-    pageTitle: { zh: '国际课程数学', en: 'Math' },
+    pageTitle: { zh: '国际课程数学', en: 'International Math' },
     desc: { zh: 'AP / IB / A Level 课程讲义', en: 'AP / IB / A Level course notes' },
-    meta: () => 'AP / IB / A Level',
+    meta: () => 'AP · IB DP · Cambridge',
     hero: {
       zh: {
         kicker: 'AP / IB / A Level',
@@ -236,13 +255,31 @@ const C = {
         desc: 'Course notes and unit sets organized by syllabus. Calculus units are being prepared.'
       }
     },
-    courses: [
-      { id: 'ap-precalc', group: 'AP', zh: 'AP 初级微积分', en: 'AP Precalculus' },
-      { id: 'ap-calcbc', group: 'AP', zh: 'AP 微积分 BC', en: 'AP Calculus BC' },
-      { id: 'ib-aa', group: 'IB DP', zh: 'IB 数学 AA (SL / HL)', en: 'IB Math AA (SL / HL)' },
-      { id: 'ib-ai', group: 'IB DP', zh: 'IB 数学 AI (SL / HL)', en: 'IB Math AI (SL / HL)' },
-      { id: 'al-9709', group: 'Cambridge', zh: 'A Level 数学 9709', en: 'A Level Mathematics 9709' },
-      { id: 'al-9231', group: 'Cambridge', zh: 'A Level 进阶数学 9231', en: 'A Level Further Math 9231' }
+    groups: [
+      {
+        id: 'ap', mc: 'm-blue', ic: 'sigma',
+        title: { zh: 'AP · Advanced Placement', en: 'AP · Advanced Placement' },
+        items: [
+          { zh: 'AP 初级微积分 (AP Precalculus)', en: 'AP Precalculus' },
+          { zh: 'AP 微积分 BC (AP Calculus BC)', en: 'AP Calculus BC' }
+        ]
+      },
+      {
+        id: 'ib', mc: 'm-teal', ic: 'layers',
+        title: { zh: 'IB DP 数学', en: 'IB DP Mathematics' },
+        items: [
+          { zh: '分析与方法 AA · SL / HL', en: 'Analysis & Approaches · SL / HL' },
+          { zh: '应用与解释 AI · SL / HL', en: 'Applications & Interpretation · SL / HL' }
+        ]
+      },
+      {
+        id: 'alevel', mc: 'm-amber', ic: 'book',
+        title: { zh: 'Cambridge A Level', en: 'Cambridge A Level' },
+        items: [
+          { zh: '数学 Mathematics 9709', en: 'Mathematics 9709' },
+          { zh: '进阶数学 Further Mathematics 9231', en: 'Further Mathematics 9231' }
+        ]
+      }
     ],
     practice: []
   }
@@ -277,16 +314,6 @@ function fromLocal(kind, h) {
   const est = Number.isFinite(h.summary?.composite) ? h.summary.composite : null;
   return { when: h.finished, title: h.title || `ACT ${h.form}`, est, label: est ? `${est}` : '—', answered: sum(secs, s => s.total), correct: sum(secs, s => s.correct) };
 }
-function localHistory(kind) {
-  if (kind === 'math') return [];
-  if (cache[kind]) return cache[kind];
-  try {
-    return MG.read(kind === 'sat' ? 'sat-mock-history-v1' : 'mg-act-history-v1', [])
-      .map(h => fromLocal(kind, h))
-      .filter(x => Number.isFinite(x.when))
-      .sort((a, b) => b.when - a.when);
-  } catch { return []; }
-}
 async function loadHistory(kind) {
   if (kind === 'math') return [];
   if (cache[kind]) return cache[kind];
@@ -313,11 +340,12 @@ const href = (s, r) => `${ROOT}?s=${s}${lang !== 'zh' ? '&lang=' + lang : ''}${r
 const isExternal = h => /^https?:/.test(h);
 
 function navModel() {
-  const n = t().nav;
-  const main = [{ id: 'home', icon: 'home', label: n.home }];
-  if (subject !== 'math') main.push({ id: 'practice', icon: 'list', label: n.practice });
-  main.push({ id: 'lessons', icon: 'book', label: n.lessons });
-  main.push({ id: 'results', icon: 'chart', label: n.results, href: ACCOUNT, current: PAGE === 'account' });
+  const n = t().nav, tb = t().tab;
+  const main = [{ id: 'home', icon: 'home', label: n.home, tab: tb.home }];
+  if (subject !== 'math') main.push({ id: 'practice', icon: 'list', label: n.practice, tab: tb.practice });
+  main.push({ id: 'lessons', icon: 'book', label: n.lessons, tab: tb.lessons });
+  if (window.MGBoard) main.push({ id: 'board', icon: 'msg', label: n.board, tab: tb.board });
+  main.push({ id: 'results', icon: 'chart', label: n.results, tab: tb.results, href: ACCOUNT, current: PAGE === 'account' });
   const more = [];
   if (subject === 'sat') more.push({ id: 'mistakes', icon: 'bookmark', label: n.mistakes, href: UP('sat.html#wrong') });
   if (MG.teacher) more.push({ id: 'teacher', icon: 'edit', label: t().teacher, href: V2 + 'teacher.html' });
@@ -325,8 +353,10 @@ function navModel() {
 }
 function navLink(it, cls) {
   const target = it.href || href(subject, it.id);
-  const cur = it.current || (PAGE === 'home' && !it.href && route === it.id) ? ' aria-current="page"' : '';
-  return `<a class="${cls}" href="${esc(target)}"${cur}>${icon(it.icon)}<span>${esc(it.label)}</span></a>`;
+  const isLessonsRoute = it.id === 'lessons' && (route === 'lessons' || route.startsWith('lessons-'));
+  const cur = it.current || (PAGE === 'home' && !it.href && (route === it.id || isLessonsRoute)) ? ' aria-current="page"' : '';
+  const text = cls === 'tab' && it.tab ? it.tab : it.label;
+  return `<a class="${cls}" href="${esc(target)}"${cur}>${icon(it.icon)}<span>${esc(text)}</span></a>`;
 }
 
 /* ---------- Chrome ---------- */
@@ -337,56 +367,57 @@ function renderChrome() {
   const c = C[subject], tt = t(), nav = navModel();
   const pending = MG.user ? MG.read('mg-pending', []).length : 0;
   const unread = window.MGNotify ? MGNotify.unread(notifyCtx()) : 0;
-  const acct = MG.user
-    ? `<div class="row"><a class="user-chip" href="${ACCOUNT}"><span class="avatar">${esc(userName().slice(0, 1).toUpperCase() || 'M')}</span><span><strong>${esc(userName())}</strong><small>${esc(tt.account)}</small></span></a><button class="icon-btn" data-signout aria-label="${esc(tt.signOut)}" title="${esc(tt.signOut)}">${icon('logout')}</button></div>`
-    : `<div class="row"><a class="btn btn-ghost btn-outline-full" href="${ACCOUNT}">${icon('login')}${esc(tt.signIn)}</a></div>`;
-  document.getElementById('side').innerHTML = `
-    <a class="brand" href="${href(subject)}"><img src="${UP('assets/mg-mark.svg')}" alt="" width="24" height="24"><b>MG Prep Lab</b></a>
-    <div class="subj-seg" role="group" aria-label="${esc(tt.subjectLabel)}">${SUBJECTS.map(s =>
-      `<button type="button" data-pick="${s}" aria-current="${s === subject}">${s === subject ? '<span class="dot" aria-hidden="true"></span>' : ''}${esc(L(C[s].name))}</button>`).join('')}</div>
-    <nav class="side-nav">${nav.main.map(i => navLink(i, 'nav-item')).join('')}${nav.more.length ? `<div class="side-label">${esc(tt.moreLabel)}</div>${nav.more.map(i => navLink(i, 'nav-item')).join('')}` : ''}</nav>
-    <div class="side-foot"><button class="nav-item bell-item" data-open="notify" aria-haspopup="dialog">${icon('bell')}<span>${esc(tt.notices)}</span>${unread ? `<span class="bell-count" aria-label="${esc(tt.unreadN(unread))}">${unread}</span>` : ''}</button>
-      <button class="nav-item" data-lang aria-label="Language">${icon('globe')}<span>${esc(tt.langName)} / ${esc(tt.langBtn)}</span></button>
-      ${acct}
-      ${pending ? `<p class="sync-note">${esc(tt.syncPending(pending))}</p>` : ''}
-    </div>`;
+  const lessonTotal = subject === 'math' ? 0 : MGLessons.forSubject(subject).length;
+  const sideMeta = c.meta(counts[subject], lessonTotal);
+  const sideCourses = subject !== 'math' ? MGLessons.COURSES[subject] : [];
+
+  const deskAcct = MG.user
+    ? `<a class="user-chip desk-acct" href="${ACCOUNT}"><span class="avatar">${esc(userName().slice(0, 1).toUpperCase() || 'M')}</span><strong>${esc(userName())}</strong></a><button class="icon-btn desk-acct" data-signout aria-label="${esc(tt.signOut)}" title="${esc(tt.signOut)}">${icon('logout')}</button>`
+    : `<a class="btn btn-primary btn-sm desk-acct" href="${ACCOUNT}">${esc(tt.signIn)}</a>`;
+
+  const mobAcct = MG.user
+    ? `<a class="icon-btn mob-acct" href="${ACCOUNT}" aria-label="${esc(tt.account)}"><span class="avatar">${esc(userName().slice(0, 1).toUpperCase() || 'M')}</span></a>`
+    : `<a class="icon-btn mob-acct" href="${ACCOUNT}" aria-label="${esc(tt.signIn)}">${icon('login')}</a>`;
+
   document.getElementById('topbar').innerHTML = `
-    <div class="l"><a href="${href(subject)}" aria-label="MG Test Prep Lab"><img src="${UP('assets/mg-mark.svg')}" alt="MG" width="24" height="24"></a>
-      <button class="pill" data-open="switch" aria-haspopup="dialog"><span class="dot"></span>${esc(L(c.name))}${icon('chev')}</button></div>
-    <div class="r"><button class="icon-btn bell-top" data-open="notify" aria-label="${esc(tt.notices)}${unread ? ' ' + esc(tt.unreadN(unread)) : ''}">${icon('bell')}${unread ? '<span class="dot-new"></span>' : ''}</button><button class="icon-btn" data-lang aria-label="Language">${esc(tt.langBtn)}</button>
-      ${MG.user ? `<a class="icon-btn" href="${ACCOUNT}" aria-label="${esc(tt.account)}"><span class="avatar">${esc(userName().slice(0, 1).toUpperCase() || 'M')}</span></a>` : `<a class="icon-btn" href="${ACCOUNT}" aria-label="${esc(tt.signIn)}">${icon('login')}</a>`}</div>`;
+    <div class="top-l">
+      <a class="brand" href="${href(subject)}" aria-label="MG Test Prep Lab"><img src="${UP('assets/mg-mark.svg?v=20261127-ka1')}" alt="MG" width="28" height="28"><b>MG Prep Lab</b></a>
+      <div class="top-tabs" role="tablist" aria-label="${esc(tt.subjectLabel)}">${SUBJECTS.map(s =>
+        `<button type="button" data-pick="${s}" aria-current="${s === subject}"><span class="dot" style="background:${C[s].tile}" aria-hidden="true"></span>${esc(L(C[s].name))}</button>`).join('')}</div>
+      <button class="mob-switch" data-open="switch" aria-haspopup="dialog"><span class="dot"></span>${esc(L(c.name))}${icon('chev')}</button>
+    </div>
+    <div class="top-r">
+      <button class="icon-btn bell-top" data-open="notify" aria-label="${esc(tt.notices)}${unread ? ' ' + esc(tt.unreadN(unread)) : ''}">${icon('bell')}${unread ? `<span class="dot-new"></span>` : ''}</button>
+      <button class="lang-btn" data-lang aria-label="Language">${icon('globe')}<span class="lbl">${esc(tt.langName)} / </span>${esc(tt.langBtn)}</button>
+      ${deskAcct}${mobAcct}
+    </div>`;
+
+  document.getElementById('side').innerHTML = `
+    <div class="side-head"><strong>${esc(L(c.pageTitle))}</strong><small class="num">${esc(sideMeta)}</small></div>
+    <nav class="side-nav">${nav.main.map(i => navLink(i, 'nav-item')).join('')}</nav>
+    ${sideCourses.length ? `<div class="side-label">${esc(tt.courseDirLabel)}</div><div class="side-courses">${sideCourses.map(cs => {
+      const st = COURSE_STYLE[cs.id] || COURSE_STYLE.reading;
+      const n = MGLessons.forCourse(subject, cs.id).length;
+      return `<a class="side-course" href="${href(subject, 'lessons-' + cs.id)}"><span class="cdot" style="background:${st.dot}"></span><span class="txt">${esc(L(cs))}</span><span class="cnt">${n}</span></a>`;
+    }).join('')}</div>` : ''}
+    ${nav.more.length ? `<div class="side-label">${esc(tt.moreLabel)}</div><nav class="side-nav">${nav.more.map(i => navLink(i, 'nav-item')).join('')}</nav>` : ''}
+    ${pending ? `<p class="sync-note">${esc(tt.syncPending(pending))}</p>` : ''}`;
+
   document.getElementById('tabbar').innerHTML = nav.main.map(i => navLink(i, 'tab')).join('') +
     `<button class="tab" data-open="more" aria-haspopup="dialog">${icon('menu')}<span>${esc(tt.nav.more)}</span></button>`;
 }
 
 /* ---------- Views ---------- */
-function pageHeader(list) {
-  const c = C[subject], tt = t(), g = goalStore.get(subject);
-  const lessonTotal = subject === 'math' ? 0 : MGLessons.forSubject(subject).length;
-  const meta = c.meta(counts[subject], lessonTotal);
-  const actions = [];
-  if (subject !== 'math' && !g.date) {
-    actions.push(`<button class="btn btn-ghost btn-sm" data-open="goal">${icon('calendar')}${esc(tt.setDate)}</button>`);
+function goalBox(list) {
+  const tt = t(), g = goalStore.get(subject), c = C[subject];
+  const hasGoal = list.length > 0 || Boolean(g.date);
+  if (!hasGoal) {
+    return `<aside class="ka-goal-box"><div class="card-head"><h3>${esc(tt.overviewTitle)}</h3></div>
+      <ul class="ka-fact-list">${c.facts(counts[subject]).map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+      <div class="ka-goal-actions"><button class="btn btn-ghost btn-sm" data-open="goal">${icon('calendar')}${esc(tt.setDate)}</button>
+      ${MG.user ? '' : `<a class="link-btn" href="${ACCOUNT}">${esc(tt.signInSync)} ›</a>`}</div></aside>`;
   }
-  if (!MG.user) {
-    actions.push(`<a class="btn btn-ghost btn-sm" href="${ACCOUNT}">${esc(tt.signInSync)}</a>`);
-  }
-  return `<header class="page-head"><div><h1>${esc(L(c.pageTitle))}</h1><p class="meta num">${esc(meta)}</p></div>${actions.length ? `<div class="head-actions">${actions.join('')}</div>` : ''}</header>`;
-}
-
-function launchPanel() {
-  const c = C[subject], h = L(c.hero);
-  if (chip >= h.chips.length) chip = 0;
-  const cur = h.chips[chip];
-  const note = cur[1](counts[subject]);
-  return `<section class="launch"><div class="launch-head"><p class="launch-kicker">${esc(h.kicker)}</p><h2>${esc(h.title)}</h2><p class="desc">${esc(h.desc)}</p></div>
-    <div class="mode-tabs" role="group">${h.chips.map((x, i) => `<button type="button" class="chip" data-chip="${i}" aria-pressed="${i === chip}">${esc(x[0])}</button>`).join('')}</div>
-    <div class="launch-foot"><a class="btn btn-primary btn-lg" href="${esc(h.href)}">${esc(h.cta)} ${icon('arrow')}</a><span class="note num">${esc(note)}</span></div></section>`;
-}
-
-function goalCard(list) {
-  const tt = t(), g = goalStore.get(subject);
-  const max = C[subject].goal.max, target = g.score || C[subject].goal.score;
+  const max = c.goal.max, target = g.score || c.goal.score;
   const latest = list.find(x => x.est != null);
   let dateBlock;
   if (g.date) {
@@ -397,20 +428,42 @@ function goalCard(list) {
     dateBlock = `<p class="hint">${esc(tt.goalQ)}</p>`;
   }
   const pct = latest ? Math.max(4, Math.min(100, Math.round(latest.est / target * 100))) : 0;
-  return `<section class="card goal"><div class="card-head"><h3>${esc(tt.goal)}</h3><button class="link-btn" data-open="goal">${icon('edit')}${esc(tt.edit)}</button></div>
+  return `<aside class="ka-goal-box"><div class="card-head"><h3>${esc(tt.goal)}</h3><button class="link-btn" data-open="goal">${icon('edit')}${esc(tt.edit)}</button></div>
     ${dateBlock}
     <div class="score-row"><div><small>${esc(tt.estimated)}</small><strong>${latest ? latest.est : '—'}</strong></div>
       <div class="right"><small>${esc(tt.target)}</small><strong>${target}<span class="of"> / ${max}</span></strong></div></div>
     <div class="bar" role="img" aria-label="${pct}%"><span style="width:${pct}%"></span></div>
     <p class="hint">${esc(latest ? tt.estFrom(fmtDate(latest.when)) : subject === 'sat' ? tt.estHintSat : tt.estHintAct)}</p>
-    ${MG.user ? '' : `<p class="hint">${esc(tt.guestGoal)}</p>`}</section>`;
+    ${MG.user ? '' : `<p class="hint">${esc(tt.guestGoal)}</p>`}</aside>`;
+}
+
+function kaBanner(list) {
+  const c = C[subject], h = L(c.hero);
+  if (subject === 'math') {
+    return `<section class="ka-banner single"><div class="ka-banner-main"><p class="ka-kicker">${esc(h.kicker)}</p><h1>${esc(h.title)}</h1><p class="desc">${esc(h.desc)}</p></div></section>`;
+  }
+  if (chip >= h.chips.length) chip = 0;
+  const cur = h.chips[chip];
+  const note = cur[1](counts[subject]);
+  const ctaHref = cur[2] || h.href;
+  return `<section class="ka-banner">
+    <div class="ka-banner-main">
+      <p class="ka-kicker">${esc(h.kicker)}</p>
+      <h1>${esc(h.title)}</h1>
+      <p class="desc">${esc(h.desc)}</p>
+      <div class="mode-tabs" role="group">${h.chips.map((x, i) => `<button type="button" class="chip" data-chip="${i}" aria-pressed="${i === chip}">${esc(x[0])}</button>`).join('')}</div>
+      <div class="launch-foot"><a class="btn btn-primary btn-lg" href="${esc(ctaHref)}">${esc(h.cta)} ${icon('arrow')}</a><span class="note num">${esc(note)}</span></div>
+    </div>
+    ${goalBox(list)}
+  </section>`;
 }
 
 function entryCard(p, title, desc) {
+  const tt = t();
   return `<a class="entry-card" href="${esc(p.href)}"${isExternal(p.href) ? ' target="_blank" rel="noopener"' : ''}>
-    <span class="ic">${icon(p.ic || 'file')}</span>
+    <span class="medallion ${p.mc || 'm-blue'}">${icon(p.ic || 'file')}</span>
     <span class="txt"><strong>${esc(title)}</strong><small>${esc(desc)}</small></span>
-    <span class="go">${icon('arrow')}</span></a>`;
+    <span class="go">${esc(tt.startAction)} ›</span></a>`;
 }
 function practiceEntries(limit) {
   const list = C[subject].practice.slice(0, limit || 99);
@@ -418,28 +471,45 @@ function practiceEntries(limit) {
 }
 
 function mathCatalog() {
-  const tt = t(), h = L(C.math.hero);
-  return `<p class="page-sub" style="margin:0">${esc(h.desc)}</p>
-    <div class="list-group"><div class="catalog-head"><span>${esc(tt.mathCourseHeader)}</span><span>${esc(tt.mathStatus)}</span></div>
-      ${C.math.courses.map(c => `<div class="list-row"><div><strong>${esc(L(c))}</strong></div><small>${esc(c.group)}</small></div>`).join('')}
-    </div>`;
+  const tt = t();
+  return `<div class="unit-stack">${C.math.groups.map(g => `<section class="unit-card">
+    <div class="unit-head">
+      <span class="medallion ${g.mc}">${icon(g.ic)}</span>
+      <div class="txt"><h3>${esc(L(g.title))}</h3><div class="unit-meta"><span class="pill-status">${esc(tt.mathStatus)}</span></div></div>
+    </div>
+    <div class="list-group" style="border:none;border-radius:0;box-shadow:none">
+      ${g.items.map(it => `<div class="list-row"><strong>${esc(L(it))}</strong><small>${esc(tt.soon)}</small></div>`).join('')}
+    </div>
+  </section>`).join('')}</div>`;
 }
 
-/* Home: one row per course. */
-function courseRows(st) {
+/* Home: Khan-style Course Unit Cards with direct lesson previews. */
+function courseUnitCards(st) {
   if (subject === 'math') return '';
   const tt = t(), open = st?.[subject]?.can_view;
-  return `<div class="list-group">${MGLessons.COURSES[subject].map(c => {
-    const count = MGLessons.forCourse(subject, c.id).length;
-    return `<a class="row-link" href="${href(subject, 'lessons')}">
-      <span class="ic-sm">${icon('book')}</span>
-      <span class="txt"><strong>${esc(L(c))}</strong></span>
-      <span class="right-meta"><span class="num">${esc(tt.lessonsCount(count))}</span><span class="pill-status${open ? ' open' : ''}">${esc(open ? tt.unlocked : tt.needCode)}</span></span>
-      <span class="go">${icon('arrow')}</span></a>`;
+  return `<div class="unit-stack">${MGLessons.COURSES[subject].map(c => {
+    const lessons = MGLessons.forCourse(subject, c.id);
+    const preview = lessons.slice(0, 6);
+    const stStyle = COURSE_STYLE[c.id] || COURSE_STYLE.reading;
+    return `<section class="unit-card">
+      <div class="unit-head">
+        <span class="medallion ${stStyle.cls}">${icon(stStyle.ic)}</span>
+        <div class="txt">
+          <h3>${esc(L(c))}</h3>
+          <div class="unit-meta"><span class="num">${esc(tt.lessonsCount(lessons.length))}</span><span class="pill-status${open ? ' open' : ''}">${esc(open ? tt.unlocked : tt.needCode)}</span></div>
+        </div>
+        <a class="link-btn" href="${href(subject, 'lessons-' + c.id)}">${esc(tt.viewAll)} ›</a>
+      </div>
+      <div class="unit-lessons">${preview.map(i => `<a class="unit-lesson-link" href="${V2}lesson.html?id=${encodeURIComponent(i.id)}">
+        <span class="lesson-idx">${String(i.n).padStart(2, '0')}</span>
+        <span class="txt"><strong>${esc(i.title)}</strong>${lang === 'zh' && i.zh ? `<small>${esc(i.zh)}</small>` : ''}</span>
+        <span class="go">${open ? icon('arrow') : icon('lock')}</span></a>`).join('')}</div>
+      <div class="unit-foot"><span>${esc(tt.unitFoot(lessons.length))}</span><a href="${href(subject, 'lessons-' + c.id)}">${esc(tt.viewAllLessons(lessons.length))} →</a></div>
+    </section>`;
   }).join('')}</div>`;
 }
 
-/* Lessons page: unlock box + every lesson. */
+/* Lessons page: unlock box + every lesson in Unit Cards. */
 function unlockBar(st) {
   const tt = t(), s = st?.[subject];
   if (s?.can_view) {
@@ -454,10 +524,18 @@ function unlockBar(st) {
 }
 function lessonList(st) {
   if (subject === 'math') return mathCatalog();
-  const open = st?.[subject]?.can_view;
-  return MGLessons.COURSES[subject].map(c => `<section class="course-group"><h2>${esc(L(c))}</h2><div class="list-group lesson-list">
-    ${MGLessons.forCourse(subject, c.id).map(i => `<a class="row-link" href="${V2}lesson.html?id=${encodeURIComponent(i.id)}"><span class="lesson-idx">${String(i.n).padStart(2, '0')}</span><span class="txt"><strong>${esc(i.title)}</strong>${lang === 'zh' && i.zh ? `<small>${esc(i.zh)}</small>` : ''}</span><span class="go">${open ? icon('arrow') : icon('lock')}</span></a>`).join('')}
-  </div></section>`).join('');
+  const tt = t(), open = st?.[subject]?.can_view;
+  return `<div class="unit-stack">${MGLessons.COURSES[subject].map(c => {
+    const lessons = MGLessons.forCourse(subject, c.id);
+    const stStyle = COURSE_STYLE[c.id] || COURSE_STYLE.reading;
+    return `<section class="unit-card course-group" id="course-${esc(c.id)}">
+      <div class="unit-head">
+        <span class="medallion sm ${stStyle.cls}">${icon(stStyle.ic)}</span>
+        <div class="txt"><h3>${esc(L(c))}</h3><div class="unit-meta"><span class="num">${esc(tt.lessonsCount(lessons.length))}</span></div></div>
+      </div>
+      <div class="lesson-list">${lessons.map(i => `<a class="row-link" href="${V2}lesson.html?id=${encodeURIComponent(i.id)}"><span class="lesson-idx">${String(i.n).padStart(2, '0')}</span><span class="txt"><strong>${esc(i.title)}</strong>${lang === 'zh' && i.zh ? `<small>${esc(i.zh)}</small>` : ''}</span><span class="go">${open ? icon('arrow') : icon('lock')}</span></a>`).join('')}</div>
+    </section>`;
+  }).join('')}</div>`;
 }
 async function lessonStatus() { try { lessonSt = await MGAccess.status(); } catch { lessonSt = {}; } return lessonSt; }
 
@@ -481,28 +559,44 @@ function weekCard(list) {
 }
 function foot() { return `<footer class="foot"><span>${esc(t().foot)}</span><a href="${UP('legacy.html')}">${esc(t().oldSite)}</a></footer>`; }
 
+function programStrip() {
+  const tt = t();
+  const shortDesc = {
+    sat: lang === 'zh' ? `${counts.sat} 套模考` : `${counts.sat} mocks`,
+    act: lang === 'zh' ? `${counts.act} 套模考` : `${counts.act} mocks`,
+    math: 'AP · IB · AL'
+  };
+  return `<nav class="program-strip" aria-label="${esc(tt.subjectLabel)}">${SUBJECTS.map(s => {
+    const c = C[s];
+    const lt = s === 'math' ? 0 : MGLessons.forSubject(s).length;
+    const active = s === subject;
+    return `<button type="button" class="prog-card" data-pick="${s}" data-subj="${s}" aria-current="${active}">
+      <span class="prog-badge">${esc(c.mark)}</span>
+      <span class="prog-txt"><strong>${esc(L(c.name))}</strong><small class="desk-meta num">${esc(c.meta(counts[s], lt))}</small><small class="mob-meta num">${esc(shortDesc[s])}</small></span>
+      ${active ? `<span class="prog-cur">${esc(tt.current)}</span>` : ''}
+    </button>`;
+  }).join('')}</nav>`;
+}
+
 function viewHome() {
   const tt = t();
-  const list = localHistory(subject), st = lessonSt;
-  const g = goalStore.get(subject);
+  const list = cache[subject] || [], st = lessonSt;
   const teacherBar = MG.teacher ? `<section class="staff-heading" aria-label="${esc(tt.teacher)}">
       <a id="pending-feedback" href="${UP('account.html?view=teacher')}">${lang === 'zh' ? '查看待反馈作业' : 'Review student submissions'}</a>
       <a href="${V2}teacher.html">${lang === 'zh' ? '课件与学生权限' : 'Lessons and access'}</a>
     </section>` : '';
 
   if (subject === 'math') {
-    return `<div class="page">${pageHeader(list)}${teacherBar}${mathCatalog()}${foot()}</div>`;
+    return `<div class="page">${teacherBar}${programStrip()}${kaBanner(list)}${mathCatalog()}${foot()}</div>`;
   }
 
-  const showGoal = list.length > 0 || Boolean(g.date);
-  const topBlock = showGoal ? `<div class="top-grid">${launchPanel()}${goalCard(list)}</div>` : launchPanel();
   const historyBlock = list.length > 0 ? `<div class="two">${recentCard(list)}${weekCard(list)}</div>` : '';
-  const lessonsBlock = `<section class="section-block"><div class="section-head"><h2>${esc(tt.lessons)}</h2><a class="link-btn" href="${href(subject, 'lessons')}">${esc(tt.allLessons)} ›</a></div>${courseRows(st)}</section>`;
+  const lessonsBlock = `<section class="section-block"><div class="section-head"><h2>${esc(tt.lessons)}</h2><a class="link-btn" href="${href(subject, 'lessons')}">${esc(tt.allLessons)} ›</a></div>${courseUnitCards(st)}</section>`;
 
   return `<div class="page">
-    ${pageHeader(list)}
     ${teacherBar}
-    ${topBlock}
+    ${programStrip()}
+    ${kaBanner(list)}
     <section class="section-block"><div class="section-head"><h2>${esc(tt.practice)}</h2><a class="link-btn" href="${href(subject, 'practice')}">${esc(tt.allPractice)} ›</a></div>${practiceEntries(4)}</section>
     ${historyBlock}
     ${lessonsBlock}
@@ -510,7 +604,7 @@ function viewHome() {
 }
 function viewPractice() {
   const tt = t();
-  if (subject === 'math') return `<div class="page">${pageHeader([])}${mathCatalog()}${foot()}</div>`;
+  if (subject === 'math') return viewHome();
   return `<div class="page"><div><h1 class="page-title">${esc(tt.practice)}</h1><p class="page-sub">${esc(tt.practiceSub)}</p></div>${subject === 'sat' ? `<section class="study-entries" aria-label="${esc(tt.practice)}">
     <a class="study-main" href="${UP('mock.html')}"><small>SAT</small><h2>${lang === 'zh' ? '模考选卷' : 'Mock exams'}</h2><p>${counts.sat} ${lang === 'zh' ? '套，含完整模考与单科练习' : 'tests, full-length and sections'}</p></a>
     ${[['reading', '阅读', 'Reading'], ['grammar', '语法', 'Grammar']].map(([key, zh, en]) => `<a href="${UP('sat.html#' + key)}"><small>${lang === 'zh' ? '专题练习' : 'Topic practice'}</small><h2>${lang === 'zh' ? zh : en} →</h2></a>`).join('')}
@@ -533,11 +627,21 @@ function paint() {
   const view = document.getElementById('view');
   const n = t().nav;
   let html;
+  if (route === 'board' && window.MGBoard) {
+    const ctx = { lang, subject, accountHref: ACCOUNT, footHtml: foot() };
+    view.innerHTML = MGBoard.renderHtml(ctx);
+    MGBoard.mount(view, ctx);
+    return;
+  }
   if (route === 'practice') html = viewPractice();
-  else if (route === 'lessons') html = viewLessons();
+  else if (route === 'lessons' || route.startsWith('lessons-')) html = viewLessons();
   else if (['plan', 'vocab', 'formulas', 'mistakes'].includes(route)) html = viewSoon(n[route]);
   else { route = 'home'; html = viewHome(); }
   view.innerHTML = html;
+  if (route.startsWith('lessons-')) {
+    const cid = route.slice(8);
+    document.getElementById('course-' + cid)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   const link = view.querySelector('#pending-feedback');
   if (link) refreshPendingFeedback(link);
 }
@@ -546,7 +650,8 @@ async function hydrate(seq) {
   if (seq !== renderSeq) return;
   await Promise.allSettled([
     subject !== 'math' ? lessonStatus() : Promise.resolve(),
-    loadHistory(subject)
+    loadHistory(subject),
+    loadCounts()
   ]);
   if (seq !== renderSeq) return;
   try { await window.MGNotify?.refresh(notifyCtx()); } catch {}
@@ -652,6 +757,7 @@ document.addEventListener('click', async e => {
   else if (el.matches('[data-switch-from-more]')) { document.getElementById('dlg-more').close(); openDialog('switch'); }
   else if (el.matches('[data-pick]')) {
     e.preventDefault(); subject = el.dataset.pick; pref.set('subject', subject); chip = 0; route = 'home';
+    window.MGBoard?.setSubject?.(subject);
     el.closest('dialog')?.close();
     if (PAGE !== 'home') { location.href = href(subject); return; }
     window.history.replaceState(null, '', href(subject)); render(); window.scrollTo(0, 0);
@@ -683,16 +789,11 @@ document.addEventListener('submit', async e => {
   btn.disabled = false; form.code.select();
 });
 window.addEventListener('hashchange', () => {
-  if (PAGE !== 'home') return; route = location.hash.slice(1) || 'home'; document.querySelectorAll('dialog[open]').forEach(d => d.close()); render(); window.scrollTo(0, 0); });
+  if (PAGE !== 'home') return; route = location.hash.slice(1) || 'home'; document.querySelectorAll('dialog[open]').forEach(d => d.close()); render(); if (!route.startsWith('lessons-')) window.scrollTo(0, 0); });
 
 window.MGShell = { get lang() { return lang; }, get subject() { return subject; }, render, V2, ROOT };
 
 /* ---------- Start ---------- */
 pref.set('subject', subject);
-const bootSeq = ++renderSeq;
-paint();
-loadCounts().then(() => {
-  if (bootSeq === renderSeq && document.activeElement?.id !== 'unlock-code') paint();
-}, () => {});
-hydrate(bootSeq);
+render();
 })();

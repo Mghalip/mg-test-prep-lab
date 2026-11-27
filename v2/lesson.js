@@ -6,7 +6,7 @@ let lang = 'zh';
 try { lang = JSON.parse(localStorage.getItem('mg-v2-lang')) === 'en' ? 'en' : 'zh'; } catch {}
 const T = {
   zh: {
-    back: '课件', of: (a, b) => `第 ${a} / ${b} 讲`, prev: '上一讲', next: '下一讲',
+    back: '课件', toc: (a, b) => `目录 ${a}/${b}`, of: (a, b) => `第 ${a} / ${b} 讲`, prev: '上一讲', next: '下一讲',
     lockedTitle: '输入本周密码', lockedText: s => `${s} 课件每周一 0:00 更新密码，请向老师获取。输入一次本周内有效。`,
     codePh: '例如 7KQ-M4P', open: '打开课件', or: '或', signedIn: '已有账号',
     approvedText: '已批准的注册账号可直接打开课件。', signIn: '登录 / 注册', waitApprove: '当前账号已登录，老师批准后即可免密码查看。',
@@ -16,7 +16,7 @@ const T = {
     cloudOff: '账号服务暂时不可用，请稍后再试。'
   },
   en: {
-    back: 'Lessons', of: (a, b) => `Lesson ${a} of ${b}`, prev: 'Previous', next: 'Next',
+    back: 'Lessons', toc: (a, b) => `List ${a}/${b}`, of: (a, b) => `Lesson ${a} of ${b}`, prev: 'Previous', next: 'Next',
     lockedTitle: 'Enter this week’s code', lockedText: s => `${s} lesson codes rotate every Monday at 00:00 (Beijing time). Enter once for full-week access.`,
     codePh: 'e.g. 7KQ-M4P', open: 'Open lesson', or: 'or', signedIn: 'Have an account?',
     approvedText: 'Approved student accounts open lessons directly.', signIn: 'Sign in / Sign up', waitApprove: 'You are signed in. Lessons unlock once your teacher approves your account.',
@@ -51,10 +51,15 @@ const siblings = MGLessons.forCourse(item.subject, item.course);
 const pos = siblings.indexOf(item);
 const link = it => it ? `lesson.html?id=${encodeURIComponent(it.id)}` : '#';
 document.title = `${item.title} · ${course[lang]} · MG Test Prep Lab`;
-bar.innerHTML = `<a class="back" href="./?s=${item.subject}${langQ}#lessons">${ICON.back}<span>${esc(T.back)}</span></a>
+bar.innerHTML = `<a class="back" href="./?s=${item.subject}${langQ}#lessons-${encodeURIComponent(item.course)}">${ICON.back}<span>${esc(T.back)}</span></a>
   <div class="title"><strong>${esc(item.title)}</strong><small>${esc(course[lang])} · ${esc(T.of(pos + 1, siblings.length))}${lang === 'zh' && item.zh ? ' · ' + esc(item.zh) : ''}</small></div>
+  <details class="lesson-toc" id="lesson-toc"><summary class="toc-btn">${esc(T.toc(pos + 1, siblings.length))} ▾</summary><div class="toc-menu">${siblings.map(s => `<a href="${link(s)}"${s.id === item.id ? ' aria-current="page"' : ''}><span class="lesson-idx">${String(s.n).padStart(2, '0')}</span><span><strong>${esc(s.title)}</strong>${lang === 'zh' && s.zh ? `<small>${esc(s.zh)}</small>` : ''}</span></a>`).join('')}</div></details>
   <nav class="nav"><a class="icon-btn" href="${link(siblings[pos - 1])}" aria-label="${esc(T.prev)}"${pos === 0 ? ' aria-disabled="true"' : ''}>${ICON.prev}</a>
   <a class="icon-btn" href="${link(siblings[pos + 1])}" aria-label="${esc(T.next)}"${pos === siblings.length - 1 ? ' aria-disabled="true"' : ''}>${ICON.next}</a></nav>`;
+document.addEventListener('click', e => {
+  const toc = document.getElementById('lesson-toc');
+  if (toc?.open && !toc.contains(e.target)) toc.open = false;
+});
 
 async function show() {
   stage.innerHTML = '<p class="loading">…</p>';
