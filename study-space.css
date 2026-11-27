@@ -365,6 +365,9 @@ button.rank-act.primary:hover { background:#1152cc; }
 }
 #mock-app > .catalog-page .paper-card button.primary:hover { background:#1152cc; }
 
+#act-app > .act-catalog .test-cards { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+@media(max-width:1020px) { #act-app > .act-catalog .test-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:680px) { #act-app > .act-catalog .test-cards { grid-template-columns:1fr; } }
 #act-app > .act-catalog .test-card {
   border:1px solid #d6d8da;
   border-radius:8px;

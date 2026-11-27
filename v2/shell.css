@@ -71,7 +71,7 @@ svg.i{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .side{grid-column:1;grid-row:2;position:sticky;top:var(--top-h);height:calc(100vh - var(--top-h));background:var(--surface);color:var(--ink);border-right:1px solid var(--border-soft);padding:20px 12px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
 .tabbar{display:none}
 .main{grid-column:2;grid-row:2;min-width:0;padding:24px 32px 56px;outline:none}
-.page{max-width:1260px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.page{max-width:1360px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
 
 /* ---------- Topbar ---------- */
 .top-l{display:flex;align-items:center;gap:20px;min-width:0}
@@ -130,7 +130,7 @@ h1,h2,h3{margin:0}
 .page-head h1{font:700 24px/1.2 var(--sans);letter-spacing:-.015em;color:var(--ink)}
 .page-head .meta{margin:4px 0 0;font-size:13.5px;color:var(--ink-2)}
 .page-title{font:700 26px/1.2 var(--sans);letter-spacing:-.015em;color:var(--ink)}
-.page-sub{margin:4px 0 0;font-size:14px;color:var(--ink-2);max-width:640px}
+.page-sub{margin:4px 0 0;font-size:14px;color:var(--ink-2);max-width:780px}
 
 .medallion{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
 .medallion.sm{width:34px;height:34px}
@@ -161,7 +161,7 @@ h1,h2,h3{margin:0}
 .ka-banner-main{display:flex;flex-direction:column;gap:12px}
 .ka-kicker{display:inline-block;margin:0;font-size:12px;font-weight:700;color:var(--accent-ink);letter-spacing:.03em;text-transform:uppercase}
 .ka-banner h1{font:700 28px/1.2 var(--sans);letter-spacing:-.015em;color:var(--ink)}
-.ka-banner p.desc{margin:0;font-size:14.5px;color:var(--ink-2);max-width:540px}
+.ka-banner p.desc{margin:0;font-size:14.5px;color:var(--ink-2);max-width:680px}
 .mode-tabs{display:inline-flex;flex-wrap:wrap;gap:3px;padding:3px;background:rgba(255,255,255,.78);border:1px solid var(--accent-border);border-radius:var(--r);align-self:flex-start}
 .chip{min-height:32px;padding:0 12px;border-radius:var(--r-sm);border:none;background:transparent;color:var(--ink-2);font-size:13px;font-weight:600;cursor:pointer;transition:var(--t)}
 .chip:hover{color:var(--ink);background:rgba(255,255,255,.8)}
@@ -211,6 +211,7 @@ h1,h2,h3{margin:0}
 
 /* ---------- Khan-Style Course Unit Cards ---------- */
 .unit-stack{display:flex;flex-direction:column;gap:16px}
+.math-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
 .unit-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
 .unit-head{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border-soft)}
 .unit-head .txt{flex:1;min-width:0}
@@ -304,7 +305,7 @@ a.row-link:hover{background:var(--accent-soft)}
 /* ---------- Responsive ---------- */
 @media (max-width:1100px){
   .ka-banner{grid-template-columns:1fr;padding:20px}
-  .unit-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .unit-lessons,.math-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
   .app{grid-template-columns:1fr;grid-template-rows:auto 1fr auto}
@@ -331,7 +332,7 @@ a.row-link:hover{background:var(--accent-soft)}
   .ka-banner{padding:18px}
   .ka-banner h1{font-size:22px}
   .page-title{font-size:22px}
-  .entry-grid,.unit-lessons,.two{grid-template-columns:1fr}
+  .entry-grid,.unit-lessons,.math-grid,.two{grid-template-columns:1fr}
   .unit-head{padding:14px 16px}
   .unit-foot{padding:10px 16px}
   .tabbar{display:grid;position:sticky;bottom:0;z-index:20;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);background:var(--surface);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)}

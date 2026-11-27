@@ -472,7 +472,7 @@ function practiceEntries(limit) {
 
 function mathCatalog() {
   const tt = t();
-  return `<div class="unit-stack">${C.math.groups.map(g => `<section class="unit-card">
+  return `<div class="math-grid">${C.math.groups.map(g => `<section class="unit-card">
     <div class="unit-head">
       <span class="medallion ${g.mc}">${icon(g.ic)}</span>
       <div class="txt"><h3>${esc(L(g.title))}</h3><div class="unit-meta"><span class="pill-status">${esc(tt.mathStatus)}</span></div></div>
