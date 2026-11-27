@@ -45,7 +45,7 @@ body:not(:has(.exam-header)):has(.catalog-page) {
   --ka-soft:#ebf3ff;
   --ka-border:#c5dbff;
   --ka-ink:#0a2a66;
-  max-width:1360px !important;
+  max-width:1240px !important;
   margin:0 auto !important;
   padding:20px 24px 64px !important;
   font-family:"Lato",-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Segoe UI",sans-serif;
@@ -609,7 +609,7 @@ body.account {
   color:#21242c;
   font-family:"Lato",-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Segoe UI",sans-serif;
 }
-body.account main { max-width:1360px; }
+body.account main { max-width:1240px; }
 body.account > .mg-account-bar {
   background:#eef4ff;
   color:#21242c;
