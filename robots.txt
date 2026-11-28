@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /legacy.html
+Disallow: /account.html
+Disallow: /v2/account.html
+Disallow: /v2/teacher.html
+Disallow: /backend/
+
+Sitemap: https://mgpreplab.com/sitemap.xml
