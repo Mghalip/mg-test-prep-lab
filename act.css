@@ -82,3 +82,47 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .act-table-scroll table { border-collapse:collapse; font-size:0.9em; }
 .act-table-scroll td,.act-table-scroll th { padding:.25em .45em; border:1px solid #a5aeb8; }
 .act-table-scroll caption { margin-bottom:.4em; font-weight:bold; }
+
+.english-player {height:100dvh;display:grid;grid-template:56px minmax(0,1fr) / minmax(0,1fr) clamp(72px,8.4vw,120px);background:#e9ecef;color:#212529;font:16px/1.5 Arial,sans-serif}
+.english-player button,.english-player summary {font:inherit;cursor:pointer}
+.english-bar {grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:0 14px;color:white;background:#1b3142;text-transform:uppercase}
+.english-bar>strong {font-size:25px;margin-right:auto}
+.english-bar .exam-tools {margin:0;flex:none}
+.english-bar .exam-tools>:not(details) {display:none}
+.english-bar .tools-menu summary,.english-bar .contrast-menu summary,.english-bar>button {color:inherit;background:transparent;border:0;text-transform:uppercase;font-weight:bold}
+.english-bar .answer-count {margin-left:auto}
+.contrast-menu {position:relative}
+.contrast-menu button {position:absolute;z-index:10;top:100%;min-width:10em}
+.english-card {display:flex;flex-direction:column;min-height:0;margin:10px;padding:0 10px;background:white;box-shadow:0 0 10px #0002}
+.item-bar,.english-nav {display:flex;align-items:center;flex:none;height:54px;border-bottom:1px solid #dce0e5}
+.item-bar button,.english-nav button,.english-player aside button {background:transparent;border:0;color:#495057;text-transform:uppercase;font-weight:bold}
+.item-bar button {margin-left:auto}
+.item-bar button[aria-pressed=true] {color:#914100;background:#ffedb5}
+.english-player .workspace {display:grid;grid-template-columns:1fr 1fr;min-height:0;flex:1;height:auto;margin:4px 0}
+.english-player .pane {min-height:0;max-height:none;padding:0 9px;scrollbar-gutter:auto}
+.english-player .question-pane {padding:16px;border-left:1px solid #ebebeb}
+.english-player :is(.native-passage,.native-item) {max-width:none;color:inherit;font:calc(16px * var(--zoom))/1.5 Arial,sans-serif}
+.english-player .native-passage p {margin:0 0 1em;line-height:inherit}
+.english-player .passage-pane {padding-right:18px}
+.english-player .native-stem p {line-height:inherit}
+.english-player .active-target {background:#ffff80}
+.english-player .native-options {margin-top:4em;gap:0}
+.english-player .native-option {width:100%;min-height:49px;border:0;background:transparent;color:inherit;padding:4px;gap:9px;font:inherit}
+.english-player .native-option::before {content:'';flex:none;width:13px;height:13px;border:1px solid #888;border-radius:50%;box-sizing:border-box}
+.english-player .native-option[aria-pressed=true]::before {background:#345e86;box-shadow:inset 0 0 0 2px white}
+.english-player .native-option b {font:inherit;border:0;min-width:0}
+.english-player .native-option b::after {content:'.'}
+.english-nav {justify-content:flex-end;border:0;border-top:1px solid #dce0e5}
+.english-nav button:last-child {background:#495057;color:white}
+.english-player aside {text-align:center;padding-top:16px}
+.english-player aside button,.english-player aside small {display:block;margin:auto}
+.high-contrast .english-player {filter:contrast(1.5)}
+@media(max-width:700px){
+ .english-player {grid-template: auto minmax(0,1fr) / minmax(0,1fr) 48px}
+ .english-bar {flex-wrap:wrap;gap:3px 8px;padding:4px;font-size:12px}
+ .english-bar>strong {font-size:16px}
+ .english-card {margin:4px;padding:0 5px}
+ .english-player .workspace {grid-template: minmax(0,1fr) minmax(0,1fr) / minmax(0,1fr)}
+ .english-player .native-options {margin-top:1em}
+ .english-player aside button {padding:3px}
+}
