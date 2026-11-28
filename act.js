@@ -120,7 +120,39 @@ function addFigureZoom(pane){
    if(table){button.classList.add('table-zoom');button.append(img)}
  }
 }
+function renderMath(q,parts,scrolls){
+ const questions=section().questions;
+ const answered=questions.filter(item=>state.answers[item.id]).length;
+ const percent=Math.round(100*answered/questions.length);
+ app.innerHTML=`<div class="tn-player" lang="en">
+ <header class="tn-toolbar"><div class="tn-inner">
+ <nav aria-label="Question navigation"><button aria-label="Previous question" ${state.pos===0?'disabled':''} onclick="ACTLab.jump(${state.pos-1})">←</button><button aria-label="Next question" onclick="ACTLab.nextQuestion()">→</button></nav>
+ <details class="tn-review"><summary>Review ☷</summary><section aria-label="Review questions"></section></details>
+ <button class="tn-bookmark" aria-pressed="${!!state.flags[q.id]}" onclick="ACTLab.flag()">Bookmark</button>
+ <button aria-label="Calculator" onclick="ACTLab.calculator()">▦</button>${tools()}
+ <button class="clock" aria-label="Show or hide timer" onclick="ACTLab.hideTimer()"><strong id="timer" class="${hiddenTimer?'hidden':''}">${clock(state.mode==='timed'?(state.deadline-Date.now())/1000:state.elapsed)}</strong></button>
+ <button onclick="ACTLab.confirmEnd()">End Section</button></div></header>
+ <div class="tn-progress"><div class="tn-inner">MG ACT　 /　 MATHEMATICS　 /　 ${q.number} OF ${questions.length}　 /　 <progress value="${answered}" max="${questions.length}"></progress> ${percent}%</div></div>
+ <div class="tn-body"><div class="workspace ${q.passage?'':'single-pane'}">${q.passage?`<section class="pane passage-pane">${passageContent(q,parts)}</section>`:''}
+ <section class="pane question-pane" aria-label="Question and answers">${q.introduction?`<p>${esc(q.introduction)}</p>`:''}${questionContent(q)}</section></div></div></div>`;
+ const review=app.querySelector('.tn-review');
+ review.ontoggle=()=>{if(review.open)mathReview(review.querySelector('section'),'all')};
+ hydrate(q,parts,++token,scrolls);
+ if(lineReader)addReader();
+}
+function mathReview(panel,filter){
+ const questions=section().questions;
+ const filters=[['all','All Questions',questions.length],['unanswered','Not Answered',questions.filter(q=>!state.answers[q.id]).length],['bookmarks','Bookmarks',questions.filter(q=>state.flags[q.id]).length]];
+ panel.innerHTML=`<div class="tn-filters">${filters.map(([key,label,count])=>`<button data-filter="${key}" aria-pressed="${key===filter}"><b>${count}</b>${label}</button>`).join('')}</div>
+ <div class="tn-list"><button onclick="ACTLab.directions()">Instructions</button>${questions.map((q,i)=>{
+   const answered=!!state.answers[q.id], marked=!!state.flags[q.id];
+   if((filter==='unanswered' && answered)||(filter==='bookmarks' && !marked))return '';
+   return `<button class="tn-row" data-answered="${answered}" aria-current="${i===state.pos}" onclick="ACTLab.jump(${i})">Question ${q.number}${marked?' ⚑':''}</button>`;
+ }).join('')}<button onclick="ACTLab.confirmEnd()">End of Section</button></div>`;
+ for(const button of panel.querySelectorAll('[data-filter]'))button.onclick=()=>mathReview(panel,button.dataset.filter);
+}
 function renderItem(q,parts,scrolls){
+ if(section().id==='math')return renderMath(q,parts,scrolls);
  const answered=section().questions.filter(item=>state.answers[item.id]).length;
  app.innerHTML=`<div class="act-player" data-section="${section().id}" lang="en">
  <header class="player-bar"><strong>MG ACT</strong>${tools()}<details class="contrast-menu"><summary>Contrast</summary><button onclick="document.getElementById('act-app').classList.toggle('high-contrast')">Toggle high contrast</button></details>
