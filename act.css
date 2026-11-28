@@ -156,3 +156,14 @@ body:has(.exam-header) #act-app{height:100dvh;display:flex;flex-direction:column
 .item-index .index-info span {background:#bdcfe0}
 .item-clock-label {font-weight:normal}
 @media(max-width:700px){.item-clock-label {display:none}}
+.player-bar .math-tools .tools-menu[open] summary {color:#1b3142;background:#e9ecef;border-radius:3px}
+.math-tools .tools-dropdown {left:0;right:auto;top:100%;width:244px;max-width:90vw;padding:6px 0;border:1px solid #ddd;border-radius:4px;box-shadow:0 6px 16px #0002}
+.math-tools .tools-dropdown button {height:28px;min-height:28px;padding:0 10px 0 40px;color:#202529;background:white;font:14px Arial,sans-serif;text-transform:none;justify-content:flex-start;text-align:left}
+.math-tools .tools-dropdown button:hover,.math-tools .tools-dropdown button:focus-visible,.math-tools .tools-dropdown button[aria-pressed=true] {background:#f3f4f5;color:#15191d}
+.graph-window {position:fixed;right:14px;top:52px;width:min(610px,calc(100vw - 20px));z-index:45;color:#242a30;background:white;box-shadow:0 4px 16px #0003;font:14px Arial,sans-serif}
+.graph-title {height:33px;background:#e9ecef;border-bottom:1px solid #ccc;display:flex;align-items:center;padding:0 10px;cursor:move;touch-action:none;user-select:none}
+.graph-title span {flex:1}
+.graph-title button {border:0;background:transparent;color:#495057;font:600 22px/1 Arial;min-height:28px;padding:0 6px;cursor:pointer}
+.graph-window iframe {display:block;border:0;width:100%;height:min(400px,calc(100dvh - 100px))}
+.graph-window iframe[hidden] {display:none}
+@media(max-width:600px){.math-tools .tools-dropdown{position:fixed;left:10px;top:auto}.graph-window{right:10px;top:90px}.graph-window iframe{height:min(400px,calc(100dvh - 145px))}}
